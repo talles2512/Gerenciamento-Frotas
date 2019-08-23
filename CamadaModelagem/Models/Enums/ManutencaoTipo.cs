@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CamadaModelagem
+namespace CamadaModelagem.Models.Enums
 {
-    public class Class1
+    enum ManutencaoTipo : int
     {
+        Preventiva = 0,
+        Corretiva = 1
     }
 }
