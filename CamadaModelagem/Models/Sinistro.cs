@@ -9,6 +9,7 @@ namespace CamadaModelagem.Modelagem
 {
     class Sinistro
     {
+        public int Id { get; set; }
         public ItemSegurado ItemSegurado { get; set; } //Duvidas futuras aqui
         public string Descricao { get; set; }
         public DateTime DataHora { get; set; }
@@ -19,8 +20,9 @@ namespace CamadaModelagem.Modelagem
 
         }
 
-        public Sinistro(ItemSegurado itemSegurado, string descricao, DateTime dataHora,Seguro seguro)
+        public Sinistro(int id, ItemSegurado itemSegurado, string descricao, DateTime dataHora,Seguro seguro)
         {
+            Id = id;
             ItemSegurado = itemSegurado;
             Descricao = descricao;
             DataHora = dataHora;

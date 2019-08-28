@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Models;
 
 namespace CamadaModelagem.Modelagem
 {
-    class Veiculo
+    class Veiculo : ItemSeguradoAbstrato
     {
         public string Placa { get; set; }
         public string Marca { get; set; }

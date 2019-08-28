@@ -8,16 +8,20 @@ namespace CamadaModelagem.Modelagem
 {
     class SeguroCobertura
     {
+        public int Id { get; set; }
         public string Descricao { get; set; }
+        public Seguro Seguro { get; set; }
 
         public SeguroCobertura()
         {
 
         }
 
-        public SeguroCobertura(string descricao)
+        public SeguroCobertura(int id,string descricao, Seguro seguro)
         {
+            Id = id;
             Descricao = descricao;
+            Seguro = seguro;
         }
     }
 }

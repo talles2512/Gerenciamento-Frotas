@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Models;
 
 namespace CamadaModelagem.Modelagem
 {
     class Seguro
     {
         public int NumeroApolice { get; set; }
-        public ItemSegurado ItemSegurado { get; set; } //Duvidas futuras aqui
+        public ItemSeguradoAbstrato ItemSegurado { get; set; } //Duvidas futuras aqui
         public string Tipo { get; set; }
         public double Valor { get; set; }
         public DateTime DataInicio { get; set; }
@@ -25,7 +26,7 @@ namespace CamadaModelagem.Modelagem
 
         }
 
-        public Seguro(int numeroApolice, ItemSegurado itemSegurado, string tipo, double valor, DateTime dataInicio, DateTime fimVigencia, string franquia, double valorFranquia,
+        public Seguro(int numeroApolice, ItemSeguradoAbstrato itemSegurado, string tipo, double valor, DateTime dataInicio, DateTime fimVigencia, string franquia, double valorFranquia,
             ServicoExterno servicoExterno)
         {
             NumeroApolice = numeroApolice;

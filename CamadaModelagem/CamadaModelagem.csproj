@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Enums\AbastecimentoTipo.cs" />
+    <Compile Include="Models\ItemSeguradoAbstrato.cs" />
     <Compile Include="Services\MultaService.cs" />
     <Compile Include="Services\ManutencaoService.cs" />
     <Compile Include="Services\FuncionarioService.cs" />
@@ -83,8 +84,15 @@
     <Compile Include="Models\Viagem.cs" />
     <Compile Include="Models\Ocupante.cs" />
     <Compile Include="Services\Exceptions\ConcorrenciaBancoException.cs" />
+    <Compile Include="Services\OcupanteService.cs" />
+    <Compile Include="Services\SeguroCoberturaService.cs" />
+    <Compile Include="Services\SeguroService.cs" />
+    <Compile Include="Services\ServicoExternoConveniadoService.cs" />
+    <Compile Include="Services\ServicoExternoService.cs" />
+    <Compile Include="Services\SinistroService.cs" />
     <Compile Include="Services\VeiculoService.cs" />
     <Compile Include="Models\Enums\VeiculoTipoCor.cs" />
+    <Compile Include="Services\ViagemService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
