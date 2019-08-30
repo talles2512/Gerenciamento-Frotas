@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace CamadaModelagem.Data
+namespace CamadaModelagem.Data.Configuration
 {
     class Configuracao
     {

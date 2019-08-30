@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CamadaModelagem.Modelagem
+namespace CamadaModelagem.Models
 {
     class Funcionario
     {

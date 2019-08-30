@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models.Enums;
 
-namespace CamadaModelagem.Modelagem
+namespace CamadaModelagem.Models
 {
     class ExameMedico //Padrão Pascal case/Camel case, a qual cada palavra inicia com maiúscula
     {

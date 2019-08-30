@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CamadaModelagem.Services.Exceptions;
 
-namespace CamadaModelagem.Data
+namespace CamadaModelagem.Data.Configuration
 {
     class Banco
     {

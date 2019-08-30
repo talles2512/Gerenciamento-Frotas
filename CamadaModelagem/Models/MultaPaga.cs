@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CamadaModelagem.Modelagem //Precisa ainda dessa Class ?
+namespace CamadaModelagem.Models //Precisa ainda dessa Class ?
 {
     class MultaPaga
     {

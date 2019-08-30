@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models.Enums;
 
-namespace CamadaModelagem.Modelagem
+namespace CamadaModelagem.Models
 {
     class Sinistro
     {

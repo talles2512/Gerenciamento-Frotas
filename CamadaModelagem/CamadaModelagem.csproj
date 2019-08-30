@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CamadaModelagem</RootNamespace>
     <AssemblyName>CamadaModelagem</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,8 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AbastecimentoDAL.cs" />
+    <Compile Include="Data\ClienteDAL.cs" />
+    <Compile Include="Data\EstoquePecasDAL.cs" />
+    <Compile Include="Data\EntradaSaidaDAL.cs" />
+    <Compile Include="Data\ExameMedicoDAL.cs" />
+    <Compile Include="Data\FuncionarioDAL.cs" />
+    <Compile Include="Data\ManutencaoDAL.cs" />
+    <Compile Include="Data\MotoristaDAL.cs" />
+    <Compile Include="Data\MultaDAL.cs" />
+    <Compile Include="Data\OcupanteDAL.cs" />
+    <Compile Include="Data\SeguroCoberturaDAL.cs" />
+    <Compile Include="Data\SeguroDAL.cs" />
+    <Compile Include="Data\ServicoExternoConveniadoDAL.cs" />
+    <Compile Include="Data\ServicoExternoDAL.cs" />
+    <Compile Include="Data\SinistroDAL.cs" />
+    <Compile Include="Data\VeiculoDAL.cs" />
+    <Compile Include="Data\ViagemDAL.cs" />
     <Compile Include="Models\Enums\AbastecimentoTipo.cs" />
     <Compile Include="Models\ItemSeguradoAbstrato.cs" />
+    <Compile Include="Services\Exceptions\IntegridadeException.cs" />
+    <Compile Include="Services\Exceptions\NaoEncontradoException.cs" />
+    <Compile Include="Services\Exceptions\RegistroExisteException.cs" />
     <Compile Include="Services\MultaService.cs" />
     <Compile Include="Services\ManutencaoService.cs" />
     <Compile Include="Services\FuncionarioService.cs" />
@@ -54,8 +75,8 @@
     <Compile Include="Services\MotoristaService.cs" />
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\AbastecimentoService.cs" />
-    <Compile Include="Data\Banco.cs" />
-    <Compile Include="Data\Configuracao.cs" />
+    <Compile Include="Data\Configuration\Banco.cs" />
+    <Compile Include="Data\Configuration\Configuracao.cs" />
     <Compile Include="Models\Enums\EntradaSaidaTipo.cs" />
     <Compile Include="Models\Enums\ItemSegurado.cs" />
     <Compile Include="Models\Enums\ManutencaoTipo.cs" />
@@ -96,7 +117,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Data\App.config" />
+    <None Include="Data\Configuration\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
