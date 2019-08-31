@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,57 @@ namespace CamadaModelagem.Services
 {
     class FuncionarioService
     {
-        private readonly Banco _banco;
+        private readonly FuncionarioDAL _funcionarioDAL;
 
-        public FuncionarioService(Banco banco)
+        public FuncionarioService(FuncionarioDAL funcionarioDAL)
         {
-            _banco = banco;
+            _funcionarioDAL = funcionarioDAL;
         }
 
-        public void Cadastrar(Funcionario funcionario) 
+        public void Cadastrar(Funcionario funcionario, string login)
         {
-            string query = "INSERT INTO [dbo].[TB_FUNCIONARIO] ([FUNC_NOME],[FUNC_LOGIN],[FUNC_SENHA],[FUNC_PERFIL_ACESSO])" +
-                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + funcionario.PerfilAcesso + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um funcionario com esse Login no sistema!");
+                }
+                _funcionarioDAL.Cadastrar(funcionario);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(string login) //Podemos usar na clausula WHERE o NOME ou LOGIN
+        public void Deletar(string login)
         {
-            string Query = "DELETE [dbo].[TB_FUNCIONARIO] WHERE [FUNC_LOGIN] = '" + login + "' ";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _funcionarioDAL.Deletar(login);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Funcionario não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(Funcionario funcionario, string login)
         {
-            string Query = "UPDATE [dbo].[TB_FUNCIONARIO] SET [FUNC_NOME]= '" + funcionario.Nome + "',[FUNC_LOGIN]= '" + funcionario.Login + "',[FUNC_SENHA] '" + funcionario.Senha + "',[FUNC_PERFIL_ACESSO]= " + funcionario.PerfilAcesso + " WHERE [FUNC_LOGIN]= '" +login;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Funcionario não encontrado.");
+                }
+                _funcionarioDAL.Alterar(funcionario,login);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

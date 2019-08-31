@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,57 @@ namespace CamadaModelagem.Services
 {
     class MultaService
     {
-        private readonly Banco _banco;
+        private readonly MultaDAL _multaDAL;
 
-        public MultaService(Banco banco)
+        public MultaService(MultaDAL multaDAL)
         {
-            _banco = banco;
+            _multaDAL = multaDAL;
         }
 
-        public void Cadastrar(Multa multa) 
+        public void Cadastrar(Multa multa)
         {
-            string query = "INSERT INTO [dbo].[TB_MULTAS] ([MULT_VCL_PLACA],[MULT_MT_CPF],[MULT_DESCRICAO],[MULT_LOCAL],[MULT_DTOCORRENCIA],[MULT_VALOR],[MULT_PAGO],[MULTPAG_DTPAGAMENTO])" +
-                "VALUES ('" + multa.Veiculo.Placa + "', " + multa.Motorista.CPF + ", '" + multa.Descricao + "', '" + multa.Local + "','" + multa.DataOcorrencia + "'," + multa.Valor + "," + multa.Paga + ",'" + multa.MultasPagas + "')";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                Multa obj = _multaDAL.BuscarMulta(multa.Veiculo.Placa,multa.Motorista.CPF,multa.DataOcorrencia); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma multa com esse dados no sistema!");
+                }
+                _multaDAL.Cadastrar(multa);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(string placa,int cpf,DateTime data) //Modificado
+        public void Deletar(string placa, int cpf, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_MULTAS] WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = "+cpf + " AND [MULT_DTOCORRENCIA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _multaDAL.Deletar(placa,cpf,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Multa não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Alterar(Multa multa, string placa, int cpf, DateTime data) //Modificado
+        public void Alterar(Multa multa, string placa, int cpf, DateTime data)
         {
-            string Query = "UPDATE [dbo].[TB_MULTAS] SET [MULT_VCL_PLACA]='" + multa.Veiculo.Placa + "',[MULT_MT_CPF]= " + multa.Motorista.CPF + ",[MULT_DESCRICAO]= '" + multa.Descricao + "',[MULT_LOCAL]= '" + multa.Local + "',[MULT_DTOCORRENCIA]= '" + multa.DataOcorrencia + "',[MULT_VALOR]=" + multa.Valor + ",[MULT_PAGO]=" + multa.Paga + ",[MULTPAG_DTPAGAMENTO]= '" + multa.MultasPagas + "' WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = " + cpf + " AND [MULT_DTOCORRENCIA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Multa obj = _multaDAL.BuscarMulta(placa,cpf,data); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Multa não encontrada.");
+                }
+                _multaDAL.Alterar(multa,placa,cpf,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

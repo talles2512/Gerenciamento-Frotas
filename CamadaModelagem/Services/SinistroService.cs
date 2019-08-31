@@ -4,36 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class SinistroService
     {
-        private readonly Banco _banco;
+        private readonly SinistroDAL _sinistroDAL;
 
-        public SinistroService(Banco banco)
+        public SinistroService(SinistroDAL sinitroDAL)
         {
-            _banco = banco;
+            _sinistroDAL = sinitroDAL;
         }
 
-        public void Cadastrar(Sinistro sinistro)
+        public void Cadastrar(Sinistro sinistro, int id, DateTime data)
         {
-            string query = "INSERT INTO [dbo].[TB_SINISTRO] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA])" + "VALUES ('" + sinistro.ItemSegurado + "', " + sinistro.Seguro.NumeroApolice + ", '" + sinistro.Descricao + "', '" + sinistro.DataHora + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                Sinistro obj = _sinistroDAL.BuscarSinistro (id,data); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
+                }
+                _sinistroDAL.Cadastrar(sinistro);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(int id)
+        public void Deletar(int id, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_SINISTRO] WHERE [SIN_ID] = " + id;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _sinistroDAL.Deletar(id,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Sinistro não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Alterar(Sinistro sinistro, int id)
+        public void Alterar(Sinistro sinistro, int id, DateTime data)
         {
-            string Query = "UPDATE [dbo].[TB_SINISTRO] SET [SIN_ITEMSEG] ='" + sinistro.ItemSegurado + "',[SIN_SEGURO] =" + sinistro.Seguro.NumeroApolice + ",[SIN_DESCRICAO]='" + sinistro.Descricao
-                + "',[SIN_DATAHORA] ='" + sinistro.DataHora + "' WHERE [SEG_NUMAPOLICE] =" + id;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Sinistro obj = _sinistroDAL.BuscarSinistro(id,data); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Sinistro não encontrado.");
+                }
+                _sinistroDAL.Alterar(sinistro,id,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

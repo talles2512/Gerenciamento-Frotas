@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,57 @@ namespace CamadaModelagem.Services
 {
     class EstoquePecasService
     {
-        private readonly Banco _banco;
+        private readonly EstoquePecasDAL _estoquePecasDAL;
 
-        public EstoquePecasService(Banco banco)
+        public EstoquePecasService(EstoquePecasDAL estoquePecasDAL)
         {
-            _banco = banco;
+            _estoquePecasDAL = estoquePecasDAL;
         }
 
-        public void Cadastrar(EstoquePeca estoquepeca) 
+        public void Cadastrar(EstoquePeca estoquePeca, int idpeca)
         {
-            string query = "INSERT INTO [dbo].[TB_ESTOQUE_PECAS] ([EP_DESCRICAO],[EP_VALORUNIT],[EP_QUANTD])" +
-                "VALUES ('" + estoquepeca.Descricao + "', " + estoquepeca.ValorUnit + ", " + estoquepeca.Quantidade + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma peça com essa Identificação no sistema!");
+                }
+                _estoquePecasDAL.Cadastrar(estoquePeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(int idpeca) //provisorio, ID da Peça é o unico identificador 
+        public void Deletar(int idpeca)
         {
-            string Query = "DELETE [dbo].[TB_ESTOQUE_PECAS] WHERE [EP_ID] = " + idpeca ;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _estoquePecasDAL.Deletar(idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Peça não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Alterar(EstoquePeca estoquepeca, int idpeca)
+        public void Alterar(EstoquePeca estoquePeca, int idpeca)
         {
-            string Query = "UPDATE [dbo].[TB_ESTOQUE_PECAS] SET [TB_ESTOQUE_PECAS] ='" + estoquepeca.Descricao + "',[EP_VALORUNIT] =" + estoquepeca.ValorUnit + ",[EP_QUANTD]=" + estoquepeca.Quantidade + " WHERE [EP_ID] =" + idpeca;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Peça não encontrada.");
+                }
+                _estoquePecasDAL.Alterar(estoquePeca, idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CamadaModelagem.Models.Enums
         Gasolina_Aditivada = 1,
         Etanol = 2,
         Diesel = 3,
-        Gas_Natura = 4,
+        Gas_Natural = 4,
         Eletrico = 5,
         Flex = 6‎
     }

@@ -1,39 +1,68 @@
-﻿using System;
+﻿using CamadaModelagem.Data;
+using CamadaModelagem.Services.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Services
 {
     class VeiculoService
     {
-        private readonly Banco _banco;
+        private readonly VeiculoDAL _veiculoDAL;
 
-        public VeiculoService(Banco banco)
+        public VeiculoService(VeiculoDAL veiculoDAL)
         {
-            _banco = banco;
+            _veiculoDAL = veiculoDAL;
         }
-                                               //Os exemplos abaixo não são funcionais, irão ser adaptados futuramente
-        public void Cadastrar(Veiculo veiculo) //Exemplo Cadastrar
+                                               
+        public void Cadastrar(Veiculo veiculo, string placa) 
         {
-            string query = "INSERT INTO [dbo].[TB_VEICULOS]([VCL_PLACA],[VCL_MARCA],[VCL_MODELO],[VCL_CHASSI],[VCL_ANO],[VCL_COR],[VCL_COMBUSTIVEL],[VCL_ALUGADO],[VCL_SITUACAO]) " +
-                "VALUES('" + veiculo.Placa + "', '" + veiculo.Marca + "', '" + veiculo.Modelo + "', '" + veiculo.Chassi + "', '" + veiculo.Ano + "', " + veiculo.Cor + "," + veiculo.Combustivel + ", '" + veiculo.Alugado + "', " + veiculo.SituacaoVeiculo + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um veículo com essa Placa no sistema!");
+                }
+                _veiculoDAL.Cadastrar(veiculo);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(string placa) //Exemplo Deletar --- Será mudado para Inativar
+        public void Deletar(string placa)
         {
-            string Query = "DELETE TB_VEICULOS WHERE VCL_PLACA = '" + placa + "' ";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _veiculoDAL.Deletar(placa);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Veículo não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(Veiculo veiculo, string placa)
         {
-            string Query = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  " + veiculo.Ano + ",VCL_COR = " + veiculo.Cor + ",VCL_COMBUSTIVEL = " + veiculo.Combustivel + ",VCL_ALUGADO = '" + veiculo.Alugado + "' WHERE VCL_PLACA = '" + placa + "' ";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+               Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
+               if  (obj == null)
+               {
+                    throw new NaoEncontradoException("Veículo não encontrado.");
+                }
+                _veiculoDAL.Alterar(veiculo,placa);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

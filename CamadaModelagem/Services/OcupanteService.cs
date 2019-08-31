@@ -4,36 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class OcupanteService
     {
-        private readonly Banco _banco;
+        private readonly OcupanteDAL _ocupanteDAL;
 
-        public OcupanteService(Banco banco)
+        public OcupanteService(OcupanteDAL ocupanteDAL)
         {
-            _banco = banco;
-        }
-        //Os exemplos abaixo não são funcionais, irão ser adaptados futuramente
-        public void Cadastrar(Ocupante ocupante) //Exemplo Cadastrar
-        {
-            string query = "INSERT INTO [dbo].[TB_VIAGENS_OCUPANTES]([VGO_VG_REQ],[VGO_NOME],[VGO_CPF]) " +
-                "VALUES(" + ocupante.Viagem.Requisicao + ", '" + ocupante.Nome + "', " + ocupante.CPF + ")";
-            _banco.ExecutarInstrucao(query);
+            _ocupanteDAL = ocupanteDAL;
         }
 
-        public void Deletar(int cpf) //Exemplo Deletar --- Será mudado para Inativar
+        public void Cadastrar(Ocupante ocupante, int cpf)
         {
-            string Query = "DELETE [dbo].[TB_VIAGENS_OCUPANTES] WHERE [VGO_CPF] = " + cpf;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um ocupante com esse CPF no sistema!");
+                }
+                _ocupanteDAL.Cadastrar(ocupante);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public void Deletar(int cpf)
+        {
+            try
+            {
+                _ocupanteDAL.Deletar(cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Ocupante não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(Ocupante ocupante, int cpf)
         {
-            string Query = "UPDATE [dbo].[TB_VIAGENS_OCUPANTES] SET [VGO_VG_REQ] = " + ocupante.Viagem.Requisicao + ", [VGO_NOME] = '" + ocupante.Nome + "', [VGO_CPF] = " + ocupante.CPF + " WHERE [VGO_CPF] = " + cpf;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Ocupante não encontrado.");
+                }
+                _ocupanteDAL.Alterar(ocupante,cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

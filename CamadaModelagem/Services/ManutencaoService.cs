@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,57 @@ namespace CamadaModelagem.Services
 { 
     class ManutencaoService
     {
-        private readonly Banco _banco;
+        private readonly ManutencaoDAL _manutencaoDAL;
 
-        public ManutencaoService(Banco banco)
+        public ManutencaoService(ManutencaoDAL manutencaoDAL)
         {
-            _banco = banco;
+            _manutencaoDAL = manutencaoDAL;
         }
 
-        public void Cadastrar(Manutencao manuntencao) //Exemplo Cadastrar
+        public void Cadastrar(Manutencao manutencao)
         {
-            string query = "INSERT INTO [dbo].[TB_MANUTENCAO] ([MTC_TIPO],[MTC_SERVEXT_CNPJ],[MTC_DESCRICAO],[MTC_DATA],[MTC_VALOR],[MTC_SITUACAO],[MTC_VCL_PLACA])" +
-                "VALUES (" + manuntencao.Tipo + ", " + manuntencao.ServicoExterno.CNPJ + ", '" + manuntencao.Descricao + "','" + manuntencao.Data + "', " + manuntencao.Valor + ", " + manuntencao.Situacao + ", '" + manuntencao.Veiculo.Placa + "')";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                Manutencao obj = _manutencaoDAL.BuscarManutencao(manutencao.Veiculo.Placa,manutencao.Tipo,manutencao.Data); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma manutenção com esses dados no sistema!");
+                }
+                _manutencaoDAL.Cadastrar(manutencao);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data) //Modificado
+        public void Deletar(string placa, int tipo, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_MANUTENCAO] WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipo + " AND [MTC_DATA] = '" + data +"'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _manutencaoDAL.Deletar(placa,tipo,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Manutenção não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Alterar(Manutencao manuntencao, string placa, int tipo, DateTime data) // Modificado
+        public void Alterar(Manutencao manutencao, string placa, int tipo, DateTime data)
         {
-            string Query = "UPDATE [dbo].[TB_MANUTENCAO] SET [MTC_TIPO] = " + manuntencao.Tipo + ",[MTC_SERVEXT_CNPJ]= " + manuntencao.ServicoExterno.CNPJ + ",[MTC_DESCRICAO]= '" + manuntencao.Descricao + "',[MTC_DATA]='" + manuntencao.Data + "',[MTC_VALOR]= " + manuntencao.Valor + ",[MTC_SITUACAO]= " + manuntencao.Situacao + ",[MTC_VCL_PLACA]= '" + manuntencao.Veiculo.Placa + "' WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipo + "AND [MTC_DATA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Manutencao obj = _manutencaoDAL.BuscarManutencao(placa,tipo,data); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Manutencao não encontrada.");
+                }
+                _manutencaoDAL.Alterar(manutencao,placa,tipo,data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

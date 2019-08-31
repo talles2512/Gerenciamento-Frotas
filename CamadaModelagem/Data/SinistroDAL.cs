@@ -23,16 +23,15 @@ namespace CamadaModelagem.Data
             _banco.ExecutarInstrucao(query);
         }
 
-        public void Deletar(int id)
+        public void Deletar(int id, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_SINISTRO] WHERE [SIN_ID] = " + id;
+            string Query = "DELETE [dbo].[TB_SINISTRO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
             _banco.ExecutarInstrucao(Query);
         }
 
-        public void Alterar(Sinistro sinistro, int id)
+        public void Alterar(Sinistro sinistro, int id, DateTime data)
         {
-            string Query = "UPDATE [dbo].[TB_SINISTRO] SET [SIN_ITEMSEG] ='" + sinistro.ItemSegurado + "',[SIN_SEGURO] =" + sinistro.Seguro.NumeroApolice + ",[SIN_DESCRICAO]='" + sinistro.Descricao
-                + "',[SIN_DATAHORA] ='" + sinistro.DataHora + "' WHERE [SEG_NUMAPOLICE] =" + id;
+            string Query = "UPDATE [dbo].[TB_SINISTRO] SET [SIN_ITEMSEG] = '"  + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + sinistro.Seguro.NumeroApolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA]= '" + sinistro.DataHora + " WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
             _banco.ExecutarInstrucao(Query);
         }
     }
