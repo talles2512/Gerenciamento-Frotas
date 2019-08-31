@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +11,56 @@ namespace CamadaModelagem.Services
 {
     class AbastecimentoService
     {
-        private readonly Banco _banco;
+        private readonly AbastecimentoDAL _abastecimentoDAL;
 
-        public AbastecimentoService(Banco banco)
+        public AbastecimentoService(AbastecimentoDAL abastecimentoDAL)
         {
-            _banco = banco;
+            _abastecimentoDAL = abastecimentoDAL;
+        }
+        public void Cadastrar(Abastecimento abastecimento) //Mudança na Query, Verificar
+        {
+            try
+            {
+                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(abastecimento.Veiculo.Placa, abastecimento.Tipo, abastecimento.Data); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Abastecimento com esses dados no sistema!");
+                }
+                _abastecimentoDAL.Cadastrar(abastecimento);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Cadastrar(Abastecimento abastecimento)
+        public void Deletar(string placa, int tipo, DateTime data)
         {
-            string query = " INSERT INTO [dbo].[TB_ABASTECIMENTO]([ABS_VCL_PLACA],[ABS_SERVEXT_CNPJ],[ABS_TIPO],[ABS_VALORLITRO],[ABS_DATA])" +
-                "VALUES('" + abastecimento.Veiculo.Placa + "', " + abastecimento.ServicoExterno.CNPJ + ", " + abastecimento.Tipo + ", " + abastecimento.ValorLitro + ", '" + abastecimento.Data + "')";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                _abastecimentoDAL.Deletar(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Abastecimento não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data) //Modificado
+        public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data)
         {
-            string Query = "DELETE [TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" +placa+ "' AND [ABS_TIPO] = " + tipo + " AND [ABS_DATA] = '" + data +"'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Abastecimento não encontrado.");
+                }
+                _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
-
-        public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data) // Modificado
-        {
-            string Query = "UPDATE TB_ABASTECIMENTO SET [ABS_VCL_PLACA] = '" + abastecimento.Veiculo.Placa + "', [ABS_SERVEXT_CNPJ] = " + abastecimento.ServicoExterno.CNPJ + " ,[ABS_TIPO] = " + abastecimento.Tipo + ",[ABS_VALORLITRO] = " + abastecimento.ValorLitro + ",[ABS_DATA] = '" + abastecimento.Data + "' WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipo + " AND [ABS_DATA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
-        }
-
     }
 }

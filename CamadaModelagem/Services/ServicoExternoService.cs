@@ -4,37 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class ServicoExternoService
     {
-        private readonly Banco _banco;
+        private readonly ServicoExternoDAL _servicoExternoDAL;
 
-        public ServicoExternoService(Banco banco)
+        public ServicoExternoService(ServicoExternoDAL servicoExternoDAL)
         {
-            _banco = banco;
+            _servicoExternoDAL = servicoExternoDAL;
         }
-
-        public void Cadastrar(ServicoExterno servicoExterno)
+        public void Cadastrar(ServicoExterno servicoExterno) //Mudança na Query, Verificar
         {
-            string query = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS] ([SERVEXT_CNPJ],[SERVEXT_TIPO],[SERVEXT_NOME],[SERVEXT_TELEFONE],[SERVEXT_EMAIL],[SERVEXT_ENDERECO],"
-                + "[SERVEXT_CONVENIADO])" + "VALUES (" + servicoExterno.CNPJ + ", " + servicoExterno.Tipo + ", '" + servicoExterno.Nome + "', " + servicoExterno.Telefone + ", '" + servicoExterno.Email + "', '" + servicoExterno.Endereco + "', " + servicoExterno.Conveniado + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                ServicoExterno obj = _servicoExternoDAL.BuscarCNPJ(servicoExterno.CNPJ); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Serviço Externo com esses dados no sistema!");
+                }
+                _servicoExternoDAL.Cadastrar(servicoExterno);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int cnpj)
         {
-            string Query = "DELETE [dbo].[TB_SERVICOS_EXTERNOS] WHERE [SERVEXT_CNPJ] = " + cnpj;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _servicoExternoDAL.Deletar(cnpj);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Serviço Externo não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(ServicoExterno servicoExterno, int cnpj)
         {
-            string Query = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] =" + servicoExterno.Tipo + ",[SERVEXT_NOME]='" + servicoExterno.Nome
-                + "',[SERVEXT_TELEFONE] =" + servicoExterno.Telefone + ",[SERVEXT_EMAIL] ='" + servicoExterno.Email + "',[SERVEXT_ENDERECO] ='" + servicoExterno.Endereco + "',[SERVEXT_CONVENIADO] =" + servicoExterno.Conveniado + " WHERE [SERVEXT_CNPJ] =" + cnpj;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                ServicoExterno obj = _servicoExternoDAL.BuscarCNPJ(cnpj); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Serviço Externo não encontrado.");
+                }
+                _servicoExternoDAL.Alterar(servicoExterno, cnpj);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

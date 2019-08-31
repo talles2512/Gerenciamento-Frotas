@@ -4,37 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class SeguroService
     {
-        private readonly Banco _banco;
+        private readonly SeguroDAL _seguroDAL;
 
-        public SeguroService(Banco banco)
+        public SeguroService(SeguroDAL seguroDAL)
         {
-            _banco = banco;
+            _seguroDAL = seguroDAL;
+        }
+        public void Cadastrar(Seguro seguro) //Mudança na Query, Verificar
+        {
+            try
+            {
+                Seguro obj = _seguroDAL.BuscarApolice(seguro.NumeroApolice); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Seguro com esses dados no sistema!");
+                }
+                _seguroDAL.Cadastrar(seguro);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Cadastrar(Seguro seguro)
+        public void Deletar(int numApolice)
         {
-            string query = "INSERT INTO [dbo].[TB_SEGURO] ([SEG_NUMAPOLICE],[SEG_SEGURADORA],[SEG_ITEMSEG],[SEG_TIPO],[SEG_VALOR],[SEG_DATAINICIO],"
-                + "[SEG_FIMVIGENCIA],[SEG_FRANQUIA],[SEG_VALORFRANQUIA])" + "VALUES (" + seguro.NumeroApolice + ", " + seguro.ServicoExterno.CNPJ + ", " + seguro.ItemSegurado + ", '" + seguro.Tipo + "', " + seguro.Valor + ", " + seguro.DataInicio + ", " + seguro.FimVigencia + ", '" + seguro.Franquia + "', " + seguro.ValorFranquia + ")";
-            _banco.ExecutarInstrucao(query);
-        }
-
-        public void Deletar(int numApolice) 
-        {
-            string Query = "DELETE [dbo].[TB_SEGURO] WHERE [SEG_NUMAPOLICE] = " + numApolice;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _seguroDAL.Deletar(numApolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Seguro não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(Seguro seguro, int numApolice)
         {
-            string Query = "UPDATE [dbo].[TB_SEGURO] SET [SEG_NUMAPOLICE] =" + seguro.NumeroApolice + ",[SEG_SEGURADORA] =" + seguro.ServicoExterno.CNPJ + ",[SEG_ITEMSEG]=" + seguro.ItemSegurado
-                + ",[SEG_TIPO] =" + seguro.Tipo + ",[SEG_VALOR] =" + seguro.Valor + ",[SEG_DATAINICIO] =" + seguro.DataInicio + ",[SEG_FIMVIGENCIA] =" + seguro.FimVigencia + ",[SEG_FRANQUIA] ='" + seguro.Franquia + "',[SEG_VALORFRANQUIA] =" + seguro.ValorFranquia + " WHERE [SEG_NUMAPOLICE] =" + numApolice;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                Seguro obj = _seguroDAL.BuscarApolice(numApolice); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Seguro não encontrado.");
+                }
+                _seguroDAL.Alterar(seguro, numApolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,56 @@ namespace CamadaModelagem.Services
 {
     class EntradaSaidaService
     {
-        private readonly Banco _banco;
+        private readonly EntradaSaidaDAL _entradaSaidaDAL;
 
-        public EntradaSaidaService(Banco banco)
+        public EntradaSaidaService(EntradaSaidaDAL entradaSaidaDAL)
         {
-            _banco = banco;
+            _entradaSaidaDAL = entradaSaidaDAL;
+        }
+        public void Cadastrar(EntradaSaida entsaid) //Mudança na Query, Verificar
+        {
+            try
+            {
+                EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(entsaid.Veiculo.Placa, entsaid.Tipo, entsaid.DataHora); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma Entrada/Saída com esses dados no sistema!");
+                }
+                _entradaSaidaDAL.Cadastrar(entsaid);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Cadastrar(EntradaSaida entsaid) //Verificar Query
+        public void Deletar(string placa, int tipo, DateTime data)
         {
-            string query = "INSERT INTO[dbo].[TB_ENTRADA_SAIDA] ([ES_MT_CPF],[ES_VCL_PLACA],[ES_SERVEXT_CNPJ],[ES_TIPO],[ES_DATAHORA]) " +
-                "VALUES (" + entsaid.Motorista.CPF + ", '" + entsaid.Veiculo.Placa + "', " + entsaid.ServicoExterno.CNPJ + ", " + entsaid.Tipo + ", '" + entsaid.DataHora + "')"; 
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                _entradaSaidaDAL.Deletar(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Entrada/Saída não pode ser deletada, pois está ligada a outros serviços.");
+            }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data) // Modificado
+        public void Alterar(EntradaSaida entsaid, string placa, int tipo, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_ENTRADA_SAIDA] WHERE [ES_VCL_PLACA] = '" + placa + "' AND [ES_TIPO] = " + tipo + " AND [ES_DATAHORA] = '" + data +"'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(placa, tipo, data);
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Entrada/Saída não encontrada.");
+                }
+                _entradaSaidaDAL.Alterar(entsaid, placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
-
-        public void Alterar(EntradaSaida entsaid, string placa, int tipo, DateTime data) // Modificado
-        {
-            string Query = "UPDATE [dbo].[TB_ENTRADA_SAIDA] SET [ES_MT_CPF] = " + entsaid.Motorista.CPF + "', [ES_VCL_PLACA] = '" + entsaid.Veiculo.Placa + "',[ES_SERVEXT_CNPJ] = " + entsaid.ServicoExterno.CNPJ + ", [ES_TIPO] =" + entsaid.Tipo + ", [ES_DATAHORA] ='" + entsaid.DataHora + "' WHERE [ES_VCL_PLACA] = '" + placa + "' AND [ES_TIPO] = " + tipo + " AND [ES_DATAHORA] = '" + data + "'";
-        }
-
     }
 }

@@ -4,37 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class ServicoExternoConveniadoService
     {
-        private readonly Banco _banco;
+        private readonly ServicoExternoConveniadoDAL _servicoExternoConveniadoDAL;
 
-        public ServicoExternoConveniadoService(Banco banco)
+        public ServicoExternoConveniadoService(ServicoExternoConveniadoDAL servicoExternoConveniadoDAL)
         {
-            _banco = banco;
+            _servicoExternoConveniadoDAL = servicoExternoConveniadoDAL;
         }
-
-        public void Cadastrar(ServicoExternoConveniado servicoExternoConveniado)
+        public void Cadastrar(ServicoExternoConveniado servicoExternoConveniado) //Mudança na Query, Verificar
         {
-            string query = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] ([SERVEXTCONV_VALOR],[SERVEXTCONV_DTINICIO],[SERVEXTCONV_DTVENC],[SERVEXTCONV_SERVEXT_CNPJ])"
-                + "VALUES (" + servicoExternoConveniado.Valor + ", '" + servicoExternoConveniado.DataInicio + "', '" + servicoExternoConveniado.DataVencimento + "', " + servicoExternoConveniado.ServicoExterno.CNPJ + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(servicoExternoConveniado.ServicoExterno.CNPJ); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Convenio Externo com esses dados no sistema!");
+                }
+                _servicoExternoConveniadoDAL.Cadastrar(servicoExternoConveniado);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int cnpj)
         {
-            string Query = "DELETE [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + cnpj;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _servicoExternoConveniadoDAL.Deletar(cnpj);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Convenio não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
         public void Alterar(ServicoExternoConveniado servicoExternoConveniado, int cnpj)
         {
-            string Query = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] SET [SERVEXTCONV_VALOR] =" + servicoExternoConveniado.Valor + ",[SERVEXTCONV_DTINICIO] ='" + servicoExternoConveniado.DataInicio + "',[SERVEXTCONV_DTVENC]='" + servicoExternoConveniado.DataVencimento
-                + "',[SERVEXTCONV_SERVEXT_CNPJ] =" + servicoExternoConveniado.ServicoExterno.CNPJ + " WHERE [SERVEXT_CNPJ] =" + cnpj;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(cnpj); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Convenio não encontrado.");
+                }
+                _servicoExternoConveniadoDAL.Alterar(servicoExternoConveniado, cnpj);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

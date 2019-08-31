@@ -4,35 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
     class SeguroCoberturaService
     {
-        private readonly Banco _banco;
+        private readonly SeguroCoberturaDAL _seguroCoberturaDAL;
 
-        public SeguroCoberturaService(Banco banco)
+        public SeguroCoberturaService(SeguroCoberturaDAL seguroCoberturaDAL)
         {
-            _banco = banco;
+            _seguroCoberturaDAL = seguroCoberturaDAL;
         }
-
-        public void Cadastrar(SeguroCobertura seguroCobertura)
+        public void Cadastrar(SeguroCobertura seguroCobertura) //Mudança na Query, Verificar
         {
-            string query = "INSERT INTO [dbo].[TB_SEGCOBERTURA] ([SEGC_DESCRICAO],[SEGC_SEGURO_NUMAPOLICE])" + "VALUES ('" + seguroCobertura.Descricao + "', " + seguroCobertura.Seguro.NumeroApolice + ")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(seguroCobertura.Id); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma Cobertura com essa Identificação no sistema!");
+                }
+                _seguroCoberturaDAL.Cadastrar(seguroCobertura);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int id)
         {
-            string Query = "DELETE [dbo].[TB_SEGCOBERTURA] WHERE [SEGC_ID] = " + id;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                _seguroCoberturaDAL.Deletar(id);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Cobertura não pode ser deletada, pois está ligada a outros serviços.");
+            }
         }
 
         public void Alterar(SeguroCobertura seguroCobertura, int id)
         {
-            string Query = "UPDATE [dbo].[TB_SEGCOBERTURA] SET [SEGC_DESCRICAO] ='" + seguroCobertura.Descricao + "',[SEGC_SEGURO_NUMAPOLICE] =" + seguroCobertura.Seguro.NumeroApolice + " WHERE [SEGC_ID] =" + id;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(id);
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Cobertura não encontrada.");
+                }
+                _seguroCoberturaDAL.Alterar(seguroCobertura, id);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

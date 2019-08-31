@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Data;
-using CamadaModelagem.Modelagem;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,56 @@ namespace CamadaModelagem.Services
 {
     class ExameMedicoService
     {
-        private readonly Banco _banco;
+        private readonly ExameMedicoDAL _exameMedicoDAL;
 
-        public ExameMedicoService(Banco banco)
+        public ExameMedicoService(ExameMedicoDAL exameMedicoDAL)
         {
-            _banco = banco;
+            _exameMedicoDAL = exameMedicoDAL;
+        }
+        public void Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
+        {
+            try
+            {
+                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(exameMedico.Motorista.CPF, exameMedico.Data); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Exame Médico com esses dados no sistema!");
+                }
+                _exameMedicoDAL.Cadastrar(exameMedico);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Cadastrar(ExameMedico examemedico) 
+        public void Deletar(int cpf, DateTime data)
         {
-            string query = "INSERT INTO[dbo].[TB_EXAMEDICO] ([EXAM_DATA],[EXAM_DESCRICAO],[EXAM_SITUACAO],[EXAM_MT_CPF])" +
-                "VALUES ('" + examemedico.Data + "', '" + examemedico.Descricao + "', " + examemedico.Situacao + ", " + examemedico.Motorista.CPF +")";
-            _banco.ExecutarInstrucao(query);
+            try
+            {
+                _exameMedicoDAL.Deletar(cpf, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new IntegridadeException("Exame Médico não pode ser deletado, pois está ligado a outros serviços.");
+            }
         }
 
-        public void Deletar(int cpf, DateTime data) //Modificado
+        public void Alterar(ExameMedico exameMedico, int cpf, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_EXAMEDICO] WHERE [EXAM_MT_CPF] = " + cpf + " AND [EXAM_DATA] = '" + data +"'";
-            _banco.ExecutarInstrucao(Query);
-        }
-
-        public void Alterar(ExameMedico examemedico, int cpf, DateTime data) // Modificado
-        {
-            string Query = "UPDATE [dbo].[TB_EXAMEDICO] SET [EXAM_DATA] = '" + examemedico.Data + "',[EXAM_DESCRICAO]= '" + examemedico.Descricao + "',[EXAM_SITUACAO]= " + examemedico.Situacao + ",[EXAM_MT_CPF]= " + examemedico.Motorista.CPF + " WHERE [EXAM_MT_CPF] = " + cpf + " AND [EXAM_DATA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(cpf, data);
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Exame Médico não encontrado.");
+                }
+                _exameMedicoDAL.Alterar(exameMedico, cpf, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }
