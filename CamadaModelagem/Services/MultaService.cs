@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class MultaService
+    public class MultaService
     {
         private readonly MultaDAL _multaDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Multa multa)
         {
-            try
-            {
-                Multa obj = _multaDAL.BuscarMulta(multa.Veiculo.Placa,multa.Motorista.CPF,multa.DataOcorrencia); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe uma multa com esse dados no sistema!");
-                }
-                _multaDAL.Cadastrar(multa);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Multa obj = _multaDAL.BuscarMulta(multa.Veiculo.Placa,multa.Motorista.CPF,multa.DataOcorrencia); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe uma multa com esse dados no sistema!");
+            //    }
+            //    _multaDAL.Cadastrar(multa);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string placa, int cpf, DateTime data)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Multa multa, string placa, int cpf, DateTime data)
         {
-            try
-            {
-                Multa obj = _multaDAL.BuscarMulta(placa,cpf,data); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Multa não encontrada.");
-                }
-                _multaDAL.Alterar(multa,placa,cpf,data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Multa obj = _multaDAL.BuscarMulta(placa,cpf,data); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Multa não encontrada.");
+            //    }
+            //    _multaDAL.Alterar(multa,placa,cpf,data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

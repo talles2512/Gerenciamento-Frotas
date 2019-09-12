@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class ClienteService
+    public class ClienteService
     {
         private readonly ClienteDAL _clienteDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Cliente cliente, int cpf)
         {
-            try
-            {
-                Cliente obj = _clienteDAL.BuscarCPF(cpf); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um cliente com esse CPF no sistema!");
-                }
-                _clienteDAL.Cadastrar(cliente);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Cliente obj = _clienteDAL.BuscarCPF(cpf); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um cliente com esse CPF no sistema!");
+            //    }
+            //    _clienteDAL.Cadastrar(cliente);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int cpf)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Cliente cliente, int cpf)
         {
-            try
-            {
-                Cliente obj = _clienteDAL.BuscarCPF(cpf); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Cliente não encontrado.");
-                }
-                _clienteDAL.Alterar(cliente, cpf);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Cliente obj = _clienteDAL.BuscarCPF(cpf); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Cliente não encontrado.");
+            //    }
+            //    _clienteDAL.Alterar(cliente, cpf);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

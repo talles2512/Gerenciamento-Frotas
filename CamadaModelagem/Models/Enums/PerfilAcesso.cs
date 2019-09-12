@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum PerfilAcesso : int
+    public enum PerfilAcesso : int
     {
         Atedimento = 1,
         Operacional = 2,

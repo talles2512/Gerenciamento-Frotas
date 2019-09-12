@@ -8,7 +8,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Data.Configuration
 {
-    class Banco
+    public class Banco
     {
         public void ExecutarInstrucao(string querySQL)
         {

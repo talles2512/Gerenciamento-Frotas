@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum ManutencaoTipo : int
+    public enum ManutencaoTipo : int
     {
         Preventiva = 0,
         Corretiva = 1

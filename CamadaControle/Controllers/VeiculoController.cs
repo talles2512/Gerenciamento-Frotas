@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CamadaModelagem.Services;
 
-namespace CamadaControle
+namespace CamadaControle.Controllers
 {
-    public class Class1
+    class VeiculoController
     {
     }
 }

@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\CamadaModelagem\CamadaModelagem.csproj">
+      <Project>{e5513510-a071-473d-a2cb-02ed2d976908}</Project>
+      <Name>CamadaModelagem</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

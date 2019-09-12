@@ -7,7 +7,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Models
 {
-    class Manutencao
+    public class Manutencao
     {
         public ManutencaoTipo Tipo { get; set; }
         public string Descricao { get; set; }

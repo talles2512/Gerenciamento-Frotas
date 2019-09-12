@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services.Exceptions
 {
-    class NaoEncontradoException : ApplicationException
+    public class NaoEncontradoException : ApplicationException
     {
         public NaoEncontradoException(string message) : base(message)
         {

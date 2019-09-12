@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models //Precisa ainda dessa Class ?
 {
-    class MultaPaga
+    public class MultaPaga
     {
         public DateTime DataPagamento { get; set; }
 

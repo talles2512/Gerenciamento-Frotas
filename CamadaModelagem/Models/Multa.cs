@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class Multa
+    public class Multa
     {
         public string Descricao { get; set; }
         public string Local { get; set; }

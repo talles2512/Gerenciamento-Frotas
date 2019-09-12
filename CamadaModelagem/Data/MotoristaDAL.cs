@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Data
 {
-    class MotoristaDAL
+    public class MotoristaDAL
     {
         private readonly Banco _banco;
 

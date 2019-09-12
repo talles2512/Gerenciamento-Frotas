@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class EntradaSaidaService
+    public class EntradaSaidaService
     {
         private readonly EntradaSaidaDAL _entradaSaidaDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(EntradaSaida entsaid) //Mudança na Query, Verificar
         {
-            try
-            {
-                EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(entsaid.Veiculo.Placa, entsaid.Tipo, entsaid.DataHora); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe uma Entrada/Saída com esses dados no sistema!");
-                }
-                _entradaSaidaDAL.Cadastrar(entsaid);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(entsaid.Veiculo.Placa, entsaid.Tipo, entsaid.DataHora); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe uma Entrada/Saída com esses dados no sistema!");
+            //    }
+            //    _entradaSaidaDAL.Cadastrar(entsaid);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string placa, int tipo, DateTime data)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(EntradaSaida entsaid, string placa, int tipo, DateTime data)
         {
-            try
-            {
-                EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(placa, tipo, data);
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Entrada/Saída não encontrada.");
-                }
-                _entradaSaidaDAL.Alterar(entsaid, placa, tipo, data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    EntradaSaida obj = _entradaSaidaDAL.BuscarEntradaSaida(placa, tipo, data);
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Entrada/Saída não encontrada.");
+            //    }
+            //    _entradaSaidaDAL.Alterar(entsaid, placa, tipo, data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

@@ -7,7 +7,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Models
 {
-    class ServicoExterno
+    public class ServicoExterno
     {
         public int CNPJ { get; set; }
         public TipoServicoExterno Tipo { get; set; }

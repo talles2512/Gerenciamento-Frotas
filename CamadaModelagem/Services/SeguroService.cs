@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
-    class SeguroService
+    public class SeguroService
     {
         private readonly SeguroDAL _seguroDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(Seguro seguro) //Mudança na Query, Verificar
         {
-            try
-            {
-                Seguro obj = _seguroDAL.BuscarApolice(seguro.NumeroApolice); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um Seguro com esses dados no sistema!");
-                }
-                _seguroDAL.Cadastrar(seguro);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Seguro obj = _seguroDAL.BuscarApolice(seguro.NumeroApolice); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um Seguro com esses dados no sistema!");
+            //    }
+            //    _seguroDAL.Cadastrar(seguro);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int numApolice)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Seguro seguro, int numApolice)
         {
-            try
-            {
-                Seguro obj = _seguroDAL.BuscarApolice(numApolice); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Seguro não encontrado.");
-                }
-                _seguroDAL.Alterar(seguro, numApolice);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Seguro obj = _seguroDAL.BuscarApolice(numApolice); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Seguro não encontrado.");
+            //    }
+            //    _seguroDAL.Alterar(seguro, numApolice);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

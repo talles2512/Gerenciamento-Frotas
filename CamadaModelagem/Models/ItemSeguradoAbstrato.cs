@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    abstract class ItemSeguradoAbstrato
+    public abstract class ItemSeguradoAbstrato
     {
 
     }

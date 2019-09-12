@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class AbastecimentoService
+    public class AbastecimentoService
     {
         private readonly AbastecimentoDAL _abastecimentoDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(Abastecimento abastecimento) //Mudança na Query, Verificar
         {
-            try
-            {
-                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(abastecimento.Veiculo.Placa, abastecimento.Tipo, abastecimento.Data); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um Abastecimento com esses dados no sistema!");
-                }
-                _abastecimentoDAL.Cadastrar(abastecimento);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(abastecimento.Veiculo.Placa, abastecimento.Tipo, abastecimento.Data); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um Abastecimento com esses dados no sistema!");
+            //    }
+            //    _abastecimentoDAL.Cadastrar(abastecimento);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string placa, int tipo, DateTime data)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data)
         {
-            try
-            {
-                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Abastecimento não encontrado.");
-                }
-                _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Abastecimento não encontrado.");
+            //    }
+            //    _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class EstoquePeca
+    public class EstoquePeca
     {
         public int Id { get; set; } //Já Identity no Banco
         public string Descricao { get; set; }

@@ -7,7 +7,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Models
 {
-    class Sinistro
+    public class Sinistro
     {
         public int Id { get; set; }
         public ItemSegurado ItemSegurado { get; set; } //Duvidas futuras aqui

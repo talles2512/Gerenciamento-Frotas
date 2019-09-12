@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
-    class ServicoExternoConveniadoService
+    public class ServicoExternoConveniadoService
     {
         private readonly ServicoExternoConveniadoDAL _servicoExternoConveniadoDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(ServicoExternoConveniado servicoExternoConveniado) //Mudança na Query, Verificar
         {
-            try
-            {
-                ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(servicoExternoConveniado.ServicoExterno.CNPJ); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um Convenio Externo com esses dados no sistema!");
-                }
-                _servicoExternoConveniadoDAL.Cadastrar(servicoExternoConveniado);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(servicoExternoConveniado.ServicoExterno.CNPJ); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um Convenio Externo com esses dados no sistema!");
+            //    }
+            //    _servicoExternoConveniadoDAL.Cadastrar(servicoExternoConveniado);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int cnpj)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(ServicoExternoConveniado servicoExternoConveniado, int cnpj)
         {
-            try
-            {
-                ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(cnpj); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Convenio não encontrado.");
-                }
-                _servicoExternoConveniadoDAL.Alterar(servicoExternoConveniado, cnpj);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    ServicoExternoConveniado obj = _servicoExternoConveniadoDAL.BuscarCNPJ(cnpj); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Convenio não encontrado.");
+            //    }
+            //    _servicoExternoConveniadoDAL.Alterar(servicoExternoConveniado, cnpj);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

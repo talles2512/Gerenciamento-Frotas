@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum VeiculoCombustivel : int
+    public enum VeiculoCombustivel : int
     {
-        Gasolina = 0,
-        Gasolina_Aditivada = 1,
-        Etanol = 2,
-        Diesel = 3,
-        Gas_Natural = 4,
-        Eletrico = 5,
-        Flex = 6‎
+        Gasolina = 1,
+        Gasolina_Aditivada = 2,
+        Etano = 3,
+        Eletrico = 4,
+        Diesel = 5,
+        Gas_Natural = 6,
+        Flex = 7
     }
 }

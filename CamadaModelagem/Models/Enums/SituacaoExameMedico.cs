@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum SituacaoExameMedico : int
+    public enum SituacaoExameMedico : int
     {
         Pendente = 0,
         Realizado = 1

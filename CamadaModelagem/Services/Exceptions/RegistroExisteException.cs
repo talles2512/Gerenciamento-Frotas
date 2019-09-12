@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services.Exceptions
 {
-    class RegistroExisteException : ApplicationException
+    public class RegistroExisteException : ApplicationException
     {
         public RegistroExisteException(string message) : base(message)
         {

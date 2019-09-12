@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum EntradaSaidaTipo : int
+    public enum EntradaSaidaTipo : int
     {
         Entrada = 0,
         Saida = 1

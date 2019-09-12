@@ -10,7 +10,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Services
 {
-    class VeiculoService
+    public class VeiculoService
     {
         private readonly VeiculoDAL _veiculoDAL;
 
@@ -21,19 +21,19 @@ namespace CamadaModelagem.Services
                                                
         public void Cadastrar(Veiculo veiculo, string placa) 
         {
-            try
-            {
-                Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um veículo com essa Placa no sistema!");
-                }
-                _veiculoDAL.Cadastrar(veiculo);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um veículo com essa Placa no sistema!");
+            //    }
+            //    _veiculoDAL.Cadastrar(veiculo);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string placa)
@@ -50,19 +50,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Veiculo veiculo, string placa)
         {
-            try
-            {
-               Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
-               if  (obj == null)
-               {
-                    throw new NaoEncontradoException("Veículo não encontrado.");
-                }
-                _veiculoDAL.Alterar(veiculo,placa);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //   Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
+            //   if  (obj == null)
+            //   {
+            //        throw new NaoEncontradoException("Veículo não encontrado.");
+            //    }
+            //    _veiculoDAL.Alterar(veiculo,placa);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

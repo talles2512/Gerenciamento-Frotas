@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum VeiculoTipoCor : int
+    public enum VeiculoTipoCor : int
     {
         Amarelo = 1,
         Azul = 2,

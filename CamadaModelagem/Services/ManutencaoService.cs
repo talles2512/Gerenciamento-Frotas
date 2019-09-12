@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
-{ 
-    class ManutencaoService
+{
+    public class ManutencaoService
     {
         private readonly ManutencaoDAL _manutencaoDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Manutencao manutencao)
         {
-            try
-            {
-                Manutencao obj = _manutencaoDAL.BuscarManutencao(manutencao.Veiculo.Placa,manutencao.Tipo,manutencao.Data); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe uma manutenção com esses dados no sistema!");
-                }
-                _manutencaoDAL.Cadastrar(manutencao);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Manutencao obj = _manutencaoDAL.BuscarManutencao(manutencao.Veiculo.Placa,manutencao.Tipo,manutencao.Data); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe uma manutenção com esses dados no sistema!");
+            //    }
+            //    _manutencaoDAL.Cadastrar(manutencao);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string placa, int tipo, DateTime data)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Manutencao manutencao, string placa, int tipo, DateTime data)
         {
-            try
-            {
-                Manutencao obj = _manutencaoDAL.BuscarManutencao(placa,tipo,data); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Manutencao não encontrada.");
-                }
-                _manutencaoDAL.Alterar(manutencao,placa,tipo,data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Manutencao obj = _manutencaoDAL.BuscarManutencao(placa,tipo,data); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Manutencao não encontrada.");
+            //    }
+            //    _manutencaoDAL.Alterar(manutencao,placa,tipo,data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

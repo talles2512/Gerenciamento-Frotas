@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class Abastecimento
+    public class Abastecimento
     {
         public AbastecimentoTipo Tipo { get; set; } //Enum de Abastecimento
         public double ValorLitro { get; set; }

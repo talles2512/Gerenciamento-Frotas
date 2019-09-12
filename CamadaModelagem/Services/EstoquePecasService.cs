@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class EstoquePecasService
+    public class EstoquePecasService
     {
         private readonly EstoquePecasDAL _estoquePecasDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(EstoquePeca estoquePeca, int idpeca)
         {
-            try
-            {
-                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe uma peça com essa Identificação no sistema!");
-                }
-                _estoquePecasDAL.Cadastrar(estoquePeca);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe uma peça com essa Identificação no sistema!");
+            //    }
+            //    _estoquePecasDAL.Cadastrar(estoquePeca);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int idpeca)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(EstoquePeca estoquePeca, int idpeca)
         {
-            try
-            {
-                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Peça não encontrada.");
-                }
-                _estoquePecasDAL.Alterar(estoquePeca, idpeca);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Peça não encontrada.");
+            //    }
+            //    _estoquePecasDAL.Alterar(estoquePeca, idpeca);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

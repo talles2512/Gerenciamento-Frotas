@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class ServicoExternoConveniado
+    public class ServicoExternoConveniado
     {
         public double Valor { get; set; }
         public DateTime DataInicio { get; set; }

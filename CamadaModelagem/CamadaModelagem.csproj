@@ -115,9 +115,11 @@
     <Compile Include="Models\Enums\VeiculoTipoCor.cs" />
     <Compile Include="Services\ViagemService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Data\Configuration\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

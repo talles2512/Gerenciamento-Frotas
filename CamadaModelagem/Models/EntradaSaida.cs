@@ -1,5 +1,4 @@
-﻿using CamadaModelagem.Modelagem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Models
 {
-    class EntradaSaida
+    public class EntradaSaida
     {
         public EntradaSaidaTipo Tipo { get; set; }
         public DateTime DataHora { get; set; }

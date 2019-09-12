@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
-    class SeguroCoberturaService
+    public class SeguroCoberturaService
     {
         private readonly SeguroCoberturaDAL _seguroCoberturaDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(SeguroCobertura seguroCobertura) //Mudança na Query, Verificar
         {
-            try
-            {
-                SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(seguroCobertura.Id); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe uma Cobertura com essa Identificação no sistema!");
-                }
-                _seguroCoberturaDAL.Cadastrar(seguroCobertura);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(seguroCobertura.Id); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe uma Cobertura com essa Identificação no sistema!");
+            //    }
+            //    _seguroCoberturaDAL.Cadastrar(seguroCobertura);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int id)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(SeguroCobertura seguroCobertura, int id)
         {
-            try
-            {
-                SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(id);
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Cobertura não encontrada.");
-                }
-                _seguroCoberturaDAL.Alterar(seguroCobertura, id);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(id);
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Cobertura não encontrada.");
+            //    }
+            //    _seguroCoberturaDAL.Alterar(seguroCobertura, id);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

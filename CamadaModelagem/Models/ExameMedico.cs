@@ -7,7 +7,7 @@ using CamadaModelagem.Models.Enums;
 
 namespace CamadaModelagem.Models
 {
-    class ExameMedico //Padrão Pascal case/Camel case, a qual cada palavra inicia com maiúscula
+    public class ExameMedico //Padrão Pascal case/Camel case, a qual cada palavra inicia com maiúscula
     {
         public DateTime Data { get; set; } //atributos também são Pascal case
         public string Descricao { get; set; }

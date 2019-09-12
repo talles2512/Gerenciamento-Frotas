@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class Viagem
+    public class Viagem
     {
         public int Requisicao { get; set; }
         public bool Ocupante { get; set; } //Sim ou Não

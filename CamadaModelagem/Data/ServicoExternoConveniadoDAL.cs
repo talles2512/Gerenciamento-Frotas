@@ -8,7 +8,7 @@ using CamadaModelagem.Models;
 
 namespace CamadaModelagem.Data
 {
-    class ServicoExternoConveniadoDAL
+    public class ServicoExternoConveniadoDAL
     {
         private readonly Banco _banco;
 

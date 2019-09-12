@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class FuncionarioService
+    public class FuncionarioService
     {
         private readonly FuncionarioDAL _funcionarioDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Funcionario funcionario, string login)
         {
-            try
-            {
-                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um funcionario com esse Login no sistema!");
-                }
-                _funcionarioDAL.Cadastrar(funcionario);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um funcionario com esse Login no sistema!");
+            //    }
+            //    _funcionarioDAL.Cadastrar(funcionario);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(string login)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Funcionario funcionario, string login)
         {
-            try
-            {
-                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Funcionario não encontrado.");
-                }
-                _funcionarioDAL.Alterar(funcionario,login);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Funcionario não encontrado.");
+            //    }
+            //    _funcionarioDAL.Alterar(funcionario,login);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

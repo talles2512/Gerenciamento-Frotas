@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services.Exceptions
 {
-    class IntegridadeException : ApplicationException
+    public class IntegridadeException : ApplicationException
     {
         public IntegridadeException(string message) : base(message)
         {

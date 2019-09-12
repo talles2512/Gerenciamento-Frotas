@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class SeguroCobertura
+    public class SeguroCobertura
     {
         public int Id { get; set; }
         public string Descricao { get; set; }

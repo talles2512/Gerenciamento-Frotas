@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
-    class OcupanteService
+    public class OcupanteService
     {
         private readonly OcupanteDAL _ocupanteDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Ocupante ocupante, int cpf)
         {
-            try
-            {
-                Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um ocupante com esse CPF no sistema!");
-                }
-                _ocupanteDAL.Cadastrar(ocupante);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um ocupante com esse CPF no sistema!");
+            //    }
+            //    _ocupanteDAL.Cadastrar(ocupante);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int cpf)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Ocupante ocupante, int cpf)
         {
-            try
-            {
-                Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Ocupante não encontrado.");
-                }
-                _ocupanteDAL.Alterar(ocupante,cpf);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Ocupante não encontrado.");
+            //    }
+            //    _ocupanteDAL.Alterar(ocupante,cpf);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

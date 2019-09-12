@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services
 {
-    class ExameMedicoService
+    public class ExameMedicoService
     {
         private readonly ExameMedicoDAL _exameMedicoDAL;
 
@@ -19,19 +19,19 @@ namespace CamadaModelagem.Services
         }
         public void Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
         {
-            try
-            {
-                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(exameMedico.Motorista.CPF, exameMedico.Data); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um Exame Médico com esses dados no sistema!");
-                }
-                _exameMedicoDAL.Cadastrar(exameMedico);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(exameMedico.Motorista.CPF, exameMedico.Data); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um Exame Médico com esses dados no sistema!");
+            //    }
+            //    _exameMedicoDAL.Cadastrar(exameMedico);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int cpf, DateTime data)
@@ -48,19 +48,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(ExameMedico exameMedico, int cpf, DateTime data)
         {
-            try
-            {
-                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(cpf, data);
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Exame Médico não encontrado.");
-                }
-                _exameMedicoDAL.Alterar(exameMedico, cpf, data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(cpf, data);
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Exame Médico não encontrado.");
+            //    }
+            //    _exameMedicoDAL.Alterar(exameMedico, cpf, data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

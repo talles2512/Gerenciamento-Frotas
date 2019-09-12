@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class CNH
+    public class CNH
     {
         public int Numero { get; set; }
         public DateTime DataEmissao { get; set; }

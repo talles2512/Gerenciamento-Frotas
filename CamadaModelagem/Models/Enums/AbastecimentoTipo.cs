@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
-{  
-    enum AbastecimentoTipo : int
+{
+    public enum AbastecimentoTipo : int
     {
         Gasolina = 1,
         Gasolina_Aditivada = 2,

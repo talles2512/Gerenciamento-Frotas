@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services.Exceptions
 {
-    class ConcorrenciaBancoException : ApplicationException
+    public class ConcorrenciaBancoException : ApplicationException
     {
         public ConcorrenciaBancoException(string message): base(message)
         {

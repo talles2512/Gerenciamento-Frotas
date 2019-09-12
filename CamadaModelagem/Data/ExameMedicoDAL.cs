@@ -8,7 +8,7 @@ using CamadaModelagem.Models;
 
 namespace CamadaModelagem.Data
 {
-    class ExameMedicoDAL
+    public class ExameMedicoDAL
     {
         private readonly Banco _banco;
 

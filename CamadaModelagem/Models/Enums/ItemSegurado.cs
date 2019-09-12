@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models.Enums
 {
-    enum ItemSegurado : int
+    public enum ItemSegurado : int
     {
         Veiculo = 0,
         Motorista = 1

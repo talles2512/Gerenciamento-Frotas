@@ -9,7 +9,7 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
 {
-    class SinistroService
+    public class SinistroService
     {
         private readonly SinistroDAL _sinistroDAL;
 
@@ -20,19 +20,19 @@ namespace CamadaModelagem.Services
 
         public void Cadastrar(Sinistro sinistro, int id, DateTime data)
         {
-            try
-            {
-                Sinistro obj = _sinistroDAL.BuscarSinistro (id,data); //Falta criar os métodos de busca
-                if (obj != null)
-                {
-                    throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
-                }
-                _sinistroDAL.Cadastrar(sinistro);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Sinistro obj = _sinistroDAL.BuscarSinistro (id,data); //Falta criar os métodos de busca
+            //    if (obj != null)
+            //    {
+            //        throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
+            //    }
+            //    _sinistroDAL.Cadastrar(sinistro);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
 
         public void Deletar(int id, DateTime data)
@@ -49,19 +49,19 @@ namespace CamadaModelagem.Services
 
         public void Alterar(Sinistro sinistro, int id, DateTime data)
         {
-            try
-            {
-                Sinistro obj = _sinistroDAL.BuscarSinistro(id,data); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Sinistro não encontrado.");
-                }
-                _sinistroDAL.Alterar(sinistro,id,data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Sinistro obj = _sinistroDAL.BuscarSinistro(id,data); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Sinistro não encontrado.");
+            //    }
+            //    _sinistroDAL.Alterar(sinistro,id,data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Models
 {
-    class Cliente
+    public class Cliente
     {
         public int CPF { get; set; }
         public string Nome { get; set; }
