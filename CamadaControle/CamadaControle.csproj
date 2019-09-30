@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AbastecimentoController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
