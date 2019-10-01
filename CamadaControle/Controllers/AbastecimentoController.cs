@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _abastecimentoService = abastecimentoService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(Abastecimento abastecimento)
         {
             _abastecimentoService.Cadastrar(abastecimento);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

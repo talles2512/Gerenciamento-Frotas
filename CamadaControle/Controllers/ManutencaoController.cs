@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _manutencaoService = manutencaoService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(Manutencao manutencao)
         {
             _manutencaoService.Cadastrar(manutencao);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

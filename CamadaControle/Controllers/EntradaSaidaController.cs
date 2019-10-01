@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _entradaSaidaService = entradaSaidaService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(EntradaSaida entsaid) //Mudança na Query, Verificar
         {
             _entradaSaidaService.Cadastrar(entsaid);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

@@ -17,7 +17,8 @@ namespace CamadaControle.Controllers
             _veiculoService = veiculoService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
+
         public void Cadastrar(Veiculo veiculo, string placa)
         {
             _veiculoService.Cadastrar(veiculo, placa);
@@ -35,7 +36,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _clienteService = clienteService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(Cliente cliente, int cpf)
         {
             _clienteService.Cadastrar(cliente, cpf);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

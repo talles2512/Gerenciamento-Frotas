@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _funcionarioService = funcionarioService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(Funcionario funcionario, string login)
         {
             _funcionarioService.Cadastrar(funcionario, login);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

@@ -48,7 +48,16 @@
     <Compile Include="Controllers\ExameMedicoController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\ManutencaoController.cs" />
+    <Compile Include="Controllers\MotoristaController.cs" />
+    <Compile Include="Controllers\MultaController.cs" />
+    <Compile Include="Controllers\OcupanteController.cs" />
+    <Compile Include="Controllers\SeguroCoberturaController.cs" />
+    <Compile Include="Controllers\SeguroController.cs" />
+    <Compile Include="Controllers\ServicoExternoController.cs" />
+    <Compile Include="Controllers\ServicoExternoConveniadoController.cs" />
+    <Compile Include="Controllers\SinistroController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
+    <Compile Include="Controllers\ViagemController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

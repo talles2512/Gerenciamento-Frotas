@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _estoquePecasService = estoquePecasService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(EstoquePeca estoquePeca, int idpeca)
         {
             _estoquePecasService.Cadastrar(estoquePeca, idpeca);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 

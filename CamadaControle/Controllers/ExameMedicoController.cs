@@ -17,7 +17,7 @@ namespace CamadaControle.Controllers
             _exameMedicoService = exameMedicoService;
         }
 
-        #region AplicacaoDesktop
+        #region [AplicacaoDesktop]
         public void Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
         {
             _exameMedicoService.Cadastrar(exameMedico);
@@ -35,7 +35,7 @@ namespace CamadaControle.Controllers
 
         #endregion
 
-        #region AplicacaoWeb
+        #region [AplicacaoWeb]
 
 
 
