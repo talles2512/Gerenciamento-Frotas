@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class AbastecimentoController
+    public class AbastecimentoController
     {
         private readonly AbastecimentoService _abastecimentoService;
 

@@ -43,6 +43,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AbastecimentoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EntradaSaidaController.cs" />
+    <Compile Include="Controllers\EstoquePecasController.cs" />
+    <Compile Include="Controllers\ExameMedicoController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
+    <Compile Include="Controllers\ManutencaoController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

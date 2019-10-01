@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class ClienteController
+    public class ClienteController
     {
         private readonly ClienteService _clienteService;
 
