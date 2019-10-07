@@ -13,7 +13,6 @@ namespace CamadaModelagem.Models
         public DateTime DataVencimento { get; set; }
         public string Categoria { get; set; }
         public string OrgaoEmissor { get; set; }
-        public Motorista CPF { get; set; }  //Nova FK [CNH_MT_CPF]
 
         public CNH()
         {

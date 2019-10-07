@@ -24,6 +24,15 @@ namespace CamadaModelagem.Data
             _banco.ExecutarInstrucao(query);
         }
 
+        public void CadastrarAlugado(Veiculo veiculo)
+        {
+            string query1 = "INSERT INTO [dbo].[TB_VEICULOS]([VCL_PLACA],[VCL_MARCA],[VCL_MODELO],[VCL_CHASSI],[VCL_ANO],[VCL_COR],[VCL_COMBUSTIVEL],[VCL_ALUGADO],[VCL_SITUACAO]) " +
+                "VALUES('" + veiculo.Placa + "', '" + veiculo.Marca + "', '" + veiculo.Modelo + "', '" + veiculo.Chassi + "', '" + veiculo.Ano + "', " + veiculo.Cor + "," + veiculo.Combustivel + ", '" + veiculo.Alugado + "', " + veiculo.SituacaoVeiculo + ")";
+            string query2 = "INSERT INTO [dbo].[TB_VEICULOS_ALUGUEL]([VCL_PLACA],[VCLAL_VALOR],[VCLAL_DTINICIO],[VCLAL_DTVENC]) " +
+                "VALUES('" + veiculo.Placa + "', " + veiculo.VeiculoAlugado.Valor + ", '" + veiculo.VeiculoAlugado.DataInicio.ToShortDateString() + "', '" + veiculo.VeiculoAlugado.DataVencimento.ToShortDateString() + "')";
+            _banco.ExecutaTransaction(query1, query2);
+        }
+
         public void Deletar(string placa) //Exemplo Deletar --- Será mudado para Inativar
         {
             string Query = "DELETE TB_VEICULOS WHERE VCL_PLACA = '" + placa + "' ";

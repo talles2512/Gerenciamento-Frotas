@@ -18,13 +18,14 @@ namespace CamadaModelagem.Models
         public VeiculoCombustivel Combustivel { get; set; }
         public bool Alugado { get; set; }
         public bool SituacaoVeiculo { get; set; }
+        public VeiculoAlugado VeiculoAlugado { get; set; }
 
         public Veiculo()
         {
 
         }
 
-        public Veiculo(string placa, string marca, string modelo, string chassi, int ano, VeiculoTipoCor cor, VeiculoCombustivel combustivel, bool alugado, bool situacaoVeiculo)
+        public Veiculo(string placa, string marca, string modelo, string chassi, int ano, VeiculoTipoCor cor, VeiculoCombustivel combustivel, bool alugado, bool situacaoVeiculo, VeiculoAlugado veiculoAlugado)
         {
             Placa = placa;
             Marca = marca;
@@ -35,6 +36,7 @@ namespace CamadaModelagem.Models
             Combustivel = combustivel;
             Alugado = alugado;
             SituacaoVeiculo = situacaoVeiculo;
+            VeiculoAlugado = veiculoAlugado;
         }
     }
 }

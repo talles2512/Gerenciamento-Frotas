@@ -205,5 +205,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CamadaControle\CamadaControle.csproj">
+      <Project>{81a8306e-4241-4565-b53e-b15527487396}</Project>
+      <Name>CamadaControle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CamadaModelagem\CamadaModelagem.csproj">
+      <Project>{e5513510-a071-473d-a2cb-02ed2d976908}</Project>
+      <Name>CamadaModelagem</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

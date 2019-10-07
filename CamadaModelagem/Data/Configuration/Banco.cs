@@ -33,6 +33,51 @@ namespace CamadaModelagem.Data.Configuration
             {
                 sqlConnection.Close();
             }
-        }         
+        }
+
+        public void ExecutaTransaction(string query1, string query2)
+        {
+            Configuracao configuracao = new Configuracao();
+            string stringConexao = configuracao.StringConfiguracao;
+            SqlConnection SqlConn = new SqlConnection(stringConexao);
+            try
+            {
+                SqlConn.Open();
+                SqlCommand cmd = SqlConn.CreateCommand();
+                SqlTransaction transaction = SqlConn.BeginTransaction();
+                cmd.Connection = SqlConn;
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = query1;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = query2;
+                    cmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    //MessageBox.Show("Operação realizada com sucesso!");
+                }
+                catch (Exception)
+                {
+                    //MessageBox.Show("Houve erro na operação. Tente novamente!");
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception)
+                    {
+                        //MessageBox.Show("Falha na operação de Rollback!");
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                //MessageBox.Show("Operação falhou. Tente novamente.");
+            }
+            finally
+            {
+                SqlConn.Close();
+            }
+        }
     }
 }
