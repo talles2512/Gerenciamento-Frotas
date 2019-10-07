@@ -16,5 +16,19 @@ namespace CamadaDesktop
         {
             InitializeComponent();
         }
+
+        private void rdAlugado_CheckedChanged(object sender, EventArgs e)
+        {
+            txtValor.Enabled = true;
+            dtInicio.Enabled = true;
+            dtVencimento.Enabled = true;
+        }
+
+        private void rdNaoAlugado_CheckedChanged(object sender, EventArgs e)
+        {
+            txtValor.Enabled = false;
+            dtInicio.Enabled = false;
+            dtVencimento.Enabled = false;
+        }
     }
 }

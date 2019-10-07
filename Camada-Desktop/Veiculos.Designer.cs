@@ -57,6 +57,14 @@
             this.btnConsultarVeiculo = new System.Windows.Forms.Button();
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.rdAlugado = new System.Windows.Forms.RadioButton();
+            this.rdNaoAlugado = new System.Windows.Forms.RadioButton();
+            this.lblValor = new System.Windows.Forms.Label();
+            this.txtValor = new System.Windows.Forms.MaskedTextBox();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtVencimento = new System.Windows.Forms.DateTimePicker();
+            this.lblDataInicio = new System.Windows.Forms.Label();
+            this.lblDataVencimento = new System.Windows.Forms.Label();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -89,6 +97,14 @@
             // 
             // gbDadosVeiculos
             // 
+            this.gbDadosVeiculos.Controls.Add(this.lblDataVencimento);
+            this.gbDadosVeiculos.Controls.Add(this.lblDataInicio);
+            this.gbDadosVeiculos.Controls.Add(this.dtVencimento);
+            this.gbDadosVeiculos.Controls.Add(this.dtInicio);
+            this.gbDadosVeiculos.Controls.Add(this.txtValor);
+            this.gbDadosVeiculos.Controls.Add(this.lblValor);
+            this.gbDadosVeiculos.Controls.Add(this.rdNaoAlugado);
+            this.gbDadosVeiculos.Controls.Add(this.rdAlugado);
             this.gbDadosVeiculos.Controls.Add(this.btnExcluirVeiculo);
             this.gbDadosVeiculos.Controls.Add(this.btnAlterarVeiculo);
             this.gbDadosVeiculos.Controls.Add(this.btnCadastrarVeiculo);
@@ -171,7 +187,7 @@
             // cbCombustivel
             // 
             this.cbCombustivel.FormattingEnabled = true;
-            this.cbCombustivel.Location = new System.Drawing.Point(226, 201);
+            this.cbCombustivel.Location = new System.Drawing.Point(23, 182);
             this.cbCombustivel.Name = "cbCombustivel";
             this.cbCombustivel.Size = new System.Drawing.Size(186, 33);
             this.cbCombustivel.TabIndex = 18;
@@ -179,35 +195,35 @@
             // cbCor
             // 
             this.cbCor.FormattingEnabled = true;
-            this.cbCor.Location = new System.Drawing.Point(23, 201);
+            this.cbCor.Location = new System.Drawing.Point(407, 118);
             this.cbCor.Name = "cbCor";
             this.cbCor.Size = new System.Drawing.Size(186, 33);
             this.cbCor.TabIndex = 17;
             // 
             // txtChassi
             // 
-            this.txtChassi.Location = new System.Drawing.Point(226, 135);
+            this.txtChassi.Location = new System.Drawing.Point(215, 119);
             this.txtChassi.Name = "txtChassi";
             this.txtChassi.Size = new System.Drawing.Size(186, 32);
             this.txtChassi.TabIndex = 16;
             // 
             // txtModelo
             // 
-            this.txtModelo.Location = new System.Drawing.Point(23, 135);
+            this.txtModelo.Location = new System.Drawing.Point(23, 119);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(186, 32);
             this.txtModelo.TabIndex = 15;
             // 
             // txtMarca
             // 
-            this.txtMarca.Location = new System.Drawing.Point(226, 72);
+            this.txtMarca.Location = new System.Drawing.Point(215, 56);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(186, 32);
             this.txtMarca.TabIndex = 13;
             // 
             // txtPlaca
             // 
-            this.txtPlaca.Location = new System.Drawing.Point(23, 72);
+            this.txtPlaca.Location = new System.Drawing.Point(23, 56);
             this.txtPlaca.Mask = ">L>L>L-0000";
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(186, 32);
@@ -218,7 +234,7 @@
             this.dtAno.CustomFormat = "yyyy";
             this.dtAno.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtAno.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtAno.Location = new System.Drawing.Point(423, 72);
+            this.dtAno.Location = new System.Drawing.Point(407, 56);
             this.dtAno.Name = "dtAno";
             this.dtAno.ShowUpDown = true;
             this.dtAno.Size = new System.Drawing.Size(105, 31);
@@ -227,16 +243,16 @@
             // lblCombustivel
             // 
             this.lblCombustivel.AutoSize = true;
-            this.lblCombustivel.Location = new System.Drawing.Point(221, 173);
+            this.lblCombustivel.Location = new System.Drawing.Point(18, 154);
             this.lblCombustivel.Name = "lblCombustivel";
             this.lblCombustivel.Size = new System.Drawing.Size(85, 25);
             this.lblCombustivel.TabIndex = 6;
-            this.lblCombustivel.Text = "Combustivel;";
+            this.lblCombustivel.Text = "Combustivel:";
             // 
             // lblCor
             // 
             this.lblCor.AutoSize = true;
-            this.lblCor.Location = new System.Drawing.Point(18, 173);
+            this.lblCor.Location = new System.Drawing.Point(402, 90);
             this.lblCor.Name = "lblCor";
             this.lblCor.Size = new System.Drawing.Size(37, 25);
             this.lblCor.TabIndex = 5;
@@ -245,7 +261,7 @@
             // lblAno
             // 
             this.lblAno.AutoSize = true;
-            this.lblAno.Location = new System.Drawing.Point(418, 44);
+            this.lblAno.Location = new System.Drawing.Point(402, 28);
             this.lblAno.Name = "lblAno";
             this.lblAno.Size = new System.Drawing.Size(37, 25);
             this.lblAno.TabIndex = 4;
@@ -254,7 +270,7 @@
             // lblChassi
             // 
             this.lblChassi.AutoSize = true;
-            this.lblChassi.Location = new System.Drawing.Point(221, 107);
+            this.lblChassi.Location = new System.Drawing.Point(210, 91);
             this.lblChassi.Name = "lblChassi";
             this.lblChassi.Size = new System.Drawing.Size(55, 25);
             this.lblChassi.TabIndex = 3;
@@ -263,7 +279,7 @@
             // lblModelo
             // 
             this.lblModelo.AutoSize = true;
-            this.lblModelo.Location = new System.Drawing.Point(18, 107);
+            this.lblModelo.Location = new System.Drawing.Point(18, 91);
             this.lblModelo.Name = "lblModelo";
             this.lblModelo.Size = new System.Drawing.Size(56, 25);
             this.lblModelo.TabIndex = 2;
@@ -272,7 +288,7 @@
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(221, 44);
+            this.lblMarca.Location = new System.Drawing.Point(210, 28);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(52, 25);
             this.lblMarca.TabIndex = 1;
@@ -281,7 +297,7 @@
             // lblPlaca
             // 
             this.lblPlaca.AutoSize = true;
-            this.lblPlaca.Location = new System.Drawing.Point(18, 44);
+            this.lblPlaca.Location = new System.Drawing.Point(18, 28);
             this.lblPlaca.Name = "lblPlaca";
             this.lblPlaca.Size = new System.Drawing.Size(48, 25);
             this.lblPlaca.TabIndex = 0;
@@ -394,6 +410,90 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
+            // rdAlugado
+            // 
+            this.rdAlugado.AutoSize = true;
+            this.rdAlugado.Location = new System.Drawing.Point(215, 157);
+            this.rdAlugado.Name = "rdAlugado";
+            this.rdAlugado.Size = new System.Drawing.Size(76, 29);
+            this.rdAlugado.TabIndex = 22;
+            this.rdAlugado.TabStop = true;
+            this.rdAlugado.Text = "Alugado";
+            this.rdAlugado.UseVisualStyleBackColor = true;
+            this.rdAlugado.CheckedChanged += new System.EventHandler(this.rdAlugado_CheckedChanged);
+            // 
+            // rdNaoAlugado
+            // 
+            this.rdNaoAlugado.AutoSize = true;
+            this.rdNaoAlugado.Location = new System.Drawing.Point(215, 192);
+            this.rdNaoAlugado.Name = "rdNaoAlugado";
+            this.rdNaoAlugado.Size = new System.Drawing.Size(103, 29);
+            this.rdNaoAlugado.TabIndex = 23;
+            this.rdNaoAlugado.TabStop = true;
+            this.rdNaoAlugado.Text = "Não Alugado";
+            this.rdNaoAlugado.UseVisualStyleBackColor = true;
+            this.rdNaoAlugado.CheckedChanged += new System.EventHandler(this.rdNaoAlugado_CheckedChanged);
+            // 
+            // lblValor
+            // 
+            this.lblValor.AutoSize = true;
+            this.lblValor.Location = new System.Drawing.Point(308, 154);
+            this.lblValor.Name = "lblValor";
+            this.lblValor.Size = new System.Drawing.Size(46, 25);
+            this.lblValor.TabIndex = 24;
+            this.lblValor.Text = "Valor:";
+            // 
+            // txtValor
+            // 
+            this.txtValor.Enabled = false;
+            this.txtValor.Location = new System.Drawing.Point(313, 183);
+            this.txtValor.Mask = "0000000000";
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(186, 32);
+            this.txtValor.TabIndex = 25;
+            // 
+            // dtInicio
+            // 
+            this.dtInicio.CustomFormat = "dd/mm/yyyy";
+            this.dtInicio.Enabled = false;
+            this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInicio.Location = new System.Drawing.Point(23, 246);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtInicio.Size = new System.Drawing.Size(284, 31);
+            this.dtInicio.TabIndex = 70;
+            // 
+            // dtVencimento
+            // 
+            this.dtVencimento.CustomFormat = "dd/mm/yyyy";
+            this.dtVencimento.Enabled = false;
+            this.dtVencimento.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtVencimento.Location = new System.Drawing.Point(313, 246);
+            this.dtVencimento.Name = "dtVencimento";
+            this.dtVencimento.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtVencimento.Size = new System.Drawing.Size(284, 31);
+            this.dtVencimento.TabIndex = 71;
+            // 
+            // lblDataInicio
+            // 
+            this.lblDataInicio.AutoSize = true;
+            this.lblDataInicio.Location = new System.Drawing.Point(18, 218);
+            this.lblDataInicio.Name = "lblDataInicio";
+            this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
+            this.lblDataInicio.TabIndex = 72;
+            this.lblDataInicio.Text = "Data Inicio:";
+            // 
+            // lblDataVencimento
+            // 
+            this.lblDataVencimento.AutoSize = true;
+            this.lblDataVencimento.Location = new System.Drawing.Point(308, 217);
+            this.lblDataVencimento.Name = "lblDataVencimento";
+            this.lblDataVencimento.Size = new System.Drawing.Size(114, 25);
+            this.lblDataVencimento.TabIndex = 73;
+            this.lblDataVencimento.Text = "Data Vencimento:";
+            // 
             // Veiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,5 +546,13 @@
         private System.Windows.Forms.Button btnConsultarVeiculo;
         private System.Windows.Forms.MaskedTextBox txtPlacaConsulta;
         private System.Windows.Forms.Label lblPlacaConsulta;
+        private System.Windows.Forms.MaskedTextBox txtValor;
+        private System.Windows.Forms.Label lblValor;
+        private System.Windows.Forms.RadioButton rdNaoAlugado;
+        private System.Windows.Forms.RadioButton rdAlugado;
+        private System.Windows.Forms.Label lblDataVencimento;
+        private System.Windows.Forms.Label lblDataInicio;
+        private System.Windows.Forms.DateTimePicker dtVencimento;
+        private System.Windows.Forms.DateTimePicker dtInicio;
     }
 }
