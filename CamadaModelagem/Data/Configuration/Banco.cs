@@ -55,7 +55,6 @@ namespace CamadaModelagem.Data.Configuration
                     cmd.ExecuteNonQuery();
 
                     transaction.Commit();
-                    //MessageBox.Show("Operação realizada com sucesso!");
                 }
                 catch (Exception)
                 {
@@ -66,17 +65,44 @@ namespace CamadaModelagem.Data.Configuration
                     }
                     catch (Exception)
                     {
-                        //MessageBox.Show("Falha na operação de Rollback!");
+                        throw new TransacaoException("Erro na inserção, tente novamente mais tarde!");
                     }
                 }
             }
-            catch (SqlException)
+            catch (Exception)
             {
-                //MessageBox.Show("Operação falhou. Tente novamente.");
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
             }
             finally
             {
                 SqlConn.Close();
+            }
+        }
+
+        public SqlDataReader BuscarRegistro(string querySQL)
+        {
+            Configuracao configuracao = new Configuracao();
+
+            string stringConexao = configuracao.StringConfiguracao;
+            string query = querySQL;
+
+            SqlConnection sqlConnection = new SqlConnection(stringConexao);
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            SqlDataReader dr = null;
+
+            try
+            {
+                sqlConnection.Open();
+                dr = sqlCommand.ExecuteReader();
+                return dr;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
     }

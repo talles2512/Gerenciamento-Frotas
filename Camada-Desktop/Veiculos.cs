@@ -42,14 +42,34 @@ namespace CamadaDesktop
         {
             if(txtPlaca.Text == "" || txtChassi.Text == "" || txtChassi.Text.Length < 17 || txtMarca.Text == "" || txtModelo.Text == "")
             {
-                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (rdAlugado.Checked)
+                {
+                    if(txtValor.Text == "")
+                    {
+                        MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
                 VeiculoCombustivel veiculoCombustivel = (VeiculoCombustivel)Enum.Parse(typeof(VeiculoCombustivel), cbCombustivel.SelectedItem.ToString());
                 VeiculoTipoCor veiculoTipoCor = (VeiculoTipoCor)Enum.Parse(typeof(VeiculoTipoCor), cbCor.SelectedItem.ToString());
                 MessageBox.Show(veiculoCombustivel.ToString() + " " + veiculoTipoCor.ToString());
-                //Veiculo veiculo = new Veiculo (txtPlaca.Text, txtMarca.Text, txtModelo.Text, txtChassi.Text, dtAno.Value.Year, veiculoTipoCor, veiculoCombustivel, )
+                bool alugado = false;
+                VeiculoAlugado veiculoAlugado = null;
+                bool situacao = true;
+                if (rdAlugado.Checked)
+                {
+                    alugado = true;
+                    double valor = double.Parse(txtValor.Text);
+                    veiculoAlugado = new VeiculoAlugado(valor, dtInicio.Value, dtVencimento.Value);
+                }
+                Veiculo veiculo = new Veiculo(txtPlaca.Text, txtMarca.Text, txtModelo.Text, txtChassi.Text, dtAno.Value.Year, veiculoTipoCor, veiculoCombustivel, alugado, situacao, veiculoAlugado);
+                _veiculoController.Cadastrar(veiculo, veiculo.Placa);
             }
         }
 

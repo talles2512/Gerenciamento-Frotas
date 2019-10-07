@@ -19,14 +19,13 @@ namespace CamadaModelagem.Models
 
         }
 
-        public CNH(int numero, DateTime dataEmissao, DateTime dataVencimento, string categoria, string orgaoEmissor, Motorista cPF)
+        public CNH(int numero, DateTime dataEmissao, DateTime dataVencimento, string categoria, string orgaoEmissor)
         {
             Numero = numero;
             DataEmissao = dataEmissao;
             DataVencimento = dataVencimento;
             Categoria = categoria;
             OrgaoEmissor = orgaoEmissor;
-            CPF = cPF;
         }
     }
 }
