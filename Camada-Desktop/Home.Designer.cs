@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.MenuVertical = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.lblver = new System.Windows.Forms.Label();
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnFuncionarios = new System.Windows.Forms.Button();
             this.btnEstoque = new System.Windows.Forms.Button();
@@ -47,16 +47,21 @@
             this.btnConveniados = new System.Windows.Forms.Button();
             this.btnEntradaSaida = new System.Windows.Forms.Button();
             this.btnMotorista = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelConteudo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.iconminimizar = new System.Windows.Forms.PictureBox();
             this.iconcerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sairOpcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loggoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconcerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuVertical
@@ -134,6 +139,7 @@
             this.lblver.Size = new System.Drawing.Size(42, 18);
             this.lblver.TabIndex = 13;
             this.lblver.Text = "ver. 1.0";
+            this.lblver.Click += new System.EventHandler(this.lblver_Click);
             // 
             // btnVeiculos
             // 
@@ -167,16 +173,6 @@
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 617);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "_______________________________________";
             // 
             // btnClientes
             // 
@@ -350,6 +346,16 @@
             this.btnMotorista.UseVisualStyleBackColor = true;
             this.btnMotorista.Click += new System.EventHandler(this.btnMotorista_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(6, 617);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(241, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "_______________________________________";
+            // 
             // panelConteudo
             // 
             this.panelConteudo.Location = new System.Drawing.Point(256, 82);
@@ -404,6 +410,29 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // ContextMenu
+            // 
+            this.ContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sairOpcToolStripMenuItem,
+            this.loggoutToolStripMenuItem});
+            this.ContextMenu.Name = "ContextMenu";
+            this.ContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.ContextMenu.Text = "SairOpc";
+            // 
+            // sairOpcToolStripMenuItem
+            // 
+            this.sairOpcToolStripMenuItem.Name = "sairOpcToolStripMenuItem";
+            this.sairOpcToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairOpcToolStripMenuItem.Text = "Logout";
+            this.sairOpcToolStripMenuItem.Click += new System.EventHandler(this.sairOpcToolStripMenuItem_Click);
+            // 
+            // loggoutToolStripMenuItem
+            // 
+            this.loggoutToolStripMenuItem.Name = "loggoutToolStripMenuItem";
+            this.loggoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggoutToolStripMenuItem.Text = "Encerrar";
+            this.loggoutToolStripMenuItem.Click += new System.EventHandler(this.loggoutToolStripMenuItem_Click);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,6 +458,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconcerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,6 +489,9 @@
         private System.Windows.Forms.Button btnViagem;
         private System.Windows.Forms.Label lblver;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ContextMenuStrip ContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem sairOpcToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loggoutToolStripMenuItem;
     }
 }
 

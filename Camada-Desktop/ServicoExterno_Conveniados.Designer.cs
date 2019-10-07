@@ -140,6 +140,7 @@
             // dtVencimento
             // 
             this.dtVencimento.CustomFormat = "dd/mm/yyyy";
+            this.dtVencimento.Enabled = false;
             this.dtVencimento.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtVencimento.Location = new System.Drawing.Point(14, 379);
@@ -151,6 +152,7 @@
             // dtInicio
             // 
             this.dtInicio.CustomFormat = "dd/mm/yyyy";
+            this.dtInicio.Enabled = false;
             this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtInicio.Location = new System.Drawing.Point(203, 317);

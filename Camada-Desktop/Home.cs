@@ -140,10 +140,30 @@ namespace CamadaDesktop
 
         private void btnSair_Click(object sender, EventArgs e)
         {
+            ContextMenu.Show(btnSair, 0, btnSair.Height);
+        }
+
+        private void sairOpcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja Realmente Deslogar?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Close();
+                LoginSistema login = new LoginSistema();
+                login.Show();
+            }
+        }
+
+        private void loggoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (MessageBox.Show("Deseja Realmente Sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
+        }
+
+        private void lblver_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
