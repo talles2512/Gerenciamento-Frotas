@@ -183,6 +183,7 @@
             this.btnCadastrarVeiculo.Text = "Cadastrar";
             this.btnCadastrarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarVeiculo.UseVisualStyleBackColor = false;
+            this.btnCadastrarVeiculo.Click += new System.EventHandler(this.BtnCadastrarVeiculo_Click);
             // 
             // cbCombustivel
             // 
@@ -505,6 +506,7 @@
             this.Name = "Veiculos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Veiculos";
+            this.Load += new System.EventHandler(this.Veiculos_Load);
             this.tbControlVeiculos.ResumeLayout(false);
             this.tbPageCadastroVeiculo.ResumeLayout(false);
             this.gbDadosVeiculos.ResumeLayout(false);
