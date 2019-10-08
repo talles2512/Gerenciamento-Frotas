@@ -197,7 +197,6 @@
             this.rdNaoAlugado.Name = "rdNaoAlugado";
             this.rdNaoAlugado.Size = new System.Drawing.Size(103, 29);
             this.rdNaoAlugado.TabIndex = 23;
-            this.rdNaoAlugado.TabStop = true;
             this.rdNaoAlugado.Text = "Não Alugado";
             this.rdNaoAlugado.UseVisualStyleBackColor = true;
             this.rdNaoAlugado.CheckedChanged += new System.EventHandler(this.rdNaoAlugado_CheckedChanged);
@@ -209,7 +208,6 @@
             this.rdAlugado.Name = "rdAlugado";
             this.rdAlugado.Size = new System.Drawing.Size(76, 29);
             this.rdAlugado.TabIndex = 22;
-            this.rdAlugado.TabStop = true;
             this.rdAlugado.Text = "Alugado";
             this.rdAlugado.UseVisualStyleBackColor = true;
             this.rdAlugado.CheckedChanged += new System.EventHandler(this.rdAlugado_CheckedChanged);
@@ -231,6 +229,7 @@
             this.btnExcluirVeiculo.Text = "Excluir";
             this.btnExcluirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirVeiculo.UseVisualStyleBackColor = false;
+            this.btnExcluirVeiculo.Click += new System.EventHandler(this.BtnExcluirVeiculo_Click);
             // 
             // btnAlterarVeiculo
             // 
@@ -249,6 +248,7 @@
             this.btnAlterarVeiculo.Text = "Alterar";
             this.btnAlterarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarVeiculo.UseVisualStyleBackColor = false;
+            this.btnAlterarVeiculo.Click += new System.EventHandler(this.BtnAlterarVeiculo_Click);
             // 
             // btnCadastrarVeiculo
             // 
@@ -432,6 +432,7 @@
             this.btnTrasferirVeiculo.TabIndex = 21;
             this.btnTrasferirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirVeiculo.UseVisualStyleBackColor = false;
+            this.btnTrasferirVeiculo.Click += new System.EventHandler(this.BtnTrasferirVeiculo_Click);
             // 
             // dgVeiculoConsulta
             // 

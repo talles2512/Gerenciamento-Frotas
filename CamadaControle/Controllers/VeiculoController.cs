@@ -61,14 +61,25 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public void Deletar(string placa)
+        public bool Inativar(string placa)
         {
-            _veiculoService.Deletar(placa);
+           return _veiculoService.Inativar(placa);
         }
 
-        public void Alterar(Veiculo veiculo, string placa)
+        public bool Alterar(Veiculo veiculo, string placa)
         {
-            _veiculoService.Alterar(veiculo, placa);
+            try
+            {
+                return _veiculoService.Alterar(veiculo, placa);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         #endregion

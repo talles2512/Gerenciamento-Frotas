@@ -100,7 +100,7 @@ namespace CamadaModelagem.Data
         {
             List<Veiculo> veiculos = new List<Veiculo>();
             string query = "select VCL_PLACA, VCL_MARCA, VCL_MODELO, VCL_CHASSI, VCL_ANO, VCL_COR, VCL_COMBUSTIVEL, VCL_ALUGADO, VCL_SITUACAO " +
-                "from TB_VEICULOS";
+                "from TB_VEICULOS WHERE VCL_ALUGADO = 0";
             DataTable dt = _banco.BuscarRegistro(query);
             VeiculoAlugado veiculoAlugado = null;
             Veiculo veiculo = null;
@@ -149,16 +149,68 @@ namespace CamadaModelagem.Data
             }
             return veiculos;
         }
-        public void Deletar(string placa) //Exemplo Deletar --- Será mudado para Inativar
+        public bool Inativar(string placa) //Exemplo Deletar --- Será mudado para Inativar
         {
-            string Query = "DELETE TB_VEICULOS WHERE VCL_PLACA = '" + placa + "' ";
-            _banco.ExecutarInstrucao(Query);
+            string Query = "UPDATE TB_VEICULOS SET VCL_SITUACAO = 0 WHERE VCL_PLACA = '" + placa + "' ";
+             return _banco.ExecutarInstrucao(Query);
         }
 
-        public void Alterar(Veiculo veiculo, string placa)
+        public bool Alterar(Veiculo veiculo, string placa)
         {
-            string Query = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  " + veiculo.Ano + ",VCL_COR = " + veiculo.Cor + ",VCL_COMBUSTIVEL = " + veiculo.Combustivel + ",VCL_ALUGADO = '" + veiculo.Alugado + "' WHERE VCL_PLACA = '" + placa + "' ";
-            _banco.ExecutarInstrucao(Query);
+            int cor = veiculo.Cor.GetHashCode();
+            int combustivel = veiculo.Combustivel.GetHashCode();
+            int alugado = Convert.ToInt32(veiculo.Alugado);
+            int situacao = Convert.ToInt32(veiculo.SituacaoVeiculo);
+
+            string Query = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca
+                + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  "
+                + veiculo.Ano + ",VCL_COR = " + cor + ",VCL_COMBUSTIVEL = " + combustivel
+                + ",VCL_ALUGADO = " + alugado + ", VCL_SITUACAO = " + situacao + " WHERE VCL_PLACA = '" + placa + "' ";
+            return _banco.ExecutarInstrucao(Query);
+        }
+
+        public bool AlterarAlugado(Veiculo veiculo, string placa)
+        {
+            int cor = veiculo.Cor.GetHashCode();
+            int combustivel = veiculo.Combustivel.GetHashCode();
+            int alugado = Convert.ToInt32(veiculo.Alugado);
+            int situacao = Convert.ToInt32(veiculo.SituacaoVeiculo);
+            string query1 = "";
+            string query2 = "";
+            Veiculo obj = BuscarPlacaAlugado(placa); //Definindo quais querys serão usadas dependendo da alteração
+
+            if (obj == null) //Caso altere o veiculo e adicione seu aluguel
+            {
+                query1 = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca
+                    + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  "
+                    + veiculo.Ano + ",VCL_COR = " + cor + ",VCL_COMBUSTIVEL = " + combustivel
+                    + ",VCL_ALUGADO = " + alugado + ", VCL_SITUACAO = " + situacao + " WHERE VCL_PLACA = '" + placa + "' ";
+                query2 = "INSERT INTO [dbo].[TB_VEICULOS_ALUGUEL]([VCL_PLACA],[VCLAL_VALOR],[VCLAL_DTINICIO],[VCLAL_DTVENC]) " +
+                    "VALUES('" + veiculo.Placa + "', " + veiculo.VeiculoAlugado.Valor + ", '"
+                    + veiculo.VeiculoAlugado.DataInicio.ToShortDateString() + "', '"
+                    + veiculo.VeiculoAlugado.DataVencimento.ToShortDateString() + "')";
+            }
+
+            else if (veiculo.VeiculoAlugado == null)
+            {
+                query1 = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca
+                    + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  "
+                    + veiculo.Ano + ",VCL_COR = " + cor + ",VCL_COMBUSTIVEL = " + combustivel
+                    + ",VCL_ALUGADO = " + alugado + ", VCL_SITUACAO = " + situacao + " WHERE VCL_PLACA = '" + placa + "' ";
+                query2 = "DELETE FROM [dbo].[TB_VEICULOS_ALUGUEL] WHERE VCL_PLACA = '" + veiculo.Placa + "'";
+            }
+            else  //Caso altere o veiculo e seu aluguel
+            {
+                query1 = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_MARCA = '" + veiculo.Marca
+                    + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  "
+                    + veiculo.Ano + ",VCL_COR = " + cor + ",VCL_COMBUSTIVEL = " + combustivel
+                    + ",VCL_ALUGADO = " + alugado + ", VCL_SITUACAO = " + situacao + " WHERE VCL_PLACA = '" + placa + "' ";
+                query2 = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_VCLAL_VALOR = " + veiculo.VeiculoAlugado.Valor
+                    + ", VCL_VCLAL_DTINICIO = '" + veiculo.VeiculoAlugado.DataInicio.ToShortDateString()
+                    + "',VCL_VCLAL_DTVENC = '" + veiculo.VeiculoAlugado.DataVencimento.ToShortDateString() + "' WHERE VCL_PLACA = '" + placa + "' ";
+            }
+
+            return _banco.ExecutaTransaction(query1, query2);
         }
 
     }

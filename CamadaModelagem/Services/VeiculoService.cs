@@ -78,11 +78,11 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Deletar(string placa)
+        public bool Inativar(string placa)
         {
             try
             {
-                _veiculoDAL.Deletar(placa);
+                return _veiculoDAL.Inativar(placa);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -90,21 +90,40 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(Veiculo veiculo, string placa)
+        public bool Alterar(Veiculo veiculo, string placa)
         {
-            //try
-            //{
-            //   Veiculo obj = _veiculoDAL.BuscarPlaca(placa); //Falta criar os métodos de busca
-            //   if  (obj == null)
-            //   {
-            //        throw new NaoEncontradoException("Veículo não encontrado.");
-            //    }
-            //    _veiculoDAL.Alterar(veiculo,placa);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Veiculo obj = _veiculoDAL.BuscarPlacaAlugado(placa);
+                if (obj != null)
+                {
+                        return _veiculoDAL.AlterarAlugado(veiculo, placa);
+                }
+                else
+                {
+                    obj = _veiculoDAL.BuscarPlaca(placa);
+
+                    if(obj != null)
+                    {
+                        if(veiculo.VeiculoAlugado != null)
+                        {
+                            return _veiculoDAL.AlterarAlugado(veiculo, placa);
+                        }
+                        else
+                        {
+                            return _veiculoDAL.Alterar(veiculo, placa);
+                        }
+                    }
+                    else
+                    {
+                        throw new NaoEncontradoException("Veículo não encontrado.");
+                    }
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }
