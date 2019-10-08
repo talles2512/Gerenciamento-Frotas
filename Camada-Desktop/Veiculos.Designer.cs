@@ -32,6 +32,14 @@
             this.tbControlVeiculos = new System.Windows.Forms.TabControl();
             this.tbPageCadastroVeiculo = new System.Windows.Forms.TabPage();
             this.gbDadosVeiculos = new System.Windows.Forms.GroupBox();
+            this.lblDataVencimento = new System.Windows.Forms.Label();
+            this.lblDataInicio = new System.Windows.Forms.Label();
+            this.dtVencimento = new System.Windows.Forms.DateTimePicker();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.txtValor = new System.Windows.Forms.MaskedTextBox();
+            this.lblValor = new System.Windows.Forms.Label();
+            this.rdNaoAlugado = new System.Windows.Forms.RadioButton();
+            this.rdAlugado = new System.Windows.Forms.RadioButton();
             this.btnExcluirVeiculo = new System.Windows.Forms.Button();
             this.btnAlterarVeiculo = new System.Windows.Forms.Button();
             this.btnCadastrarVeiculo = new System.Windows.Forms.Button();
@@ -57,14 +65,6 @@
             this.btnConsultarVeiculo = new System.Windows.Forms.Button();
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
-            this.rdAlugado = new System.Windows.Forms.RadioButton();
-            this.rdNaoAlugado = new System.Windows.Forms.RadioButton();
-            this.lblValor = new System.Windows.Forms.Label();
-            this.txtValor = new System.Windows.Forms.MaskedTextBox();
-            this.dtInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtVencimento = new System.Windows.Forms.DateTimePicker();
-            this.lblDataInicio = new System.Windows.Forms.Label();
-            this.lblDataVencimento = new System.Windows.Forms.Label();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -129,6 +129,90 @@
             this.gbDadosVeiculos.TabIndex = 1;
             this.gbDadosVeiculos.TabStop = false;
             this.gbDadosVeiculos.Text = "Dados";
+            // 
+            // lblDataVencimento
+            // 
+            this.lblDataVencimento.AutoSize = true;
+            this.lblDataVencimento.Location = new System.Drawing.Point(308, 217);
+            this.lblDataVencimento.Name = "lblDataVencimento";
+            this.lblDataVencimento.Size = new System.Drawing.Size(114, 25);
+            this.lblDataVencimento.TabIndex = 73;
+            this.lblDataVencimento.Text = "Data Vencimento:";
+            // 
+            // lblDataInicio
+            // 
+            this.lblDataInicio.AutoSize = true;
+            this.lblDataInicio.Location = new System.Drawing.Point(18, 218);
+            this.lblDataInicio.Name = "lblDataInicio";
+            this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
+            this.lblDataInicio.TabIndex = 72;
+            this.lblDataInicio.Text = "Data Inicio:";
+            // 
+            // dtVencimento
+            // 
+            this.dtVencimento.CustomFormat = "dd/mm/yyyy";
+            this.dtVencimento.Enabled = false;
+            this.dtVencimento.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtVencimento.Location = new System.Drawing.Point(313, 246);
+            this.dtVencimento.Name = "dtVencimento";
+            this.dtVencimento.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtVencimento.Size = new System.Drawing.Size(284, 31);
+            this.dtVencimento.TabIndex = 71;
+            // 
+            // dtInicio
+            // 
+            this.dtInicio.CustomFormat = "dd/mm/yyyy";
+            this.dtInicio.Enabled = false;
+            this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInicio.Location = new System.Drawing.Point(23, 246);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtInicio.Size = new System.Drawing.Size(284, 31);
+            this.dtInicio.TabIndex = 70;
+            // 
+            // txtValor
+            // 
+            this.txtValor.Enabled = false;
+            this.txtValor.Location = new System.Drawing.Point(313, 183);
+            this.txtValor.Mask = "0000000000";
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(186, 32);
+            this.txtValor.TabIndex = 25;
+            // 
+            // lblValor
+            // 
+            this.lblValor.AutoSize = true;
+            this.lblValor.Location = new System.Drawing.Point(308, 154);
+            this.lblValor.Name = "lblValor";
+            this.lblValor.Size = new System.Drawing.Size(46, 25);
+            this.lblValor.TabIndex = 24;
+            this.lblValor.Text = "Valor:";
+            // 
+            // rdNaoAlugado
+            // 
+            this.rdNaoAlugado.AutoSize = true;
+            this.rdNaoAlugado.Location = new System.Drawing.Point(215, 192);
+            this.rdNaoAlugado.Name = "rdNaoAlugado";
+            this.rdNaoAlugado.Size = new System.Drawing.Size(103, 29);
+            this.rdNaoAlugado.TabIndex = 23;
+            this.rdNaoAlugado.TabStop = true;
+            this.rdNaoAlugado.Text = "Não Alugado";
+            this.rdNaoAlugado.UseVisualStyleBackColor = true;
+            this.rdNaoAlugado.CheckedChanged += new System.EventHandler(this.rdNaoAlugado_CheckedChanged);
+            // 
+            // rdAlugado
+            // 
+            this.rdAlugado.AutoSize = true;
+            this.rdAlugado.Location = new System.Drawing.Point(215, 157);
+            this.rdAlugado.Name = "rdAlugado";
+            this.rdAlugado.Size = new System.Drawing.Size(76, 29);
+            this.rdAlugado.TabIndex = 22;
+            this.rdAlugado.TabStop = true;
+            this.rdAlugado.Text = "Alugado";
+            this.rdAlugado.UseVisualStyleBackColor = true;
+            this.rdAlugado.CheckedChanged += new System.EventHandler(this.rdAlugado_CheckedChanged);
             // 
             // btnExcluirVeiculo
             // 
@@ -375,6 +459,7 @@
             this.btnTodosVeiculo.Text = "Consultar Todos";
             this.btnTodosVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosVeiculo.UseVisualStyleBackColor = false;
+            this.btnTodosVeiculo.Click += new System.EventHandler(this.BtnTodosVeiculo_Click);
             // 
             // btnConsultarVeiculo
             // 
@@ -393,6 +478,7 @@
             this.btnConsultarVeiculo.Text = "    Consultar";
             this.btnConsultarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarVeiculo.UseVisualStyleBackColor = false;
+            this.btnConsultarVeiculo.Click += new System.EventHandler(this.BtnConsultarVeiculo_Click);
             // 
             // txtPlacaConsulta
             // 
@@ -410,90 +496,6 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
-            // 
-            // rdAlugado
-            // 
-            this.rdAlugado.AutoSize = true;
-            this.rdAlugado.Location = new System.Drawing.Point(215, 157);
-            this.rdAlugado.Name = "rdAlugado";
-            this.rdAlugado.Size = new System.Drawing.Size(76, 29);
-            this.rdAlugado.TabIndex = 22;
-            this.rdAlugado.TabStop = true;
-            this.rdAlugado.Text = "Alugado";
-            this.rdAlugado.UseVisualStyleBackColor = true;
-            this.rdAlugado.CheckedChanged += new System.EventHandler(this.rdAlugado_CheckedChanged);
-            // 
-            // rdNaoAlugado
-            // 
-            this.rdNaoAlugado.AutoSize = true;
-            this.rdNaoAlugado.Location = new System.Drawing.Point(215, 192);
-            this.rdNaoAlugado.Name = "rdNaoAlugado";
-            this.rdNaoAlugado.Size = new System.Drawing.Size(103, 29);
-            this.rdNaoAlugado.TabIndex = 23;
-            this.rdNaoAlugado.TabStop = true;
-            this.rdNaoAlugado.Text = "Não Alugado";
-            this.rdNaoAlugado.UseVisualStyleBackColor = true;
-            this.rdNaoAlugado.CheckedChanged += new System.EventHandler(this.rdNaoAlugado_CheckedChanged);
-            // 
-            // lblValor
-            // 
-            this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(308, 154);
-            this.lblValor.Name = "lblValor";
-            this.lblValor.Size = new System.Drawing.Size(46, 25);
-            this.lblValor.TabIndex = 24;
-            this.lblValor.Text = "Valor:";
-            // 
-            // txtValor
-            // 
-            this.txtValor.Enabled = false;
-            this.txtValor.Location = new System.Drawing.Point(313, 183);
-            this.txtValor.Mask = "0000000000";
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(186, 32);
-            this.txtValor.TabIndex = 25;
-            // 
-            // dtInicio
-            // 
-            this.dtInicio.CustomFormat = "dd/mm/yyyy";
-            this.dtInicio.Enabled = false;
-            this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicio.Location = new System.Drawing.Point(23, 246);
-            this.dtInicio.Name = "dtInicio";
-            this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtInicio.Size = new System.Drawing.Size(284, 31);
-            this.dtInicio.TabIndex = 70;
-            // 
-            // dtVencimento
-            // 
-            this.dtVencimento.CustomFormat = "dd/mm/yyyy";
-            this.dtVencimento.Enabled = false;
-            this.dtVencimento.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimento.Location = new System.Drawing.Point(313, 246);
-            this.dtVencimento.Name = "dtVencimento";
-            this.dtVencimento.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtVencimento.Size = new System.Drawing.Size(284, 31);
-            this.dtVencimento.TabIndex = 71;
-            // 
-            // lblDataInicio
-            // 
-            this.lblDataInicio.AutoSize = true;
-            this.lblDataInicio.Location = new System.Drawing.Point(18, 218);
-            this.lblDataInicio.Name = "lblDataInicio";
-            this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
-            this.lblDataInicio.TabIndex = 72;
-            this.lblDataInicio.Text = "Data Inicio:";
-            // 
-            // lblDataVencimento
-            // 
-            this.lblDataVencimento.AutoSize = true;
-            this.lblDataVencimento.Location = new System.Drawing.Point(308, 217);
-            this.lblDataVencimento.Name = "lblDataVencimento";
-            this.lblDataVencimento.Size = new System.Drawing.Size(114, 25);
-            this.lblDataVencimento.TabIndex = 73;
-            this.lblDataVencimento.Text = "Data Vencimento:";
             // 
             // Veiculos
             // 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaControle.Controllers
 {
@@ -19,9 +21,44 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(Veiculo veiculo, string placa)
+        public bool Cadastrar(Veiculo veiculo, string placa)
         {
-            _veiculoService.Cadastrar(veiculo, placa);
+            try
+            {
+               return _veiculoService.Cadastrar(veiculo, placa);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Veiculo BuscarPlaca(string placa)
+        {
+            try
+            {
+                return _veiculoService.BuscarPlaca(placa);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Veiculo> BuscarTodos()
+        {
+            try
+            {
+                return _veiculoService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(string placa)

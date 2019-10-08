@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CamadaModelagem.Services.Exceptions;
+using System.Data;
 
 namespace CamadaModelagem.Data.Configuration
 {
     public class Banco
     {
-        public void ExecutarInstrucao(string querySQL)
+        public bool ExecutarInstrucao(string querySQL)
         {
             Configuracao configuracao = new Configuracao();
 
@@ -24,6 +25,7 @@ namespace CamadaModelagem.Data.Configuration
             {
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
+                return true;
             }
             catch(Exception)
             {
@@ -35,7 +37,7 @@ namespace CamadaModelagem.Data.Configuration
             }
         }
 
-        public void ExecutaTransaction(string query1, string query2)
+        public bool ExecutaTransaction(string query1, string query2)
         {
             Configuracao configuracao = new Configuracao();
             string stringConexao = configuracao.StringConfiguracao;
@@ -55,6 +57,7 @@ namespace CamadaModelagem.Data.Configuration
                     cmd.ExecuteNonQuery();
 
                     transaction.Commit();
+                    return true;
                 }
                 catch (Exception)
                 {
@@ -62,6 +65,7 @@ namespace CamadaModelagem.Data.Configuration
                     try
                     {
                         transaction.Rollback();
+                        return false;
                     }
                     catch (Exception)
                     {
@@ -79,7 +83,7 @@ namespace CamadaModelagem.Data.Configuration
             }
         }
 
-        public SqlDataReader BuscarRegistro(string querySQL)
+        public DataTable BuscarRegistro(string querySQL)
         {
             Configuracao configuracao = new Configuracao();
 
@@ -87,14 +91,13 @@ namespace CamadaModelagem.Data.Configuration
             string query = querySQL;
 
             SqlConnection sqlConnection = new SqlConnection(stringConexao);
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            SqlDataReader dr = null;
-
+            SqlDataAdapter da = new SqlDataAdapter(query, sqlConnection);
             try
             {
                 sqlConnection.Open();
-                dr = sqlCommand.ExecuteReader();
-                return dr;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
             }
             catch (Exception)
             {

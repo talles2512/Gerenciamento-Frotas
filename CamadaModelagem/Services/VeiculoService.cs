@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Models;
 using CamadaModelagem.Models.Enums;
+using System.Data;
 
 namespace CamadaModelagem.Services
 {
@@ -19,24 +20,57 @@ namespace CamadaModelagem.Services
             _veiculoDAL = veiculoDAL;
         }
                                                
-        public void Cadastrar(Veiculo veiculo, string placa) 
+        public bool Cadastrar(Veiculo veiculo, string placa) 
         {
             try
             {
-                Veiculo obj = _veiculoDAL.BuscarPlaca(placa);
-                if (obj != null)
+                Veiculo obj1 = _veiculoDAL.BuscarPlaca(placa);
+                Veiculo obj2 = _veiculoDAL.BuscarPlacaAlugado(placa);
+                if (obj1 != null || obj2 != null)
                 {
                     throw new RegistroExisteException("Já existe um veículo com essa Placa no sistema!");
                 }
 
                 if(veiculo.VeiculoAlugado != null)
                 {
-                    _veiculoDAL.CadastrarAlugado(veiculo);
+                    return _veiculoDAL.CadastrarAlugado(veiculo);
                 }
                 else
                 {
-                    _veiculoDAL.Cadastrar(veiculo);
+                    return _veiculoDAL.Cadastrar(veiculo);
                 }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public Veiculo BuscarPlaca(string placa)
+        {
+            try
+            {
+               Veiculo veiculo = _veiculoDAL.BuscarPlacaAlugado(placa);
+               if(veiculo == null)
+                {
+                    veiculo = _veiculoDAL.BuscarPlaca(placa);
+                }
+                return veiculo;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Veiculo> BuscarTodos()
+        {
+            List<Veiculo> veiculos = new List<Veiculo>();
+            try
+            {
+                veiculos.AddRange(_veiculoDAL.BuscarTodosAlugados());
+                veiculos.AddRange(_veiculoDAL.BuscarTodos());
+                return veiculos;
             }
             catch (ConcorrenciaBancoException)
             {
