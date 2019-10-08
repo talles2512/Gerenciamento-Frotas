@@ -12,9 +12,28 @@ namespace CamadaDesktop
 {
     public partial class frmHome : Form
     {
+        int x = 0;
+        int y = 0;
+
         public frmHome()
         {
             InitializeComponent();
+            this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
+            this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
+        }
+
+        private void frmHome_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            x = this.Left - MousePosition.X;
+            y = this.Top - MousePosition.Y;
+        }
+
+        private void frmHome_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            this.Left = x + MousePosition.X;
+            this.Top = y + MousePosition.Y;
         }
 
         private void AbrirForms(object FormsFilhos)
@@ -126,6 +145,7 @@ namespace CamadaDesktop
                 Point loclabel = new Point(102, 9);
                 label2.Location = loclabel;
                 this.Width = 732;
+                this.StartPosition = FormStartPosition.CenterScreen;
             }
             else
             {
@@ -135,6 +155,7 @@ namespace CamadaDesktop
                 Point loclabel = new Point(296, 9);
                 label2.Location = loclabel;
                 this.Width = 929;
+                this.StartPosition = FormStartPosition.CenterScreen;
             }      
         }
 

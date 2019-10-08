@@ -36,7 +36,6 @@
             this.dtMultaPaga = new System.Windows.Forms.DateTimePicker();
             this.rdNaoPaga = new System.Windows.Forms.RadioButton();
             this.rdPaga = new System.Windows.Forms.RadioButton();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.lblCPF = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.lblDesc = new System.Windows.Forms.Label();
@@ -49,20 +48,21 @@
             this.btnExcluirVeiculo = new System.Windows.Forms.Button();
             this.btnAlterarVeiculo = new System.Windows.Forms.Button();
             this.btnCadastrarVeiculo = new System.Windows.Forms.Button();
-            this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
             this.lblPlaca = new System.Windows.Forms.Label();
             this.tbPageConsultaMultas = new System.Windows.Forms.TabPage();
             this.gbConsultaMultas = new System.Windows.Forms.GroupBox();
-            this.txtCPFMultasConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblCPFMultasConsulta = new System.Windows.Forms.Label();
             this.lblDataMultasConsulta = new System.Windows.Forms.Label();
             this.dtDataMultasConsulta = new System.Windows.Forms.DateTimePicker();
-            this.txtPlacaMultasConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaMultasConsulta = new System.Windows.Forms.Label();
             this.btnTrasferirMultas = new System.Windows.Forms.Button();
             this.dgMultasConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosMultas = new System.Windows.Forms.Button();
             this.btnConsultarMultas = new System.Windows.Forms.Button();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
+            this.cbCPF = new System.Windows.Forms.ComboBox();
+            this.cbCPFMultasConsulta = new System.Windows.Forms.ComboBox();
+            this.cbPlacaMultasConsulta = new System.Windows.Forms.ComboBox();
             this.tbControlMultas.SuspendLayout();
             this.tbPageCadastroMultas.SuspendLayout();
             this.gbDadosMulta.SuspendLayout();
@@ -80,7 +80,7 @@
             this.tbControlMultas.Name = "tbControlMultas";
             this.tbControlMultas.SelectedIndex = 0;
             this.tbControlMultas.Size = new System.Drawing.Size(644, 498);
-            this.tbControlMultas.TabIndex = 23;
+            this.tbControlMultas.TabIndex = 27;
             // 
             // tbPageCadastroMultas
             // 
@@ -95,11 +95,12 @@
             // 
             // gbDadosMulta
             // 
+            this.gbDadosMulta.Controls.Add(this.cbCPF);
+            this.gbDadosMulta.Controls.Add(this.cbPlaca);
             this.gbDadosMulta.Controls.Add(this.lblDataPagamento);
             this.gbDadosMulta.Controls.Add(this.dtMultaPaga);
             this.gbDadosMulta.Controls.Add(this.rdNaoPaga);
             this.gbDadosMulta.Controls.Add(this.rdPaga);
-            this.gbDadosMulta.Controls.Add(this.maskedTextBox2);
             this.gbDadosMulta.Controls.Add(this.lblCPF);
             this.gbDadosMulta.Controls.Add(this.txtDesc);
             this.gbDadosMulta.Controls.Add(this.lblDesc);
@@ -112,7 +113,6 @@
             this.gbDadosMulta.Controls.Add(this.btnExcluirVeiculo);
             this.gbDadosMulta.Controls.Add(this.btnAlterarVeiculo);
             this.gbDadosMulta.Controls.Add(this.btnCadastrarVeiculo);
-            this.gbDadosMulta.Controls.Add(this.txtPlaca);
             this.gbDadosMulta.Controls.Add(this.lblPlaca);
             this.gbDadosMulta.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosMulta.Location = new System.Drawing.Point(6, 6);
@@ -137,11 +137,11 @@
             this.dtMultaPaga.Enabled = false;
             this.dtMultaPaga.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtMultaPaga.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtMultaPaga.Location = new System.Drawing.Point(214, 127);
+            this.dtMultaPaga.Location = new System.Drawing.Point(214, 122);
             this.dtMultaPaga.Name = "dtMultaPaga";
             this.dtMultaPaga.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtMultaPaga.Size = new System.Drawing.Size(197, 31);
-            this.dtMultaPaga.TabIndex = 37;
+            this.dtMultaPaga.TabIndex = 20;
             // 
             // rdNaoPaga
             // 
@@ -149,7 +149,7 @@
             this.rdNaoPaga.Location = new System.Drawing.Point(116, 129);
             this.rdNaoPaga.Name = "rdNaoPaga";
             this.rdNaoPaga.Size = new System.Drawing.Size(87, 29);
-            this.rdNaoPaga.TabIndex = 36;
+            this.rdNaoPaga.TabIndex = 19;
             this.rdNaoPaga.TabStop = true;
             this.rdNaoPaga.Text = "Não Paga";
             this.rdNaoPaga.UseVisualStyleBackColor = true;
@@ -161,19 +161,11 @@
             this.rdPaga.Location = new System.Drawing.Point(116, 94);
             this.rdPaga.Name = "rdPaga";
             this.rdPaga.Size = new System.Drawing.Size(60, 29);
-            this.rdPaga.TabIndex = 35;
+            this.rdPaga.TabIndex = 18;
             this.rdPaga.TabStop = true;
             this.rdPaga.Text = "Paga";
             this.rdPaga.UseVisualStyleBackColor = true;
             this.rdPaga.CheckedChanged += new System.EventHandler(this.rdPaga_CheckedChanged);
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(214, 56);
-            this.maskedTextBox2.Mask = ">L>L>L-0000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(197, 32);
-            this.maskedTextBox2.TabIndex = 34;
             // 
             // lblCPF
             // 
@@ -190,7 +182,7 @@
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 54);
-            this.txtDesc.TabIndex = 32;
+            this.txtDesc.TabIndex = 22;
             // 
             // lblDesc
             // 
@@ -207,7 +199,7 @@
             this.maskedTextBox1.Mask = "0000000000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(99, 32);
-            this.maskedTextBox1.TabIndex = 30;
+            this.maskedTextBox1.TabIndex = 17;
             // 
             // lblValor
             // 
@@ -223,12 +215,12 @@
             this.txtLocal.Location = new System.Drawing.Point(11, 184);
             this.txtLocal.Name = "txtLocal";
             this.txtLocal.Size = new System.Drawing.Size(487, 32);
-            this.txtLocal.TabIndex = 28;
+            this.txtLocal.TabIndex = 21;
             // 
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(412, 29);
+            this.lblData.Location = new System.Drawing.Point(413, 28);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(42, 25);
             this.lblData.TabIndex = 27;
@@ -248,11 +240,11 @@
             this.dtDataMulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataMulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataMulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataMulta.Location = new System.Drawing.Point(417, 57);
+            this.dtDataMulta.Location = new System.Drawing.Point(417, 54);
             this.dtDataMulta.Name = "dtDataMulta";
             this.dtDataMulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataMulta.Size = new System.Drawing.Size(197, 31);
-            this.dtDataMulta.TabIndex = 25;
+            this.dtDataMulta.TabIndex = 16;
             // 
             // btnExcluirVeiculo
             // 
@@ -267,7 +259,7 @@
             this.btnExcluirVeiculo.Location = new System.Drawing.Point(244, 399);
             this.btnExcluirVeiculo.Name = "btnExcluirVeiculo";
             this.btnExcluirVeiculo.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirVeiculo.TabIndex = 21;
+            this.btnExcluirVeiculo.TabIndex = 25;
             this.btnExcluirVeiculo.Text = "Excluir";
             this.btnExcluirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirVeiculo.UseVisualStyleBackColor = false;
@@ -285,7 +277,7 @@
             this.btnAlterarVeiculo.Location = new System.Drawing.Point(244, 353);
             this.btnAlterarVeiculo.Name = "btnAlterarVeiculo";
             this.btnAlterarVeiculo.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarVeiculo.TabIndex = 20;
+            this.btnAlterarVeiculo.TabIndex = 24;
             this.btnAlterarVeiculo.Text = "Alterar";
             this.btnAlterarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarVeiculo.UseVisualStyleBackColor = false;
@@ -303,18 +295,10 @@
             this.btnCadastrarVeiculo.Location = new System.Drawing.Point(119, 307);
             this.btnCadastrarVeiculo.Name = "btnCadastrarVeiculo";
             this.btnCadastrarVeiculo.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarVeiculo.TabIndex = 19;
+            this.btnCadastrarVeiculo.TabIndex = 23;
             this.btnCadastrarVeiculo.Text = "Cadastrar";
             this.btnCadastrarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarVeiculo.UseVisualStyleBackColor = false;
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(11, 56);
-            this.txtPlaca.Mask = ">L>L>L-0000";
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(197, 32);
-            this.txtPlaca.TabIndex = 12;
             // 
             // lblPlaca
             // 
@@ -338,11 +322,11 @@
             // 
             // gbConsultaMultas
             // 
-            this.gbConsultaMultas.Controls.Add(this.txtCPFMultasConsulta);
+            this.gbConsultaMultas.Controls.Add(this.cbCPFMultasConsulta);
+            this.gbConsultaMultas.Controls.Add(this.cbPlacaMultasConsulta);
             this.gbConsultaMultas.Controls.Add(this.lblCPFMultasConsulta);
             this.gbConsultaMultas.Controls.Add(this.lblDataMultasConsulta);
             this.gbConsultaMultas.Controls.Add(this.dtDataMultasConsulta);
-            this.gbConsultaMultas.Controls.Add(this.txtPlacaMultasConsulta);
             this.gbConsultaMultas.Controls.Add(this.lblPlacaMultasConsulta);
             this.gbConsultaMultas.Controls.Add(this.btnTrasferirMultas);
             this.gbConsultaMultas.Controls.Add(this.dgMultasConsulta);
@@ -356,18 +340,10 @@
             this.gbConsultaMultas.TabStop = false;
             this.gbConsultaMultas.Text = "Consulta";
             // 
-            // txtCPFMultasConsulta
-            // 
-            this.txtCPFMultasConsulta.Location = new System.Drawing.Point(419, 28);
-            this.txtCPFMultasConsulta.Mask = ">L>L>L-0000";
-            this.txtCPFMultasConsulta.Name = "txtCPFMultasConsulta";
-            this.txtCPFMultasConsulta.Size = new System.Drawing.Size(181, 32);
-            this.txtCPFMultasConsulta.TabIndex = 40;
-            // 
             // lblCPFMultasConsulta
             // 
             this.lblCPFMultasConsulta.AutoSize = true;
-            this.lblCPFMultasConsulta.Location = new System.Drawing.Point(303, 31);
+            this.lblCPFMultasConsulta.Location = new System.Drawing.Point(308, 31);
             this.lblCPFMultasConsulta.Name = "lblCPFMultasConsulta";
             this.lblCPFMultasConsulta.Size = new System.Drawing.Size(110, 25);
             this.lblCPFMultasConsulta.TabIndex = 39;
@@ -376,7 +352,7 @@
             // lblDataMultasConsulta
             // 
             this.lblDataMultasConsulta.AutoSize = true;
-            this.lblDataMultasConsulta.Location = new System.Drawing.Point(6, 71);
+            this.lblDataMultasConsulta.Location = new System.Drawing.Point(2, 69);
             this.lblDataMultasConsulta.Name = "lblDataMultasConsulta";
             this.lblDataMultasConsulta.Size = new System.Drawing.Size(42, 25);
             this.lblDataMultasConsulta.TabIndex = 38;
@@ -387,24 +363,16 @@
             this.dtDataMultasConsulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataMultasConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataMultasConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataMultasConsulta.Location = new System.Drawing.Point(54, 66);
+            this.dtDataMultasConsulta.Location = new System.Drawing.Point(50, 66);
             this.dtDataMultasConsulta.Name = "dtDataMultasConsulta";
             this.dtDataMultasConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataMultasConsulta.Size = new System.Drawing.Size(200, 31);
-            this.dtDataMultasConsulta.TabIndex = 37;
-            // 
-            // txtPlacaMultasConsulta
-            // 
-            this.txtPlacaMultasConsulta.Location = new System.Drawing.Point(116, 28);
-            this.txtPlacaMultasConsulta.Mask = ">L>L>L-0000";
-            this.txtPlacaMultasConsulta.Name = "txtPlacaMultasConsulta";
-            this.txtPlacaMultasConsulta.Size = new System.Drawing.Size(181, 32);
-            this.txtPlacaMultasConsulta.TabIndex = 36;
+            this.dtDataMultasConsulta.TabIndex = 16;
             // 
             // lblPlacaMultasConsulta
             // 
             this.lblPlacaMultasConsulta.AutoSize = true;
-            this.lblPlacaMultasConsulta.Location = new System.Drawing.Point(6, 31);
+            this.lblPlacaMultasConsulta.Location = new System.Drawing.Point(2, 30);
             this.lblPlacaMultasConsulta.Name = "lblPlacaMultasConsulta";
             this.lblPlacaMultasConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaMultasConsulta.TabIndex = 35;
@@ -424,7 +392,7 @@
             this.btnTrasferirMultas.Location = new System.Drawing.Point(577, 66);
             this.btnTrasferirMultas.Name = "btnTrasferirMultas";
             this.btnTrasferirMultas.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirMultas.TabIndex = 21;
+            this.btnTrasferirMultas.TabIndex = 19;
             this.btnTrasferirMultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirMultas.UseVisualStyleBackColor = false;
             // 
@@ -436,7 +404,7 @@
             this.dgMultasConsulta.Location = new System.Drawing.Point(7, 112);
             this.dgMultasConsulta.Name = "dgMultasConsulta";
             this.dgMultasConsulta.Size = new System.Drawing.Size(608, 327);
-            this.dgMultasConsulta.TabIndex = 25;
+            this.dgMultasConsulta.TabIndex = 20;
             // 
             // btnTodosMultas
             // 
@@ -450,7 +418,7 @@
             this.btnTodosMultas.Location = new System.Drawing.Point(412, 66);
             this.btnTodosMultas.Name = "btnTodosMultas";
             this.btnTodosMultas.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosMultas.TabIndex = 24;
+            this.btnTodosMultas.TabIndex = 18;
             this.btnTodosMultas.Text = "Consultar Todos";
             this.btnTodosMultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosMultas.UseVisualStyleBackColor = false;
@@ -468,10 +436,42 @@
             this.btnConsultarMultas.Location = new System.Drawing.Point(260, 66);
             this.btnConsultarMultas.Name = "btnConsultarMultas";
             this.btnConsultarMultas.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarMultas.TabIndex = 23;
+            this.btnConsultarMultas.TabIndex = 17;
             this.btnConsultarMultas.Text = "    Consultar";
             this.btnConsultarMultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarMultas.UseVisualStyleBackColor = false;
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(11, 54);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.TabIndex = 14;
+            // 
+            // cbCPF
+            // 
+            this.cbCPF.FormattingEnabled = true;
+            this.cbCPF.Location = new System.Drawing.Point(214, 54);
+            this.cbCPF.Name = "cbCPF";
+            this.cbCPF.Size = new System.Drawing.Size(197, 33);
+            this.cbCPF.TabIndex = 15;
+            // 
+            // cbCPFMultasConsulta
+            // 
+            this.cbCPFMultasConsulta.FormattingEnabled = true;
+            this.cbCPFMultasConsulta.Location = new System.Drawing.Point(418, 27);
+            this.cbCPFMultasConsulta.Name = "cbCPFMultasConsulta";
+            this.cbCPFMultasConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbCPFMultasConsulta.TabIndex = 15;
+            // 
+            // cbPlacaMultasConsulta
+            // 
+            this.cbPlacaMultasConsulta.FormattingEnabled = true;
+            this.cbPlacaMultasConsulta.Location = new System.Drawing.Point(107, 28);
+            this.cbPlacaMultasConsulta.Name = "cbPlacaMultasConsulta";
+            this.cbPlacaMultasConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbPlacaMultasConsulta.TabIndex = 14;
             // 
             // Multas
             // 
@@ -502,7 +502,6 @@
         private System.Windows.Forms.Button btnExcluirVeiculo;
         private System.Windows.Forms.Button btnAlterarVeiculo;
         private System.Windows.Forms.Button btnCadastrarVeiculo;
-        private System.Windows.Forms.MaskedTextBox txtPlaca;
         private System.Windows.Forms.Label lblPlaca;
         private System.Windows.Forms.TabPage tbPageConsultaMultas;
         private System.Windows.Forms.GroupBox gbConsultaMultas;
@@ -514,7 +513,6 @@
         private System.Windows.Forms.DateTimePicker dtMultaPaga;
         private System.Windows.Forms.RadioButton rdNaoPaga;
         private System.Windows.Forms.RadioButton rdPaga;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
         private System.Windows.Forms.Label lblCPF;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label lblDesc;
@@ -524,11 +522,13 @@
         private System.Windows.Forms.Label lblData;
         private System.Windows.Forms.Label lblLocal;
         private System.Windows.Forms.DateTimePicker dtDataMulta;
-        private System.Windows.Forms.MaskedTextBox txtCPFMultasConsulta;
         private System.Windows.Forms.Label lblCPFMultasConsulta;
         private System.Windows.Forms.Label lblDataMultasConsulta;
         private System.Windows.Forms.DateTimePicker dtDataMultasConsulta;
-        private System.Windows.Forms.MaskedTextBox txtPlacaMultasConsulta;
         private System.Windows.Forms.Label lblPlacaMultasConsulta;
+        private System.Windows.Forms.ComboBox cbCPF;
+        private System.Windows.Forms.ComboBox cbPlaca;
+        private System.Windows.Forms.ComboBox cbCPFMultasConsulta;
+        private System.Windows.Forms.ComboBox cbPlacaMultasConsulta;
     }
 }

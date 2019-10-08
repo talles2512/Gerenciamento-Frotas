@@ -108,7 +108,7 @@
             this.nudQuantidade.Location = new System.Drawing.Point(360, 56);
             this.nudQuantidade.Name = "nudQuantidade";
             this.nudQuantidade.Size = new System.Drawing.Size(197, 32);
-            this.nudQuantidade.TabIndex = 44;
+            this.nudQuantidade.TabIndex = 16;
             // 
             // lblQtd
             // 
@@ -125,7 +125,7 @@
             this.maskedTextBox1.Mask = "0000000000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(197, 32);
-            this.maskedTextBox1.TabIndex = 42;
+            this.maskedTextBox1.TabIndex = 15;
             // 
             // lblValorUnit
             // 
@@ -142,7 +142,7 @@
             this.txtid.Location = new System.Drawing.Point(11, 56);
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(140, 32);
-            this.txtid.TabIndex = 38;
+            this.txtid.TabIndex = 14;
             // 
             // lblIdentificador
             // 
@@ -159,7 +159,7 @@
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 85);
-            this.txtDesc.TabIndex = 32;
+            this.txtDesc.TabIndex = 17;
             // 
             // lblDesc
             // 
@@ -183,7 +183,7 @@
             this.btnExcluirEstoque.Location = new System.Drawing.Point(244, 341);
             this.btnExcluirEstoque.Name = "btnExcluirEstoque";
             this.btnExcluirEstoque.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirEstoque.TabIndex = 21;
+            this.btnExcluirEstoque.TabIndex = 20;
             this.btnExcluirEstoque.Text = "Excluir";
             this.btnExcluirEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirEstoque.UseVisualStyleBackColor = false;
@@ -201,7 +201,7 @@
             this.btnAlterarEstoque.Location = new System.Drawing.Point(244, 295);
             this.btnAlterarEstoque.Name = "btnAlterarEstoque";
             this.btnAlterarEstoque.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarEstoque.TabIndex = 20;
+            this.btnAlterarEstoque.TabIndex = 19;
             this.btnAlterarEstoque.Text = "Alterar";
             this.btnAlterarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarEstoque.UseVisualStyleBackColor = false;
@@ -219,7 +219,7 @@
             this.btnCadastrarEstoque.Location = new System.Drawing.Point(119, 249);
             this.btnCadastrarEstoque.Name = "btnCadastrarEstoque";
             this.btnCadastrarEstoque.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarEstoque.TabIndex = 19;
+            this.btnCadastrarEstoque.TabIndex = 18;
             this.btnCadastrarEstoque.Text = "Cadastrar";
             this.btnCadastrarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarEstoque.UseVisualStyleBackColor = false;
@@ -256,7 +256,7 @@
             this.txtIDEstoqueConsulta.Location = new System.Drawing.Point(99, 27);
             this.txtIDEstoqueConsulta.Name = "txtIDEstoqueConsulta";
             this.txtIDEstoqueConsulta.Size = new System.Drawing.Size(141, 32);
-            this.txtIDEstoqueConsulta.TabIndex = 42;
+            this.txtIDEstoqueConsulta.TabIndex = 14;
             // 
             // lblIDEstoqueConsulta
             // 
@@ -281,7 +281,7 @@
             this.btnTrasferirEstoque.Location = new System.Drawing.Point(577, 21);
             this.btnTrasferirEstoque.Name = "btnTrasferirEstoque";
             this.btnTrasferirEstoque.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirEstoque.TabIndex = 21;
+            this.btnTrasferirEstoque.TabIndex = 17;
             this.btnTrasferirEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirEstoque.UseVisualStyleBackColor = false;
             // 
@@ -293,7 +293,7 @@
             this.dgEstoqueConsulta.Location = new System.Drawing.Point(7, 67);
             this.dgEstoqueConsulta.Name = "dgEstoqueConsulta";
             this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 372);
-            this.dgEstoqueConsulta.TabIndex = 25;
+            this.dgEstoqueConsulta.TabIndex = 18;
             // 
             // btnTodosEstoque
             // 
@@ -307,7 +307,7 @@
             this.btnTodosEstoque.Location = new System.Drawing.Point(412, 21);
             this.btnTodosEstoque.Name = "btnTodosEstoque";
             this.btnTodosEstoque.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosEstoque.TabIndex = 24;
+            this.btnTodosEstoque.TabIndex = 16;
             this.btnTodosEstoque.Text = "Consultar Todos";
             this.btnTodosEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosEstoque.UseVisualStyleBackColor = false;
@@ -325,7 +325,7 @@
             this.btnConsultarEstoque.Location = new System.Drawing.Point(260, 21);
             this.btnConsultarEstoque.Name = "btnConsultarEstoque";
             this.btnConsultarEstoque.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarEstoque.TabIndex = 23;
+            this.btnConsultarEstoque.TabIndex = 15;
             this.btnConsultarEstoque.Text = "    Consultar";
             this.btnConsultarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;

@@ -43,7 +43,6 @@
             this.btnExcluirManunt = new System.Windows.Forms.Button();
             this.btnAlterarManunt = new System.Windows.Forms.Button();
             this.btnCadastrarManunt = new System.Windows.Forms.Button();
-            this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
             this.lblPlaca = new System.Windows.Forms.Label();
             this.tbPageConsultaManunt = new System.Windows.Forms.TabPage();
             this.gbConsultaManunt = new System.Windows.Forms.GroupBox();
@@ -55,8 +54,9 @@
             this.dgVeiculoManunt = new System.Windows.Forms.DataGridView();
             this.btnTodosManunt = new System.Windows.Forms.Button();
             this.btnConsultarManunt = new System.Windows.Forms.Button();
-            this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
+            this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
             this.tbControlManunt.SuspendLayout();
             this.tbPageCadastroManunt.SuspendLayout();
             this.gbDadosManunt.SuspendLayout();
@@ -89,6 +89,7 @@
             // 
             // gbDadosManunt
             // 
+            this.gbDadosManunt.Controls.Add(this.cbPlaca);
             this.gbDadosManunt.Controls.Add(this.cbServicoExterno);
             this.gbDadosManunt.Controls.Add(this.lblServicoExterno);
             this.gbDadosManunt.Controls.Add(this.txtValor);
@@ -100,7 +101,6 @@
             this.gbDadosManunt.Controls.Add(this.btnExcluirManunt);
             this.gbDadosManunt.Controls.Add(this.btnAlterarManunt);
             this.gbDadosManunt.Controls.Add(this.btnCadastrarManunt);
-            this.gbDadosManunt.Controls.Add(this.txtPlaca);
             this.gbDadosManunt.Controls.Add(this.lblPlaca);
             this.gbDadosManunt.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosManunt.Location = new System.Drawing.Point(6, 6);
@@ -116,7 +116,7 @@
             this.cbServicoExterno.Location = new System.Drawing.Point(11, 183);
             this.cbServicoExterno.Name = "cbServicoExterno";
             this.cbServicoExterno.Size = new System.Drawing.Size(400, 33);
-            this.cbServicoExterno.TabIndex = 29;
+            this.cbServicoExterno.TabIndex = 18;
             // 
             // lblServicoExterno
             // 
@@ -133,7 +133,7 @@
             this.txtValor.Mask = "000000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(197, 32);
-            this.txtValor.TabIndex = 27;
+            this.txtValor.TabIndex = 16;
             // 
             // lblValor
             // 
@@ -162,7 +162,7 @@
             this.dtDataManunt.Name = "dtDataManunt";
             this.dtDataManunt.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataManunt.Size = new System.Drawing.Size(284, 31);
-            this.dtDataManunt.TabIndex = 24;
+            this.dtDataManunt.TabIndex = 15;
             // 
             // comboBox1
             // 
@@ -170,7 +170,7 @@
             this.comboBox1.Location = new System.Drawing.Point(11, 56);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 33);
-            this.comboBox1.TabIndex = 23;
+            this.comboBox1.TabIndex = 14;
             // 
             // lblTipo
             // 
@@ -235,14 +235,6 @@
             this.btnCadastrarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarManunt.UseVisualStyleBackColor = false;
             // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(214, 120);
-            this.txtPlaca.Mask = ">L>L>L-0000";
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(197, 32);
-            this.txtPlaca.TabIndex = 12;
-            // 
             // lblPlaca
             // 
             this.lblPlaca.AutoSize = true;
@@ -265,6 +257,7 @@
             // 
             // gbConsultaManunt
             // 
+            this.gbConsultaManunt.Controls.Add(this.cbPlacaConsulta);
             this.gbConsultaManunt.Controls.Add(this.lblDataManuntConsulta);
             this.gbConsultaManunt.Controls.Add(this.dtDataManuntConsulta);
             this.gbConsultaManunt.Controls.Add(this.cbTipoManuntConsulta);
@@ -273,7 +266,6 @@
             this.gbConsultaManunt.Controls.Add(this.dgVeiculoManunt);
             this.gbConsultaManunt.Controls.Add(this.btnTodosManunt);
             this.gbConsultaManunt.Controls.Add(this.btnConsultarManunt);
-            this.gbConsultaManunt.Controls.Add(this.txtPlacaConsulta);
             this.gbConsultaManunt.Controls.Add(this.lblPlacaConsulta);
             this.gbConsultaManunt.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaManunt.Location = new System.Drawing.Point(8, 10);
@@ -301,7 +293,7 @@
             this.dtDataManuntConsulta.Name = "dtDataManuntConsulta";
             this.dtDataManuntConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataManuntConsulta.Size = new System.Drawing.Size(146, 31);
-            this.dtDataManuntConsulta.TabIndex = 28;
+            this.dtDataManuntConsulta.TabIndex = 16;
             // 
             // cbTipoManuntConsulta
             // 
@@ -309,7 +301,7 @@
             this.cbTipoManuntConsulta.Location = new System.Drawing.Point(50, 31);
             this.cbTipoManuntConsulta.Name = "cbTipoManuntConsulta";
             this.cbTipoManuntConsulta.Size = new System.Drawing.Size(162, 33);
-            this.cbTipoManuntConsulta.TabIndex = 27;
+            this.cbTipoManuntConsulta.TabIndex = 14;
             // 
             // lblTipoManuntConsulta
             // 
@@ -334,7 +326,7 @@
             this.btnTrasferirManunt.Location = new System.Drawing.Point(577, 70);
             this.btnTrasferirManunt.Name = "btnTrasferirManunt";
             this.btnTrasferirManunt.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirManunt.TabIndex = 21;
+            this.btnTrasferirManunt.TabIndex = 19;
             this.btnTrasferirManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirManunt.UseVisualStyleBackColor = false;
             // 
@@ -346,7 +338,7 @@
             this.dgVeiculoManunt.Location = new System.Drawing.Point(7, 116);
             this.dgVeiculoManunt.Name = "dgVeiculoManunt";
             this.dgVeiculoManunt.Size = new System.Drawing.Size(608, 323);
-            this.dgVeiculoManunt.TabIndex = 25;
+            this.dgVeiculoManunt.TabIndex = 20;
             // 
             // btnTodosManunt
             // 
@@ -360,7 +352,7 @@
             this.btnTodosManunt.Location = new System.Drawing.Point(412, 69);
             this.btnTodosManunt.Name = "btnTodosManunt";
             this.btnTodosManunt.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosManunt.TabIndex = 24;
+            this.btnTodosManunt.TabIndex = 18;
             this.btnTodosManunt.Text = "Consultar Todos";
             this.btnTodosManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosManunt.UseVisualStyleBackColor = false;
@@ -378,18 +370,10 @@
             this.btnConsultarManunt.Location = new System.Drawing.Point(260, 69);
             this.btnConsultarManunt.Name = "btnConsultarManunt";
             this.btnConsultarManunt.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarManunt.TabIndex = 23;
+            this.btnConsultarManunt.TabIndex = 17;
             this.btnConsultarManunt.Text = "    Consultar";
             this.btnConsultarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarManunt.UseVisualStyleBackColor = false;
-            // 
-            // txtPlacaConsulta
-            // 
-            this.txtPlacaConsulta.Location = new System.Drawing.Point(328, 31);
-            this.txtPlacaConsulta.Mask = ">L>L>L-0000";
-            this.txtPlacaConsulta.Name = "txtPlacaConsulta";
-            this.txtPlacaConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtPlacaConsulta.TabIndex = 22;
             // 
             // lblPlacaConsulta
             // 
@@ -399,6 +383,22 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Veículo - Placa:";
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(214, 119);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.TabIndex = 17;
+            // 
+            // cbPlacaConsulta
+            // 
+            this.cbPlacaConsulta.FormattingEnabled = true;
+            this.cbPlacaConsulta.Location = new System.Drawing.Point(328, 30);
+            this.cbPlacaConsulta.Name = "cbPlacaConsulta";
+            this.cbPlacaConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbPlacaConsulta.TabIndex = 15;
             // 
             // Manutencao
             // 
@@ -429,7 +429,6 @@
         private System.Windows.Forms.Button btnExcluirManunt;
         private System.Windows.Forms.Button btnAlterarManunt;
         private System.Windows.Forms.Button btnCadastrarManunt;
-        private System.Windows.Forms.MaskedTextBox txtPlaca;
         private System.Windows.Forms.Label lblPlaca;
         private System.Windows.Forms.TabPage tbPageConsultaManunt;
         private System.Windows.Forms.GroupBox gbConsultaManunt;
@@ -437,7 +436,6 @@
         private System.Windows.Forms.DataGridView dgVeiculoManunt;
         private System.Windows.Forms.Button btnTodosManunt;
         private System.Windows.Forms.Button btnConsultarManunt;
-        private System.Windows.Forms.MaskedTextBox txtPlacaConsulta;
         private System.Windows.Forms.Label lblPlacaConsulta;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblTipo;
@@ -451,5 +449,7 @@
         private System.Windows.Forms.DateTimePicker dtDataManuntConsulta;
         private System.Windows.Forms.ComboBox cbTipoManuntConsulta;
         private System.Windows.Forms.Label lblTipoManuntConsulta;
+        private System.Windows.Forms.ComboBox cbPlaca;
+        private System.Windows.Forms.ComboBox cbPlacaConsulta;
     }
 }

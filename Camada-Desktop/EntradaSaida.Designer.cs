@@ -32,11 +32,11 @@
             this.tbControlEntradaSaida = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbDadosEntradaSaida = new System.Windows.Forms.GroupBox();
+            this.cbCPF = new System.Windows.Forms.ComboBox();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.cbServicoExterno = new System.Windows.Forms.ComboBox();
             this.lblServicoExterno = new System.Windows.Forms.Label();
-            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
             this.lblPlaca = new System.Windows.Forms.Label();
             this.dtDataHora = new System.Windows.Forms.DateTimePicker();
             this.lblDataHora = new System.Windows.Forms.Label();
@@ -47,13 +47,13 @@
             this.lblTipo = new System.Windows.Forms.Label();
             this.tbPageConsultaEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbConsultaEntradaSaida = new System.Windows.Forms.GroupBox();
+            this.cbCPFConsulta = new System.Windows.Forms.ComboBox();
+            this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
             this.dtDataHoraEntradaSaidaConsulta = new System.Windows.Forms.DateTimePicker();
             this.lblDataHoraEntradaSaidaConsulta = new System.Windows.Forms.Label();
             this.cbServicoExternoEntradaSaidaConsulta = new System.Windows.Forms.ComboBox();
             this.lblServicoExternoEntradaSaidaConsulta = new System.Windows.Forms.Label();
-            this.txtCPFEntradaSaidaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblCPFEntradaSaidaConsulta = new System.Windows.Forms.Label();
-            this.txtPlacaEntradaSaidaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaEntradaSaidaConsulta = new System.Windows.Forms.Label();
             this.btnTrasferirEntradaSaida = new System.Windows.Forms.Button();
             this.dgEntradaSaidaConsulta = new System.Windows.Forms.DataGridView();
@@ -91,11 +91,11 @@
             // 
             // gbDadosEntradaSaida
             // 
+            this.gbDadosEntradaSaida.Controls.Add(this.cbCPF);
+            this.gbDadosEntradaSaida.Controls.Add(this.cbPlaca);
             this.gbDadosEntradaSaida.Controls.Add(this.cbServicoExterno);
             this.gbDadosEntradaSaida.Controls.Add(this.lblServicoExterno);
-            this.gbDadosEntradaSaida.Controls.Add(this.txtCPF);
             this.gbDadosEntradaSaida.Controls.Add(this.label1);
-            this.gbDadosEntradaSaida.Controls.Add(this.txtPlaca);
             this.gbDadosEntradaSaida.Controls.Add(this.lblPlaca);
             this.gbDadosEntradaSaida.Controls.Add(this.dtDataHora);
             this.gbDadosEntradaSaida.Controls.Add(this.lblDataHora);
@@ -112,30 +112,38 @@
             this.gbDadosEntradaSaida.TabStop = false;
             this.gbDadosEntradaSaida.Text = "Dados";
             // 
+            // cbCPF
+            // 
+            this.cbCPF.FormattingEnabled = true;
+            this.cbCPF.Location = new System.Drawing.Point(23, 183);
+            this.cbCPF.Name = "cbCPF";
+            this.cbCPF.Size = new System.Drawing.Size(186, 33);
+            this.cbCPF.TabIndex = 18;
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(23, 120);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(186, 33);
+            this.cbPlaca.TabIndex = 16;
+            // 
             // cbServicoExterno
             // 
             this.cbServicoExterno.FormattingEnabled = true;
-            this.cbServicoExterno.Location = new System.Drawing.Point(220, 120);
+            this.cbServicoExterno.Location = new System.Drawing.Point(215, 120);
             this.cbServicoExterno.Name = "cbServicoExterno";
             this.cbServicoExterno.Size = new System.Drawing.Size(224, 33);
-            this.cbServicoExterno.TabIndex = 30;
+            this.cbServicoExterno.TabIndex = 17;
             // 
             // lblServicoExterno
             // 
             this.lblServicoExterno.AutoSize = true;
-            this.lblServicoExterno.Location = new System.Drawing.Point(215, 92);
+            this.lblServicoExterno.Location = new System.Drawing.Point(210, 92);
             this.lblServicoExterno.Name = "lblServicoExterno";
             this.lblServicoExterno.Size = new System.Drawing.Size(108, 25);
             this.lblServicoExterno.TabIndex = 29;
             this.lblServicoExterno.Text = "Serviço Externo:";
-            // 
-            // txtCPF
-            // 
-            this.txtCPF.Location = new System.Drawing.Point(23, 183);
-            this.txtCPF.Mask = "000.000.000-00";
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(186, 32);
-            this.txtCPF.TabIndex = 28;
             // 
             // label1
             // 
@@ -145,14 +153,6 @@
             this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 27;
             this.label1.Text = "Motorista - CPF";
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(23, 120);
-            this.txtPlaca.Mask = ">L>L>L-0000";
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(186, 32);
-            this.txtPlaca.TabIndex = 26;
             // 
             // lblPlaca
             // 
@@ -169,15 +169,15 @@
             this.dtDataHora.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataHora.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dtDataHora.Location = new System.Drawing.Point(220, 57);
+            this.dtDataHora.Location = new System.Drawing.Point(215, 56);
             this.dtDataHora.Name = "dtDataHora";
             this.dtDataHora.Size = new System.Drawing.Size(376, 31);
-            this.dtDataHora.TabIndex = 24;
+            this.dtDataHora.TabIndex = 15;
             // 
             // lblDataHora
             // 
             this.lblDataHora.AutoSize = true;
-            this.lblDataHora.Location = new System.Drawing.Point(215, 28);
+            this.lblDataHora.Location = new System.Drawing.Point(210, 28);
             this.lblDataHora.Name = "lblDataHora";
             this.lblDataHora.Size = new System.Drawing.Size(80, 25);
             this.lblDataHora.TabIndex = 23;
@@ -189,7 +189,7 @@
             this.cbTipo.Location = new System.Drawing.Point(23, 56);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(186, 33);
-            this.cbTipo.TabIndex = 22;
+            this.cbTipo.TabIndex = 14;
             // 
             // btnExcluirEntradaSaida
             // 
@@ -267,13 +267,13 @@
             // 
             // gbConsultaEntradaSaida
             // 
+            this.gbConsultaEntradaSaida.Controls.Add(this.cbCPFConsulta);
+            this.gbConsultaEntradaSaida.Controls.Add(this.cbPlacaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.dtDataHoraEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblDataHoraEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.cbServicoExternoEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblServicoExternoEntradaSaidaConsulta);
-            this.gbConsultaEntradaSaida.Controls.Add(this.txtCPFEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblCPFEntradaSaidaConsulta);
-            this.gbConsultaEntradaSaida.Controls.Add(this.txtPlacaEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblPlacaEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.btnTrasferirEntradaSaida);
             this.gbConsultaEntradaSaida.Controls.Add(this.dgEntradaSaidaConsulta);
@@ -287,6 +287,22 @@
             this.gbConsultaEntradaSaida.TabStop = false;
             this.gbConsultaEntradaSaida.Text = "Consulta";
             // 
+            // cbCPFConsulta
+            // 
+            this.cbCPFConsulta.FormattingEnabled = true;
+            this.cbCPFConsulta.Location = new System.Drawing.Point(11, 115);
+            this.cbCPFConsulta.Name = "cbCPFConsulta";
+            this.cbCPFConsulta.Size = new System.Drawing.Size(186, 33);
+            this.cbCPFConsulta.TabIndex = 16;
+            // 
+            // cbPlacaConsulta
+            // 
+            this.cbPlacaConsulta.FormattingEnabled = true;
+            this.cbPlacaConsulta.Location = new System.Drawing.Point(11, 50);
+            this.cbPlacaConsulta.Name = "cbPlacaConsulta";
+            this.cbPlacaConsulta.Size = new System.Drawing.Size(186, 33);
+            this.cbPlacaConsulta.TabIndex = 14;
+            // 
             // dtDataHoraEntradaSaidaConsulta
             // 
             this.dtDataHoraEntradaSaidaConsulta.CustomFormat = "dd/MM/yyyy - HH:mm";
@@ -296,7 +312,7 @@
             this.dtDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 115);
             this.dtDataHoraEntradaSaidaConsulta.Name = "dtDataHoraEntradaSaidaConsulta";
             this.dtDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(216, 31);
-            this.dtDataHoraEntradaSaidaConsulta.TabIndex = 38;
+            this.dtDataHoraEntradaSaidaConsulta.TabIndex = 17;
             // 
             // lblDataHoraEntradaSaidaConsulta
             // 
@@ -310,10 +326,10 @@
             // cbServicoExternoEntradaSaidaConsulta
             // 
             this.cbServicoExternoEntradaSaidaConsulta.FormattingEnabled = true;
-            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 51);
+            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 50);
             this.cbServicoExternoEntradaSaidaConsulta.Name = "cbServicoExternoEntradaSaidaConsulta";
             this.cbServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(216, 33);
-            this.cbServicoExternoEntradaSaidaConsulta.TabIndex = 36;
+            this.cbServicoExternoEntradaSaidaConsulta.TabIndex = 15;
             // 
             // lblServicoExternoEntradaSaidaConsulta
             // 
@@ -324,14 +340,6 @@
             this.lblServicoExternoEntradaSaidaConsulta.TabIndex = 35;
             this.lblServicoExternoEntradaSaidaConsulta.Text = "Serviço Externo:";
             // 
-            // txtCPFEntradaSaidaConsulta
-            // 
-            this.txtCPFEntradaSaidaConsulta.Location = new System.Drawing.Point(11, 115);
-            this.txtCPFEntradaSaidaConsulta.Mask = "000.000.000-00";
-            this.txtCPFEntradaSaidaConsulta.Name = "txtCPFEntradaSaidaConsulta";
-            this.txtCPFEntradaSaidaConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtCPFEntradaSaidaConsulta.TabIndex = 34;
-            // 
             // lblCPFEntradaSaidaConsulta
             // 
             this.lblCPFEntradaSaidaConsulta.AutoSize = true;
@@ -340,14 +348,6 @@
             this.lblCPFEntradaSaidaConsulta.Size = new System.Drawing.Size(110, 25);
             this.lblCPFEntradaSaidaConsulta.TabIndex = 33;
             this.lblCPFEntradaSaidaConsulta.Text = "CPF - Motorista:";
-            // 
-            // txtPlacaEntradaSaidaConsulta
-            // 
-            this.txtPlacaEntradaSaidaConsulta.Location = new System.Drawing.Point(11, 52);
-            this.txtPlacaEntradaSaidaConsulta.Mask = ">L>L>L-0000";
-            this.txtPlacaEntradaSaidaConsulta.Name = "txtPlacaEntradaSaidaConsulta";
-            this.txtPlacaEntradaSaidaConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtPlacaEntradaSaidaConsulta.TabIndex = 32;
             // 
             // lblPlacaEntradaSaidaConsulta
             // 
@@ -372,7 +372,7 @@
             this.btnTrasferirEntradaSaida.Location = new System.Drawing.Point(577, 44);
             this.btnTrasferirEntradaSaida.Name = "btnTrasferirEntradaSaida";
             this.btnTrasferirEntradaSaida.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirEntradaSaida.TabIndex = 21;
+            this.btnTrasferirEntradaSaida.TabIndex = 20;
             this.btnTrasferirEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirEntradaSaida.UseVisualStyleBackColor = false;
             // 
@@ -384,7 +384,7 @@
             this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 153);
             this.dgEntradaSaidaConsulta.Name = "dgEntradaSaidaConsulta";
             this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
-            this.dgEntradaSaidaConsulta.TabIndex = 25;
+            this.dgEntradaSaidaConsulta.TabIndex = 21;
             // 
             // btnTodosEntradaSaida
             // 
@@ -398,7 +398,7 @@
             this.btnTodosEntradaSaida.Location = new System.Drawing.Point(425, 90);
             this.btnTodosEntradaSaida.Name = "btnTodosEntradaSaida";
             this.btnTodosEntradaSaida.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosEntradaSaida.TabIndex = 24;
+            this.btnTodosEntradaSaida.TabIndex = 19;
             this.btnTodosEntradaSaida.Text = "Consultar Todos";
             this.btnTodosEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosEntradaSaida.UseVisualStyleBackColor = false;
@@ -416,7 +416,7 @@
             this.btnConsultarEntradaSaida.Location = new System.Drawing.Point(425, 44);
             this.btnConsultarEntradaSaida.Name = "btnConsultarEntradaSaida";
             this.btnConsultarEntradaSaida.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarEntradaSaida.TabIndex = 23;
+            this.btnConsultarEntradaSaida.TabIndex = 18;
             this.btnConsultarEntradaSaida.Text = "    Consultar";
             this.btnConsultarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEntradaSaida.UseVisualStyleBackColor = false;
@@ -462,17 +462,17 @@
         private System.Windows.Forms.ComboBox cbTipo;
         private System.Windows.Forms.Label lblPlaca;
         private System.Windows.Forms.Label lblServicoExterno;
-        private System.Windows.Forms.MaskedTextBox txtCPF;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox txtPlaca;
         private System.Windows.Forms.ComboBox cbServicoExterno;
         private System.Windows.Forms.ComboBox cbServicoExternoEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblServicoExternoEntradaSaidaConsulta;
-        private System.Windows.Forms.MaskedTextBox txtCPFEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblCPFEntradaSaidaConsulta;
-        private System.Windows.Forms.MaskedTextBox txtPlacaEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblPlacaEntradaSaidaConsulta;
         private System.Windows.Forms.DateTimePicker dtDataHoraEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblDataHoraEntradaSaidaConsulta;
+        private System.Windows.Forms.ComboBox cbCPF;
+        private System.Windows.Forms.ComboBox cbPlaca;
+        private System.Windows.Forms.ComboBox cbCPFConsulta;
+        private System.Windows.Forms.ComboBox cbPlacaConsulta;
     }
 }

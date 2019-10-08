@@ -72,7 +72,7 @@
             this.tbControlSinistros.Name = "tbControlSinistros";
             this.tbControlSinistros.SelectedIndex = 0;
             this.tbControlSinistros.Size = new System.Drawing.Size(644, 498);
-            this.tbControlSinistros.TabIndex = 24;
+            this.tbControlSinistros.TabIndex = 23;
             // 
             // tbPageCadastroSinistros
             // 
@@ -114,7 +114,7 @@
             this.txtid.Location = new System.Drawing.Point(11, 56);
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(140, 32);
-            this.txtid.TabIndex = 38;
+            this.txtid.TabIndex = 14;
             // 
             // lblIdentificador
             // 
@@ -128,10 +128,10 @@
             // cbSeguro
             // 
             this.cbSeguro.FormattingEnabled = true;
-            this.cbSeguro.Location = new System.Drawing.Point(360, 57);
+            this.cbSeguro.Location = new System.Drawing.Point(360, 55);
             this.cbSeguro.Name = "cbSeguro";
             this.cbSeguro.Size = new System.Drawing.Size(197, 33);
-            this.cbSeguro.TabIndex = 36;
+            this.cbSeguro.TabIndex = 16;
             // 
             // lblSeguro
             // 
@@ -145,10 +145,10 @@
             // cbItemSegurado
             // 
             this.cbItemSegurado.FormattingEnabled = true;
-            this.cbItemSegurado.Location = new System.Drawing.Point(157, 57);
+            this.cbItemSegurado.Location = new System.Drawing.Point(157, 55);
             this.cbItemSegurado.Name = "cbItemSegurado";
             this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
-            this.cbItemSegurado.TabIndex = 34;
+            this.cbItemSegurado.TabIndex = 15;
             // 
             // lblItemSegurado
             // 
@@ -161,16 +161,16 @@
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(11, 183);
+            this.txtDesc.Location = new System.Drawing.Point(11, 181);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 85);
-            this.txtDesc.TabIndex = 32;
+            this.txtDesc.TabIndex = 18;
             // 
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(6, 155);
+            this.lblDesc.Location = new System.Drawing.Point(6, 153);
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(75, 25);
             this.lblDesc.TabIndex = 31;
@@ -179,7 +179,7 @@
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(6, 93);
+            this.lblData.Location = new System.Drawing.Point(6, 91);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(42, 25);
             this.lblData.TabIndex = 27;
@@ -190,11 +190,11 @@
             this.dtDataMulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataMulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataMulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataMulta.Location = new System.Drawing.Point(11, 121);
+            this.dtDataMulta.Location = new System.Drawing.Point(11, 119);
             this.dtDataMulta.Name = "dtDataMulta";
             this.dtDataMulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataMulta.Size = new System.Drawing.Size(197, 31);
-            this.dtDataMulta.TabIndex = 25;
+            this.dtDataMulta.TabIndex = 17;
             // 
             // btnExcluirSinistros
             // 
@@ -284,7 +284,7 @@
             this.txtIDSinistrosConsulta.Location = new System.Drawing.Point(99, 25);
             this.txtIDSinistrosConsulta.Name = "txtIDSinistrosConsulta";
             this.txtIDSinistrosConsulta.Size = new System.Drawing.Size(140, 32);
-            this.txtIDSinistrosConsulta.TabIndex = 42;
+            this.txtIDSinistrosConsulta.TabIndex = 14;
             // 
             // lblIDSinistrosConsulta
             // 
@@ -313,7 +313,7 @@
             this.dtDataSinistrosConsulta.Name = "dtDataSinistrosConsulta";
             this.dtDataSinistrosConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataSinistrosConsulta.Size = new System.Drawing.Size(197, 31);
-            this.dtDataSinistrosConsulta.TabIndex = 39;
+            this.dtDataSinistrosConsulta.TabIndex = 15;
             // 
             // btnTrasferirSinistros
             // 
@@ -329,7 +329,7 @@
             this.btnTrasferirSinistros.Location = new System.Drawing.Point(577, 64);
             this.btnTrasferirSinistros.Name = "btnTrasferirSinistros";
             this.btnTrasferirSinistros.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirSinistros.TabIndex = 21;
+            this.btnTrasferirSinistros.TabIndex = 18;
             this.btnTrasferirSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirSinistros.UseVisualStyleBackColor = false;
             // 
@@ -341,7 +341,7 @@
             this.dgSinistrosConsulta.Location = new System.Drawing.Point(7, 110);
             this.dgSinistrosConsulta.Name = "dgSinistrosConsulta";
             this.dgSinistrosConsulta.Size = new System.Drawing.Size(608, 329);
-            this.dgSinistrosConsulta.TabIndex = 25;
+            this.dgSinistrosConsulta.TabIndex = 19;
             // 
             // btnTodosSinistros
             // 
@@ -352,10 +352,10 @@
             this.btnTodosSinistros.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosSinistros.ForeColor = System.Drawing.Color.White;
             this.btnTodosSinistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosSinistros.Location = new System.Drawing.Point(395, 62);
+            this.btnTodosSinistros.Location = new System.Drawing.Point(412, 64);
             this.btnTodosSinistros.Name = "btnTodosSinistros";
             this.btnTodosSinistros.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosSinistros.TabIndex = 24;
+            this.btnTodosSinistros.TabIndex = 17;
             this.btnTodosSinistros.Text = "Consultar Todos";
             this.btnTodosSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosSinistros.UseVisualStyleBackColor = false;
@@ -370,10 +370,10 @@
             this.btnConsultarSinistros.ForeColor = System.Drawing.Color.White;
             this.btnConsultarSinistros.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarSinistros.Image")));
             this.btnConsultarSinistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarSinistros.Location = new System.Drawing.Point(243, 64);
+            this.btnConsultarSinistros.Location = new System.Drawing.Point(260, 64);
             this.btnConsultarSinistros.Name = "btnConsultarSinistros";
             this.btnConsultarSinistros.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarSinistros.TabIndex = 23;
+            this.btnConsultarSinistros.TabIndex = 16;
             this.btnConsultarSinistros.Text = "    Consultar";
             this.btnConsultarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;

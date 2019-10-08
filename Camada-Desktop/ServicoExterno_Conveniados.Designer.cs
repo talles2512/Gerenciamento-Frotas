@@ -82,7 +82,7 @@
             this.tbControlConveniados.Name = "tbControlConveniados";
             this.tbControlConveniados.SelectedIndex = 0;
             this.tbControlConveniados.Size = new System.Drawing.Size(644, 498);
-            this.tbControlConveniados.TabIndex = 26;
+            this.tbControlConveniados.TabIndex = 29;
             // 
             // tbPageCadastroConveniados
             // 
@@ -143,11 +143,11 @@
             this.dtVencimento.Enabled = false;
             this.dtVencimento.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimento.Location = new System.Drawing.Point(14, 379);
+            this.dtVencimento.Location = new System.Drawing.Point(8, 378);
             this.dtVencimento.Name = "dtVencimento";
             this.dtVencimento.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtVencimento.Size = new System.Drawing.Size(284, 31);
-            this.dtVencimento.TabIndex = 70;
+            this.dtVencimento.TabIndex = 24;
             // 
             // dtInicio
             // 
@@ -155,11 +155,11 @@
             this.dtInicio.Enabled = false;
             this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicio.Location = new System.Drawing.Point(203, 317);
+            this.dtInicio.Location = new System.Drawing.Point(200, 315);
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtInicio.Size = new System.Drawing.Size(284, 31);
-            this.dtInicio.TabIndex = 69;
+            this.dtInicio.TabIndex = 23;
             // 
             // rdNaoConveniado
             // 
@@ -167,7 +167,7 @@
             this.rdNaoConveniado.Location = new System.Drawing.Point(113, 256);
             this.rdNaoConveniado.Name = "rdNaoConveniado";
             this.rdNaoConveniado.Size = new System.Drawing.Size(123, 29);
-            this.rdNaoConveniado.TabIndex = 68;
+            this.rdNaoConveniado.TabIndex = 21;
             this.rdNaoConveniado.TabStop = true;
             this.rdNaoConveniado.Text = "Não Conveniado";
             this.rdNaoConveniado.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             this.rdConveniado.Location = new System.Drawing.Point(11, 256);
             this.rdConveniado.Name = "rdConveniado";
             this.rdConveniado.Size = new System.Drawing.Size(96, 29);
-            this.rdConveniado.TabIndex = 67;
+            this.rdConveniado.TabIndex = 20;
             this.rdConveniado.TabStop = true;
             this.rdConveniado.Text = "Conveniado";
             this.rdConveniado.UseVisualStyleBackColor = true;
@@ -188,7 +188,7 @@
             // lbldatavencimento
             // 
             this.lbldatavencimento.AutoSize = true;
-            this.lbldatavencimento.Location = new System.Drawing.Point(9, 351);
+            this.lbldatavencimento.Location = new System.Drawing.Point(3, 350);
             this.lbldatavencimento.Name = "lbldatavencimento";
             this.lbldatavencimento.Size = new System.Drawing.Size(111, 25);
             this.lbldatavencimento.TabIndex = 65;
@@ -197,7 +197,7 @@
             // lblDataInicio
             // 
             this.lblDataInicio.AutoSize = true;
-            this.lblDataInicio.Location = new System.Drawing.Point(198, 288);
+            this.lblDataInicio.Location = new System.Drawing.Point(195, 288);
             this.lblDataInicio.Name = "lblDataInicio";
             this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
             this.lblDataInicio.TabIndex = 64;
@@ -206,16 +206,16 @@
             // txtValor
             // 
             this.txtValor.Enabled = false;
-            this.txtValor.Location = new System.Drawing.Point(14, 316);
+            this.txtValor.Location = new System.Drawing.Point(8, 315);
             this.txtValor.Mask = "0000000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(183, 32);
-            this.txtValor.TabIndex = 62;
+            this.txtValor.TabIndex = 22;
             // 
             // lblValor
             // 
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(7, 288);
+            this.lblValor.Location = new System.Drawing.Point(3, 288);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(46, 25);
             this.lblValor.TabIndex = 61;
@@ -223,15 +223,15 @@
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(11, 218);
+            this.txtEndereco.Location = new System.Drawing.Point(8, 218);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(377, 32);
-            this.txtEndereco.TabIndex = 59;
+            this.txtEndereco.TabIndex = 19;
             // 
             // lblEndereco
             // 
             this.lblEndereco.AutoSize = true;
-            this.lblEndereco.Location = new System.Drawing.Point(6, 190);
+            this.lblEndereco.Location = new System.Drawing.Point(3, 190);
             this.lblEndereco.Name = "lblEndereco";
             this.lblEndereco.Size = new System.Drawing.Size(71, 25);
             this.lblEndereco.TabIndex = 58;
@@ -239,15 +239,15 @@
             // 
             // txtemail
             // 
-            this.txtemail.Location = new System.Drawing.Point(11, 155);
+            this.txtemail.Location = new System.Drawing.Point(8, 155);
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(377, 32);
-            this.txtemail.TabIndex = 57;
+            this.txtemail.TabIndex = 18;
             // 
             // lblemail
             // 
             this.lblemail.AutoSize = true;
-            this.lblemail.Location = new System.Drawing.Point(6, 127);
+            this.lblemail.Location = new System.Drawing.Point(3, 127);
             this.lblemail.Name = "lblemail";
             this.lblemail.Size = new System.Drawing.Size(52, 25);
             this.lblemail.TabIndex = 56;
@@ -259,12 +259,12 @@
             this.txtTelefone.Mask = "(99) 0000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(185, 32);
-            this.txtTelefone.TabIndex = 55;
+            this.txtTelefone.TabIndex = 17;
             // 
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(195, 63);
+            this.lblTelefone.Location = new System.Drawing.Point(195, 62);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(62, 25);
             this.lblTelefone.TabIndex = 54;
@@ -272,10 +272,10 @@
             // 
             // txtNomeServico
             // 
-            this.txtNomeServico.Location = new System.Drawing.Point(200, 28);
+            this.txtNomeServico.Location = new System.Drawing.Point(200, 27);
             this.txtNomeServico.Name = "txtNomeServico";
             this.txtNomeServico.Size = new System.Drawing.Size(265, 32);
-            this.txtNomeServico.TabIndex = 53;
+            this.txtNomeServico.TabIndex = 15;
             // 
             // txtCNPJ
             // 
@@ -283,7 +283,7 @@
             this.txtCNPJ.Mask = "00.000.000/0000-00";
             this.txtCNPJ.Name = "txtCNPJ";
             this.txtCNPJ.Size = new System.Drawing.Size(186, 32);
-            this.txtCNPJ.TabIndex = 52;
+            this.txtCNPJ.TabIndex = 14;
             // 
             // lblCNPJ
             // 
@@ -306,10 +306,10 @@
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(11, 91);
+            this.cbTipo.Location = new System.Drawing.Point(8, 90);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(186, 33);
-            this.cbTipo.TabIndex = 49;
+            this.cbTipo.TabIndex = 16;
             // 
             // btnExcluirEntradaSaida
             // 
@@ -324,7 +324,7 @@
             this.btnExcluirEntradaSaida.Location = new System.Drawing.Point(225, 545);
             this.btnExcluirEntradaSaida.Name = "btnExcluirEntradaSaida";
             this.btnExcluirEntradaSaida.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirEntradaSaida.TabIndex = 48;
+            this.btnExcluirEntradaSaida.TabIndex = 27;
             this.btnExcluirEntradaSaida.Text = "Excluir";
             this.btnExcluirEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirEntradaSaida.UseVisualStyleBackColor = false;
@@ -342,7 +342,7 @@
             this.btnAlterarEntradaSaida.Location = new System.Drawing.Point(225, 499);
             this.btnAlterarEntradaSaida.Name = "btnAlterarEntradaSaida";
             this.btnAlterarEntradaSaida.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarEntradaSaida.TabIndex = 47;
+            this.btnAlterarEntradaSaida.TabIndex = 26;
             this.btnAlterarEntradaSaida.Text = "Alterar";
             this.btnAlterarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarEntradaSaida.UseVisualStyleBackColor = false;
@@ -360,7 +360,7 @@
             this.btnCadastrarEntradaSaida.Location = new System.Drawing.Point(110, 453);
             this.btnCadastrarEntradaSaida.Name = "btnCadastrarEntradaSaida";
             this.btnCadastrarEntradaSaida.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarEntradaSaida.TabIndex = 46;
+            this.btnCadastrarEntradaSaida.TabIndex = 25;
             this.btnCadastrarEntradaSaida.Text = "Cadastrar";
             this.btnCadastrarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarEntradaSaida.UseVisualStyleBackColor = false;
@@ -368,7 +368,7 @@
             // lblTipoServico
             // 
             this.lblTipoServico.AutoSize = true;
-            this.lblTipoServico.Location = new System.Drawing.Point(6, 63);
+            this.lblTipoServico.Location = new System.Drawing.Point(3, 63);
             this.lblTipoServico.Name = "lblTipoServico";
             this.lblTipoServico.Size = new System.Drawing.Size(86, 25);
             this.lblTipoServico.TabIndex = 45;
@@ -407,7 +407,7 @@
             this.txtCNPJConsulta.Mask = "00.000.000/0000-00";
             this.txtCNPJConsulta.Name = "txtCNPJConsulta";
             this.txtCNPJConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtCNPJConsulta.TabIndex = 34;
+            this.txtCNPJConsulta.TabIndex = 14;
             // 
             // lblCNPJConsulta
             // 
@@ -432,7 +432,7 @@
             this.btnTrasferirConveniado.Location = new System.Drawing.Point(577, 29);
             this.btnTrasferirConveniado.Name = "btnTrasferirConveniado";
             this.btnTrasferirConveniado.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirConveniado.TabIndex = 21;
+            this.btnTrasferirConveniado.TabIndex = 17;
             this.btnTrasferirConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirConveniado.UseVisualStyleBackColor = false;
             // 
@@ -444,7 +444,7 @@
             this.dgConveniadoConsulta.Location = new System.Drawing.Point(7, 75);
             this.dgConveniadoConsulta.Name = "dgConveniadoConsulta";
             this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 364);
-            this.dgConveniadoConsulta.TabIndex = 25;
+            this.dgConveniadoConsulta.TabIndex = 18;
             // 
             // btnTodosConveniado
             // 
@@ -458,7 +458,7 @@
             this.btnTodosConveniado.Location = new System.Drawing.Point(412, 29);
             this.btnTodosConveniado.Name = "btnTodosConveniado";
             this.btnTodosConveniado.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosConveniado.TabIndex = 24;
+            this.btnTodosConveniado.TabIndex = 16;
             this.btnTodosConveniado.Text = "Consultar Todos";
             this.btnTodosConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosConveniado.UseVisualStyleBackColor = false;
@@ -476,7 +476,7 @@
             this.btnConsultarConveniado.Location = new System.Drawing.Point(260, 29);
             this.btnConsultarConveniado.Name = "btnConsultarConveniado";
             this.btnConsultarConveniado.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarConveniado.TabIndex = 23;
+            this.btnConsultarConveniado.TabIndex = 15;
             this.btnConsultarConveniado.Text = "    Consultar";
             this.btnConsultarConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;

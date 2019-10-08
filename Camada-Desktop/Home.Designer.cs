@@ -124,7 +124,7 @@
             this.btnViagem.Location = new System.Drawing.Point(3, 177);
             this.btnViagem.Name = "btnViagem";
             this.btnViagem.Size = new System.Drawing.Size(244, 40);
-            this.btnViagem.TabIndex = 14;
+            this.btnViagem.TabIndex = 3;
             this.btnViagem.Text = "Viagens";
             this.btnViagem.UseVisualStyleBackColor = true;
             this.btnViagem.Click += new System.EventHandler(this.btnViagem_Click);
@@ -169,7 +169,7 @@
             this.btnSair.Location = new System.Drawing.Point(9, 632);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(42, 31);
-            this.btnSair.TabIndex = 12;
+            this.btnSair.TabIndex = 13;
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
@@ -187,7 +187,7 @@
             this.btnClientes.Location = new System.Drawing.Point(3, 582);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(244, 40);
-            this.btnClientes.TabIndex = 11;
+            this.btnClientes.TabIndex = 12;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
@@ -202,10 +202,10 @@
             this.btnFuncionarios.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFuncionarios.ForeColor = System.Drawing.Color.White;
             this.btnFuncionarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFuncionarios.Location = new System.Drawing.Point(3, 536);
+            this.btnFuncionarios.Location = new System.Drawing.Point(3, 539);
             this.btnFuncionarios.Name = "btnFuncionarios";
             this.btnFuncionarios.Size = new System.Drawing.Size(244, 40);
-            this.btnFuncionarios.TabIndex = 10;
+            this.btnFuncionarios.TabIndex = 11;
             this.btnFuncionarios.Text = "Funcionarios";
             this.btnFuncionarios.UseVisualStyleBackColor = true;
             this.btnFuncionarios.Click += new System.EventHandler(this.btnFuncionarios_Click);
@@ -219,10 +219,10 @@
             this.btnEstoque.ForeColor = System.Drawing.Color.White;
             this.btnEstoque.Image = ((System.Drawing.Image)(resources.GetObject("btnEstoque.Image")));
             this.btnEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEstoque.Location = new System.Drawing.Point(3, 499);
+            this.btnEstoque.Location = new System.Drawing.Point(3, 498);
             this.btnEstoque.Name = "btnEstoque";
             this.btnEstoque.Size = new System.Drawing.Size(244, 40);
-            this.btnEstoque.TabIndex = 9;
+            this.btnEstoque.TabIndex = 10;
             this.btnEstoque.Text = "Estoque";
             this.btnEstoque.UseVisualStyleBackColor = true;
             this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
@@ -239,7 +239,7 @@
             this.btnSinistros.Location = new System.Drawing.Point(3, 453);
             this.btnSinistros.Name = "btnSinistros";
             this.btnSinistros.Size = new System.Drawing.Size(244, 40);
-            this.btnSinistros.TabIndex = 8;
+            this.btnSinistros.TabIndex = 9;
             this.btnSinistros.Text = "Sinistros";
             this.btnSinistros.UseVisualStyleBackColor = true;
             this.btnSinistros.Click += new System.EventHandler(this.btnSinistros_Click);
@@ -256,7 +256,7 @@
             this.btnMultas.Location = new System.Drawing.Point(3, 407);
             this.btnMultas.Name = "btnMultas";
             this.btnMultas.Size = new System.Drawing.Size(244, 40);
-            this.btnMultas.TabIndex = 7;
+            this.btnMultas.TabIndex = 8;
             this.btnMultas.Text = "Multas";
             this.btnMultas.UseVisualStyleBackColor = true;
             this.btnMultas.Click += new System.EventHandler(this.btnMultas_Click);
@@ -273,7 +273,7 @@
             this.btnAbastecimento.Location = new System.Drawing.Point(3, 361);
             this.btnAbastecimento.Name = "btnAbastecimento";
             this.btnAbastecimento.Size = new System.Drawing.Size(244, 40);
-            this.btnAbastecimento.TabIndex = 6;
+            this.btnAbastecimento.TabIndex = 7;
             this.btnAbastecimento.Text = "Abastecimento";
             this.btnAbastecimento.UseVisualStyleBackColor = true;
             this.btnAbastecimento.Click += new System.EventHandler(this.btnAbastecimento_Click);
@@ -290,7 +290,7 @@
             this.btnManutencao.Location = new System.Drawing.Point(3, 315);
             this.btnManutencao.Name = "btnManutencao";
             this.btnManutencao.Size = new System.Drawing.Size(244, 40);
-            this.btnManutencao.TabIndex = 5;
+            this.btnManutencao.TabIndex = 6;
             this.btnManutencao.Text = "Manutenção";
             this.btnManutencao.UseVisualStyleBackColor = true;
             this.btnManutencao.Click += new System.EventHandler(this.btnManutencao_Click);
@@ -324,7 +324,7 @@
             this.btnEntradaSaida.Location = new System.Drawing.Point(3, 269);
             this.btnEntradaSaida.Name = "btnEntradaSaida";
             this.btnEntradaSaida.Size = new System.Drawing.Size(244, 40);
-            this.btnEntradaSaida.TabIndex = 3;
+            this.btnEntradaSaida.TabIndex = 5;
             this.btnEntradaSaida.Text = "Entrada/Saida";
             this.btnEntradaSaida.UseVisualStyleBackColor = true;
             this.btnEntradaSaida.Click += new System.EventHandler(this.btnEntradaSaida_Click);
@@ -453,6 +453,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GerencFrotas";
             this.Load += new System.EventHandler(this.frmHome_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmHome_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmHome_MouseMove);
             this.MenuVertical.ResumeLayout(false);
             this.MenuVertical.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();

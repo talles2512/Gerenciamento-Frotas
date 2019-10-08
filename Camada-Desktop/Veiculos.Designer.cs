@@ -32,6 +32,7 @@
             this.tbControlVeiculos = new System.Windows.Forms.TabControl();
             this.tbPageCadastroVeiculo = new System.Windows.Forms.TabPage();
             this.gbDadosVeiculos = new System.Windows.Forms.GroupBox();
+            this.txtChassi = new System.Windows.Forms.MaskedTextBox();
             this.lblDataVencimento = new System.Windows.Forms.Label();
             this.lblDataInicio = new System.Windows.Forms.Label();
             this.dtVencimento = new System.Windows.Forms.DateTimePicker();
@@ -45,7 +46,6 @@
             this.btnCadastrarVeiculo = new System.Windows.Forms.Button();
             this.cbCombustivel = new System.Windows.Forms.ComboBox();
             this.cbCor = new System.Windows.Forms.ComboBox();
-            this.txtChassi = new System.Windows.Forms.TextBox();
             this.txtModelo = new System.Windows.Forms.TextBox();
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
@@ -82,7 +82,7 @@
             this.tbControlVeiculos.Name = "tbControlVeiculos";
             this.tbControlVeiculos.SelectedIndex = 0;
             this.tbControlVeiculos.Size = new System.Drawing.Size(644, 498);
-            this.tbControlVeiculos.TabIndex = 22;
+            this.tbControlVeiculos.TabIndex = 30;
             // 
             // tbPageCadastroVeiculo
             // 
@@ -97,6 +97,7 @@
             // 
             // gbDadosVeiculos
             // 
+            this.gbDadosVeiculos.Controls.Add(this.txtChassi);
             this.gbDadosVeiculos.Controls.Add(this.lblDataVencimento);
             this.gbDadosVeiculos.Controls.Add(this.lblDataInicio);
             this.gbDadosVeiculos.Controls.Add(this.dtVencimento);
@@ -110,7 +111,6 @@
             this.gbDadosVeiculos.Controls.Add(this.btnCadastrarVeiculo);
             this.gbDadosVeiculos.Controls.Add(this.cbCombustivel);
             this.gbDadosVeiculos.Controls.Add(this.cbCor);
-            this.gbDadosVeiculos.Controls.Add(this.txtChassi);
             this.gbDadosVeiculos.Controls.Add(this.txtModelo);
             this.gbDadosVeiculos.Controls.Add(this.txtMarca);
             this.gbDadosVeiculos.Controls.Add(this.txtPlaca);
@@ -129,6 +129,14 @@
             this.gbDadosVeiculos.TabIndex = 1;
             this.gbDadosVeiculos.TabStop = false;
             this.gbDadosVeiculos.Text = "Dados";
+            // 
+            // txtChassi
+            // 
+            this.txtChassi.Location = new System.Drawing.Point(215, 119);
+            this.txtChassi.Mask = ">A>A>A>A>A>A>A>A>A>A>A>A>A>A>A>A>A";
+            this.txtChassi.Name = "txtChassi";
+            this.txtChassi.Size = new System.Drawing.Size(186, 32);
+            this.txtChassi.TabIndex = 18;
             // 
             // lblDataVencimento
             // 
@@ -158,7 +166,7 @@
             this.dtVencimento.Name = "dtVencimento";
             this.dtVencimento.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtVencimento.Size = new System.Drawing.Size(284, 31);
-            this.dtVencimento.TabIndex = 71;
+            this.dtVencimento.TabIndex = 25;
             // 
             // dtInicio
             // 
@@ -170,7 +178,7 @@
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtInicio.Size = new System.Drawing.Size(284, 31);
-            this.dtInicio.TabIndex = 70;
+            this.dtInicio.TabIndex = 24;
             // 
             // txtValor
             // 
@@ -179,7 +187,7 @@
             this.txtValor.Mask = "0000000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(186, 32);
-            this.txtValor.TabIndex = 25;
+            this.txtValor.TabIndex = 23;
             // 
             // lblValor
             // 
@@ -196,7 +204,7 @@
             this.rdNaoAlugado.Location = new System.Drawing.Point(215, 192);
             this.rdNaoAlugado.Name = "rdNaoAlugado";
             this.rdNaoAlugado.Size = new System.Drawing.Size(103, 29);
-            this.rdNaoAlugado.TabIndex = 23;
+            this.rdNaoAlugado.TabIndex = 22;
             this.rdNaoAlugado.Text = "Não Alugado";
             this.rdNaoAlugado.UseVisualStyleBackColor = true;
             this.rdNaoAlugado.CheckedChanged += new System.EventHandler(this.rdNaoAlugado_CheckedChanged);
@@ -207,7 +215,7 @@
             this.rdAlugado.Location = new System.Drawing.Point(215, 157);
             this.rdAlugado.Name = "rdAlugado";
             this.rdAlugado.Size = new System.Drawing.Size(76, 29);
-            this.rdAlugado.TabIndex = 22;
+            this.rdAlugado.TabIndex = 21;
             this.rdAlugado.Text = "Alugado";
             this.rdAlugado.UseVisualStyleBackColor = true;
             this.rdAlugado.CheckedChanged += new System.EventHandler(this.rdAlugado_CheckedChanged);
@@ -225,7 +233,7 @@
             this.btnExcluirVeiculo.Location = new System.Drawing.Point(246, 399);
             this.btnExcluirVeiculo.Name = "btnExcluirVeiculo";
             this.btnExcluirVeiculo.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirVeiculo.TabIndex = 21;
+            this.btnExcluirVeiculo.TabIndex = 28;
             this.btnExcluirVeiculo.Text = "Excluir";
             this.btnExcluirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirVeiculo.UseVisualStyleBackColor = false;
@@ -244,7 +252,7 @@
             this.btnAlterarVeiculo.Location = new System.Drawing.Point(246, 353);
             this.btnAlterarVeiculo.Name = "btnAlterarVeiculo";
             this.btnAlterarVeiculo.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarVeiculo.TabIndex = 20;
+            this.btnAlterarVeiculo.TabIndex = 27;
             this.btnAlterarVeiculo.Text = "Alterar";
             this.btnAlterarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarVeiculo.UseVisualStyleBackColor = false;
@@ -263,7 +271,7 @@
             this.btnCadastrarVeiculo.Location = new System.Drawing.Point(123, 307);
             this.btnCadastrarVeiculo.Name = "btnCadastrarVeiculo";
             this.btnCadastrarVeiculo.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarVeiculo.TabIndex = 19;
+            this.btnCadastrarVeiculo.TabIndex = 26;
             this.btnCadastrarVeiculo.Text = "Cadastrar";
             this.btnCadastrarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarVeiculo.UseVisualStyleBackColor = false;
@@ -275,7 +283,7 @@
             this.cbCombustivel.Location = new System.Drawing.Point(23, 182);
             this.cbCombustivel.Name = "cbCombustivel";
             this.cbCombustivel.Size = new System.Drawing.Size(186, 33);
-            this.cbCombustivel.TabIndex = 18;
+            this.cbCombustivel.TabIndex = 20;
             // 
             // cbCor
             // 
@@ -283,28 +291,21 @@
             this.cbCor.Location = new System.Drawing.Point(407, 118);
             this.cbCor.Name = "cbCor";
             this.cbCor.Size = new System.Drawing.Size(186, 33);
-            this.cbCor.TabIndex = 17;
-            // 
-            // txtChassi
-            // 
-            this.txtChassi.Location = new System.Drawing.Point(215, 119);
-            this.txtChassi.Name = "txtChassi";
-            this.txtChassi.Size = new System.Drawing.Size(186, 32);
-            this.txtChassi.TabIndex = 16;
+            this.cbCor.TabIndex = 19;
             // 
             // txtModelo
             // 
             this.txtModelo.Location = new System.Drawing.Point(23, 119);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(186, 32);
-            this.txtModelo.TabIndex = 15;
+            this.txtModelo.TabIndex = 17;
             // 
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(215, 56);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(186, 32);
-            this.txtMarca.TabIndex = 13;
+            this.txtMarca.TabIndex = 15;
             // 
             // txtPlaca
             // 
@@ -312,7 +313,7 @@
             this.txtPlaca.Mask = ">L>L>L-0000";
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(186, 32);
-            this.txtPlaca.TabIndex = 12;
+            this.txtPlaca.TabIndex = 14;
             // 
             // dtAno
             // 
@@ -323,7 +324,7 @@
             this.dtAno.Name = "dtAno";
             this.dtAno.ShowUpDown = true;
             this.dtAno.Size = new System.Drawing.Size(105, 31);
-            this.dtAno.TabIndex = 14;
+            this.dtAno.TabIndex = 16;
             // 
             // lblCombustivel
             // 
@@ -429,7 +430,7 @@
             this.btnTrasferirVeiculo.Location = new System.Drawing.Point(580, 24);
             this.btnTrasferirVeiculo.Name = "btnTrasferirVeiculo";
             this.btnTrasferirVeiculo.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirVeiculo.TabIndex = 21;
+            this.btnTrasferirVeiculo.TabIndex = 17;
             this.btnTrasferirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirVeiculo.UseVisualStyleBackColor = false;
             this.btnTrasferirVeiculo.Click += new System.EventHandler(this.BtnTrasferirVeiculo_Click);
@@ -442,7 +443,7 @@
             this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
             this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 371);
-            this.dgVeiculoConsulta.TabIndex = 25;
+            this.dgVeiculoConsulta.TabIndex = 18;
             // 
             // btnTodosVeiculo
             // 
@@ -456,7 +457,7 @@
             this.btnTodosVeiculo.Location = new System.Drawing.Point(418, 24);
             this.btnTodosVeiculo.Name = "btnTodosVeiculo";
             this.btnTodosVeiculo.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosVeiculo.TabIndex = 24;
+            this.btnTodosVeiculo.TabIndex = 16;
             this.btnTodosVeiculo.Text = "Consultar Todos";
             this.btnTodosVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosVeiculo.UseVisualStyleBackColor = false;
@@ -475,7 +476,7 @@
             this.btnConsultarVeiculo.Location = new System.Drawing.Point(266, 24);
             this.btnConsultarVeiculo.Name = "btnConsultarVeiculo";
             this.btnConsultarVeiculo.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarVeiculo.TabIndex = 23;
+            this.btnConsultarVeiculo.TabIndex = 15;
             this.btnConsultarVeiculo.Text = "    Consultar";
             this.btnConsultarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarVeiculo.UseVisualStyleBackColor = false;
@@ -487,7 +488,7 @@
             this.txtPlacaConsulta.Mask = ">L>L>L-0000";
             this.txtPlacaConsulta.Name = "txtPlacaConsulta";
             this.txtPlacaConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtPlacaConsulta.TabIndex = 22;
+            this.txtPlacaConsulta.TabIndex = 14;
             // 
             // lblPlacaConsulta
             // 
@@ -532,7 +533,6 @@
         private System.Windows.Forms.Button btnCadastrarVeiculo;
         private System.Windows.Forms.ComboBox cbCombustivel;
         private System.Windows.Forms.ComboBox cbCor;
-        private System.Windows.Forms.TextBox txtChassi;
         private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.MaskedTextBox txtPlaca;
@@ -559,5 +559,6 @@
         private System.Windows.Forms.Label lblDataInicio;
         private System.Windows.Forms.DateTimePicker dtVencimento;
         private System.Windows.Forms.DateTimePicker dtInicio;
+        private System.Windows.Forms.MaskedTextBox txtChassi;
     }
 }

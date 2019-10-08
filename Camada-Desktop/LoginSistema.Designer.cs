@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginSistema));
             this.panelLogin = new System.Windows.Forms.Panel();
+            this.lblver = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
-            this.lblver = new System.Windows.Forms.Label();
             this.btnSair = new System.Windows.Forms.Button();
             this.btnLoginSistema = new System.Windows.Forms.Button();
             this.panelLogin.SuspendLayout();
@@ -54,6 +54,17 @@
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Size = new System.Drawing.Size(400, 65);
             this.panelLogin.TabIndex = 0;
+            // 
+            // lblver
+            // 
+            this.lblver.AutoSize = true;
+            this.lblver.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblver.ForeColor = System.Drawing.Color.White;
+            this.lblver.Location = new System.Drawing.Point(358, 47);
+            this.lblver.Name = "lblver";
+            this.lblver.Size = new System.Drawing.Size(42, 18);
+            this.lblver.TabIndex = 49;
+            this.lblver.Text = "ver. 1.0";
             // 
             // label3
             // 
@@ -102,7 +113,7 @@
             this.txtLogin.Location = new System.Drawing.Point(105, 126);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(197, 32);
-            this.txtLogin.TabIndex = 45;
+            this.txtLogin.TabIndex = 1;
             // 
             // lblSenha
             // 
@@ -120,18 +131,7 @@
             this.txtSenha.Location = new System.Drawing.Point(105, 164);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(197, 32);
-            this.txtSenha.TabIndex = 47;
-            // 
-            // lblver
-            // 
-            this.lblver.AutoSize = true;
-            this.lblver.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblver.ForeColor = System.Drawing.Color.White;
-            this.lblver.Location = new System.Drawing.Point(358, 47);
-            this.lblver.Name = "lblver";
-            this.lblver.Size = new System.Drawing.Size(42, 18);
-            this.lblver.TabIndex = 49;
-            this.lblver.Text = "ver. 1.0";
+            this.txtSenha.TabIndex = 2;
             // 
             // btnSair
             // 
@@ -144,7 +144,7 @@
             this.btnSair.Location = new System.Drawing.Point(355, 266);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(42, 31);
-            this.btnSair.TabIndex = 48;
+            this.btnSair.TabIndex = 4;
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
@@ -162,7 +162,7 @@
             this.btnLoginSistema.Location = new System.Drawing.Point(120, 221);
             this.btnLoginSistema.Name = "btnLoginSistema";
             this.btnLoginSistema.Size = new System.Drawing.Size(160, 40);
-            this.btnLoginSistema.TabIndex = 49;
+            this.btnLoginSistema.TabIndex = 3;
             this.btnLoginSistema.Text = "Login";
             this.btnLoginSistema.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLoginSistema.UseVisualStyleBackColor = false;

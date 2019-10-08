@@ -68,7 +68,7 @@
             this.tbControlFuncionario.Name = "tbControlFuncionario";
             this.tbControlFuncionario.SelectedIndex = 0;
             this.tbControlFuncionario.Size = new System.Drawing.Size(644, 498);
-            this.tbControlFuncionario.TabIndex = 26;
+            this.tbControlFuncionario.TabIndex = 22;
             // 
             // tbPageCadastroFuncionario
             // 
@@ -117,14 +117,14 @@
             this.comboBox1.Location = new System.Drawing.Point(11, 182);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 33);
-            this.comboBox1.TabIndex = 47;
+            this.comboBox1.TabIndex = 17;
             // 
             // txtSenha
             // 
             this.txtSenha.Location = new System.Drawing.Point(214, 119);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(197, 32);
-            this.txtSenha.TabIndex = 46;
+            this.txtSenha.TabIndex = 16;
             // 
             // lblSenha
             // 
@@ -140,7 +140,7 @@
             this.txtLogin.Location = new System.Drawing.Point(11, 119);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(197, 32);
-            this.txtLogin.TabIndex = 44;
+            this.txtLogin.TabIndex = 15;
             // 
             // lblLogin
             // 
@@ -156,7 +156,7 @@
             this.txtnome.Location = new System.Drawing.Point(11, 56);
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(487, 32);
-            this.txtnome.TabIndex = 38;
+            this.txtnome.TabIndex = 14;
             // 
             // lblNome
             // 
@@ -180,7 +180,7 @@
             this.btnExcluirFuncionario.Location = new System.Drawing.Point(244, 341);
             this.btnExcluirFuncionario.Name = "btnExcluirFuncionario";
             this.btnExcluirFuncionario.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirFuncionario.TabIndex = 21;
+            this.btnExcluirFuncionario.TabIndex = 20;
             this.btnExcluirFuncionario.Text = "Excluir";
             this.btnExcluirFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirFuncionario.UseVisualStyleBackColor = false;
@@ -198,7 +198,7 @@
             this.btnAlterarFuncionario.Location = new System.Drawing.Point(244, 295);
             this.btnAlterarFuncionario.Name = "btnAlterarFuncionario";
             this.btnAlterarFuncionario.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarFuncionario.TabIndex = 20;
+            this.btnAlterarFuncionario.TabIndex = 19;
             this.btnAlterarFuncionario.Text = "Alterar";
             this.btnAlterarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarFuncionario.UseVisualStyleBackColor = false;
@@ -216,7 +216,7 @@
             this.btnCadastrarFuncionario.Location = new System.Drawing.Point(119, 249);
             this.btnCadastrarFuncionario.Name = "btnCadastrarFuncionario";
             this.btnCadastrarFuncionario.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarFuncionario.TabIndex = 19;
+            this.btnCadastrarFuncionario.TabIndex = 18;
             this.btnCadastrarFuncionario.Text = "Cadastrar";
             this.btnCadastrarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarFuncionario.UseVisualStyleBackColor = false;
@@ -253,7 +253,7 @@
             this.txtLoginFuncionarioConsulta.Location = new System.Drawing.Point(57, 27);
             this.txtLoginFuncionarioConsulta.Name = "txtLoginFuncionarioConsulta";
             this.txtLoginFuncionarioConsulta.Size = new System.Drawing.Size(197, 32);
-            this.txtLoginFuncionarioConsulta.TabIndex = 42;
+            this.txtLoginFuncionarioConsulta.TabIndex = 14;
             // 
             // lblLoginFuncionarioConsulta
             // 
@@ -278,7 +278,7 @@
             this.btnTrasferirFuncionario.Location = new System.Drawing.Point(577, 21);
             this.btnTrasferirFuncionario.Name = "btnTrasferirFuncionario";
             this.btnTrasferirFuncionario.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirFuncionario.TabIndex = 21;
+            this.btnTrasferirFuncionario.TabIndex = 17;
             this.btnTrasferirFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirFuncionario.UseVisualStyleBackColor = false;
             // 
@@ -290,7 +290,7 @@
             this.dgFuncionarioConsulta.Location = new System.Drawing.Point(7, 67);
             this.dgFuncionarioConsulta.Name = "dgFuncionarioConsulta";
             this.dgFuncionarioConsulta.Size = new System.Drawing.Size(608, 372);
-            this.dgFuncionarioConsulta.TabIndex = 25;
+            this.dgFuncionarioConsulta.TabIndex = 18;
             // 
             // btnTodosFuncionario
             // 
@@ -304,7 +304,7 @@
             this.btnTodosFuncionario.Location = new System.Drawing.Point(412, 21);
             this.btnTodosFuncionario.Name = "btnTodosFuncionario";
             this.btnTodosFuncionario.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosFuncionario.TabIndex = 24;
+            this.btnTodosFuncionario.TabIndex = 16;
             this.btnTodosFuncionario.Text = "Consultar Todos";
             this.btnTodosFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosFuncionario.UseVisualStyleBackColor = false;
@@ -322,7 +322,7 @@
             this.btnConsultarFuncionario.Location = new System.Drawing.Point(260, 21);
             this.btnConsultarFuncionario.Name = "btnConsultarFuncionario";
             this.btnConsultarFuncionario.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarFuncionario.TabIndex = 23;
+            this.btnConsultarFuncionario.TabIndex = 15;
             this.btnConsultarFuncionario.Text = "    Consultar";
             this.btnConsultarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;

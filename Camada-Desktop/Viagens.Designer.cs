@@ -32,9 +32,22 @@
             this.tbControlViagens = new System.Windows.Forms.TabControl();
             this.tbPageCadastroViagem = new System.Windows.Forms.TabPage();
             this.gbDadosViagens = new System.Windows.Forms.GroupBox();
+            this.cbCPF = new System.Windows.Forms.ComboBox();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
+            this.rdsemOcupante = new System.Windows.Forms.RadioButton();
+            this.rdOcupante = new System.Windows.Forms.RadioButton();
+            this.lblCPF = new System.Windows.Forms.Label();
+            this.lblPlaca = new System.Windows.Forms.Label();
+            this.lbldtSaida = new System.Windows.Forms.Label();
+            this.dtDataSaida = new System.Windows.Forms.DateTimePicker();
+            this.txtDestino = new System.Windows.Forms.TextBox();
+            this.lblDestino = new System.Windows.Forms.Label();
             this.btnExcluirViagens = new System.Windows.Forms.Button();
             this.btnAlterarViagens = new System.Windows.Forms.Button();
             this.btnCadastrarViagens = new System.Windows.Forms.Button();
+            this.gbOcupante = new System.Windows.Forms.GroupBox();
+            this.cbAddOcupante = new System.Windows.Forms.ComboBox();
+            this.lblNomeCPFOcupantes = new System.Windows.Forms.Label();
             this.tbPageConsultaViagens = new System.Windows.Forms.TabPage();
             this.gbConsultaViagens = new System.Windows.Forms.GroupBox();
             this.btnTrasferirViagens = new System.Windows.Forms.Button();
@@ -43,27 +56,7 @@
             this.btnConsultarViagens = new System.Windows.Forms.Button();
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblreqConsulta = new System.Windows.Forms.Label();
-            this.lblDestino = new System.Windows.Forms.Label();
-            this.txtDestino = new System.Windows.Forms.TextBox();
-            this.dtDataSaida = new System.Windows.Forms.DateTimePicker();
-            this.lbldtSaida = new System.Windows.Forms.Label();
-            this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
-            this.lblPlaca = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.lblCPF = new System.Windows.Forms.Label();
-            this.rdOcupante = new System.Windows.Forms.RadioButton();
-            this.lblNomeCPFOcupantes = new System.Windows.Forms.Label();
-            this.gbOcupante = new System.Windows.Forms.GroupBox();
             this.tbPageControlOcupantes = new System.Windows.Forms.TabPage();
-            this.rdsemOcupante = new System.Windows.Forms.RadioButton();
-            this.gbDadosExames = new System.Windows.Forms.GroupBox();
-            this.btnExcluirExame = new System.Windows.Forms.Button();
-            this.btnAlterarExame = new System.Windows.Forms.Button();
-            this.btnCadastrarExame = new System.Windows.Forms.Button();
-            this.txtCPFOcupantes = new System.Windows.Forms.MaskedTextBox();
-            this.lblCPFOCupantes = new System.Windows.Forms.Label();
-            this.lblNomeOcupantes = new System.Windows.Forms.Label();
-            this.txtNomeOcupantes = new System.Windows.Forms.TextBox();
             this.gbConsultaExame = new System.Windows.Forms.GroupBox();
             this.btnTransfereExame = new System.Windows.Forms.Button();
             this.txtCPFOcupantesConsulta = new System.Windows.Forms.MaskedTextBox();
@@ -71,18 +64,25 @@
             this.dgExameConsulta = new System.Windows.Forms.DataGridView();
             this.btnConsultaTodosExame = new System.Windows.Forms.Button();
             this.btnConsultaExame = new System.Windows.Forms.Button();
-            this.cbAddOcupante = new System.Windows.Forms.ComboBox();
+            this.gbDadosExames = new System.Windows.Forms.GroupBox();
+            this.txtNomeOcupantes = new System.Windows.Forms.TextBox();
+            this.lblNomeOcupantes = new System.Windows.Forms.Label();
+            this.btnExcluirExame = new System.Windows.Forms.Button();
+            this.btnAlterarExame = new System.Windows.Forms.Button();
+            this.btnCadastrarExame = new System.Windows.Forms.Button();
+            this.txtCPFOcupantes = new System.Windows.Forms.MaskedTextBox();
+            this.lblCPFOCupantes = new System.Windows.Forms.Label();
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
             this.gbDadosViagens.SuspendLayout();
+            this.gbOcupante.SuspendLayout();
             this.tbPageConsultaViagens.SuspendLayout();
             this.gbConsultaViagens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViagensConsulta)).BeginInit();
-            this.gbOcupante.SuspendLayout();
             this.tbPageControlOcupantes.SuspendLayout();
-            this.gbDadosExames.SuspendLayout();
             this.gbConsultaExame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).BeginInit();
+            this.gbDadosExames.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbControlViagens
@@ -95,7 +95,7 @@
             this.tbControlViagens.Name = "tbControlViagens";
             this.tbControlViagens.SelectedIndex = 0;
             this.tbControlViagens.Size = new System.Drawing.Size(644, 498);
-            this.tbControlViagens.TabIndex = 23;
+            this.tbControlViagens.TabIndex = 26;
             // 
             // tbPageCadastroViagem
             // 
@@ -110,11 +110,11 @@
             // 
             // gbDadosViagens
             // 
+            this.gbDadosViagens.Controls.Add(this.cbCPF);
+            this.gbDadosViagens.Controls.Add(this.cbPlaca);
             this.gbDadosViagens.Controls.Add(this.rdsemOcupante);
             this.gbDadosViagens.Controls.Add(this.rdOcupante);
             this.gbDadosViagens.Controls.Add(this.lblCPF);
-            this.gbDadosViagens.Controls.Add(this.maskedTextBox1);
-            this.gbDadosViagens.Controls.Add(this.txtPlaca);
             this.gbDadosViagens.Controls.Add(this.lblPlaca);
             this.gbDadosViagens.Controls.Add(this.lbldtSaida);
             this.gbDadosViagens.Controls.Add(this.dtDataSaida);
@@ -132,6 +132,100 @@
             this.gbDadosViagens.TabStop = false;
             this.gbDadosViagens.Text = "Dados";
             // 
+            // cbCPF
+            // 
+            this.cbCPF.FormattingEnabled = true;
+            this.cbCPF.Location = new System.Drawing.Point(214, 118);
+            this.cbCPF.Name = "cbCPF";
+            this.cbCPF.Size = new System.Drawing.Size(197, 33);
+            this.cbCPF.TabIndex = 17;
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(11, 118);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.TabIndex = 16;
+            // 
+            // rdsemOcupante
+            // 
+            this.rdsemOcupante.AutoSize = true;
+            this.rdsemOcupante.Location = new System.Drawing.Point(134, 157);
+            this.rdsemOcupante.Name = "rdsemOcupante";
+            this.rdsemOcupante.Size = new System.Drawing.Size(116, 29);
+            this.rdsemOcupante.TabIndex = 19;
+            this.rdsemOcupante.TabStop = true;
+            this.rdsemOcupante.Text = "Sem Ocupante";
+            this.rdsemOcupante.UseVisualStyleBackColor = true;
+            this.rdsemOcupante.CheckedChanged += new System.EventHandler(this.rdsemOcupante_CheckedChanged);
+            // 
+            // rdOcupante
+            // 
+            this.rdOcupante.AutoSize = true;
+            this.rdOcupante.Location = new System.Drawing.Point(12, 157);
+            this.rdOcupante.Name = "rdOcupante";
+            this.rdOcupante.Size = new System.Drawing.Size(116, 29);
+            this.rdOcupante.TabIndex = 18;
+            this.rdOcupante.TabStop = true;
+            this.rdOcupante.Text = "Com Ocupante";
+            this.rdOcupante.UseVisualStyleBackColor = true;
+            this.rdOcupante.CheckedChanged += new System.EventHandler(this.rdOcupante_CheckedChanged);
+            // 
+            // lblCPF
+            // 
+            this.lblCPF.AutoSize = true;
+            this.lblCPF.Location = new System.Drawing.Point(209, 91);
+            this.lblCPF.Name = "lblCPF";
+            this.lblCPF.Size = new System.Drawing.Size(110, 25);
+            this.lblCPF.TabIndex = 30;
+            this.lblCPF.Text = "Motorista - CPF:";
+            // 
+            // lblPlaca
+            // 
+            this.lblPlaca.AutoSize = true;
+            this.lblPlaca.Location = new System.Drawing.Point(6, 91);
+            this.lblPlaca.Name = "lblPlaca";
+            this.lblPlaca.Size = new System.Drawing.Size(104, 25);
+            this.lblPlaca.TabIndex = 27;
+            this.lblPlaca.Text = "Veículo - Placa:";
+            // 
+            // lbldtSaida
+            // 
+            this.lbldtSaida.AutoSize = true;
+            this.lbldtSaida.Location = new System.Drawing.Point(391, 27);
+            this.lbldtSaida.Name = "lbldtSaida";
+            this.lbldtSaida.Size = new System.Drawing.Size(79, 25);
+            this.lbldtSaida.TabIndex = 26;
+            this.lbldtSaida.Text = "Data Saída:";
+            // 
+            // dtDataSaida
+            // 
+            this.dtDataSaida.CustomFormat = "dd/MM/yyyy - HH:mm";
+            this.dtDataSaida.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtDataSaida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDataSaida.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dtDataSaida.Location = new System.Drawing.Point(396, 55);
+            this.dtDataSaida.Name = "dtDataSaida";
+            this.dtDataSaida.Size = new System.Drawing.Size(199, 31);
+            this.dtDataSaida.TabIndex = 15;
+            // 
+            // txtDestino
+            // 
+            this.txtDestino.Location = new System.Drawing.Point(11, 56);
+            this.txtDestino.Name = "txtDestino";
+            this.txtDestino.Size = new System.Drawing.Size(379, 32);
+            this.txtDestino.TabIndex = 14;
+            // 
+            // lblDestino
+            // 
+            this.lblDestino.AutoSize = true;
+            this.lblDestino.Location = new System.Drawing.Point(6, 28);
+            this.lblDestino.Name = "lblDestino";
+            this.lblDestino.Size = new System.Drawing.Size(59, 25);
+            this.lblDestino.TabIndex = 22;
+            this.lblDestino.Text = "Destino:";
+            // 
             // btnExcluirViagens
             // 
             this.btnExcluirViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -145,7 +239,7 @@
             this.btnExcluirViagens.Location = new System.Drawing.Point(244, 399);
             this.btnExcluirViagens.Name = "btnExcluirViagens";
             this.btnExcluirViagens.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirViagens.TabIndex = 21;
+            this.btnExcluirViagens.TabIndex = 23;
             this.btnExcluirViagens.Text = "Excluir";
             this.btnExcluirViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirViagens.UseVisualStyleBackColor = false;
@@ -163,7 +257,7 @@
             this.btnAlterarViagens.Location = new System.Drawing.Point(244, 353);
             this.btnAlterarViagens.Name = "btnAlterarViagens";
             this.btnAlterarViagens.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarViagens.TabIndex = 20;
+            this.btnAlterarViagens.TabIndex = 22;
             this.btnAlterarViagens.Text = "Alterar";
             this.btnAlterarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarViagens.UseVisualStyleBackColor = false;
@@ -181,10 +275,39 @@
             this.btnCadastrarViagens.Location = new System.Drawing.Point(120, 307);
             this.btnCadastrarViagens.Name = "btnCadastrarViagens";
             this.btnCadastrarViagens.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarViagens.TabIndex = 19;
+            this.btnCadastrarViagens.TabIndex = 21;
             this.btnCadastrarViagens.Text = "Cadastrar";
             this.btnCadastrarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarViagens.UseVisualStyleBackColor = false;
+            // 
+            // gbOcupante
+            // 
+            this.gbOcupante.Controls.Add(this.cbAddOcupante);
+            this.gbOcupante.Controls.Add(this.lblNomeCPFOcupantes);
+            this.gbOcupante.Enabled = false;
+            this.gbOcupante.Location = new System.Drawing.Point(6, 189);
+            this.gbOcupante.Name = "gbOcupante";
+            this.gbOcupante.Size = new System.Drawing.Size(609, 112);
+            this.gbOcupante.TabIndex = 33;
+            this.gbOcupante.TabStop = false;
+            this.gbOcupante.Text = "Ocupante";
+            // 
+            // cbAddOcupante
+            // 
+            this.cbAddOcupante.FormattingEnabled = true;
+            this.cbAddOcupante.Location = new System.Drawing.Point(11, 56);
+            this.cbAddOcupante.Name = "cbAddOcupante";
+            this.cbAddOcupante.Size = new System.Drawing.Size(578, 33);
+            this.cbAddOcupante.TabIndex = 20;
+            // 
+            // lblNomeCPFOcupantes
+            // 
+            this.lblNomeCPFOcupantes.AutoSize = true;
+            this.lblNomeCPFOcupantes.Location = new System.Drawing.Point(6, 28);
+            this.lblNomeCPFOcupantes.Name = "lblNomeCPFOcupantes";
+            this.lblNomeCPFOcupantes.Size = new System.Drawing.Size(143, 25);
+            this.lblNomeCPFOcupantes.TabIndex = 32;
+            this.lblNomeCPFOcupantes.Text = "Nome/CPF Ocupante:";
             // 
             // tbPageConsultaViagens
             // 
@@ -227,7 +350,7 @@
             this.btnTrasferirViagens.Location = new System.Drawing.Point(580, 24);
             this.btnTrasferirViagens.Name = "btnTrasferirViagens";
             this.btnTrasferirViagens.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirViagens.TabIndex = 21;
+            this.btnTrasferirViagens.TabIndex = 17;
             this.btnTrasferirViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirViagens.UseVisualStyleBackColor = false;
             // 
@@ -239,7 +362,7 @@
             this.dgViagensConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgViagensConsulta.Name = "dgViagensConsulta";
             this.dgViagensConsulta.Size = new System.Drawing.Size(608, 371);
-            this.dgViagensConsulta.TabIndex = 25;
+            this.dgViagensConsulta.TabIndex = 18;
             // 
             // btnTodasViagens
             // 
@@ -253,7 +376,7 @@
             this.btnTodasViagens.Location = new System.Drawing.Point(418, 24);
             this.btnTodasViagens.Name = "btnTodasViagens";
             this.btnTodasViagens.Size = new System.Drawing.Size(159, 40);
-            this.btnTodasViagens.TabIndex = 24;
+            this.btnTodasViagens.TabIndex = 16;
             this.btnTodasViagens.Text = "Consultar Todos";
             this.btnTodasViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodasViagens.UseVisualStyleBackColor = false;
@@ -271,7 +394,7 @@
             this.btnConsultarViagens.Location = new System.Drawing.Point(266, 24);
             this.btnConsultarViagens.Name = "btnConsultarViagens";
             this.btnConsultarViagens.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarViagens.TabIndex = 23;
+            this.btnConsultarViagens.TabIndex = 15;
             this.btnConsultarViagens.Text = "    Consultar";
             this.btnConsultarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarViagens.UseVisualStyleBackColor = false;
@@ -282,7 +405,7 @@
             this.txtPlacaConsulta.Mask = "999999999";
             this.txtPlacaConsulta.Name = "txtPlacaConsulta";
             this.txtPlacaConsulta.Size = new System.Drawing.Size(174, 32);
-            this.txtPlacaConsulta.TabIndex = 22;
+            this.txtPlacaConsulta.TabIndex = 14;
             // 
             // lblreqConsulta
             // 
@@ -292,109 +415,6 @@
             this.lblreqConsulta.Size = new System.Drawing.Size(79, 25);
             this.lblreqConsulta.TabIndex = 17;
             this.lblreqConsulta.Text = "Requisição:";
-            // 
-            // lblDestino
-            // 
-            this.lblDestino.AutoSize = true;
-            this.lblDestino.Location = new System.Drawing.Point(6, 28);
-            this.lblDestino.Name = "lblDestino";
-            this.lblDestino.Size = new System.Drawing.Size(59, 25);
-            this.lblDestino.TabIndex = 22;
-            this.lblDestino.Text = "Destino:";
-            // 
-            // txtDestino
-            // 
-            this.txtDestino.Location = new System.Drawing.Point(11, 56);
-            this.txtDestino.Name = "txtDestino";
-            this.txtDestino.Size = new System.Drawing.Size(379, 32);
-            this.txtDestino.TabIndex = 23;
-            // 
-            // dtDataSaida
-            // 
-            this.dtDataSaida.CustomFormat = "dd/MM/yyyy - HH:mm";
-            this.dtDataSaida.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtDataSaida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDataSaida.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dtDataSaida.Location = new System.Drawing.Point(396, 55);
-            this.dtDataSaida.Name = "dtDataSaida";
-            this.dtDataSaida.Size = new System.Drawing.Size(199, 31);
-            this.dtDataSaida.TabIndex = 25;
-            // 
-            // lbldtSaida
-            // 
-            this.lbldtSaida.AutoSize = true;
-            this.lbldtSaida.Location = new System.Drawing.Point(391, 27);
-            this.lbldtSaida.Name = "lbldtSaida";
-            this.lbldtSaida.Size = new System.Drawing.Size(79, 25);
-            this.lbldtSaida.TabIndex = 26;
-            this.lbldtSaida.Text = "Data Saída:";
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(11, 119);
-            this.txtPlaca.Mask = ">L>L>L-0000";
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(197, 32);
-            this.txtPlaca.TabIndex = 28;
-            // 
-            // lblPlaca
-            // 
-            this.lblPlaca.AutoSize = true;
-            this.lblPlaca.Location = new System.Drawing.Point(6, 91);
-            this.lblPlaca.Name = "lblPlaca";
-            this.lblPlaca.Size = new System.Drawing.Size(104, 25);
-            this.lblPlaca.TabIndex = 27;
-            this.lblPlaca.Text = "Veículo - Placa:";
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(214, 119);
-            this.maskedTextBox1.Mask = "000.000.000-00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(197, 32);
-            this.maskedTextBox1.TabIndex = 29;
-            // 
-            // lblCPF
-            // 
-            this.lblCPF.AutoSize = true;
-            this.lblCPF.Location = new System.Drawing.Point(209, 91);
-            this.lblCPF.Name = "lblCPF";
-            this.lblCPF.Size = new System.Drawing.Size(110, 25);
-            this.lblCPF.TabIndex = 30;
-            this.lblCPF.Text = "Motorista - CPF:";
-            // 
-            // rdOcupante
-            // 
-            this.rdOcupante.AutoSize = true;
-            this.rdOcupante.Location = new System.Drawing.Point(12, 157);
-            this.rdOcupante.Name = "rdOcupante";
-            this.rdOcupante.Size = new System.Drawing.Size(116, 29);
-            this.rdOcupante.TabIndex = 31;
-            this.rdOcupante.TabStop = true;
-            this.rdOcupante.Text = "Com Ocupante";
-            this.rdOcupante.UseVisualStyleBackColor = true;
-            this.rdOcupante.CheckedChanged += new System.EventHandler(this.rdOcupante_CheckedChanged);
-            // 
-            // lblNomeCPFOcupantes
-            // 
-            this.lblNomeCPFOcupantes.AutoSize = true;
-            this.lblNomeCPFOcupantes.Location = new System.Drawing.Point(6, 28);
-            this.lblNomeCPFOcupantes.Name = "lblNomeCPFOcupantes";
-            this.lblNomeCPFOcupantes.Size = new System.Drawing.Size(143, 25);
-            this.lblNomeCPFOcupantes.TabIndex = 32;
-            this.lblNomeCPFOcupantes.Text = "Nome/CPF Ocupante:";
-            // 
-            // gbOcupante
-            // 
-            this.gbOcupante.Controls.Add(this.cbAddOcupante);
-            this.gbOcupante.Controls.Add(this.lblNomeCPFOcupantes);
-            this.gbOcupante.Enabled = false;
-            this.gbOcupante.Location = new System.Drawing.Point(6, 189);
-            this.gbOcupante.Name = "gbOcupante";
-            this.gbOcupante.Size = new System.Drawing.Size(609, 112);
-            this.gbOcupante.TabIndex = 33;
-            this.gbOcupante.TabStop = false;
-            this.gbOcupante.Text = "Ocupante";
             // 
             // tbPageControlOcupantes
             // 
@@ -406,122 +426,6 @@
             this.tbPageControlOcupantes.Size = new System.Drawing.Size(636, 457);
             this.tbPageControlOcupantes.TabIndex = 2;
             this.tbPageControlOcupantes.Text = "Ocupantes";
-            // 
-            // rdsemOcupante
-            // 
-            this.rdsemOcupante.AutoSize = true;
-            this.rdsemOcupante.Location = new System.Drawing.Point(134, 157);
-            this.rdsemOcupante.Name = "rdsemOcupante";
-            this.rdsemOcupante.Size = new System.Drawing.Size(116, 29);
-            this.rdsemOcupante.TabIndex = 34;
-            this.rdsemOcupante.TabStop = true;
-            this.rdsemOcupante.Text = "Sem Ocupante";
-            this.rdsemOcupante.UseVisualStyleBackColor = true;
-            this.rdsemOcupante.CheckedChanged += new System.EventHandler(this.rdsemOcupante_CheckedChanged);
-            // 
-            // gbDadosExames
-            // 
-            this.gbDadosExames.Controls.Add(this.txtNomeOcupantes);
-            this.gbDadosExames.Controls.Add(this.lblNomeOcupantes);
-            this.gbDadosExames.Controls.Add(this.btnExcluirExame);
-            this.gbDadosExames.Controls.Add(this.btnAlterarExame);
-            this.gbDadosExames.Controls.Add(this.btnCadastrarExame);
-            this.gbDadosExames.Controls.Add(this.txtCPFOcupantes);
-            this.gbDadosExames.Controls.Add(this.lblCPFOCupantes);
-            this.gbDadosExames.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDadosExames.Location = new System.Drawing.Point(6, 6);
-            this.gbDadosExames.Name = "gbDadosExames";
-            this.gbDadosExames.Size = new System.Drawing.Size(621, 197);
-            this.gbDadosExames.TabIndex = 24;
-            this.gbDadosExames.TabStop = false;
-            this.gbDadosExames.Text = "Dados";
-            // 
-            // btnExcluirExame
-            // 
-            this.btnExcluirExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnExcluirExame.FlatAppearance.BorderSize = 0;
-            this.btnExcluirExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnExcluirExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluirExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluirExame.ForeColor = System.Drawing.Color.White;
-            this.btnExcluirExame.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirExame.Image")));
-            this.btnExcluirExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirExame.Location = new System.Drawing.Point(463, 148);
-            this.btnExcluirExame.Name = "btnExcluirExame";
-            this.btnExcluirExame.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirExame.TabIndex = 21;
-            this.btnExcluirExame.Text = "Excluir";
-            this.btnExcluirExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExcluirExame.UseVisualStyleBackColor = false;
-            // 
-            // btnAlterarExame
-            // 
-            this.btnAlterarExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnAlterarExame.FlatAppearance.BorderSize = 0;
-            this.btnAlterarExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnAlterarExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterarExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterarExame.ForeColor = System.Drawing.Color.White;
-            this.btnAlterarExame.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarExame.Image")));
-            this.btnAlterarExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarExame.Location = new System.Drawing.Point(463, 102);
-            this.btnAlterarExame.Name = "btnAlterarExame";
-            this.btnAlterarExame.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarExame.TabIndex = 20;
-            this.btnAlterarExame.Text = "Alterar";
-            this.btnAlterarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAlterarExame.UseVisualStyleBackColor = false;
-            // 
-            // btnCadastrarExame
-            // 
-            this.btnCadastrarExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnCadastrarExame.FlatAppearance.BorderSize = 0;
-            this.btnCadastrarExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnCadastrarExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastrarExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarExame.ForeColor = System.Drawing.Color.White;
-            this.btnCadastrarExame.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarExame.Image")));
-            this.btnCadastrarExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarExame.Location = new System.Drawing.Point(463, 56);
-            this.btnCadastrarExame.Name = "btnCadastrarExame";
-            this.btnCadastrarExame.Size = new System.Drawing.Size(146, 40);
-            this.btnCadastrarExame.TabIndex = 19;
-            this.btnCadastrarExame.Text = "     Cadastrar";
-            this.btnCadastrarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCadastrarExame.UseVisualStyleBackColor = false;
-            // 
-            // txtCPFOcupantes
-            // 
-            this.txtCPFOcupantes.Location = new System.Drawing.Point(11, 119);
-            this.txtCPFOcupantes.Mask = "000.000.000-00";
-            this.txtCPFOcupantes.Name = "txtCPFOcupantes";
-            this.txtCPFOcupantes.Size = new System.Drawing.Size(128, 32);
-            this.txtCPFOcupantes.TabIndex = 12;
-            // 
-            // lblCPFOCupantes
-            // 
-            this.lblCPFOCupantes.AutoSize = true;
-            this.lblCPFOCupantes.Location = new System.Drawing.Point(6, 91);
-            this.lblCPFOCupantes.Name = "lblCPFOCupantes";
-            this.lblCPFOCupantes.Size = new System.Drawing.Size(41, 25);
-            this.lblCPFOCupantes.TabIndex = 0;
-            this.lblCPFOCupantes.Text = "CPF:";
-            // 
-            // lblNomeOcupantes
-            // 
-            this.lblNomeOcupantes.AutoSize = true;
-            this.lblNomeOcupantes.Location = new System.Drawing.Point(6, 28);
-            this.lblNomeOcupantes.Name = "lblNomeOcupantes";
-            this.lblNomeOcupantes.Size = new System.Drawing.Size(49, 25);
-            this.lblNomeOcupantes.TabIndex = 22;
-            this.lblNomeOcupantes.Text = "Nome:";
-            // 
-            // txtNomeOcupantes
-            // 
-            this.txtNomeOcupantes.Location = new System.Drawing.Point(11, 56);
-            this.txtNomeOcupantes.Name = "txtNomeOcupantes";
-            this.txtNomeOcupantes.Size = new System.Drawing.Size(368, 32);
-            this.txtNomeOcupantes.TabIndex = 23;
             // 
             // gbConsultaExame
             // 
@@ -553,7 +457,7 @@
             this.btnTransfereExame.Location = new System.Drawing.Point(577, 25);
             this.btnTransfereExame.Name = "btnTransfereExame";
             this.btnTransfereExame.Size = new System.Drawing.Size(38, 40);
-            this.btnTransfereExame.TabIndex = 33;
+            this.btnTransfereExame.TabIndex = 22;
             this.btnTransfereExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTransfereExame.UseVisualStyleBackColor = false;
             // 
@@ -563,7 +467,7 @@
             this.txtCPFOcupantesConsulta.Mask = "000.000.000-00";
             this.txtCPFOcupantesConsulta.Name = "txtCPFOcupantesConsulta";
             this.txtCPFOcupantesConsulta.Size = new System.Drawing.Size(188, 32);
-            this.txtCPFOcupantesConsulta.TabIndex = 27;
+            this.txtCPFOcupantesConsulta.TabIndex = 19;
             // 
             // lblCPFOcupantesConsulta
             // 
@@ -582,7 +486,7 @@
             this.dgExameConsulta.Location = new System.Drawing.Point(7, 71);
             this.dgExameConsulta.Name = "dgExameConsulta";
             this.dgExameConsulta.Size = new System.Drawing.Size(608, 168);
-            this.dgExameConsulta.TabIndex = 25;
+            this.dgExameConsulta.TabIndex = 23;
             // 
             // btnConsultaTodosExame
             // 
@@ -596,7 +500,7 @@
             this.btnConsultaTodosExame.Location = new System.Drawing.Point(412, 25);
             this.btnConsultaTodosExame.Name = "btnConsultaTodosExame";
             this.btnConsultaTodosExame.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaTodosExame.TabIndex = 24;
+            this.btnConsultaTodosExame.TabIndex = 21;
             this.btnConsultaTodosExame.Text = "Consultar Todos";
             this.btnConsultaTodosExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaTodosExame.UseVisualStyleBackColor = false;
@@ -614,18 +518,114 @@
             this.btnConsultaExame.Location = new System.Drawing.Point(247, 27);
             this.btnConsultaExame.Name = "btnConsultaExame";
             this.btnConsultaExame.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaExame.TabIndex = 23;
+            this.btnConsultaExame.TabIndex = 20;
             this.btnConsultaExame.Text = "    Consultar";
             this.btnConsultaExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaExame.UseVisualStyleBackColor = false;
             // 
-            // cbAddOcupante
+            // gbDadosExames
             // 
-            this.cbAddOcupante.FormattingEnabled = true;
-            this.cbAddOcupante.Location = new System.Drawing.Point(11, 56);
-            this.cbAddOcupante.Name = "cbAddOcupante";
-            this.cbAddOcupante.Size = new System.Drawing.Size(578, 33);
-            this.cbAddOcupante.TabIndex = 33;
+            this.gbDadosExames.Controls.Add(this.txtNomeOcupantes);
+            this.gbDadosExames.Controls.Add(this.lblNomeOcupantes);
+            this.gbDadosExames.Controls.Add(this.btnExcluirExame);
+            this.gbDadosExames.Controls.Add(this.btnAlterarExame);
+            this.gbDadosExames.Controls.Add(this.btnCadastrarExame);
+            this.gbDadosExames.Controls.Add(this.txtCPFOcupantes);
+            this.gbDadosExames.Controls.Add(this.lblCPFOCupantes);
+            this.gbDadosExames.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbDadosExames.Location = new System.Drawing.Point(6, 6);
+            this.gbDadosExames.Name = "gbDadosExames";
+            this.gbDadosExames.Size = new System.Drawing.Size(621, 197);
+            this.gbDadosExames.TabIndex = 24;
+            this.gbDadosExames.TabStop = false;
+            this.gbDadosExames.Text = "Dados";
+            // 
+            // txtNomeOcupantes
+            // 
+            this.txtNomeOcupantes.Location = new System.Drawing.Point(11, 56);
+            this.txtNomeOcupantes.Name = "txtNomeOcupantes";
+            this.txtNomeOcupantes.Size = new System.Drawing.Size(368, 32);
+            this.txtNomeOcupantes.TabIndex = 14;
+            // 
+            // lblNomeOcupantes
+            // 
+            this.lblNomeOcupantes.AutoSize = true;
+            this.lblNomeOcupantes.Location = new System.Drawing.Point(6, 28);
+            this.lblNomeOcupantes.Name = "lblNomeOcupantes";
+            this.lblNomeOcupantes.Size = new System.Drawing.Size(49, 25);
+            this.lblNomeOcupantes.TabIndex = 22;
+            this.lblNomeOcupantes.Text = "Nome:";
+            // 
+            // btnExcluirExame
+            // 
+            this.btnExcluirExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirExame.FlatAppearance.BorderSize = 0;
+            this.btnExcluirExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnExcluirExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluirExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcluirExame.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirExame.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirExame.Image")));
+            this.btnExcluirExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluirExame.Location = new System.Drawing.Point(463, 148);
+            this.btnExcluirExame.Name = "btnExcluirExame";
+            this.btnExcluirExame.Size = new System.Drawing.Size(146, 40);
+            this.btnExcluirExame.TabIndex = 18;
+            this.btnExcluirExame.Text = "Excluir";
+            this.btnExcluirExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExcluirExame.UseVisualStyleBackColor = false;
+            // 
+            // btnAlterarExame
+            // 
+            this.btnAlterarExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarExame.FlatAppearance.BorderSize = 0;
+            this.btnAlterarExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnAlterarExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlterarExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlterarExame.ForeColor = System.Drawing.Color.White;
+            this.btnAlterarExame.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarExame.Image")));
+            this.btnAlterarExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlterarExame.Location = new System.Drawing.Point(463, 102);
+            this.btnAlterarExame.Name = "btnAlterarExame";
+            this.btnAlterarExame.Size = new System.Drawing.Size(146, 40);
+            this.btnAlterarExame.TabIndex = 17;
+            this.btnAlterarExame.Text = "Alterar";
+            this.btnAlterarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAlterarExame.UseVisualStyleBackColor = false;
+            // 
+            // btnCadastrarExame
+            // 
+            this.btnCadastrarExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarExame.FlatAppearance.BorderSize = 0;
+            this.btnCadastrarExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnCadastrarExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastrarExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrarExame.ForeColor = System.Drawing.Color.White;
+            this.btnCadastrarExame.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarExame.Image")));
+            this.btnCadastrarExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadastrarExame.Location = new System.Drawing.Point(463, 56);
+            this.btnCadastrarExame.Name = "btnCadastrarExame";
+            this.btnCadastrarExame.Size = new System.Drawing.Size(146, 40);
+            this.btnCadastrarExame.TabIndex = 16;
+            this.btnCadastrarExame.Text = "     Cadastrar";
+            this.btnCadastrarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCadastrarExame.UseVisualStyleBackColor = false;
+            // 
+            // txtCPFOcupantes
+            // 
+            this.txtCPFOcupantes.Location = new System.Drawing.Point(11, 119);
+            this.txtCPFOcupantes.Mask = "000.000.000-00";
+            this.txtCPFOcupantes.Name = "txtCPFOcupantes";
+            this.txtCPFOcupantes.Size = new System.Drawing.Size(128, 32);
+            this.txtCPFOcupantes.TabIndex = 15;
+            // 
+            // lblCPFOCupantes
+            // 
+            this.lblCPFOCupantes.AutoSize = true;
+            this.lblCPFOCupantes.Location = new System.Drawing.Point(6, 91);
+            this.lblCPFOCupantes.Name = "lblCPFOCupantes";
+            this.lblCPFOCupantes.Size = new System.Drawing.Size(41, 25);
+            this.lblCPFOCupantes.TabIndex = 0;
+            this.lblCPFOCupantes.Text = "CPF:";
             // 
             // Viagens
             // 
@@ -640,18 +640,18 @@
             this.tbPageCadastroViagem.ResumeLayout(false);
             this.gbDadosViagens.ResumeLayout(false);
             this.gbDadosViagens.PerformLayout();
+            this.gbOcupante.ResumeLayout(false);
+            this.gbOcupante.PerformLayout();
             this.tbPageConsultaViagens.ResumeLayout(false);
             this.gbConsultaViagens.ResumeLayout(false);
             this.gbConsultaViagens.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViagensConsulta)).EndInit();
-            this.gbOcupante.ResumeLayout(false);
-            this.gbOcupante.PerformLayout();
             this.tbPageControlOcupantes.ResumeLayout(false);
-            this.gbDadosExames.ResumeLayout(false);
-            this.gbDadosExames.PerformLayout();
             this.gbConsultaExame.ResumeLayout(false);
             this.gbConsultaExame.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).EndInit();
+            this.gbDadosExames.ResumeLayout(false);
+            this.gbDadosExames.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -676,10 +676,8 @@
         private System.Windows.Forms.Label lblDestino;
         private System.Windows.Forms.Label lbldtSaida;
         private System.Windows.Forms.DateTimePicker dtDataSaida;
-        private System.Windows.Forms.MaskedTextBox txtPlaca;
         private System.Windows.Forms.Label lblPlaca;
         private System.Windows.Forms.Label lblCPF;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.GroupBox gbOcupante;
         private System.Windows.Forms.Label lblNomeCPFOcupantes;
         private System.Windows.Forms.RadioButton rdOcupante;
@@ -701,5 +699,7 @@
         private System.Windows.Forms.Button btnConsultaTodosExame;
         private System.Windows.Forms.Button btnConsultaExame;
         private System.Windows.Forms.ComboBox cbAddOcupante;
+        private System.Windows.Forms.ComboBox cbCPF;
+        private System.Windows.Forms.ComboBox cbPlaca;
     }
 }

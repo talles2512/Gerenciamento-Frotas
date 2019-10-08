@@ -43,7 +43,6 @@
             this.btnExcluirAbast = new System.Windows.Forms.Button();
             this.btnAlterarAbast = new System.Windows.Forms.Button();
             this.btnCadastrarAbast = new System.Windows.Forms.Button();
-            this.txtPlaca = new System.Windows.Forms.MaskedTextBox();
             this.lblPlaca = new System.Windows.Forms.Label();
             this.tbPageConsultaAbast = new System.Windows.Forms.TabPage();
             this.gbConsultaAbast = new System.Windows.Forms.GroupBox();
@@ -55,8 +54,9 @@
             this.dgVeiculoAbast = new System.Windows.Forms.DataGridView();
             this.btnTodosAbast = new System.Windows.Forms.Button();
             this.btnConsultarAbast = new System.Windows.Forms.Button();
-            this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
+            this.cbPlacaAbastConsulta = new System.Windows.Forms.ComboBox();
             this.tbControlAbast.SuspendLayout();
             this.tbPageCadastroAbast.SuspendLayout();
             this.gbDadosAbast.SuspendLayout();
@@ -89,6 +89,7 @@
             // 
             // gbDadosAbast
             // 
+            this.gbDadosAbast.Controls.Add(this.cbPlaca);
             this.gbDadosAbast.Controls.Add(this.cbServicoExterno);
             this.gbDadosAbast.Controls.Add(this.lblServicoExterno);
             this.gbDadosAbast.Controls.Add(this.txtValor);
@@ -100,7 +101,6 @@
             this.gbDadosAbast.Controls.Add(this.btnExcluirAbast);
             this.gbDadosAbast.Controls.Add(this.btnAlterarAbast);
             this.gbDadosAbast.Controls.Add(this.btnCadastrarAbast);
-            this.gbDadosAbast.Controls.Add(this.txtPlaca);
             this.gbDadosAbast.Controls.Add(this.lblPlaca);
             this.gbDadosAbast.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosAbast.Location = new System.Drawing.Point(6, 6);
@@ -116,7 +116,7 @@
             this.cbServicoExterno.Location = new System.Drawing.Point(11, 183);
             this.cbServicoExterno.Name = "cbServicoExterno";
             this.cbServicoExterno.Size = new System.Drawing.Size(400, 33);
-            this.cbServicoExterno.TabIndex = 29;
+            this.cbServicoExterno.TabIndex = 18;
             // 
             // lblServicoExterno
             // 
@@ -133,7 +133,7 @@
             this.txtValor.Mask = "000000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(197, 32);
-            this.txtValor.TabIndex = 27;
+            this.txtValor.TabIndex = 16;
             // 
             // lblValorLitro
             // 
@@ -162,7 +162,7 @@
             this.dtDataManunt.Name = "dtDataManunt";
             this.dtDataManunt.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataManunt.Size = new System.Drawing.Size(284, 31);
-            this.dtDataManunt.TabIndex = 24;
+            this.dtDataManunt.TabIndex = 15;
             // 
             // comboBox1
             // 
@@ -170,7 +170,7 @@
             this.comboBox1.Location = new System.Drawing.Point(11, 56);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 33);
-            this.comboBox1.TabIndex = 23;
+            this.comboBox1.TabIndex = 14;
             // 
             // lblTipo
             // 
@@ -235,14 +235,6 @@
             this.btnCadastrarAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarAbast.UseVisualStyleBackColor = false;
             // 
-            // txtPlaca
-            // 
-            this.txtPlaca.Location = new System.Drawing.Point(214, 120);
-            this.txtPlaca.Mask = ">L>L>L-0000";
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(197, 32);
-            this.txtPlaca.TabIndex = 12;
-            // 
             // lblPlaca
             // 
             this.lblPlaca.AutoSize = true;
@@ -265,6 +257,7 @@
             // 
             // gbConsultaAbast
             // 
+            this.gbConsultaAbast.Controls.Add(this.cbPlacaAbastConsulta);
             this.gbConsultaAbast.Controls.Add(this.lblDataAbastConsulta);
             this.gbConsultaAbast.Controls.Add(this.dtDataAbastConsulta);
             this.gbConsultaAbast.Controls.Add(this.cbTipoAbastConsulta);
@@ -273,7 +266,6 @@
             this.gbConsultaAbast.Controls.Add(this.dgVeiculoAbast);
             this.gbConsultaAbast.Controls.Add(this.btnTodosAbast);
             this.gbConsultaAbast.Controls.Add(this.btnConsultarAbast);
-            this.gbConsultaAbast.Controls.Add(this.txtPlacaConsulta);
             this.gbConsultaAbast.Controls.Add(this.lblPlacaConsulta);
             this.gbConsultaAbast.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaAbast.Location = new System.Drawing.Point(8, 10);
@@ -286,7 +278,7 @@
             // lblDataAbastConsulta
             // 
             this.lblDataAbastConsulta.AutoSize = true;
-            this.lblDataAbastConsulta.Location = new System.Drawing.Point(198, 88);
+            this.lblDataAbastConsulta.Location = new System.Drawing.Point(2, 64);
             this.lblDataAbastConsulta.Name = "lblDataAbastConsulta";
             this.lblDataAbastConsulta.Size = new System.Drawing.Size(42, 25);
             this.lblDataAbastConsulta.TabIndex = 29;
@@ -297,19 +289,19 @@
             this.dtDataAbastConsulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataAbastConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataAbastConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataAbastConsulta.Location = new System.Drawing.Point(203, 116);
+            this.dtDataAbastConsulta.Location = new System.Drawing.Point(50, 64);
             this.dtDataAbastConsulta.Name = "dtDataAbastConsulta";
             this.dtDataAbastConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataAbastConsulta.Size = new System.Drawing.Size(146, 31);
-            this.dtDataAbastConsulta.TabIndex = 28;
+            this.dtDataAbastConsulta.TabIndex = 16;
             // 
             // cbTipoAbastConsulta
             // 
             this.cbTipoAbastConsulta.FormattingEnabled = true;
-            this.cbTipoAbastConsulta.Location = new System.Drawing.Point(11, 56);
+            this.cbTipoAbastConsulta.Location = new System.Drawing.Point(50, 25);
             this.cbTipoAbastConsulta.Name = "cbTipoAbastConsulta";
             this.cbTipoAbastConsulta.Size = new System.Drawing.Size(186, 33);
-            this.cbTipoAbastConsulta.TabIndex = 27;
+            this.cbTipoAbastConsulta.TabIndex = 14;
             // 
             // lblTipoAbastConsulta
             // 
@@ -331,10 +323,10 @@
             this.btnTrasferirAbast.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirAbast.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirAbast.Location = new System.Drawing.Point(577, 49);
+            this.btnTrasferirAbast.Location = new System.Drawing.Point(577, 64);
             this.btnTrasferirAbast.Name = "btnTrasferirAbast";
             this.btnTrasferirAbast.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirAbast.TabIndex = 21;
+            this.btnTrasferirAbast.TabIndex = 19;
             this.btnTrasferirAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirAbast.UseVisualStyleBackColor = false;
             // 
@@ -343,10 +335,10 @@
             this.dgVeiculoAbast.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoAbast.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoAbast.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoAbast.Location = new System.Drawing.Point(7, 154);
+            this.dgVeiculoAbast.Location = new System.Drawing.Point(7, 110);
             this.dgVeiculoAbast.Name = "dgVeiculoAbast";
-            this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 285);
-            this.dgVeiculoAbast.TabIndex = 25;
+            this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 329);
+            this.dgVeiculoAbast.TabIndex = 20;
             // 
             // btnTodosAbast
             // 
@@ -357,10 +349,10 @@
             this.btnTodosAbast.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosAbast.ForeColor = System.Drawing.Color.White;
             this.btnTodosAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosAbast.Location = new System.Drawing.Point(412, 49);
+            this.btnTodosAbast.Location = new System.Drawing.Point(412, 64);
             this.btnTodosAbast.Name = "btnTodosAbast";
             this.btnTodosAbast.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosAbast.TabIndex = 24;
+            this.btnTodosAbast.TabIndex = 18;
             this.btnTodosAbast.Text = "Consultar Todos";
             this.btnTodosAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosAbast.UseVisualStyleBackColor = false;
@@ -375,30 +367,38 @@
             this.btnConsultarAbast.ForeColor = System.Drawing.Color.White;
             this.btnConsultarAbast.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarAbast.Image")));
             this.btnConsultarAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarAbast.Location = new System.Drawing.Point(260, 50);
+            this.btnConsultarAbast.Location = new System.Drawing.Point(260, 64);
             this.btnConsultarAbast.Name = "btnConsultarAbast";
             this.btnConsultarAbast.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarAbast.TabIndex = 23;
+            this.btnConsultarAbast.TabIndex = 17;
             this.btnConsultarAbast.Text = "    Consultar";
             this.btnConsultarAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarAbast.UseVisualStyleBackColor = false;
             // 
-            // txtPlacaConsulta
-            // 
-            this.txtPlacaConsulta.Location = new System.Drawing.Point(11, 116);
-            this.txtPlacaConsulta.Mask = ">L>L>L-0000";
-            this.txtPlacaConsulta.Name = "txtPlacaConsulta";
-            this.txtPlacaConsulta.Size = new System.Drawing.Size(186, 32);
-            this.txtPlacaConsulta.TabIndex = 22;
-            // 
             // lblPlacaConsulta
             // 
             this.lblPlacaConsulta.AutoSize = true;
-            this.lblPlacaConsulta.Location = new System.Drawing.Point(6, 92);
+            this.lblPlacaConsulta.Location = new System.Drawing.Point(242, 28);
             this.lblPlacaConsulta.Name = "lblPlacaConsulta";
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(214, 119);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.TabIndex = 17;
+            // 
+            // cbPlacaAbastConsulta
+            // 
+            this.cbPlacaAbastConsulta.FormattingEnabled = true;
+            this.cbPlacaAbastConsulta.Location = new System.Drawing.Point(296, 24);
+            this.cbPlacaAbastConsulta.Name = "cbPlacaAbastConsulta";
+            this.cbPlacaAbastConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbPlacaAbastConsulta.TabIndex = 15;
             // 
             // Abastecimento
             // 
@@ -437,7 +437,6 @@
         private System.Windows.Forms.Button btnExcluirAbast;
         private System.Windows.Forms.Button btnAlterarAbast;
         private System.Windows.Forms.Button btnCadastrarAbast;
-        private System.Windows.Forms.MaskedTextBox txtPlaca;
         private System.Windows.Forms.Label lblPlaca;
         private System.Windows.Forms.TabPage tbPageConsultaAbast;
         private System.Windows.Forms.GroupBox gbConsultaAbast;
@@ -449,7 +448,8 @@
         private System.Windows.Forms.DataGridView dgVeiculoAbast;
         private System.Windows.Forms.Button btnTodosAbast;
         private System.Windows.Forms.Button btnConsultarAbast;
-        private System.Windows.Forms.MaskedTextBox txtPlacaConsulta;
         private System.Windows.Forms.Label lblPlacaConsulta;
+        private System.Windows.Forms.ComboBox cbPlaca;
+        private System.Windows.Forms.ComboBox cbPlacaAbastConsulta;
     }
 }
