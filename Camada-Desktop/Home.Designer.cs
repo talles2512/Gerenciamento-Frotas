@@ -358,7 +358,8 @@
             // 
             // panelConteudo
             // 
-            this.panelConteudo.Location = new System.Drawing.Point(256, 82);
+            this.panelConteudo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.panelConteudo.Location = new System.Drawing.Point(263, 82);
             this.panelConteudo.Name = "panelConteudo";
             this.panelConteudo.Size = new System.Drawing.Size(646, 534);
             this.panelConteudo.TabIndex = 2;
@@ -379,7 +380,7 @@
             this.iconminimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconminimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconminimizar.Image = ((System.Drawing.Image)(resources.GetObject("iconminimizar.Image")));
-            this.iconminimizar.Location = new System.Drawing.Point(842, 12);
+            this.iconminimizar.Location = new System.Drawing.Point(857, 12);
             this.iconminimizar.Name = "iconminimizar";
             this.iconminimizar.Size = new System.Drawing.Size(18, 18);
             this.iconminimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -392,7 +393,7 @@
             this.iconcerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconcerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconcerrar.Image = ((System.Drawing.Image)(resources.GetObject("iconcerrar.Image")));
-            this.iconcerrar.Location = new System.Drawing.Point(884, 12);
+            this.iconcerrar.Location = new System.Drawing.Point(899, 12);
             this.iconcerrar.Name = "iconcerrar";
             this.iconcerrar.Size = new System.Drawing.Size(18, 18);
             this.iconcerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -416,20 +417,20 @@
             this.sairOpcToolStripMenuItem,
             this.loggoutToolStripMenuItem});
             this.ContextMenu.Name = "ContextMenu";
-            this.ContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.ContextMenu.Size = new System.Drawing.Size(118, 48);
             this.ContextMenu.Text = "SairOpc";
             // 
             // sairOpcToolStripMenuItem
             // 
             this.sairOpcToolStripMenuItem.Name = "sairOpcToolStripMenuItem";
-            this.sairOpcToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairOpcToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.sairOpcToolStripMenuItem.Text = "Logout";
             this.sairOpcToolStripMenuItem.Click += new System.EventHandler(this.sairOpcToolStripMenuItem_Click);
             // 
             // loggoutToolStripMenuItem
             // 
             this.loggoutToolStripMenuItem.Name = "loggoutToolStripMenuItem";
-            this.loggoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggoutToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.loggoutToolStripMenuItem.Text = "Encerrar";
             this.loggoutToolStripMenuItem.Click += new System.EventHandler(this.loggoutToolStripMenuItem_Click);
             // 
@@ -438,7 +439,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(914, 666);
+            this.ClientSize = new System.Drawing.Size(929, 666);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.iconcerrar);

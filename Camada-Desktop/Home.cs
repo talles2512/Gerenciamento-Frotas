@@ -119,15 +119,23 @@ namespace CamadaDesktop
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (MenuVertical.Width == 250)
-
             {
-
-                MenuVertical.Width = 58;
+                MenuVertical.Width = 56;
+                Point locpict = new Point(62, 7);
+                pictureBox1.Location = locpict;
+                Point loclabel = new Point(102, 9);
+                label2.Location = loclabel;
+                this.Width = 732;
             }
-
             else
-
+            {
                 MenuVertical.Width = 250;
+                Point locpict = new Point(256, 7);
+                pictureBox1.Location = locpict;
+                Point loclabel = new Point(296, 9);
+                label2.Location = loclabel;
+                this.Width = 929;
+            }      
         }
 
         private void iconcerrar_Click(object sender, EventArgs e)
