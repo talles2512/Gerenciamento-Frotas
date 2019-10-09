@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class MotoristaController
+    public class MotoristaController
     {
         private readonly MotoristaService _motoristaService;
 
@@ -18,19 +19,65 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(Motorista motorista, CNH cnh)
+        public bool Cadastrar(Motorista motorista, CNH cnh)
         {
-            _motoristaService.Cadastrar(motorista,cnh);
+            try
+            {
+                return _motoristaService.Cadastrar(motorista, cnh);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(int cpf)
+        public Motorista BuscarCPF(string cpf)
         {
-            _motoristaService.Deletar(cpf);
+            try
+            {
+                return _motoristaService.BuscarCPF(cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(Motorista motorista, CNH cnh, int cpf)
+        public List<Motorista> BuscarTodos()
         {
-            _motoristaService.Alterar(motorista,cnh,cpf);
+            try
+            {
+                return _motoristaService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Inativar(string cpf)
+        {
+            return _motoristaService.Inativar(cpf);
+        }
+
+        public bool Alterar(Motorista motorista, CNH cnh, string cpf)
+        {
+            try
+            {
+                return _motoristaService.Alterar(motorista, cnh, cpf);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
         #endregion
 

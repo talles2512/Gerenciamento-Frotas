@@ -44,7 +44,7 @@
             this.lblOrgaoEmissor = new System.Windows.Forms.Label();
             this.cbCategoriaCNH = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCNHnumero = new System.Windows.Forms.MaskedTextBox();
             this.lblncnh = new System.Windows.Forms.Label();
             this.txtTelefoneContato = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
@@ -69,7 +69,7 @@
             this.btnConsultarMotorista = new System.Windows.Forms.Button();
             this.lblCPFConsulta = new System.Windows.Forms.Label();
             this.txtCPFConsulta = new System.Windows.Forms.MaskedTextBox();
-            this.dgVeiculoConsulta = new System.Windows.Forms.DataGridView();
+            this.dgMotoristaConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosMotorista = new System.Windows.Forms.Button();
             this.tbPageExames = new System.Windows.Forms.TabPage();
             this.gbConsultaExame = new System.Windows.Forms.GroupBox();
@@ -99,7 +99,7 @@
             this.gbCNH.SuspendLayout();
             this.tbPageConsultaMotorista.SuspendLayout();
             this.gbConsultaVeiculo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMotoristaConsulta)).BeginInit();
             this.tbPageExames.SuspendLayout();
             this.gbConsultaExame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).BeginInit();
@@ -206,7 +206,7 @@
             this.gbCNH.Controls.Add(this.lblOrgaoEmissor);
             this.gbCNH.Controls.Add(this.cbCategoriaCNH);
             this.gbCNH.Controls.Add(this.lblCategoria);
-            this.gbCNH.Controls.Add(this.maskedTextBox1);
+            this.gbCNH.Controls.Add(this.txtCNHnumero);
             this.gbCNH.Controls.Add(this.lblncnh);
             this.gbCNH.Location = new System.Drawing.Point(12, 286);
             this.gbCNH.Name = "gbCNH";
@@ -250,6 +250,34 @@
             // 
             this.cbOrgaoEmissor.FormattingEnabled = true;
             this.cbOrgaoEmissor.ItemHeight = 25;
+            this.cbOrgaoEmissor.Items.AddRange(new object[] {
+            "AC",
+            "AL",
+            "AP",
+            "AM",
+            "BA",
+            "CE",
+            "DF",
+            "ES",
+            "GO",
+            "MA",
+            "MT",
+            "MS",
+            "MG",
+            "PA",
+            "PB",
+            "PR",
+            "PE",
+            "PI",
+            "RJ",
+            "RN",
+            "RS",
+            "RO",
+            "RR",
+            "SC",
+            "SP",
+            "SE",
+            "TO"});
             this.cbOrgaoEmissor.Location = new System.Drawing.Point(279, 64);
             this.cbOrgaoEmissor.Name = "cbOrgaoEmissor";
             this.cbOrgaoEmissor.Size = new System.Drawing.Size(99, 33);
@@ -298,13 +326,13 @@
             this.lblCategoria.TabIndex = 37;
             this.lblCategoria.Text = "Categoria:";
             // 
-            // maskedTextBox1
+            // txtCNHnumero
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(14, 65);
-            this.maskedTextBox1.Mask = "000000000000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(186, 32);
-            this.maskedTextBox1.TabIndex = 21;
+            this.txtCNHnumero.Location = new System.Drawing.Point(14, 65);
+            this.txtCNHnumero.Mask = "000000000000";
+            this.txtCNHnumero.Name = "txtCNHnumero";
+            this.txtCNHnumero.Size = new System.Drawing.Size(186, 32);
+            this.txtCNHnumero.TabIndex = 21;
             // 
             // lblncnh
             // 
@@ -382,6 +410,7 @@
             this.btnExcluirMotorista.Text = "Excluir";
             this.btnExcluirMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirMotorista.UseVisualStyleBackColor = false;
+            this.btnExcluirMotorista.Click += new System.EventHandler(this.btnExcluirMotorista_Click);
             // 
             // btnAlterarMotorista
             // 
@@ -400,6 +429,7 @@
             this.btnAlterarMotorista.Text = "Alterar";
             this.btnAlterarMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarMotorista.UseVisualStyleBackColor = false;
+            this.btnAlterarMotorista.Click += new System.EventHandler(this.btnAlterarMotorista_Click);
             // 
             // btnCadastrarMotorista
             // 
@@ -418,6 +448,7 @@
             this.btnCadastrarMotorista.Text = "Cadastrar";
             this.btnCadastrarMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarMotorista.UseVisualStyleBackColor = false;
+            this.btnCadastrarMotorista.Click += new System.EventHandler(this.btnCadastrarMotorista_Click);
             // 
             // txtNome
             // 
@@ -505,7 +536,7 @@
             this.gbConsultaVeiculo.Controls.Add(this.btnConsultarMotorista);
             this.gbConsultaVeiculo.Controls.Add(this.lblCPFConsulta);
             this.gbConsultaVeiculo.Controls.Add(this.txtCPFConsulta);
-            this.gbConsultaVeiculo.Controls.Add(this.dgVeiculoConsulta);
+            this.gbConsultaVeiculo.Controls.Add(this.dgMotoristaConsulta);
             this.gbConsultaVeiculo.Controls.Add(this.btnTodosMotorista);
             this.gbConsultaVeiculo.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaVeiculo.Location = new System.Drawing.Point(8, 10);
@@ -532,6 +563,7 @@
             this.btnTrasferirMotorista.TabIndex = 17;
             this.btnTrasferirMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirMotorista.UseVisualStyleBackColor = false;
+            this.btnTrasferirMotorista.Click += new System.EventHandler(this.btnTrasferirMotorista_Click);
             // 
             // btnConsultarMotorista
             // 
@@ -550,6 +582,7 @@
             this.btnConsultarMotorista.Text = "    Consultar";
             this.btnConsultarMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarMotorista.UseVisualStyleBackColor = false;
+            this.btnConsultarMotorista.Click += new System.EventHandler(this.btnConsultarMotorista_Click);
             // 
             // lblCPFConsulta
             // 
@@ -568,15 +601,15 @@
             this.txtCPFConsulta.Size = new System.Drawing.Size(186, 32);
             this.txtCPFConsulta.TabIndex = 14;
             // 
-            // dgVeiculoConsulta
+            // dgMotoristaConsulta
             // 
-            this.dgVeiculoConsulta.BackgroundColor = System.Drawing.Color.White;
-            this.dgVeiculoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 68);
-            this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
-            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 371);
-            this.dgVeiculoConsulta.TabIndex = 18;
+            this.dgMotoristaConsulta.BackgroundColor = System.Drawing.Color.White;
+            this.dgMotoristaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMotoristaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dgMotoristaConsulta.Location = new System.Drawing.Point(7, 68);
+            this.dgMotoristaConsulta.Name = "dgMotoristaConsulta";
+            this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 371);
+            this.dgMotoristaConsulta.TabIndex = 18;
             // 
             // btnTodosMotorista
             // 
@@ -594,6 +627,7 @@
             this.btnTodosMotorista.Text = "Consultar Todos";
             this.btnTodosMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosMotorista.UseVisualStyleBackColor = false;
+            this.btnTodosMotorista.Click += new System.EventHandler(this.btnTodosMotorista_Click);
             // 
             // tbPageExames
             // 
@@ -871,7 +905,7 @@
             this.tbPageConsultaMotorista.ResumeLayout(false);
             this.gbConsultaVeiculo.ResumeLayout(false);
             this.gbConsultaVeiculo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMotoristaConsulta)).EndInit();
             this.tbPageExames.ResumeLayout(false);
             this.gbConsultaExame.ResumeLayout(false);
             this.gbConsultaExame.PerformLayout();
@@ -896,7 +930,7 @@
         private System.Windows.Forms.Label lblOrgaoEmissor;
         private System.Windows.Forms.ComboBox cbCategoriaCNH;
         private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtCNHnumero;
         private System.Windows.Forms.Label lblncnh;
         private System.Windows.Forms.MaskedTextBox txtTelefoneContato;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
@@ -920,7 +954,7 @@
         private System.Windows.Forms.Button btnConsultarMotorista;
         private System.Windows.Forms.Label lblCPFConsulta;
         private System.Windows.Forms.MaskedTextBox txtCPFConsulta;
-        private System.Windows.Forms.DataGridView dgVeiculoConsulta;
+        private System.Windows.Forms.DataGridView dgMotoristaConsulta;
         private System.Windows.Forms.Button btnTodosMotorista;
         private System.Windows.Forms.Button btnTrasferirMotorista;
         private System.Windows.Forms.TabPage tbPageExames;

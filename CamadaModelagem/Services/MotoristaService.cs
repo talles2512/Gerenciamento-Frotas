@@ -17,28 +17,55 @@ namespace CamadaModelagem.Services
         {
             _motoristaDAL = motoristaDAL;
         }
-        public void Cadastrar(Motorista motorista, CNH cnh) //Mudança na Query, Verificar
-        {
-            //try
-            //{
-            //    Motorista obj = _motoristaDAL.BuscarCPF(motorista.CPF); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um motorista com esse CPF no sistema!");
-            //    }
-            //    _motoristaDAL.Cadastrar(motorista, cnh);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
-        }
-
-        public void Deletar(int cpf)
+        public bool Cadastrar(Motorista motorista, CNH cnh) //Mudança na Query, Verificar
         {
             try
             {
-                _motoristaDAL.Deletar(cpf);
+                Motorista obj = _motoristaDAL.BuscarCPF(motorista.CPF); //Metodo criado, falta validar
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um motorista com esse CPF no sistema!");
+                }
+                return _motoristaDAL.Cadastrar(motorista, cnh);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public Motorista BuscarCPF(string cpf)
+        {
+            try
+            {
+                Motorista motorista = _motoristaDAL.BuscarCPF(cpf);
+                return motorista;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Motorista> BuscarTodos()
+        {
+            List<Motorista> motoristas = new List<Motorista>();
+            try
+            {
+                motoristas.AddRange(_motoristaDAL.BuscarTodos());
+                return motoristas;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Inativar(string cpf)
+        {
+            try
+            {
+                return _motoristaDAL.Inativar(cpf);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -46,22 +73,24 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(Motorista motorista, CNH cnh, int cpf)
+        public bool Alterar(Motorista motorista, CNH cnh, string cpf)
         {
-            //try
-            //{
-            //    Motorista obj = _motoristaDAL.BuscarCPF(cpf);
-            //    if(obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Motorista não encontrado.");
-            //    }
-            //    _motoristaDAL.Alterar(motorista, cnh, cpf);
-            //}
-            //catch(ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Motorista obj = _motoristaDAL.BuscarCPF(cpf);
+                if (obj != null)
+                {
+                    return _motoristaDAL.Alterar(motorista, cnh, cpf);
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Veículo não encontrado.");
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
-
     }
 }
