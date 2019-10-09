@@ -11,19 +11,17 @@ namespace CamadaModelagem.Models
         public double Valor { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataVencimento { get; set; }
-        public ServicoExterno  ServicoExterno { get; set; }
 
         public ServicoExternoConveniado()
         {
 
         }
 
-        public ServicoExternoConveniado(double valor, DateTime dataInicio, DateTime dataVencimento, ServicoExterno servicoExterno)
+        public ServicoExternoConveniado(double valor, DateTime dataInicio, DateTime dataVencimento)
         {
             Valor = valor;
             DataInicio = dataInicio;
             DataVencimento = dataVencimento;
-            ServicoExterno = servicoExterno;
         }
     }
 }

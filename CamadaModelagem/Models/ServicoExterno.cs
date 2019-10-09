@@ -9,10 +9,10 @@ namespace CamadaModelagem.Models
 {
     public class ServicoExterno
     {
-        public int CNPJ { get; set; }
+        public long CNPJ { get; set; }
         public TipoServicoExterno Tipo { get; set; }
         public string Nome { get; set; }
-        public int Telefone { get; set; }
+        public long Telefone { get; set; }
         public string Email { get; set; }
         public string Endereco { get; set; }
         public bool Conveniado { get; set; }
@@ -23,7 +23,7 @@ namespace CamadaModelagem.Models
 
         }
 
-        public ServicoExterno(int cNPJ, TipoServicoExterno tipo, string nome, int telefone, string email, string endereco, bool conveniado, ServicoExternoConveniado servicoExternoConveniado)
+        public ServicoExterno(long cNPJ, TipoServicoExterno tipo, string nome, long telefone, string email, string endereco, bool conveniado, ServicoExternoConveniado servicoExternoConveniado)
         {
             CNPJ = cNPJ;
             Tipo = tipo;

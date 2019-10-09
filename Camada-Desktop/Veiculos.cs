@@ -21,11 +21,13 @@ namespace CamadaDesktop
     {
         private readonly VeiculoController _veiculoController;
         private Veiculo Veiculo;
+        string PlacaAntiga;
         public Veiculos()
         {
             InitializeComponent();
             _veiculoController = InstanciarCamadas();
             Veiculo = null;
+            PlacaAntiga = "";
         }
 
         private VeiculoController InstanciarCamadas()
@@ -125,17 +127,38 @@ namespace CamadaDesktop
                         dt.Columns.Add("Data Inicio", typeof(DateTime));
                         dt.Columns.Add("Data Vencimento", typeof(DateTime));
 
+                        string alugado = null;
+                        string situacao = null;
+
+                        if (veiculo.Alugado)
+                        {
+                            alugado = "Sim";
+                        }
+                        else
+                        {
+                            alugado = "Não";
+                        }
+
+                        if (veiculo.SituacaoVeiculo)
+                        {
+                            situacao = "Ativo";
+                        }
+                        else
+                        {
+                            situacao = "Inativo";
+                        }
+
                         if (veiculo.VeiculoAlugado == null)
                         {
                             dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
                                 , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                                , veiculo.Alugado, veiculo.SituacaoVeiculo);
+                                , alugado, situacao);
                         }
                         else
                         {
                             dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
                                 , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                                , veiculo.Alugado, veiculo.SituacaoVeiculo, veiculo.VeiculoAlugado.Valor
+                                , alugado, situacao, veiculo.VeiculoAlugado.Valor
                                 , veiculo.VeiculoAlugado.DataInicio, veiculo.VeiculoAlugado.DataVencimento);
                         }
                         dgVeiculoConsulta.DataSource = dt;
@@ -188,22 +211,43 @@ namespace CamadaDesktop
 
                 foreach(Veiculo veiculo in veiculos)
                 {
+                    string alugado = null;
+                    string situacao = null;
+
+                    if (veiculo.Alugado)
+                    {
+                        alugado = "Sim";
+                    }
+                    else
+                    {
+                        alugado = "Não";
+                    }
+
+                    if (veiculo.SituacaoVeiculo)
+                    {
+                        situacao = "Ativo";
+                    }
+                    else
+                    {
+                        situacao = "Inativo";
+                    }
+
                     if (veiculo.VeiculoAlugado == null)
                     {
                         dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
                             , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                            , veiculo.Alugado, veiculo.SituacaoVeiculo);
+                            , alugado, situacao);
                     }
                     else
                     {
                         dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
                             , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                            , veiculo.Alugado, veiculo.SituacaoVeiculo, veiculo.VeiculoAlugado.Valor
+                            , alugado, situacao, veiculo.VeiculoAlugado.Valor
                             , veiculo.VeiculoAlugado.DataInicio, veiculo.VeiculoAlugado.DataVencimento);
                     }
-                    dgVeiculoConsulta.DataSource = dt;
                 }
-                
+                dgVeiculoConsulta.DataSource = dt;
+
             }
             catch (ConcorrenciaBancoException)
             {
@@ -223,7 +267,7 @@ namespace CamadaDesktop
                 dtInicio.Value = DateTime.Now;
                 dtVencimento.Value = DateTime.Now;
 
-
+                PlacaAntiga = Veiculo.Placa;
                 DateTime ano = new DateTime(Veiculo.Ano, DateTime.Now.Month, DateTime.Now.Day);
                 txtPlaca.Text = Veiculo.Placa;
                 txtMarca.Text = Veiculo.Marca;
@@ -296,9 +340,14 @@ namespace CamadaDesktop
                 Veiculo veiculo = new Veiculo(txtPlaca.Text.Replace("-", ""), txtMarca.Text, txtModelo.Text, txtChassi.Text, dtAno.Value.Year, veiculoTipoCor, veiculoCombustivel, alugado, situacao, veiculoAlugado);
                 try
                 {
-                    if (_veiculoController.Alterar(veiculo, veiculo.Placa))
+                    if(PlacaAntiga == "")
+                    {
+                        PlacaAntiga = veiculo.Placa;
+                    }
+                    if (_veiculoController.Alterar(veiculo, PlacaAntiga))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
+                        PlacaAntiga = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -314,9 +363,9 @@ namespace CamadaDesktop
 
         private void BtnExcluirVeiculo_Click(object sender, EventArgs e)
         {
-            if (txtPlaca.Text == "")
+            if (txtPlaca.Text == "   -")
             {
-                MessageBox.Show("Preencha o campo Placa corretamente para realizar esta opereção!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Preencha o campo Placa corretamente para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

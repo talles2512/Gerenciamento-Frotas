@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class ServicoExternoController
+    public class ServicoExternoController
     {
         private readonly ServicoExternoService _servicoExternoService;
 
@@ -19,19 +20,76 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(ServicoExterno servicoExterno)
+        public bool Cadastrar(ServicoExterno servicoExterno, long cnpj)
         {
-            _servicoExternoService.Cadastrar(servicoExterno);
+            try
+            {
+                return _servicoExternoService.Cadastrar(servicoExterno, cnpj); ;
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(int cnpj)
+        public ServicoExterno BuscarCNPJ(long cnpj)
         {
-            _servicoExternoService.Deletar(cnpj);
+            try
+            {
+                return _servicoExternoService.BuscarCNPJ(cnpj);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(ServicoExterno servicoExterno, int cnpj)
+        public List<ServicoExterno> BuscarTodos()
         {
-            _servicoExternoService.Alterar(servicoExterno,cnpj);
+            try
+            {
+                return _servicoExternoService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Inativar(long cnpj)
+        {
+            try
+            {
+                return _servicoExternoService.Inativar(cnpj);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(ServicoExterno servicoExterno, long cnpj)
+        {
+            try
+            {
+                return _servicoExternoService.Alterar(servicoExterno,cnpj);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
         }
 
         #endregion

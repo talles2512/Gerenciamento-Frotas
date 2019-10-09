@@ -63,7 +63,14 @@ namespace CamadaControle.Controllers
 
         public bool Inativar(string placa)
         {
-           return _veiculoService.Inativar(placa);
+            try
+            {
+                return _veiculoService.Inativar(placa);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public bool Alterar(Veiculo veiculo, string placa)

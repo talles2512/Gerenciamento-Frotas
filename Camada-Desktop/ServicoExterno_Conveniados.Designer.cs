@@ -52,9 +52,9 @@
             this.lblCNPJ = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
-            this.btnExcluirEntradaSaida = new System.Windows.Forms.Button();
-            this.btnAlterarEntradaSaida = new System.Windows.Forms.Button();
-            this.btnCadastrarEntradaSaida = new System.Windows.Forms.Button();
+            this.btnExcluirServicoExterno = new System.Windows.Forms.Button();
+            this.btnAlterarServicoExterno = new System.Windows.Forms.Button();
+            this.btnCadastrarServicoExterno = new System.Windows.Forms.Button();
             this.lblTipoServico = new System.Windows.Forms.Label();
             this.tbPageConsultaConveniados = new System.Windows.Forms.TabPage();
             this.gbConsultaConveniados = new System.Windows.Forms.GroupBox();
@@ -128,9 +128,9 @@
             this.panel1.Controls.Add(this.lblCNPJ);
             this.panel1.Controls.Add(this.lblNome);
             this.panel1.Controls.Add(this.cbTipo);
-            this.panel1.Controls.Add(this.btnExcluirEntradaSaida);
-            this.panel1.Controls.Add(this.btnAlterarEntradaSaida);
-            this.panel1.Controls.Add(this.btnCadastrarEntradaSaida);
+            this.panel1.Controls.Add(this.btnExcluirServicoExterno);
+            this.panel1.Controls.Add(this.btnAlterarServicoExterno);
+            this.panel1.Controls.Add(this.btnCadastrarServicoExterno);
             this.panel1.Controls.Add(this.lblTipoServico);
             this.panel1.Location = new System.Drawing.Point(6, 31);
             this.panel1.Name = "panel1";
@@ -311,59 +311,62 @@
             this.cbTipo.Size = new System.Drawing.Size(186, 33);
             this.cbTipo.TabIndex = 16;
             // 
-            // btnExcluirEntradaSaida
+            // btnExcluirServicoExterno
             // 
-            this.btnExcluirEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnExcluirEntradaSaida.FlatAppearance.BorderSize = 0;
-            this.btnExcluirEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnExcluirEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcluirEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluirEntradaSaida.ForeColor = System.Drawing.Color.White;
-            this.btnExcluirEntradaSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirEntradaSaida.Image")));
-            this.btnExcluirEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirEntradaSaida.Location = new System.Drawing.Point(225, 545);
-            this.btnExcluirEntradaSaida.Name = "btnExcluirEntradaSaida";
-            this.btnExcluirEntradaSaida.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirEntradaSaida.TabIndex = 27;
-            this.btnExcluirEntradaSaida.Text = "Excluir";
-            this.btnExcluirEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExcluirEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnExcluirServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirServicoExterno.FlatAppearance.BorderSize = 0;
+            this.btnExcluirServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnExcluirServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluirServicoExterno.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcluirServicoExterno.ForeColor = System.Drawing.Color.White;
+            this.btnExcluirServicoExterno.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirServicoExterno.Image")));
+            this.btnExcluirServicoExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluirServicoExterno.Location = new System.Drawing.Point(225, 545);
+            this.btnExcluirServicoExterno.Name = "btnExcluirServicoExterno";
+            this.btnExcluirServicoExterno.Size = new System.Drawing.Size(146, 40);
+            this.btnExcluirServicoExterno.TabIndex = 27;
+            this.btnExcluirServicoExterno.Text = "Excluir";
+            this.btnExcluirServicoExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExcluirServicoExterno.UseVisualStyleBackColor = false;
+            this.btnExcluirServicoExterno.Click += new System.EventHandler(this.BtnExcluirServicoExterno_Click);
             // 
-            // btnAlterarEntradaSaida
+            // btnAlterarServicoExterno
             // 
-            this.btnAlterarEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnAlterarEntradaSaida.FlatAppearance.BorderSize = 0;
-            this.btnAlterarEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnAlterarEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterarEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterarEntradaSaida.ForeColor = System.Drawing.Color.White;
-            this.btnAlterarEntradaSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarEntradaSaida.Image")));
-            this.btnAlterarEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarEntradaSaida.Location = new System.Drawing.Point(225, 499);
-            this.btnAlterarEntradaSaida.Name = "btnAlterarEntradaSaida";
-            this.btnAlterarEntradaSaida.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarEntradaSaida.TabIndex = 26;
-            this.btnAlterarEntradaSaida.Text = "Alterar";
-            this.btnAlterarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAlterarEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnAlterarServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarServicoExterno.FlatAppearance.BorderSize = 0;
+            this.btnAlterarServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnAlterarServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlterarServicoExterno.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlterarServicoExterno.ForeColor = System.Drawing.Color.White;
+            this.btnAlterarServicoExterno.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarServicoExterno.Image")));
+            this.btnAlterarServicoExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlterarServicoExterno.Location = new System.Drawing.Point(225, 499);
+            this.btnAlterarServicoExterno.Name = "btnAlterarServicoExterno";
+            this.btnAlterarServicoExterno.Size = new System.Drawing.Size(146, 40);
+            this.btnAlterarServicoExterno.TabIndex = 26;
+            this.btnAlterarServicoExterno.Text = "Alterar";
+            this.btnAlterarServicoExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAlterarServicoExterno.UseVisualStyleBackColor = false;
+            this.btnAlterarServicoExterno.Click += new System.EventHandler(this.BtnAlterarServicoExterno_Click);
             // 
-            // btnCadastrarEntradaSaida
+            // btnCadastrarServicoExterno
             // 
-            this.btnCadastrarEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnCadastrarEntradaSaida.FlatAppearance.BorderSize = 0;
-            this.btnCadastrarEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnCadastrarEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastrarEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrarEntradaSaida.ForeColor = System.Drawing.Color.White;
-            this.btnCadastrarEntradaSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarEntradaSaida.Image")));
-            this.btnCadastrarEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarEntradaSaida.Location = new System.Drawing.Point(110, 453);
-            this.btnCadastrarEntradaSaida.Name = "btnCadastrarEntradaSaida";
-            this.btnCadastrarEntradaSaida.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarEntradaSaida.TabIndex = 25;
-            this.btnCadastrarEntradaSaida.Text = "Cadastrar";
-            this.btnCadastrarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCadastrarEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnCadastrarServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarServicoExterno.FlatAppearance.BorderSize = 0;
+            this.btnCadastrarServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnCadastrarServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastrarServicoExterno.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrarServicoExterno.ForeColor = System.Drawing.Color.White;
+            this.btnCadastrarServicoExterno.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarServicoExterno.Image")));
+            this.btnCadastrarServicoExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadastrarServicoExterno.Location = new System.Drawing.Point(110, 453);
+            this.btnCadastrarServicoExterno.Name = "btnCadastrarServicoExterno";
+            this.btnCadastrarServicoExterno.Size = new System.Drawing.Size(389, 40);
+            this.btnCadastrarServicoExterno.TabIndex = 25;
+            this.btnCadastrarServicoExterno.Text = "Cadastrar";
+            this.btnCadastrarServicoExterno.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCadastrarServicoExterno.UseVisualStyleBackColor = false;
+            this.btnCadastrarServicoExterno.Click += new System.EventHandler(this.BtnCadastrarServicoExterno_Click);
             // 
             // lblTipoServico
             // 
@@ -435,6 +438,7 @@
             this.btnTrasferirConveniado.TabIndex = 17;
             this.btnTrasferirConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirConveniado.UseVisualStyleBackColor = false;
+            this.btnTrasferirConveniado.Click += new System.EventHandler(this.BtnTrasferirConveniado_Click);
             // 
             // dgConveniadoConsulta
             // 
@@ -462,6 +466,7 @@
             this.btnTodosConveniado.Text = "Consultar Todos";
             this.btnTodosConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosConveniado.UseVisualStyleBackColor = false;
+            this.btnTodosConveniado.Click += new System.EventHandler(this.BtnTodosConveniado_Click);
             // 
             // btnConsultarConveniado
             // 
@@ -480,6 +485,7 @@
             this.btnConsultarConveniado.Text = "    Consultar";
             this.btnConsultarConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;
+            this.btnConsultarConveniado.Click += new System.EventHandler(this.BtnConsultarConveniado_Click);
             // 
             // ServicoExterno_Conveniados
             // 
@@ -490,6 +496,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServicoExterno_Conveniados";
             this.Text = "ServicoExterno_Conveniados";
+            this.Load += new System.EventHandler(this.ServicoExterno_Conveniados_Load);
             this.tbControlConveniados.ResumeLayout(false);
             this.tbPageCadastroConveniados.ResumeLayout(false);
             this.gbDadosConveniados.ResumeLayout(false);
@@ -531,9 +538,9 @@
         private System.Windows.Forms.Label lblCNPJ;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.ComboBox cbTipo;
-        private System.Windows.Forms.Button btnExcluirEntradaSaida;
-        private System.Windows.Forms.Button btnAlterarEntradaSaida;
-        private System.Windows.Forms.Button btnCadastrarEntradaSaida;
+        private System.Windows.Forms.Button btnExcluirServicoExterno;
+        private System.Windows.Forms.Button btnAlterarServicoExterno;
+        private System.Windows.Forms.Button btnCadastrarServicoExterno;
         private System.Windows.Forms.Label lblTipoServico;
         private System.Windows.Forms.Label lbldatavencimento;
         private System.Windows.Forms.RadioButton rdConveniado;

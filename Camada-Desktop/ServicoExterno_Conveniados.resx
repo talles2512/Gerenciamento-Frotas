@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnExcluirEntradaSaida.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnExcluirServicoExterno.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAAWdJREFUWEftlyFOA0EYhTekAskBEAgEglT0AAhSVVWBbBA9ABq1qoJUoDgBJ0AR
@@ -130,7 +130,7 @@
         ql7Dm0o91u8BBUnyAer1MYaA2XskAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnAlterarEntradaSaida.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnAlterarServicoExterno.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAAsVJREFUWEftlzFoU1EUhksRcZBSipRSHIqISHFwkg5SioiDiDg4SgdxkJKhg5RS
@@ -148,7 +148,7 @@
         p+c3L1JRQ2D7uKcAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnCadastrarEntradaSaida.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCadastrarServicoExterno.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAAHNJREFUWEftl0EKgDAMBPN/cuzLfEifEM3CnixFCkZFdmBPSdi5VNBWiQjP9Emc

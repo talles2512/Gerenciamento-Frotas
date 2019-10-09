@@ -36,14 +36,14 @@ namespace CamadaModelagem.Services
 
         public void Deletar(int cnpj)
         {
-            try
-            {
-                _servicoExternoConveniadoDAL.Deletar(cnpj);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new IntegridadeException("Convenio não pode ser deletado, pois está ligado a outros serviços.");
-            }
+            //try
+            //{
+            //    _servicoExternoConveniadoDAL.Deletar(cnpj);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new IntegridadeException("Convenio não pode ser deletado, pois está ligado a outros serviços.");
+            //}
         }
 
         public void Alterar(ServicoExternoConveniado servicoExternoConveniado, int cnpj)
