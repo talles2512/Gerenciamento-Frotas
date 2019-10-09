@@ -40,9 +40,13 @@ namespace CamadaModelagem.Services
                     return _veiculoDAL.Cadastrar(veiculo);
                 }
             }
-            catch (ConcorrenciaBancoException)
+            catch (TransacaoException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 
@@ -57,9 +61,9 @@ namespace CamadaModelagem.Services
                 }
                 return veiculo;
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 
@@ -72,9 +76,9 @@ namespace CamadaModelagem.Services
                 veiculos.AddRange(_veiculoDAL.BuscarTodos());
                 return veiculos;
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 
@@ -84,9 +88,9 @@ namespace CamadaModelagem.Services
             {
                 return _veiculoDAL.Inativar(placa);
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new IntegridadeException("Veículo não pode ser deletado, pois está ligado a outros serviços.");
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 

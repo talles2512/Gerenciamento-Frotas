@@ -8,7 +8,7 @@ namespace CamadaModelagem.Models
 {
     public class CNH
     {
-        public int Numero { get; set; }
+        public long Numero { get; set; }
         public DateTime DataEmissao { get; set; }
         public DateTime DataVencimento { get; set; }
         public string Categoria { get; set; }
@@ -19,7 +19,7 @@ namespace CamadaModelagem.Models
 
         }
 
-        public CNH(int numero, DateTime dataEmissao, DateTime dataVencimento, string categoria, string orgaoEmissor)
+        public CNH(long numero, DateTime dataEmissao, DateTime dataVencimento, string categoria, string orgaoEmissor)
         {
             Numero = numero;
             DataEmissao = dataEmissao;

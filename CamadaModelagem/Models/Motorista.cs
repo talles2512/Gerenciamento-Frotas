@@ -14,8 +14,8 @@ namespace CamadaModelagem.Models
         public string RG { get; set; }
         public string Endereco { get; set; }
         public DateTime DataNascimento { get; set; }
-        public int Telefone { get; set; }
-        public int TelefoneContato { get; set; }
+        public long Telefone { get; set; }
+        public long TelefoneContato { get; set; }
         public bool Situacao { get; set; }
         public CNH CNH { get; set; }                                                    //Existe a possibilidade de mudar essa lista para um tipo mais genérico como IEnumerable, ICollection
         public List<ExameMedico> ExamesMedicos { get; set; } = new List<ExameMedico>(); //O motorista pode possuir varios exames,
@@ -25,7 +25,7 @@ namespace CamadaModelagem.Models
 
         }
 
-        public Motorista(string cPF, string name, string rG, string endereco, DateTime dataNascimento, int telefone, int telefoneContato, bool situacao, CNH cNH)  //Mudança da FK para TB_CNH
+        public Motorista(string cPF, string name, string rG, string endereco, DateTime dataNascimento, long telefone, long telefoneContato, bool situacao, CNH cNH)  //Mudança da FK para TB_CNH
         {
             CPF = cPF;
             Name = name;

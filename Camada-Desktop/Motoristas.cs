@@ -53,26 +53,28 @@ namespace CamadaDesktop
             }
             else
             {
-                cNH.Numero = int.Parse(txtCNHnumero.Text);
-                cNH.Categoria = cbCategoriaCNH.SelectedItem.ToString();
-                cNH.OrgaoEmissor = cbOrgaoEmissor.SelectedItem.ToString();
-                cNH.DataEmissao = Convert.ToDateTime(dtDataEmissaoCNH.Value);
-                cNH.DataVencimento = Convert.ToDateTime(dtDataVencimentoCNH.Value);
 
-                int telefone = int.Parse(txtTelefone.Text);
-                int telefonecontato = int.Parse(txtTelefoneContato.Text);
-                bool situacao = true;
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " "};
 
-                string[] strings = new string[] { ".", "/", "-", ",", "(", ")" };
+                string cpf = txtCPF.Text;
+                string Telefone = txtTelefone.Text;
+                string Telefonecontato = txtTelefoneContato.Text;
 
-                foreach (string str in strings)
+                foreach (string str in strings) //limpando as strings
                 {
-                    txtCPF.Text.Replace(str, "");
-                    txtTelefone.Text.Replace(str, "");
-                    txtTelefoneContato.Text.Replace(str, "");
+                    cpf = cpf.Replace(str, "");
+                    Telefone = Telefone.Replace(str, "");
+                    Telefonecontato = Telefonecontato.Replace(str, "");
                 }
 
-                Motorista motorista = new Motorista(txtCPF.Text, txtNome.Text, txtRG.Text, txtEndereco.Text, dtDataNascimento.Value, telefone, telefonecontato, situacao, cNH);
+                long telefone = long.Parse(Telefone);
+                long telefonecontato = long.Parse(Telefonecontato);
+                bool situacao = true;
+
+                cNH = new CNH(long.Parse(txtCNHnumero.Text), dtDataEmissaoCNH.Value, dtDataVencimentoCNH.Value
+                    , cbCategoriaCNH.SelectedItem.ToString(), cbOrgaoEmissor.SelectedItem.ToString());
+
+                Motorista motorista = new Motorista(cpf, txtNome.Text, txtRG.Text, txtEndereco.Text, dtDataNascimento.Value, telefone, telefonecontato, situacao, cNH);
                 try
                 {
                     if (_motoristaController.Cadastrar(motorista, cNH))
