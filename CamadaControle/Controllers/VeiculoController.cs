@@ -80,6 +80,10 @@ namespace CamadaControle.Controllers
             {
                 throw new ConcorrenciaBancoException(e.Message);
             }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
         }
 
         #endregion

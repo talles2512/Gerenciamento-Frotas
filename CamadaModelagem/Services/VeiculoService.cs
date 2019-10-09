@@ -120,9 +120,13 @@ namespace CamadaModelagem.Services
                     }
                 }
             }
-            catch (ConcorrenciaBancoException)
+            catch (TransacaoException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
     }

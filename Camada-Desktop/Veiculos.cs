@@ -265,6 +265,10 @@ namespace CamadaDesktop
             {
                 if (rdAlugado.Checked)
                 {
+                    if (dtInicio.Value > dtVencimento.Value)
+                    {
+                        MessageBox.Show("A Data de Vencimento deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     if (txtValor.Text == "")
                     {
                         MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

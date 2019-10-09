@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaModelagem.Services.Exceptions
 {
-    class TransacaoException : ApplicationException
+    public class TransacaoException : ApplicationException
     {
         public TransacaoException(string message) : base(message)
         {
