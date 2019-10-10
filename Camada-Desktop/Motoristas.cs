@@ -101,12 +101,20 @@ namespace CamadaDesktop
             }
             else
             {
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFConsulta.Text;
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
                 try
                 {
-                    Motorista motorista = _motoristaController.BuscarCPF(txtCPFConsulta.Text.Replace("-", ""));
+                    Motorista motorista = _motoristaController.BuscarCPF(cpf);
                     if (motorista == null)
                     {
-
+                        MessageBox.Show("Não existe cadastro com esse CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
@@ -116,21 +124,32 @@ namespace CamadaDesktop
                         dt.Columns.Add("RG", typeof(string));
                         dt.Columns.Add("Data Nascimento", typeof(DateTime));
                         dt.Columns.Add("Endereço", typeof(string));
-                        dt.Columns.Add("Telefone", typeof(int));
-                        dt.Columns.Add("Telefone p/Recado", typeof(int));
+                        dt.Columns.Add("Telefone", typeof(long));
+                        dt.Columns.Add("Telefone p/Recado", typeof(long));
                         dt.Columns.Add("Situação", typeof(string));
-                        dt.Columns.Add("CNH Nº", typeof(int));
+                        dt.Columns.Add("CNH Nº", typeof(long));
                         dt.Columns.Add("Categoria CNH", typeof(string));
                         dt.Columns.Add("Orgão Emissor", typeof(string));
                         dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
                         dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
 
+                        string situacao = null;
+
+                        if (motorista.Situacao)
+                        {
+                            situacao = "Ativo";
+                        }
+                        else
+                        {
+                            situacao = "Inativo";
+                        }
+
 
                         dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
-                                , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
-                                , motorista.Situacao, cNH.Numero, cNH.Categoria, cNH.OrgaoEmissor
-                                , cNH.DataEmissao, cNH.DataVencimento);
-                        
+                            , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
+                            , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
+                            , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
+
                         dgMotoristaConsulta.DataSource = dt;
                     }
                     Motorista = motorista;
@@ -155,22 +174,34 @@ namespace CamadaDesktop
                 dt.Columns.Add("RG", typeof(string));
                 dt.Columns.Add("Data Nascimento", typeof(DateTime));
                 dt.Columns.Add("Endereço", typeof(string));
-                dt.Columns.Add("Telefone", typeof(int));
-                dt.Columns.Add("Telefone p/Recado", typeof(int));
+                dt.Columns.Add("Telefone", typeof(long));
+                dt.Columns.Add("Telefone p/Recado", typeof(long));
                 dt.Columns.Add("Situação", typeof(string));
-                dt.Columns.Add("CNH Nº", typeof(int));
+                dt.Columns.Add("CNH Nº", typeof(long));
                 dt.Columns.Add("Categoria CNH", typeof(string));
                 dt.Columns.Add("Orgão Emissor", typeof(string));
                 dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
                 dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
-
+           
                 foreach (Motorista motorista in motoristas)
                 {
+                    string situacao = null;
+
+                    if (motorista.Situacao)
+                    {
+                        situacao = "Ativo";
+                    }
+                    else
+                    {
+                        situacao = "Inativo";
+                    }
+
                     dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
                         , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
-                        , motorista.Situacao, cNH.Numero, cNH.Categoria, cNH.OrgaoEmissor
-                        , cNH.DataEmissao, cNH.DataVencimento);
+                        , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
+                        , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
                 }
+
                 dgMotoristaConsulta.DataSource = dt;
 
             }
@@ -195,11 +226,11 @@ namespace CamadaDesktop
                 dtDataNascimento.Value = Motorista.DataNascimento;
                 txtTelefone.Text = Motorista.Telefone.ToString();
                 txtTelefoneContato.Text = Motorista.TelefoneContato.ToString();
-                txtCNHnumero.Text = cNH.Numero.ToString();
-                cbCategoriaCNH.Text = cNH.Categoria;
-                cbOrgaoEmissor.Text = cNH.OrgaoEmissor;
-                dtDataEmissaoCNH.Value = cNH.DataEmissao;
-                dtDataVencimentoCNH.Value = cNH.DataVencimento;
+                txtCNHnumero.Text = Motorista.CNH.Numero.ToString();
+                cbCategoriaCNH.Text = Motorista.CNH.Categoria;
+                cbOrgaoEmissor.Text = Motorista.CNH.OrgaoEmissor;
+                dtDataEmissaoCNH.Value = Motorista.CNH.DataEmissao;
+                dtDataVencimentoCNH.Value = Motorista.CNH.DataVencimento;
 
                 MessageBox.Show("Dados enviados para a Tela de Cadastro.");
                 tbControlMotorista.SelectTab("tbPageCadastroMotorista");
@@ -226,26 +257,32 @@ namespace CamadaDesktop
             }
             else
             {
-                cNH.Numero = int.Parse(txtCNHnumero.Text);
+                cNH = new CNH();
+                cNH.Numero = long.Parse(txtCNHnumero.Text);
                 cNH.Categoria = cbCategoriaCNH.SelectedItem.ToString();
                 cNH.OrgaoEmissor = cbOrgaoEmissor.SelectedItem.ToString();
                 cNH.DataEmissao = Convert.ToDateTime(dtDataEmissaoCNH.Value);
                 cNH.DataVencimento = Convert.ToDateTime(dtDataVencimentoCNH.Value);
 
-                string[] strings = new string[] { ".","/", "-", ",", "(", ")" };
 
-                foreach(string str in strings)
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPF.Text;
+                string Telefone = txtTelefone.Text;
+                string Telefonecontato = txtTelefoneContato.Text;
+
+                foreach (string str in strings) //limpando as strings
                 {
-                    txtCPF.Text.Replace(str, "");
-                    txtTelefone.Text.Replace(str, "");
-                    txtTelefoneContato.Text.Replace(str, "");
+                    cpf = cpf.Replace(str, "");
+                    Telefone = Telefone.Replace(str, "");
+                    Telefonecontato = Telefonecontato.Replace(str, "");
                 }
 
-                int telefone = int.Parse(txtTelefone.Text);
-                int telefonecontato = int.Parse(txtTelefoneContato.Text);
+                long telefone = long.Parse(Telefone);
+                long telefonecontato = long.Parse(Telefonecontato);
                 bool situacao = true;
 
-                Motorista motorista = new Motorista(txtCPF.Text, txtNome.Text, txtRG.Text, txtEndereco.Text, dtDataNascimento.Value, telefone, telefonecontato, situacao, cNH);
+                Motorista motorista = new Motorista(cpf, txtNome.Text, txtRG.Text, txtEndereco.Text, dtDataNascimento.Value, telefone, telefonecontato, situacao, cNH);
                 try
                 {
                     if (_motoristaController.Alterar(motorista, cNH, motorista.CPF))
@@ -272,12 +309,22 @@ namespace CamadaDesktop
             }
             else
             {
-                string placa = txtCPF.Text.Replace("-", "");
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFConsulta.Text;
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
                 try
                 {
-                    if (_motoristaController.Inativar(placa))
+                    if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Inativação realizada com Sucesso!");
+                        if (_motoristaController.Inativar(cpf))
+                        {
+                            MessageBox.Show("Inativação realizada com Sucesso!");
+                        }
                     }
                 }
                 catch (NaoEncontradoException ex)

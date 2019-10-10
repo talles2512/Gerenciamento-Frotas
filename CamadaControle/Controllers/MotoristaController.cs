@@ -61,7 +61,14 @@ namespace CamadaControle.Controllers
 
         public bool Inativar(string cpf)
         {
-            return _motoristaService.Inativar(cpf);
+            try
+            {
+                return _motoristaService.Inativar(cpf);
+            }          
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public bool Alterar(Motorista motorista, CNH cnh, string cpf)

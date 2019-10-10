@@ -83,6 +83,18 @@ namespace CamadaDesktop
                     if(_veiculoController.Cadastrar(veiculo, veiculo.Placa))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtPlaca.Clear();
+                        txtMarca.Clear();
+                        txtModelo.Clear();
+                        txtChassi.Clear();
+                        dtAno.ResetText();
+                        cbCombustivel.ResetText();
+                        cbCor.ResetText();
+                        rdAlugado.Checked = false;
+                        rdNaoAlugado.Checked = false;
+                        txtValor.Clear();
+                        dtInicio.ResetText();
+                        dtVencimento.ResetText();
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -109,7 +121,7 @@ namespace CamadaDesktop
                     Veiculo veiculo = _veiculoController.BuscarPlaca(txtPlacaConsulta.Text.Replace("-", ""));
                     if(veiculo == null)
                     {
-
+                        MessageBox.Show("Não existe cadastro com essa Placa!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
@@ -335,6 +347,7 @@ namespace CamadaDesktop
                     alugado = true;
                     double valor = double.Parse(txtValor.Text);
                     veiculoAlugado = new VeiculoAlugado(valor, dtInicio.Value, dtVencimento.Value);
+
                 }
 
                 Veiculo veiculo = new Veiculo(txtPlaca.Text.Replace("-", ""), txtMarca.Text, txtModelo.Text, txtChassi.Text, dtAno.Value.Year, veiculoTipoCor, veiculoCombustivel, alugado, situacao, veiculoAlugado);
@@ -348,6 +361,18 @@ namespace CamadaDesktop
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         PlacaAntiga = "";
+                        txtPlaca.Clear();
+                        txtMarca.Clear();
+                        txtModelo.Clear();
+                        txtChassi.Clear();
+                        dtAno.ResetText();
+                        cbCombustivel.ResetText();
+                        cbCor.ResetText();
+                        rdAlugado.Checked = false;
+                        rdNaoAlugado.Checked = false;
+                        txtValor.Clear();
+                        dtInicio.ResetText();
+                        dtVencimento.ResetText();
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -372,10 +397,25 @@ namespace CamadaDesktop
                 string placa = txtPlaca.Text.Replace("-", "");
                 try
                 {
-                    if (_veiculoController.Inativar(placa))
+                    if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Inativação realizada com Sucesso!");
-                    }
+                        if (_veiculoController.Inativar(placa))
+                        {
+                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            txtPlaca.Clear();
+                            txtMarca.Clear();
+                            txtModelo.Clear();
+                            txtChassi.Clear();
+                            dtAno.ResetText();
+                            cbCombustivel.ResetText();
+                            cbCor.ResetText();
+                            rdAlugado.Checked = false;
+                            rdNaoAlugado.Checked = false;
+                            txtValor.Clear();
+                            dtInicio.ResetText();
+                            dtVencimento.ResetText();
+                        }
+                    }                   
                 }
                 catch (NaoEncontradoException ex)
                 {
