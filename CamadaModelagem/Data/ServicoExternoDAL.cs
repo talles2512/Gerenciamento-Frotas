@@ -199,14 +199,17 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public bool Inativar(long cnpj)
+        public bool Deletar(long cnpj)
         {
-            long a = cnpj;
-            a = 0;
-            string Query = "UPDATE [TB_SERVICOS_EXTERNOS] SET [SERVEXT_CONVENIADO] = 0 WHERE [SERVEXT_CNPJ] = " + a;
+            string query1 = "DELETE FROM [TB_SERVICOS_EXTERNOS_CONVENIADOS] WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + cnpj;
+            string query2 = "DELETE FROM [TB_SERVICOS_EXTERNOS] WHERE [SERVEXT_CNPJ] = " + cnpj;
             try
             {
-                return _banco.ExecutarInstrucao(Query);
+                return _banco.ExecutaTransaction(query1, query2);
+            }
+            catch (TransacaoException e)
+            {
+                throw new IntegridadeException(e.Message);
             }
             catch (ConcorrenciaBancoException e)
             {

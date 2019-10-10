@@ -180,9 +180,9 @@ namespace CamadaDesktop
                     }
                     
                 }
-                catch (ConcorrenciaBancoException)
+                catch (ConcorrenciaBancoException ex)
                 {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -261,9 +261,9 @@ namespace CamadaDesktop
                 dgVeiculoConsulta.DataSource = dt;
 
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException ex)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

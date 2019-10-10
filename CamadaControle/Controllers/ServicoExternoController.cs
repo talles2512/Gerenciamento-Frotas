@@ -60,11 +60,15 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public bool Inativar(long cnpj)
+        public bool Deletar(long cnpj)
         {
             try
             {
-                return _servicoExternoService.Inativar(cnpj);
+                return _servicoExternoService.Deletar(cnpj);
+            }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
             }
             catch (ConcorrenciaBancoException e)
             {

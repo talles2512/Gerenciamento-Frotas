@@ -79,11 +79,15 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Inativar(long cnpj)
+        public bool Deletar(long cnpj)
         {
             try
             {
-                return _servicoExternoDAL.Inativar(cnpj);
+                return _servicoExternoDAL.Deletar(cnpj);
+            }
+            catch (IntegridadeException)
+            {
+                throw new IntegridadeException("Serviço Externo não pode ser deletado, pois ainda está vinculado à outros serviços.");
             }
             catch (ConcorrenciaBancoException e)
             {

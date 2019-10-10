@@ -188,9 +188,9 @@ namespace CamadaDesktop
                     }
 
                 }
-                catch (ConcorrenciaBancoException)
+                catch (ConcorrenciaBancoException ex)
                 {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -242,9 +242,9 @@ namespace CamadaDesktop
                 dgConveniadoConsulta.DataSource = dt;
 
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException ex)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -383,12 +383,12 @@ namespace CamadaDesktop
 
                 try
                 {
-                    if (_servicoExternoController.Inativar(long.Parse(cnpj)))
+                    if (_servicoExternoController.Deletar(long.Parse(cnpj)))
                     {
-                        MessageBox.Show("Inativação realizada com Sucesso!");
+                        MessageBox.Show("Exclusão realizada com Sucesso!");
                     }
                 }
-                catch (NaoEncontradoException ex)
+                catch (IntegridadeException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
