@@ -8,11 +8,11 @@ namespace CamadaModelagem.Models
 {
     public class Cliente
     {
-        public int CPF { get; set; }
+        public string CPF { get; set; }
         public string Nome { get; set; }
         public string RG { get; set; }
         public string Endereco { get; set; }
-        public int Telefone { get; set; }
+        public long Telefone { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public DateTime DataInicioContrato { get; set; }
@@ -23,7 +23,7 @@ namespace CamadaModelagem.Models
 
         }
 
-        public Cliente(int cPF,string nome, string rg, string endereco, int telefone, string email, DateTime dataNascimento, DateTime dataInicioContrato)
+        public Cliente(string cPF,string nome, string rg, string endereco, long telefone, string email, DateTime dataNascimento, DateTime dataInicioContrato)
         {
             CPF = cPF;
             Nome = nome;

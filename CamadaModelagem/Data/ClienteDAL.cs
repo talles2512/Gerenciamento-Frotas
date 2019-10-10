@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Data
 {
@@ -17,11 +19,46 @@ namespace CamadaModelagem.Data
             _banco = banco;
         }
 
-        public void Cadastrar(Cliente cliente)
+        public bool Cadastrar(Cliente cliente)
         {
             string query = "INSERT INTO[dbo].[TB_CLIENTES]([CLT_CPF],[CLT_NOME],[CLT_RG],[CLT_ENDERECO],[CLT_TELEFONE],[CLT_EMAIL],[CLT_DTNASCIMENTO],[CLT_DTINICIO_CONTRATO])" +
-                "VALUES(" + cliente.CPF + ", '" + cliente.Nome + "', '" + cliente.RG + "', '" + cliente.Endereco + "', " + cliente.Telefone + ", '" + cliente.Email + "', '" + cliente.DataNascimento + "', '" + cliente.DataInicioContrato + "')";
-            _banco.ExecutarInstrucao(query);
+                                "VALUES(" + cliente.CPF + ", '" + cliente.Nome + "', '" + cliente.RG + "', '" + cliente.Endereco + "', " + cliente.Telefone + ", '" + cliente.Email + "', '" + cliente.DataNascimento + "', '" + cliente.DataInicioContrato + "')";
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+
+        }
+
+        public Cliente BuscarCPF(string cpf)
+        {
+            string query = "SELECT * FROM [dbo].[TB_CLIENTES] WHERE [CLT_CPF] = '" + cpf + "'";
+
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+
+                Cliente cliente = null;
+                DataRow[] dataRows = dt.Select("CLT_CPF = '" + cpf + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    DateTime dtnascimento = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
+                    DateTime dtinico = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
+                    long telefone = long.Parse(dr["CLT_TELEFONE"].ToString());
+
+                    cliente = new Cliente(dr["CLT_CPF"].ToString(), dr["CLT_NOME"].ToString(), dr["CLT_RG"].ToString(), dr["CLT_ENDERECO"].ToString(), telefone, dr["CLT_EMAIL"].ToString(), dtnascimento, dtinico);
+                }
+
+                return cliente;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public void Deletar(int cpf)

@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,20 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(Cliente cliente, int cpf)
+        public bool Cadastrar(Cliente cliente, string cpf)
         {
-            _clienteService.Cadastrar(cliente, cpf);
+            try
+            {
+                return _clienteService.Cadastrar(cliente, cpf);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public void Deletar(int cpf)

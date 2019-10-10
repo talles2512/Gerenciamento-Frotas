@@ -38,7 +38,7 @@
             this.txtemail = new System.Windows.Forms.TextBox();
             this.lblemail = new System.Windows.Forms.Label();
             this.dtDataNascimento = new System.Windows.Forms.DateTimePicker();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.lblTelefone = new System.Windows.Forms.Label();
             this.txtEndereço = new System.Windows.Forms.TextBox();
             this.lblEndereco = new System.Windows.Forms.Label();
@@ -108,7 +108,7 @@
             this.panel1.Controls.Add(this.txtemail);
             this.panel1.Controls.Add(this.lblemail);
             this.panel1.Controls.Add(this.dtDataNascimento);
-            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.txtTelefone);
             this.panel1.Controls.Add(this.lblTelefone);
             this.panel1.Controls.Add(this.txtEndereço);
             this.panel1.Controls.Add(this.lblEndereco);
@@ -179,13 +179,13 @@
             this.dtDataNascimento.Size = new System.Drawing.Size(284, 31);
             this.dtDataNascimento.TabIndex = 17;
             // 
-            // maskedTextBox1
+            // txtTelefone
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(298, 155);
-            this.maskedTextBox1.Mask = "(99) 0000-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(197, 32);
-            this.maskedTextBox1.TabIndex = 18;
+            this.txtTelefone.Location = new System.Drawing.Point(298, 155);
+            this.txtTelefone.Mask = "(99) 0000-0000";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(197, 32);
+            this.txtTelefone.TabIndex = 18;
             // 
             // lblTelefone
             // 
@@ -263,6 +263,7 @@
             this.btnCadastrarClientes.Text = "Cadastrar";
             this.btnCadastrarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarClientes.UseVisualStyleBackColor = false;
+            this.btnCadastrarClientes.Click += new System.EventHandler(this.btnCadastrarClientes_Click);
             // 
             // txtNome
             // 
@@ -442,7 +443,7 @@
         private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.Label lblemail;
         private System.Windows.Forms.DateTimePicker dtDataNascimento;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
         private System.Windows.Forms.Label lblTelefone;
         private System.Windows.Forms.TextBox txtEndereço;
         private System.Windows.Forms.Label lblEndereco;
