@@ -1,7 +1,10 @@
 ﻿using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +21,21 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(Manutencao manutencao)
+        public bool Cadastrar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)
         {
-            _manutencaoService.Cadastrar(manutencao);
+            try
+            {
+                return _manutencaoService.Cadastrar(manutencao, placa, tipo, data);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+
         }
 
         public void Deletar(string placa, int tipo, DateTime data)
@@ -33,6 +48,29 @@ namespace CamadaControle.Controllers
             _manutencaoService.Alterar(manutencao, placa, tipo, data);
         }
 
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _manutencaoService.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _manutencaoService.PopularServicosExternos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
         #endregion
 
         #region [AplicacaoWeb]

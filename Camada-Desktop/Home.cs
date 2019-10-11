@@ -96,7 +96,7 @@ namespace CamadaDesktop
 
         private void btnManutencao_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Manutencao());
+            AbrirForms(new Manutencoes());
             label2.Text = "Manutenção";
         }
 

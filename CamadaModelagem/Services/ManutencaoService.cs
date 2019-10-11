@@ -1,8 +1,10 @@
 ﻿using CamadaModelagem.Data;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,33 +20,38 @@ namespace CamadaModelagem.Services
             _manutencaoDAL = manutencaoDAL;
         }
 
-        public void Cadastrar(Manutencao manutencao)
+        public bool Cadastrar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)
         {
-            //try
-            //{
-            //    Manutencao obj = _manutencaoDAL.BuscarManutencao(manutencao.Veiculo.Placa,manutencao.Tipo,manutencao.Data); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe uma manutenção com esses dados no sistema!");
-            //    }
-            //    _manutencaoDAL.Cadastrar(manutencao);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Manutencao obj = _manutencaoDAL.BuscarManutencao(placa, tipo, data);
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma Manutenção com esses dados no sistema!");
+                }
+
+                return _manutencaoDAL.Cadastrar(manutencao);
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public void Deletar(string placa, int tipo, DateTime data)
         {
-            try
-            {
-                _manutencaoDAL.Deletar(placa,tipo,data);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new IntegridadeException("Manutenção não pode ser deletado, pois está ligado a outros serviços.");
-            }
+            //try
+            //{
+            //    _manutencaoDAL.Deletar(placa,tipo,data);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new IntegridadeException("Manutenção não pode ser deletado, pois está ligado a outros serviços.");
+            //}
         }
 
         public void Alterar(Manutencao manutencao, string placa, int tipo, DateTime data)
@@ -62,6 +69,30 @@ namespace CamadaModelagem.Services
             //{
             //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             //}
+        }
+
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _manutencaoDAL.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _manutencaoDAL.PopularServicosExternos();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

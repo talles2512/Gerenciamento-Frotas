@@ -1,6 +1,6 @@
 ﻿namespace CamadaDesktop
 {
-    partial class Manutencao
+    partial class Manutencoes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manutencao));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manutencoes));
             this.tbControlManunt = new System.Windows.Forms.TabControl();
             this.tbPageCadastroManunt = new System.Windows.Forms.TabPage();
             this.gbDadosManunt = new System.Windows.Forms.GroupBox();
+            this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.cbServicoExterno = new System.Windows.Forms.ComboBox();
             this.lblServicoExterno = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.MaskedTextBox();
             this.lblValor = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
             this.dtDataManunt = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
             this.lblTipo = new System.Windows.Forms.Label();
             this.btnExcluirManunt = new System.Windows.Forms.Button();
             this.btnAlterarManunt = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.lblPlaca = new System.Windows.Forms.Label();
             this.tbPageConsultaManunt = new System.Windows.Forms.TabPage();
             this.gbConsultaManunt = new System.Windows.Forms.GroupBox();
+            this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
             this.lblDataManuntConsulta = new System.Windows.Forms.Label();
             this.dtDataManuntConsulta = new System.Windows.Forms.DateTimePicker();
             this.cbTipoManuntConsulta = new System.Windows.Forms.ComboBox();
@@ -55,8 +57,10 @@
             this.btnTodosManunt = new System.Windows.Forms.Button();
             this.btnConsultarManunt = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
-            this.cbPlaca = new System.Windows.Forms.ComboBox();
-            this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.cbSituacao = new System.Windows.Forms.ComboBox();
+            this.lblSituacao = new System.Windows.Forms.Label();
             this.tbControlManunt.SuspendLayout();
             this.tbPageCadastroManunt.SuspendLayout();
             this.gbDadosManunt.SuspendLayout();
@@ -89,6 +93,10 @@
             // 
             // gbDadosManunt
             // 
+            this.gbDadosManunt.Controls.Add(this.cbSituacao);
+            this.gbDadosManunt.Controls.Add(this.lblSituacao);
+            this.gbDadosManunt.Controls.Add(this.txtDescricao);
+            this.gbDadosManunt.Controls.Add(this.lblDesc);
             this.gbDadosManunt.Controls.Add(this.cbPlaca);
             this.gbDadosManunt.Controls.Add(this.cbServicoExterno);
             this.gbDadosManunt.Controls.Add(this.lblServicoExterno);
@@ -96,7 +104,7 @@
             this.gbDadosManunt.Controls.Add(this.lblValor);
             this.gbDadosManunt.Controls.Add(this.lblData);
             this.gbDadosManunt.Controls.Add(this.dtDataManunt);
-            this.gbDadosManunt.Controls.Add(this.comboBox1);
+            this.gbDadosManunt.Controls.Add(this.cbTipo);
             this.gbDadosManunt.Controls.Add(this.lblTipo);
             this.gbDadosManunt.Controls.Add(this.btnExcluirManunt);
             this.gbDadosManunt.Controls.Add(this.btnAlterarManunt);
@@ -105,10 +113,18 @@
             this.gbDadosManunt.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosManunt.Location = new System.Drawing.Point(6, 6);
             this.gbDadosManunt.Name = "gbDadosManunt";
-            this.gbDadosManunt.Size = new System.Drawing.Size(621, 395);
+            this.gbDadosManunt.Size = new System.Drawing.Size(621, 448);
             this.gbDadosManunt.TabIndex = 1;
             this.gbDadosManunt.TabStop = false;
             this.gbDadosManunt.Text = "Dados";
+            // 
+            // cbPlaca
+            // 
+            this.cbPlaca.FormattingEnabled = true;
+            this.cbPlaca.Location = new System.Drawing.Point(214, 119);
+            this.cbPlaca.Name = "cbPlaca";
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.TabIndex = 17;
             // 
             // cbServicoExterno
             // 
@@ -123,9 +139,9 @@
             this.lblServicoExterno.AutoSize = true;
             this.lblServicoExterno.Location = new System.Drawing.Point(6, 155);
             this.lblServicoExterno.Name = "lblServicoExterno";
-            this.lblServicoExterno.Size = new System.Drawing.Size(108, 25);
+            this.lblServicoExterno.Size = new System.Drawing.Size(54, 25);
             this.lblServicoExterno.TabIndex = 28;
-            this.lblServicoExterno.Text = "Serviço Externo:";
+            this.lblServicoExterno.Text = "Oficina:";
             // 
             // txtValor
             // 
@@ -164,13 +180,13 @@
             this.dtDataManunt.Size = new System.Drawing.Size(284, 31);
             this.dtDataManunt.TabIndex = 15;
             // 
-            // comboBox1
+            // cbTipo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(11, 56);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 33);
-            this.comboBox1.TabIndex = 14;
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(11, 56);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(197, 33);
+            this.cbTipo.TabIndex = 14;
             // 
             // lblTipo
             // 
@@ -191,7 +207,7 @@
             this.btnExcluirManunt.ForeColor = System.Drawing.Color.White;
             this.btnExcluirManunt.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirManunt.Image")));
             this.btnExcluirManunt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirManunt.Location = new System.Drawing.Point(244, 349);
+            this.btnExcluirManunt.Location = new System.Drawing.Point(244, 401);
             this.btnExcluirManunt.Name = "btnExcluirManunt";
             this.btnExcluirManunt.Size = new System.Drawing.Size(146, 40);
             this.btnExcluirManunt.TabIndex = 21;
@@ -209,7 +225,7 @@
             this.btnAlterarManunt.ForeColor = System.Drawing.Color.White;
             this.btnAlterarManunt.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarManunt.Image")));
             this.btnAlterarManunt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarManunt.Location = new System.Drawing.Point(244, 303);
+            this.btnAlterarManunt.Location = new System.Drawing.Point(244, 355);
             this.btnAlterarManunt.Name = "btnAlterarManunt";
             this.btnAlterarManunt.Size = new System.Drawing.Size(146, 40);
             this.btnAlterarManunt.TabIndex = 20;
@@ -227,13 +243,14 @@
             this.btnCadastrarManunt.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarManunt.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarManunt.Image")));
             this.btnCadastrarManunt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarManunt.Location = new System.Drawing.Point(119, 257);
+            this.btnCadastrarManunt.Location = new System.Drawing.Point(119, 309);
             this.btnCadastrarManunt.Name = "btnCadastrarManunt";
             this.btnCadastrarManunt.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarManunt.TabIndex = 19;
             this.btnCadastrarManunt.Text = "Cadastrar";
             this.btnCadastrarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarManunt.UseVisualStyleBackColor = false;
+            this.btnCadastrarManunt.Click += new System.EventHandler(this.BtnCadastrarManunt_Click);
             // 
             // lblPlaca
             // 
@@ -274,6 +291,14 @@
             this.gbConsultaManunt.TabIndex = 2;
             this.gbConsultaManunt.TabStop = false;
             this.gbConsultaManunt.Text = "Consulta";
+            // 
+            // cbPlacaConsulta
+            // 
+            this.cbPlacaConsulta.FormattingEnabled = true;
+            this.cbPlacaConsulta.Location = new System.Drawing.Point(328, 30);
+            this.cbPlacaConsulta.Name = "cbPlacaConsulta";
+            this.cbPlacaConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbPlacaConsulta.TabIndex = 15;
             // 
             // lblDataManuntConsulta
             // 
@@ -384,31 +409,50 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Veículo - Placa:";
             // 
-            // cbPlaca
+            // txtDescricao
             // 
-            this.cbPlaca.FormattingEnabled = true;
-            this.cbPlaca.Location = new System.Drawing.Point(214, 119);
-            this.cbPlaca.Name = "cbPlaca";
-            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
-            this.cbPlaca.TabIndex = 17;
+            this.txtDescricao.Location = new System.Drawing.Point(11, 249);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(302, 54);
+            this.txtDescricao.TabIndex = 32;
             // 
-            // cbPlacaConsulta
+            // lblDesc
             // 
-            this.cbPlacaConsulta.FormattingEnabled = true;
-            this.cbPlacaConsulta.Location = new System.Drawing.Point(328, 30);
-            this.cbPlacaConsulta.Name = "cbPlacaConsulta";
-            this.cbPlacaConsulta.Size = new System.Drawing.Size(197, 33);
-            this.cbPlacaConsulta.TabIndex = 15;
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Location = new System.Drawing.Point(6, 221);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(75, 25);
+            this.lblDesc.TabIndex = 33;
+            this.lblDesc.Text = "Descrição:";
             // 
-            // Manutencao
+            // cbSituacao
+            // 
+            this.cbSituacao.FormattingEnabled = true;
+            this.cbSituacao.Location = new System.Drawing.Point(327, 248);
+            this.cbSituacao.Name = "cbSituacao";
+            this.cbSituacao.Size = new System.Drawing.Size(197, 33);
+            this.cbSituacao.TabIndex = 35;
+            // 
+            // lblSituacao
+            // 
+            this.lblSituacao.AutoSize = true;
+            this.lblSituacao.Location = new System.Drawing.Point(322, 221);
+            this.lblSituacao.Name = "lblSituacao";
+            this.lblSituacao.Size = new System.Drawing.Size(66, 25);
+            this.lblSituacao.TabIndex = 34;
+            this.lblSituacao.Text = "Situação:";
+            // 
+            // Manutencoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 534);
             this.Controls.Add(this.tbControlManunt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Manutencao";
+            this.Name = "Manutencoes";
             this.Text = "Manutencao";
+            this.Load += new System.EventHandler(this.Manutencoes_Load);
             this.tbControlManunt.ResumeLayout(false);
             this.tbPageCadastroManunt.ResumeLayout(false);
             this.gbDadosManunt.ResumeLayout(false);
@@ -437,7 +481,7 @@
         private System.Windows.Forms.Button btnTodosManunt;
         private System.Windows.Forms.Button btnConsultarManunt;
         private System.Windows.Forms.Label lblPlacaConsulta;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbTipo;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.ComboBox cbServicoExterno;
         private System.Windows.Forms.Label lblServicoExterno;
@@ -451,5 +495,9 @@
         private System.Windows.Forms.Label lblTipoManuntConsulta;
         private System.Windows.Forms.ComboBox cbPlaca;
         private System.Windows.Forms.ComboBox cbPlacaConsulta;
+        private System.Windows.Forms.TextBox txtDescricao;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.ComboBox cbSituacao;
+        private System.Windows.Forms.Label lblSituacao;
     }
 }

@@ -88,11 +88,11 @@
     <Compile Include="LoginSistema.Designer.cs">
       <DependentUpon>LoginSistema.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manutencao.cs">
+    <Compile Include="Manutencoes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Manutencao.Designer.cs">
-      <DependentUpon>Manutencao.cs</DependentUpon>
+    <Compile Include="Manutencoes.Designer.cs">
+      <DependentUpon>Manutencoes.cs</DependentUpon>
     </Compile>
     <Compile Include="Motoristas.cs">
       <SubType>Form</SubType>
@@ -159,8 +159,8 @@
     <EmbeddedResource Include="LoginSistema.resx">
       <DependentUpon>LoginSistema.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Manutencao.resx">
-      <DependentUpon>Manutencao.cs</DependentUpon>
+    <EmbeddedResource Include="Manutencoes.resx">
+      <DependentUpon>Manutencoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motoristas.resx">
       <DependentUpon>Motoristas.cs</DependentUpon>
