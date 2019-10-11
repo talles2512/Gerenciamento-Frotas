@@ -18,21 +18,21 @@ namespace CamadaModelagem.Services
             _funcionarioDAL = funcionarioDAL;
         }
 
-        public void Cadastrar(Funcionario funcionario, string login)
+        public bool Cadastrar(Funcionario funcionario, string login)
         {
-            //try
-            //{
-            //    Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um funcionario com esse Login no sistema!");
-            //    }
-            //    _funcionarioDAL.Cadastrar(funcionario);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um funcionario com esse Login no sistema!");
+                }
+                return _funcionarioDAL.Cadastrar(funcionario);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(string login)

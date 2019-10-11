@@ -33,7 +33,7 @@
             this.tbPageCadastroFuncionario = new System.Windows.Forms.TabPage();
             this.gbDadosFuncionario = new System.Windows.Forms.GroupBox();
             this.lblPerfilAcesso = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbPerfilAcesso = new System.Windows.Forms.ComboBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
@@ -84,7 +84,7 @@
             // gbDadosFuncionario
             // 
             this.gbDadosFuncionario.Controls.Add(this.lblPerfilAcesso);
-            this.gbDadosFuncionario.Controls.Add(this.comboBox1);
+            this.gbDadosFuncionario.Controls.Add(this.cbPerfilAcesso);
             this.gbDadosFuncionario.Controls.Add(this.txtSenha);
             this.gbDadosFuncionario.Controls.Add(this.lblSenha);
             this.gbDadosFuncionario.Controls.Add(this.txtLogin);
@@ -111,13 +111,13 @@
             this.lblPerfilAcesso.TabIndex = 48;
             this.lblPerfilAcesso.Text = "Perfil Acesso:";
             // 
-            // comboBox1
+            // cbPerfilAcesso
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(11, 182);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 33);
-            this.comboBox1.TabIndex = 17;
+            this.cbPerfilAcesso.FormattingEnabled = true;
+            this.cbPerfilAcesso.Location = new System.Drawing.Point(11, 182);
+            this.cbPerfilAcesso.Name = "cbPerfilAcesso";
+            this.cbPerfilAcesso.Size = new System.Drawing.Size(197, 33);
+            this.cbPerfilAcesso.TabIndex = 17;
             // 
             // txtSenha
             // 
@@ -220,6 +220,7 @@
             this.btnCadastrarFuncionario.Text = "Cadastrar";
             this.btnCadastrarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarFuncionario.UseVisualStyleBackColor = false;
+            this.btnCadastrarFuncionario.Click += new System.EventHandler(this.btnCadastrarFuncionario_Click);
             // 
             // tbPageConsultaFuncionario
             // 
@@ -336,6 +337,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Funcionarios";
             this.Text = "Funcionarios";
+            this.Load += new System.EventHandler(this.Funcionarios_Load);
             this.tbControlFuncionario.ResumeLayout(false);
             this.tbPageCadastroFuncionario.ResumeLayout(false);
             this.gbDadosFuncionario.ResumeLayout(false);
@@ -368,7 +370,7 @@
         private System.Windows.Forms.Button btnConsultarFuncionario;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblPerfilAcesso;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbPerfilAcesso;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.TextBox txtLogin;

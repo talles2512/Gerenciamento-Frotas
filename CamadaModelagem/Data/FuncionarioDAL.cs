@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Data
 {
@@ -17,11 +20,42 @@ namespace CamadaModelagem.Data
             _banco = banco;
         }
 
-        public void Cadastrar(Funcionario funcionario)
+        public bool Cadastrar(Funcionario funcionario)
         {
+            int perfilacesso = funcionario.PerfilAcesso.GetHashCode();
+
             string query = "INSERT INTO [dbo].[TB_FUNCIONARIO] ([FUNC_NOME],[FUNC_LOGIN],[FUNC_SENHA],[FUNC_PERFIL_ACESSO])" +
-                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + funcionario.PerfilAcesso + ")";
-            _banco.ExecutarInstrucao(query);
+                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + perfilacesso + ")";
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Funcionario BuscarLogin(string login)
+        {
+            string query = "SELECT * FROM [dbo].[TB_FUNCIONARIO] WHERE [FUNC_LOGIN] = '" + login + "'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Funcionario funcionario = null;
+                DataRow[] dataRows = dt.Select("FUNC_LOGIN = '" + login + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    PerfilAcesso perfilacesso = (PerfilAcesso)Enum.Parse(typeof(PerfilAcesso), dr["FUNC_PERFIL_ACESSO"].ToString());
+
+                    funcionario = new Funcionario(dr["FUNC_NOME"].ToString(), dr["FUNC_LOGIN"].ToString(), dr["FUNC_SENHA"].ToString(), perfilacesso);
+                }
+                return funcionario;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
         }
 
         public void Deletar(string login) //Podemos usar na clausula WHERE o NOME ou LOGIN

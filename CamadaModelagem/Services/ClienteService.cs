@@ -48,11 +48,25 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Deletar(int cpf)
+        public List<Cliente> BuscarTodos()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            try
+            {
+                clientes.AddRange(_clienteDAL.BuscarTodos());
+                return clientes;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(string cpf)
         {
             try
             {
-                _clienteDAL.Deletar(cpf);
+                return _clienteDAL.Deletar(cpf);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -60,21 +74,26 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(Cliente cliente, int cpf)
+        public bool Alterar(Cliente cliente, string cpf)
         {
-            //try
-            //{
-            //    Cliente obj = _clienteDAL.BuscarCPF(cpf); //Falta criar os métodos de busca
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Cliente não encontrado.");
-            //    }
-            //    _clienteDAL.Alterar(cliente, cpf);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Cliente obj = _clienteDAL.BuscarCPF(cpf);
+                if (obj != null)
+                {
+                    return _clienteDAL.Alterar(cliente, cpf);
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Veículo não encontrado.");
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+
+
         }
     }
 }

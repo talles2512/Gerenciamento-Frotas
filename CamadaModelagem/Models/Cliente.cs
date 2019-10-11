@@ -15,7 +15,7 @@ namespace CamadaModelagem.Models
         public long Telefone { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
-        public DateTime DataInicioContrato { get; set; }
+        public DateTime? DataInicioContrato { get; set; }
 
         
         public Cliente()
@@ -23,7 +23,7 @@ namespace CamadaModelagem.Models
 
         }
 
-        public Cliente(string cPF,string nome, string rg, string endereco, long telefone, string email, DateTime dataNascimento, DateTime dataInicioContrato)
+        public Cliente(string cPF,string nome, string rg, string endereco, long telefone, string email, DateTime dataNascimento, DateTime? dataInicioContrato)
         {
             CPF = cPF;
             Nome = nome;

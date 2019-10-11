@@ -58,6 +58,7 @@
             this.dgClientesConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosClientes = new System.Windows.Forms.Button();
             this.btnConsultarClientes = new System.Windows.Forms.Button();
+            this.lblrecebedata = new System.Windows.Forms.Label();
             this.tbControlClientes.SuspendLayout();
             this.tbPageCadastroClientes.SuspendLayout();
             this.gbDadosClientes.SuspendLayout();
@@ -151,6 +152,7 @@
             this.btnExcluirClientes.Text = "Excluir";
             this.btnExcluirClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirClientes.UseVisualStyleBackColor = false;
+            this.btnExcluirClientes.Click += new System.EventHandler(this.btnExcluirClientes_Click);
             // 
             // txtemail
             // 
@@ -245,6 +247,7 @@
             this.btnAlterarClientes.Text = "Alterar";
             this.btnAlterarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarClientes.UseVisualStyleBackColor = false;
+            this.btnAlterarClientes.Click += new System.EventHandler(this.btnAlterarClientes_Click);
             // 
             // btnCadastrarClientes
             // 
@@ -311,6 +314,7 @@
             // 
             // gbConsultaClientes
             // 
+            this.gbConsultaClientes.Controls.Add(this.lblrecebedata);
             this.gbConsultaClientes.Controls.Add(this.txtCPFClientesConsulta);
             this.gbConsultaClientes.Controls.Add(this.lblCPFConsultaClientes);
             this.gbConsultaClientes.Controls.Add(this.btnTrasferirClientes);
@@ -359,6 +363,7 @@
             this.btnTrasferirClientes.TabIndex = 17;
             this.btnTrasferirClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirClientes.UseVisualStyleBackColor = false;
+            this.btnTrasferirClientes.Click += new System.EventHandler(this.btnTrasferirClientes_Click);
             // 
             // dgClientesConsulta
             // 
@@ -369,6 +374,7 @@
             this.dgClientesConsulta.Name = "dgClientesConsulta";
             this.dgClientesConsulta.Size = new System.Drawing.Size(608, 371);
             this.dgClientesConsulta.TabIndex = 18;
+            this.dgClientesConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientesConsulta_CellContentClick);
             // 
             // btnTodosClientes
             // 
@@ -386,6 +392,7 @@
             this.btnTodosClientes.Text = "Consultar Todos";
             this.btnTodosClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosClientes.UseVisualStyleBackColor = false;
+            this.btnTodosClientes.Click += new System.EventHandler(this.btnTodosClientes_Click);
             // 
             // btnConsultarClientes
             // 
@@ -404,6 +411,17 @@
             this.btnConsultarClientes.Text = "    Consultar";
             this.btnConsultarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarClientes.UseVisualStyleBackColor = false;
+            this.btnConsultarClientes.Click += new System.EventHandler(this.btnConsultarClientes_Click);
+            // 
+            // lblrecebedata
+            // 
+            this.lblrecebedata.AutoSize = true;
+            this.lblrecebedata.Location = new System.Drawing.Point(543, -4);
+            this.lblrecebedata.Name = "lblrecebedata";
+            this.lblrecebedata.Size = new System.Drawing.Size(78, 25);
+            this.lblrecebedata.TabIndex = 33;
+            this.lblrecebedata.Text = "recebedata";
+            this.lblrecebedata.Visible = false;
             // 
             // Clientes
             // 
@@ -458,5 +476,6 @@
         private System.Windows.Forms.Button btnExcluirClientes;
         private System.Windows.Forms.MaskedTextBox txtCPFClientesConsulta;
         private System.Windows.Forms.Label lblCPFConsultaClientes;
+        private System.Windows.Forms.Label lblrecebedata;
     }
 }

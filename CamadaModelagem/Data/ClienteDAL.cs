@@ -47,7 +47,7 @@ namespace CamadaModelagem.Data
                 foreach (DataRow dr in dataRows)
                 {
                     DateTime dtnascimento = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
-                    DateTime dtinico = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
+                    DateTime dtinico = Convert.ToDateTime(dr["CLT_DTINICIO_CONTRATO"].ToString());
                     long telefone = long.Parse(dr["CLT_TELEFONE"].ToString());
 
                     cliente = new Cliente(dr["CLT_CPF"].ToString(), dr["CLT_NOME"].ToString(), dr["CLT_RG"].ToString(), dr["CLT_ENDERECO"].ToString(), telefone, dr["CLT_EMAIL"].ToString(), dtnascimento, dtinico);
@@ -60,17 +60,61 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
-
-        public void Deletar(int cpf)
+        public List<Cliente> BuscarTodos()
         {
-            string Query = "DELETE [TB_CLIENTES] WHERE [CLT_CPF] = " + cpf;
-            _banco.ExecutarInstrucao(Query);
+            List<Cliente> clientes = new List<Cliente>();
+            string query = "SELECT * FROM [dbo].[TB_CLIENTES]";
+
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Cliente cliente = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    DateTime dtnascimento = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
+                    DateTime dtiniciocontrato = Convert.ToDateTime(dr["CLT_DTINICIO_CONTRATO"].ToString());
+                    long telefone = long.Parse(dr["CLT_TELEFONE"].ToString());
+
+                    cliente = new Cliente(dr["CLT_CPF"].ToString(), dr["CLT_NOME"].ToString(), dr["CLT_RG"].ToString(), dr["CLT_ENDERECO"].ToString(), telefone, dr["CLT_EMAIL"].ToString(), dtnascimento, dtiniciocontrato);
+
+                    clientes.Add(cliente);
+                }
+
+                return clientes;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Alterar(Cliente cliente, int cpf)
+        public bool Deletar(string cpf)
         {
-            string Query = "UPDATE [TB_CLIENTES] SET [CLT_CPF] = " + cliente.CPF + "',[CLT_NOME] = '" + cliente.Nome + "', [CLT_RG] = '" + cliente.RG + "',[CLT_ENDERECO] = '" + cliente.Endereco + "',[CLT_TELEFONE] = " + cliente.Telefone + ",[CLT_EMAIL] = '" + cliente.Endereco + "',[CLT_DTNASCIMENTO] = '" + cliente.DataNascimento + "', [CLT_DTINICIO_CONTRATO] = '" + cliente.DataInicioContrato + "' WHERE [CLT_CPF] = '" + cpf + "' ";
-            _banco.ExecutarInstrucao(Query);
+            string query = "DELETE [TB_CLIENTES] WHERE [CLT_CPF] = '" + cpf +"'";
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(Cliente cliente, string cpf)
+        {
+            string Query = "UPDATE [TB_CLIENTES] SET [CLT_CPF] = '" + cliente.CPF + "',[CLT_NOME] = '" + cliente.Nome + "', [CLT_RG] = '" + cliente.RG + "',[CLT_ENDERECO] = '" + cliente.Endereco + "',[CLT_TELEFONE] = " + cliente.Telefone + ",[CLT_EMAIL] = '" + cliente.Endereco + "',[CLT_DTNASCIMENTO] = '" + cliente.DataNascimento + "', [CLT_DTINICIO_CONTRATO] = '" + cliente.DataInicioContrato + "' WHERE [CLT_CPF] = '" + cpf + "' ";
+            
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+
         }
     }
 }
