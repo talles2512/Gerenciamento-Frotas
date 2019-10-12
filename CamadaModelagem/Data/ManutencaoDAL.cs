@@ -42,11 +42,24 @@ namespace CamadaModelagem.Data
         //    _banco.ExecutarInstrucao(Query);
         //}
 
-        //public void Alterar(Manutencao manuntencao, string placa, int tipo, DateTime data) // Modificado
-        //{
-        //    string Query = "UPDATE [dbo].[TB_MANUTENCAO] SET [MTC_TIPO] = " + manuntencao.Tipo + ",[MTC_SERVEXT_CNPJ]= " + manuntencao.ServicoExterno.CNPJ + ",[MTC_DESCRICAO]= '" + manuntencao.Descricao + "',[MTC_DATA]='" + manuntencao.Data + "',[MTC_VALOR]= " + manuntencao.Valor + ",[MTC_SITUACAO]= " + manuntencao.Situacao + ",[MTC_VCL_PLACA]= '" + manuntencao.Veiculo.Placa + "' WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipo + "AND [MTC_DATA] = '" + data + "'";
-        //    _banco.ExecutarInstrucao(Query);
-        //}
+        public bool Alterar(Manutencao manuntencao, string placa, ManutencaoTipo tipo, DateTime data) // Modificado
+        {
+            int tipoManutencao = manuntencao.Tipo.GetHashCode();
+            int tipoManutencaoAntiga = tipo.GetHashCode();
+            int situacaoManutencao = manuntencao.Situacao.GetHashCode();
+            string Query = "UPDATE [dbo].[TB_MANUTENCAO] SET [MTC_TIPO] = " + tipoManutencao + ",[MTC_SERVEXT_CNPJ]= " + manuntencao.CNPJ + "," +
+                "[MTC_DESCRICAO]= '" + manuntencao.Descricao + "',[MTC_DATA]='" + manuntencao.Data.ToShortDateString() + 
+                "',[MTC_VALOR]= " + manuntencao.Valor + ",[MTC_SITUACAO]= " + situacaoManutencao + ",[MTC_VCL_PLACA]= '" + manuntencao.Placa +
+                "' WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipoManutencaoAntiga + "  AND [MTC_DATA] = '" + data.ToShortDateString() + "'";
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
 
         public Manutencao BuscarManutencao(string placa, ManutencaoTipo tipo, DateTime data)
         {

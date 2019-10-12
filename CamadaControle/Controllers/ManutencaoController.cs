@@ -67,9 +67,20 @@ namespace CamadaControle.Controllers
             _manutencaoService.Deletar(placa, tipo, data);
         }
 
-        public void Alterar(Manutencao manutencao, string placa, int tipo, DateTime data)
+        public bool Alterar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)
         {
-            _manutencaoService.Alterar(manutencao, placa, tipo, data);
+            try
+            {
+                return _manutencaoService.Alterar(manutencao, placa, tipo, data);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public DataTable PopularPlacas()

@@ -76,21 +76,28 @@ namespace CamadaModelagem.Services
             //}
         }
 
-        public void Alterar(Manutencao manutencao, string placa, int tipo, DateTime data)
+        public bool Alterar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)
         {
-            //try
-            //{
-            //    Manutencao obj = _manutencaoDAL.BuscarManutencao(placa,tipo,data); //Falta criar os métodos de busca
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Manutencao não encontrada.");
-            //    }
-            //    _manutencaoDAL.Alterar(manutencao,placa,tipo,data);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Manutencao obj = _manutencaoDAL.BuscarManutencao(placa, tipo, data);
+                if (obj != null)
+                {
+                    return _manutencaoDAL.Alterar(manutencao, placa, tipo, data);
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Manutenção não encontrada.");
+                }
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public DataTable PopularPlacas()

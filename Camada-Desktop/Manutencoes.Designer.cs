@@ -118,6 +118,37 @@
             this.gbDadosManunt.TabStop = false;
             this.gbDadosManunt.Text = "Dados";
             // 
+            // cbSituacao
+            // 
+            this.cbSituacao.Location = new System.Drawing.Point(387, 245);
+            this.cbSituacao.Name = "cbSituacao";
+            this.cbSituacao.Size = new System.Drawing.Size(121, 33);
+            this.cbSituacao.TabIndex = 0;
+            // 
+            // lblSituacao
+            // 
+            this.lblSituacao.Location = new System.Drawing.Point(382, 219);
+            this.lblSituacao.Name = "lblSituacao";
+            this.lblSituacao.Size = new System.Drawing.Size(100, 23);
+            this.lblSituacao.TabIndex = 1;
+            this.lblSituacao.Text = "Situação:";
+            // 
+            // txtDescricao
+            // 
+            this.txtDescricao.Location = new System.Drawing.Point(11, 245);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(370, 58);
+            this.txtDescricao.TabIndex = 2;
+            // 
+            // lblDesc
+            // 
+            this.lblDesc.Location = new System.Drawing.Point(6, 219);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(100, 23);
+            this.lblDesc.TabIndex = 3;
+            this.lblDesc.Text = "Descrição:";
+            // 
             // cbPlaca
             // 
             this.cbPlaca.FormattingEnabled = true;
@@ -232,6 +263,7 @@
             this.btnAlterarManunt.Text = "Alterar";
             this.btnAlterarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarManunt.UseVisualStyleBackColor = false;
+            this.btnAlterarManunt.Click += new System.EventHandler(this.BtnAlterarManunt_Click);
             // 
             // btnCadastrarManunt
             // 
@@ -354,6 +386,7 @@
             this.btnTrasferirManunt.TabIndex = 19;
             this.btnTrasferirManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirManunt.UseVisualStyleBackColor = false;
+            this.btnTrasferirManunt.Click += new System.EventHandler(this.BtnTrasferirManunt_Click);
             // 
             // dgVeiculoManunt
             // 

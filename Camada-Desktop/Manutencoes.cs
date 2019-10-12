@@ -31,7 +31,7 @@ namespace CamadaDesktop
             Manutencao = null;
             PlacaAntiga = "";
             TipoAntigo = "";
-            dataAntiga = new DateTime();
+            dataAntiga = new DateTime(2000,01,01);
 
         }
 
@@ -77,11 +77,11 @@ namespace CamadaDesktop
 
         private void BtnCadastrarManunt_Click(object sender, EventArgs e)
         {
-            if (cbPlaca.DataSource == null)
+            if (cbPlaca.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            if (cbServicoExterno.DataSource == null)
+            if (cbServicoExterno.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -205,6 +205,99 @@ namespace CamadaDesktop
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void BtnTrasferirManunt_Click(object sender, EventArgs e)
+        {
+            if (Manutencao == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                PlacaAntiga = Manutencao.Placa;
+                TipoAntigo = Manutencao.Tipo.ToString();
+                dataAntiga = Manutencao.Data;
+
+                cbTipo.SelectedItem = Manutencao.Tipo;
+                dtDataManunt.Value = Manutencao.Data;
+                txtValor.Text = Manutencao.Valor.ToString();
+                cbPlaca.SelectedValue = Manutencao.Placa;
+                cbServicoExterno.SelectedValue = Manutencao.CNPJ;
+                txtDescricao.Text = Manutencao.Descricao;
+                cbSituacao.SelectedItem = Manutencao.Situacao;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlManunt.SelectTab("tbPageCadastroManunt");
+                if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
+                {
+                    dtDataManuntConsulta.Value = DateTime.Now;
+                    Manutencao = null;
+                }
+            }
+        }
+
+        private void BtnAlterarManunt_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (cbServicoExterno.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (txtValor.Text == "" || txtDescricao.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipo.SelectedItem.ToString());
+                SituacaoManutencao situacaoManutencao = (SituacaoManutencao)Enum.Parse(typeof(SituacaoManutencao), cbSituacao.SelectedItem.ToString());
+                double valor = double.Parse(txtValor.Text);
+                string placa = cbPlaca.SelectedValue.ToString();
+                long cNPJ = Convert.ToInt64(cbServicoExterno.SelectedValue);
+
+                Manutencao manutencao = new Manutencao(manutencaoTipo, txtDescricao.Text, dtDataManunt.Value, valor, situacaoManutencao, cNPJ, placa);
+
+                try
+                {
+                    if(PlacaAntiga == "")
+                    {
+                        PlacaAntiga = manutencao.Placa;
+                    }
+                    if(dataAntiga == new DateTime(2000,01,01))
+                    {
+                        dataAntiga = manutencao.Data;
+                    }
+                    if(TipoAntigo == "")
+                    {
+                        manutencaoTipo = manutencao.Tipo;
+                        TipoAntigo = manutencaoTipo.ToString();
+                    }
+                    else
+                    {
+                        manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), TipoAntigo);
+                    }
+
+                    if (_manutencaoController.Alterar(manutencao, PlacaAntiga, manutencaoTipo, dataAntiga))
+                    {
+                        MessageBox.Show("Alteração realizada com Sucesso!");
+                        PlacaAntiga = "";
+                        TipoAntigo = "";
+                        dataAntiga = new DateTime(2000, 01, 01);
+                    }
+                }
+                catch (RegistroExisteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
