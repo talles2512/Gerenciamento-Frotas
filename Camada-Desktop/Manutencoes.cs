@@ -20,7 +20,7 @@ namespace CamadaDesktop
     public partial class Manutencoes : Form
     {
         private readonly ManutencaoController _manutencaoController;
-        private Manutencoes Manutencao;
+        private Manutencao Manutencao;
         string PlacaAntiga;
         string TipoAntigo;
         DateTime dataAntiga;
@@ -46,12 +46,18 @@ namespace CamadaDesktop
         private void Manutencoes_Load(object sender, EventArgs e)
         {
             cbTipo.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
+            cbTipoManuntConsulta.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
+
             cbSituacao.DataSource = Enum.GetValues(typeof(SituacaoManutencao));
             try
             {
                 cbPlaca.DataSource = _manutencaoController.PopularPlacas();
                 cbPlaca.DisplayMember = "MODELO";
                 cbPlaca.ValueMember = "VCL_PLACA";
+
+                cbPlacaConsulta.DataSource = _manutencaoController.PopularPlacas();
+                cbPlacaConsulta.DisplayMember = "MODELO";
+                cbPlacaConsulta.ValueMember = "VCL_PLACA";
             }
             catch (ConcorrenciaBancoException)
             {
@@ -91,9 +97,6 @@ namespace CamadaDesktop
                 string placa = cbPlaca.SelectedValue.ToString();
                 long cNPJ = Convert.ToInt64(cbServicoExterno.SelectedValue);
 
-
-                MessageBox.Show(cNPJ.ToString() + " " + placa);
-
                 Manutencao manutencao = new Manutencao(manutencaoTipo, txtDescricao.Text, dtDataManunt.Value, valor, situacaoManutencao, cNPJ, placa);
 
                 try
@@ -110,6 +113,98 @@ namespace CamadaDesktop
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void BtnConsultarManunt_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (cbServicoExterno.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                try
+                {
+                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
+                    string placa = cbPlaca.SelectedValue.ToString();
+
+                    Manutencao manutencao = _manutencaoController.BuscarManutencao(placa, manutencaoTipo, dtDataManuntConsulta.Value);
+                    if (manutencao == null)
+                    {
+                        dgVeiculoManunt.DataSource = null;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Tipo", typeof(string));
+                        dt.Columns.Add("CNPJ", typeof(long));
+                        dt.Columns.Add("Placa", typeof(string));
+                        dt.Columns.Add("Descrição", typeof(string));
+                        dt.Columns.Add("Valor Manutenção", typeof(double));
+                        dt.Columns.Add("Data", typeof(DateTime));
+                        dt.Columns.Add("Situação", typeof(string));
+
+
+                        dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
+                            , manutencao.Data, manutencao.Situacao.ToString());
+                        dgVeiculoManunt.DataSource = dt;
+
+                        Manutencao = manutencao;
+                        manutencao = null;
+                    }
+
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void BtnTodosManunt_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (cbServicoExterno.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                try
+                {
+                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
+                    string placa = cbPlaca.SelectedValue.ToString();
+
+                    List<Manutencao> manutencoes = _manutencaoController.BuscarTodos();
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Tipo", typeof(string));
+                    dt.Columns.Add("CNPJ", typeof(long));
+                    dt.Columns.Add("Placa", typeof(string));
+                    dt.Columns.Add("Descrição", typeof(string));
+                    dt.Columns.Add("Valor Manutenção", typeof(double));
+                    dt.Columns.Add("Data", typeof(DateTime));
+                    dt.Columns.Add("Situação", typeof(string));
+
+                    foreach(Manutencao manutencao in manutencoes)
+                    {
+                        dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
+                            , manutencao.Data, manutencao.Situacao.ToString());
+                    }
+                    dgVeiculoManunt.DataSource = dt;
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }

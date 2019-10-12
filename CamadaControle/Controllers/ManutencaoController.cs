@@ -38,6 +38,30 @@ namespace CamadaControle.Controllers
 
         }
 
+        public Manutencao BuscarManutencao(string placa, ManutencaoTipo tipo, DateTime data)
+        {
+            try
+            {
+                return _manutencaoService.BuscarManutencao(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Manutencao> BuscarTodos()
+        {
+            try
+            {
+                return _manutencaoService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
         public void Deletar(string placa, int tipo, DateTime data)
         {
             _manutencaoService.Deletar(placa, tipo, data);

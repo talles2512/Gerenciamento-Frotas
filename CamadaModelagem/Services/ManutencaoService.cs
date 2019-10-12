@@ -32,9 +32,31 @@ namespace CamadaModelagem.Services
 
                 return _manutencaoDAL.Cadastrar(manutencao);
             }
-            catch (TransacaoException e)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new TransacaoException(e.Message);
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Manutencao BuscarManutencao(string placa, ManutencaoTipo tipo, DateTime data)
+        {
+            try
+            {
+                return _manutencaoDAL.BuscarManutencao(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Manutencao> BuscarTodos()
+        {
+            List<Manutencao> manutencoes = new List<Manutencao>();
+            try
+            {
+                manutencoes.AddRange(_manutencaoDAL.BuscarTodos());
+                return manutencoes;
             }
             catch (ConcorrenciaBancoException e)
             {
