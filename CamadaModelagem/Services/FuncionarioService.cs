@@ -35,11 +35,38 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Deletar(string login)
+        public Funcionario BuscarCPF(string login)
         {
             try
             {
-                _funcionarioDAL.Deletar(login);
+                Funcionario funcionario = _funcionarioDAL.BuscarLogin(login);
+                return funcionario;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Funcionario> BuscarTodos()
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            try
+            {
+                funcionarios.AddRange(_funcionarioDAL.BuscarTodos());
+                return funcionarios;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Deletar(string login)
+        {
+            try
+            {
+                return _funcionarioDAL.Deletar(login);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -47,7 +74,7 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(Funcionario funcionario, string login)
+        public bool Alterar(Funcionario funcionario, string login)
         {
             //try
             //{

@@ -58,16 +58,55 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public void Deletar(string login) //Podemos usar na clausula WHERE o NOME ou LOGIN
+        public List<Funcionario> BuscarTodos()
         {
-            string Query = "DELETE [dbo].[TB_FUNCIONARIO] WHERE [FUNC_LOGIN] = '" + login + "' ";
-            _banco.ExecutarInstrucao(Query);
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            string query = "SELECT * FROM [TB_FUNCIONARIO]";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Funcionario funcionario = null;
+                DataRow[] dataRows = dt.Select();
+
+                foreach (DataRow dr in dataRows)
+                {
+                    PerfilAcesso perfilAcesso = (PerfilAcesso)Enum.Parse(typeof(PerfilAcesso), dr["FUNC_PERFIL_ACESSO"].ToString());
+
+                    funcionario = new Funcionario(dr["FUNC_NOME"].ToString(), dr["FUNC_LOGIN"].ToString(), dr["FUNC_SENHA"].ToString(), perfilAcesso);
+                    funcionarios.Add(funcionario);
+                }
+                return funcionarios;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
         }
 
-        public void Alterar(Funcionario funcionario, string login)
+        public bool Deletar(string login) //Podemos usar na clausula WHERE o NOME ou LOGIN
+        {
+            string Query = "DELETE [dbo].[TB_FUNCIONARIO] WHERE [FUNC_LOGIN] = '" + login + "' ";
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(Funcionario funcionario, string login)
         {
             string Query = "UPDATE [dbo].[TB_FUNCIONARIO] SET [FUNC_NOME]= '" + funcionario.Nome + "',[FUNC_LOGIN]= '" + funcionario.Login + "',[FUNC_SENHA] '" + funcionario.Senha + "',[FUNC_PERFIL_ACESSO]= " + funcionario.PerfilAcesso + " WHERE [FUNC_LOGIN]= '" + login;
-            _banco.ExecutarInstrucao(Query);
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

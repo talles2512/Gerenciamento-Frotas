@@ -184,6 +184,7 @@
             this.btnExcluirFuncionario.Text = "Excluir";
             this.btnExcluirFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirFuncionario.UseVisualStyleBackColor = false;
+            this.btnExcluirFuncionario.Click += new System.EventHandler(this.btnExcluirFuncionario_Click);
             // 
             // btnAlterarFuncionario
             // 
@@ -202,6 +203,7 @@
             this.btnAlterarFuncionario.Text = "Alterar";
             this.btnAlterarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarFuncionario.UseVisualStyleBackColor = false;
+            this.btnAlterarFuncionario.Click += new System.EventHandler(this.btnAlterarFuncionario_Click);
             // 
             // btnCadastrarFuncionario
             // 
@@ -282,6 +284,7 @@
             this.btnTrasferirFuncionario.TabIndex = 17;
             this.btnTrasferirFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirFuncionario.UseVisualStyleBackColor = false;
+            this.btnTrasferirFuncionario.Click += new System.EventHandler(this.btnTrasferirFuncionario_Click);
             // 
             // dgFuncionarioConsulta
             // 
@@ -309,6 +312,7 @@
             this.btnTodosFuncionario.Text = "Consultar Todos";
             this.btnTodosFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosFuncionario.UseVisualStyleBackColor = false;
+            this.btnTodosFuncionario.Click += new System.EventHandler(this.btnTodosFuncionario_Click);
             // 
             // btnConsultarFuncionario
             // 
@@ -327,6 +331,7 @@
             this.btnConsultarFuncionario.Text = "    Consultar";
             this.btnConsultarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;
+            this.btnConsultarFuncionario.Click += new System.EventHandler(this.btnConsultarFuncionario_Click);
             // 
             // Funcionarios
             // 

@@ -35,14 +35,53 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public void Deletar(string login)
+        public Funcionario BuscarCPF(string login)
         {
-            _funcionarioService.Deletar(login);
+            try
+            {
+                return _funcionarioService.BuscarCPF(login);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(Funcionario funcionario, string login)
+        public List<Funcionario> BuscarTodos()
         {
-            _funcionarioService.Alterar(funcionario, login);
+            try
+            {
+                return _funcionarioService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(string login)
+        {           
+            try
+            {
+                return _funcionarioService.Deletar(login);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Alterar(Funcionario funcionario, string login)
+        {
+            try
+            {
+                return _funcionarioService.Alterar(funcionario, login);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+
         }
 
         #endregion
