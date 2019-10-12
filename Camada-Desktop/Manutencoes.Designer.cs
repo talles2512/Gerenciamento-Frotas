@@ -118,40 +118,6 @@
             this.gbDadosManunt.TabStop = false;
             this.gbDadosManunt.Text = "Dados";
             // 
-            // cbSituacao
-            // 
-            this.cbSituacao.FormattingEnabled = true;
-            this.cbSituacao.Location = new System.Drawing.Point(319, 247);
-            this.cbSituacao.Name = "cbSituacao";
-            this.cbSituacao.Size = new System.Drawing.Size(197, 33);
-            this.cbSituacao.TabIndex = 35;
-            // 
-            // lblSituacao
-            // 
-            this.lblSituacao.AutoSize = true;
-            this.lblSituacao.Location = new System.Drawing.Point(314, 219);
-            this.lblSituacao.Name = "lblSituacao";
-            this.lblSituacao.Size = new System.Drawing.Size(66, 25);
-            this.lblSituacao.TabIndex = 34;
-            this.lblSituacao.Text = "Situação:";
-            // 
-            // txtDescricao
-            // 
-            this.txtDescricao.Location = new System.Drawing.Point(11, 247);
-            this.txtDescricao.Multiline = true;
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(302, 54);
-            this.txtDescricao.TabIndex = 32;
-            // 
-            // lblDesc
-            // 
-            this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(6, 219);
-            this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(75, 25);
-            this.lblDesc.TabIndex = 33;
-            this.lblDesc.Text = "Descrição:";
-            // 
             // cbPlaca
             // 
             this.cbPlaca.FormattingEnabled = true;
@@ -415,6 +381,7 @@
             this.btnTodosManunt.Text = "Consultar Todos";
             this.btnTodosManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosManunt.UseVisualStyleBackColor = false;
+            this.btnTodosManunt.Click += new System.EventHandler(this.BtnTodosManunt_Click);
             // 
             // btnConsultarManunt
             // 
@@ -433,6 +400,7 @@
             this.btnConsultarManunt.Text = "    Consultar";
             this.btnConsultarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarManunt.UseVisualStyleBackColor = false;
+            this.btnConsultarManunt.Click += new System.EventHandler(this.BtnConsultarManunt_Click);
             // 
             // lblPlacaConsulta
             // 
