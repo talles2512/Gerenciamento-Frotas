@@ -209,7 +209,7 @@ namespace CamadaDesktop
 
         private void btnExcluirFuncionario_Click(object sender, EventArgs e)
         {
-            if (txtLogin.Text == "   -")
+            if (txtLogin.Text == "")
             {
                 MessageBox.Show("Preencha o campo Login corretamente para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -219,14 +219,13 @@ namespace CamadaDesktop
                 {
                     if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_funcionarioController.Deletar(loginantigo))
+                        if (_funcionarioController.Deletar(txtLogin.Text))
                         {
                             MessageBox.Show("Inativação realizada com Sucesso!");
                             txtnome.Text = "";
                             txtLogin.Text = "";
                             txtSenha.Text = "";
                             cbPerfilAcesso.Text = "";
-                            loginantigo = "";
                         }
                     }
                 }
