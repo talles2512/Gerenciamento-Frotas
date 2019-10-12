@@ -61,7 +61,6 @@ namespace CamadaModelagem.Data.Configuration
                 }
                 catch (Exception)
                 {
-                    //MessageBox.Show("Houve erro na operação. Tente novamente!");
                     try
                     {
                         transaction.Rollback();
@@ -69,7 +68,7 @@ namespace CamadaModelagem.Data.Configuration
                     }
                     catch (Exception)
                     {
-                        throw new TransacaoException("Erro na inserção, tente novamente mais tarde!");
+                        throw new TransacaoException("Erro na operação, tente novamente mais tarde!");
                     }
                 }
             }

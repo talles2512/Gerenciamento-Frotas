@@ -301,5 +301,40 @@ namespace CamadaDesktop
                 }
             }
         }
+
+        private void BtnExcluirManunt_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (cbServicoExterno.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipo.SelectedItem.ToString());
+                string placa = cbPlaca.SelectedValue.ToString();
+                try
+                {
+                    if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_manutencaoController.Deletar(placa, manutencaoTipo, dtDataManunt.Value))
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                        }
+                    }
+                }
+                catch (IntegridadeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

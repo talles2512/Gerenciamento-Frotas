@@ -70,6 +70,10 @@ namespace CamadaControle.Controllers
             {
                 throw new IntegridadeException(e.Message);
             }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
             catch (ConcorrenciaBancoException e)
             {
                 throw new ConcorrenciaBancoException(e.Message);

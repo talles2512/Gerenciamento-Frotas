@@ -36,11 +36,19 @@ namespace CamadaModelagem.Data
             }
         }
 
-        //public void Deletar(string placa, int tipo, DateTime data) //Modificado
-        //{
-        //    string Query = "DELETE [dbo].[TB_MANUTENCAO] WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipo + " AND [MTC_DATA] = '" + data + "'";
-        //    _banco.ExecutarInstrucao(Query);
-        //}
+        public bool Deletar(string placa, ManutencaoTipo tipo, DateTime data) //Modificado
+        {
+            int tipoManutencao = tipo.GetHashCode();
+            string Query = "DELETE [dbo].[TB_MANUTENCAO] WHERE [MTC_VCL_PLACA] = '" + placa + "' AND [MTC_TIPO] = " + tipoManutencao + " AND [MTC_DATA] = '" + data.ToShortDateString() + "'";
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
 
         public bool Alterar(Manutencao manuntencao, string placa, ManutencaoTipo tipo, DateTime data) // Modificado
         {

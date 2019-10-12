@@ -209,7 +209,7 @@ namespace CamadaModelagem.Data
             }
             catch (TransacaoException e)
             {
-                throw new IntegridadeException(e.Message);
+                throw new TransacaoException(e.Message);
             }
             catch (ConcorrenciaBancoException e)
             {

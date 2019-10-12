@@ -64,16 +64,23 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data)
+        public bool Deletar(string placa, ManutencaoTipo tipo, DateTime data)
         {
-            //try
-            //{
-            //    _manutencaoDAL.Deletar(placa,tipo,data);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new IntegridadeException("Manutenção não pode ser deletado, pois está ligado a outros serviços.");
-            //}
+            try
+            {
+                if (_manutencaoDAL.Deletar(placa, tipo, data))
+                {
+                    return _manutencaoDAL.Deletar(placa, tipo, data);
+                }
+                else
+                {
+                    throw new IntegridadeException("Serviço Externo não pode ser deletado, pois ainda está vinculado à outros serviços.");
+                }
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public bool Alterar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)

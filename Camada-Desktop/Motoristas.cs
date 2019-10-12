@@ -315,7 +315,7 @@ namespace CamadaDesktop
             {
                 string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
 
-                string cpf = txtCPFConsulta.Text;
+                string cpf = txtCPF.Text;
                 foreach (string str in strings) //limpando as strings
                 {
                     cpf = cpf.Replace(str, "");

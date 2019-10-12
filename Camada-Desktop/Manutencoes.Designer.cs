@@ -245,6 +245,7 @@
             this.btnExcluirManunt.Text = "Excluir";
             this.btnExcluirManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirManunt.UseVisualStyleBackColor = false;
+            this.btnExcluirManunt.Click += new System.EventHandler(this.BtnExcluirManunt_Click);
             // 
             // btnAlterarManunt
             // 

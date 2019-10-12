@@ -62,9 +62,20 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data)
+        public bool Deletar(string placa, ManutencaoTipo tipo, DateTime data)
         {
-            _manutencaoService.Deletar(placa, tipo, data);
+            try
+            {
+                return _manutencaoService.Deletar(placa, tipo, data);
+            }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public bool Alterar(Manutencao manutencao, string placa, ManutencaoTipo tipo, DateTime data)

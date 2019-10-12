@@ -364,7 +364,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnExcluirServicoExterno_Click(object sender, EventArgs e) //PRECISA SER ALTERADO - NÃO ACIONE ESSE BOTÃO!
+        private void BtnExcluirServicoExterno_Click(object sender, EventArgs e)
         {
             if (txtCNPJ.Text == "  .   .   /    -")
             {
@@ -383,14 +383,21 @@ namespace CamadaDesktop
 
                 try
                 {
-                    if (_servicoExternoController.Deletar(long.Parse(cnpj)))
+                    if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Exclusão realizada com Sucesso!");
+                        if (_servicoExternoController.Deletar(long.Parse(cnpj)))
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                        }
                     }
                 }
                 catch (IntegridadeException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (TransacaoException ex)
+                {
+                    throw new TransacaoException(ex.Message);
                 }
                 catch (ConcorrenciaBancoException ex)
                 {
