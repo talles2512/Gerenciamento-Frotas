@@ -12,9 +12,28 @@ namespace CamadaDesktop
 {
     public partial class LoginSistema : Form
     {
+        int x = 0;
+        int y = 0;
+
         public LoginSistema()
         {
             InitializeComponent();
+            this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
+            this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
+        }
+
+        private void frmHome_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            x = this.Left - MousePosition.X;
+            y = this.Top - MousePosition.Y;
+        }
+
+        private void frmHome_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            this.Left = x + MousePosition.X;
+            this.Top = y + MousePosition.Y;
         }
         private void btnLoginSistema_Click(object sender, EventArgs e)
         {

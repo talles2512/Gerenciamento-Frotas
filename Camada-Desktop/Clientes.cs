@@ -20,12 +20,14 @@ namespace CamadaDesktop
     {
         private readonly ClienteController _clienteController;
         private Cliente Cliente;
+        string cpfantigo;
 
         public Clientes()
         {
             InitializeComponent();
             _clienteController = InstanciarCamadas();
             Cliente = null;
+            cpfantigo = "";
         }
 
         private ClienteController InstanciarCamadas()
@@ -67,6 +69,13 @@ namespace CamadaDesktop
                     if (_clienteController.Cadastrar(cliente, cpf))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtNome.Text = "";
+                        txtCPF.Text = "";
+                        txtEndereço.Text = "";
+                        txtemail.Text = "";
+                        txtRG.Text = "";
+                        txtTelefone.Text = "";
+                        dtDataNascimento.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -169,6 +178,7 @@ namespace CamadaDesktop
             else
             {
                 txtCPF.Text = Cliente.CPF;
+                cpfantigo = Cliente.CPF;
                 txtNome.Text = Cliente.Nome;
                 txtRG.Text = Cliente.RG;
                 txtEndereço.Text = Cliente.Endereco;
@@ -240,9 +250,17 @@ namespace CamadaDesktop
                 Cliente cliente = new Cliente(cpf, txtNome.Text, txtRG.Text, txtEndereço.Text, telefone, txtemail.Text, dtDataNascimento.Value, datainicio);
                 try
                 {
-                    if (_clienteController.Alterar(cliente, cpf))
+                    if (_clienteController.Alterar(cliente, cpfantigo))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
+                        cpfantigo = "";
+                        txtNome.Text = "";
+                        txtCPF.Text = "";
+                        txtEndereço.Text = "";
+                        txtemail.Text = "";
+                        txtRG.Text = "";
+                        txtTelefone.Text = "";
+                        dtDataNascimento.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -282,6 +300,13 @@ namespace CamadaDesktop
                         if (_clienteController.Deletar(cpf))
                         {
                             MessageBox.Show("Inativação realizada com Sucesso!");
+                            txtNome.Text = "";
+                            txtCPF.Text = "";
+                            txtEndereço.Text = "";
+                            txtemail.Text = "";
+                            txtRG.Text = "";
+                            txtTelefone.Text = "";
+                            dtDataNascimento.Text = "";
                         }
                     }
                 }

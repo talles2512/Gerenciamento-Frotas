@@ -76,19 +76,19 @@ namespace CamadaModelagem.Services
 
         public bool Alterar(Funcionario funcionario, string login)
         {
-            try
-            {
-                Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
-                if (obj == null)
-                {
-                    throw new NaoEncontradoException("Funcionario não encontrado.");
-                }
-                return _funcionarioDAL.Alterar(funcionario, login);
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            }
+            //try
+            //{
+            //    Funcionario obj = _funcionarioDAL.BuscarLogin(login); //Falta criar os métodos de busca
+            //    if (obj == null)
+            //    {
+            //        throw new NaoEncontradoException("Funcionario não encontrado.");
+            //    }
+            //    _funcionarioDAL.Alterar(funcionario,login);
+            //}
+            //catch (ConcorrenciaBancoException)
+            //{
+            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            //}
         }
     }
 }

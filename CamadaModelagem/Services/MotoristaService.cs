@@ -84,7 +84,7 @@ namespace CamadaModelagem.Services
                 }
                 else
                 {
-                    throw new NaoEncontradoException("Veículo não encontrado.");
+                    throw new NaoEncontradoException("Motorista não encontrado.");
                 }
             }
             catch (ConcorrenciaBancoException)

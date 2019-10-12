@@ -21,12 +21,14 @@ namespace CamadaDesktop
     {
         private readonly FuncionarioController _funcionarioController;
         private Funcionario Funcionario;
+        string loginantigo;
 
         public Funcionarios()
         {
             InitializeComponent();
             _funcionarioController = InstanciarCamadas();
             Funcionario = null;
+            loginantigo = "";
         }
 
         private FuncionarioController InstanciarCamadas()
@@ -59,6 +61,11 @@ namespace CamadaDesktop
                     if (_funcionarioController.Cadastrar(funcionario, txtLogin.Text))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtnome.Text = "";
+                        txtLogin.Text = "";
+                        txtSenha.Text = "";
+                        cbPerfilAcesso.Text = "";
+                        loginantigo = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -74,7 +81,7 @@ namespace CamadaDesktop
 
         private void btnConsultarFuncionario_Click(object sender, EventArgs e)
         {
-            if (txtLoginFuncionarioConsulta.Text == "" || txtLoginFuncionarioConsulta.Text.Length < 7)
+            if (txtLoginFuncionarioConsulta.Text == "")
             {
                 MessageBox.Show("Preencha o campo da Login!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -95,7 +102,7 @@ namespace CamadaDesktop
                         dt.Columns.Add("Senha", typeof(string));
                         dt.Columns.Add("Perfil de Acesso", typeof(string));
 
-                        dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso);
+                        dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
 
                         dgFuncionarioConsulta.DataSource = dt;
 
@@ -125,7 +132,7 @@ namespace CamadaDesktop
 
                 foreach (Funcionario funcionario in funcionarios)
                 {
-                    dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso);
+                    dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
                 }
 
                 dgFuncionarioConsulta.DataSource = dt;
@@ -148,7 +155,7 @@ namespace CamadaDesktop
                 txtnome.Text = Funcionario.Nome;
                 txtLogin.Text = Funcionario.Login;
                 txtSenha.Text = Funcionario.Senha;
-                cbPerfilAcesso.SelectedItem = Funcionario.PerfilAcesso;
+                cbPerfilAcesso.SelectedItem = Funcionario.PerfilAcesso.ToString();
 
                 MessageBox.Show("Dados enviados para a Tela de Cadastro.");
 
@@ -156,6 +163,7 @@ namespace CamadaDesktop
                 if (tbControlFuncionario.SelectedTab == tbPageCadastroFuncionario)
                 {
                     Funcionario = null;
+                    txtLoginFuncionarioConsulta.Text = "";
                 }
             }
         }
@@ -174,13 +182,18 @@ namespace CamadaDesktop
                 Funcionario funcionario = new Funcionario(txtnome.Text, txtLogin.Text, txtSenha.Text, perfilAcesso);
                 try
                 {
-                    if (_funcionarioController.Alterar(funcionario, txtLogin.Text))
+                    if (loginantigo == "")
+                    {
+                        loginantigo = funcionario.Login;
+                    }
+                    if (_funcionarioController.Alterar(funcionario, loginantigo))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         txtnome.Text = "";
                         txtLogin.Text = "";
                         txtSenha.Text = "";
-                        cbPerfilAcesso.ResetText(); 
+                        cbPerfilAcesso.Text = "";
+                        loginantigo = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -196,7 +209,7 @@ namespace CamadaDesktop
 
         private void btnExcluirFuncionario_Click(object sender, EventArgs e)
         {
-            if (txtLogin.Text == "   -")
+            if (txtLogin.Text == "")
             {
                 MessageBox.Show("Preencha o campo Login corretamente para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -212,7 +225,7 @@ namespace CamadaDesktop
                             txtnome.Text = "";
                             txtLogin.Text = "";
                             txtSenha.Text = "";
-                            cbPerfilAcesso.ResetText();
+                            cbPerfilAcesso.Text = "";
                         }
                     }
                 }

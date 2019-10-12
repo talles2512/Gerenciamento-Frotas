@@ -44,12 +44,14 @@ namespace CamadaModelagem.Data
                 DataTable dt = _banco.BuscarRegistro(query);
                 Funcionario funcionario = null;
                 DataRow[] dataRows = dt.Select("FUNC_LOGIN = '" + login + "'");
+                
                 foreach (DataRow dr in dataRows)
                 {
                     PerfilAcesso perfilacesso = (PerfilAcesso)Enum.Parse(typeof(PerfilAcesso), dr["FUNC_PERFIL_ACESSO"].ToString());
 
                     funcionario = new Funcionario(dr["FUNC_NOME"].ToString(), dr["FUNC_LOGIN"].ToString(), dr["FUNC_SENHA"].ToString(), perfilacesso);
                 }
+
                 return funcionario;
             }
             catch (Exception)
@@ -98,7 +100,8 @@ namespace CamadaModelagem.Data
 
         public bool Alterar(Funcionario funcionario, string login)
         {
-            string Query = "UPDATE [dbo].[TB_FUNCIONARIO] SET [FUNC_NOME]= '" + funcionario.Nome + "',[FUNC_LOGIN]= '" + funcionario.Login + "',[FUNC_SENHA] '" + funcionario.Senha + "',[FUNC_PERFIL_ACESSO]= " + funcionario.PerfilAcesso + " WHERE [FUNC_LOGIN]= '" + login;
+            int perfilacesso = funcionario.PerfilAcesso.GetHashCode();
+            string Query = "UPDATE [dbo].[TB_FUNCIONARIO] SET [FUNC_NOME]= '" + funcionario.Nome + "',[FUNC_LOGIN]= '" + funcionario.Login + "',[FUNC_SENHA] ='" + funcionario.Senha + "',[FUNC_PERFIL_ACESSO]= " + perfilacesso + " WHERE [FUNC_LOGIN]= '" + login + "'";
             try
             {
                 return _banco.ExecutarInstrucao(Query);
