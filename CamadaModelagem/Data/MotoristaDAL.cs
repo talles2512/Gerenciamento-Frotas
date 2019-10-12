@@ -55,8 +55,8 @@ namespace CamadaModelagem.Data
         public bool Alterar(Motorista motorista, CNH cnh, string cpf) //Mudança na Query, Verificar
         {
             int situacao = Convert.ToInt32(motorista.Situacao);
-            string Query = "UPDATE [TB_MOTORISTA] SET [MT_CPF] ='" + motorista.CPF + "', [MT_NOME] = '" + motorista.Name + "', [MT_RG] = '" + motorista.RG + "', [MT_ENDERECO] = '" + motorista.Endereco + "', [MT_DTNASCIMENTO] = '" + motorista.DataNascimento.ToShortDateString() + "',[MT_TELEFONE] = " + motorista.Telefone + ", [MT_TELEFONE_RECADO] = " + motorista.TelefoneContato + ", [MT_SITUACAO] = " + situacao + "  WHERE [MT_CPF] = '" + cpf + "';" +
-                "UPDATE [TB_CNH] SET [CNH_NUMERO] =" + cnh.Numero + ", [CNH_DTEMISSAO] = '" + cnh.DataEmissao.ToShortDateString() + "', [CNH_DTVENC] = '" + cnh.DataVencimento.ToShortDateString() + "', [CNH_CATEGORIA] ='" + cnh.Categoria + "', [CNH_ORGAOEMISSOR] = '" + cnh.OrgaoEmissor + "' , [CNH_MT_CPF] = '" + motorista.CPF + "' WHERE [CNH_MT_CPF] = '" + cpf +"'";
+            string Query = "UPDATE [TB_MOTORISTA] SET [MT_CPF] ='" + cpf + "', [MT_NOME] = '" + motorista.Name + "', [MT_RG] = '" + motorista.RG + "', [MT_ENDERECO] = '" + motorista.Endereco + "', [MT_DTNASCIMENTO] = '" + motorista.DataNascimento.ToShortDateString() + "',[MT_TELEFONE] = " + motorista.Telefone + ", [MT_TELEFONE_RECADO] = " + motorista.TelefoneContato + ", [MT_SITUACAO] = " + situacao + "  WHERE [MT_CPF] = '" + cpf + "';" +
+                "UPDATE [TB_CNH] SET [CNH_NUMERO] =" + cnh.Numero + ", [CNH_DTEMISSAO] = '" + cnh.DataEmissao.ToShortDateString() + "', [CNH_DTVENC] = '" + cnh.DataVencimento.ToShortDateString() + "', [CNH_CATEGORIA] ='" + cnh.Categoria + "', [CNH_ORGAOEMISSOR] = '" + cnh.OrgaoEmissor + "' , [CNH_MT_CPF] = '" + cpf + "' WHERE [CNH_MT_CPF] = '" + cpf +"'";
 
             try
             {

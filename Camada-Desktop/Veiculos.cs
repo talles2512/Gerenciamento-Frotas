@@ -87,14 +87,14 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.ResetText();
-                        cbCombustivel.ResetText();
-                        cbCor.ResetText();
+                        dtAno.Text = "";
+                        cbCombustivel.Text = "";
+                        cbCor.Text = "";
                         rdAlugado.Checked = false;
                         rdNaoAlugado.Checked = false;
                         txtValor.Clear();
-                        dtInicio.ResetText();
-                        dtVencimento.ResetText();
+                        dtInicio.Text = "";
+                        dtVencimento.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -365,14 +365,14 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.ResetText();
-                        cbCombustivel.ResetText();
-                        cbCor.ResetText();
+                        dtAno.Text = "";
+                        cbCombustivel.Text = "";
+                        cbCor.Text = "";
                         rdAlugado.Checked = false;
                         rdNaoAlugado.Checked = false;
                         txtValor.Clear();
-                        dtInicio.ResetText();
-                        dtVencimento.ResetText();
+                        dtInicio.Text = "";
+                        dtVencimento.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -406,14 +406,14 @@ namespace CamadaDesktop
                             txtMarca.Clear();
                             txtModelo.Clear();
                             txtChassi.Clear();
-                            dtAno.ResetText();
-                            cbCombustivel.ResetText();
-                            cbCor.ResetText();
+                            dtAno.Text = "";
+                            cbCombustivel.Text = "";
+                            cbCor.Text = "";
                             rdAlugado.Checked = false;
                             rdNaoAlugado.Checked = false;
                             txtValor.Clear();
-                            dtInicio.ResetText();
-                            dtVencimento.ResetText();
+                            dtInicio.Text = "";
+                            dtVencimento.Text = "";
                         }
                     }                   
                 }

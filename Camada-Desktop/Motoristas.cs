@@ -21,6 +21,7 @@ namespace CamadaDesktop
         private readonly MotoristaController _motoristaController;
         private Motorista Motorista;
         private CNH cNH;
+        string cpfantigo;
 
         public Motoristas()
         {
@@ -28,6 +29,7 @@ namespace CamadaDesktop
             _motoristaController = InstanciarCamadas();
             Motorista = null;
             cNH = null;
+            cpfantigo = "";
         }
 
         private MotoristaController InstanciarCamadas()
@@ -220,6 +222,7 @@ namespace CamadaDesktop
             else
             {
                 txtCPF.Text = Motorista.CPF;
+                cpfantigo = Motorista.CPF;
                 txtNome.Text = Motorista.Name;
                 txtRG.Text = Motorista.RG;
                 txtEndereco.Text = Motorista.Endereco;
@@ -285,9 +288,10 @@ namespace CamadaDesktop
                 Motorista motorista = new Motorista(cpf, txtNome.Text, txtRG.Text, txtEndereco.Text, dtDataNascimento.Value, telefone, telefonecontato, situacao, cNH);
                 try
                 {
-                    if (_motoristaController.Alterar(motorista, cNH, motorista.CPF))
+                    if (_motoristaController.Alterar(motorista, cNH, cpfantigo))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
+                        cpfantigo = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
