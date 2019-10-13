@@ -24,8 +24,10 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(ExameMedico examemedico)
         {
             int situacaoexame = examemedico.Situacao.GetHashCode();
+            string dataexame = examemedico.Data.ToString("yyyy/MM/dd");
+
             string query = "INSERT INTO[dbo].[TB_EXAMEDICO] ([EXAM_DATA],[EXAM_DESCRICAO],[EXAM_SITUACAO],[EXAM_MT_CPF])" +
-                "VALUES ('" + examemedico.Data + "', '" + examemedico.Descricao + "', " + situacaoexame + ", '" + examemedico.Motorista.CPF + "')";
+                "VALUES ('" + dataexame + "', '" + examemedico.Descricao + "', " + situacaoexame + ", '" + examemedico.Motorista.CPF + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -38,14 +40,15 @@ namespace CamadaModelagem.Data
 
         public ExameMedico BuscarExameMedico(string cpf, DateTime data)
         {
-            string query = "SELECT * FROM [dbo].[TB_EXAMEDICO] WHERE [EXAM_DATA] = '" + data + "' AND [EXAM_MT_CPF] = '" + cpf + "'";
+            string Data = data.ToString("yyyy/MM/dd");
+            string query = "SELECT * FROM [dbo].[TB_EXAMEDICO] WHERE [EXAM_DATA] = '" + Data + "' AND [EXAM_MT_CPF] = '" + cpf + "'";
 
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
 
                 ExameMedico exameMedico = null;
-                DataRow[] dataRows = dt.Select("EXAM_DATA = '" + data + "' AND EXAM_MT_CPF = '" + cpf + "'");
+                DataRow[] dataRows = dt.Select("EXAM_MT_CPF = '" + cpf + "'");
                 foreach (DataRow dr in dataRows)
                 {
                     DateTime dataexame = Convert.ToDateTime(dr["EXAM_DATA"].ToString());
@@ -67,7 +70,7 @@ namespace CamadaModelagem.Data
         public List<ExameMedico> BuscarTodos()
         {
             List<ExameMedico> exames = new List<ExameMedico>();
-            string query = "SELECT* FROM[dbo].[TB_EXAMEDICO]";
+            string query = "SELECT* FROM [dbo].[TB_EXAMEDICO]";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
@@ -93,7 +96,8 @@ namespace CamadaModelagem.Data
 
         public bool Deletar(string cpf, DateTime data) //Modificado
         {
-            string query = "DELETE [dbo].[TB_EXAMEDICO] WHERE [EXAM_MT_CPF] = '" + cpf + "' AND [EXAM_DATA] = '" + data + "'";
+            string dataexame = data.ToString("yyyy/MM/dd");
+            string query = "DELETE [dbo].[TB_EXAMEDICO] WHERE [EXAM_MT_CPF] = '" + cpf + "' AND [EXAM_DATA] = '" + dataexame + "'";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -106,7 +110,10 @@ namespace CamadaModelagem.Data
 
         public bool Alterar(ExameMedico examemedico, string cpf, DateTime data) // Modificado
         {
-            string query = "UPDATE [dbo].[TB_EXAMEDICO] SET [EXAM_DATA] = '" + examemedico.Data + "',[EXAM_DESCRICAO]= '" + examemedico.Descricao + "',[EXAM_SITUACAO]= " + examemedico.Situacao + ",[EXAM_MT_CPF]= '" + examemedico.Motorista.CPF + "' WHERE [EXAM_MT_CPF] = '" + cpf + "' AND [EXAM_DATA] = '" + data + "'";
+            int situacaoexame = examemedico.Situacao.GetHashCode();
+            string dataexame = data.ToString("yyyy/MM/dd");
+            string DATA = examemedico.Data.ToString("yyyy/MM/dd");
+            string query = "UPDATE [dbo].[TB_EXAMEDICO] SET [EXAM_DATA] = '" + DATA + "',[EXAM_DESCRICAO]= '" + examemedico.Descricao + "',[EXAM_SITUACAO]= " + situacaoexame + ",[EXAM_MT_CPF]= '" + examemedico.Motorista.CPF + "' WHERE [EXAM_MT_CPF] = '" + cpf + "' AND [EXAM_DATA] = '" + dataexame + "'";
             try
             {
                 return _banco.ExecutarInstrucao(query);

@@ -23,11 +23,14 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(Motorista motorista, CNH cnh) //Mudança na Query, Verificar
         {
             int situacao = Convert.ToInt32(motorista.Situacao);
+            string datanascimento = motorista.DataNascimento.ToString("yyyy/MM/dd");
+            string dtemissao = cnh.DataEmissao.ToString("yyyy/MM/dd");
+            string dtvencimento = cnh.DataVencimento.ToString("yyyy/MM/dd");
 
             string query = "INSERT INTO[dbo].[TB_MOTORISTA]([MT_CPF],[MT_NOME],[MT_RG],[MT_ENDERECO],[MT_DTNASCIMENTO],[MT_TELEFONE],[MT_TELEFONE_RECADO],[MT_SITUACAO])" +
-                "VALUES ('" + motorista.CPF + "', '" + motorista.Name + "', '" + motorista.RG + "', '" + motorista.Endereco + "', '" + motorista.DataNascimento + "', " + motorista.Telefone + ", " + motorista.TelefoneContato + ", " + situacao + ")" +
+                "VALUES ('" + motorista.CPF + "', '" + motorista.Name + "', '" + motorista.RG + "', '" + motorista.Endereco + "', '" + datanascimento + "', " + motorista.Telefone + ", " + motorista.TelefoneContato + ", " + situacao + ")" +
                 "INSERT INTO [dbo].[TB_CNH]([CNH_NUMERO],[CNH_DTEMISSAO],[CNH_DTVENC],[CNH_CATEGORIA],[CNH_ORGAOEMISSOR],[CNH_MT_CPF])" +
-                "VALUES (" + cnh.Numero + ", '" + cnh.DataEmissao + "', '" + cnh.DataVencimento + "', '" + cnh.Categoria + "', '" + cnh.OrgaoEmissor + "', '" + motorista.CPF + "')";
+                "VALUES (" + cnh.Numero + ", '" + dtemissao + "', '" + dtvencimento + "', '" + cnh.Categoria + "', '" + cnh.OrgaoEmissor + "', '" + motorista.CPF + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -55,8 +58,12 @@ namespace CamadaModelagem.Data
         public bool Alterar(Motorista motorista, CNH cnh, string cpf) //Mudança na Query, Verificar
         {
             int situacao = Convert.ToInt32(motorista.Situacao);
-            string Query = "UPDATE [TB_MOTORISTA] SET [MT_CPF] ='" + cpf + "', [MT_NOME] = '" + motorista.Name + "', [MT_RG] = '" + motorista.RG + "', [MT_ENDERECO] = '" + motorista.Endereco + "', [MT_DTNASCIMENTO] = '" + motorista.DataNascimento.ToShortDateString() + "',[MT_TELEFONE] = " + motorista.Telefone + ", [MT_TELEFONE_RECADO] = " + motorista.TelefoneContato + ", [MT_SITUACAO] = " + situacao + "  WHERE [MT_CPF] = '" + cpf + "';" +
-                "UPDATE [TB_CNH] SET [CNH_NUMERO] =" + cnh.Numero + ", [CNH_DTEMISSAO] = '" + cnh.DataEmissao.ToShortDateString() + "', [CNH_DTVENC] = '" + cnh.DataVencimento.ToShortDateString() + "', [CNH_CATEGORIA] ='" + cnh.Categoria + "', [CNH_ORGAOEMISSOR] = '" + cnh.OrgaoEmissor + "' , [CNH_MT_CPF] = '" + cpf + "' WHERE [CNH_MT_CPF] = '" + cpf +"'";
+            string datanascimento = motorista.DataNascimento.ToString("yyyy/MM/dd");
+            string dtemissao = cnh.DataEmissao.ToString("yyyy/MM/dd");
+            string dtvencimento = cnh.DataVencimento.ToString("yyyy/MM/dd");
+
+            string Query = "UPDATE [TB_MOTORISTA] SET [MT_CPF] ='" + cpf + "', [MT_NOME] = '" + motorista.Name + "', [MT_RG] = '" + motorista.RG + "', [MT_ENDERECO] = '" + motorista.Endereco + "', [MT_DTNASCIMENTO] = '" + datanascimento + "',[MT_TELEFONE] = " + motorista.Telefone + ", [MT_TELEFONE_RECADO] = " + motorista.TelefoneContato + ", [MT_SITUACAO] = " + situacao + "  WHERE [MT_CPF] = '" + cpf + "';" +
+                "UPDATE [TB_CNH] SET [CNH_NUMERO] =" + cnh.Numero + ", [CNH_DTEMISSAO] = '" + dtemissao + "', [CNH_DTVENC] = '" + dtvencimento + "', [CNH_CATEGORIA] ='" + cnh.Categoria + "', [CNH_ORGAOEMISSOR] = '" + cnh.OrgaoEmissor + "' , [CNH_MT_CPF] = '" + cpf + "' WHERE [CNH_MT_CPF] = '" + cpf +"'";
 
             try
             {

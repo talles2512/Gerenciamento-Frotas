@@ -390,20 +390,27 @@ namespace CamadaDesktop
 
                 SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
 
-                Motorista.CPF = cpf;
-
-                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
-
                 try
                 {
-                    if (_exameMedicoController.Cadastrar(ExameMedico))
+                    Motorista motorista = _motoristaController.BuscarCPF(cpf);
+                    if (motorista == null)
                     {
-                        Motorista.AdicionarExame(ExameMedico); // Não sei se ta certo, mas fiz pq o Inglesson me orientou
-                        MessageBox.Show("Cadastro realizado com Sucesso!");
-                        txtCPFExames.Text = "";
-                        dtDataExame.Text = "";
-                        cbSituacaoExame.Text = "";
-                        txtExameDescricao.Text = "";
+                        MessageBox.Show("Não existe cadastro com esse CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        Motorista = motorista;
+                        ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+
+                        if (_exameMedicoController.Cadastrar(ExameMedico))
+                        {
+                            Motorista.AdicionarExame(ExameMedico); // Não sei se ta certo, mas fiz pq o Inglesson me orientou
+                            MessageBox.Show("Cadastro realizado com Sucesso!");
+                            txtCPFExames.Text = "";
+                            dtDataExame.Text = "";
+                            cbSituacaoExame.Text = "";
+                            txtExameDescricao.Text = "";
+                        }
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -448,7 +455,7 @@ namespace CamadaDesktop
                         dt.Columns.Add("Situação Exame", typeof(string));
                         dt.Columns.Add("CPF", typeof(string));
 
-                        dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, Motorista.CPF);
+                        dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
 
                         dgExameConsulta.DataSource = dt;
                     }
@@ -474,9 +481,10 @@ namespace CamadaDesktop
                 dt.Columns.Add("Situação Exame", typeof(string));
                 dt.Columns.Add("CPF", typeof(string));
 
+
                 foreach (ExameMedico exameMedico in exames)
                 {
-                    dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, Motorista.CPF);
+                    dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
                 }
 
                 dgExameConsulta.DataSource = dt;
@@ -496,8 +504,8 @@ namespace CamadaDesktop
             }
             else
             {
-                txtCPFExames.Text = Motorista.CPF;
-                cpfExameAntigo = Motorista.CPF; 
+                txtCPFExames.Text = ExameMedico.Motorista.CPF;
+                cpfExameAntigo = ExameMedico.Motorista.CPF;
                 dtDataExame.Value = ExameMedico.Data;
                 dataExameAntigo = ExameMedico.Data;
                 cbSituacaoExame.Text = ExameMedico.Situacao.ToString();
@@ -531,20 +539,28 @@ namespace CamadaDesktop
 
                 SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
 
-                Motorista.CPF = cpf;
-
-                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
                 try
                 {
-                    if (_exameMedicoController.Alterar(ExameMedico, cpfExameAntigo, dataExameAntigo))
+                    Motorista motorista = _motoristaController.BuscarCPF(cpf);
+                    if (motorista == null)
                     {
-                        MessageBox.Show("Alteração realizada com Sucesso!");
-                        cpfExameAntigo = "";
-                        txtCPFExames.Text = "";
-                        dtDataExame.Text = "";
-                        cbSituacaoExame.Text = "";
-                        txtExameDescricao.Text = "";
+                        MessageBox.Show("Não existe cadastro com esse CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+                    else
+                    {
+                        Motorista = motorista;
+                        ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+
+                        if (_exameMedicoController.Alterar(ExameMedico, cpfExameAntigo, dataExameAntigo))
+                        {
+                            MessageBox.Show("Alteração realizada com Sucesso!");
+                            cpfExameAntigo = "";
+                            txtCPFExames.Text = "";
+                            dtDataExame.Text = "";
+                            cbSituacaoExame.Text = "";
+                            txtExameDescricao.Text = "";
+                        }
+                    }               
                 }
                 catch (NaoEncontradoException ex)
                 {
@@ -567,30 +583,38 @@ namespace CamadaDesktop
             {
                 string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
 
-                string cpf = txtCPF.Text;
+                string cpf = txtCPFExames.Text;
                 foreach (string str in strings) //limpando as strings
                 {
                     cpf = cpf.Replace(str, "");
                 }
-
-                Motorista.CPF = cpf;
+             
                 SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
-
-                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
 
                 try
                 {
                     if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_exameMedicoController.Deletar(Motorista.CPF, dtDataExame.Value)) ;
+                        Motorista motorista = _motoristaController.BuscarCPF(cpf);
+                        if (motorista == null)
                         {
-                            Motorista.RemoverExame(ExameMedico);  // Verificar se está correto
-                            MessageBox.Show("Inativação realizada com Sucesso!");
-                            txtCPFExames.Text = "";
-                            dtDataExame.Text = "";
-                            cbSituacaoExame.Text = "";
-                            txtExameDescricao.Text = "";
+                            MessageBox.Show("Não existe cadastro com esse CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
+                        else
+                        {
+                            Motorista = motorista;
+                            ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+
+                            if (_exameMedicoController.Deletar(Motorista.CPF, dtDataExame.Value))
+                            {
+                                Motorista.RemoverExame(ExameMedico);  // Verificar se está correto
+                                MessageBox.Show("Inativação realizada com Sucesso!");
+                                txtCPFExames.Text = "";
+                                dtDataExame.Text = "";
+                                cbSituacaoExame.Text = "";
+                                txtExameDescricao.Text = "";
+                            }
+                        }                         
                     }
                 }
                 catch (NaoEncontradoException ex)
