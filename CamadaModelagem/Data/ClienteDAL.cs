@@ -60,6 +60,7 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
         public List<Cliente> BuscarTodos()
         {
             List<Cliente> clientes = new List<Cliente>();

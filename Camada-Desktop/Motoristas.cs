@@ -13,23 +13,30 @@ using CamadaModelagem.Services;
 using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Services.Exceptions;
+using CamadaModelagem.Models.Enums;
 
 namespace CamadaDesktop
 {
     public partial class Motoristas : Form
     {
         private readonly MotoristaController _motoristaController;
+        private readonly ExameMedicoController _exameMedicoController;
         private Motorista Motorista;
         private CNH cNH;
+        private ExameMedico ExameMedico;
         string cpfantigo;
+        string cpfExameAntigo;
+        DateTime dataExameAntigo;
 
         public Motoristas()
         {
             InitializeComponent();
             _motoristaController = InstanciarCamadas();
+            _exameMedicoController = InstanciarCamadasExames();
             Motorista = null;
             cNH = null;
             cpfantigo = "";
+            cpfExameAntigo = "";
         }
 
         private MotoristaController InstanciarCamadas()
@@ -38,6 +45,14 @@ namespace CamadaDesktop
             MotoristaDAL motoristaDAL = new MotoristaDAL(banco);
             MotoristaService motoristaService = new MotoristaService(motoristaDAL);
             return new MotoristaController(motoristaService);
+        }
+
+        private ExameMedicoController InstanciarCamadasExames()
+        {
+            Banco banco = new Banco();
+            ExameMedicoDAL exameMedicoDAL = new ExameMedicoDAL(banco);
+            ExameMedicoService exameMedicoService = new ExameMedicoService(exameMedicoDAL);
+            return new ExameMedicoController(exameMedicoService);
         }
 
         private void btnCadastrarMotorista_Click(object sender, EventArgs e)
@@ -345,6 +360,248 @@ namespace CamadaDesktop
         private void btnAddExameMedico_Click_1(object sender, EventArgs e)
         {
             tbControlMotorista.SelectedTab = tbPageExames;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //EXAME MEDICO
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+        private void Motoristas_Load(object sender, EventArgs e)
+        {
+            cbSituacaoExame.DataSource = Enum.GetValues(typeof(SituacaoExameMedico));
+        }
+
+        private void btnCadastrarExame_Click(object sender, EventArgs e)
+        {
+            if (txtCPFExames.Text == "" || txtCPFExames.Text.Length < 12 || txtExameDescricao.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFExames.Text;
+
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
+                SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
+
+                Motorista.CPF = cpf;
+
+                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+
+                try
+                {
+                    if (_exameMedicoController.Cadastrar(ExameMedico))
+                    {
+                        Motorista.AdicionarExame(ExameMedico); // Não sei se ta certo, mas fiz pq o Inglesson me orientou
+                        MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtCPFExames.Text = "";
+                        dtDataExame.Text = "";
+                        cbSituacaoExame.Text = "";
+                        txtExameDescricao.Text = "";
+                    }
+                }
+                catch (RegistroExisteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btnConsultaExame_Click(object sender, EventArgs e)
+        {
+            if (txtCPFExameConsulta.Text == "" || txtCPFExameConsulta.Text.Length < 12)
+            {
+                MessageBox.Show("Preencha o campo da CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFExameConsulta.Text;
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
+                try
+                {
+                    ExameMedico exameMedico = _exameMedicoController.BuscarExameMedico(cpf, dtDataExameConsulta.Value);
+                    if (exameMedico == null)
+                    {
+                        MessageBox.Show("Não existe cadastro com esse CPF ou Data!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Data", typeof(DateTime));
+                        dt.Columns.Add("Descrição", typeof(string));
+                        dt.Columns.Add("Situação Exame", typeof(string));
+                        dt.Columns.Add("CPF", typeof(string));
+
+                        dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, Motorista.CPF);
+
+                        dgExameConsulta.DataSource = dt;
+                    }
+                    ExameMedico = exameMedico;
+                    exameMedico = null;
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                }
+            }
+        }
+
+        private void btnConsultaTodosExame_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ExameMedico> exames = _exameMedicoController.BuscarTodos();
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Data", typeof(DateTime));
+                dt.Columns.Add("Descrição", typeof(string));
+                dt.Columns.Add("Situação Exame", typeof(string));
+                dt.Columns.Add("CPF", typeof(string));
+
+                foreach (ExameMedico exameMedico in exames)
+                {
+                    dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, Motorista.CPF);
+                }
+
+                dgExameConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        private void btnTransfereExame_Click(object sender, EventArgs e)
+        {
+            if (ExameMedico == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtCPFExames.Text = Motorista.CPF;
+                cpfExameAntigo = Motorista.CPF; 
+                dtDataExame.Value = ExameMedico.Data;
+                dataExameAntigo = ExameMedico.Data;
+                cbSituacaoExame.Text = ExameMedico.Situacao.ToString();
+                txtExameDescricao.Text = ExameMedico.Descricao;
+
+
+                txtCPFExameConsulta.Text = "";
+                ExameMedico = null;
+                Motorista = null;
+                dgExameConsulta.ClearSelection();
+            }
+        }
+
+        private void btnAlterarExame_Click(object sender, EventArgs e)
+        {
+            if (txtCPFExames.Text == "" || txtCPFExames.Text.Length < 12 || txtExameDescricao.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFExames.Text;
+
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
+                SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
+
+                Motorista.CPF = cpf;
+
+                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+                try
+                {
+                    if (_exameMedicoController.Alterar(ExameMedico, cpfExameAntigo, dataExameAntigo))
+                    {
+                        MessageBox.Show("Alteração realizada com Sucesso!");
+                        cpfExameAntigo = "";
+                        txtCPFExames.Text = "";
+                        dtDataExame.Text = "";
+                        cbSituacaoExame.Text = "";
+                        txtExameDescricao.Text = "";
+                    }
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btnExcluirExame_Click(object sender, EventArgs e)
+        {
+            if (txtCPFExames.Text == "")
+            {
+                MessageBox.Show("Preencha o campo CPF corretamente para realizar esta opereção!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPF.Text;
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
+                Motorista.CPF = cpf;
+                SituacaoExameMedico situacaoExameMedico = (SituacaoExameMedico)Enum.Parse(typeof(SituacaoExameMedico), cbSituacaoExame.SelectedItem.ToString());
+
+                ExameMedico = new ExameMedico(dtDataExame.Value, txtExameDescricao.Text, situacaoExameMedico, Motorista);
+
+                try
+                {
+                    if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_exameMedicoController.Deletar(Motorista.CPF, dtDataExame.Value)) ;
+                        {
+                            Motorista.RemoverExame(ExameMedico);  // Verificar se está correto
+                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            txtCPFExames.Text = "";
+                            dtDataExame.Text = "";
+                            cbSituacaoExame.Text = "";
+                            txtExameDescricao.Text = "";
+                        }
+                    }
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +19,65 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
-        {
-            _exameMedicoService.Cadastrar(exameMedico);
+        public bool Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
+        {           
+            try
+            {
+                return _exameMedicoService.Cadastrar(exameMedico);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(int cpf, DateTime data)
+        public ExameMedico BuscarExameMedico(string cpf, DateTime data)
         {
-            _exameMedicoService.Deletar(cpf, data);
+            try
+            {
+                return _exameMedicoService.BuscarExameMedico(cpf, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(ExameMedico exameMedico, int cpf, DateTime data)
+        public List<ExameMedico> BuscarTodos()
         {
-            _exameMedicoService.Alterar(exameMedico, cpf, data);
+            try
+            {
+                return _exameMedicoService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(string cpf, DateTime data)
+        {            
+            try
+            {
+                return _exameMedicoService.Deletar(cpf, data);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+
+        }
+
+        public bool Alterar(ExameMedico exameMedico, string cpf, DateTime data)
+        {          
+            try
+            {
+                return _exameMedicoService.Alterar(exameMedico, cpf, data);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         #endregion

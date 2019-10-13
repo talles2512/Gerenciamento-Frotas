@@ -206,7 +206,7 @@
             this.btnFuncionarios.Name = "btnFuncionarios";
             this.btnFuncionarios.Size = new System.Drawing.Size(244, 40);
             this.btnFuncionarios.TabIndex = 11;
-            this.btnFuncionarios.Text = "Funcionarios";
+            this.btnFuncionarios.Text = "Funcionários";
             this.btnFuncionarios.UseVisualStyleBackColor = true;
             this.btnFuncionarios.Click += new System.EventHandler(this.btnFuncionarios_Click);
             // 

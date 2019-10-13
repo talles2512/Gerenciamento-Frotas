@@ -17,28 +17,55 @@ namespace CamadaModelagem.Services
         {
             _exameMedicoDAL = exameMedicoDAL;
         }
-        public void Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
-        {
-            //try
-            //{
-            //    ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(exameMedico.Motorista.CPF, exameMedico.Data); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um Exame Médico com esses dados no sistema!");
-            //    }
-            //    _exameMedicoDAL.Cadastrar(exameMedico);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
-        }
-
-        public void Deletar(int cpf, DateTime data)
+        public bool Cadastrar(ExameMedico exameMedico) //Mudança na Query, Verificar
         {
             try
             {
-                _exameMedicoDAL.Deletar(cpf, data);
+                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(exameMedico.Motorista.CPF, exameMedico.Data); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Exame Médico com esses dados no sistema!");
+                }
+                return _exameMedicoDAL.Cadastrar(exameMedico);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public ExameMedico BuscarExameMedico(string cpf, DateTime data)
+        {
+            try
+            {
+                ExameMedico exameMedico = _exameMedicoDAL.BuscarExameMedico(cpf, data);
+                return exameMedico;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<ExameMedico> BuscarTodos()
+        {
+            List<ExameMedico> exames = new List<ExameMedico>();
+            try
+            {
+                exames.AddRange(_exameMedicoDAL.BuscarTodos());
+                return exames;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(string cpf, DateTime data)
+        {
+            try
+            {
+               return _exameMedicoDAL.Deletar(cpf, data);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -46,21 +73,21 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(ExameMedico exameMedico, int cpf, DateTime data)
+        public bool Alterar(ExameMedico exameMedico, string cpf, DateTime data)
         {
-            //try
-            //{
-            //    ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(cpf, data);
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Exame Médico não encontrado.");
-            //    }
-            //    _exameMedicoDAL.Alterar(exameMedico, cpf, data);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                ExameMedico obj = _exameMedicoDAL.BuscarExameMedico(cpf, data);
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Exame Médico não encontrado.");
+                }
+                return _exameMedicoDAL.Alterar(exameMedico, cpf, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

@@ -91,6 +91,8 @@
             this.txtCPFExames = new System.Windows.Forms.MaskedTextBox();
             this.lblDataExame = new System.Windows.Forms.Label();
             this.lblCPFExames = new System.Windows.Forms.Label();
+            this.cbSituacaoExame = new System.Windows.Forms.ComboBox();
+            this.lblSituacaoExame = new System.Windows.Forms.Label();
             this.tbControlMotorista.SuspendLayout();
             this.tbPageCadastroMotorista.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -686,6 +688,7 @@
             this.btnTransfereExame.TabIndex = 24;
             this.btnTransfereExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTransfereExame.UseVisualStyleBackColor = false;
+            this.btnTransfereExame.Click += new System.EventHandler(this.btnTransfereExame_Click);
             // 
             // lblDataExameConsulta
             // 
@@ -732,13 +735,14 @@
             this.btnConsultaTodosExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsultaTodosExame.ForeColor = System.Drawing.Color.White;
             this.btnConsultaTodosExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaTodosExame.Location = new System.Drawing.Point(450, 131);
+            this.btnConsultaTodosExame.Location = new System.Drawing.Point(450, 125);
             this.btnConsultaTodosExame.Name = "btnConsultaTodosExame";
             this.btnConsultaTodosExame.Size = new System.Drawing.Size(159, 40);
             this.btnConsultaTodosExame.TabIndex = 23;
             this.btnConsultaTodosExame.Text = "Consultar Todos";
             this.btnConsultaTodosExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaTodosExame.UseVisualStyleBackColor = false;
+            this.btnConsultaTodosExame.Click += new System.EventHandler(this.btnConsultaTodosExame_Click);
             // 
             // btnConsultaExame
             // 
@@ -757,9 +761,12 @@
             this.btnConsultaExame.Text = "    Consultar";
             this.btnConsultaExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaExame.UseVisualStyleBackColor = false;
+            this.btnConsultaExame.Click += new System.EventHandler(this.btnConsultaExame_Click);
             // 
             // gbDadosExames
             // 
+            this.gbDadosExames.Controls.Add(this.lblSituacaoExame);
+            this.gbDadosExames.Controls.Add(this.cbSituacaoExame);
             this.gbDadosExames.Controls.Add(this.dtDataExame);
             this.gbDadosExames.Controls.Add(this.txtExameDescricao);
             this.gbDadosExames.Controls.Add(this.lblDescricaoExame);
@@ -782,7 +789,7 @@
             this.dtDataExame.CustomFormat = "dd/mm/yyyy";
             this.dtDataExame.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataExame.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataExame.Location = new System.Drawing.Point(144, 57);
+            this.dtDataExame.Location = new System.Drawing.Point(141, 57);
             this.dtDataExame.Name = "dtDataExame";
             this.dtDataExame.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataExame.Size = new System.Drawing.Size(284, 31);
@@ -822,6 +829,7 @@
             this.btnExcluirExame.Text = "Excluir";
             this.btnExcluirExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirExame.UseVisualStyleBackColor = false;
+            this.btnExcluirExame.Click += new System.EventHandler(this.btnExcluirExame_Click);
             // 
             // btnAlterarExame
             // 
@@ -840,6 +848,7 @@
             this.btnAlterarExame.Text = "Alterar";
             this.btnAlterarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarExame.UseVisualStyleBackColor = false;
+            this.btnAlterarExame.Click += new System.EventHandler(this.btnAlterarExame_Click);
             // 
             // btnCadastrarExame
             // 
@@ -858,6 +867,7 @@
             this.btnCadastrarExame.Text = "     Cadastrar";
             this.btnCadastrarExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarExame.UseVisualStyleBackColor = false;
+            this.btnCadastrarExame.Click += new System.EventHandler(this.btnCadastrarExame_Click);
             // 
             // txtCPFExames
             // 
@@ -870,7 +880,7 @@
             // lblDataExame
             // 
             this.lblDataExame.AutoSize = true;
-            this.lblDataExame.Location = new System.Drawing.Point(139, 28);
+            this.lblDataExame.Location = new System.Drawing.Point(136, 28);
             this.lblDataExame.Name = "lblDataExame";
             this.lblDataExame.Size = new System.Drawing.Size(42, 25);
             this.lblDataExame.TabIndex = 1;
@@ -885,6 +895,23 @@
             this.lblCPFExames.TabIndex = 0;
             this.lblCPFExames.Text = "CPF:";
             // 
+            // cbSituacaoExame
+            // 
+            this.cbSituacaoExame.FormattingEnabled = true;
+            this.cbSituacaoExame.Location = new System.Drawing.Point(431, 55);
+            this.cbSituacaoExame.Name = "cbSituacaoExame";
+            this.cbSituacaoExame.Size = new System.Drawing.Size(178, 33);
+            this.cbSituacaoExame.TabIndex = 24;
+            // 
+            // lblSituacaoExame
+            // 
+            this.lblSituacaoExame.AutoSize = true;
+            this.lblSituacaoExame.Location = new System.Drawing.Point(426, 27);
+            this.lblSituacaoExame.Name = "lblSituacaoExame";
+            this.lblSituacaoExame.Size = new System.Drawing.Size(109, 25);
+            this.lblSituacaoExame.TabIndex = 25;
+            this.lblSituacaoExame.Text = "Situação Exame:";
+            // 
             // Motoristas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -894,6 +921,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Motoristas";
             this.Text = "Motoristas";
+            this.Load += new System.EventHandler(this.Motoristas_Load);
             this.tbControlMotorista.ResumeLayout(false);
             this.tbPageCadastroMotorista.ResumeLayout(false);
             this.gbDadosVeiculos.ResumeLayout(false);
@@ -979,5 +1007,7 @@
         private System.Windows.Forms.DateTimePicker dtDataEmissaoCNH;
         private System.Windows.Forms.DateTimePicker dtDataExameConsulta;
         private System.Windows.Forms.DateTimePicker dtDataExame;
+        private System.Windows.Forms.Label lblSituacaoExame;
+        private System.Windows.Forms.ComboBox cbSituacaoExame;
     }
 }
