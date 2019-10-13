@@ -12,10 +12,12 @@ namespace CamadaModelagem.Services
     public class ServicoExternoService
     {
         private readonly ServicoExternoDAL _servicoExternoDAL;
+        private readonly ManutencaoDAL _manutencaoDAL;
 
-        public ServicoExternoService(ServicoExternoDAL servicoExternoDAL)
+        public ServicoExternoService(ServicoExternoDAL servicoExternoDAL, ManutencaoDAL manutencaoDAL)
         {
             _servicoExternoDAL = servicoExternoDAL;
+            _manutencaoDAL = manutencaoDAL;
         }
         public bool Cadastrar(ServicoExterno servicoExterno, long cnpj) //Mudança na Query, Verificar
         {
@@ -109,6 +111,17 @@ namespace CamadaModelagem.Services
                 ServicoExterno obj = _servicoExternoDAL.BuscarCNPJConveniado(cnpj);
                 if (obj != null)
                 {
+                    if(servicoExterno.CNPJ != cnpj)
+                    {
+                        List<Manutencao> manutencoes = _manutencaoDAL.BuscarTodos(cnpj);
+                        foreach (Manutencao manutencao in manutencoes)
+                        {
+                            if (manutencao != null)
+                            {
+                                throw new IntegridadeException("CNPJ da Oficina não pode ser alterado, pois ainda está vinculado à outros serviços.");
+                            }
+                        }
+                    }
                     return _servicoExternoDAL.AlterarConveniado(servicoExterno, cnpj);
                 }
                 else
@@ -117,12 +130,37 @@ namespace CamadaModelagem.Services
 
                     if (obj != null)
                     {
+
                         if (servicoExterno.ServicoExternoConveniado != null)
                         {
+                            if (servicoExterno.CNPJ != cnpj)
+                            {
+                                List<Manutencao> manutencoes = _manutencaoDAL.BuscarTodos(cnpj);
+                                foreach (Manutencao manutencao in manutencoes)
+                                {
+                                    if (manutencao != null)
+                                    {
+                                        throw new IntegridadeException("CNPJ da Oficina não pode ser alterado, pois ainda está vinculado à outros serviços.");
+                                    }
+                                }
+                            }
+
                             return _servicoExternoDAL.AlterarConveniado(servicoExterno, cnpj);
                         }
                         else
                         {
+                            if (servicoExterno.CNPJ != cnpj)
+                            {
+                                List<Manutencao> manutencoes = _manutencaoDAL.BuscarTodos(cnpj);
+                                foreach (Manutencao manutencao in manutencoes)
+                                {
+                                    if (manutencao != null)
+                                    {
+                                        throw new IntegridadeException("CNPJ da Oficina não pode ser alterado, pois ainda está vinculado à outros serviços.");
+                                    }
+                                }
+                            }
+
                             return _servicoExternoDAL.Alterar(servicoExterno, cnpj);
                         }
                     }

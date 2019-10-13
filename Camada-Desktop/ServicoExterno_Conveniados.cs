@@ -33,7 +33,8 @@ namespace CamadaDesktop
         {
             Banco banco = new Banco();
             ServicoExternoDAL servicoExternoDAL = new ServicoExternoDAL(banco);
-            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL);
+            ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
+            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL, manutencaoDAL);
             return new ServicoExternoController(servicoExternoService);
         }
 
@@ -360,6 +361,11 @@ namespace CamadaDesktop
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (IntegridadeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    txtCNPJ.Text = cnpjAntigo.ToString();
                 }
             }
         }

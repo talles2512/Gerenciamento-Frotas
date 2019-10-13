@@ -99,6 +99,37 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public List<Manutencao> BuscarTodos(long cnpj)
+        {
+            List<Manutencao> manutencoes = new List<Manutencao>();
+            string query = "SELECT [MTC_ID], [MTC_TIPO], [MTC_SERVEXT_CNPJ], [MTC_DESCRICAO], [MTC_DATA], [MTC_VALOR], [MTC_SITUACAO], [MTC_VCL_PLACA]" +
+                "FROM[TB_MANUTENCAO] WHERE [MTC_SERVEXT_CNPJ] = " + cnpj;
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Manutencao manutencao = null;
+                DataRow[] dataRows = dt.Select("[MTC_SERVEXT_CNPJ] = " + cnpj);
+                foreach (DataRow dr in dataRows)
+                {
+                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), dr["MTC_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["MTC_SERVEXT_CNPJ"].ToString());
+                    DateTime dataManutencao = Convert.ToDateTime(dr["MTC_DATA"].ToString());
+                    double valor = double.Parse(dr["MTC_VALOR"].ToString());
+                    SituacaoManutencao situacaoManutencao = (SituacaoManutencao)Enum.Parse(typeof(SituacaoManutencao), dr["MTC_SITUACAO"].ToString());
+
+
+                    manutencao = new Manutencao(manutencaoTipo, dr["MTC_DESCRICAO"].ToString(), dataManutencao, valor, situacaoManutencao, cNPJ
+                        , dr["MTC_VCL_PLACA"].ToString());
+                    manutencoes.Add(manutencao);
+                }
+                return manutencoes;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
         public List<Manutencao> BuscarTodos()
         {
             List<Manutencao> manutencoes = new List<Manutencao>();

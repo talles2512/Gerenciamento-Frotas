@@ -252,7 +252,7 @@ namespace CamadaModelagem.Data
                 + servicoExterno.ServicoExternoConveniado.DataVencimento.ToShortDateString() + "', " + servicoExterno.CNPJ + ")";
                 }
 
-                else if (servicoExterno.ServicoExternoConveniado == null) //Caso o serviço externo e remova seu convênio
+                else if (servicoExterno.ServicoExternoConveniado == null) //Caso altere o serviço externo e remova seu convênio
                 {
                     query1 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] = '" + servicoExterno.Tipo.ToString() + "',[SERVEXT_NOME]='" + servicoExterno.Nome
                         + "',[SERVEXT_TELEFONE] =" + servicoExterno.Telefone + ",[SERVEXT_EMAIL] ='" + servicoExterno.Email + "',[SERVEXT_ENDERECO] ='" + servicoExterno.Endereco + "',[SERVEXT_CONVENIADO] ="
@@ -261,14 +261,17 @@ namespace CamadaModelagem.Data
                 }
                 else  //Caso altere o serviço externo e seu convênio
                 {
-                    query1 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] = '" + servicoExterno.Tipo.ToString()
+                    string query = "DELETE FROM [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + cnpj;
+                    if (_banco.ExecutarInstrucao(query))
+                    {
+                        query1 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] = '" + servicoExterno.Tipo.ToString()
                         + "',[SERVEXT_NOME]='" + servicoExterno.Nome + "',[SERVEXT_TELEFONE] =" + servicoExterno.Telefone + ",[SERVEXT_EMAIL] ='"
                         + servicoExterno.Email + "',[SERVEXT_ENDERECO] ='" + servicoExterno.Endereco + "',[SERVEXT_CONVENIADO] ="
                         + conveniado + " WHERE [SERVEXT_CNPJ] =" + cnpj;
-                    query2 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] SET [SERVEXTCONV_VALOR] = " + servicoExterno.ServicoExternoConveniado.Valor
-                        + ", [SERVEXTCONV_DTINICIO] = '" + servicoExterno.ServicoExternoConveniado.DataInicio.ToShortDateString()
-                        + "',[SERVEXTCONV_DTVENC] = '" + servicoExterno.ServicoExternoConveniado.DataVencimento.ToShortDateString()
-                        + "',[SERVEXTCONV_SERVEXT_CNPJ] = " + servicoExterno.CNPJ + " WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + servicoExterno.CNPJ;
+                        query2 = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS]([SERVEXTCONV_VALOR],[SERVEXTCONV_DTINICIO],[SERVEXTCONV_DTVENC],[SERVEXTCONV_SERVEXT_CNPJ]) " +
+                        "VALUES(" + servicoExterno.ServicoExternoConveniado.Valor + ", '" + servicoExterno.ServicoExternoConveniado.DataInicio.ToShortDateString() + "', '"
+                        + servicoExterno.ServicoExternoConveniado.DataVencimento.ToShortDateString() + "', " + servicoExterno.CNPJ + ")";
+                    } 
                 }
 
                 return _banco.ExecutaTransaction(query1, query2);
