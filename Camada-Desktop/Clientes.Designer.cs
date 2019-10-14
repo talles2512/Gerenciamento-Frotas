@@ -52,13 +52,13 @@
             this.lblCPF = new System.Windows.Forms.Label();
             this.tbPageConsultaClientes = new System.Windows.Forms.TabPage();
             this.gbConsultaClientes = new System.Windows.Forms.GroupBox();
+            this.lblrecebedata = new System.Windows.Forms.Label();
             this.txtCPFClientesConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblCPFConsultaClientes = new System.Windows.Forms.Label();
             this.btnTrasferirClientes = new System.Windows.Forms.Button();
             this.dgClientesConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosClientes = new System.Windows.Forms.Button();
             this.btnConsultarClientes = new System.Windows.Forms.Button();
-            this.lblrecebedata = new System.Windows.Forms.Label();
             this.tbControlClientes.SuspendLayout();
             this.tbPageCadastroClientes.SuspendLayout();
             this.gbDadosClientes.SuspendLayout();
@@ -76,7 +76,7 @@
             this.tbControlClientes.Location = new System.Drawing.Point(1, 24);
             this.tbControlClientes.Name = "tbControlClientes";
             this.tbControlClientes.SelectedIndex = 0;
-            this.tbControlClientes.Size = new System.Drawing.Size(644, 498);
+            this.tbControlClientes.Size = new System.Drawing.Size(644, 557);
             this.tbControlClientes.TabIndex = 25;
             // 
             // tbPageCadastroClientes
@@ -86,7 +86,7 @@
             this.tbPageCadastroClientes.Location = new System.Drawing.Point(4, 37);
             this.tbPageCadastroClientes.Name = "tbPageCadastroClientes";
             this.tbPageCadastroClientes.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageCadastroClientes.Size = new System.Drawing.Size(636, 457);
+            this.tbPageCadastroClientes.Size = new System.Drawing.Size(636, 516);
             this.tbPageCadastroClientes.TabIndex = 0;
             this.tbPageCadastroClientes.Text = "Cadastrar";
             // 
@@ -96,7 +96,7 @@
             this.gbDadosClientes.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosClientes.Location = new System.Drawing.Point(6, 6);
             this.gbDadosClientes.Name = "gbDadosClientes";
-            this.gbDadosClientes.Size = new System.Drawing.Size(621, 445);
+            this.gbDadosClientes.Size = new System.Drawing.Size(621, 504);
             this.gbDadosClientes.TabIndex = 1;
             this.gbDadosClientes.TabStop = false;
             this.gbDadosClientes.Text = "Dados";
@@ -123,7 +123,7 @@
             this.panel1.Controls.Add(this.lblCPF);
             this.panel1.Location = new System.Drawing.Point(6, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(609, 408);
+            this.panel1.Size = new System.Drawing.Size(609, 467);
             this.panel1.TabIndex = 0;
             // 
             // lblDataNascimento
@@ -145,7 +145,7 @@
             this.btnExcluirClientes.ForeColor = System.Drawing.Color.White;
             this.btnExcluirClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirClientes.Image")));
             this.btnExcluirClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirClientes.Location = new System.Drawing.Point(229, 450);
+            this.btnExcluirClientes.Location = new System.Drawing.Point(229, 421);
             this.btnExcluirClientes.Name = "btnExcluirClientes";
             this.btnExcluirClientes.Size = new System.Drawing.Size(146, 40);
             this.btnExcluirClientes.TabIndex = 23;
@@ -240,7 +240,7 @@
             this.btnAlterarClientes.ForeColor = System.Drawing.Color.White;
             this.btnAlterarClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarClientes.Image")));
             this.btnAlterarClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarClientes.Location = new System.Drawing.Point(229, 404);
+            this.btnAlterarClientes.Location = new System.Drawing.Point(229, 375);
             this.btnAlterarClientes.Name = "btnAlterarClientes";
             this.btnAlterarClientes.Size = new System.Drawing.Size(146, 40);
             this.btnAlterarClientes.TabIndex = 22;
@@ -259,7 +259,7 @@
             this.btnCadastrarClientes.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarClientes.Image")));
             this.btnCadastrarClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarClientes.Location = new System.Drawing.Point(106, 358);
+            this.btnCadastrarClientes.Location = new System.Drawing.Point(106, 329);
             this.btnCadastrarClientes.Name = "btnCadastrarClientes";
             this.btnCadastrarClientes.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarClientes.TabIndex = 21;
@@ -308,7 +308,7 @@
             this.tbPageConsultaClientes.Location = new System.Drawing.Point(4, 37);
             this.tbPageConsultaClientes.Name = "tbPageConsultaClientes";
             this.tbPageConsultaClientes.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageConsultaClientes.Size = new System.Drawing.Size(636, 457);
+            this.tbPageConsultaClientes.Size = new System.Drawing.Size(636, 516);
             this.tbPageConsultaClientes.TabIndex = 1;
             this.tbPageConsultaClientes.Text = "Consultar";
             // 
@@ -324,10 +324,20 @@
             this.gbConsultaClientes.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaClientes.Location = new System.Drawing.Point(8, 10);
             this.gbConsultaClientes.Name = "gbConsultaClientes";
-            this.gbConsultaClientes.Size = new System.Drawing.Size(621, 445);
+            this.gbConsultaClientes.Size = new System.Drawing.Size(621, 500);
             this.gbConsultaClientes.TabIndex = 2;
             this.gbConsultaClientes.TabStop = false;
             this.gbConsultaClientes.Text = "Consulta";
+            // 
+            // lblrecebedata
+            // 
+            this.lblrecebedata.AutoSize = true;
+            this.lblrecebedata.Location = new System.Drawing.Point(543, -4);
+            this.lblrecebedata.Name = "lblrecebedata";
+            this.lblrecebedata.Size = new System.Drawing.Size(78, 25);
+            this.lblrecebedata.TabIndex = 33;
+            this.lblrecebedata.Text = "recebedata";
+            this.lblrecebedata.Visible = false;
             // 
             // txtCPFClientesConsulta
             // 
@@ -372,7 +382,7 @@
             this.dgClientesConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgClientesConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgClientesConsulta.Name = "dgClientesConsulta";
-            this.dgClientesConsulta.Size = new System.Drawing.Size(608, 371);
+            this.dgClientesConsulta.Size = new System.Drawing.Size(608, 426);
             this.dgClientesConsulta.TabIndex = 18;
             this.dgClientesConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientesConsulta_CellContentClick);
             // 
@@ -413,21 +423,11 @@
             this.btnConsultarClientes.UseVisualStyleBackColor = false;
             this.btnConsultarClientes.Click += new System.EventHandler(this.btnConsultarClientes_Click);
             // 
-            // lblrecebedata
-            // 
-            this.lblrecebedata.AutoSize = true;
-            this.lblrecebedata.Location = new System.Drawing.Point(543, -4);
-            this.lblrecebedata.Name = "lblrecebedata";
-            this.lblrecebedata.Size = new System.Drawing.Size(78, 25);
-            this.lblrecebedata.TabIndex = 33;
-            this.lblrecebedata.Text = "recebedata";
-            this.lblrecebedata.Visible = false;
-            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 534);
+            this.ClientSize = new System.Drawing.Size(646, 593);
             this.Controls.Add(this.tbControlClientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Clientes";

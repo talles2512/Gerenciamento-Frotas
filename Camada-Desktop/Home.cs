@@ -135,6 +135,12 @@ namespace CamadaDesktop
             label2.Text = "Clientes";
         }
 
+        private void btnSeguros_Click(object sender, EventArgs e)
+        {
+            AbrirForms(new Seguros());
+            label2.Text = "Seguros";
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (MenuVertical.Width == 250)
@@ -192,7 +198,7 @@ namespace CamadaDesktop
 
         private void lblver_Click(object sender, EventArgs e)
         {
-
+            //Erik INGLESSON
         }
     }
 }

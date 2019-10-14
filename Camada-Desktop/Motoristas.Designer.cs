@@ -82,6 +82,8 @@
             this.btnConsultaTodosExame = new System.Windows.Forms.Button();
             this.btnConsultaExame = new System.Windows.Forms.Button();
             this.gbDadosExames = new System.Windows.Forms.GroupBox();
+            this.lblSituacaoExame = new System.Windows.Forms.Label();
+            this.cbSituacaoExame = new System.Windows.Forms.ComboBox();
             this.dtDataExame = new System.Windows.Forms.DateTimePicker();
             this.txtExameDescricao = new System.Windows.Forms.TextBox();
             this.lblDescricaoExame = new System.Windows.Forms.Label();
@@ -91,8 +93,6 @@
             this.txtCPFExames = new System.Windows.Forms.MaskedTextBox();
             this.lblDataExame = new System.Windows.Forms.Label();
             this.lblCPFExames = new System.Windows.Forms.Label();
-            this.cbSituacaoExame = new System.Windows.Forms.ComboBox();
-            this.lblSituacaoExame = new System.Windows.Forms.Label();
             this.tbControlMotorista.SuspendLayout();
             this.tbPageCadastroMotorista.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -117,7 +117,7 @@
             this.tbControlMotorista.Location = new System.Drawing.Point(1, 24);
             this.tbControlMotorista.Name = "tbControlMotorista";
             this.tbControlMotorista.SelectedIndex = 0;
-            this.tbControlMotorista.Size = new System.Drawing.Size(644, 498);
+            this.tbControlMotorista.Size = new System.Drawing.Size(644, 557);
             this.tbControlMotorista.TabIndex = 32;
             // 
             // tbPageCadastroMotorista
@@ -127,7 +127,7 @@
             this.tbPageCadastroMotorista.Location = new System.Drawing.Point(4, 37);
             this.tbPageCadastroMotorista.Name = "tbPageCadastroMotorista";
             this.tbPageCadastroMotorista.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageCadastroMotorista.Size = new System.Drawing.Size(636, 457);
+            this.tbPageCadastroMotorista.Size = new System.Drawing.Size(636, 516);
             this.tbPageCadastroMotorista.TabIndex = 0;
             this.tbPageCadastroMotorista.Text = "Cadastrar";
             // 
@@ -137,7 +137,7 @@
             this.gbDadosVeiculos.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosVeiculos.Location = new System.Drawing.Point(6, 6);
             this.gbDadosVeiculos.Name = "gbDadosVeiculos";
-            this.gbDadosVeiculos.Size = new System.Drawing.Size(621, 449);
+            this.gbDadosVeiculos.Size = new System.Drawing.Size(621, 504);
             this.gbDadosVeiculos.TabIndex = 22;
             this.gbDadosVeiculos.TabStop = false;
             this.gbDadosVeiculos.Text = "Dados";
@@ -166,7 +166,7 @@
             this.panelConteudoMotorista.Controls.Add(this.txtCPF);
             this.panelConteudoMotorista.Location = new System.Drawing.Point(6, 24);
             this.panelConteudoMotorista.Name = "panelConteudoMotorista";
-            this.panelConteudoMotorista.Size = new System.Drawing.Size(612, 419);
+            this.panelConteudoMotorista.Size = new System.Drawing.Size(612, 474);
             this.panelConteudoMotorista.TabIndex = 26;
             // 
             // gbExameMedico
@@ -528,7 +528,7 @@
             this.tbPageConsultaMotorista.Location = new System.Drawing.Point(4, 37);
             this.tbPageConsultaMotorista.Name = "tbPageConsultaMotorista";
             this.tbPageConsultaMotorista.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageConsultaMotorista.Size = new System.Drawing.Size(636, 457);
+            this.tbPageConsultaMotorista.Size = new System.Drawing.Size(636, 516);
             this.tbPageConsultaMotorista.TabIndex = 1;
             this.tbPageConsultaMotorista.Text = "Consultar";
             // 
@@ -543,7 +543,7 @@
             this.gbConsultaVeiculo.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaVeiculo.Location = new System.Drawing.Point(8, 10);
             this.gbConsultaVeiculo.Name = "gbConsultaVeiculo";
-            this.gbConsultaVeiculo.Size = new System.Drawing.Size(621, 445);
+            this.gbConsultaVeiculo.Size = new System.Drawing.Size(621, 500);
             this.gbConsultaVeiculo.TabIndex = 23;
             this.gbConsultaVeiculo.TabStop = false;
             this.gbConsultaVeiculo.Text = "Consulta";
@@ -610,7 +610,7 @@
             this.dgMotoristaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgMotoristaConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgMotoristaConsulta.Name = "dgMotoristaConsulta";
-            this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 371);
+            this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 426);
             this.dgMotoristaConsulta.TabIndex = 18;
             // 
             // btnTodosMotorista
@@ -638,7 +638,7 @@
             this.tbPageExames.Controls.Add(this.gbDadosExames);
             this.tbPageExames.Location = new System.Drawing.Point(4, 37);
             this.tbPageExames.Name = "tbPageExames";
-            this.tbPageExames.Size = new System.Drawing.Size(636, 457);
+            this.tbPageExames.Size = new System.Drawing.Size(636, 516);
             this.tbPageExames.TabIndex = 2;
             this.tbPageExames.Text = "Exames Médicos";
             // 
@@ -655,7 +655,7 @@
             this.gbConsultaExame.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaExame.Location = new System.Drawing.Point(6, 249);
             this.gbConsultaExame.Name = "gbConsultaExame";
-            this.gbConsultaExame.Size = new System.Drawing.Size(621, 209);
+            this.gbConsultaExame.Size = new System.Drawing.Size(621, 264);
             this.gbConsultaExame.TabIndex = 25;
             this.gbConsultaExame.TabStop = false;
             this.gbConsultaExame.Text = "Consulta";
@@ -723,7 +723,7 @@
             this.dgExameConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgExameConsulta.Location = new System.Drawing.Point(7, 71);
             this.dgExameConsulta.Name = "dgExameConsulta";
-            this.dgExameConsulta.Size = new System.Drawing.Size(437, 132);
+            this.dgExameConsulta.Size = new System.Drawing.Size(437, 187);
             this.dgExameConsulta.TabIndex = 25;
             // 
             // btnConsultaTodosExame
@@ -783,6 +783,23 @@
             this.gbDadosExames.TabIndex = 23;
             this.gbDadosExames.TabStop = false;
             this.gbDadosExames.Text = "Dados";
+            // 
+            // lblSituacaoExame
+            // 
+            this.lblSituacaoExame.AutoSize = true;
+            this.lblSituacaoExame.Location = new System.Drawing.Point(426, 27);
+            this.lblSituacaoExame.Name = "lblSituacaoExame";
+            this.lblSituacaoExame.Size = new System.Drawing.Size(109, 25);
+            this.lblSituacaoExame.TabIndex = 25;
+            this.lblSituacaoExame.Text = "Situação Exame:";
+            // 
+            // cbSituacaoExame
+            // 
+            this.cbSituacaoExame.FormattingEnabled = true;
+            this.cbSituacaoExame.Location = new System.Drawing.Point(431, 55);
+            this.cbSituacaoExame.Name = "cbSituacaoExame";
+            this.cbSituacaoExame.Size = new System.Drawing.Size(178, 33);
+            this.cbSituacaoExame.TabIndex = 24;
             // 
             // dtDataExame
             // 
@@ -895,28 +912,11 @@
             this.lblCPFExames.TabIndex = 0;
             this.lblCPFExames.Text = "CPF:";
             // 
-            // cbSituacaoExame
-            // 
-            this.cbSituacaoExame.FormattingEnabled = true;
-            this.cbSituacaoExame.Location = new System.Drawing.Point(431, 55);
-            this.cbSituacaoExame.Name = "cbSituacaoExame";
-            this.cbSituacaoExame.Size = new System.Drawing.Size(178, 33);
-            this.cbSituacaoExame.TabIndex = 24;
-            // 
-            // lblSituacaoExame
-            // 
-            this.lblSituacaoExame.AutoSize = true;
-            this.lblSituacaoExame.Location = new System.Drawing.Point(426, 27);
-            this.lblSituacaoExame.Name = "lblSituacaoExame";
-            this.lblSituacaoExame.Size = new System.Drawing.Size(109, 25);
-            this.lblSituacaoExame.TabIndex = 25;
-            this.lblSituacaoExame.Text = "Situação Exame:";
-            // 
             // Motoristas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 534);
+            this.ClientSize = new System.Drawing.Size(646, 593);
             this.Controls.Add(this.tbControlMotorista);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Motoristas";

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.btnSeguros = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnViagem = new System.Windows.Forms.Button();
@@ -67,6 +68,7 @@
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.MenuVertical.Controls.Add(this.btnSeguros);
             this.MenuVertical.Controls.Add(this.label3);
             this.MenuVertical.Controls.Add(this.pbLogo);
             this.MenuVertical.Controls.Add(this.btnViagem);
@@ -87,8 +89,25 @@
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuVertical.Location = new System.Drawing.Point(0, 0);
             this.MenuVertical.Name = "MenuVertical";
-            this.MenuVertical.Size = new System.Drawing.Size(250, 666);
+            this.MenuVertical.Size = new System.Drawing.Size(250, 709);
             this.MenuVertical.TabIndex = 1;
+            // 
+            // btnSeguros
+            // 
+            this.btnSeguros.FlatAppearance.BorderSize = 0;
+            this.btnSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeguros.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeguros.ForeColor = System.Drawing.Color.White;
+            this.btnSeguros.Image = ((System.Drawing.Image)(resources.GetObject("btnSeguros.Image")));
+            this.btnSeguros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeguros.Location = new System.Drawing.Point(3, 403);
+            this.btnSeguros.Name = "btnSeguros";
+            this.btnSeguros.Size = new System.Drawing.Size(244, 40);
+            this.btnSeguros.TabIndex = 17;
+            this.btnSeguros.Text = "Seguros";
+            this.btnSeguros.UseVisualStyleBackColor = true;
+            this.btnSeguros.Click += new System.EventHandler(this.btnSeguros_Click);
             // 
             // label3
             // 
@@ -134,7 +153,7 @@
             this.lblver.AutoSize = true;
             this.lblver.Font = new System.Drawing.Font("Agency FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblver.ForeColor = System.Drawing.Color.White;
-            this.lblver.Location = new System.Drawing.Point(202, 630);
+            this.lblver.Location = new System.Drawing.Point(205, 683);
             this.lblver.Name = "lblver";
             this.lblver.Size = new System.Drawing.Size(42, 18);
             this.lblver.TabIndex = 13;
@@ -166,7 +185,7 @@
             this.btnSair.Font = new System.Drawing.Font("Agency FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSair.ForeColor = System.Drawing.Color.White;
             this.btnSair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSair.Location = new System.Drawing.Point(9, 632);
+            this.btnSair.Location = new System.Drawing.Point(3, 675);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(42, 31);
             this.btnSair.TabIndex = 13;
@@ -184,7 +203,7 @@
             this.btnClientes.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.ForeColor = System.Drawing.Color.White;
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.Location = new System.Drawing.Point(3, 582);
+            this.btnClientes.Location = new System.Drawing.Point(3, 629);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(244, 40);
             this.btnClientes.TabIndex = 12;
@@ -202,7 +221,7 @@
             this.btnFuncionarios.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFuncionarios.ForeColor = System.Drawing.Color.White;
             this.btnFuncionarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFuncionarios.Location = new System.Drawing.Point(3, 539);
+            this.btnFuncionarios.Location = new System.Drawing.Point(3, 587);
             this.btnFuncionarios.Name = "btnFuncionarios";
             this.btnFuncionarios.Size = new System.Drawing.Size(244, 40);
             this.btnFuncionarios.TabIndex = 11;
@@ -219,7 +238,7 @@
             this.btnEstoque.ForeColor = System.Drawing.Color.White;
             this.btnEstoque.Image = ((System.Drawing.Image)(resources.GetObject("btnEstoque.Image")));
             this.btnEstoque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEstoque.Location = new System.Drawing.Point(3, 498);
+            this.btnEstoque.Location = new System.Drawing.Point(3, 541);
             this.btnEstoque.Name = "btnEstoque";
             this.btnEstoque.Size = new System.Drawing.Size(244, 40);
             this.btnEstoque.TabIndex = 10;
@@ -236,7 +255,7 @@
             this.btnSinistros.ForeColor = System.Drawing.Color.White;
             this.btnSinistros.Image = ((System.Drawing.Image)(resources.GetObject("btnSinistros.Image")));
             this.btnSinistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSinistros.Location = new System.Drawing.Point(3, 453);
+            this.btnSinistros.Location = new System.Drawing.Point(3, 495);
             this.btnSinistros.Name = "btnSinistros";
             this.btnSinistros.Size = new System.Drawing.Size(244, 40);
             this.btnSinistros.TabIndex = 9;
@@ -253,7 +272,7 @@
             this.btnMultas.ForeColor = System.Drawing.Color.White;
             this.btnMultas.Image = ((System.Drawing.Image)(resources.GetObject("btnMultas.Image")));
             this.btnMultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMultas.Location = new System.Drawing.Point(3, 407);
+            this.btnMultas.Location = new System.Drawing.Point(3, 449);
             this.btnMultas.Name = "btnMultas";
             this.btnMultas.Size = new System.Drawing.Size(244, 40);
             this.btnMultas.TabIndex = 8;
@@ -350,7 +369,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 617);
+            this.label1.Location = new System.Drawing.Point(6, 662);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 13);
             this.label1.TabIndex = 12;
@@ -361,7 +380,7 @@
             this.panelConteudo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.panelConteudo.Location = new System.Drawing.Point(263, 82);
             this.panelConteudo.Name = "panelConteudo";
-            this.panelConteudo.Size = new System.Drawing.Size(646, 534);
+            this.panelConteudo.Size = new System.Drawing.Size(646, 593);
             this.panelConteudo.TabIndex = 2;
             // 
             // label2
@@ -439,7 +458,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(929, 666);
+            this.ClientSize = new System.Drawing.Size(929, 709);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.iconcerrar);
@@ -495,6 +514,7 @@
         private System.Windows.Forms.ContextMenuStrip ContextMenu;
         private System.Windows.Forms.ToolStripMenuItem sairOpcToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loggoutToolStripMenuItem;
+        private System.Windows.Forms.Button btnSeguros;
     }
 }
 

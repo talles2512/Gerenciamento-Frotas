@@ -81,7 +81,7 @@
             this.tbControlConveniados.Location = new System.Drawing.Point(1, 24);
             this.tbControlConveniados.Name = "tbControlConveniados";
             this.tbControlConveniados.SelectedIndex = 0;
-            this.tbControlConveniados.Size = new System.Drawing.Size(644, 498);
+            this.tbControlConveniados.Size = new System.Drawing.Size(644, 557);
             this.tbControlConveniados.TabIndex = 29;
             // 
             // tbPageCadastroConveniados
@@ -91,7 +91,7 @@
             this.tbPageCadastroConveniados.Location = new System.Drawing.Point(4, 37);
             this.tbPageCadastroConveniados.Name = "tbPageCadastroConveniados";
             this.tbPageCadastroConveniados.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageCadastroConveniados.Size = new System.Drawing.Size(636, 457);
+            this.tbPageCadastroConveniados.Size = new System.Drawing.Size(636, 516);
             this.tbPageCadastroConveniados.TabIndex = 0;
             this.tbPageCadastroConveniados.Text = "Cadastrar";
             // 
@@ -101,7 +101,7 @@
             this.gbDadosConveniados.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosConveniados.Location = new System.Drawing.Point(6, 6);
             this.gbDadosConveniados.Name = "gbDadosConveniados";
-            this.gbDadosConveniados.Size = new System.Drawing.Size(621, 445);
+            this.gbDadosConveniados.Size = new System.Drawing.Size(621, 504);
             this.gbDadosConveniados.TabIndex = 1;
             this.gbDadosConveniados.TabStop = false;
             this.gbDadosConveniados.Text = "Dados";
@@ -134,7 +134,7 @@
             this.panel1.Controls.Add(this.lblTipoServico);
             this.panel1.Location = new System.Drawing.Point(6, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(609, 408);
+            this.panel1.Size = new System.Drawing.Size(609, 467);
             this.panel1.TabIndex = 0;
             // 
             // dtVencimento
@@ -384,7 +384,7 @@
             this.tbPageConsultaConveniados.Location = new System.Drawing.Point(4, 37);
             this.tbPageConsultaConveniados.Name = "tbPageConsultaConveniados";
             this.tbPageConsultaConveniados.Padding = new System.Windows.Forms.Padding(3);
-            this.tbPageConsultaConveniados.Size = new System.Drawing.Size(636, 457);
+            this.tbPageConsultaConveniados.Size = new System.Drawing.Size(636, 516);
             this.tbPageConsultaConveniados.TabIndex = 1;
             this.tbPageConsultaConveniados.Text = "Consultar";
             // 
@@ -399,7 +399,7 @@
             this.gbConsultaConveniados.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaConveniados.Location = new System.Drawing.Point(8, 10);
             this.gbConsultaConveniados.Name = "gbConsultaConveniados";
-            this.gbConsultaConveniados.Size = new System.Drawing.Size(621, 445);
+            this.gbConsultaConveniados.Size = new System.Drawing.Size(621, 500);
             this.gbConsultaConveniados.TabIndex = 2;
             this.gbConsultaConveniados.TabStop = false;
             this.gbConsultaConveniados.Text = "Consulta";
@@ -447,7 +447,7 @@
             this.dgConveniadoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgConveniadoConsulta.Location = new System.Drawing.Point(7, 75);
             this.dgConveniadoConsulta.Name = "dgConveniadoConsulta";
-            this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 364);
+            this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 419);
             this.dgConveniadoConsulta.TabIndex = 18;
             // 
             // btnTodosConveniado
@@ -491,7 +491,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 534);
+            this.ClientSize = new System.Drawing.Size(646, 593);
             this.Controls.Add(this.tbControlConveniados);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ServicoExterno_Conveniados";
