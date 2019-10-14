@@ -66,6 +66,7 @@
     <Compile Include="Services\Exceptions\IntegridadeException.cs" />
     <Compile Include="Services\Exceptions\NaoEncontradoException.cs" />
     <Compile Include="Services\Exceptions\RegistroExisteException.cs" />
+    <Compile Include="Services\Exceptions\TipoCombustivelException.cs" />
     <Compile Include="Services\Exceptions\TransacaoException.cs" />
     <Compile Include="Services\MultaService.cs" />
     <Compile Include="Services\ManutencaoService.cs" />

@@ -1,8 +1,10 @@
 ﻿using CamadaModelagem.Data;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,55 +14,169 @@ namespace CamadaModelagem.Services
     public class AbastecimentoService
     {
         private readonly AbastecimentoDAL _abastecimentoDAL;
+        private readonly VeiculoDAL _veiculoDAL;
 
-        public AbastecimentoService(AbastecimentoDAL abastecimentoDAL)
+        public AbastecimentoService(AbastecimentoDAL abastecimentoDAL, VeiculoDAL veiculoDAL)
         {
             _abastecimentoDAL = abastecimentoDAL;
+            _veiculoDAL = veiculoDAL;
         }
-        public void Cadastrar(Abastecimento abastecimento) //Mudança na Query, Verificar
-        {
-            //try
-            //{
-            //    Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(abastecimento.Veiculo.Placa, abastecimento.Tipo, abastecimento.Data); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um Abastecimento com esses dados no sistema!");
-            //    }
-            //    _abastecimentoDAL.Cadastrar(abastecimento);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
-        }
-
-        public void Deletar(string placa, int tipo, DateTime data)
+        public bool Cadastrar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data) //Mudança na Query, Verificar
         {
             try
             {
-                _abastecimentoDAL.Deletar(placa, tipo, data);
+                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma Manutenção com esses dados no sistema!");
+                }
+                else
+                {
+                    Veiculo veiculo = _veiculoDAL.BuscarPlaca(placa);
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), veiculo.Combustivel.ToString());
+
+                    if (abastecimentoTipo == AbastecimentoTipo.Flex)
+                    {
+                        if (abastecimento.Tipo == AbastecimentoTipo.Gasolina || abastecimento.Tipo == AbastecimentoTipo.Etanol
+                            || abastecimento.Tipo == AbastecimentoTipo.Gasolina_Aditivada)
+                        {
+                            return _abastecimentoDAL.Cadastrar(abastecimento);
+                        }
+                        else
+                        {
+                            throw new TipoCombustivelException("Combustível escolhido é incompatível com o veículo!");
+                        }
+                    }
+                    else if (abastecimentoTipo == abastecimento.Tipo)
+                    {
+                        return _abastecimentoDAL.Cadastrar(abastecimento);
+                    }
+                    else
+                    {
+                        throw new TipoCombustivelException("Combustível escolhido é incompatível com o veículo!");
+                    }
+                }
+
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new IntegridadeException("Abastecimento não pode ser deletado, pois está ligado a outros serviços.");
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 
-        public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data)
+        public Abastecimento BuscarAbastecimento(string placa, AbastecimentoTipo tipo, DateTime data)
         {
-            //try
-            //{
-            //    Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Abastecimento não encontrado.");
-            //    }
-            //    _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                return _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Abastecimento> BuscarTodos()
+        {
+            List<Abastecimento> abastecimentos = new List<Abastecimento>();
+            try
+            {
+                abastecimentos.AddRange(_abastecimentoDAL.BuscarTodos());
+                return abastecimentos;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Deletar(string placa, AbastecimentoTipo tipo, DateTime data)
+        {
+            try
+            {
+                if (_abastecimentoDAL.Deletar(placa, tipo, data))
+                {
+                    return _abastecimentoDAL.Deletar(placa, tipo, data);
+                }
+                else
+                {
+                    throw new IntegridadeException("Serviço Externo não pode ser deletado, pois ainda está vinculado à outros serviços.");
+                }
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data)
+        {
+            try
+            {
+                Abastecimento obj = _abastecimentoDAL.BuscarAbastecimento(placa, tipo, data);
+                if (obj != null)
+                {
+                    Veiculo veiculo = _veiculoDAL.BuscarPlaca(placa);
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), veiculo.Combustivel.ToString());
+
+                    if (abastecimentoTipo == AbastecimentoTipo.Flex)
+                    {
+                        if (abastecimento.Tipo == AbastecimentoTipo.Gasolina || abastecimento.Tipo == AbastecimentoTipo.Etanol
+                            || abastecimento.Tipo == AbastecimentoTipo.Gasolina_Aditivada)
+                        {
+                            return _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
+                        }
+                        else
+                        {
+                            throw new TipoCombustivelException("Combustível escolhido é incompatível com o veículo!");
+                        }
+                    }
+                    else if (abastecimentoTipo == abastecimento.Tipo)
+                    {
+                        return _abastecimentoDAL.Alterar(abastecimento, placa, tipo, data);
+                    }
+                    else
+                    {
+                        throw new TipoCombustivelException("Combustível escolhido é incompatível com o veículo!");
+                    }
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Manutenção não encontrada.");
+                }
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _abastecimentoDAL.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _abastecimentoDAL.PopularServicosExternos();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Data
 {
@@ -17,23 +20,164 @@ namespace CamadaModelagem.Data
             _banco = banco;
         }
 
-        public void Cadastrar(Abastecimento abastecimento)
+        public bool Cadastrar(Abastecimento abastecimento)
         {
-            string query = " INSERT INTO [dbo].[TB_ABASTECIMENTO]([ABS_VCL_PLACA],[ABS_SERVEXT_CNPJ],[ABS_TIPO],[ABS_VALORLITRO],[ABS_DATA])" +
-                "VALUES('" + abastecimento.Veiculo.Placa + "', " + abastecimento.ServicoExterno.CNPJ + ", " + abastecimento.Tipo + ", " + abastecimento.ValorLitro + ", '" + abastecimento.Data + "')";
-            _banco.ExecutarInstrucao(query);
+            int tipoAbastecimento = abastecimento.Tipo.GetHashCode();
+            string query = " INSERT INTO [dbo].[TB_ABASTECIMENTO]([ABS_VCL_PLACA],[ABS_SERVEXT_CNPJ],[ABS_TIPO],[ABS_LITROS],[ABS_VALOR],[ABS_DATA])" +
+                "VALUES('" + abastecimento.Placa + "', " + abastecimento.CNPJ + ", " + tipoAbastecimento + ", " + abastecimento.Litros + ", "
+                + abastecimento.Valor + ", '" + abastecimento.Data.ToShortDateString() + "')";
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data) //Modificado
+        public bool Deletar(string placa, AbastecimentoTipo tipo, DateTime data) //Modificado
         {
-            string Query = "DELETE [TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipo + " AND [ABS_DATA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            int tipoAbastecimento = tipo.GetHashCode();
+            string Query = "DELETE [TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipoAbastecimento + " AND [ABS_DATA] = '" + data + "'";
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data) // Modificado
+        public bool Alterar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data) // Modificado
         {
-            string Query = "UPDATE TB_ABASTECIMENTO SET [ABS_VCL_PLACA] = '" + abastecimento.Veiculo.Placa + "', [ABS_SERVEXT_CNPJ] = " + abastecimento.ServicoExterno.CNPJ + " ,[ABS_TIPO] = " + abastecimento.Tipo + ",[ABS_VALORLITRO] = " + abastecimento.ValorLitro + ",[ABS_DATA] = '" + abastecimento.Data + "' WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipo + " AND [ABS_DATA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            int tipoAbastecimento = abastecimento.Tipo.GetHashCode();
+            int tipoAbastecimentoAntigo = tipo.GetHashCode();
+            string Query = "UPDATE TB_ABASTECIMENTO SET [ABS_VCL_PLACA] = '" + abastecimento.Placa + "', [ABS_SERVEXT_CNPJ] = "
+                + abastecimento.CNPJ + " ,[ABS_TIPO] = " + tipoAbastecimento + ",[ABS_LITROS] = " + abastecimento.Litros
+                + ",[ABS_VALOR] = " + abastecimento.Valor + ",[ABS_DATA] = '"
+                + abastecimento.Data + "' WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipoAbastecimentoAntigo + " AND [ABS_DATA] = '" + data + "'";
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Abastecimento BuscarAbastecimento(string placa, AbastecimentoTipo tipo, DateTime data)
+        {
+            int tipoAbastecimento = tipo.GetHashCode();
+            string query = "SELECT [ABS_ID], [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
+                "FROM[TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipoAbastecimento + "  AND [ABS_DATA] = '" + data.ToShortDateString() + "'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Abastecimento abastecimento = null;
+                DataRow[] dataRows = dt.Select("[ABS_VCL_PLACA] = '" + placa + "' AND [ABS_TIPO] = " + tipoAbastecimento + "  AND [ABS_DATA] = '" + data.ToShortDateString() + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), dr["ABS_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ABS_SERVEXT_CNPJ"].ToString());
+                    DateTime dataAbastecimento = Convert.ToDateTime(dr["ABS_DATA"].ToString());
+                    double litros = double.Parse(dr["ABS_LITROS"].ToString());
+                    double valor = double.Parse(dr["ABS_VALOR"].ToString());
+
+                    abastecimento = new Abastecimento(abastecimentoTipo, valor, litros, dataAbastecimento, dr["ABS_VCL_PLACA"].ToString(), cNPJ);
+                }
+                return abastecimento;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<Abastecimento> BuscarTodos(long cnpj)
+        {
+            List<Abastecimento> abastecimentos = new List<Abastecimento>();
+            string query = "SELECT [ABS_ID], [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
+                "FROM[TB_ABASTECIMENTO] WHERE [ABS_SERVEXT_CNPJ] = " + cnpj;
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Abastecimento abastecimento = null;
+                DataRow[] dataRows = dt.Select("[ABS_SERVEXT_CNPJ] = " + cnpj);
+                foreach (DataRow dr in dataRows)
+                {
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), dr["ABS_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ABS_SERVEXT_CNPJ"].ToString());
+                    DateTime dataAbastecimento = Convert.ToDateTime(dr["ABS_DATA"].ToString());
+                    double litros = double.Parse(dr["ABS_LITROS"].ToString());
+                    double valor = double.Parse(dr["ABS_VALOR"].ToString());
+
+                    abastecimento = new Abastecimento(abastecimentoTipo, valor, litros, dataAbastecimento, dr["ABS_VCL_PLACA"].ToString(), cNPJ);
+                    abastecimentos.Add(abastecimento);
+                }
+                return abastecimentos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<Abastecimento> BuscarTodos()
+        {
+            List<Abastecimento> abastecimentos = new List<Abastecimento>();
+            string query = "SELECT [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
+                " FROM [DB_GERENCFROTA].[dbo].[TB_ABASTECIMENTO]";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Abastecimento abastecimento = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), dr["ABS_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ABS_SERVEXT_CNPJ"].ToString());
+                    DateTime dataAbastecimento = Convert.ToDateTime(dr["ABS_DATA"].ToString());
+                    double litros = double.Parse(dr["ABS_LITROS"].ToString());
+                    double valor = double.Parse(dr["ABS_VALOR"].ToString());
+
+                    abastecimento = new Abastecimento(abastecimentoTipo, valor, litros, dataAbastecimento, dr["ABS_VCL_PLACA"].ToString(), cNPJ);
+                    abastecimentos.Add(abastecimento);
+                }
+                return abastecimentos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public DataTable PopularPlacas()
+        {
+            string query = "SELECT [VCL_MODELO] + '-' + [VCL_PLACA] as MODELO, [VCL_PLACA] FROM [DB_GERENCFROTA].[dbo].[TB_VEICULOS]	WHERE [VCL_SITUACAO] = 1";
+            try
+            {
+                return _banco.BuscarRegistro(query);
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            string query = "SELECT [SERVEXT_CNPJ], [SERVEXT_NOME] FROM [DB_GERENCFROTA].[dbo].[TB_SERVICOS_EXTERNOS] WHERE [SERVEXT_TIPO] = 'Posto'";
+            try
+            {
+                return _banco.BuscarRegistro(query);
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
         }
     }
 }

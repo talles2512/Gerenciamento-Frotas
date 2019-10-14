@@ -1,7 +1,10 @@
 ﻿using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,19 +21,100 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(Abastecimento abastecimento)
+        public bool Cadastrar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data)
         {
-            _abastecimentoService.Cadastrar(abastecimento);
+            try
+            {
+                return _abastecimentoService.Cadastrar(abastecimento, placa, tipo, data);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(string placa, int tipo, DateTime data)
+        public Abastecimento BuscarAbastecimento(string placa, AbastecimentoTipo tipo, DateTime data)
         {
-            _abastecimentoService.Deletar(placa, tipo, data);
+            try
+            {
+                return _abastecimentoService.BuscarAbastecimento(placa, tipo, data);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(Abastecimento abastecimento, string placa, int tipo, DateTime data)
+        public List<Abastecimento> BuscarTodos()
         {
-            _abastecimentoService.Alterar(abastecimento, placa, tipo, data);
+            try
+            {
+                return _abastecimentoService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(string placa, AbastecimentoTipo tipo, DateTime data)
+        {
+            try
+            {
+                return _abastecimentoService.Deletar(placa, tipo, data);
+            }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data)
+        {
+            try
+            {
+                return _abastecimentoService.Alterar(abastecimento, placa, tipo, data);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _abastecimentoService.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _abastecimentoService.PopularServicosExternos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         #endregion

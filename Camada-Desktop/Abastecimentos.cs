@@ -17,47 +17,45 @@ using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaDesktop
 {
-    public partial class Manutencoes : Form
+    public partial class Abastecimentos : Form
     {
-        private readonly ManutencaoController _manutencaoController;
-        private Manutencao Manutencao;
+        private readonly AbastecimentoController _abastecimentoController;
+        private Abastecimento Abastecimento;
         string PlacaAntiga;
         string TipoAntigo;
         DateTime dataAntiga;
-        public Manutencoes()
+        public Abastecimentos()
         {
             InitializeComponent();
-            _manutencaoController = InstanciarCamadas();
-            Manutencao = null;
+            _abastecimentoController = InstanciarCamadas();
+            Abastecimento = null;
             PlacaAntiga = "";
             TipoAntigo = "";
-            dataAntiga = new DateTime(2000,01,01);
-
+            dataAntiga = new DateTime(2000, 01, 01);
         }
 
-        private ManutencaoController InstanciarCamadas()
+        private AbastecimentoController InstanciarCamadas()
         {
             Banco banco = new Banco();
-            ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
-            ManutencaoService manutencaoService = new ManutencaoService(manutencaoDAL);
-            return new ManutencaoController(manutencaoService);
+            AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
+            VeiculoDAL veiculoDAL = new VeiculoDAL(banco);
+            AbastecimentoService abastecimentoService = new AbastecimentoService(abastecimentoDAL, veiculoDAL);
+            return new AbastecimentoController(abastecimentoService);
         }
-
-        private void Manutencoes_Load(object sender, EventArgs e)
+        private void Abastecimento_Load(object sender, EventArgs e)
         {
-            cbTipo.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
-            cbTipoManuntConsulta.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
+            cbTipo.DataSource = Enum.GetValues(typeof(AbastecimentoTipo));
+            cbTipoAbastConsulta.DataSource = Enum.GetValues(typeof(AbastecimentoTipo));
 
-            cbSituacao.DataSource = Enum.GetValues(typeof(SituacaoManutencao));
             try
             {
-                cbPlaca.DataSource = _manutencaoController.PopularPlacas();
+                cbPlaca.DataSource = _abastecimentoController.PopularPlacas();
                 cbPlaca.DisplayMember = "MODELO";
                 cbPlaca.ValueMember = "VCL_PLACA";
 
-                cbPlacaConsulta.DataSource = _manutencaoController.PopularPlacas();
-                cbPlacaConsulta.DisplayMember = "MODELO";
-                cbPlacaConsulta.ValueMember = "VCL_PLACA";
+                cbPlacaAbastConsulta.DataSource = _abastecimentoController.PopularPlacas();
+                cbPlacaAbastConsulta.DisplayMember = "MODELO";
+                cbPlacaAbastConsulta.ValueMember = "VCL_PLACA";
             }
             catch (ConcorrenciaBancoException)
             {
@@ -65,7 +63,7 @@ namespace CamadaDesktop
             }
             try
             {
-                cbServicoExterno.DataSource = _manutencaoController.PopularServicosExternos();
+                cbServicoExterno.DataSource = _abastecimentoController.PopularServicosExternos();
                 cbServicoExterno.DisplayMember = "SERVEXT_NOME";
                 cbServicoExterno.ValueMember = "SERVEXT_CNPJ";
             }
@@ -75,7 +73,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnCadastrarManunt_Click(object sender, EventArgs e)
+        private void BtnCadastrarAbast_Click(object sender, EventArgs e)
         {
             if (cbPlaca.Items.Count < 1)
             {
@@ -85,23 +83,22 @@ namespace CamadaDesktop
             {
                 MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if (txtValor.Text == "" || txtDescricao.Text == "")
+            else if (txtValor.Text == "" || txtQuantidadeLitros.Text == "   .  ")
             {
                 MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipo.SelectedItem.ToString());
-                SituacaoManutencao situacaoManutencao = (SituacaoManutencao)Enum.Parse(typeof(SituacaoManutencao), cbSituacao.SelectedItem.ToString());
+                AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipo.SelectedItem.ToString());
                 double valor = double.Parse(txtValor.Text);
+                double quantidadeLitros = double.Parse(txtQuantidadeLitros.Text);
                 string placa = cbPlaca.SelectedValue.ToString();
                 long cNPJ = Convert.ToInt64(cbServicoExterno.SelectedValue);
-
-                Manutencao manutencao = new Manutencao(manutencaoTipo, txtDescricao.Text, dtDataManunt.Value, valor, situacaoManutencao, cNPJ, placa);
+                Abastecimento abastecimento = new Abastecimento(abastecimentoTipo, valor, quantidadeLitros, dtDataAbast.Value, placa, cNPJ);
 
                 try
                 {
-                    if (_manutencaoController.Cadastrar(manutencao, manutencao.Placa, manutencao.Tipo, manutencao.Data))
+                    if (_abastecimentoController.Cadastrar(abastecimento, abastecimento.Placa, abastecimento.Tipo, abastecimento.Data))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
                     }
@@ -110,6 +107,10 @@ namespace CamadaDesktop
                 {
                     MessageBox.Show(ex.Message);
                 }
+                catch (TipoCombustivelException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -117,9 +118,9 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnConsultarManunt_Click(object sender, EventArgs e)
+        private void BtnConsultarAbast_Click(object sender, EventArgs e)
         {
-            if (cbPlacaConsulta.Items.Count < 1)
+            if (cbPlacaAbastConsulta.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -127,34 +128,33 @@ namespace CamadaDesktop
             {
                 try
                 {
-                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipoAbastConsulta.SelectedItem.ToString());
                     string placa = cbPlaca.SelectedValue.ToString();
 
-                    Manutencao manutencao = _manutencaoController.BuscarManutencao(placa, manutencaoTipo, dtDataManuntConsulta.Value);
-                    if (manutencao == null)
+                    Abastecimento abastecimento = _abastecimentoController.BuscarAbastecimento(placa, abastecimentoTipo, dtDataAbastConsulta.Value);
+                    if (abastecimento == null)
                     {
-                        dgVeiculoManunt.DataSource = null;
+                        dgVeiculoAbast.DataSource = null;
                     }
                     else
                     {
                         DataTable dt = new DataTable();
-                        dt.Columns.Add("Tipo", typeof(string));
-                        dt.Columns.Add("CNPJ", typeof(long));
                         dt.Columns.Add("Placa", typeof(string));
-                        dt.Columns.Add("Descrição", typeof(string));
-                        dt.Columns.Add("Valor Manutenção", typeof(double));
+                        dt.Columns.Add("CNPJ", typeof(long));
+                        dt.Columns.Add("Tipo Combustível", typeof(string));
+                        dt.Columns.Add("Quantidade (Litros)", typeof(double));
+                        dt.Columns.Add("Valor (Total)", typeof(double));
                         dt.Columns.Add("Data", typeof(DateTime));
-                        dt.Columns.Add("Situação", typeof(string));
 
 
-                        dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
-                            , manutencao.Data, manutencao.Situacao.ToString());
-                        dgVeiculoManunt.DataSource = dt;
 
-                        Manutencao = manutencao;
-                        manutencao = null;
+                        dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
+                            , abastecimento.Data);
+                        dgVeiculoAbast.DataSource = dt;
+
+                        Abastecimento = abastecimento;
+                        abastecimento = null;
                     }
-
                 }
                 catch (ConcorrenciaBancoException ex)
                 {
@@ -163,40 +163,35 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnTodosManunt_Click(object sender, EventArgs e)
+        private void BtnTodosAbast_Click(object sender, EventArgs e)
         {
-            if (cbPlacaConsulta.Items.Count < 1)
+            if (cbPlacaAbastConsulta.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            if (cbServicoExterno.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
                 try
                 {
-                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipoAbastConsulta.SelectedItem.ToString());
                     string placa = cbPlaca.SelectedValue.ToString();
 
-                    List<Manutencao> manutencoes = _manutencaoController.BuscarTodos();
+                    List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos();
 
                     DataTable dt = new DataTable();
-                    dt.Columns.Add("Tipo", typeof(string));
-                    dt.Columns.Add("CNPJ", typeof(long));
                     dt.Columns.Add("Placa", typeof(string));
-                    dt.Columns.Add("Descrição", typeof(string));
-                    dt.Columns.Add("Valor Manutenção", typeof(double));
+                    dt.Columns.Add("CNPJ", typeof(long));
+                    dt.Columns.Add("Tipo Combustível", typeof(string));
+                    dt.Columns.Add("Quantidade (Litros)", typeof(double));
+                    dt.Columns.Add("Valor (Total)", typeof(double));
                     dt.Columns.Add("Data", typeof(DateTime));
-                    dt.Columns.Add("Situação", typeof(string));
 
-                    foreach(Manutencao manutencao in manutencoes)
+                    foreach (Abastecimento abastecimento in abastecimentos)
                     {
-                        dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
-                            , manutencao.Data, manutencao.Situacao.ToString());
+                        dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
+                                                    , abastecimento.Data);
                     }
-                    dgVeiculoManunt.DataSource = dt;
+                    dgVeiculoAbast.DataSource = dt;
                 }
                 catch (ConcorrenciaBancoException ex)
                 {
@@ -205,37 +200,36 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnTrasferirManunt_Click(object sender, EventArgs e)
+        private void BtnTrasferirAbast_Click(object sender, EventArgs e)
         {
-            if (Manutencao == null)
+            if (Abastecimento == null)
             {
                 MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                PlacaAntiga = Manutencao.Placa;
-                TipoAntigo = Manutencao.Tipo.ToString();
-                dataAntiga = Manutencao.Data;
+                PlacaAntiga = Abastecimento.Placa;
+                TipoAntigo = Abastecimento.Tipo.ToString();
+                dataAntiga = Abastecimento.Data;
 
-                cbTipo.SelectedItem = Manutencao.Tipo;
-                dtDataManunt.Value = Manutencao.Data;
-                txtValor.Text = Manutencao.Valor.ToString();
-                cbPlaca.SelectedValue = Manutencao.Placa;
-                cbServicoExterno.SelectedValue = Manutencao.CNPJ;
-                txtDescricao.Text = Manutencao.Descricao;
-                cbSituacao.SelectedItem = Manutencao.Situacao;
+                cbTipo.SelectedItem = Abastecimento.Tipo;
+                dtDataAbast.Value = Abastecimento.Data;
+                txtQuantidadeLitros.Text = Abastecimento.Litros.ToString();
+                txtValor.Text = Abastecimento.Valor.ToString();
+                cbPlaca.SelectedValue = Abastecimento.Placa;
+                cbServicoExterno.SelectedValue = Abastecimento.CNPJ;
 
                 MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlManunt.SelectTab("tbPageCadastroManunt");
-                if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
+                tbControlAbast.SelectTab("tbPageCadastroAbast");
+                if (tbControlAbast.SelectedTab == tbPageCadastroAbast)
                 {
-                    dtDataManuntConsulta.Value = DateTime.Now;
-                    Manutencao = null;
+                    dtDataAbastConsulta.Value = DateTime.Now;
+                    Abastecimento = null;
                 }
             }
         }
 
-        private void BtnAlterarManunt_Click(object sender, EventArgs e)
+        private void BtnAlterarAbast_Click(object sender, EventArgs e)
         {
             if (cbPlaca.Items.Count < 1)
             {
@@ -245,41 +239,40 @@ namespace CamadaDesktop
             {
                 MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            if (txtValor.Text == "" || txtDescricao.Text == "")
+            if (txtValor.Text == "" || txtQuantidadeLitros.Text == "")
             {
                 MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipo.SelectedItem.ToString());
-                SituacaoManutencao situacaoManutencao = (SituacaoManutencao)Enum.Parse(typeof(SituacaoManutencao), cbSituacao.SelectedItem.ToString());
+                AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipo.SelectedItem.ToString());
                 double valor = double.Parse(txtValor.Text);
+                double quantidadeLitros = double.Parse(txtQuantidadeLitros.Text);
                 string placa = cbPlaca.SelectedValue.ToString();
                 long cNPJ = Convert.ToInt64(cbServicoExterno.SelectedValue);
-
-                Manutencao manutencao = new Manutencao(manutencaoTipo, txtDescricao.Text, dtDataManunt.Value, valor, situacaoManutencao, cNPJ, placa);
+                Abastecimento abastecimento = new Abastecimento(abastecimentoTipo, valor, quantidadeLitros, dtDataAbast.Value, placa, cNPJ);
 
                 try
                 {
-                    if(PlacaAntiga == "")
+                    if (PlacaAntiga == "")
                     {
-                        PlacaAntiga = manutencao.Placa;
+                        PlacaAntiga = abastecimento.Placa;
                     }
-                    if(dataAntiga == new DateTime(2000,01,01))
+                    if (dataAntiga == new DateTime(2000, 01, 01))
                     {
-                        dataAntiga = manutencao.Data;
+                        dataAntiga = abastecimento.Data;
                     }
-                    if(TipoAntigo == "")
+                    if (TipoAntigo == "")
                     {
-                        manutencaoTipo = manutencao.Tipo;
-                        TipoAntigo = manutencaoTipo.ToString();
+                        abastecimentoTipo = abastecimento.Tipo;
+                        TipoAntigo = abastecimentoTipo.ToString();
                     }
                     else
                     {
-                        manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), TipoAntigo);
+                        abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), TipoAntigo);
                     }
 
-                    if (_manutencaoController.Alterar(manutencao, PlacaAntiga, manutencaoTipo, dataAntiga))
+                    if (_abastecimentoController.Alterar(abastecimento, PlacaAntiga, abastecimentoTipo, dataAntiga))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         PlacaAntiga = "";
@@ -291,6 +284,10 @@ namespace CamadaDesktop
                 {
                     MessageBox.Show(ex.Message);
                 }
+                catch (TipoCombustivelException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -298,7 +295,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnExcluirManunt_Click(object sender, EventArgs e)
+        private void BtnExcluirAbast_Click(object sender, EventArgs e)
         {
             if (cbPlaca.Items.Count < 1)
             {
@@ -310,13 +307,13 @@ namespace CamadaDesktop
             }
             else
             {
-                ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipo.SelectedItem.ToString());
+                AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipo.SelectedItem.ToString());
                 string placa = cbPlaca.SelectedValue.ToString();
                 try
                 {
                     if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_manutencaoController.Deletar(placa, manutencaoTipo, dtDataManunt.Value))
+                        if (_abastecimentoController.Deletar(placa, abastecimentoTipo, dtDataAbast.Value))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
                         }

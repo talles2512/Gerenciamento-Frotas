@@ -10,7 +10,7 @@ namespace CamadaModelagem.Models.Enums
     {
         Gasolina = 1,
         Gasolina_Aditivada = 2,
-        Etano = 3,
+        Etanol = 3,
         Eletrico = 4,
         Diesel = 5,
         Gas_Natural = 6,

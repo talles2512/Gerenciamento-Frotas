@@ -59,7 +59,7 @@ namespace CamadaDesktop
 
         private void BtnCadastrarServicoExterno_Click(object sender, EventArgs e)
         {
-            if (txtCNPJ.Text == "" || txtNomeServico.Text == "" || txtTelefone.Text == "" || txtemail.Text == "" || txtEndereco.Text == "")
+            if (txtCNPJ.Text == "" || txtNomeServico.Text == "" || txtTelefone.Text == "" || txtemail.Text == "" || txtEndereco.Text == "" || txtCNPJ.Text.Length < 17)
             {
                 if (rdConveniado.Checked)
                 {
@@ -354,7 +354,7 @@ namespace CamadaDesktop
                         cnpjAntigo = long.MaxValue;
                     }
                 }
-                catch (RegistroExisteException ex)
+                catch (NaoEncontradoException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

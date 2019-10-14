@@ -102,7 +102,7 @@ namespace CamadaDesktop
 
         private void btnAbastecimento_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Abastecimento());
+            AbrirForms(new Abastecimentos());
             label2.Text = "Abastecimento";
         }
 

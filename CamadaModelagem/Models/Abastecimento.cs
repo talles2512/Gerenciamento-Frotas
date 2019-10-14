@@ -11,23 +11,25 @@ namespace CamadaModelagem.Models
     public class Abastecimento
     {
         public AbastecimentoTipo Tipo { get; set; } //Enum de Abastecimento
-        public double ValorLitro { get; set; }
+        public double Valor { get; set; }
+        public double Litros { get; set; }
         public DateTime Data { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public ServicoExterno ServicoExterno { get; set; }
+        public string Placa { get; set; }
+        public long CNPJ { get; set; }
 
         public Abastecimento()
         {
 
         }
 
-        public Abastecimento(AbastecimentoTipo tipo, double valorLitro, DateTime data, Veiculo veiculo, ServicoExterno servicoExterno)
+        public Abastecimento(AbastecimentoTipo tipo, double valor, double litros, DateTime data, string placa, long cNPJ)
         {
             Tipo = tipo;
-            ValorLitro = valorLitro;
+            Valor = valor;
+            Litros = litros;
             Data = data;
-            Veiculo = veiculo;
-            ServicoExterno = servicoExterno;
+            Placa = placa;
+            CNPJ = cNPJ;
         }
     }
 }

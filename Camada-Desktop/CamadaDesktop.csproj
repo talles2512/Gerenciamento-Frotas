@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abastecimento.cs">
+    <Compile Include="Abastecimentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abastecimento.Designer.cs">
-      <DependentUpon>Abastecimento.cs</DependentUpon>
+    <Compile Include="Abastecimentos.Designer.cs">
+      <DependentUpon>Abastecimentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Clientes.cs">
       <SubType>Form</SubType>
@@ -138,8 +138,8 @@
     <Compile Include="Viagens.Designer.cs">
       <DependentUpon>Viagens.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Abastecimento.resx">
-      <DependentUpon>Abastecimento.cs</DependentUpon>
+    <EmbeddedResource Include="Abastecimentos.resx">
+      <DependentUpon>Abastecimentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
