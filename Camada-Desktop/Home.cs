@@ -72,7 +72,7 @@ namespace CamadaDesktop
 
         private void btnEntradaSaida_Click(object sender, EventArgs e)
         {
-            AbrirForms(new EntradaSaida());
+            AbrirForms(new EntradasSaidas());
             label2.Text = "Entrada/Saída";
         }
 

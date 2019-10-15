@@ -21,12 +21,14 @@ namespace CamadaDesktop
     {
         private readonly ServicoExternoController _servicoExternoController;
         private ServicoExterno ServicoExterno;
+        private string TipoAntigo;
         private long cnpjAntigo;
         public ServicoExterno_Conveniados()
         {
             InitializeComponent();
             _servicoExternoController = InstanciarCamadas();
             ServicoExterno = null;
+            TipoAntigo = "";
             cnpjAntigo = long.MaxValue;
         }
         private ServicoExternoController InstanciarCamadas()
@@ -34,7 +36,9 @@ namespace CamadaDesktop
             Banco banco = new Banco();
             ServicoExternoDAL servicoExternoDAL = new ServicoExternoDAL(banco);
             ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
-            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL, manutencaoDAL);
+            AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL, manutencaoDAL, abastecimentoDAL, entradaSaidaDAL);
             return new ServicoExternoController(servicoExternoService);
         }
 
@@ -262,6 +266,7 @@ namespace CamadaDesktop
                 dtVencimento.Value = DateTime.Now;
 
                 cnpjAntigo = ServicoExterno.CNPJ;
+                TipoAntigo = ServicoExterno.Tipo.ToString();
                 txtCNPJ.Text = ServicoExterno.CNPJ.ToString();
                 txtNomeServico.Text = ServicoExterno.Nome;
                 cbTipo.SelectedItem = ServicoExterno.Tipo;
@@ -348,7 +353,16 @@ namespace CamadaDesktop
                     {
                         cnpjAntigo = servicoExterno.CNPJ;
                     }
-                    if (_servicoExternoController.Alterar(servicoExterno, cnpjAntigo))
+                    if (TipoAntigo == "")
+                    {
+                        tipoServicoExterno = servicoExterno.Tipo;
+                        TipoAntigo = tipoServicoExterno.ToString();
+                    }
+                    else
+                    {
+                        tipoServicoExterno = (TipoServicoExterno)Enum.Parse(typeof(TipoServicoExterno), TipoAntigo);
+                    }
+                    if (_servicoExternoController.Alterar(servicoExterno, cnpjAntigo, tipoServicoExterno))
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         cnpjAntigo = long.MaxValue;
@@ -366,6 +380,7 @@ namespace CamadaDesktop
                 {
                     MessageBox.Show(ex.Message);
                     txtCNPJ.Text = cnpjAntigo.ToString();
+                    cbTipo.SelectedItem = tipoServicoExterno;
                 }
             }
         }

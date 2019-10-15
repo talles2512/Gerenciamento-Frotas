@@ -1,4 +1,5 @@
 ﻿using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
@@ -80,11 +81,11 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public bool Alterar(ServicoExterno servicoExterno, long cnpj)
+        public bool Alterar(ServicoExterno servicoExterno, long cnpj, TipoServicoExterno tipo)
         {
             try
             {
-                return _servicoExternoService.Alterar(servicoExterno,cnpj);
+                return _servicoExternoService.Alterar(servicoExterno,cnpj, tipo);
             }
             catch (NaoEncontradoException e)
             {

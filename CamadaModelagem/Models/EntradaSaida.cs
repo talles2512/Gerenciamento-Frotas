@@ -11,9 +11,9 @@ namespace CamadaModelagem.Models
     {
         public EntradaSaidaTipo Tipo { get; set; }
         public DateTime DataHora { get; set; }
-        public Motorista Motorista { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public ServicoExterno ServicoExterno { get; set; }
+        public string CPF { get; set; }
+        public string Placa { get; set; }
+        public long CNPJ { get; set; }
 
 
         public EntradaSaida()
@@ -21,13 +21,13 @@ namespace CamadaModelagem.Models
 
         }
 
-        public EntradaSaida(EntradaSaidaTipo tipo, DateTime dataHora, Motorista motorista, Veiculo veiculo, ServicoExterno servicoExterno)
+        public EntradaSaida(EntradaSaidaTipo tipo, DateTime dataHora, string cPF, string placa, long cNPJ)
         {
             Tipo = tipo;
             DataHora = dataHora;
-            Motorista = motorista;
-            Veiculo = veiculo;
-            ServicoExterno = servicoExterno;
+            CPF = cPF;
+            Placa = placa;
+            CNPJ = cNPJ;
         }
     }
 }

@@ -70,11 +70,11 @@ namespace CamadaModelagem.Services
             {
                 if (_manutencaoDAL.Deletar(placa, tipo, data))
                 {
-                    return _manutencaoDAL.Deletar(placa, tipo, data);
+                    return true;
                 }
                 else
                 {
-                    throw new IntegridadeException("Serviço Externo não pode ser deletado, pois ainda está vinculado à outros serviços.");
+                    throw new IntegridadeException("Manutenção não pode ser deletada, pois ainda está vinculada à outros serviços.");
                 }
             }
             catch (ConcorrenciaBancoException e)

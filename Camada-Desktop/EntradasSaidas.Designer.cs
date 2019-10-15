@@ -1,6 +1,6 @@
 ﻿namespace CamadaDesktop
 {
-    partial class EntradaSaida
+    partial class EntradasSaidas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntradaSaida));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntradasSaidas));
             this.tbControlEntradaSaida = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbDadosEntradaSaida = new System.Windows.Forms.GroupBox();
@@ -47,18 +47,18 @@
             this.lblTipo = new System.Windows.Forms.Label();
             this.tbPageConsultaEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbConsultaEntradaSaida = new System.Windows.Forms.GroupBox();
-            this.cbCPFConsulta = new System.Windows.Forms.ComboBox();
             this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
             this.dtDataHoraEntradaSaidaConsulta = new System.Windows.Forms.DateTimePicker();
             this.lblDataHoraEntradaSaidaConsulta = new System.Windows.Forms.Label();
             this.cbServicoExternoEntradaSaidaConsulta = new System.Windows.Forms.ComboBox();
             this.lblServicoExternoEntradaSaidaConsulta = new System.Windows.Forms.Label();
-            this.lblCPFEntradaSaidaConsulta = new System.Windows.Forms.Label();
             this.lblPlacaEntradaSaidaConsulta = new System.Windows.Forms.Label();
             this.btnTrasferirEntradaSaida = new System.Windows.Forms.Button();
             this.dgEntradaSaidaConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosEntradaSaida = new System.Windows.Forms.Button();
             this.btnConsultarEntradaSaida = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
             this.tbControlEntradaSaida.SuspendLayout();
             this.tbPageCadastroEntradaSaida.SuspendLayout();
             this.gbDadosEntradaSaida.SuspendLayout();
@@ -117,7 +117,7 @@
             this.cbCPF.FormattingEnabled = true;
             this.cbCPF.Location = new System.Drawing.Point(23, 183);
             this.cbCPF.Name = "cbCPF";
-            this.cbCPF.Size = new System.Drawing.Size(186, 33);
+            this.cbCPF.Size = new System.Drawing.Size(416, 33);
             this.cbCPF.TabIndex = 18;
             // 
             // cbPlaca
@@ -141,9 +141,9 @@
             this.lblServicoExterno.AutoSize = true;
             this.lblServicoExterno.Location = new System.Drawing.Point(210, 92);
             this.lblServicoExterno.Name = "lblServicoExterno";
-            this.lblServicoExterno.Size = new System.Drawing.Size(108, 25);
+            this.lblServicoExterno.Size = new System.Drawing.Size(179, 25);
             this.lblServicoExterno.TabIndex = 29;
-            this.lblServicoExterno.Text = "Serviço Externo:";
+            this.lblServicoExterno.Text = "Garagem / Estacionamento:";
             // 
             // label1
             // 
@@ -208,6 +208,7 @@
             this.btnExcluirEntradaSaida.Text = "Excluir";
             this.btnExcluirEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnExcluirEntradaSaida.Click += new System.EventHandler(this.BtnExcluirEntradaSaida_Click);
             // 
             // btnAlterarEntradaSaida
             // 
@@ -226,6 +227,7 @@
             this.btnAlterarEntradaSaida.Text = "Alterar";
             this.btnAlterarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnAlterarEntradaSaida.Click += new System.EventHandler(this.BtnAlterarEntradaSaida_Click);
             // 
             // btnCadastrarEntradaSaida
             // 
@@ -244,6 +246,7 @@
             this.btnCadastrarEntradaSaida.Text = "Cadastrar";
             this.btnCadastrarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnCadastrarEntradaSaida.Click += new System.EventHandler(this.BtnCadastrarEntradaSaida_Click);
             // 
             // lblTipo
             // 
@@ -267,13 +270,13 @@
             // 
             // gbConsultaEntradaSaida
             // 
-            this.gbConsultaEntradaSaida.Controls.Add(this.cbCPFConsulta);
+            this.gbConsultaEntradaSaida.Controls.Add(this.cbTipoConsulta);
+            this.gbConsultaEntradaSaida.Controls.Add(this.label2);
             this.gbConsultaEntradaSaida.Controls.Add(this.cbPlacaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.dtDataHoraEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblDataHoraEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.cbServicoExternoEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblServicoExternoEntradaSaidaConsulta);
-            this.gbConsultaEntradaSaida.Controls.Add(this.lblCPFEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.lblPlacaEntradaSaidaConsulta);
             this.gbConsultaEntradaSaida.Controls.Add(this.btnTrasferirEntradaSaida);
             this.gbConsultaEntradaSaida.Controls.Add(this.dgEntradaSaidaConsulta);
@@ -287,18 +290,10 @@
             this.gbConsultaEntradaSaida.TabStop = false;
             this.gbConsultaEntradaSaida.Text = "Consulta";
             // 
-            // cbCPFConsulta
-            // 
-            this.cbCPFConsulta.FormattingEnabled = true;
-            this.cbCPFConsulta.Location = new System.Drawing.Point(11, 115);
-            this.cbCPFConsulta.Name = "cbCPFConsulta";
-            this.cbCPFConsulta.Size = new System.Drawing.Size(186, 33);
-            this.cbCPFConsulta.TabIndex = 16;
-            // 
             // cbPlacaConsulta
             // 
             this.cbPlacaConsulta.FormattingEnabled = true;
-            this.cbPlacaConsulta.Location = new System.Drawing.Point(11, 50);
+            this.cbPlacaConsulta.Location = new System.Drawing.Point(179, 50);
             this.cbPlacaConsulta.Name = "cbPlacaConsulta";
             this.cbPlacaConsulta.Size = new System.Drawing.Size(186, 33);
             this.cbPlacaConsulta.TabIndex = 14;
@@ -309,24 +304,24 @@
             this.dtDataHoraEntradaSaidaConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataHoraEntradaSaidaConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataHoraEntradaSaidaConsulta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dtDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 115);
+            this.dtDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(69, 98);
             this.dtDataHoraEntradaSaidaConsulta.Name = "dtDataHoraEntradaSaidaConsulta";
-            this.dtDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(216, 31);
+            this.dtDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(180, 31);
             this.dtDataHoraEntradaSaidaConsulta.TabIndex = 17;
             // 
             // lblDataHoraEntradaSaidaConsulta
             // 
             this.lblDataHoraEntradaSaidaConsulta.AutoSize = true;
-            this.lblDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 87);
+            this.lblDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(6, 101);
             this.lblDataHoraEntradaSaidaConsulta.Name = "lblDataHoraEntradaSaidaConsulta";
-            this.lblDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(80, 25);
+            this.lblDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(66, 25);
             this.lblDataHoraEntradaSaidaConsulta.TabIndex = 37;
-            this.lblDataHoraEntradaSaidaConsulta.Text = "Data/Hora:";
+            this.lblDataHoraEntradaSaidaConsulta.Text = "Data/Hr:";
             // 
             // cbServicoExternoEntradaSaidaConsulta
             // 
             this.cbServicoExternoEntradaSaidaConsulta.FormattingEnabled = true;
-            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(203, 50);
+            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(371, 50);
             this.cbServicoExternoEntradaSaidaConsulta.Name = "cbServicoExternoEntradaSaidaConsulta";
             this.cbServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(216, 33);
             this.cbServicoExternoEntradaSaidaConsulta.TabIndex = 15;
@@ -334,29 +329,20 @@
             // lblServicoExternoEntradaSaidaConsulta
             // 
             this.lblServicoExternoEntradaSaidaConsulta.AutoSize = true;
-            this.lblServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(198, 23);
+            this.lblServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(366, 22);
             this.lblServicoExternoEntradaSaidaConsulta.Name = "lblServicoExternoEntradaSaidaConsulta";
-            this.lblServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(108, 25);
+            this.lblServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(179, 25);
             this.lblServicoExternoEntradaSaidaConsulta.TabIndex = 35;
-            this.lblServicoExternoEntradaSaidaConsulta.Text = "Serviço Externo:";
-            // 
-            // lblCPFEntradaSaidaConsulta
-            // 
-            this.lblCPFEntradaSaidaConsulta.AutoSize = true;
-            this.lblCPFEntradaSaidaConsulta.Location = new System.Drawing.Point(6, 87);
-            this.lblCPFEntradaSaidaConsulta.Name = "lblCPFEntradaSaidaConsulta";
-            this.lblCPFEntradaSaidaConsulta.Size = new System.Drawing.Size(110, 25);
-            this.lblCPFEntradaSaidaConsulta.TabIndex = 33;
-            this.lblCPFEntradaSaidaConsulta.Text = "CPF - Motorista:";
+            this.lblServicoExternoEntradaSaidaConsulta.Text = "Garagem / Estacionamento:";
             // 
             // lblPlacaEntradaSaidaConsulta
             // 
             this.lblPlacaEntradaSaidaConsulta.AutoSize = true;
-            this.lblPlacaEntradaSaidaConsulta.Location = new System.Drawing.Point(6, 24);
+            this.lblPlacaEntradaSaidaConsulta.Location = new System.Drawing.Point(178, 22);
             this.lblPlacaEntradaSaidaConsulta.Name = "lblPlacaEntradaSaidaConsulta";
-            this.lblPlacaEntradaSaidaConsulta.Size = new System.Drawing.Size(48, 25);
+            this.lblPlacaEntradaSaidaConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaEntradaSaidaConsulta.TabIndex = 31;
-            this.lblPlacaEntradaSaidaConsulta.Text = "Placa:";
+            this.lblPlacaEntradaSaidaConsulta.Text = "Veículo - Placa:";
             // 
             // btnTrasferirEntradaSaida
             // 
@@ -369,21 +355,22 @@
             this.btnTrasferirEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirEntradaSaida.Location = new System.Drawing.Point(577, 44);
+            this.btnTrasferirEntradaSaida.Location = new System.Drawing.Point(572, 92);
             this.btnTrasferirEntradaSaida.Name = "btnTrasferirEntradaSaida";
             this.btnTrasferirEntradaSaida.Size = new System.Drawing.Size(38, 40);
             this.btnTrasferirEntradaSaida.TabIndex = 20;
             this.btnTrasferirEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnTrasferirEntradaSaida.Click += new System.EventHandler(this.BtnTrasferirEntradaSaida_Click);
             // 
             // dgEntradaSaidaConsulta
             // 
             this.dgEntradaSaidaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgEntradaSaidaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEntradaSaidaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 153);
+            this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 138);
             this.dgEntradaSaidaConsulta.Name = "dgEntradaSaidaConsulta";
-            this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
+            this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 301);
             this.dgEntradaSaidaConsulta.TabIndex = 21;
             // 
             // btnTodosEntradaSaida
@@ -395,13 +382,14 @@
             this.btnTodosEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnTodosEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosEntradaSaida.Location = new System.Drawing.Point(425, 90);
+            this.btnTodosEntradaSaida.Location = new System.Drawing.Point(407, 92);
             this.btnTodosEntradaSaida.Name = "btnTodosEntradaSaida";
             this.btnTodosEntradaSaida.Size = new System.Drawing.Size(159, 40);
             this.btnTodosEntradaSaida.TabIndex = 19;
             this.btnTodosEntradaSaida.Text = "Consultar Todos";
             this.btnTodosEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnTodosEntradaSaida.Click += new System.EventHandler(this.BtnTodosEntradaSaida_Click);
             // 
             // btnConsultarEntradaSaida
             // 
@@ -413,23 +401,42 @@
             this.btnConsultarEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnConsultarEntradaSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarEntradaSaida.Image")));
             this.btnConsultarEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarEntradaSaida.Location = new System.Drawing.Point(425, 44);
+            this.btnConsultarEntradaSaida.Location = new System.Drawing.Point(255, 92);
             this.btnConsultarEntradaSaida.Name = "btnConsultarEntradaSaida";
             this.btnConsultarEntradaSaida.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarEntradaSaida.TabIndex = 18;
             this.btnConsultarEntradaSaida.Text = "    Consultar";
             this.btnConsultarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEntradaSaida.UseVisualStyleBackColor = false;
+            this.btnConsultarEntradaSaida.Click += new System.EventHandler(this.BtnConsultarEntradaSaida_Click);
             // 
-            // EntradaSaida
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 25);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Tipo:";
+            // 
+            // cbTipoConsulta
+            // 
+            this.cbTipoConsulta.FormattingEnabled = true;
+            this.cbTipoConsulta.Location = new System.Drawing.Point(11, 50);
+            this.cbTipoConsulta.Name = "cbTipoConsulta";
+            this.cbTipoConsulta.Size = new System.Drawing.Size(162, 33);
+            this.cbTipoConsulta.TabIndex = 39;
+            // 
+            // EntradasSaidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 534);
             this.Controls.Add(this.tbControlEntradaSaida);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EntradaSaida";
+            this.Name = "EntradasSaidas";
             this.Text = "EntradaSaida";
+            this.Load += new System.EventHandler(this.EntradaSaida_Load);
             this.tbControlEntradaSaida.ResumeLayout(false);
             this.tbPageCadastroEntradaSaida.ResumeLayout(false);
             this.gbDadosEntradaSaida.ResumeLayout(false);
@@ -466,13 +473,13 @@
         private System.Windows.Forms.ComboBox cbServicoExterno;
         private System.Windows.Forms.ComboBox cbServicoExternoEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblServicoExternoEntradaSaidaConsulta;
-        private System.Windows.Forms.Label lblCPFEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblPlacaEntradaSaidaConsulta;
         private System.Windows.Forms.DateTimePicker dtDataHoraEntradaSaidaConsulta;
         private System.Windows.Forms.Label lblDataHoraEntradaSaidaConsulta;
         private System.Windows.Forms.ComboBox cbCPF;
         private System.Windows.Forms.ComboBox cbPlaca;
-        private System.Windows.Forms.ComboBox cbCPFConsulta;
         private System.Windows.Forms.ComboBox cbPlacaConsulta;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbTipoConsulta;
     }
 }

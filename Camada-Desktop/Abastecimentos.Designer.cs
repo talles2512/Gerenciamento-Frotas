@@ -32,6 +32,8 @@
             this.tbControlAbast = new System.Windows.Forms.TabControl();
             this.tbPageCadastroAbast = new System.Windows.Forms.TabPage();
             this.gbDadosAbast = new System.Windows.Forms.GroupBox();
+            this.lblLitros = new System.Windows.Forms.Label();
+            this.txtQuantidadeLitros = new System.Windows.Forms.MaskedTextBox();
             this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.cbServicoExterno = new System.Windows.Forms.ComboBox();
             this.lblServicoExterno = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.btnTodosAbast = new System.Windows.Forms.Button();
             this.btnConsultarAbast = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
-            this.txtQuantidadeLitros = new System.Windows.Forms.MaskedTextBox();
-            this.lblLitros = new System.Windows.Forms.Label();
             this.tbControlAbast.SuspendLayout();
             this.tbPageCadastroAbast.SuspendLayout();
             this.gbDadosAbast.SuspendLayout();
@@ -114,6 +114,23 @@
             this.gbDadosAbast.TabStop = false;
             this.gbDadosAbast.Text = "Dados";
             // 
+            // lblLitros
+            // 
+            this.lblLitros.AutoSize = true;
+            this.lblLitros.Location = new System.Drawing.Point(214, 92);
+            this.lblLitros.Name = "lblLitros";
+            this.lblLitros.Size = new System.Drawing.Size(122, 25);
+            this.lblLitros.TabIndex = 30;
+            this.lblLitros.Text = "Quantidade/Litros:";
+            // 
+            // txtQuantidadeLitros
+            // 
+            this.txtQuantidadeLitros.Location = new System.Drawing.Point(219, 120);
+            this.txtQuantidadeLitros.Mask = "00.00";
+            this.txtQuantidadeLitros.Name = "txtQuantidadeLitros";
+            this.txtQuantidadeLitros.Size = new System.Drawing.Size(100, 32);
+            this.txtQuantidadeLitros.TabIndex = 29;
+            // 
             // cbPlaca
             // 
             this.cbPlaca.FormattingEnabled = true;
@@ -135,9 +152,9 @@
             this.lblServicoExterno.AutoSize = true;
             this.lblServicoExterno.Location = new System.Drawing.Point(6, 220);
             this.lblServicoExterno.Name = "lblServicoExterno";
-            this.lblServicoExterno.Size = new System.Drawing.Size(108, 25);
+            this.lblServicoExterno.Size = new System.Drawing.Size(49, 25);
             this.lblServicoExterno.TabIndex = 28;
-            this.lblServicoExterno.Text = "Serviço Externo:";
+            this.lblServicoExterno.Text = "Posto:";
             // 
             // txtValor
             // 
@@ -409,23 +426,6 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
-            // 
-            // txtQuantidadeLitros
-            // 
-            this.txtQuantidadeLitros.Location = new System.Drawing.Point(219, 120);
-            this.txtQuantidadeLitros.Mask = "00.00";
-            this.txtQuantidadeLitros.Name = "txtQuantidadeLitros";
-            this.txtQuantidadeLitros.Size = new System.Drawing.Size(100, 32);
-            this.txtQuantidadeLitros.TabIndex = 29;
-            // 
-            // lblLitros
-            // 
-            this.lblLitros.AutoSize = true;
-            this.lblLitros.Location = new System.Drawing.Point(214, 92);
-            this.lblLitros.Name = "lblLitros";
-            this.lblLitros.Size = new System.Drawing.Size(122, 25);
-            this.lblLitros.TabIndex = 30;
-            this.lblLitros.Text = "Quantidade/Litros:";
             // 
             // Abastecimentos
             // 

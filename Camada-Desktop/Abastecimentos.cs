@@ -173,9 +173,6 @@ namespace CamadaDesktop
             {
                 try
                 {
-                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipoAbastConsulta.SelectedItem.ToString());
-                    string placa = cbPlaca.SelectedValue.ToString();
-
                     List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos();
 
                     DataTable dt = new DataTable();

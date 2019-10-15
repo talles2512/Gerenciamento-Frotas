@@ -177,9 +177,6 @@ namespace CamadaDesktop
             {
                 try
                 {
-                    ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
-                    string placa = cbPlaca.SelectedValue.ToString();
-
                     List<Manutencao> manutencoes = _manutencaoController.BuscarTodos();
 
                     DataTable dt = new DataTable();

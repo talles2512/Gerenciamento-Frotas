@@ -96,11 +96,11 @@ namespace CamadaModelagem.Services
             {
                 if (_abastecimentoDAL.Deletar(placa, tipo, data))
                 {
-                    return _abastecimentoDAL.Deletar(placa, tipo, data);
+                    return true;
                 }
                 else
                 {
-                    throw new IntegridadeException("Serviço Externo não pode ser deletado, pois ainda está vinculado à outros serviços.");
+                    throw new IntegridadeException("Abastecimento não pode ser deletado, pois ainda está vinculado à outros serviços.");
                 }
             }
             catch (ConcorrenciaBancoException e)
@@ -142,7 +142,7 @@ namespace CamadaModelagem.Services
                 }
                 else
                 {
-                    throw new NaoEncontradoException("Manutenção não encontrada.");
+                    throw new NaoEncontradoException("Abastecimento não encontrado.");
                 }
             }
             catch (TransacaoException e)
