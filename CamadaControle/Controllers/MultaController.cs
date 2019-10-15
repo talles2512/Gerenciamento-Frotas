@@ -26,6 +26,10 @@ namespace CamadaControle.Controllers
             {
                 return _multaService.Cadastrar(multa);
             }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
             catch (ConcorrenciaBancoException)
             {
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");

@@ -21,9 +21,12 @@ namespace CamadaModelagem.Services
 
         public bool Cadastrar(Multa multa)
         {
+            string cpf = multa.Motorista.CPF;
+            string placa = multa.Veiculo.Placa;
+            DateTime dataocorrencia = multa.DataOcorrencia;
             try
             {
-                Multa obj = _multaDAL.BuscarMulta(multa.Veiculo.Placa, multa.Motorista.CPF, multa.DataOcorrencia); //Falta criar os métodos de busca
+                Multa obj = _multaDAL.BuscarMulta(placa, cpf, dataocorrencia); //Falta criar os métodos de busca
                 if (obj != null)
                 {
                     throw new RegistroExisteException("Já existe uma multa com esse dados no sistema!");
@@ -119,7 +122,11 @@ namespace CamadaModelagem.Services
         {
             try
             {
-                Veiculo veiculo = _multaDAL.BuscarPlaca(placa);
+                Veiculo veiculo = _multaDAL.BuscarPlacaAlugado(placa);
+                if (veiculo == null)
+                {
+                    veiculo = _multaDAL.BuscarPlaca(placa);
+                }
                 return veiculo;
             }
             catch (ConcorrenciaBancoException e)

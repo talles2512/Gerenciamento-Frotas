@@ -362,23 +362,23 @@
             // cbCPFMultasConsulta
             // 
             this.cbCPFMultasConsulta.FormattingEnabled = true;
-            this.cbCPFMultasConsulta.Location = new System.Drawing.Point(418, 27);
+            this.cbCPFMultasConsulta.Location = new System.Drawing.Point(122, 67);
             this.cbCPFMultasConsulta.Name = "cbCPFMultasConsulta";
-            this.cbCPFMultasConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbCPFMultasConsulta.Size = new System.Drawing.Size(297, 33);
             this.cbCPFMultasConsulta.TabIndex = 15;
             // 
             // cbPlacaMultasConsulta
             // 
             this.cbPlacaMultasConsulta.FormattingEnabled = true;
-            this.cbPlacaMultasConsulta.Location = new System.Drawing.Point(107, 28);
+            this.cbPlacaMultasConsulta.Location = new System.Drawing.Point(122, 28);
             this.cbPlacaMultasConsulta.Name = "cbPlacaMultasConsulta";
-            this.cbPlacaMultasConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbPlacaMultasConsulta.Size = new System.Drawing.Size(297, 33);
             this.cbPlacaMultasConsulta.TabIndex = 14;
             // 
             // lblCPFMultasConsulta
             // 
             this.lblCPFMultasConsulta.AutoSize = true;
-            this.lblCPFMultasConsulta.Location = new System.Drawing.Point(308, 31);
+            this.lblCPFMultasConsulta.Location = new System.Drawing.Point(6, 70);
             this.lblCPFMultasConsulta.Name = "lblCPFMultasConsulta";
             this.lblCPFMultasConsulta.Size = new System.Drawing.Size(110, 25);
             this.lblCPFMultasConsulta.TabIndex = 39;
@@ -387,7 +387,7 @@
             // lblDataMultasConsulta
             // 
             this.lblDataMultasConsulta.AutoSize = true;
-            this.lblDataMultasConsulta.Location = new System.Drawing.Point(2, 69);
+            this.lblDataMultasConsulta.Location = new System.Drawing.Point(74, 106);
             this.lblDataMultasConsulta.Name = "lblDataMultasConsulta";
             this.lblDataMultasConsulta.Size = new System.Drawing.Size(42, 25);
             this.lblDataMultasConsulta.TabIndex = 38;
@@ -398,7 +398,7 @@
             this.dtDataMultasConsulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataMultasConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataMultasConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataMultasConsulta.Location = new System.Drawing.Point(50, 66);
+            this.dtDataMultasConsulta.Location = new System.Drawing.Point(122, 106);
             this.dtDataMultasConsulta.Name = "dtDataMultasConsulta";
             this.dtDataMultasConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataMultasConsulta.Size = new System.Drawing.Size(200, 31);
@@ -407,7 +407,7 @@
             // lblPlacaMultasConsulta
             // 
             this.lblPlacaMultasConsulta.AutoSize = true;
-            this.lblPlacaMultasConsulta.Location = new System.Drawing.Point(2, 30);
+            this.lblPlacaMultasConsulta.Location = new System.Drawing.Point(12, 31);
             this.lblPlacaMultasConsulta.Name = "lblPlacaMultasConsulta";
             this.lblPlacaMultasConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaMultasConsulta.TabIndex = 35;
@@ -424,7 +424,7 @@
             this.btnTrasferirMultas.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirMultas.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirMultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirMultas.Location = new System.Drawing.Point(577, 66);
+            this.btnTrasferirMultas.Location = new System.Drawing.Point(577, 24);
             this.btnTrasferirMultas.Name = "btnTrasferirMultas";
             this.btnTrasferirMultas.Size = new System.Drawing.Size(38, 40);
             this.btnTrasferirMultas.TabIndex = 19;
@@ -437,9 +437,9 @@
             this.dgMultasConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgMultasConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMultasConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgMultasConsulta.Location = new System.Drawing.Point(7, 112);
+            this.dgMultasConsulta.Location = new System.Drawing.Point(7, 143);
             this.dgMultasConsulta.Name = "dgMultasConsulta";
-            this.dgMultasConsulta.Size = new System.Drawing.Size(608, 327);
+            this.dgMultasConsulta.Size = new System.Drawing.Size(608, 296);
             this.dgMultasConsulta.TabIndex = 20;
             // 
             // btnTodosMultas
@@ -451,7 +451,7 @@
             this.btnTodosMultas.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosMultas.ForeColor = System.Drawing.Color.White;
             this.btnTodosMultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosMultas.Location = new System.Drawing.Point(412, 66);
+            this.btnTodosMultas.Location = new System.Drawing.Point(425, 70);
             this.btnTodosMultas.Name = "btnTodosMultas";
             this.btnTodosMultas.Size = new System.Drawing.Size(159, 40);
             this.btnTodosMultas.TabIndex = 18;
@@ -470,7 +470,7 @@
             this.btnConsultarMultas.ForeColor = System.Drawing.Color.White;
             this.btnConsultarMultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarMultas.Image")));
             this.btnConsultarMultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarMultas.Location = new System.Drawing.Point(260, 66);
+            this.btnConsultarMultas.Location = new System.Drawing.Point(425, 24);
             this.btnConsultarMultas.Name = "btnConsultarMultas";
             this.btnConsultarMultas.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarMultas.TabIndex = 17;

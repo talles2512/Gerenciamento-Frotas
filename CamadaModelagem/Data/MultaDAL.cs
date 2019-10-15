@@ -22,9 +22,23 @@ namespace CamadaModelagem.Data
 
         public bool Cadastrar(Multa multa)
         {
-            string data = multa.DataOcorrencia.ToString("yyyy/MM/dd");
+            string datapaga;
+
+            if(multa.MultasPagas != null)
+            {
+                datapaga = multa.MultasPagas.ToString();
+                DateTime dtpaga = DateTime.Parse(datapaga);
+                datapaga = dtpaga.ToString();
+            }
+            else
+            {
+                datapaga = null;
+            }
+
+            int situacao = Convert.ToInt32(multa.Paga);
+
             string query = "INSERT INTO [dbo].[TB_MULTAS] ([MULT_VCL_PLACA],[MULT_MT_CPF],[MULT_DESCRICAO],[MULT_LOCAL],[MULT_DTOCORRENCIA],[MULT_VALOR],[MULT_PAGO],[MULTPAG_DTPAGAMENTO])" +
-                "VALUES ('" + multa.Veiculo.Placa + "', " + multa.Motorista.CPF + ", '" + multa.Descricao + "', '" + multa.Local + "','" + data + "'," + multa.Valor + "," + multa.Paga + ",'" + multa.MultasPagas + "')";
+                "VALUES ('" + multa.Veiculo.Placa + "', '" + multa.Motorista.CPF + "', '" + multa.Descricao + "', '" + multa.Local + "','" + multa.DataOcorrencia.ToShortDateString() + "'," + multa.Valor + "," + situacao + ",'" + datapaga + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -36,24 +50,31 @@ namespace CamadaModelagem.Data
         }
         public Multa BuscarMulta(string placa, string cpf, DateTime dataocorrencia)
         {
-            string data = dataocorrencia.ToString("yyyy/MM/dd");
-            string query = "SELECT * FROM [dbo].[TB_MULTAS] WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = '" + cpf + "' AND [MULT_DTOCORRENCIA] = '" + data + "'";
+            string query = "SELECT * FROM [dbo].[TB_MULTAS] WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = '" + cpf + "' AND [MULT_DTOCORRENCIA] = '" + dataocorrencia.ToShortDateString() + "'";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
 
                 Multa multa = null;
-                DataRow[] dataRows = dt.Select("MULT_VCL_PLACA = '" + placa + "'");
+                DataRow[] dataRows = dt.Select("MULT_VCL_PLACA = '" + placa + "' AND MULT_MT_CPF = '" + cpf + "' AND MULT_DTOCORRENCIA = '" + dataocorrencia.ToShortDateString() + "'");
                 foreach (DataRow dr in dataRows)
                 {
                     DateTime dtocorrencia = DateTime.Parse(dr["MULT_DTOCORRENCIA"].ToString());
-                    DateTime dtpagamento = DateTime.Parse(dr[""].ToString());
+                    DateTime? dtpagamento = null;
+
+                    if (string.IsNullOrEmpty(dr["MULTPAG_DTPAGAMENTO"].ToString()))
+                    {
+
+                    }
+                    else
+                    {
+                        dtpagamento = DateTime.Parse(dr["MULTPAG_DTPAGAMENTO"].ToString());
+                    }
+
                     double valor = double.Parse(dr["MULT_VALOR"].ToString());
                     bool paga = bool.Parse(dr["MULT_PAGO"].ToString());
-                    Veiculo veiculo = null;
-                    veiculo.Placa = dr["MULT_VCL_PLACA"].ToString();
-                    Motorista motorista = null;
-                    motorista.CPF = dr["MULT_MT_CPF"].ToString();
+                    Veiculo veiculo = BuscarPlaca(dr["MULT_VCL_PLACA"].ToString());
+                    Motorista motorista = BuscarCPF(dr["MULT_MT_CPF"].ToString());
 
                     multa = new Multa(dr["MULT_DESCRICAO"].ToString(), dr["MULT_LOCAL"].ToString(), dtocorrencia, valor, paga, dtpagamento, veiculo, motorista);
                 }
@@ -79,12 +100,22 @@ namespace CamadaModelagem.Data
                 foreach (DataRow dr in dataRows)
                 {
                     DateTime dtocorrencia = DateTime.Parse(dr["MULT_DTOCORRENCIA"].ToString());
-                    DateTime dtpagamento = DateTime.Parse(dr[""].ToString());
+                    DateTime? dtpagamento = null;
+
+                    if (string.IsNullOrEmpty(dr["MULTPAG_DTPAGAMENTO"].ToString()))
+                    {
+
+                    }
+                    else
+                    {
+                        dtpagamento = DateTime.Parse(dr["MULTPAG_DTPAGAMENTO"].ToString());
+                    }
+                    
                     double valor = double.Parse(dr["MULT_VALOR"].ToString());
                     bool paga = bool.Parse(dr["MULT_PAGO"].ToString());
-                    Veiculo veiculo = null;
+                    Veiculo veiculo = new Veiculo();
                     veiculo.Placa = dr["MULT_VCL_PLACA"].ToString();
-                    Motorista motorista = null;
+                    Motorista motorista = new Motorista();
                     motorista.CPF = dr["MULT_MT_CPF"].ToString();
 
                     multa = new Multa(dr["MULT_DESCRICAO"].ToString(), dr["MULT_LOCAL"].ToString(), dtocorrencia, valor, paga, dtpagamento, veiculo, motorista);
@@ -116,7 +147,8 @@ namespace CamadaModelagem.Data
         public bool Alterar(Multa multa, string placa, string cpf, DateTime dataocorrencia) //Modificado
         {
             string data = dataocorrencia.ToString("yyyy/MM/dd");
-            string query = "UPDATE [dbo].[TB_MULTAS] SET [MULT_VCL_PLACA]='" + multa.Veiculo.Placa + "',[MULT_MT_CPF]= " + multa.Motorista.CPF + ",[MULT_DESCRICAO]= '" + multa.Descricao + "',[MULT_LOCAL]= '" + multa.Local + "',[MULT_DTOCORRENCIA]= '" + data + "',[MULT_VALOR]=" + multa.Valor + ",[MULT_PAGO]=" + multa.Paga + ",[MULTPAG_DTPAGAMENTO]= '" + multa.MultasPagas + "' WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = " + cpf + " AND [MULT_DTOCORRENCIA] = '" + data + "'";
+            int situacao = Convert.ToInt32(multa.Paga);
+            string query = "UPDATE [dbo].[TB_MULTAS] SET [MULT_VCL_PLACA]='" + multa.Veiculo.Placa + "',[MULT_MT_CPF]= " + multa.Motorista.CPF + ",[MULT_DESCRICAO]= '" + multa.Descricao + "',[MULT_LOCAL]= '" + multa.Local + "',[MULT_DTOCORRENCIA]= '" + data + "',[MULT_VALOR]=" + multa.Valor + ",[MULT_PAGO]=" + situacao + ",[MULTPAG_DTPAGAMENTO]= '" + multa.MultasPagas + "' WHERE [MULT_VCL_PLACA] = '" + placa + "' AND [MULT_MT_CPF] = " + cpf + " AND [MULT_DTOCORRENCIA] = '" + data + "'";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -181,6 +213,42 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public Veiculo BuscarPlacaAlugado(string placa)
+        {
+            string query = "select V.VCL_PLACA, V.VCL_MARCA, V.VCL_MODELO, V.VCL_CHASSI, V.VCL_ANO, V.VCL_COR, V.VCL_COMBUSTIVEL, V.VCL_ALUGADO, V.VCL_SITUACAO," +
+                " A.VCLAL_VALOR, A.VCLAL_DTINICIO, A.VCLAL_DTVENC from TB_VEICULOS as V join TB_VEICULOS_ALUGUEL as A " +
+                "on V.VCL_PLACA = A.VCL_PLACA WHERE V.VCL_PLACA = '" + placa + "'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                VeiculoAlugado veiculoAlugado = null;
+                Veiculo veiculo = null;
+                DataRow[] dataRows = dt.Select("VCL_PLACA = '" + placa + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    int ano = int.Parse(dr["VCL_ANO"].ToString());
+                    VeiculoTipoCor cor = (VeiculoTipoCor)Enum.Parse(typeof(VeiculoTipoCor), dr["VCL_COR"].ToString());
+                    VeiculoCombustivel combustivel = (VeiculoCombustivel)Enum.Parse(typeof(VeiculoCombustivel), dr["VCL_COMBUSTIVEL"].ToString());
+                    bool alugado = bool.Parse(dr["VCL_ALUGADO"].ToString());
+                    bool situacao = bool.Parse(dr["VCL_SITUACAO"].ToString());
+
+                    if (alugado)
+                    {
+                        double valor = double.Parse(dr["VCLAL_VALOR"].ToString());
+                        DateTime dtInicio = DateTime.Parse(dr["VCLAL_DTINICIO"].ToString());
+                        DateTime dtVencimento = DateTime.Parse(dr["VCLAL_DTVENC"].ToString());
+                        veiculoAlugado = new VeiculoAlugado(valor, dtInicio, dtVencimento);
+                    }
+                    veiculo = new Veiculo(dr["VCL_PLACA"].ToString(), dr["VCL_MARCA"].ToString(), dr["VCL_MODELO"].ToString(), dr["VCL_CHASSI"].ToString(), ano, cor, combustivel, alugado, situacao, veiculoAlugado);
+                }
+                return veiculo;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
         public Motorista BuscarCPF(string cpf)
         {
             string query = "SELECT M.[MT_CPF], M.[MT_NOME], M.[MT_RG], M.[MT_ENDERECO], M.[MT_DTNASCIMENTO], M.[MT_TELEFONE], M.[MT_TELEFONE_RECADO]" +
@@ -192,7 +260,7 @@ namespace CamadaModelagem.Data
                 DataTable dt = _banco.BuscarRegistro(query);
 
                 Motorista motorista = null;
-                CNH cNH = null;
+                CNH cNH = new CNH();
                 DataRow[] dataRows = dt.Select("MT_CPF = '" + cpf + "'");
                 foreach (DataRow dr in dataRows)
                 {

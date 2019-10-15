@@ -60,12 +60,13 @@ namespace CamadaDesktop
                 cbPlaca.ValueMember = "VCL_PLACA";
 
                 cbPlacaMultasConsulta.DataSource = _multaController.PopularPlacas();
-                cbPlaca.DisplayMember = "MODELO";
-                cbPlaca.ValueMember = "VCL_PLACA";
+                cbPlacaMultasConsulta.DisplayMember = "MODELO";
+                cbPlacaMultasConsulta.ValueMember = "VCL_PLACA";
             }
             catch (ConcorrenciaBancoException)
             {
                 cbPlaca.DataSource = null;
+                cbPlacaMultasConsulta = null;
             }
 
             try
@@ -81,7 +82,8 @@ namespace CamadaDesktop
             }
             catch (ConcorrenciaBancoException)
             {
-                cbPlaca.DataSource = null;
+                cbCPF.DataSource = null;
+                cbCPFMultasConsulta = null;
             }
         }
 
@@ -89,15 +91,22 @@ namespace CamadaDesktop
         {
             if (cbPlaca.Items.Count < 1)
             {
+
+
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            if (cbCPF.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else if (txtvalor.Text == "" || txtLocal.Text == "" || txtDesc.Text == "")
-            {
-                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                if (cbCPF.Items.Count < 1)
+                {
+                    MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (txtvalor.Text == "" || txtLocal.Text == "" || txtDesc.Text == "")
+                {
+                    MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (rdPaga.Checked)
+                    {
+                        MessageBox.Show("Preencha os campos Datas corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                      
+                    }
+                }               
             }
             else
             {
@@ -119,7 +128,7 @@ namespace CamadaDesktop
                 string placa = cbPlaca.SelectedValue.ToString();
                 string cpf = cbCPF.SelectedValue.ToString();
 
-                
+
                 Multa multa = null;
                 Veiculo veiculo = _multaController.BuscarPlaca(placa);
                 Motorista motorista = _multaController.BuscarCPF(cpf);
@@ -293,15 +302,22 @@ namespace CamadaDesktop
         {
             if (cbPlaca.Items.Count < 1)
             {
+
+
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            if (cbCPF.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else if (txtvalor.Text == "" || txtLocal.Text == "" || txtDesc.Text == "")
-            {
-                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                if (cbCPF.Items.Count < 1)
+                {
+                    MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (txtvalor.Text == "" || txtLocal.Text == "" || txtDesc.Text == "")
+                {
+                    MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (rdPaga.Checked)
+                    {
+                        MessageBox.Show("Preencha os campos Datas corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
             }
             else
             {
