@@ -61,6 +61,7 @@ namespace CamadaDesktop
                 cbSeguradora.DataSource = null;
             }
 
+
             cbTipo.DataSource = Enum.GetValues(typeof(TipoSeguro));
         }
 
@@ -70,19 +71,25 @@ namespace CamadaDesktop
             {
                 if (cbTipo.SelectedItem.ToString() == "Automóvel")
                 {
+                    lblItemSegurado.Text = "Veículo - Placa:";
                     cbItemSegurado.DataSource = _seguroController.PopularPlacas();
                     cbItemSegurado.DisplayMember = "MODELO";
                     cbItemSegurado.ValueMember = "VCL_PLACA";
                     cbFranquia.Enabled = true;
                     txtValorFranquia.Enabled = true;
+                    cbFranquia.SelectedItem = "Normal";
+                    cbFranquia.Text = "Normal";
                 }
                 else if (cbTipo.SelectedItem.ToString() == "Vida")
                 {
+                    lblItemSegurado.Text = "Motorista - CPF:";
                     cbItemSegurado.DataSource = _seguroController.PopularCPFs();
                     cbItemSegurado.DisplayMember = "MOTORISTA";
                     cbItemSegurado.ValueMember = "MT_CPF";
                     cbFranquia.Enabled = false;
                     txtValorFranquia.Enabled = false;
+                    cbFranquia.Text = "";
+                    txtValorFranquia.Text = "";
                 }
             }
             catch (ConcorrenciaBancoException)
@@ -117,7 +124,7 @@ namespace CamadaDesktop
                     TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipo.SelectedItem.ToString());
                     long cNPJ = Convert.ToInt64(cbSeguradora.SelectedValue);
                     long numeroApolice = Convert.ToInt64(txtNApolice.Text);
-                    string itemSegurado = cbTipo.SelectedValue.ToString();
+                    string itemSegurado = cbItemSegurado.SelectedValue.ToString();
                     double valor = double.Parse(txtValor.Text);
                     string franquia = cbFranquia.SelectedItem.ToString();
                     double valorFranquia = double.Parse(txtValorFranquia.Text);
@@ -157,7 +164,7 @@ namespace CamadaDesktop
                     TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipo.SelectedItem.ToString());
                     long cNPJ = Convert.ToInt64(cbSeguradora.SelectedValue);
                     long numeroApolice = Convert.ToInt64(txtNApolice.Text);
-                    string itemSegurado = cbTipo.SelectedValue.ToString();
+                    string itemSegurado = cbItemSegurado.SelectedValue.ToString();
                     double valor = double.Parse(txtValor.Text);
 
                     Seguro seguro = new Seguro(numeroApolice, itemSegurado, tipoSeguro, valor, dtInicio.Value, dtfimvigencia.Value, cNPJ);

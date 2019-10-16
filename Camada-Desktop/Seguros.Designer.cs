@@ -32,7 +32,6 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosSeguros = new System.Windows.Forms.GroupBox();
-            this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.txtValorFranquia = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,25 +61,26 @@
             this.btnTodosSeguros = new System.Windows.Forms.Button();
             this.btnConsultarSeguros = new System.Windows.Forms.Button();
             this.tbPageCobertura = new System.Windows.Forms.TabPage();
+            this.gbConsultaCobertura = new System.Windows.Forms.GroupBox();
+            this.lblTipoCoberturaConsulta = new System.Windows.Forms.Label();
+            this.cbTipoCoberturaConsulta = new System.Windows.Forms.ComboBox();
+            this.txtNApoliceCoberturaConsulta = new System.Windows.Forms.TextBox();
+            this.lblNApoliceCoberturaConsulta = new System.Windows.Forms.Label();
+            this.btnTransfereCobertura = new System.Windows.Forms.Button();
+            this.dgCoberturaConsulta = new System.Windows.Forms.DataGridView();
+            this.btnConsultaTodosCobertura = new System.Windows.Forms.Button();
+            this.btnConsultaCobertura = new System.Windows.Forms.Button();
             this.gbDadosCobertura = new System.Windows.Forms.GroupBox();
+            this.cbTipoCobertura = new System.Windows.Forms.ComboBox();
+            this.lblTipoCobertura = new System.Windows.Forms.Label();
+            this.txtNApoliceCobertura = new System.Windows.Forms.TextBox();
+            this.lblNApoliceCobertura = new System.Windows.Forms.Label();
             this.txtCoberturaDescricao = new System.Windows.Forms.TextBox();
             this.lblDescricaoCobertura = new System.Windows.Forms.Label();
             this.btnExcluirCobertura = new System.Windows.Forms.Button();
             this.btnAlterarCobertura = new System.Windows.Forms.Button();
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
-            this.cbTipoCobertura = new System.Windows.Forms.ComboBox();
-            this.lblTipoCobertura = new System.Windows.Forms.Label();
-            this.txtNApoliceCobertura = new System.Windows.Forms.TextBox();
-            this.lblNApoliceCobertura = new System.Windows.Forms.Label();
-            this.gbConsultaCobertura = new System.Windows.Forms.GroupBox();
-            this.btnTransfereCobertura = new System.Windows.Forms.Button();
-            this.dgCoberturaConsulta = new System.Windows.Forms.DataGridView();
-            this.btnConsultaTodosCobertura = new System.Windows.Forms.Button();
-            this.btnConsultaCobertura = new System.Windows.Forms.Button();
-            this.lblNApoliceCoberturaConsulta = new System.Windows.Forms.Label();
-            this.txtNApoliceCoberturaConsulta = new System.Windows.Forms.TextBox();
-            this.cbTipoCoberturaConsulta = new System.Windows.Forms.ComboBox();
-            this.lblTipoCoberturaConsulta = new System.Windows.Forms.Label();
+            this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -88,9 +88,9 @@
             this.gbConsultaSeguros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSegurosConsulta)).BeginInit();
             this.tbPageCobertura.SuspendLayout();
-            this.gbDadosCobertura.SuspendLayout();
             this.gbConsultaCobertura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).BeginInit();
+            this.gbDadosCobertura.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbControlSeguros
@@ -146,20 +146,6 @@
             this.gbDadosSeguros.TabIndex = 1;
             this.gbDadosSeguros.TabStop = false;
             this.gbDadosSeguros.Text = "Dados";
-            // 
-            // cbFranquia
-            // 
-            this.cbFranquia.Enabled = false;
-            this.cbFranquia.FormattingEnabled = true;
-            this.cbFranquia.Items.AddRange(new object[] {
-            "Normal",
-            "Majorada",
-            "Reduzida",
-            "Isenta"});
-            this.cbFranquia.Location = new System.Drawing.Point(11, 243);
-            this.cbFranquia.Name = "cbFranquia";
-            this.cbFranquia.Size = new System.Drawing.Size(197, 33);
-            this.cbFranquia.TabIndex = 63;
             // 
             // cbTipo
             // 
@@ -485,6 +471,120 @@
             this.tbPageCobertura.TabIndex = 2;
             this.tbPageCobertura.Text = "Cobertura";
             // 
+            // gbConsultaCobertura
+            // 
+            this.gbConsultaCobertura.Controls.Add(this.lblTipoCoberturaConsulta);
+            this.gbConsultaCobertura.Controls.Add(this.cbTipoCoberturaConsulta);
+            this.gbConsultaCobertura.Controls.Add(this.txtNApoliceCoberturaConsulta);
+            this.gbConsultaCobertura.Controls.Add(this.lblNApoliceCoberturaConsulta);
+            this.gbConsultaCobertura.Controls.Add(this.btnTransfereCobertura);
+            this.gbConsultaCobertura.Controls.Add(this.dgCoberturaConsulta);
+            this.gbConsultaCobertura.Controls.Add(this.btnConsultaTodosCobertura);
+            this.gbConsultaCobertura.Controls.Add(this.btnConsultaCobertura);
+            this.gbConsultaCobertura.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbConsultaCobertura.Location = new System.Drawing.Point(6, 216);
+            this.gbConsultaCobertura.Name = "gbConsultaCobertura";
+            this.gbConsultaCobertura.Size = new System.Drawing.Size(621, 238);
+            this.gbConsultaCobertura.TabIndex = 26;
+            this.gbConsultaCobertura.TabStop = false;
+            this.gbConsultaCobertura.Text = "Consulta";
+            // 
+            // lblTipoCoberturaConsulta
+            // 
+            this.lblTipoCoberturaConsulta.AutoSize = true;
+            this.lblTipoCoberturaConsulta.Location = new System.Drawing.Point(6, 28);
+            this.lblTipoCoberturaConsulta.Name = "lblTipoCoberturaConsulta";
+            this.lblTipoCoberturaConsulta.Size = new System.Drawing.Size(38, 25);
+            this.lblTipoCoberturaConsulta.TabIndex = 67;
+            this.lblTipoCoberturaConsulta.Text = "Tipo:";
+            // 
+            // cbTipoCoberturaConsulta
+            // 
+            this.cbTipoCoberturaConsulta.FormattingEnabled = true;
+            this.cbTipoCoberturaConsulta.Location = new System.Drawing.Point(50, 25);
+            this.cbTipoCoberturaConsulta.Name = "cbTipoCoberturaConsulta";
+            this.cbTipoCoberturaConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbTipoCoberturaConsulta.TabIndex = 20;
+            // 
+            // txtNApoliceCoberturaConsulta
+            // 
+            this.txtNApoliceCoberturaConsulta.Location = new System.Drawing.Point(336, 25);
+            this.txtNApoliceCoberturaConsulta.Name = "txtNApoliceCoberturaConsulta";
+            this.txtNApoliceCoberturaConsulta.Size = new System.Drawing.Size(197, 32);
+            this.txtNApoliceCoberturaConsulta.TabIndex = 21;
+            // 
+            // lblNApoliceCoberturaConsulta
+            // 
+            this.lblNApoliceCoberturaConsulta.AutoSize = true;
+            this.lblNApoliceCoberturaConsulta.Location = new System.Drawing.Point(253, 28);
+            this.lblNApoliceCoberturaConsulta.Name = "lblNApoliceCoberturaConsulta";
+            this.lblNApoliceCoberturaConsulta.Size = new System.Drawing.Size(77, 25);
+            this.lblNApoliceCoberturaConsulta.TabIndex = 65;
+            this.lblNApoliceCoberturaConsulta.Text = "Nº Apólice:";
+            // 
+            // btnTransfereCobertura
+            // 
+            this.btnTransfereCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTransfereCobertura.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTransfereCobertura.BackgroundImage")));
+            this.btnTransfereCobertura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTransfereCobertura.FlatAppearance.BorderSize = 0;
+            this.btnTransfereCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnTransfereCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransfereCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransfereCobertura.ForeColor = System.Drawing.Color.White;
+            this.btnTransfereCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransfereCobertura.Location = new System.Drawing.Point(577, 19);
+            this.btnTransfereCobertura.Name = "btnTransfereCobertura";
+            this.btnTransfereCobertura.Size = new System.Drawing.Size(38, 40);
+            this.btnTransfereCobertura.TabIndex = 24;
+            this.btnTransfereCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTransfereCobertura.UseVisualStyleBackColor = false;
+            // 
+            // dgCoberturaConsulta
+            // 
+            this.dgCoberturaConsulta.BackgroundColor = System.Drawing.Color.White;
+            this.dgCoberturaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCoberturaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dgCoberturaConsulta.Location = new System.Drawing.Point(7, 65);
+            this.dgCoberturaConsulta.Name = "dgCoberturaConsulta";
+            this.dgCoberturaConsulta.Size = new System.Drawing.Size(443, 167);
+            this.dgCoberturaConsulta.TabIndex = 25;
+            // 
+            // btnConsultaTodosCobertura
+            // 
+            this.btnConsultaTodosCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaTodosCobertura.FlatAppearance.BorderSize = 0;
+            this.btnConsultaTodosCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultaTodosCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultaTodosCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultaTodosCobertura.ForeColor = System.Drawing.Color.White;
+            this.btnConsultaTodosCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultaTodosCobertura.Location = new System.Drawing.Point(456, 109);
+            this.btnConsultaTodosCobertura.Name = "btnConsultaTodosCobertura";
+            this.btnConsultaTodosCobertura.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultaTodosCobertura.TabIndex = 23;
+            this.btnConsultaTodosCobertura.Text = "Consultar Todos";
+            this.btnConsultaTodosCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultaTodosCobertura.UseVisualStyleBackColor = false;
+            // 
+            // btnConsultaCobertura
+            // 
+            this.btnConsultaCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaCobertura.FlatAppearance.BorderSize = 0;
+            this.btnConsultaCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultaCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultaCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultaCobertura.ForeColor = System.Drawing.Color.White;
+            this.btnConsultaCobertura.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaCobertura.Image")));
+            this.btnConsultaCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultaCobertura.Location = new System.Drawing.Point(456, 65);
+            this.btnConsultaCobertura.Name = "btnConsultaCobertura";
+            this.btnConsultaCobertura.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultaCobertura.TabIndex = 22;
+            this.btnConsultaCobertura.Text = "    Consultar";
+            this.btnConsultaCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultaCobertura.UseVisualStyleBackColor = false;
+            // 
             // gbDadosCobertura
             // 
             this.gbDadosCobertura.Controls.Add(this.cbTipoCobertura);
@@ -503,6 +603,39 @@
             this.gbDadosCobertura.TabIndex = 24;
             this.gbDadosCobertura.TabStop = false;
             this.gbDadosCobertura.Text = "Dados";
+            // 
+            // cbTipoCobertura
+            // 
+            this.cbTipoCobertura.FormattingEnabled = true;
+            this.cbTipoCobertura.Location = new System.Drawing.Point(11, 55);
+            this.cbTipoCobertura.Name = "cbTipoCobertura";
+            this.cbTipoCobertura.Size = new System.Drawing.Size(197, 33);
+            this.cbTipoCobertura.TabIndex = 14;
+            // 
+            // lblTipoCobertura
+            // 
+            this.lblTipoCobertura.AutoSize = true;
+            this.lblTipoCobertura.Location = new System.Drawing.Point(6, 28);
+            this.lblTipoCobertura.Name = "lblTipoCobertura";
+            this.lblTipoCobertura.Size = new System.Drawing.Size(38, 25);
+            this.lblTipoCobertura.TabIndex = 65;
+            this.lblTipoCobertura.Text = "Tipo:";
+            // 
+            // txtNApoliceCobertura
+            // 
+            this.txtNApoliceCobertura.Location = new System.Drawing.Point(214, 56);
+            this.txtNApoliceCobertura.Name = "txtNApoliceCobertura";
+            this.txtNApoliceCobertura.Size = new System.Drawing.Size(197, 32);
+            this.txtNApoliceCobertura.TabIndex = 15;
+            // 
+            // lblNApoliceCobertura
+            // 
+            this.lblNApoliceCobertura.AutoSize = true;
+            this.lblNApoliceCobertura.Location = new System.Drawing.Point(209, 28);
+            this.lblNApoliceCobertura.Name = "lblNApoliceCobertura";
+            this.lblNApoliceCobertura.Size = new System.Drawing.Size(77, 25);
+            this.lblNApoliceCobertura.TabIndex = 64;
+            this.lblNApoliceCobertura.Text = "Nº Apólice:";
             // 
             // txtCoberturaDescricao
             // 
@@ -575,152 +708,18 @@
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             // 
-            // cbTipoCobertura
+            // cbFranquia
             // 
-            this.cbTipoCobertura.FormattingEnabled = true;
-            this.cbTipoCobertura.Location = new System.Drawing.Point(11, 55);
-            this.cbTipoCobertura.Name = "cbTipoCobertura";
-            this.cbTipoCobertura.Size = new System.Drawing.Size(197, 33);
-            this.cbTipoCobertura.TabIndex = 14;
-            // 
-            // lblTipoCobertura
-            // 
-            this.lblTipoCobertura.AutoSize = true;
-            this.lblTipoCobertura.Location = new System.Drawing.Point(6, 28);
-            this.lblTipoCobertura.Name = "lblTipoCobertura";
-            this.lblTipoCobertura.Size = new System.Drawing.Size(38, 25);
-            this.lblTipoCobertura.TabIndex = 65;
-            this.lblTipoCobertura.Text = "Tipo:";
-            // 
-            // txtNApoliceCobertura
-            // 
-            this.txtNApoliceCobertura.Location = new System.Drawing.Point(214, 56);
-            this.txtNApoliceCobertura.Name = "txtNApoliceCobertura";
-            this.txtNApoliceCobertura.Size = new System.Drawing.Size(197, 32);
-            this.txtNApoliceCobertura.TabIndex = 15;
-            // 
-            // lblNApoliceCobertura
-            // 
-            this.lblNApoliceCobertura.AutoSize = true;
-            this.lblNApoliceCobertura.Location = new System.Drawing.Point(209, 28);
-            this.lblNApoliceCobertura.Name = "lblNApoliceCobertura";
-            this.lblNApoliceCobertura.Size = new System.Drawing.Size(77, 25);
-            this.lblNApoliceCobertura.TabIndex = 64;
-            this.lblNApoliceCobertura.Text = "Nº Apólice:";
-            // 
-            // gbConsultaCobertura
-            // 
-            this.gbConsultaCobertura.Controls.Add(this.lblTipoCoberturaConsulta);
-            this.gbConsultaCobertura.Controls.Add(this.cbTipoCoberturaConsulta);
-            this.gbConsultaCobertura.Controls.Add(this.txtNApoliceCoberturaConsulta);
-            this.gbConsultaCobertura.Controls.Add(this.lblNApoliceCoberturaConsulta);
-            this.gbConsultaCobertura.Controls.Add(this.btnTransfereCobertura);
-            this.gbConsultaCobertura.Controls.Add(this.dgCoberturaConsulta);
-            this.gbConsultaCobertura.Controls.Add(this.btnConsultaTodosCobertura);
-            this.gbConsultaCobertura.Controls.Add(this.btnConsultaCobertura);
-            this.gbConsultaCobertura.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConsultaCobertura.Location = new System.Drawing.Point(6, 216);
-            this.gbConsultaCobertura.Name = "gbConsultaCobertura";
-            this.gbConsultaCobertura.Size = new System.Drawing.Size(621, 238);
-            this.gbConsultaCobertura.TabIndex = 26;
-            this.gbConsultaCobertura.TabStop = false;
-            this.gbConsultaCobertura.Text = "Consulta";
-            // 
-            // btnTransfereCobertura
-            // 
-            this.btnTransfereCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnTransfereCobertura.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTransfereCobertura.BackgroundImage")));
-            this.btnTransfereCobertura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnTransfereCobertura.FlatAppearance.BorderSize = 0;
-            this.btnTransfereCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnTransfereCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransfereCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransfereCobertura.ForeColor = System.Drawing.Color.White;
-            this.btnTransfereCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTransfereCobertura.Location = new System.Drawing.Point(577, 19);
-            this.btnTransfereCobertura.Name = "btnTransfereCobertura";
-            this.btnTransfereCobertura.Size = new System.Drawing.Size(38, 40);
-            this.btnTransfereCobertura.TabIndex = 24;
-            this.btnTransfereCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnTransfereCobertura.UseVisualStyleBackColor = false;
-            // 
-            // dgCoberturaConsulta
-            // 
-            this.dgCoberturaConsulta.BackgroundColor = System.Drawing.Color.White;
-            this.dgCoberturaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCoberturaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgCoberturaConsulta.Location = new System.Drawing.Point(7, 65);
-            this.dgCoberturaConsulta.Name = "dgCoberturaConsulta";
-            this.dgCoberturaConsulta.Size = new System.Drawing.Size(443, 167);
-            this.dgCoberturaConsulta.TabIndex = 25;
-            // 
-            // btnConsultaTodosCobertura
-            // 
-            this.btnConsultaTodosCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultaTodosCobertura.FlatAppearance.BorderSize = 0;
-            this.btnConsultaTodosCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultaTodosCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultaTodosCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultaTodosCobertura.ForeColor = System.Drawing.Color.White;
-            this.btnConsultaTodosCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaTodosCobertura.Location = new System.Drawing.Point(456, 109);
-            this.btnConsultaTodosCobertura.Name = "btnConsultaTodosCobertura";
-            this.btnConsultaTodosCobertura.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaTodosCobertura.TabIndex = 23;
-            this.btnConsultaTodosCobertura.Text = "Consultar Todos";
-            this.btnConsultaTodosCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultaTodosCobertura.UseVisualStyleBackColor = false;
-            // 
-            // btnConsultaCobertura
-            // 
-            this.btnConsultaCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultaCobertura.FlatAppearance.BorderSize = 0;
-            this.btnConsultaCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultaCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultaCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultaCobertura.ForeColor = System.Drawing.Color.White;
-            this.btnConsultaCobertura.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaCobertura.Image")));
-            this.btnConsultaCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaCobertura.Location = new System.Drawing.Point(456, 65);
-            this.btnConsultaCobertura.Name = "btnConsultaCobertura";
-            this.btnConsultaCobertura.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaCobertura.TabIndex = 22;
-            this.btnConsultaCobertura.Text = "    Consultar";
-            this.btnConsultaCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultaCobertura.UseVisualStyleBackColor = false;
-            // 
-            // lblNApoliceCoberturaConsulta
-            // 
-            this.lblNApoliceCoberturaConsulta.AutoSize = true;
-            this.lblNApoliceCoberturaConsulta.Location = new System.Drawing.Point(253, 28);
-            this.lblNApoliceCoberturaConsulta.Name = "lblNApoliceCoberturaConsulta";
-            this.lblNApoliceCoberturaConsulta.Size = new System.Drawing.Size(77, 25);
-            this.lblNApoliceCoberturaConsulta.TabIndex = 65;
-            this.lblNApoliceCoberturaConsulta.Text = "Nº Apólice:";
-            // 
-            // txtNApoliceCoberturaConsulta
-            // 
-            this.txtNApoliceCoberturaConsulta.Location = new System.Drawing.Point(336, 25);
-            this.txtNApoliceCoberturaConsulta.Name = "txtNApoliceCoberturaConsulta";
-            this.txtNApoliceCoberturaConsulta.Size = new System.Drawing.Size(197, 32);
-            this.txtNApoliceCoberturaConsulta.TabIndex = 21;
-            // 
-            // cbTipoCoberturaConsulta
-            // 
-            this.cbTipoCoberturaConsulta.FormattingEnabled = true;
-            this.cbTipoCoberturaConsulta.Location = new System.Drawing.Point(50, 25);
-            this.cbTipoCoberturaConsulta.Name = "cbTipoCoberturaConsulta";
-            this.cbTipoCoberturaConsulta.Size = new System.Drawing.Size(197, 33);
-            this.cbTipoCoberturaConsulta.TabIndex = 20;
-            // 
-            // lblTipoCoberturaConsulta
-            // 
-            this.lblTipoCoberturaConsulta.AutoSize = true;
-            this.lblTipoCoberturaConsulta.Location = new System.Drawing.Point(6, 28);
-            this.lblTipoCoberturaConsulta.Name = "lblTipoCoberturaConsulta";
-            this.lblTipoCoberturaConsulta.Size = new System.Drawing.Size(38, 25);
-            this.lblTipoCoberturaConsulta.TabIndex = 67;
-            this.lblTipoCoberturaConsulta.Text = "Tipo:";
+            this.cbFranquia.FormattingEnabled = true;
+            this.cbFranquia.Items.AddRange(new object[] {
+            "Normal",
+            "Majorada",
+            "Reduzida",
+            "Isenta"});
+            this.cbFranquia.Location = new System.Drawing.Point(11, 244);
+            this.cbFranquia.Name = "cbFranquia";
+            this.cbFranquia.Size = new System.Drawing.Size(197, 33);
+            this.cbFranquia.TabIndex = 64;
             // 
             // Seguros
             // 
@@ -741,11 +740,11 @@
             this.gbConsultaSeguros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSegurosConsulta)).EndInit();
             this.tbPageCobertura.ResumeLayout(false);
-            this.gbDadosCobertura.ResumeLayout(false);
-            this.gbDadosCobertura.PerformLayout();
             this.gbConsultaCobertura.ResumeLayout(false);
             this.gbConsultaCobertura.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).EndInit();
+            this.gbDadosCobertura.ResumeLayout(false);
+            this.gbDadosCobertura.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -783,7 +782,6 @@
         private System.Windows.Forms.DateTimePicker dtfimvigencia;
         private System.Windows.Forms.DateTimePicker dtInicio;
         private System.Windows.Forms.ComboBox cbTipo;
-        private System.Windows.Forms.ComboBox cbFranquia;
         private System.Windows.Forms.TabPage tbPageCobertura;
         private System.Windows.Forms.GroupBox gbDadosCobertura;
         private System.Windows.Forms.TextBox txtCoberturaDescricao;
@@ -804,5 +802,6 @@
         private System.Windows.Forms.TextBox txtNApoliceCoberturaConsulta;
         private System.Windows.Forms.Label lblTipoCoberturaConsulta;
         private System.Windows.Forms.ComboBox cbTipoCoberturaConsulta;
+        private System.Windows.Forms.ComboBox cbFranquia;
     }
 }

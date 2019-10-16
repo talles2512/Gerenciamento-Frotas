@@ -23,49 +23,51 @@ namespace CamadaModelagem.Services
         }
         public bool Cadastrar(Seguro seguro, TipoSeguro tipo, long numeroApolice) //Mudança na Query, Verificar
         {
-            //try
-            //{
-            //    Seguro obj = _seguroDAL.BuscarSeguro(tipo, numeroApolice);
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe uma Manutenção com esses dados no sistema!");
-            //    }
+            try
+            {
+                Seguro obj1 = _seguroDAL.BuscarSeguro(tipo, numeroApolice);
+                Seguro obj2 = _seguroDAL.BuscarSeguro(tipo, seguro.ItemSegurado);
+                if (obj1 != null)
+                {
+                    throw new RegistroExisteException("Já existe um Seguro com esses dados no sistema!");
+                }
+                else if (obj2 != null)
+                {
+                    throw new RegistroExisteException("Este Item Segurado já possui um Seguro cadastrado no sistema!");
+                }
 
-            //    return _seguroDAL.Cadastrar(seguro);
-            //}
-            //catch (ConcorrenciaBancoException e)
-            //{
-            //    throw new ConcorrenciaBancoException(e.Message);
-            //}
-            return true;
+                return _seguroDAL.Cadastrar(seguro);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public Seguro BuscarSeguro(TipoSeguro tipo, long numeroApolice)
         {
-            //try
-            //{
-            //    return _seguroDAL.BuscarAbastecimento(tipo, numeroApolice);
-            //}
-            //catch (ConcorrenciaBancoException e)
-            //{
-            //    throw new ConcorrenciaBancoException(e.Message);
-            //}
-            return new Seguro();
+            try
+            {
+                return _seguroDAL.BuscarSeguro(tipo, numeroApolice);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public List<Seguro> BuscarTodos()
         {
             List<Seguro> seguros = new List<Seguro>();
-            //try
-            //{
-            //    seguros.AddRange(_seguroDAL.BuscarTodos());
-            //    return seguros;
-            //}
-            //catch (ConcorrenciaBancoException e)
-            //{
-            //    throw new ConcorrenciaBancoException(e.Message);
-            //}
-            return seguros;
+            try
+            {
+                seguros.AddRange(_seguroDAL.BuscarTodos());
+                return seguros;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public bool Deletar(TipoSeguro tipo, long numeroApolice)
@@ -89,27 +91,26 @@ namespace CamadaModelagem.Services
 
         public bool Alterar(Seguro seguro, TipoSeguro tipo, long numeroApolice)
         {
-            //try
-            //{
-            //    Seguro obj = _seguroDAL.BuscarSeguro(tipo, numeroApolice);
-            //    if (obj != null)
-            //    {
-            //        return _seguroDAL.Alterar(seguro, tipo, numeroApolice);
-            //    }
-            //    else
-            //    {
-            //        throw new NaoEncontradoException("Seguro não encontrada.");
-            //    }
-            //}
-            //catch (TransacaoException e)
-            //{
-            //    throw new TransacaoException(e.Message);
-            //}
-            //catch (ConcorrenciaBancoException e)
-            //{
-            //    throw new ConcorrenciaBancoException(e.Message);
-            //}
-            return true;
+            try
+            {
+                Seguro obj = _seguroDAL.BuscarSeguro(tipo, numeroApolice);
+                if (obj != null)
+                {
+                    return _seguroDAL.Alterar(seguro, tipo, numeroApolice);
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Seguro não encontrada.");
+                }
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public DataTable PopularPlacas()

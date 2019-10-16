@@ -47,6 +47,8 @@
             this.lblTipo = new System.Windows.Forms.Label();
             this.tbPageConsultaEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbConsultaEntradaSaida = new System.Windows.Forms.GroupBox();
+            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbPlacaConsulta = new System.Windows.Forms.ComboBox();
             this.dtDataHoraEntradaSaidaConsulta = new System.Windows.Forms.DateTimePicker();
             this.lblDataHoraEntradaSaidaConsulta = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.dgEntradaSaidaConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosEntradaSaida = new System.Windows.Forms.Button();
             this.btnConsultarEntradaSaida = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
             this.tbControlEntradaSaida.SuspendLayout();
             this.tbPageCadastroEntradaSaida.SuspendLayout();
             this.gbDadosEntradaSaida.SuspendLayout();
@@ -150,9 +150,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 155);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
+            this.label1.Size = new System.Drawing.Size(110, 25);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Motorista - CPF";
+            this.label1.Text = "Motorista - CPF:";
             // 
             // lblPlaca
             // 
@@ -290,6 +290,23 @@
             this.gbConsultaEntradaSaida.TabStop = false;
             this.gbConsultaEntradaSaida.Text = "Consulta";
             // 
+            // cbTipoConsulta
+            // 
+            this.cbTipoConsulta.FormattingEnabled = true;
+            this.cbTipoConsulta.Location = new System.Drawing.Point(11, 50);
+            this.cbTipoConsulta.Name = "cbTipoConsulta";
+            this.cbTipoConsulta.Size = new System.Drawing.Size(162, 33);
+            this.cbTipoConsulta.TabIndex = 39;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 25);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Tipo:";
+            // 
             // cbPlacaConsulta
             // 
             this.cbPlacaConsulta.FormattingEnabled = true;
@@ -409,23 +426,6 @@
             this.btnConsultarEntradaSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEntradaSaida.UseVisualStyleBackColor = false;
             this.btnConsultarEntradaSaida.Click += new System.EventHandler(this.BtnConsultarEntradaSaida_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 25);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "Tipo:";
-            // 
-            // cbTipoConsulta
-            // 
-            this.cbTipoConsulta.FormattingEnabled = true;
-            this.cbTipoConsulta.Location = new System.Drawing.Point(11, 50);
-            this.cbTipoConsulta.Name = "cbTipoConsulta";
-            this.cbTipoConsulta.Size = new System.Drawing.Size(162, 33);
-            this.cbTipoConsulta.TabIndex = 39;
             // 
             // EntradasSaidas
             // 
