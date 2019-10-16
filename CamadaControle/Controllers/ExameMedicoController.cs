@@ -25,6 +25,10 @@ namespace CamadaControle.Controllers
             {
                 return _exameMedicoService.Cadastrar(exameMedico);
             }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
             catch (ConcorrenciaBancoException e)
             {
                 throw new ConcorrenciaBancoException(e.Message);

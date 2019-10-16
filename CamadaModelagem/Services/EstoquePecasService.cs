@@ -18,28 +18,54 @@ namespace CamadaModelagem.Services
             _estoquePecasDAL = estoquePecasDAL;
         }
 
-        public void Cadastrar(EstoquePeca estoquePeca, int idpeca)
-        {
-            //try
-            //{
-            //    EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe uma peça com essa Identificação no sistema!");
-            //    }
-            //    _estoquePecasDAL.Cadastrar(estoquePeca);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
-        }
-
-        public void Deletar(int idpeca)
+        public bool Cadastrar(EstoquePeca estoquePeca, int idpeca)
         {
             try
             {
-                _estoquePecasDAL.Deletar(idpeca);
+                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma peça com essa Identificação no sistema!");
+                }
+                return _estoquePecasDAL.Cadastrar(estoquePeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public EstoquePeca BuscarEstoquePecas(int idpeca)
+        {
+            try
+            {
+                EstoquePeca estoquePeca = _estoquePecasDAL.BuscarEstoquePecas(idpeca);
+                return estoquePeca;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+        public List<EstoquePeca> BuscarTodos()
+        {
+            List<EstoquePeca> pecas = new List<EstoquePeca>();
+            try
+            {
+                pecas.AddRange(_estoquePecasDAL.BuscarTodos());
+                return pecas;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Deletar(int idpeca)
+        {
+            try
+            {
+                return _estoquePecasDAL.Deletar(idpeca);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -47,21 +73,34 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(EstoquePeca estoquePeca, int idpeca)
+        public bool Alterar(EstoquePeca estoquePeca, int idpeca)
         {
-            //try
-            //{
-            //    EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Peça não encontrada.");
-            //    }
-            //    _estoquePecasDAL.Alterar(estoquePeca, idpeca);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                EstoquePeca obj = _estoquePecasDAL.BuscarEstoquePecas(idpeca); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Peça não encontrada.");
+                }
+                _estoquePecasDAL.Alterar(estoquePeca, idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+            return true;
+        }
+
+        public int PopulaID()
+        {
+            try
+            {
+                return _estoquePecasDAL.PopulaID();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
     }
 }

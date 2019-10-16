@@ -34,7 +34,7 @@
             this.gbDadosEstoque = new System.Windows.Forms.GroupBox();
             this.nudQuantidade = new System.Windows.Forms.NumericUpDown();
             this.lblQtd = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtValor = new System.Windows.Forms.MaskedTextBox();
             this.lblValorUnit = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
             this.lblIdentificador = new System.Windows.Forms.Label();
@@ -86,7 +86,7 @@
             // 
             this.gbDadosEstoque.Controls.Add(this.nudQuantidade);
             this.gbDadosEstoque.Controls.Add(this.lblQtd);
-            this.gbDadosEstoque.Controls.Add(this.maskedTextBox1);
+            this.gbDadosEstoque.Controls.Add(this.txtValor);
             this.gbDadosEstoque.Controls.Add(this.lblValorUnit);
             this.gbDadosEstoque.Controls.Add(this.txtid);
             this.gbDadosEstoque.Controls.Add(this.lblIdentificador);
@@ -119,13 +119,13 @@
             this.lblQtd.TabIndex = 43;
             this.lblQtd.Text = "Quantidade:";
             // 
-            // maskedTextBox1
+            // txtValor
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(157, 56);
-            this.maskedTextBox1.Mask = "0000000000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(197, 32);
-            this.maskedTextBox1.TabIndex = 15;
+            this.txtValor.Location = new System.Drawing.Point(157, 56);
+            this.txtValor.Mask = "0000000000";
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(197, 32);
+            this.txtValor.TabIndex = 15;
             // 
             // lblValorUnit
             // 
@@ -187,6 +187,7 @@
             this.btnExcluirEstoque.Text = "Excluir";
             this.btnExcluirEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirEstoque.UseVisualStyleBackColor = false;
+            this.btnExcluirEstoque.Click += new System.EventHandler(this.btnExcluirEstoque_Click);
             // 
             // btnAlterarEstoque
             // 
@@ -205,6 +206,7 @@
             this.btnAlterarEstoque.Text = "Alterar";
             this.btnAlterarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarEstoque.UseVisualStyleBackColor = false;
+            this.btnAlterarEstoque.Click += new System.EventHandler(this.btnAlterarEstoque_Click);
             // 
             // btnCadastrarEstoque
             // 
@@ -223,6 +225,7 @@
             this.btnCadastrarEstoque.Text = "Cadastrar";
             this.btnCadastrarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarEstoque.UseVisualStyleBackColor = false;
+            this.btnCadastrarEstoque.Click += new System.EventHandler(this.btnCadastrarEstoque_Click);
             // 
             // tbPageConsultaEstoque
             // 
@@ -255,7 +258,7 @@
             // 
             this.txtIDEstoqueConsulta.Location = new System.Drawing.Point(99, 27);
             this.txtIDEstoqueConsulta.Name = "txtIDEstoqueConsulta";
-            this.txtIDEstoqueConsulta.Size = new System.Drawing.Size(141, 32);
+            this.txtIDEstoqueConsulta.Size = new System.Drawing.Size(155, 32);
             this.txtIDEstoqueConsulta.TabIndex = 14;
             // 
             // lblIDEstoqueConsulta
@@ -284,6 +287,7 @@
             this.btnTrasferirEstoque.TabIndex = 17;
             this.btnTrasferirEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirEstoque.UseVisualStyleBackColor = false;
+            this.btnTrasferirEstoque.Click += new System.EventHandler(this.btnTrasferirEstoque_Click);
             // 
             // dgEstoqueConsulta
             // 
@@ -311,6 +315,7 @@
             this.btnTodosEstoque.Text = "Consultar Todos";
             this.btnTodosEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosEstoque.UseVisualStyleBackColor = false;
+            this.btnTodosEstoque.Click += new System.EventHandler(this.btnTodosEstoque_Click);
             // 
             // btnConsultarEstoque
             // 
@@ -329,6 +334,7 @@
             this.btnConsultarEstoque.Text = "    Consultar";
             this.btnConsultarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
+            this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
             // 
             // EstoquePecas
             // 
@@ -339,6 +345,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EstoquePecas";
             this.Text = "EstoquePecas";
+            this.Load += new System.EventHandler(this.EstoquePecas_Load);
             this.tbControlEstoque.ResumeLayout(false);
             this.tbPageCadastroEstoque.ResumeLayout(false);
             this.gbDadosEstoque.ResumeLayout(false);
@@ -374,7 +381,7 @@
         private System.Windows.Forms.Button btnConsultarEstoque;
         private System.Windows.Forms.NumericUpDown nudQuantidade;
         private System.Windows.Forms.Label lblQtd;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtValor;
         private System.Windows.Forms.Label lblValorUnit;
     }
 }

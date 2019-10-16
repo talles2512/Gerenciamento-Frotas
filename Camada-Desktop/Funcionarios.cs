@@ -83,7 +83,7 @@ namespace CamadaDesktop
         {
             if (txtLoginFuncionarioConsulta.Text == "")
             {
-                MessageBox.Show("Preencha o campo da Login!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Preencha o campo do Login!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

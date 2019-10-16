@@ -93,7 +93,7 @@ namespace CamadaDesktop
         {
             if (txtCPFClientesConsulta.Text == "" || txtCPFClientesConsulta.Text.Length < 12)
             {
-                MessageBox.Show("Preencha o campo da CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Preencha o campo do CPF!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +19,80 @@ namespace CamadaControle.Controllers
         }
 
         #region [AplicacaoDesktop]
-        public void Cadastrar(EstoquePeca estoquePeca, int idpeca)
-        {
-            _estoquePecasService.Cadastrar(estoquePeca, idpeca);
+        public bool Cadastrar(EstoquePeca estoquePeca, int idpeca)
+        {           
+            try
+            {
+                return _estoquePecasService.Cadastrar(estoquePeca, idpeca);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(int idpeca)
+        public EstoquePeca BuscarEstoquePecas(int idpeca)
         {
-            _estoquePecasService.Deletar(idpeca);
+            try
+            {
+                return _estoquePecasService.BuscarEstoquePecas(idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        public List<EstoquePeca> BuscarTodos()
+        {
+            try
+            {
+                return _estoquePecasService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(EstoquePeca estoquePeca, int idpeca)
+        public bool Deletar(int idpeca)
+        {            
+            try
+            {
+                return _estoquePecasService.Deletar(idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Alterar(EstoquePeca estoquePeca, int idpeca)
+        {          
+            try
+            {
+                return _estoquePecasService.Alterar(estoquePeca, idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+
+        }
+
+        public int PopulaID()
         {
-            _estoquePecasService.Alterar(estoquePeca, idpeca);
+            try
+            {
+                return _estoquePecasService.PopulaID();
+            }
+            catch
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         #endregion
