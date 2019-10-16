@@ -9,24 +9,37 @@ namespace CamadaModelagem.Models
 {
     public class Seguro
     {
-        public int NumeroApolice { get; set; }
-        public ItemSeguradoAbstrato ItemSegurado { get; set; } //Duvidas futuras aqui
-        public string Tipo { get; set; }
+        public long NumeroApolice { get; set; }
+        public string ItemSegurado { get; set; } //Duvidas futuras aqui
+        public TipoSeguro Tipo { get; set; }
         public double Valor { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime FimVigencia { get; set; }
         public string Franquia { get; set; } //Duvidas futuras aqui
         public double ValorFranquia { get; set; }
         public List<SeguroCobertura> Cobertura { get; set; } = new List<SeguroCobertura>();
-        public ServicoExterno ServicoExterno { get; set; }
+        public long CNPJ { get; set; }
 
         public Seguro()
         {
 
         }
 
-        public Seguro(int numeroApolice, ItemSeguradoAbstrato itemSegurado, string tipo, double valor, DateTime dataInicio, DateTime fimVigencia, string franquia, double valorFranquia,
-            ServicoExterno servicoExterno)
+        public Seguro(long numeroApolice, string itemSegurado, TipoSeguro tipo, double valor, DateTime dataInicio, DateTime fimVigencia, long cNPJ)
+        {
+            NumeroApolice = numeroApolice;
+            ItemSegurado = itemSegurado;
+            Tipo = tipo;
+            Valor = valor;
+            DataInicio = dataInicio;
+            FimVigencia = fimVigencia;
+            Franquia = "";
+            ValorFranquia = 0;
+            CNPJ = cNPJ;
+        }
+
+        public Seguro(long numeroApolice, string itemSegurado, TipoSeguro tipo, double valor, DateTime dataInicio, DateTime fimVigencia, string franquia, double valorFranquia,
+            long cNPJ)
         {
             NumeroApolice = numeroApolice;
             ItemSegurado = itemSegurado;
@@ -36,7 +49,7 @@ namespace CamadaModelagem.Models
             FimVigencia = fimVigencia;
             Franquia = franquia;
             ValorFranquia = valorFranquia;
-            ServicoExterno = servicoExterno;
+            CNPJ = cNPJ;
         }
 
         public void AdicionarCobertura(SeguroCobertura seguroCobertura)

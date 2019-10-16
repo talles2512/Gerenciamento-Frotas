@@ -61,6 +61,7 @@
     <Compile Include="Data\VeiculoDAL.cs" />
     <Compile Include="Data\ViagemDAL.cs" />
     <Compile Include="Models\Enums\AbastecimentoTipo.cs" />
+    <Compile Include="Models\Enums\TipoSeguro.cs" />
     <Compile Include="Models\ItemSeguradoAbstrato.cs" />
     <Compile Include="Models\VeiculoAlugado.cs" />
     <Compile Include="Services\Exceptions\IntegridadeException.cs" />

@@ -32,6 +32,18 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosFuncionario = new System.Windows.Forms.GroupBox();
+            this.txtValorFranquia = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblDataInicio = new System.Windows.Forms.Label();
+            this.dtfimvigencia = new System.Windows.Forms.DateTimePicker();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.lblFranquia = new System.Windows.Forms.Label();
+            this.txtValor = new System.Windows.Forms.MaskedTextBox();
+            this.lblValor = new System.Windows.Forms.Label();
+            this.lblTipo = new System.Windows.Forms.Label();
+            this.cbItemSegurado = new System.Windows.Forms.ComboBox();
+            this.cbSeguradora = new System.Windows.Forms.ComboBox();
             this.lblItemSegurado = new System.Windows.Forms.Label();
             this.lblSeguradora = new System.Windows.Forms.Label();
             this.txtNApolice = new System.Windows.Forms.TextBox();
@@ -47,20 +59,8 @@
             this.dgSegurosConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosSeguros = new System.Windows.Forms.Button();
             this.btnConsultarSeguros = new System.Windows.Forms.Button();
-            this.cbSeguradora = new System.Windows.Forms.ComboBox();
-            this.cbItemSegurado = new System.Windows.Forms.ComboBox();
-            this.lblTipo = new System.Windows.Forms.Label();
-            this.txtTipo = new System.Windows.Forms.TextBox();
-            this.lblValor = new System.Windows.Forms.Label();
-            this.txtValor = new System.Windows.Forms.MaskedTextBox();
-            this.lblFranquia = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dtInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtfimvigencia = new System.Windows.Forms.DateTimePicker();
-            this.lblDataInicio = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtValorFranquia = new System.Windows.Forms.MaskedTextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosFuncionario.SuspendLayout();
@@ -93,17 +93,17 @@
             // 
             // gbDadosFuncionario
             // 
+            this.gbDadosFuncionario.Controls.Add(this.cbFranquia);
+            this.gbDadosFuncionario.Controls.Add(this.cbTipo);
             this.gbDadosFuncionario.Controls.Add(this.txtValorFranquia);
             this.gbDadosFuncionario.Controls.Add(this.label2);
             this.gbDadosFuncionario.Controls.Add(this.label1);
             this.gbDadosFuncionario.Controls.Add(this.lblDataInicio);
             this.gbDadosFuncionario.Controls.Add(this.dtfimvigencia);
             this.gbDadosFuncionario.Controls.Add(this.dtInicio);
-            this.gbDadosFuncionario.Controls.Add(this.textBox1);
             this.gbDadosFuncionario.Controls.Add(this.lblFranquia);
             this.gbDadosFuncionario.Controls.Add(this.txtValor);
             this.gbDadosFuncionario.Controls.Add(this.lblValor);
-            this.gbDadosFuncionario.Controls.Add(this.txtTipo);
             this.gbDadosFuncionario.Controls.Add(this.lblTipo);
             this.gbDadosFuncionario.Controls.Add(this.cbItemSegurado);
             this.gbDadosFuncionario.Controls.Add(this.cbSeguradora);
@@ -122,10 +122,119 @@
             this.gbDadosFuncionario.TabStop = false;
             this.gbDadosFuncionario.Text = "Dados";
             // 
+            // txtValorFranquia
+            // 
+            this.txtValorFranquia.Enabled = false;
+            this.txtValorFranquia.Location = new System.Drawing.Point(214, 244);
+            this.txtValorFranquia.Mask = "0000000000";
+            this.txtValorFranquia.Name = "txtValorFranquia";
+            this.txtValorFranquia.Size = new System.Drawing.Size(197, 32);
+            this.txtValorFranquia.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(209, 216);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 25);
+            this.label2.TabIndex = 61;
+            this.label2.Text = "Valor Franquia:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(296, 154);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 25);
+            this.label1.TabIndex = 60;
+            this.label1.Text = "Fim Vigência:";
+            // 
+            // lblDataInicio
+            // 
+            this.lblDataInicio.AutoSize = true;
+            this.lblDataInicio.Location = new System.Drawing.Point(6, 154);
+            this.lblDataInicio.Name = "lblDataInicio";
+            this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
+            this.lblDataInicio.TabIndex = 59;
+            this.lblDataInicio.Text = "Data Inicio:";
+            // 
+            // dtfimvigencia
+            // 
+            this.dtfimvigencia.CustomFormat = "dd/mm/yyyy";
+            this.dtfimvigencia.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtfimvigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtfimvigencia.Location = new System.Drawing.Point(301, 182);
+            this.dtfimvigencia.Name = "dtfimvigencia";
+            this.dtfimvigencia.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtfimvigencia.Size = new System.Drawing.Size(284, 31);
+            this.dtfimvigencia.TabIndex = 21;
+            // 
+            // dtInicio
+            // 
+            this.dtInicio.CustomFormat = "dd/mm/yyyy";
+            this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInicio.Location = new System.Drawing.Point(11, 182);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtInicio.Size = new System.Drawing.Size(284, 31);
+            this.dtInicio.TabIndex = 20;
+            // 
+            // lblFranquia
+            // 
+            this.lblFranquia.AutoSize = true;
+            this.lblFranquia.Location = new System.Drawing.Point(6, 216);
+            this.lblFranquia.Name = "lblFranquia";
+            this.lblFranquia.Size = new System.Drawing.Size(67, 25);
+            this.lblFranquia.TabIndex = 55;
+            this.lblFranquia.Text = "Franquia:";
+            // 
+            // txtValor
+            // 
+            this.txtValor.Location = new System.Drawing.Point(420, 120);
+            this.txtValor.Mask = "0000000000";
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(197, 32);
+            this.txtValor.TabIndex = 18;
+            // 
+            // lblValor
+            // 
+            this.lblValor.AutoSize = true;
+            this.lblValor.Location = new System.Drawing.Point(412, 91);
+            this.lblValor.Name = "lblValor";
+            this.lblValor.Size = new System.Drawing.Size(46, 25);
+            this.lblValor.TabIndex = 53;
+            this.lblValor.Text = "Valor:";
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Location = new System.Drawing.Point(9, 27);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(38, 25);
+            this.lblTipo.TabIndex = 51;
+            this.lblTipo.Text = "Tipo:";
+            // 
+            // cbItemSegurado
+            // 
+            this.cbItemSegurado.FormattingEnabled = true;
+            this.cbItemSegurado.Location = new System.Drawing.Point(217, 120);
+            this.cbItemSegurado.Name = "cbItemSegurado";
+            this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
+            this.cbItemSegurado.TabIndex = 16;
+            // 
+            // cbSeguradora
+            // 
+            this.cbSeguradora.FormattingEnabled = true;
+            this.cbSeguradora.Location = new System.Drawing.Point(217, 55);
+            this.cbSeguradora.Name = "cbSeguradora";
+            this.cbSeguradora.Size = new System.Drawing.Size(197, 33);
+            this.cbSeguradora.TabIndex = 15;
+            // 
             // lblItemSegurado
             // 
             this.lblItemSegurado.AutoSize = true;
-            this.lblItemSegurado.Location = new System.Drawing.Point(412, 27);
+            this.lblItemSegurado.Location = new System.Drawing.Point(212, 91);
             this.lblItemSegurado.Name = "lblItemSegurado";
             this.lblItemSegurado.Size = new System.Drawing.Size(102, 25);
             this.lblItemSegurado.TabIndex = 45;
@@ -134,7 +243,7 @@
             // lblSeguradora
             // 
             this.lblSeguradora.AutoSize = true;
-            this.lblSeguradora.Location = new System.Drawing.Point(209, 28);
+            this.lblSeguradora.Location = new System.Drawing.Point(212, 27);
             this.lblSeguradora.Name = "lblSeguradora";
             this.lblSeguradora.Size = new System.Drawing.Size(85, 25);
             this.lblSeguradora.TabIndex = 39;
@@ -142,7 +251,7 @@
             // 
             // txtNApolice
             // 
-            this.txtNApolice.Location = new System.Drawing.Point(11, 56);
+            this.txtNApolice.Location = new System.Drawing.Point(14, 120);
             this.txtNApolice.Name = "txtNApolice";
             this.txtNApolice.Size = new System.Drawing.Size(197, 32);
             this.txtNApolice.TabIndex = 14;
@@ -150,7 +259,7 @@
             // lblNApólice
             // 
             this.lblNApólice.AutoSize = true;
-            this.lblNApólice.Location = new System.Drawing.Point(6, 28);
+            this.lblNApólice.Location = new System.Drawing.Point(9, 91);
             this.lblNApólice.Name = "lblNApólice";
             this.lblNApólice.Size = new System.Drawing.Size(74, 25);
             this.lblNApólice.TabIndex = 37;
@@ -209,6 +318,7 @@
             this.btnCadastrarSeguros.Text = "Cadastrar";
             this.btnCadastrarSeguros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarSeguros.UseVisualStyleBackColor = false;
+            this.btnCadastrarSeguros.Click += new System.EventHandler(this.BtnCadastrarSeguros_Click);
             // 
             // tbPageConsultaSeguros
             // 
@@ -316,127 +426,28 @@
             this.btnConsultarSeguros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSeguros.UseVisualStyleBackColor = false;
             // 
-            // cbSeguradora
+            // cbTipo
             // 
-            this.cbSeguradora.FormattingEnabled = true;
-            this.cbSeguradora.Location = new System.Drawing.Point(214, 55);
-            this.cbSeguradora.Name = "cbSeguradora";
-            this.cbSeguradora.Size = new System.Drawing.Size(197, 33);
-            this.cbSeguradora.TabIndex = 15;
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(14, 55);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(197, 33);
+            this.cbTipo.TabIndex = 62;
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.CbTipo_SelectedIndexChanged);
             // 
-            // cbItemSegurado
+            // cbFranquia
             // 
-            this.cbItemSegurado.FormattingEnabled = true;
-            this.cbItemSegurado.Location = new System.Drawing.Point(417, 55);
-            this.cbItemSegurado.Name = "cbItemSegurado";
-            this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
-            this.cbItemSegurado.TabIndex = 16;
-            // 
-            // lblTipo
-            // 
-            this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(6, 91);
-            this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(38, 25);
-            this.lblTipo.TabIndex = 51;
-            this.lblTipo.Text = "Tipo:";
-            // 
-            // txtTipo
-            // 
-            this.txtTipo.Location = new System.Drawing.Point(11, 119);
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(197, 32);
-            this.txtTipo.TabIndex = 17;
-            // 
-            // lblValor
-            // 
-            this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(209, 91);
-            this.lblValor.Name = "lblValor";
-            this.lblValor.Size = new System.Drawing.Size(46, 25);
-            this.lblValor.TabIndex = 53;
-            this.lblValor.Text = "Valor:";
-            // 
-            // txtValor
-            // 
-            this.txtValor.Location = new System.Drawing.Point(214, 119);
-            this.txtValor.Mask = "0000000000";
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(197, 32);
-            this.txtValor.TabIndex = 18;
-            // 
-            // lblFranquia
-            // 
-            this.lblFranquia.AutoSize = true;
-            this.lblFranquia.Location = new System.Drawing.Point(412, 91);
-            this.lblFranquia.Name = "lblFranquia";
-            this.lblFranquia.Size = new System.Drawing.Size(67, 25);
-            this.lblFranquia.TabIndex = 55;
-            this.lblFranquia.Text = "Franquia:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(417, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 32);
-            this.textBox1.TabIndex = 19;
-            // 
-            // dtInicio
-            // 
-            this.dtInicio.CustomFormat = "dd/mm/yyyy";
-            this.dtInicio.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicio.Location = new System.Drawing.Point(11, 182);
-            this.dtInicio.Name = "dtInicio";
-            this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtInicio.Size = new System.Drawing.Size(284, 31);
-            this.dtInicio.TabIndex = 20;
-            // 
-            // dtfimvigencia
-            // 
-            this.dtfimvigencia.CustomFormat = "dd/mm/yyyy";
-            this.dtfimvigencia.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtfimvigencia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtfimvigencia.Location = new System.Drawing.Point(301, 182);
-            this.dtfimvigencia.Name = "dtfimvigencia";
-            this.dtfimvigencia.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtfimvigencia.Size = new System.Drawing.Size(284, 31);
-            this.dtfimvigencia.TabIndex = 21;
-            // 
-            // lblDataInicio
-            // 
-            this.lblDataInicio.AutoSize = true;
-            this.lblDataInicio.Location = new System.Drawing.Point(6, 154);
-            this.lblDataInicio.Name = "lblDataInicio";
-            this.lblDataInicio.Size = new System.Drawing.Size(77, 25);
-            this.lblDataInicio.TabIndex = 59;
-            this.lblDataInicio.Text = "Data Inicio:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(296, 154);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 25);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "Fim Vigência:";
-            // 
-            // txtValorFranquia
-            // 
-            this.txtValorFranquia.Location = new System.Drawing.Point(11, 246);
-            this.txtValorFranquia.Mask = "0000000000";
-            this.txtValorFranquia.Name = "txtValorFranquia";
-            this.txtValorFranquia.Size = new System.Drawing.Size(197, 32);
-            this.txtValorFranquia.TabIndex = 22;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 218);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 25);
-            this.label2.TabIndex = 61;
-            this.label2.Text = "Valor Franquia:";
+            this.cbFranquia.Enabled = false;
+            this.cbFranquia.FormattingEnabled = true;
+            this.cbFranquia.Items.AddRange(new object[] {
+            "Normal",
+            "Majorada",
+            "Reduzida",
+            "Isenta"});
+            this.cbFranquia.Location = new System.Drawing.Point(11, 243);
+            this.cbFranquia.Name = "cbFranquia";
+            this.cbFranquia.Size = new System.Drawing.Size(197, 33);
+            this.cbFranquia.TabIndex = 63;
             // 
             // Seguros
             // 
@@ -447,6 +458,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Seguros";
             this.Text = "Seguros";
+            this.Load += new System.EventHandler(this.Seguros_Load);
             this.tbControlSeguros.ResumeLayout(false);
             this.tbPageCadastroSeguros.ResumeLayout(false);
             this.gbDadosFuncionario.ResumeLayout(false);
@@ -480,11 +492,9 @@
         private System.Windows.Forms.Button btnTodosSeguros;
         private System.Windows.Forms.Button btnConsultarSeguros;
         private System.Windows.Forms.ComboBox cbSeguradora;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblFranquia;
         private System.Windows.Forms.MaskedTextBox txtValor;
         private System.Windows.Forms.Label lblValor;
-        private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.ComboBox cbItemSegurado;
         private System.Windows.Forms.MaskedTextBox txtValorFranquia;
@@ -493,5 +503,7 @@
         private System.Windows.Forms.Label lblDataInicio;
         private System.Windows.Forms.DateTimePicker dtfimvigencia;
         private System.Windows.Forms.DateTimePicker dtInicio;
+        private System.Windows.Forms.ComboBox cbTipo;
+        private System.Windows.Forms.ComboBox cbFranquia;
     }
 }
