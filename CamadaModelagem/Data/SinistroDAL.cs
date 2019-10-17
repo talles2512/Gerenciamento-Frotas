@@ -24,15 +24,17 @@ namespace CamadaModelagem.Data
         {
             string query = "";
 
+            string data = sinistro.DataHora.ToString("yyyy/MM/dd hh:mm");
             if (sinistro.ItemSegurado.ToString() == "Veiculo")
             {
+
                 query = "INSERT INTO [dbo].[TB_SINISTRO_VEICULO] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + sinistro.DataHora.ToShortDateString() + "')";
+                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "')";
             }
             else if (sinistro.ItemSegurado.ToString() == "Motorista")
             {
                 query = "INSERT INTO [dbo].[TB_SINISTRO_MOTORISTA] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + sinistro.DataHora.ToShortDateString() + "')";
+                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "')";
             }
             try
             {
@@ -48,15 +50,16 @@ namespace CamadaModelagem.Data
         {
             string Query = "";
             TipoSeguro tiposeg;
+            string datahora = data.ToString("yyyy/MM/dd hh:mm");
 
             if (tipo.ToString() == "Veiculo")
             {
-                Query = "SELECT * FROM [dbo].[TB_SINISTRO_VEICULO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
+                Query = "SELECT * FROM [dbo].[TB_SINISTRO_VEICULO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + datahora + "'";
                 tiposeg = TipoSeguro.Automóvel;
             }
             else
             {
-                Query = "SELECT * FROM [dbo].[TB_SINISTRO_MOTORISTA] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
+                Query = "SELECT * FROM [dbo].[TB_SINISTRO_MOTORISTA] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + datahora + "'";
                 tiposeg = TipoSeguro.Vida;
             }
             try { 
@@ -125,16 +128,54 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public void Deletar(int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data)
         {
-            string Query = "DELETE [dbo].[TB_SINISTRO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            string dataantiga = data.ToString("yyyy/MM/dd hh:mm");
+            string query = "";
+
+            if (sinistro.ItemSegurado.ToString() == "Veiculo")
+            {
+                query = "DELETE [dbo].[TB_SINISTRO_VEICULO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + dataantiga + "'";
+            }
+            else if (sinistro.ItemSegurado.ToString() == "Motorista")
+            {
+                query = "DELETE [dbo].[TB_SINISTRO_MOTORISTA] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + dataantiga + "'";
+            }
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Alterar(Sinistro sinistro, int id, DateTime data)
+        public bool Alterar(Sinistro sinistro, int id, DateTime data, long numapolice)
         {
-            string Query = "UPDATE [dbo].[TB_SINISTRO] SET [SIN_ITEMSEG] = '"  + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + sinistro.Seguro.NumeroApolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA]= '" + sinistro.DataHora + " WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + data + "'";
-            _banco.ExecutarInstrucao(Query);
+            string query = "";
+
+            string datahora = sinistro.DataHora.ToString("yyyy/MM/dd hh:mm");
+            string dataantiga = data.ToString("yyyy/MM/dd hh:mm");
+            if (sinistro.ItemSegurado.ToString() == "Veiculo")
+            {
+
+                query = "UPDATE [dbo].[TB_SINISTRO_VEICULO] SET[SIN_ITEMSEG] = '" + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "' " +
+                    "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";
+    }
+            else if (sinistro.ItemSegurado.ToString() == "Motorista")
+            {
+                query = "UPDATE [dbo].[TB_SINISTRO_MOTORISTA] SET[SIN_ITEMSEG] = '" + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "'" +
+                    "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";
+            }
+            try
+            {
+                return _banco.ExecutarInstrucao(query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public int PopulaID(string tipo)

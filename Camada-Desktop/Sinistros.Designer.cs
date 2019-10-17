@@ -49,6 +49,9 @@
             this.btnCadastrarSinistros = new System.Windows.Forms.Button();
             this.tbPageConsultaSinistros = new System.Windows.Forms.TabPage();
             this.gbConsultaSinistros = new System.Windows.Forms.GroupBox();
+            this.dtDataSinistroConsulta = new System.Windows.Forms.DateTimePicker();
+            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
+            this.lblTipoConsulta = new System.Windows.Forms.Label();
             this.txtIDSinistrosConsulta = new System.Windows.Forms.TextBox();
             this.lblIDSinistrosConsulta = new System.Windows.Forms.Label();
             this.lblDataSinistrosConsulta = new System.Windows.Forms.Label();
@@ -56,9 +59,6 @@
             this.dgSinistrosConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosSinistros = new System.Windows.Forms.Button();
             this.btnConsultarSinistros = new System.Windows.Forms.Button();
-            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
-            this.lblTipoConsulta = new System.Windows.Forms.Label();
-            this.dtDataSinistroConsulta = new System.Windows.Forms.DateTimePicker();
             this.tbControlSinistros.SuspendLayout();
             this.tbPageCadastroSinistros.SuspendLayout();
             this.gbDadosSinistros.SuspendLayout();
@@ -120,7 +120,7 @@
             this.cbTipo.Location = new System.Drawing.Point(157, 56);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(197, 33);
-            this.cbTipo.TabIndex = 64;
+            this.cbTipo.TabIndex = 15;
             this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_SelectedIndexChanged);
             // 
             // lblTipo
@@ -155,7 +155,7 @@
             this.cbSeguro.Location = new System.Drawing.Point(11, 117);
             this.cbSeguro.Name = "cbSeguro";
             this.cbSeguro.Size = new System.Drawing.Size(255, 33);
-            this.cbSeguro.TabIndex = 16;
+            this.cbSeguro.TabIndex = 17;
             // 
             // lblSeguro
             // 
@@ -172,7 +172,7 @@
             this.cbItemSegurado.Location = new System.Drawing.Point(360, 56);
             this.cbItemSegurado.Name = "cbItemSegurado";
             this.cbItemSegurado.Size = new System.Drawing.Size(255, 33);
-            this.cbItemSegurado.TabIndex = 15;
+            this.cbItemSegurado.TabIndex = 16;
             this.cbItemSegurado.SelectedIndexChanged += new System.EventHandler(this.cbItemSegurado_SelectedIndexChanged);
             // 
             // lblItemSegurado
@@ -190,7 +190,7 @@
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 85);
-            this.txtDesc.TabIndex = 18;
+            this.txtDesc.TabIndex = 19;
             // 
             // lblDesc
             // 
@@ -212,14 +212,14 @@
             // 
             // dtDataSinistro
             // 
-            this.dtDataSinistro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtDataSinistro.CustomFormat = "dd/MM/yyyy hh:mm";
             this.dtDataSinistro.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataSinistro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataSinistro.Location = new System.Drawing.Point(272, 117);
             this.dtDataSinistro.Name = "dtDataSinistro";
             this.dtDataSinistro.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtDataSinistro.Size = new System.Drawing.Size(226, 31);
-            this.dtDataSinistro.TabIndex = 17;
+            this.dtDataSinistro.TabIndex = 18;
             // 
             // btnExcluirSinistros
             // 
@@ -234,10 +234,11 @@
             this.btnExcluirSinistros.Location = new System.Drawing.Point(244, 399);
             this.btnExcluirSinistros.Name = "btnExcluirSinistros";
             this.btnExcluirSinistros.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirSinistros.TabIndex = 21;
+            this.btnExcluirSinistros.TabIndex = 22;
             this.btnExcluirSinistros.Text = "Excluir";
             this.btnExcluirSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirSinistros.UseVisualStyleBackColor = false;
+            this.btnExcluirSinistros.Click += new System.EventHandler(this.btnExcluirSinistros_Click);
             // 
             // btnAlterarSinistros
             // 
@@ -252,10 +253,11 @@
             this.btnAlterarSinistros.Location = new System.Drawing.Point(244, 353);
             this.btnAlterarSinistros.Name = "btnAlterarSinistros";
             this.btnAlterarSinistros.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarSinistros.TabIndex = 20;
+            this.btnAlterarSinistros.TabIndex = 21;
             this.btnAlterarSinistros.Text = "Alterar";
             this.btnAlterarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarSinistros.UseVisualStyleBackColor = false;
+            this.btnAlterarSinistros.Click += new System.EventHandler(this.btnAlterarSinistros_Click);
             // 
             // btnCadastrarSinistros
             // 
@@ -270,7 +272,7 @@
             this.btnCadastrarSinistros.Location = new System.Drawing.Point(119, 307);
             this.btnCadastrarSinistros.Name = "btnCadastrarSinistros";
             this.btnCadastrarSinistros.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarSinistros.TabIndex = 19;
+            this.btnCadastrarSinistros.TabIndex = 20;
             this.btnCadastrarSinistros.Text = "Cadastrar";
             this.btnCadastrarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarSinistros.UseVisualStyleBackColor = false;
@@ -307,12 +309,40 @@
             this.gbConsultaSinistros.TabStop = false;
             this.gbConsultaSinistros.Text = "Consulta";
             // 
+            // dtDataSinistroConsulta
+            // 
+            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm";
+            this.dtDataSinistroConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtDataSinistroConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDataSinistroConsulta.Location = new System.Drawing.Point(303, 24);
+            this.dtDataSinistroConsulta.Name = "dtDataSinistroConsulta";
+            this.dtDataSinistroConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtDataSinistroConsulta.Size = new System.Drawing.Size(267, 31);
+            this.dtDataSinistroConsulta.TabIndex = 15;
+            // 
+            // cbTipoConsulta
+            // 
+            this.cbTipoConsulta.FormattingEnabled = true;
+            this.cbTipoConsulta.Location = new System.Drawing.Point(53, 24);
+            this.cbTipoConsulta.Name = "cbTipoConsulta";
+            this.cbTipoConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbTipoConsulta.TabIndex = 14;
+            // 
+            // lblTipoConsulta
+            // 
+            this.lblTipoConsulta.AutoSize = true;
+            this.lblTipoConsulta.Location = new System.Drawing.Point(9, 28);
+            this.lblTipoConsulta.Name = "lblTipoConsulta";
+            this.lblTipoConsulta.Size = new System.Drawing.Size(38, 25);
+            this.lblTipoConsulta.TabIndex = 65;
+            this.lblTipoConsulta.Text = "Tipo:";
+            // 
             // txtIDSinistrosConsulta
             // 
             this.txtIDSinistrosConsulta.Location = new System.Drawing.Point(95, 66);
             this.txtIDSinistrosConsulta.Name = "txtIDSinistrosConsulta";
             this.txtIDSinistrosConsulta.Size = new System.Drawing.Size(140, 32);
-            this.txtIDSinistrosConsulta.TabIndex = 14;
+            this.txtIDSinistrosConsulta.TabIndex = 16;
             // 
             // lblIDSinistrosConsulta
             // 
@@ -346,9 +376,10 @@
             this.btnTrasferirSinistros.Location = new System.Drawing.Point(577, 64);
             this.btnTrasferirSinistros.Name = "btnTrasferirSinistros";
             this.btnTrasferirSinistros.Size = new System.Drawing.Size(38, 40);
-            this.btnTrasferirSinistros.TabIndex = 18;
+            this.btnTrasferirSinistros.TabIndex = 19;
             this.btnTrasferirSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirSinistros.UseVisualStyleBackColor = false;
+            this.btnTrasferirSinistros.Click += new System.EventHandler(this.btnTrasferirSinistros_Click);
             // 
             // dgSinistrosConsulta
             // 
@@ -358,7 +389,7 @@
             this.dgSinistrosConsulta.Location = new System.Drawing.Point(7, 110);
             this.dgSinistrosConsulta.Name = "dgSinistrosConsulta";
             this.dgSinistrosConsulta.Size = new System.Drawing.Size(608, 329);
-            this.dgSinistrosConsulta.TabIndex = 19;
+            this.dgSinistrosConsulta.TabIndex = 20;
             // 
             // btnTodosSinistros
             // 
@@ -372,7 +403,7 @@
             this.btnTodosSinistros.Location = new System.Drawing.Point(412, 64);
             this.btnTodosSinistros.Name = "btnTodosSinistros";
             this.btnTodosSinistros.Size = new System.Drawing.Size(159, 40);
-            this.btnTodosSinistros.TabIndex = 17;
+            this.btnTodosSinistros.TabIndex = 18;
             this.btnTodosSinistros.Text = "Consultar Todos";
             this.btnTodosSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosSinistros.UseVisualStyleBackColor = false;
@@ -391,39 +422,11 @@
             this.btnConsultarSinistros.Location = new System.Drawing.Point(260, 64);
             this.btnConsultarSinistros.Name = "btnConsultarSinistros";
             this.btnConsultarSinistros.Size = new System.Drawing.Size(146, 40);
-            this.btnConsultarSinistros.TabIndex = 16;
+            this.btnConsultarSinistros.TabIndex = 17;
             this.btnConsultarSinistros.Text = "    Consultar";
             this.btnConsultarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;
             this.btnConsultarSinistros.Click += new System.EventHandler(this.btnConsultarSinistros_Click);
-            // 
-            // cbTipoConsulta
-            // 
-            this.cbTipoConsulta.FormattingEnabled = true;
-            this.cbTipoConsulta.Location = new System.Drawing.Point(53, 24);
-            this.cbTipoConsulta.Name = "cbTipoConsulta";
-            this.cbTipoConsulta.Size = new System.Drawing.Size(197, 33);
-            this.cbTipoConsulta.TabIndex = 66;
-            // 
-            // lblTipoConsulta
-            // 
-            this.lblTipoConsulta.AutoSize = true;
-            this.lblTipoConsulta.Location = new System.Drawing.Point(9, 28);
-            this.lblTipoConsulta.Name = "lblTipoConsulta";
-            this.lblTipoConsulta.Size = new System.Drawing.Size(38, 25);
-            this.lblTipoConsulta.TabIndex = 65;
-            this.lblTipoConsulta.Text = "Tipo:";
-            // 
-            // dtDataSinistroConsulta
-            // 
-            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm:ss";
-            this.dtDataSinistroConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtDataSinistroConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDataSinistroConsulta.Location = new System.Drawing.Point(303, 24);
-            this.dtDataSinistroConsulta.Name = "dtDataSinistroConsulta";
-            this.dtDataSinistroConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataSinistroConsulta.Size = new System.Drawing.Size(267, 31);
-            this.dtDataSinistroConsulta.TabIndex = 67;
             // 
             // Sinistros
             // 
