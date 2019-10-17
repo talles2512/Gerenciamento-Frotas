@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
@@ -17,50 +18,91 @@ namespace CamadaModelagem.Services
         {
             _seguroCoberturaDAL = seguroCoberturaDAL;
         }
-        public void Cadastrar(SeguroCobertura seguroCobertura) //Mudança na Query, Verificar
-        {
-            //try
-            //{
-            //    SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(seguroCobertura.Id); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe uma Cobertura com essa Identificação no sistema!");
-            //    }
-            //    _seguroCoberturaDAL.Cadastrar(seguroCobertura);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
-        }
-
-        public void Deletar(int id)
+        public bool Cadastrar(SeguroCobertura seguroCobertura) //Mudança na Query, Verificar
         {
             try
             {
-                _seguroCoberturaDAL.Deletar(id);
+                SeguroCobertura obj = _seguroCoberturaDAL.BuscarSeguroCobertura(seguroCobertura.Tipo, seguroCobertura.NumeroApolice);
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um Seguro com esses dados no sistema!");
+                }
+
+                return _seguroCoberturaDAL.Cadastrar(seguroCobertura);
             }
-            catch (ConcorrenciaBancoException)
+            catch (ConcorrenciaBancoException e)
             {
-                throw new IntegridadeException("Cobertura não pode ser deletada, pois está ligada a outros serviços.");
+                throw new ConcorrenciaBancoException(e.Message);
             }
         }
 
-        public void Alterar(SeguroCobertura seguroCobertura, int id)
+        public SeguroCobertura BuscarSeguroCobertura(TipoSeguro tipo, long numeroApolice)
         {
-            //try
-            //{
-            //    SeguroCobertura obj = _seguroCoberturaDAL.BuscarId(id);
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Cobertura não encontrada.");
-            //    }
-            //    _seguroCoberturaDAL.Alterar(seguroCobertura, id);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                return _seguroCoberturaDAL.BuscarSeguroCobertura(tipo, numeroApolice);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<SeguroCobertura> BuscarTodos()
+        {
+            List<SeguroCobertura> segurosCoberturas = new List<SeguroCobertura>();
+            try
+            {
+                segurosCoberturas.AddRange(_seguroCoberturaDAL.BuscarTodos());
+                return segurosCoberturas;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Deletar(TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                if (_seguroCoberturaDAL.Deletar(tipo, numeroApolice))
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new IntegridadeException("Cobertura não pode ser deletada, pois ainda está vinculada à outros serviços.");
+                }
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(SeguroCobertura seguroCobertura, TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                SeguroCobertura obj = _seguroCoberturaDAL.BuscarSeguroCobertura(tipo, numeroApolice);
+                if (obj != null)
+                {
+                    return _seguroCoberturaDAL.Alterar(seguroCobertura, tipo, numeroApolice);
+                }
+                else
+                {
+                    throw new NaoEncontradoException("Cobertura de seguro não encontrada.");
+                }
+            }
+            catch (TransacaoException e)
+            {
+                throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

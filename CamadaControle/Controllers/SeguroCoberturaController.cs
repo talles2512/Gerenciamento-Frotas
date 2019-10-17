@@ -1,5 +1,7 @@
 ﻿using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class SeguroCoberturaController
+    public class SeguroCoberturaController
     {
         private readonly SeguroCoberturaService _seguroCoberturaService;
 
@@ -19,19 +21,76 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(SeguroCobertura seguroCobertura)
+        public bool Cadastrar(SeguroCobertura seguroCobertura)
         {
-            _seguroCoberturaService.Cadastrar(seguroCobertura);
+            try
+            {
+                return _seguroCoberturaService.Cadastrar(seguroCobertura);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public void Deletar(int id)
+        public SeguroCobertura BuscarSeguroCobertura(TipoSeguro tipo, long numeroApolice)
         {
-            _seguroCoberturaService.Deletar(id);
+            try
+            {
+                return _seguroCoberturaService.BuscarSeguroCobertura(tipo, numeroApolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(SeguroCobertura seguroCobertura, int id)
+        public List<SeguroCobertura> BuscarTodos()
         {
-            _seguroCoberturaService.Alterar(seguroCobertura,id);
+            try
+            {
+                return _seguroCoberturaService.BuscarTodos();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Deletar(TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                return _seguroCoberturaService.Deletar(tipo, numeroApolice);
+            }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(SeguroCobertura seguroCobertura, TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                return _seguroCoberturaService.Alterar(seguroCobertura, tipo, numeroApolice);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         #endregion

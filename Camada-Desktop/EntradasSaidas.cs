@@ -98,11 +98,11 @@ namespace CamadaDesktop
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            if (cbServicoExterno.Items.Count < 1)
+            else if (cbServicoExterno.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre uma garagem / estacionamento antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            if (cbCPF.Items.Count < 1)
+            else if (cbCPF.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

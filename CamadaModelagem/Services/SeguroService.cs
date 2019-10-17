@@ -14,12 +14,10 @@ namespace CamadaModelagem.Services
     public class SeguroService
     {
         private readonly SeguroDAL _seguroDAL;
-        private readonly VeiculoDAL _veiculoDAL;
 
-        public SeguroService(SeguroDAL seguroDAL, VeiculoDAL veiculoDAL)
+        public SeguroService(SeguroDAL seguroDAL)
         {
             _seguroDAL = seguroDAL;
-            _veiculoDAL = veiculoDAL;
         }
         public bool Cadastrar(Seguro seguro, TipoSeguro tipo, long numeroApolice) //Mudança na Query, Verificar
         {

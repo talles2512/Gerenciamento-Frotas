@@ -746,6 +746,7 @@
             this.btnCadastrarCobertura.Text = "     Cadastrar";
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
+            this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
             // 
             // Seguros
             // 

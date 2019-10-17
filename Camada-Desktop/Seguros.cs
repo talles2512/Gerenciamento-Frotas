@@ -20,25 +20,36 @@ namespace CamadaDesktop
     public partial class Seguros : Form
     {
         private readonly SeguroController _seguroController;
+        private readonly SeguroCoberturaController _seguroCoberturaController;
         private Seguro Seguro;
+        private SeguroCobertura SeguroCobertura;
         long NApoliceAntiga;
         string TipoAntigo;
         public Seguros()
         {
             InitializeComponent();
-            _seguroController = InstanciarCamadas();
+            _seguroController = InstanciarCamadas1();
+            _seguroCoberturaController = InstanciarCamadas2();
             Seguro = null;
+            SeguroCobertura = null;
             NApoliceAntiga = long.MaxValue;
             TipoAntigo = "";
         }
 
-        private SeguroController InstanciarCamadas()
+        private SeguroController InstanciarCamadas1()
         {
             Banco banco = new Banco();
             SeguroDAL seguroDAL = new SeguroDAL(banco);
-            VeiculoDAL veiculoDAL = new VeiculoDAL(banco);
-            SeguroService seguroService = new SeguroService(seguroDAL, veiculoDAL);
+            SeguroService seguroService = new SeguroService(seguroDAL);
             return new SeguroController(seguroService);
+        }
+
+        private SeguroCoberturaController InstanciarCamadas2()
+        {
+            Banco banco = new Banco();
+            SeguroCoberturaDAL seguroCoberturaDAL = new SeguroCoberturaDAL(banco);
+            SeguroCoberturaService seguroCoberturaService = new SeguroCoberturaService(seguroCoberturaDAL);
+            return new SeguroCoberturaController(seguroCoberturaService);
         }
 
         private void Seguros_Load(object sender, EventArgs e)
@@ -62,6 +73,9 @@ namespace CamadaDesktop
 
             cbTipo.DataSource = Enum.GetValues(typeof(TipoSeguro));
             cbTipoConsulta.DataSource = Enum.GetValues(typeof(TipoSeguro));
+
+            cbTipoCobertura.DataSource = Enum.GetValues(typeof(TipoSeguro));
+            cbTipoCoberturaConsulta.DataSource = Enum.GetValues(typeof(TipoSeguro));
         }
 
         private void CbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -464,6 +478,41 @@ namespace CamadaDesktop
                     {
                         MessageBox.Show(ex.Message);
                     }
+                }
+            }
+        }
+
+        private void BtnCadastrarCobertura_Click(object sender, EventArgs e)
+        {
+            if (txtNApoliceCobertura.Text == "" || txtCoberturaDescricao.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipoCobertura.SelectedItem.ToString());
+                long numeroApolice = Convert.ToInt64(txtNApoliceCobertura.Text);
+
+                SeguroCobertura seguroCobertura = new SeguroCobertura(tipoSeguro, txtCoberturaDescricao.Text, numeroApolice);
+
+                try
+                {
+                    if (_seguroCoberturaController.Cadastrar(seguroCobertura))
+                    {
+                        MessageBox.Show("Cadastro realizado com Sucesso!");
+                    }
+                }
+                catch (RegistroExisteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (TipoCombustivelException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
