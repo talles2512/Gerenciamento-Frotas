@@ -62,14 +62,28 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public void Deletar(int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data)
         {
-            _sinistroService.Deletar(id,data);
+            try
+            {
+                return _sinistroService.Deletar(sinistro, id, data);
+            }
+            catch
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
-        public void Alterar(Sinistro sinistro, int id, DateTime data)
+        public bool Alterar(Sinistro sinistro, int id, ItemSegurado item, DateTime data, long numapolice)
         {
-            _sinistroService.Alterar(sinistro,id,data);
+            try
+            {
+                return _sinistroService.Alterar(sinistro, id, item, data, numapolice);
+            }
+            catch
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public int PopularID(string tipo)

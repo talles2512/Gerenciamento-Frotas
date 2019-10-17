@@ -212,7 +212,7 @@
             // 
             // dtDataSinistro
             // 
-            this.dtDataSinistro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtDataSinistro.CustomFormat = "dd/MM/yyyy hh:mm";
             this.dtDataSinistro.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataSinistro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataSinistro.Location = new System.Drawing.Point(272, 117);
@@ -238,6 +238,7 @@
             this.btnExcluirSinistros.Text = "Excluir";
             this.btnExcluirSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirSinistros.UseVisualStyleBackColor = false;
+            this.btnExcluirSinistros.Click += new System.EventHandler(this.btnExcluirSinistros_Click);
             // 
             // btnAlterarSinistros
             // 
@@ -256,6 +257,7 @@
             this.btnAlterarSinistros.Text = "Alterar";
             this.btnAlterarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarSinistros.UseVisualStyleBackColor = false;
+            this.btnAlterarSinistros.Click += new System.EventHandler(this.btnAlterarSinistros_Click);
             // 
             // btnCadastrarSinistros
             // 
@@ -309,7 +311,7 @@
             // 
             // dtDataSinistroConsulta
             // 
-            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm";
             this.dtDataSinistroConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataSinistroConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataSinistroConsulta.Location = new System.Drawing.Point(303, 24);
@@ -377,6 +379,7 @@
             this.btnTrasferirSinistros.TabIndex = 19;
             this.btnTrasferirSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirSinistros.UseVisualStyleBackColor = false;
+            this.btnTrasferirSinistros.Click += new System.EventHandler(this.btnTrasferirSinistros_Click);
             // 
             // dgSinistrosConsulta
             // 

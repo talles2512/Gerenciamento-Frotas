@@ -62,11 +62,11 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Deletar(int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data)
         {
             try
             {
-                _sinistroDAL.Deletar(id,data);
+                return _sinistroDAL.Deletar(sinistro, id, data);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -74,21 +74,21 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public void Alterar(Sinistro sinistro, int id, DateTime data)
+        public bool Alterar(Sinistro sinistro, int id, ItemSegurado item, DateTime data, long numapolice)
         {
-            //try
-            //{
-            //    Sinistro obj = _sinistroDAL.BuscarSinistro(id,data); //Falta criar os métodos de busca
-            //    if (obj == null)
-            //    {
-            //        throw new NaoEncontradoException("Sinistro não encontrado.");
-            //    }
-            //    _sinistroDAL.Alterar(sinistro,id,data);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item); //Falta criar os métodos de busca
+                if (obj == null)
+                {
+                    throw new NaoEncontradoException("Sinistro não encontrado.");
+                }
+                return _sinistroDAL.Alterar(sinistro, id, data, numapolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public int PopulaID(string tipo)
