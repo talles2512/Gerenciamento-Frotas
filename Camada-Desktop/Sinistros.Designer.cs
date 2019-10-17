@@ -32,6 +32,8 @@
             this.tbControlSinistros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSinistros = new System.Windows.Forms.TabPage();
             this.gbDadosSinistros = new System.Windows.Forms.GroupBox();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.lblTipo = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
             this.lblIdentificador = new System.Windows.Forms.Label();
             this.cbSeguro = new System.Windows.Forms.ComboBox();
@@ -41,7 +43,7 @@
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblData = new System.Windows.Forms.Label();
-            this.dtDataMulta = new System.Windows.Forms.DateTimePicker();
+            this.dtDataSinistro = new System.Windows.Forms.DateTimePicker();
             this.btnExcluirSinistros = new System.Windows.Forms.Button();
             this.btnAlterarSinistros = new System.Windows.Forms.Button();
             this.btnCadastrarSinistros = new System.Windows.Forms.Button();
@@ -50,11 +52,13 @@
             this.txtIDSinistrosConsulta = new System.Windows.Forms.TextBox();
             this.lblIDSinistrosConsulta = new System.Windows.Forms.Label();
             this.lblDataSinistrosConsulta = new System.Windows.Forms.Label();
-            this.dtDataSinistrosConsulta = new System.Windows.Forms.DateTimePicker();
             this.btnTrasferirSinistros = new System.Windows.Forms.Button();
             this.dgSinistrosConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosSinistros = new System.Windows.Forms.Button();
             this.btnConsultarSinistros = new System.Windows.Forms.Button();
+            this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
+            this.lblTipoConsulta = new System.Windows.Forms.Label();
+            this.dtDataSinistroConsulta = new System.Windows.Forms.DateTimePicker();
             this.tbControlSinistros.SuspendLayout();
             this.tbPageCadastroSinistros.SuspendLayout();
             this.gbDadosSinistros.SuspendLayout();
@@ -87,6 +91,8 @@
             // 
             // gbDadosSinistros
             // 
+            this.gbDadosSinistros.Controls.Add(this.cbTipo);
+            this.gbDadosSinistros.Controls.Add(this.lblTipo);
             this.gbDadosSinistros.Controls.Add(this.txtid);
             this.gbDadosSinistros.Controls.Add(this.lblIdentificador);
             this.gbDadosSinistros.Controls.Add(this.cbSeguro);
@@ -96,7 +102,7 @@
             this.gbDadosSinistros.Controls.Add(this.txtDesc);
             this.gbDadosSinistros.Controls.Add(this.lblDesc);
             this.gbDadosSinistros.Controls.Add(this.lblData);
-            this.gbDadosSinistros.Controls.Add(this.dtDataMulta);
+            this.gbDadosSinistros.Controls.Add(this.dtDataSinistro);
             this.gbDadosSinistros.Controls.Add(this.btnExcluirSinistros);
             this.gbDadosSinistros.Controls.Add(this.btnAlterarSinistros);
             this.gbDadosSinistros.Controls.Add(this.btnCadastrarSinistros);
@@ -107,6 +113,24 @@
             this.gbDadosSinistros.TabIndex = 1;
             this.gbDadosSinistros.TabStop = false;
             this.gbDadosSinistros.Text = "Dados";
+            // 
+            // cbTipo
+            // 
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(157, 56);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(197, 33);
+            this.cbTipo.TabIndex = 64;
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_SelectedIndexChanged);
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Location = new System.Drawing.Point(152, 28);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(38, 25);
+            this.lblTipo.TabIndex = 63;
+            this.lblTipo.Text = "Tipo:";
             // 
             // txtid
             // 
@@ -128,15 +152,15 @@
             // cbSeguro
             // 
             this.cbSeguro.FormattingEnabled = true;
-            this.cbSeguro.Location = new System.Drawing.Point(360, 55);
+            this.cbSeguro.Location = new System.Drawing.Point(11, 117);
             this.cbSeguro.Name = "cbSeguro";
-            this.cbSeguro.Size = new System.Drawing.Size(197, 33);
+            this.cbSeguro.Size = new System.Drawing.Size(255, 33);
             this.cbSeguro.TabIndex = 16;
             // 
             // lblSeguro
             // 
             this.lblSeguro.AutoSize = true;
-            this.lblSeguro.Location = new System.Drawing.Point(355, 28);
+            this.lblSeguro.Location = new System.Drawing.Point(6, 89);
             this.lblSeguro.Name = "lblSeguro";
             this.lblSeguro.Size = new System.Drawing.Size(58, 25);
             this.lblSeguro.TabIndex = 35;
@@ -145,15 +169,16 @@
             // cbItemSegurado
             // 
             this.cbItemSegurado.FormattingEnabled = true;
-            this.cbItemSegurado.Location = new System.Drawing.Point(157, 55);
+            this.cbItemSegurado.Location = new System.Drawing.Point(360, 56);
             this.cbItemSegurado.Name = "cbItemSegurado";
-            this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
+            this.cbItemSegurado.Size = new System.Drawing.Size(255, 33);
             this.cbItemSegurado.TabIndex = 15;
+            this.cbItemSegurado.SelectedIndexChanged += new System.EventHandler(this.cbItemSegurado_SelectedIndexChanged);
             // 
             // lblItemSegurado
             // 
             this.lblItemSegurado.AutoSize = true;
-            this.lblItemSegurado.Location = new System.Drawing.Point(152, 28);
+            this.lblItemSegurado.Location = new System.Drawing.Point(355, 28);
             this.lblItemSegurado.Name = "lblItemSegurado";
             this.lblItemSegurado.Size = new System.Drawing.Size(102, 25);
             this.lblItemSegurado.TabIndex = 33;
@@ -179,22 +204,22 @@
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(6, 91);
+            this.lblData.Location = new System.Drawing.Point(267, 89);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(42, 25);
             this.lblData.TabIndex = 27;
             this.lblData.Text = "Data:";
             // 
-            // dtDataMulta
+            // dtDataSinistro
             // 
-            this.dtDataMulta.CustomFormat = "dd/mm/yyyy";
-            this.dtDataMulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtDataMulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataMulta.Location = new System.Drawing.Point(11, 119);
-            this.dtDataMulta.Name = "dtDataMulta";
-            this.dtDataMulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataMulta.Size = new System.Drawing.Size(197, 31);
-            this.dtDataMulta.TabIndex = 17;
+            this.dtDataSinistro.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtDataSinistro.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtDataSinistro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDataSinistro.Location = new System.Drawing.Point(272, 117);
+            this.dtDataSinistro.Name = "dtDataSinistro";
+            this.dtDataSinistro.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtDataSinistro.Size = new System.Drawing.Size(226, 31);
+            this.dtDataSinistro.TabIndex = 17;
             // 
             // btnExcluirSinistros
             // 
@@ -249,6 +274,7 @@
             this.btnCadastrarSinistros.Text = "Cadastrar";
             this.btnCadastrarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarSinistros.UseVisualStyleBackColor = false;
+            this.btnCadastrarSinistros.Click += new System.EventHandler(this.btnCadastrarSinistros_Click);
             // 
             // tbPageConsultaSinistros
             // 
@@ -263,10 +289,12 @@
             // 
             // gbConsultaSinistros
             // 
+            this.gbConsultaSinistros.Controls.Add(this.dtDataSinistroConsulta);
+            this.gbConsultaSinistros.Controls.Add(this.cbTipoConsulta);
+            this.gbConsultaSinistros.Controls.Add(this.lblTipoConsulta);
             this.gbConsultaSinistros.Controls.Add(this.txtIDSinistrosConsulta);
             this.gbConsultaSinistros.Controls.Add(this.lblIDSinistrosConsulta);
             this.gbConsultaSinistros.Controls.Add(this.lblDataSinistrosConsulta);
-            this.gbConsultaSinistros.Controls.Add(this.dtDataSinistrosConsulta);
             this.gbConsultaSinistros.Controls.Add(this.btnTrasferirSinistros);
             this.gbConsultaSinistros.Controls.Add(this.dgSinistrosConsulta);
             this.gbConsultaSinistros.Controls.Add(this.btnTodosSinistros);
@@ -281,7 +309,7 @@
             // 
             // txtIDSinistrosConsulta
             // 
-            this.txtIDSinistrosConsulta.Location = new System.Drawing.Point(99, 25);
+            this.txtIDSinistrosConsulta.Location = new System.Drawing.Point(95, 66);
             this.txtIDSinistrosConsulta.Name = "txtIDSinistrosConsulta";
             this.txtIDSinistrosConsulta.Size = new System.Drawing.Size(140, 32);
             this.txtIDSinistrosConsulta.TabIndex = 14;
@@ -289,7 +317,7 @@
             // lblIDSinistrosConsulta
             // 
             this.lblIDSinistrosConsulta.AutoSize = true;
-            this.lblIDSinistrosConsulta.Location = new System.Drawing.Point(6, 28);
+            this.lblIDSinistrosConsulta.Location = new System.Drawing.Point(2, 69);
             this.lblIDSinistrosConsulta.Name = "lblIDSinistrosConsulta";
             this.lblIDSinistrosConsulta.Size = new System.Drawing.Size(87, 25);
             this.lblIDSinistrosConsulta.TabIndex = 41;
@@ -298,22 +326,11 @@
             // lblDataSinistrosConsulta
             // 
             this.lblDataSinistrosConsulta.AutoSize = true;
-            this.lblDataSinistrosConsulta.Location = new System.Drawing.Point(245, 28);
+            this.lblDataSinistrosConsulta.Location = new System.Drawing.Point(255, 27);
             this.lblDataSinistrosConsulta.Name = "lblDataSinistrosConsulta";
             this.lblDataSinistrosConsulta.Size = new System.Drawing.Size(42, 25);
             this.lblDataSinistrosConsulta.TabIndex = 40;
             this.lblDataSinistrosConsulta.Text = "Data:";
-            // 
-            // dtDataSinistrosConsulta
-            // 
-            this.dtDataSinistrosConsulta.CustomFormat = "dd/mm/yyyy";
-            this.dtDataSinistrosConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtDataSinistrosConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataSinistrosConsulta.Location = new System.Drawing.Point(293, 25);
-            this.dtDataSinistrosConsulta.Name = "dtDataSinistrosConsulta";
-            this.dtDataSinistrosConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataSinistrosConsulta.Size = new System.Drawing.Size(197, 31);
-            this.dtDataSinistrosConsulta.TabIndex = 15;
             // 
             // btnTrasferirSinistros
             // 
@@ -359,6 +376,7 @@
             this.btnTodosSinistros.Text = "Consultar Todos";
             this.btnTodosSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosSinistros.UseVisualStyleBackColor = false;
+            this.btnTodosSinistros.Click += new System.EventHandler(this.btnTodosSinistros_Click);
             // 
             // btnConsultarSinistros
             // 
@@ -377,6 +395,35 @@
             this.btnConsultarSinistros.Text = "    Consultar";
             this.btnConsultarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;
+            this.btnConsultarSinistros.Click += new System.EventHandler(this.btnConsultarSinistros_Click);
+            // 
+            // cbTipoConsulta
+            // 
+            this.cbTipoConsulta.FormattingEnabled = true;
+            this.cbTipoConsulta.Location = new System.Drawing.Point(53, 24);
+            this.cbTipoConsulta.Name = "cbTipoConsulta";
+            this.cbTipoConsulta.Size = new System.Drawing.Size(197, 33);
+            this.cbTipoConsulta.TabIndex = 66;
+            // 
+            // lblTipoConsulta
+            // 
+            this.lblTipoConsulta.AutoSize = true;
+            this.lblTipoConsulta.Location = new System.Drawing.Point(9, 28);
+            this.lblTipoConsulta.Name = "lblTipoConsulta";
+            this.lblTipoConsulta.Size = new System.Drawing.Size(38, 25);
+            this.lblTipoConsulta.TabIndex = 65;
+            this.lblTipoConsulta.Text = "Tipo:";
+            // 
+            // dtDataSinistroConsulta
+            // 
+            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+            this.dtDataSinistroConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtDataSinistroConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDataSinistroConsulta.Location = new System.Drawing.Point(303, 24);
+            this.dtDataSinistroConsulta.Name = "dtDataSinistroConsulta";
+            this.dtDataSinistroConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtDataSinistroConsulta.Size = new System.Drawing.Size(267, 31);
+            this.dtDataSinistroConsulta.TabIndex = 67;
             // 
             // Sinistros
             // 
@@ -387,6 +434,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Sinistros";
             this.Text = "Sinistros";
+            this.Load += new System.EventHandler(this.Sinistros_Load);
             this.tbControlSinistros.ResumeLayout(false);
             this.tbPageCadastroSinistros.ResumeLayout(false);
             this.gbDadosSinistros.ResumeLayout(false);
@@ -411,7 +459,7 @@
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.Label lblData;
-        private System.Windows.Forms.DateTimePicker dtDataMulta;
+        private System.Windows.Forms.DateTimePicker dtDataSinistro;
         private System.Windows.Forms.Button btnExcluirSinistros;
         private System.Windows.Forms.Button btnAlterarSinistros;
         private System.Windows.Forms.Button btnCadastrarSinistros;
@@ -426,6 +474,10 @@
         private System.Windows.Forms.TextBox txtIDSinistrosConsulta;
         private System.Windows.Forms.Label lblIDSinistrosConsulta;
         private System.Windows.Forms.Label lblDataSinistrosConsulta;
-        private System.Windows.Forms.DateTimePicker dtDataSinistrosConsulta;
+        private System.Windows.Forms.ComboBox cbTipo;
+        private System.Windows.Forms.Label lblTipo;
+        private System.Windows.Forms.ComboBox cbTipoConsulta;
+        private System.Windows.Forms.Label lblTipoConsulta;
+        private System.Windows.Forms.DateTimePicker dtDataSinistroConsulta;
     }
 }

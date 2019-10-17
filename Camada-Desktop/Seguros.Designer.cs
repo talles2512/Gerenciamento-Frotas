@@ -32,6 +32,7 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosSeguros = new System.Windows.Forms.GroupBox();
+            this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.txtValorFranquia = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.btnExcluirCobertura = new System.Windows.Forms.Button();
             this.btnAlterarCobertura = new System.Windows.Forms.Button();
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
-            this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -147,10 +147,23 @@
             this.gbDadosSeguros.TabStop = false;
             this.gbDadosSeguros.Text = "Dados";
             // 
+            // cbFranquia
+            // 
+            this.cbFranquia.FormattingEnabled = true;
+            this.cbFranquia.Items.AddRange(new object[] {
+            "Normal",
+            "Majorada",
+            "Reduzida",
+            "Isenta"});
+            this.cbFranquia.Location = new System.Drawing.Point(11, 244);
+            this.cbFranquia.Name = "cbFranquia";
+            this.cbFranquia.Size = new System.Drawing.Size(197, 33);
+            this.cbFranquia.TabIndex = 64;
+            // 
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(14, 55);
+            this.cbTipo.Location = new System.Drawing.Point(11, 55);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(197, 33);
             this.cbTipo.TabIndex = 62;
@@ -225,7 +238,7 @@
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(420, 120);
+            this.txtValor.Location = new System.Drawing.Point(417, 120);
             this.txtValor.Mask = "0000000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(197, 32);
@@ -243,7 +256,7 @@
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(9, 27);
+            this.lblTipo.Location = new System.Drawing.Point(6, 27);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(38, 25);
             this.lblTipo.TabIndex = 51;
@@ -252,7 +265,7 @@
             // cbItemSegurado
             // 
             this.cbItemSegurado.FormattingEnabled = true;
-            this.cbItemSegurado.Location = new System.Drawing.Point(217, 120);
+            this.cbItemSegurado.Location = new System.Drawing.Point(214, 120);
             this.cbItemSegurado.Name = "cbItemSegurado";
             this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
             this.cbItemSegurado.TabIndex = 16;
@@ -260,7 +273,7 @@
             // cbSeguradora
             // 
             this.cbSeguradora.FormattingEnabled = true;
-            this.cbSeguradora.Location = new System.Drawing.Point(217, 55);
+            this.cbSeguradora.Location = new System.Drawing.Point(214, 55);
             this.cbSeguradora.Name = "cbSeguradora";
             this.cbSeguradora.Size = new System.Drawing.Size(197, 33);
             this.cbSeguradora.TabIndex = 15;
@@ -268,7 +281,7 @@
             // lblItemSegurado
             // 
             this.lblItemSegurado.AutoSize = true;
-            this.lblItemSegurado.Location = new System.Drawing.Point(212, 91);
+            this.lblItemSegurado.Location = new System.Drawing.Point(209, 91);
             this.lblItemSegurado.Name = "lblItemSegurado";
             this.lblItemSegurado.Size = new System.Drawing.Size(102, 25);
             this.lblItemSegurado.TabIndex = 45;
@@ -277,7 +290,7 @@
             // lblSeguradora
             // 
             this.lblSeguradora.AutoSize = true;
-            this.lblSeguradora.Location = new System.Drawing.Point(212, 27);
+            this.lblSeguradora.Location = new System.Drawing.Point(209, 27);
             this.lblSeguradora.Name = "lblSeguradora";
             this.lblSeguradora.Size = new System.Drawing.Size(85, 25);
             this.lblSeguradora.TabIndex = 39;
@@ -285,7 +298,7 @@
             // 
             // txtNApolice
             // 
-            this.txtNApolice.Location = new System.Drawing.Point(14, 120);
+            this.txtNApolice.Location = new System.Drawing.Point(11, 119);
             this.txtNApolice.Name = "txtNApolice";
             this.txtNApolice.Size = new System.Drawing.Size(197, 32);
             this.txtNApolice.TabIndex = 14;
@@ -293,7 +306,7 @@
             // lblNApólice
             // 
             this.lblNApólice.AutoSize = true;
-            this.lblNApólice.Location = new System.Drawing.Point(9, 91);
+            this.lblNApólice.Location = new System.Drawing.Point(6, 91);
             this.lblNApólice.Name = "lblNApólice";
             this.lblNApólice.Size = new System.Drawing.Size(77, 25);
             this.lblNApólice.TabIndex = 37;
@@ -707,19 +720,6 @@
             this.btnCadastrarCobertura.Text = "     Cadastrar";
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
-            // 
-            // cbFranquia
-            // 
-            this.cbFranquia.FormattingEnabled = true;
-            this.cbFranquia.Items.AddRange(new object[] {
-            "Normal",
-            "Majorada",
-            "Reduzida",
-            "Isenta"});
-            this.cbFranquia.Location = new System.Drawing.Point(11, 244);
-            this.cbFranquia.Name = "cbFranquia";
-            this.cbFranquia.Size = new System.Drawing.Size(197, 33);
-            this.cbFranquia.TabIndex = 64;
             // 
             // Seguros
             // 

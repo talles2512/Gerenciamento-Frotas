@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CamadaModelagem.Data;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services.Exceptions;
 
 namespace CamadaModelagem.Services
@@ -18,21 +20,46 @@ namespace CamadaModelagem.Services
             _sinistroDAL = sinitroDAL;
         }
 
-        public void Cadastrar(Sinistro sinistro, int id, DateTime data)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, ItemSegurado item, long numapolice)
         {
-            //try
-            //{
-            //    Sinistro obj = _sinistroDAL.BuscarSinistro (id,data); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
-            //    }
-            //    _sinistroDAL.Cadastrar(sinistro);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+            try
+            {
+                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
+                }
+                return _sinistroDAL.Cadastrar(sinistro, numapolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
+        {
+            try
+            {
+                return _sinistroDAL.BuscarSinistro(id, data, tipo);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Sinistro> BuscarTodos(string tipo)
+        {
+            List<Sinistro> sinistros = new List<Sinistro>();
+            try
+            {
+                sinistros.AddRange(_sinistroDAL.BuscarTodos(tipo));
+                return sinistros;
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int id, DateTime data)
@@ -62,6 +89,77 @@ namespace CamadaModelagem.Services
             //{
             //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             //}
+        }
+
+        public int PopulaID(string tipo)
+        {
+            try
+            {
+                return _sinistroDAL.PopulaID(tipo);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _sinistroDAL.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularCPFs()
+        {
+            try
+            {
+                return _sinistroDAL.PopularCPFs();
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularSeguroCPFs(string cpf)
+        {
+            try
+            {
+                return _sinistroDAL.PopularSeguroCPFs(cpf);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularSeguroPlacas(string placa)
+        {
+            try
+            {
+                return _sinistroDAL.PopularSeguroPlacas(placa);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Seguro BuscarSeguro(TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                return _sinistroDAL.BuscarSeguro(tipo, numeroApolice);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

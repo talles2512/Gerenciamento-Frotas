@@ -1,4 +1,11 @@
-﻿using System;
+﻿using CamadaControle.Controllers;
+using CamadaModelagem.Data;
+using CamadaModelagem.Data.Configuration;
+using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +19,323 @@ namespace CamadaDesktop
 {
     public partial class Sinistros : Form
     {
+        private readonly SinistroController _sinistroController;
+        private readonly SeguroController _seguroController;
+        private Sinistro Sinistro;
+        private Seguro Seguro;
+
         public Sinistros()
         {
             InitializeComponent();
+            _sinistroController = InstanciarCamadas();
+            Sinistro = null;
+            Seguro = null;
+        }
+
+        private SinistroController InstanciarCamadas()
+        {
+            Banco banco = new Banco();
+            SinistroDAL sinistroDAL = new SinistroDAL(banco);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            SinistroService sinistroService = new SinistroService(sinistroDAL);
+            return new SinistroController(sinistroService);
+        }
+
+        private void Sinistros_Load(object sender, EventArgs e)
+        {
+            cbTipo.DataSource = Enum.GetValues(typeof(ItemSegurado));
+            cbTipoConsulta.DataSource = Enum.GetValues(typeof(ItemSegurado));
+        }
+
+        private void cbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbTipo.SelectedItem.ToString() == "Veiculo")
+                {
+                    lblItemSegurado.Text = "Veículo - Placa:";
+                    cbItemSegurado.DataSource = _sinistroController.PopularPlacas();
+                    cbItemSegurado.DisplayMember = "MODELO";
+                    cbItemSegurado.ValueMember = "VCL_PLACA";
+                    txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                    cbSeguro.Text = "";
+                }
+                else if (cbTipo.SelectedItem.ToString() == "Motorista")
+                {
+                    lblItemSegurado.Text = "Motorista - CPF:";
+                    cbItemSegurado.DataSource = _sinistroController.PopularCPFs();
+                    cbItemSegurado.DisplayMember = "MOTORISTA";
+                    cbItemSegurado.ValueMember = "MT_CPF";
+                    txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                    cbSeguro.Text = "";
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                cbItemSegurado.DataSource = null;
+            }
+        }
+
+        private void cbItemSegurado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbTipo.SelectedItem.ToString() == "Veiculo")
+                {
+                    if(cbItemSegurado.Items.Count < 1)
+                    {
+                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        string placa = cbItemSegurado.SelectedValue.ToString();
+                        cbSeguro.DataSource = _sinistroController.PopularSeguroPlacas(placa);
+                        cbSeguro.DisplayMember = "APOLICE";
+                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                    }
+                }
+                else if (cbTipo.SelectedItem.ToString() == "Motorista")
+                {
+                    if (cbItemSegurado.Items.Count < 1)
+                    {
+                        MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        string cpf = cbItemSegurado.SelectedValue.ToString();
+                        cbSeguro.DataSource = _sinistroController.PopularSeguroCPFs(cpf);
+                        cbSeguro.DisplayMember = "APOLICE";
+                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                    }
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                cbItemSegurado.DataSource = null;
+            }
+        }
+
+        private void btnCadastrarSinistros_Click(object sender, EventArgs e)
+        {
+            if (cbSeguro.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um seguro antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (txtDesc.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            if (cbTipo.SelectedItem.ToString() == "Veiculo")
+            {
+                if (cbItemSegurado.Items.Count < 1)
+                {
+                    MessageBox.Show("Cadastre um veiculo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    TipoSeguro tipoSeguro = TipoSeguro.Automóvel;
+                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    int id = int.Parse(txtid.Text);
+                    long seg = long.Parse(cbSeguro.ValueMember.ToString());
+
+                    Seguro seguro = _seguroController.BuscarSeguro(tipoSeguro, seg);
+                    long numapolice = Convert.ToInt64(seguro.NumeroApolice);
+                    Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
+
+                    try
+                    {
+                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.ItemSegurado, numapolice))
+                        {
+                            MessageBox.Show("Cadastro realizado com Sucesso!");
+                            txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                            txtDesc.Text = "";
+                            cbSeguro.Text = "";
+                            cbTipo.Text = "";
+                            cbItemSegurado.Text = "";
+                            dtDataSinistro.Text = "";
+                        }
+                    }
+                    catch (RegistroExisteException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (TipoCombustivelException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+            if (cbTipo.SelectedItem.ToString() == "Motorista")
+            {
+                if (cbItemSegurado.Items.Count < 1)
+                {
+                    MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    TipoSeguro tipoSeguro = TipoSeguro.Vida;
+                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    int id = int.Parse(txtid.Text);
+                    long seg = long.Parse(cbSeguro.SelectedValue.ToString());
+
+                    Seguro seguro = _sinistroController.BuscarSeguro(tipoSeguro, seg);
+                    long numapolice = Convert.ToInt64(seguro.NumeroApolice);
+
+                    Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
+                    try
+                    {
+                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.ItemSegurado, numapolice))
+                        {
+                            MessageBox.Show("Cadastro realizado com Sucesso!");
+                            txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                            txtDesc.Text = "";
+                            cbSeguro.Text = "";
+                            cbTipo.Text = "";
+                            cbItemSegurado.Text = "";
+                            dtDataSinistro.Text = "";
+                        }
+                    }
+                    catch (RegistroExisteException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (TipoCombustivelException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void btnConsultarSinistros_Click(object sender, EventArgs e)
+        {
+            if (txtIDSinistrosConsulta.Text == "")
+            {
+                MessageBox.Show("Preencha o campo do Identificador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if (cbTipo.SelectedItem.ToString() == "Veiculo")
+                {
+                    try
+                    {
+                        int id = int.Parse(txtIDSinistrosConsulta.Text);
+                        ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        
+                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
+                        if (sinistro == null)
+                        {
+                            MessageBox.Show("Não existe cadastro com esse Identificador,Data e Tipo!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("ID", typeof(int));
+                            dt.Columns.Add("Item Segurado", typeof(string));
+                            dt.Columns.Add("Nº Apólice", typeof(long));
+                            dt.Columns.Add("Data/Hora", typeof(DateTime));
+                            dt.Columns.Add("Descrição", typeof(string));
+
+                            dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+
+                            dgSinistrosConsulta.DataSource = dt;
+                        }
+                        Sinistro = sinistro;
+                        sinistro = null;
+                    }
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        int id = int.Parse(txtIDSinistrosConsulta.Text);
+                        ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+
+                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
+                        if (sinistro == null)
+                        {
+                            MessageBox.Show("Não existe cadastro com esse Identificador,Data e Tipo!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("ID", typeof(int));
+                            dt.Columns.Add("Item Segurado", typeof(string));
+                            dt.Columns.Add("Nº Apólice", typeof(long));
+                            dt.Columns.Add("Data/Hora", typeof(DateTime));
+                            dt.Columns.Add("Descrição", typeof(string));
+
+                            dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+
+                            dgSinistrosConsulta.DataSource = dt;
+                        }
+                        Sinistro = sinistro;
+                        sinistro = null;
+                    }
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
+                }
+            }
+        }
+
+        private void btnTodosSinistros_Click(object sender, EventArgs e)
+        {
+            string tipo;
+            if (cbTipoConsulta.SelectedItem.ToString()=="")
+            {
+                MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if(cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                {
+                    tipo = "Veiculo";
+                }
+                else
+                {
+                    tipo = "Motorista";
+                }
+                try
+                {
+                    List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ID", typeof(int));
+                    dt.Columns.Add("Item Segurado", typeof(string));
+                    dt.Columns.Add("Nº Apólice", typeof(long));
+                    dt.Columns.Add("Data/Hora", typeof(DateTime));
+                    dt.Columns.Add("Descrição", typeof(string));
+
+                    foreach (Sinistro sinistro in sinistros)
+                    {
+
+                        dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                    }
+
+                    dgSinistrosConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                }
+            }     
         }
     }
 }

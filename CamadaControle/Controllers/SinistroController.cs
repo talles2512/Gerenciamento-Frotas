@@ -1,14 +1,17 @@
 ﻿using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class SinistroController
+    public class SinistroController
     {
         private readonly SinistroService _sinistroService;
 
@@ -19,9 +22,44 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(Sinistro sinistro, int id, DateTime data)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, ItemSegurado item, long numapolice)
+        {      
+            try
+            {
+                return _sinistroService.Cadastrar(sinistro, id, data, item, numapolice);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
         {
-            _sinistroService.Cadastrar(sinistro,id,data);
+            try
+            {
+                return _sinistroService.BuscarSinistro(id, data, tipo);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Sinistro> BuscarTodos(string tipo)
+        {
+            try
+            {
+                return _sinistroService.BuscarTodos(tipo);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int id, DateTime data)
@@ -32,6 +70,78 @@ namespace CamadaControle.Controllers
         public void Alterar(Sinistro sinistro, int id, DateTime data)
         {
             _sinistroService.Alterar(sinistro,id,data);
+        }
+
+        public int PopularID(string tipo)
+        {
+            try
+            {
+                return _sinistroService.PopulaID(tipo);
+            }
+            catch
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _sinistroService.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularCPFs()
+        {
+            try
+            {
+                return _sinistroService.PopularCPFs();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularSeguroCPFs(string cpf)
+        {
+            try
+            {
+                return _sinistroService.PopularSeguroCPFs(cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularSeguroPlacas(string placa)
+        {
+            try
+            {
+                return _sinistroService.PopularSeguroPlacas(placa);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public Seguro BuscarSeguro(TipoSeguro tipo, long numeroApolice)
+        {
+            try
+            {
+                return _sinistroService.BuscarSeguro(tipo, numeroApolice);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         #endregion
