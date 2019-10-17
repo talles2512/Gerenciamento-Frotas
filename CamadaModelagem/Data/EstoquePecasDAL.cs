@@ -117,16 +117,16 @@ namespace CamadaModelagem.Data
             {
                 DataTable dt = _banco.BuscarRegistro(Query);
                 DataRow dr = dt.Rows[0];
-                if(dr == null)
-                {
-                    return 1;
-                }
-                else
+                try
                 {
                     int id = int.Parse(dr[0].ToString());
                     id += 1;
                     return id;
-                }                             
+                }
+                catch
+                {
+                    return 1;
+                }                          
             }
             catch (ConcorrenciaBancoException e)
             {
