@@ -158,7 +158,7 @@
             this.cbFranquia.Location = new System.Drawing.Point(11, 244);
             this.cbFranquia.Name = "cbFranquia";
             this.cbFranquia.Size = new System.Drawing.Size(197, 33);
-            this.cbFranquia.TabIndex = 64;
+            this.cbFranquia.TabIndex = 21;
             // 
             // cbTipo
             // 
@@ -166,7 +166,7 @@
             this.cbTipo.Location = new System.Drawing.Point(11, 55);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(197, 33);
-            this.cbTipo.TabIndex = 62;
+            this.cbTipo.TabIndex = 14;
             this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.CbTipo_SelectedIndexChanged);
             // 
             // txtValorFranquia
@@ -214,7 +214,7 @@
             this.dtfimvigencia.Name = "dtfimvigencia";
             this.dtfimvigencia.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtfimvigencia.Size = new System.Drawing.Size(284, 31);
-            this.dtfimvigencia.TabIndex = 21;
+            this.dtfimvigencia.TabIndex = 20;
             // 
             // dtInicio
             // 
@@ -225,7 +225,7 @@
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtInicio.Size = new System.Drawing.Size(284, 31);
-            this.dtInicio.TabIndex = 20;
+            this.dtInicio.TabIndex = 19;
             // 
             // lblFranquia
             // 
@@ -268,7 +268,7 @@
             this.cbItemSegurado.Location = new System.Drawing.Point(214, 120);
             this.cbItemSegurado.Name = "cbItemSegurado";
             this.cbItemSegurado.Size = new System.Drawing.Size(197, 33);
-            this.cbItemSegurado.TabIndex = 16;
+            this.cbItemSegurado.TabIndex = 17;
             // 
             // cbSeguradora
             // 
@@ -301,7 +301,7 @@
             this.txtNApolice.Location = new System.Drawing.Point(11, 119);
             this.txtNApolice.Name = "txtNApolice";
             this.txtNApolice.Size = new System.Drawing.Size(197, 32);
-            this.txtNApolice.TabIndex = 14;
+            this.txtNApolice.TabIndex = 16;
             // 
             // lblNApólice
             // 
