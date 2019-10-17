@@ -100,7 +100,7 @@ namespace CamadaModelagem.Services
                 }
                 else
                 {
-                    throw new NaoEncontradoException("Seguro não encontrada.");
+                    throw new NaoEncontradoException("Seguro não encontrado.");
                 }
             }
             catch (TransacaoException e)
