@@ -14,13 +14,21 @@ namespace CamadaModelagem.Services
     public class VeiculoService
     {
         private readonly VeiculoDAL _veiculoDAL;
+        private readonly ManutencaoDAL _manutencaoDAL;
+        private readonly AbastecimentoDAL _abastecimentoDAL;
+        private readonly EntradaSaidaDAL _entradaSaidaDAL;
+        private readonly SeguroDAL _seguroDAL;
 
-        public VeiculoService(VeiculoDAL veiculoDAL)
+        public VeiculoService(VeiculoDAL veiculoDAL, ManutencaoDAL manutencaoDAL, AbastecimentoDAL abastecimentoDAL, EntradaSaidaDAL entradaSaidaDAL, SeguroDAL seguroDAL)
         {
             _veiculoDAL = veiculoDAL;
+            _manutencaoDAL = manutencaoDAL;
+            _abastecimentoDAL = abastecimentoDAL;
+            _entradaSaidaDAL = entradaSaidaDAL;
+            _seguroDAL = seguroDAL;
         }
-                                               
-        public bool Cadastrar(Veiculo veiculo, string placa) 
+
+        public bool Cadastrar(Veiculo veiculo, string placa)
         {
             try
             {
@@ -31,7 +39,7 @@ namespace CamadaModelagem.Services
                     throw new RegistroExisteException("Já existe um veículo com essa Placa no sistema!");
                 }
 
-                if(veiculo.VeiculoAlugado != null)
+                if (veiculo.VeiculoAlugado != null)
                 {
                     return _veiculoDAL.CadastrarAlugado(veiculo);
                 }
@@ -54,8 +62,8 @@ namespace CamadaModelagem.Services
         {
             try
             {
-               Veiculo veiculo = _veiculoDAL.BuscarPlacaAlugado(placa);
-               if(veiculo == null)
+                Veiculo veiculo = _veiculoDAL.BuscarPlacaAlugado(placa);
+                if (veiculo == null)
                 {
                     veiculo = _veiculoDAL.BuscarPlaca(placa);
                 }
@@ -101,20 +109,34 @@ namespace CamadaModelagem.Services
                 Veiculo obj = _veiculoDAL.BuscarPlacaAlugado(placa);
                 if (obj != null)
                 {
-                        return _veiculoDAL.AlterarAlugado(veiculo, placa);
+                    if (veiculo.Placa != placa)
+                    {
+                        VerificarVinculo(placa);
+                    }
+                    return _veiculoDAL.AlterarAlugado(veiculo, placa);
                 }
                 else
                 {
                     obj = _veiculoDAL.BuscarPlaca(placa);
 
-                    if(obj != null)
+                    if (obj != null)
                     {
-                        if(veiculo.VeiculoAlugado != null)
+                        if (veiculo.VeiculoAlugado != null)
                         {
+                            if (veiculo.Placa != placa)
+                            {
+                                VerificarVinculo(placa);
+                            }
+
                             return _veiculoDAL.AlterarAlugado(veiculo, placa);
                         }
                         else
                         {
+                            if (veiculo.Placa != placa)
+                            {
+                                VerificarVinculo(placa);
+                            }
+
                             return _veiculoDAL.Alterar(veiculo, placa);
                         }
                     }
@@ -132,6 +154,46 @@ namespace CamadaModelagem.Services
             {
                 throw new ConcorrenciaBancoException(e.Message);
             }
+        }
+
+        private void VerificarVinculo(string placa)
+        {
+            List<Manutencao> manutencoes = _manutencaoDAL.BuscarTodos(placa);
+            foreach (Manutencao manutencao in manutencoes)
+            {
+                if (manutencao != null)
+                {
+                    throw new IntegridadeException("Placa do Veículo não pode ser alterada, pois ainda está vinculada à Oficinas.");
+                }
+            }
+
+            List<Abastecimento> abastecimentos = _abastecimentoDAL.BuscarTodos(placa);
+            foreach (Abastecimento abastecimento in abastecimentos)
+            {
+                if (abastecimento != null)
+                {
+                    throw new IntegridadeException("Placa do Veículo não pode ser alterada, pois ainda está vinculada à Postos.");
+                }
+            }
+
+            List<EntradaSaida> entradasSaidas = _entradaSaidaDAL.BuscarTodos(placa);
+            foreach (EntradaSaida entradaSaida in entradasSaidas)
+            {
+                if (entradaSaida != null)
+                {
+                    throw new IntegridadeException("Placa do Veículo não pode ser alterada, pois ainda está vinculada à Garagens / Estacionamentos.");
+                }
+            }
+
+            List<Seguro> seguros = _seguroDAL.BuscarTodos(placa);
+            foreach (Seguro seguro in seguros)
+            {
+                if (seguro != null)
+                {
+                    throw new IntegridadeException("Placa do Veículo não pode ser alterada, pois ainda está vinculada à Seguradoras.");
+                }
+            }
+
         }
     }
 }

@@ -31,19 +31,28 @@ namespace CamadaDesktop
         public Sinistros()
         {
             InitializeComponent();
-            _sinistroController = InstanciarCamadas();
+            _sinistroController = InstanciarCamadas1();
+            _seguroController = InstanciarCamadas2();
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
         }
 
-        private SinistroController InstanciarCamadas()
+        private SinistroController InstanciarCamadas1()
         {
             Banco banco = new Banco();
             SinistroDAL sinistroDAL = new SinistroDAL(banco);
             SeguroDAL seguroDAL = new SeguroDAL(banco);
             SinistroService sinistroService = new SinistroService(sinistroDAL);
             return new SinistroController(sinistroService);
+        }
+
+        private SeguroController InstanciarCamadas2()
+        {
+            Banco banco = new Banco();
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            SeguroService seguroService = new SeguroService(seguroDAL);
+            return new SeguroController(seguroService);
         }
 
         private void Sinistros_Load(object sender, EventArgs e)
@@ -142,7 +151,7 @@ namespace CamadaDesktop
                     TipoSeguro tipoSeguro = TipoSeguro.Automóvel;
                     ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
                     int id = int.Parse(txtid.Text);
-                    long seg = long.Parse(cbSeguro.ValueMember.ToString());
+                    long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
                     Seguro seguro = _seguroController.BuscarSeguro(tipoSeguro, seg);
                     long numapolice = Convert.ToInt64(seguro.NumeroApolice);

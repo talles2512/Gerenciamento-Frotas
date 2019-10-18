@@ -269,9 +269,9 @@ namespace CamadaModelagem.Data
                         + "', VCL_MODELO = '" + veiculo.Modelo + "',VCL_CHASSI = '" + veiculo.Chassi + "',VCL_ANO =  "
                         + veiculo.Ano + ",VCL_COR = " + cor + ",VCL_COMBUSTIVEL = " + combustivel
                         + ",VCL_ALUGADO = " + alugado + ", VCL_SITUACAO = " + situacao + " WHERE VCL_PLACA = '" + placa + "' ";
-                    query2 = "UPDATE TB_VEICULOS SET VCL_PLACA = '" + veiculo.Placa + "', VCL_VCLAL_VALOR = " + veiculo.VeiculoAlugado.Valor
-                        + ", VCL_VCLAL_DTINICIO = '" + veiculo.VeiculoAlugado.DataInicio.ToShortDateString()
-                        + "',VCL_VCLAL_DTVENC = '" + veiculo.VeiculoAlugado.DataVencimento.ToShortDateString() + "' WHERE VCL_PLACA = '" + placa + "' ";
+                    query2 = "UPDATE TB_VEICULOS_ALUGUEL SET VCL_PLACA = '" + veiculo.Placa + "', VCLAL_VALOR = " + veiculo.VeiculoAlugado.Valor
+                        + ", VCLAL_DTINICIO = '" + veiculo.VeiculoAlugado.DataInicio.ToShortDateString()
+                        + "',VCLAL_DTVENC = '" + veiculo.VeiculoAlugado.DataVencimento.ToShortDateString() + "' WHERE VCL_PLACA = '" + placa + "' ";
                 }
 
                 return _banco.ExecutaTransaction(query1, query2);

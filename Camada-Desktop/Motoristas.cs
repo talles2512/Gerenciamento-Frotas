@@ -43,7 +43,9 @@ namespace CamadaDesktop
         {
             Banco banco = new Banco();
             MotoristaDAL motoristaDAL = new MotoristaDAL(banco);
-            MotoristaService motoristaService = new MotoristaService(motoristaDAL);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            MotoristaService motoristaService = new MotoristaService(motoristaDAL, entradaSaidaDAL, seguroDAL);
             return new MotoristaController(motoristaService);
         }
 
@@ -316,6 +318,11 @@ namespace CamadaDesktop
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (IntegridadeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    txtCPF.Text = cpfantigo;
                 }
             }
         }

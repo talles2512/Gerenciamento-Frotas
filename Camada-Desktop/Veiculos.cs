@@ -34,7 +34,11 @@ namespace CamadaDesktop
         {
             Banco banco = new Banco();
             VeiculoDAL veiculoDAL = new VeiculoDAL(banco);
-            VeiculoService veiculoService = new VeiculoService(veiculoDAL);
+            ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
+            AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            VeiculoService veiculoService = new VeiculoService(veiculoDAL, manutencaoDAL, abastecimentoDAL, entradaSaidaDAL, seguroDAL);
             return new VeiculoController(veiculoService);
         }
         private void Veiculos_Load(object sender, EventArgs e)
@@ -382,6 +386,11 @@ namespace CamadaDesktop
                 catch (ConcorrenciaBancoException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                catch (IntegridadeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    txtPlaca.Text = PlacaAntiga;
                 }
             }
         }

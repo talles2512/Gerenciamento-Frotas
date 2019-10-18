@@ -125,6 +125,35 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public List<Abastecimento> BuscarTodos(string placa)
+        {
+            List<Abastecimento> abastecimentos = new List<Abastecimento>();
+            string query = "SELECT [ABS_ID], [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
+                "FROM[TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa +"'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Abastecimento abastecimento = null;
+                DataRow[] dataRows = dt.Select("[ABS_VCL_PLACA] = '" + placa + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), dr["ABS_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ABS_SERVEXT_CNPJ"].ToString());
+                    DateTime dataAbastecimento = Convert.ToDateTime(dr["ABS_DATA"].ToString());
+                    double litros = double.Parse(dr["ABS_LITROS"].ToString());
+                    double valor = double.Parse(dr["ABS_VALOR"].ToString());
+
+                    abastecimento = new Abastecimento(abastecimentoTipo, valor, litros, dataAbastecimento, dr["ABS_VCL_PLACA"].ToString(), cNPJ);
+                    abastecimentos.Add(abastecimento);
+                }
+                return abastecimentos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
         public List<Abastecimento> BuscarTodos()
         {
             List<Abastecimento> abastecimentos = new List<Abastecimento>();

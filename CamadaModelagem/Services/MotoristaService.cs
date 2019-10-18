@@ -12,10 +12,14 @@ namespace CamadaModelagem.Services
     public class MotoristaService
     {
         private readonly MotoristaDAL _motoristaDAL;
+        private readonly EntradaSaidaDAL _entradaSaidaDAL;
+        private readonly SeguroDAL _seguroDAL;
 
-        public MotoristaService(MotoristaDAL motoristaDAL)
+        public MotoristaService(MotoristaDAL motoristaDAL, EntradaSaidaDAL entradaSaidaDAL, SeguroDAL seguroDAL)
         {
             _motoristaDAL = motoristaDAL;
+            _entradaSaidaDAL = entradaSaidaDAL;
+            _seguroDAL = seguroDAL;
         }
         public bool Cadastrar(Motorista motorista, CNH cnh) //Mudança na Query, Verificar
         {
@@ -80,6 +84,10 @@ namespace CamadaModelagem.Services
                 Motorista obj = _motoristaDAL.BuscarCPF(cpf);
                 if (obj != null)
                 {
+                    if (motorista.CPF != cpf)
+                    {
+                        VerificarVinculo(cpf);
+                    }
                     return _motoristaDAL.Alterar(motorista, cnh, cpf);
                 }
                 else
@@ -91,6 +99,28 @@ namespace CamadaModelagem.Services
             {
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
+        }
+
+        private void VerificarVinculo(string cpf)
+        {
+            List<EntradaSaida> entradasSaidas = _entradaSaidaDAL.BuscarTodosMotoristas(cpf);
+            foreach (EntradaSaida entradaSaida in entradasSaidas)
+            {
+                if (entradaSaida != null)
+                {
+                    throw new IntegridadeException("CPF do Motorista não pode ser alterado, pois ainda está vinculado à Garagens / Estacionamentos.");
+                }
+            }
+
+            List<Seguro> seguros = _seguroDAL.BuscarTodosMotoristas(cpf);
+            foreach (Seguro seguro in seguros)
+            {
+                if (seguro != null)
+                {
+                    throw new IntegridadeException("CPF do Motorista não pode ser alterado, pois ainda está vinculado à Seguradoras.");
+                }
+            }
+
         }
     }
 }

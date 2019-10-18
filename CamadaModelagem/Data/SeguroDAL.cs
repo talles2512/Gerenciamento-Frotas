@@ -239,6 +239,67 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public List<Seguro> BuscarTodos(string placa)
+        {
+            List<Seguro> seguros = new List<Seguro>();
+            string Query = "";
+            Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_PLACA], [SEG_VALOR], [SEG_DATAINICIO]," +
+                    " [SEG_FIMVIGENCIA], [SEG_FRANQUIA], [SEG_VALORFRANQUIA] FROM [dbo].[TB_SEGURO_VEICULO] WHERE[SEG_ITEMSEG_PLACA] = '" + placa +"'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(Query);
+                Seguro seguro = null;
+                DataRow[] dataRows = dt.Select("[SEG_ITEMSEG_PLACA] = '" + placa + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    long numApolice = long.Parse(dr["SEG_NUMAPOLICE"].ToString());
+                    long cNPJ = long.Parse(dr["SEG_SEGURADORA"].ToString());
+                    double valor = double.Parse(dr["SEG_VALOR"].ToString());
+                    DateTime dataInicio = Convert.ToDateTime(dr["SEG_DATAINICIO"].ToString());
+                    DateTime dataFim = Convert.ToDateTime(dr["SEG_FIMVIGENCIA"].ToString());
+                    double valorFranquia = double.Parse(dr["SEG_VALORFRANQUIA"].ToString());
+                    TipoSeguro tipo = TipoSeguro.Automóvel;
+                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
+                    seguros.Add(seguro);
+                }
+                return seguros;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<Seguro> BuscarTodosMotoristas(string cpf)
+        {
+            List<Seguro> seguros = new List<Seguro>();
+            string Query = "";
+            Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_CPF], [SEG_VALOR], [SEG_DATAINICIO]," +
+                    " [SEG_FIMVIGENCIA] FROM [dbo].[TB_SEGURO_MOTORISTA] WHERE[SEG_ITEMSEG_CPF] = '" + cpf + "'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(Query);
+                Seguro seguro = null;
+                DataRow[] dataRows = dt.Select("[SEG_ITEMSEG_CPF] = '" + cpf + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    long numApolice = long.Parse(dr["SEG_NUMAPOLICE"].ToString());
+                    long cNPJ = long.Parse(dr["SEG_SEGURADORA"].ToString());
+                    double valor = double.Parse(dr["SEG_VALOR"].ToString());
+                    DateTime dataInicio = Convert.ToDateTime(dr["SEG_DATAINICIO"].ToString());
+                    DateTime dataFim = Convert.ToDateTime(dr["SEG_FIMVIGENCIA"].ToString());
+                    TipoSeguro tipo = TipoSeguro.Automóvel;
+                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_CPF"].ToString(), tipo, valor, dataInicio, dataFim, cNPJ);
+                    seguros.Add(seguro);
+                }
+                return seguros;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
         public List<Seguro> BuscarTodos()
         {
             List<Seguro> seguros = new List<Seguro>();

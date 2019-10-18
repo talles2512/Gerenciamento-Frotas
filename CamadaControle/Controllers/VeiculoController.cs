@@ -91,6 +91,10 @@ namespace CamadaControle.Controllers
             {
                 throw new TransacaoException(e.Message);
             }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
+            }
         }
 
         #endregion

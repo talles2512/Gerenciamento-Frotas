@@ -118,6 +118,59 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public List<EntradaSaida> BuscarTodos(string placa)
+        {
+            List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
+            string query = "SELECT [ES_ID], [ES_MT_CPF], [ES_VCL_PLACA], [ES_SERVEXT_CNPJ], [ES_TIPO], [ES_DATAHORA]" +
+                " FROM [DB_GERENCFROTA].[dbo].[TB_ENTRADA_SAIDA] WHERE [ES_VCL_PLACA] = '" + placa +"'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                EntradaSaida entradaSaida = null;
+                DataRow[] dataRows = dt.Select("[ES_VCL_PLACA] = '" + placa + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    EntradaSaidaTipo entradaSaidaTipo = (EntradaSaidaTipo)Enum.Parse(typeof(EntradaSaidaTipo), dr["ES_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ES_SERVEXT_CNPJ"].ToString());
+                    DateTime dataHora = Convert.ToDateTime(dr["ES_DATAHORA"].ToString());
+
+                    entradaSaida = new EntradaSaida(entradaSaidaTipo, dataHora, dr["ES_MT_CPF"].ToString(), dr["ES_VCL_PLACA"].ToString(), cNPJ);
+                    entradasSaidas.Add(entradaSaida);
+                }
+                return entradasSaidas;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<EntradaSaida> BuscarTodosMotoristas(string cpf)
+        {
+            List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
+            string query = "SELECT [ES_ID], [ES_MT_CPF], [ES_VCL_PLACA], [ES_SERVEXT_CNPJ], [ES_TIPO], [ES_DATAHORA]" +
+                " FROM [DB_GERENCFROTA].[dbo].[TB_ENTRADA_SAIDA] WHERE [ES_MT_CPF] = '" + cpf + "'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                EntradaSaida entradaSaida = null;
+                DataRow[] dataRows = dt.Select("[ES_MT_CPF] = '" + cpf + "'");
+                foreach (DataRow dr in dataRows)
+                {
+                    EntradaSaidaTipo entradaSaidaTipo = (EntradaSaidaTipo)Enum.Parse(typeof(EntradaSaidaTipo), dr["ES_TIPO"].ToString());
+                    long cNPJ = long.Parse(dr["ES_SERVEXT_CNPJ"].ToString());
+                    DateTime dataHora = Convert.ToDateTime(dr["ES_DATAHORA"].ToString());
+
+                    entradaSaida = new EntradaSaida(entradaSaidaTipo, dataHora, dr["ES_MT_CPF"].ToString(), dr["ES_VCL_PLACA"].ToString(), cNPJ);
+                    entradasSaidas.Add(entradaSaida);
+                }
+                return entradasSaidas;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
         public List<EntradaSaida> BuscarTodos()
         {
             List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
