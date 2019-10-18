@@ -250,7 +250,7 @@ namespace CamadaModelagem.Data
 
         public DataTable PopularSeguroPlacas(string placa)
         {
-            string query = "SELECT CONCAT('Nº Apólice: ',[SEG_NUMAPOLICE]) AS APOLICE, [SEG_NUMAPOLICE] FROM [dbo].[TB_SEGCOBERTURA_VEICULO] WHERE [SEG_ITEMSEG_CPF] = '" + placa + "'";
+            string query = "SELECT CONCAT('Nº Apólice: ',[SEG_NUMAPOLICE]) AS APOLICE, [SEG_NUMAPOLICE] FROM [dbo].[TB_SEGURO_VEICULO] WHERE [SEG_ITEMSEG_PLACA] = '" + placa + "'";
             try
             {
                 return _banco.BuscarRegistro(query);
