@@ -4,6 +4,7 @@ using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,18 @@ namespace CamadaControle.Controllers
             catch (ConcorrenciaBancoException e)
             {
                 throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularSeguros(TipoSeguro tipo)
+        {
+            try
+            {
+                return _seguroCoberturaService.PopularSeguros(tipo);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
 

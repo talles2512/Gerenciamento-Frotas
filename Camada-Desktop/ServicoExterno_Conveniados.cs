@@ -38,7 +38,8 @@ namespace CamadaDesktop
             ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
             AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
             EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
-            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL, manutencaoDAL, abastecimentoDAL, entradaSaidaDAL);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            ServicoExternoService servicoExternoService = new ServicoExternoService(servicoExternoDAL, manutencaoDAL, abastecimentoDAL, entradaSaidaDAL, seguroDAL);
             return new ServicoExternoController(servicoExternoService);
         }
 

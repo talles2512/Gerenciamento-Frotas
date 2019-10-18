@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,6 +99,18 @@ namespace CamadaModelagem.Services
             catch (TransacaoException e)
             {
                 throw new TransacaoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public DataTable PopularSeguros(TipoSeguro tipo)
+        {
+            try
+            {
+                return _seguroCoberturaDAL.PopularSeguros(tipo);
             }
             catch (ConcorrenciaBancoException e)
             {

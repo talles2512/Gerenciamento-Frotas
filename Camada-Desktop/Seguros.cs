@@ -25,15 +25,20 @@ namespace CamadaDesktop
         private SeguroCobertura SeguroCobertura;
         long NApoliceAntiga;
         string TipoAntigo;
+        long NApoliceAntigaCobertura;
+        string TipoAntigoCobertura;
         public Seguros()
         {
             InitializeComponent();
             _seguroController = InstanciarCamadas1();
             _seguroCoberturaController = InstanciarCamadas2();
             Seguro = null;
-            SeguroCobertura = null;
             NApoliceAntiga = long.MaxValue;
             TipoAntigo = "";
+
+            SeguroCobertura = null;
+            NApoliceAntigaCobertura = long.MaxValue;
+            TipoAntigoCobertura = "";
         }
 
         private SeguroController InstanciarCamadas1()
@@ -63,11 +68,16 @@ namespace CamadaDesktop
                 cbSeguradora.DataSource = _seguroController.PopularServicosExternos();
                 cbSeguradora.DisplayMember = "SERVEXT_NOME";
                 cbSeguradora.ValueMember = "SERVEXT_CNPJ";
+
+                cbSeguro.DataSource = _seguroCoberturaController.PopularSeguros(TipoSeguro.Automóvel);
+                cbSeguro.DisplayMember = "SEG_NUMAPOLICE";
+                cbSeguro.ValueMember = "SEG_NUMAPOLICE";
             }
             catch (ConcorrenciaBancoException)
             {
                 cbItemSegurado.DataSource = null;
                 cbSeguradora.DataSource = null;
+                cbSeguro.DataSource = null;
             }
 
 
@@ -76,6 +86,7 @@ namespace CamadaDesktop
 
             cbTipoCobertura.DataSource = Enum.GetValues(typeof(TipoSeguro));
             cbTipoCoberturaConsulta.DataSource = Enum.GetValues(typeof(TipoSeguro));
+
         }
 
         private void CbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -482,16 +493,51 @@ namespace CamadaDesktop
             }
         }
 
+        private void CbTipoCobertura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCoberturaDescricao.Text = "";
+            if (cbTipoCobertura.SelectedItem.ToString() == "Automóvel")
+            {
+                try
+                {
+                    cbSeguro.DataSource = _seguroCoberturaController.PopularSeguros(TipoSeguro.Automóvel);
+                    cbSeguro.DisplayMember = "SEG_NUMAPOLICE";
+                    cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    cbSeguro.DataSource = null;
+                }
+            }
+            else if (cbTipoCobertura.SelectedItem.ToString() == "Vida")
+            {
+                try
+                {
+                    cbSeguro.DataSource = _seguroCoberturaController.PopularSeguros(TipoSeguro.Vida);
+                    cbSeguro.DisplayMember = "SEG_NUMAPOLICE";
+                    cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    cbSeguro.DataSource = null;
+                }
+            }
+        }
+
         private void BtnCadastrarCobertura_Click(object sender, EventArgs e)
         {
-            if (txtNApoliceCobertura.Text == "" || txtCoberturaDescricao.Text == "")
+            if (txtCoberturaDescricao.Text == "")
             {
                 MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if(cbSeguro.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma segurado antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
                 TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipoCobertura.SelectedItem.ToString());
-                long numeroApolice = Convert.ToInt64(txtNApoliceCobertura.Text);
+                long numeroApolice = long.Parse(cbSeguro.SelectedValue.ToString());
 
                 SeguroCobertura seguroCobertura = new SeguroCobertura(tipoSeguro, txtCoberturaDescricao.Text, numeroApolice);
 
@@ -507,6 +553,174 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
                 catch (TipoCombustivelException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void BtnConsultaCobertura_Click(object sender, EventArgs e)
+        {
+            if (txtNApoliceCoberturaConsulta.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                try
+                {
+                    TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipoCoberturaConsulta.SelectedItem.ToString());
+                    long numeroApolice = Convert.ToInt64(txtNApoliceCoberturaConsulta.Text);
+
+                    SeguroCobertura seguroCobertura = _seguroCoberturaController.BuscarSeguroCobertura(tipoSeguro, numeroApolice);
+                    if (seguroCobertura == null)
+                    {
+                        dgCoberturaConsulta.DataSource = null;
+                    }
+                    else
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Número Apólice", typeof(long));
+                        dt.Columns.Add("Tipo de Seguro", typeof(string));
+                        dt.Columns.Add("Descrição", typeof(string));
+
+                        dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
+
+                        dgCoberturaConsulta.DataSource = dt;
+                    }
+                    SeguroCobertura = seguroCobertura;
+                    seguroCobertura = null;
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void BtnConsultaTodosCobertura_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número Apólice", typeof(long));
+                dt.Columns.Add("Tipo de Seguro", typeof(string));
+                dt.Columns.Add("Descrição", typeof(string));
+
+                foreach (SeguroCobertura seguroCobertura in seguroCoberturas)
+                {
+                    dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
+                }
+
+                dgCoberturaConsulta.DataSource = dt;
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void BtnTransfereCobertura_Click(object sender, EventArgs e)
+        {
+            if (SeguroCobertura == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                NApoliceAntigaCobertura = SeguroCobertura.NumeroApolice;
+                TipoAntigoCobertura = SeguroCobertura.Tipo.ToString();
+
+                cbTipoCobertura.SelectedItem = SeguroCobertura.Tipo;
+                cbSeguro.SelectedValue = SeguroCobertura.NumeroApolice;
+                txtCoberturaDescricao.Text = SeguroCobertura.Descricao;
+
+                if (txtCoberturaDescricao.Text != "")
+                {
+                    txtNApoliceCoberturaConsulta.Text = "";
+                    SeguroCobertura = null;
+                    dgCoberturaConsulta.DataSource = null;
+                }
+            }
+        }
+
+        private void BtnAlterarCobertura_Click(object sender, EventArgs e)
+        {
+            if (txtCoberturaDescricao.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipoCobertura.SelectedItem.ToString());
+                long numeroApolice = long.Parse(cbSeguro.SelectedValue.ToString());
+
+                SeguroCobertura seguroCobertura = new SeguroCobertura(tipoSeguro, txtCoberturaDescricao.Text, numeroApolice);
+
+                try
+                {
+                    if (NApoliceAntigaCobertura == long.MaxValue)
+                    {
+                        NApoliceAntigaCobertura = seguroCobertura.NumeroApolice;
+                    }
+                    if (TipoAntigoCobertura == "")
+                    {
+                        tipoSeguro = seguroCobertura.Tipo;
+                        TipoAntigoCobertura = tipoSeguro.ToString();
+                    }
+                    else
+                    {
+                        tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), TipoAntigoCobertura);
+                    }
+                    if (_seguroCoberturaController.Alterar(seguroCobertura, tipoSeguro, NApoliceAntigaCobertura))
+                    {
+                        MessageBox.Show("Alteração realizada com Sucesso!");
+                        NApoliceAntigaCobertura = long.MaxValue;
+                        TipoAntigoCobertura = "";
+                    }
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (TipoCombustivelException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void BtnExcluirCobertura_Click(object sender, EventArgs e)
+        {
+            if (cbSeguro.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre uma segurado antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                try
+                {
+                    TipoSeguro tipoSeguro = (TipoSeguro)Enum.Parse(typeof(TipoSeguro), cbTipoCobertura.SelectedItem.ToString());
+                    long numeroApolice = long.Parse(cbSeguro.SelectedValue.ToString());
+
+                    if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_seguroCoberturaController.Deletar(tipoSeguro, numeroApolice))
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                        }
+                    }
+                }
+                catch (IntegridadeException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

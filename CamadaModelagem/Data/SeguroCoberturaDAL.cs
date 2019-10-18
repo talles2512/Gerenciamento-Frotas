@@ -111,7 +111,7 @@ namespace CamadaModelagem.Data
                 DataRow[] dataRows = dt.Select("[SEGC_SEGURO_NUMAPOLICE] = " + numeroApolice);
                 foreach (DataRow dr in dataRows)
                 {
-                    long numApolice = long.Parse(dr["SEG_NUMAPOLICE"].ToString());
+                    long numApolice = long.Parse(dr["SEGC_SEGURO_NUMAPOLICE"].ToString());
 
                     seguroCobertura = new SeguroCobertura(tipo, dr["SEGC_DESCRICAO"].ToString(), numApolice);
                 }
@@ -136,7 +136,7 @@ namespace CamadaModelagem.Data
                 DataRow[] dataRows = dt.Select();
                 foreach (DataRow dr in dataRows)
                 {
-                    long numApolice = long.Parse(dr["SEG_NUMAPOLICE"].ToString());
+                    long numApolice = long.Parse(dr["SEGC_SEGURO_NUMAPOLICE"].ToString());
                     TipoSeguro tipo = TipoSeguro.Automóvel;
                     seguroCobertura = new SeguroCobertura(tipo, dr["SEGC_DESCRICAO"].ToString(), numApolice);
                     seguroCoberturas.Add(seguroCobertura);
@@ -149,12 +149,35 @@ namespace CamadaModelagem.Data
                 dataRows = dt.Select();
                 foreach (DataRow dr in dataRows)
                 {
-                    long numApolice = long.Parse(dr["SEG_NUMAPOLICE"].ToString());
+                    long numApolice = long.Parse(dr["SEGC_SEGURO_NUMAPOLICE"].ToString());
                     TipoSeguro tipo = TipoSeguro.Vida;
                     seguroCobertura = new SeguroCobertura(tipo, dr["SEGC_DESCRICAO"].ToString(), numApolice);
                     seguroCoberturas.Add(seguroCobertura);
                 }
                 return seguroCoberturas;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public DataTable PopularSeguros(TipoSeguro tipo)
+        {
+            string query = "";
+
+            if (tipo.ToString() == "Automóvel")
+            {
+                query = "SELECT [SEG_NUMAPOLICE] FROM [dbo].[TB_SEGURO_VEICULO]";
+            }
+            else if (tipo.ToString() == "Vida")
+            {
+                query = "SELECT [SEG_NUMAPOLICE] FROM [dbo].[TB_SEGURO_MOTORISTA]";
+            }
+
+            try
+            {
+                return _banco.BuscarRegistro(query);
             }
             catch (Exception)
             {

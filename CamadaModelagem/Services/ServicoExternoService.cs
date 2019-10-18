@@ -16,13 +16,15 @@ namespace CamadaModelagem.Services
         private readonly ManutencaoDAL _manutencaoDAL;
         private readonly AbastecimentoDAL _abastecimentoDAL;
         private readonly EntradaSaidaDAL _entradaSaidaDAL;
+        private readonly SeguroDAL _seguroDAL;
 
-        public ServicoExternoService(ServicoExternoDAL servicoExternoDAL, ManutencaoDAL manutencaoDAL, AbastecimentoDAL abastecimentoDAL, EntradaSaidaDAL entradaSaidaDAL)
+        public ServicoExternoService(ServicoExternoDAL servicoExternoDAL, ManutencaoDAL manutencaoDAL, AbastecimentoDAL abastecimentoDAL, EntradaSaidaDAL entradaSaidaDAL, SeguroDAL seguroDAL)
         {
             _servicoExternoDAL = servicoExternoDAL;
             _manutencaoDAL = manutencaoDAL;
             _abastecimentoDAL = abastecimentoDAL;
             _entradaSaidaDAL = entradaSaidaDAL;
+            _seguroDAL = seguroDAL;
         }
         public bool Cadastrar(ServicoExterno servicoExterno, long cnpj) //Mudança na Query, Verificar
         {
@@ -196,6 +198,18 @@ namespace CamadaModelagem.Services
                     if (entradaSaida != null)
                     {
                         throw new IntegridadeException("CNPJ da Garagem / Estacionamento ou Tipo de Serviço Externo não podem ser alterados, pois ainda está vinculado à outros serviços.");
+                    }
+                }
+            }
+
+            else if (tipo == TipoServicoExterno.Seguradora)
+            {
+                List<Seguro> seguros = _seguroDAL.BuscarTodos(cnpj);
+                foreach (Seguro seguro in seguros)
+                {
+                    if(seguro != null)
+                    {
+                        throw new IntegridadeException("CNPJ da Seguradora ou Tipo de Serviço Externo não podem ser alterados, pois ainda está vinculado à outros serviços.");
                     }
                 }
             }

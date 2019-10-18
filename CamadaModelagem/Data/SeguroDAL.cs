@@ -129,9 +129,9 @@ namespace CamadaModelagem.Data
 
                     if (tipo.ToString() == "Automóvel")
                     {
-                        double valorFranquia = double.Parse(dr["SEG_VALOR"].ToString());
+                        double valorFranquia = double.Parse(dr["SEG_VALORFRANQUIA"].ToString());
 
-                        seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valor, cNPJ);
+                        seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
                     }
                     else if (tipo.ToString() == "Vida")
                     {
@@ -175,9 +175,9 @@ namespace CamadaModelagem.Data
 
                     if (tipo.ToString() == "Automóvel")
                     {
-                        double valorFranquia = double.Parse(dr["SEG_VALOR"].ToString());
+                        double valorFranquia = double.Parse(dr["SEG_VALORFRANQUIA"].ToString());
 
-                        seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valor, cNPJ);
+                        seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
                     }
                     else if (tipo.ToString() == "Vida")
                     {
@@ -210,9 +210,9 @@ namespace CamadaModelagem.Data
                     double valor = double.Parse(dr["SEG_VALOR"].ToString());
                     DateTime dataInicio = Convert.ToDateTime(dr["SEG_DATAINICIO"].ToString());
                     DateTime dataFim = Convert.ToDateTime(dr["SEG_FIMVIGENCIA"].ToString());
-                    double valorFranquia = double.Parse(dr["SEG_VALOR"].ToString());
+                    double valorFranquia = double.Parse(dr["SEG_VALORFRANQUIA"].ToString());
                     TipoSeguro tipo = TipoSeguro.Automóvel;
-                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valor, cNPJ);
+                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
                     seguros.Add(seguro);
                 }
                 Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_CPF], [SEG_VALOR], [SEG_DATAINICIO]," +
@@ -257,9 +257,9 @@ namespace CamadaModelagem.Data
                     double valor = double.Parse(dr["SEG_VALOR"].ToString());
                     DateTime dataInicio = Convert.ToDateTime(dr["SEG_DATAINICIO"].ToString());
                     DateTime dataFim = Convert.ToDateTime(dr["SEG_FIMVIGENCIA"].ToString());
-                    double valorFranquia = double.Parse(dr["SEG_VALOR"].ToString());
+                    double valorFranquia = double.Parse(dr["SEG_VALORFRANQUIA"].ToString());
                     TipoSeguro tipo = TipoSeguro.Automóvel;
-                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valor, cNPJ);
+                    seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
                     seguros.Add(seguro);
                 }
                 Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_CPF], [SEG_VALOR], [SEG_DATAINICIO]," +
