@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CamadaModelagem.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,20 @@ namespace CamadaModelagem.Models
 {
     public class SeguroCobertura
     {
-        public int Id { get; set; }
+        public TipoSeguro Tipo { get; set; }
         public string Descricao { get; set; }
-        public Seguro Seguro { get; set; }
+        public long NumeroApolice { get; set; }
 
         public SeguroCobertura()
         {
 
         }
 
-        public SeguroCobertura(int id,string descricao, Seguro seguro)
+        public SeguroCobertura(TipoSeguro tipo,string descricao, long numeroApolice)
         {
-            Id = id;
+            Tipo = tipo;
             Descricao = descricao;
-            Seguro = seguro;
+            NumeroApolice = numeroApolice;
         }
     }
 }
