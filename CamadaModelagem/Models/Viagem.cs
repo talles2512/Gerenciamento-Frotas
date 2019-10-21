@@ -13,24 +13,22 @@ namespace CamadaModelagem.Models
         public List<Ocupante> Ocupantes { get; set; } = new List<Ocupante>();
         public string Destino { get; set; }
         public DateTime DataSaida { get; set; }
-        public Veiculo Veiculo { get; set; }
-        public Motorista Motorista { get; set; }
-        public ServicoExterno ServicoExterno { get; set; }
+        public string Placa { get; set; }
+        public string CPF { get; set; }
 
         public Viagem()
         {
 
         }
 
-        public Viagem(int requisicao,bool ocupante,string destino,DateTime dataSaida, Veiculo veiculo, Motorista motorista, ServicoExterno servicoExterno)
+        public Viagem(int requisicao,bool ocupante,string destino,DateTime dataSaida, string placa, string cPF)
         {
             Requisicao = requisicao;
             Ocupante = ocupante;
             Destino = destino;
             DataSaida = dataSaida;
-            Veiculo = veiculo;
-            Motorista = motorista;
-            ServicoExterno = servicoExterno;
+            Placa = placa;
+            CPF = cPF;
         }
 
         public void AdicionarOcupante(Ocupante ocupante)

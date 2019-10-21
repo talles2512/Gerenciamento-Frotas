@@ -279,6 +279,7 @@
             this.btnCadastrarViagens.Text = "Cadastrar";
             this.btnCadastrarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarViagens.UseVisualStyleBackColor = false;
+            this.btnCadastrarViagens.Click += new System.EventHandler(this.BtnCadastrarViagens_Click);
             // 
             // gbOcupante
             // 
@@ -636,6 +637,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Viagens";
             this.Text = "Viagens";
+            this.Load += new System.EventHandler(this.Viagens_Load);
             this.tbControlViagens.ResumeLayout(false);
             this.tbPageCadastroViagem.ResumeLayout(false);
             this.gbDadosViagens.ResumeLayout(false);
