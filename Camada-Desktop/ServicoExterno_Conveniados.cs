@@ -114,6 +114,17 @@ namespace CamadaDesktop
                     if (_servicoExternoController.Cadastrar(servicoExterno, servicoExterno.CNPJ))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtCNPJ.Text = "";
+                        txtNomeServico.Text = "";
+                        cbTipo.Text = "";
+                        txtTelefone.Text = "";
+                        txtemail.Text = "";
+                        txtEndereco.Text = "";
+                        rdConveniado.Checked = false;
+                        rdNaoConveniado.Checked = false;
+                        txtValor.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -367,6 +378,17 @@ namespace CamadaDesktop
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         cnpjAntigo = long.MaxValue;
+                        txtCNPJ.Text = "";
+                        txtNomeServico.Text = "";
+                        cbTipo.Text = "";
+                        txtTelefone.Text = "";
+                        txtemail.Text = "";
+                        txtEndereco.Text = "";
+                        rdConveniado.Checked = false;
+                        rdNaoConveniado.Checked = false;
+                        txtValor.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -410,6 +432,17 @@ namespace CamadaDesktop
                         if (_servicoExternoController.Deletar(long.Parse(cnpj)))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
+                            txtCNPJ.Text = "";
+                            txtNomeServico.Text = "";
+                            cbTipo.Text = "";
+                            txtTelefone.Text = "";
+                            txtemail.Text = "";
+                            txtEndereco.Text = "";
+                            rdConveniado.Checked = false;
+                            rdNaoConveniado.Checked = false;
+                            txtValor.Text = "";
+                            dtInicio.Value = DateTime.Now;
+                            dtVencimento.Value = DateTime.Now;
                         }
                     }
                 }

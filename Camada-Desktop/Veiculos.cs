@@ -91,14 +91,14 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.Text = "";
+                        dtAno.Text = DateTime.Now.Year.ToString();
                         cbCombustivel.Text = "";
                         cbCor.Text = "";
                         rdAlugado.Checked = false;
                         rdNaoAlugado.Checked = false;
                         txtValor.Clear();
-                        dtInicio.Text = "";
-                        dtVencimento.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -369,14 +369,14 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.Text = "";
+                        dtAno.Text = DateTime.Now.Year.ToString();
                         cbCombustivel.Text = "";
                         cbCor.Text = "";
                         rdAlugado.Checked = false;
                         rdNaoAlugado.Checked = false;
                         txtValor.Clear();
-                        dtInicio.Text = "";
-                        dtVencimento.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -415,14 +415,14 @@ namespace CamadaDesktop
                             txtMarca.Clear();
                             txtModelo.Clear();
                             txtChassi.Clear();
-                            dtAno.Text = "";
+                            dtAno.Text = DateTime.Now.Year.ToString();
                             cbCombustivel.Text = "";
                             cbCor.Text = "";
                             rdAlugado.Checked = false;
                             rdNaoAlugado.Checked = false;
                             txtValor.Clear();
-                            dtInicio.Text = "";
-                            dtVencimento.Text = "";
+                            dtInicio.Value = DateTime.Now;
+                            dtVencimento.Value = DateTime.Now;
                         }
                     }                   
                 }

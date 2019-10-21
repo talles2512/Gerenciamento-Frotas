@@ -531,13 +531,16 @@ namespace CamadaDesktop
 
                     if (_sinistroController.Deletar(sinistro, id, datahoraantigo))
                     {
-                        MessageBox.Show("Inativação realizada com Sucesso!");
-                        txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                        if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                            txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
                             cbSeguro.Text = "";
                             cbTipo.Text = "";
                             cbItemSegurado.Text = "";
                             dtDataSinistro.Text = "";
+                        }                 
                     }
                 }
             }

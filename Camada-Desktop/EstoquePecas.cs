@@ -208,12 +208,12 @@ namespace CamadaDesktop
             {
                 try
                 {
-                    if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Deseja realmente excluir?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         int id = int.Parse(txtid.Text);
                         if (_estoquePecasController.Deletar(id))
                         {
-                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
                             txtValor.Text = "";
                             txtDesc.Text = "";
                             nudQuantidade.Value = 0;

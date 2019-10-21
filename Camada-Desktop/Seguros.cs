@@ -186,6 +186,15 @@ namespace CamadaDesktop
                         if (_seguroController.Cadastrar(seguro, seguro.Tipo, seguro.NumeroApolice))
                         {
                             MessageBox.Show("Cadastro realizado com Sucesso!");
+                            cbTipo.Text = "";
+                            cbSeguradora.Text = "";
+                            txtNApolice.Text = "";
+                            cbItemSegurado.Text = "";
+                            txtValor.Text = "";
+                            dtInicio.Value = DateTime.Now;
+                            dtfimvigencia.Value = DateTime.Now;
+                            cbFranquia.Text = "";
+                            txtValorFranquia.Text = "";
                         }
                     }
                     catch (RegistroExisteException ex)
@@ -335,6 +344,7 @@ namespace CamadaDesktop
                 if (tbControlSeguros.SelectedTab == tbPageCadastroSeguros)
                 {
                     txtNApoliceConsulta.Text = "";
+                    cbTipoCoberturaConsulta.Text = "";
                     Seguro = null;
                 }
             }
@@ -421,6 +431,15 @@ namespace CamadaDesktop
                             MessageBox.Show("Alteração realizada com Sucesso!");
                             NApoliceAntiga = long.MaxValue;
                             TipoAntigo = "";
+                            cbTipo.Text = "";
+                            cbSeguradora.Text = "";
+                            txtNApolice.Text = "";
+                            cbItemSegurado.Text = "";
+                            txtValor.Text = "";
+                            dtInicio.Value = DateTime.Now;
+                            dtfimvigencia.Value = DateTime.Now;
+                            cbFranquia.Text = "";
+                            txtValorFranquia.Text = "";
                         }
                     }
                     catch (NaoEncontradoException ex)
@@ -478,6 +497,15 @@ namespace CamadaDesktop
                             if (_seguroController.Deletar(tipoSeguro, numeroApolice))
                             {
                                 MessageBox.Show("Exclusão realizada com Sucesso!");
+                                cbTipo.Text = "";
+                                cbSeguradora.Text = "";
+                                txtNApolice.Text = "";
+                                cbItemSegurado.Text = "";
+                                txtValor.Text = "";
+                                dtInicio.Value = DateTime.Now;
+                                dtfimvigencia.Value = DateTime.Now;
+                                cbFranquia.Text = "";
+                                txtValorFranquia.Text = "";
                             }
                         }
                     }
@@ -546,6 +574,9 @@ namespace CamadaDesktop
                     if (_seguroCoberturaController.Cadastrar(seguroCobertura))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        cbTipoCobertura.Text = "";
+                        cbSeguro.Text = "";
+                        txtCoberturaDescricao.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -643,6 +674,7 @@ namespace CamadaDesktop
                 if (txtCoberturaDescricao.Text != "")
                 {
                     txtNApoliceCoberturaConsulta.Text = "";
+                    cbTipoCoberturaConsulta.Text = "";
                     SeguroCobertura = null;
                     dgCoberturaConsulta.DataSource = null;
                 }
@@ -682,6 +714,9 @@ namespace CamadaDesktop
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         NApoliceAntigaCobertura = long.MaxValue;
                         TipoAntigoCobertura = "";
+                        cbTipoCobertura.Text = "";
+                        cbSeguro.Text = "";
+                        txtCoberturaDescricao.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -717,6 +752,9 @@ namespace CamadaDesktop
                         if (_seguroCoberturaController.Deletar(tipoSeguro, numeroApolice))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
+                            cbTipoCobertura.Text = "";
+                            cbSeguro.Text = "";
+                            txtCoberturaDescricao.Text = "";
                         }
                     }
                 }

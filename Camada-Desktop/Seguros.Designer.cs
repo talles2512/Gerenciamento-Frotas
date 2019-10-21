@@ -32,6 +32,7 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosSeguros = new System.Windows.Forms.GroupBox();
+            this.txtNApolice = new System.Windows.Forms.MaskedTextBox();
             this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.txtValorFranquia = new System.Windows.Forms.MaskedTextBox();
@@ -54,6 +55,7 @@
             this.btnCadastrarSeguros = new System.Windows.Forms.Button();
             this.tbPageConsultaSeguros = new System.Windows.Forms.TabPage();
             this.gbConsultaSeguros = new System.Windows.Forms.GroupBox();
+            this.txtNApoliceConsulta = new System.Windows.Forms.MaskedTextBox();
             this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblNApoliceConsulta = new System.Windows.Forms.Label();
@@ -63,6 +65,7 @@
             this.btnConsultarSeguros = new System.Windows.Forms.Button();
             this.tbPageCobertura = new System.Windows.Forms.TabPage();
             this.gbConsultaCobertura = new System.Windows.Forms.GroupBox();
+            this.txtNApoliceCoberturaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblTipoCoberturaConsulta = new System.Windows.Forms.Label();
             this.cbTipoCoberturaConsulta = new System.Windows.Forms.ComboBox();
             this.lblNApoliceCoberturaConsulta = new System.Windows.Forms.Label();
@@ -71,6 +74,7 @@
             this.btnConsultaTodosCobertura = new System.Windows.Forms.Button();
             this.btnConsultaCobertura = new System.Windows.Forms.Button();
             this.gbDadosCobertura = new System.Windows.Forms.GroupBox();
+            this.cbSeguro = new System.Windows.Forms.ComboBox();
             this.cbTipoCobertura = new System.Windows.Forms.ComboBox();
             this.lblTipoCobertura = new System.Windows.Forms.Label();
             this.lblNApoliceCobertura = new System.Windows.Forms.Label();
@@ -79,10 +83,6 @@
             this.btnExcluirCobertura = new System.Windows.Forms.Button();
             this.btnAlterarCobertura = new System.Windows.Forms.Button();
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
-            this.cbSeguro = new System.Windows.Forms.ComboBox();
-            this.txtNApolice = new System.Windows.Forms.MaskedTextBox();
-            this.txtNApoliceCoberturaConsulta = new System.Windows.Forms.MaskedTextBox();
-            this.txtNApoliceConsulta = new System.Windows.Forms.MaskedTextBox();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -148,6 +148,14 @@
             this.gbDadosSeguros.TabIndex = 1;
             this.gbDadosSeguros.TabStop = false;
             this.gbDadosSeguros.Text = "Dados";
+            // 
+            // txtNApolice
+            // 
+            this.txtNApolice.Location = new System.Drawing.Point(11, 119);
+            this.txtNApolice.Mask = "0000000000000000";
+            this.txtNApolice.Name = "txtNApolice";
+            this.txtNApolice.Size = new System.Drawing.Size(197, 32);
+            this.txtNApolice.TabIndex = 62;
             // 
             // cbFranquia
             // 
@@ -393,6 +401,14 @@
             this.gbConsultaSeguros.TabStop = false;
             this.gbConsultaSeguros.Text = "Consulta";
             // 
+            // txtNApoliceConsulta
+            // 
+            this.txtNApoliceConsulta.Location = new System.Drawing.Point(338, 25);
+            this.txtNApoliceConsulta.Mask = "0000000000000000";
+            this.txtNApoliceConsulta.Name = "txtNApoliceConsulta";
+            this.txtNApoliceConsulta.Size = new System.Drawing.Size(197, 32);
+            this.txtNApoliceConsulta.TabIndex = 69;
+            // 
             // cbTipoConsulta
             // 
             this.cbTipoConsulta.FormattingEnabled = true;
@@ -514,6 +530,14 @@
             this.gbConsultaCobertura.TabStop = false;
             this.gbConsultaCobertura.Text = "Consulta";
             // 
+            // txtNApoliceCoberturaConsulta
+            // 
+            this.txtNApoliceCoberturaConsulta.Location = new System.Drawing.Point(336, 25);
+            this.txtNApoliceCoberturaConsulta.Mask = "0000000000000000";
+            this.txtNApoliceCoberturaConsulta.Name = "txtNApoliceCoberturaConsulta";
+            this.txtNApoliceCoberturaConsulta.Size = new System.Drawing.Size(197, 32);
+            this.txtNApoliceCoberturaConsulta.TabIndex = 21;
+            // 
             // lblTipoCoberturaConsulta
             // 
             this.lblTipoCoberturaConsulta.AutoSize = true;
@@ -625,6 +649,14 @@
             this.gbDadosCobertura.TabStop = false;
             this.gbDadosCobertura.Text = "Dados";
             // 
+            // cbSeguro
+            // 
+            this.cbSeguro.FormattingEnabled = true;
+            this.cbSeguro.Location = new System.Drawing.Point(336, 23);
+            this.cbSeguro.Name = "cbSeguro";
+            this.cbSeguro.Size = new System.Drawing.Size(197, 33);
+            this.cbSeguro.TabIndex = 15;
+            // 
             // cbTipoCobertura
             // 
             this.cbTipoCobertura.FormattingEnabled = true;
@@ -725,38 +757,6 @@
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
-            // 
-            // cbSeguro
-            // 
-            this.cbSeguro.FormattingEnabled = true;
-            this.cbSeguro.Location = new System.Drawing.Point(336, 23);
-            this.cbSeguro.Name = "cbSeguro";
-            this.cbSeguro.Size = new System.Drawing.Size(197, 33);
-            this.cbSeguro.TabIndex = 66;
-            // 
-            // txtNApolice
-            // 
-            this.txtNApolice.Location = new System.Drawing.Point(11, 119);
-            this.txtNApolice.Mask = "0000000000000000";
-            this.txtNApolice.Name = "txtNApolice";
-            this.txtNApolice.Size = new System.Drawing.Size(197, 32);
-            this.txtNApolice.TabIndex = 62;
-            // 
-            // txtNApoliceCoberturaConsulta
-            // 
-            this.txtNApoliceCoberturaConsulta.Location = new System.Drawing.Point(336, 25);
-            this.txtNApoliceCoberturaConsulta.Mask = "0000000000000000";
-            this.txtNApoliceCoberturaConsulta.Name = "txtNApoliceCoberturaConsulta";
-            this.txtNApoliceCoberturaConsulta.Size = new System.Drawing.Size(197, 32);
-            this.txtNApoliceCoberturaConsulta.TabIndex = 68;
-            // 
-            // txtNApoliceConsulta
-            // 
-            this.txtNApoliceConsulta.Location = new System.Drawing.Point(338, 25);
-            this.txtNApoliceConsulta.Mask = "0000000000000000";
-            this.txtNApoliceConsulta.Name = "txtNApoliceConsulta";
-            this.txtNApoliceConsulta.Size = new System.Drawing.Size(197, 32);
-            this.txtNApoliceConsulta.TabIndex = 69;
             // 
             // Seguros
             // 

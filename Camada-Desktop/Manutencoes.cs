@@ -104,6 +104,13 @@ namespace CamadaDesktop
                     if (_manutencaoController.Cadastrar(manutencao, manutencao.Placa, manutencao.Tipo, manutencao.Data))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        cbTipo.Text = "";
+                        dtDataManunt.Value = DateTime.Now;
+                        txtValor.Text = "";
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
+                        txtDescricao.Text = "";
+                        cbSituacao.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -227,6 +234,8 @@ namespace CamadaDesktop
                 if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
                 {
                     dtDataManuntConsulta.Value = DateTime.Now;
+                    cbTipoManuntConsulta.Text = "";
+                    cbPlacaConsulta.Text = "";
                     Manutencao = null;
                 }
             }
@@ -282,6 +291,13 @@ namespace CamadaDesktop
                         PlacaAntiga = "";
                         TipoAntigo = "";
                         dataAntiga = new DateTime(2000, 01, 01);
+                        cbTipo.Text = "";
+                        dtDataManunt.Value = DateTime.Now;
+                        txtValor.Text = "";
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
+                        txtDescricao.Text = "";
+                        cbSituacao.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -316,6 +332,13 @@ namespace CamadaDesktop
                         if (_manutencaoController.Deletar(placa, manutencaoTipo, dtDataManunt.Value))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
+                            cbTipo.Text = "";
+                            dtDataManunt.Value = DateTime.Now;
+                            txtValor.Text = "";
+                            cbPlaca.Text = "";
+                            cbServicoExterno.Text = "";
+                            txtDescricao.Text = "";
+                            cbSituacao.Text = "";
                         }
                     }
                 }

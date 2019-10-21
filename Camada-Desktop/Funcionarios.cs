@@ -217,11 +217,11 @@ namespace CamadaDesktop
             {
                 try
                 {
-                    if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Deseja realmente excluir?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (_funcionarioController.Deletar(txtLogin.Text))
                         {
-                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
                             txtnome.Text = "";
                             txtLogin.Text = "";
                             txtSenha.Text = "";

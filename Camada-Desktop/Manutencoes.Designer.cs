@@ -123,7 +123,7 @@
             this.cbSituacao.Location = new System.Drawing.Point(387, 245);
             this.cbSituacao.Name = "cbSituacao";
             this.cbSituacao.Size = new System.Drawing.Size(121, 33);
-            this.cbSituacao.TabIndex = 0;
+            this.cbSituacao.TabIndex = 20;
             // 
             // lblSituacao
             // 
@@ -139,7 +139,7 @@
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(370, 58);
-            this.txtDescricao.TabIndex = 2;
+            this.txtDescricao.TabIndex = 19;
             // 
             // lblDesc
             // 
@@ -241,7 +241,7 @@
             this.btnExcluirManunt.Location = new System.Drawing.Point(244, 401);
             this.btnExcluirManunt.Name = "btnExcluirManunt";
             this.btnExcluirManunt.Size = new System.Drawing.Size(146, 40);
-            this.btnExcluirManunt.TabIndex = 21;
+            this.btnExcluirManunt.TabIndex = 23;
             this.btnExcluirManunt.Text = "Excluir";
             this.btnExcluirManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirManunt.UseVisualStyleBackColor = false;
@@ -260,7 +260,7 @@
             this.btnAlterarManunt.Location = new System.Drawing.Point(244, 355);
             this.btnAlterarManunt.Name = "btnAlterarManunt";
             this.btnAlterarManunt.Size = new System.Drawing.Size(146, 40);
-            this.btnAlterarManunt.TabIndex = 20;
+            this.btnAlterarManunt.TabIndex = 22;
             this.btnAlterarManunt.Text = "Alterar";
             this.btnAlterarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarManunt.UseVisualStyleBackColor = false;
@@ -279,7 +279,7 @@
             this.btnCadastrarManunt.Location = new System.Drawing.Point(119, 309);
             this.btnCadastrarManunt.Name = "btnCadastrarManunt";
             this.btnCadastrarManunt.Size = new System.Drawing.Size(389, 40);
-            this.btnCadastrarManunt.TabIndex = 19;
+            this.btnCadastrarManunt.TabIndex = 21;
             this.btnCadastrarManunt.Text = "Cadastrar";
             this.btnCadastrarManunt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarManunt.UseVisualStyleBackColor = false;
@@ -350,7 +350,7 @@
             this.dtDataManuntConsulta.Location = new System.Drawing.Point(50, 70);
             this.dtDataManuntConsulta.Name = "dtDataManuntConsulta";
             this.dtDataManuntConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataManuntConsulta.Size = new System.Drawing.Size(146, 31);
+            this.dtDataManuntConsulta.Size = new System.Drawing.Size(162, 31);
             this.dtDataManuntConsulta.TabIndex = 16;
             // 
             // cbTipoManuntConsulta

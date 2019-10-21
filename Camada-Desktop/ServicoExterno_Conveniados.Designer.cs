@@ -82,7 +82,7 @@
             this.tbControlConveniados.Name = "tbControlConveniados";
             this.tbControlConveniados.SelectedIndex = 0;
             this.tbControlConveniados.Size = new System.Drawing.Size(644, 557);
-            this.tbControlConveniados.TabIndex = 29;
+            this.tbControlConveniados.TabIndex = 14;
             // 
             // tbPageCadastroConveniados
             // 

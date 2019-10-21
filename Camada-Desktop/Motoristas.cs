@@ -99,6 +99,18 @@ namespace CamadaDesktop
                     if (_motoristaController.Cadastrar(motorista, cNH))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtCPF.Text = "";
+                        txtNome.Text = "";
+                        txtRG.Text = "";
+                        dtDataNascimento.Value = DateTime.Now;
+                        txtEndereco.Text = "";
+                        txtTelefone.Text = "";
+                        txtTelefoneContato.Text = "";
+                        txtCNHnumero.Text = "";
+                        cbCategoriaCNH.Text = "";
+                        cbOrgaoEmissor.Text = "";
+                        dtDataEmissaoCNH.Value = DateTime.Now;
+                        dtDataVencimentoCNH.Value = DateTime.Now;
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -309,6 +321,18 @@ namespace CamadaDesktop
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         cpfantigo = "";
+                        txtCPF.Text = "";
+                        txtNome.Text = "";
+                        txtRG.Text = "";
+                        dtDataNascimento.Value = DateTime.Now;
+                        txtEndereco.Text = "";
+                        txtTelefone.Text = "";
+                        txtTelefoneContato.Text = "";
+                        txtCNHnumero.Text = "";
+                        cbCategoriaCNH.Text = "";
+                        cbOrgaoEmissor.Text = "";
+                        dtDataEmissaoCNH.Value = DateTime.Now;
+                        dtDataVencimentoCNH.Value = DateTime.Now;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -350,6 +374,18 @@ namespace CamadaDesktop
                         if (_motoristaController.Inativar(cpf))
                         {
                             MessageBox.Show("Inativação realizada com Sucesso!");
+                            txtCPF.Text = "";
+                            txtNome.Text = "";
+                            txtRG.Text = "";
+                            dtDataNascimento.Value = DateTime.Now;
+                            txtEndereco.Text = "";
+                            txtTelefone.Text = "";
+                            txtTelefoneContato.Text = "";
+                            txtCNHnumero.Text = "";
+                            cbCategoriaCNH.Text = "";
+                            cbOrgaoEmissor.Text = "";
+                            dtDataEmissaoCNH.Value = DateTime.Now;
+                            dtDataVencimentoCNH.Value = DateTime.Now;
                         }
                     }
                 }
@@ -520,6 +556,7 @@ namespace CamadaDesktop
 
 
                 txtCPFExameConsulta.Text = "";
+                dtDataExameConsulta.Value = DateTime.Now;
                 ExameMedico = null;
                 Motorista = null;
                 dgExameConsulta.ClearSelection();

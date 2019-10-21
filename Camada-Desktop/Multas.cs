@@ -139,6 +139,15 @@ namespace CamadaDesktop
                     if (_multaController.Cadastrar(multa))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        cbPlaca.Text = "";
+                        cbCPF.Text = "";
+                        dtDataMulta.Value = DateTime.Now;
+                        txtvalor.Text = "";
+                        rdPaga.Checked = false;
+                        rdNaoPaga.Checked = false;
+                        dtMultaPaga.Value = DateTime.Now;
+                        txtLocal.Text = "";
+                        txtDesc.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -352,6 +361,15 @@ namespace CamadaDesktop
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         cpfantigo = "";
                         placaantiga = "";
+                        cbPlaca.Text = "";
+                        cbCPF.Text = "";
+                        dtDataMulta.Value = DateTime.Now;
+                        txtvalor.Text = "";
+                        rdPaga.Checked = false;
+                        rdNaoPaga.Checked = false;
+                        dtMultaPaga.Value = DateTime.Now;
+                        txtLocal.Text = "";
+                        txtDesc.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -386,11 +404,20 @@ namespace CamadaDesktop
                 string cpf = cbCPF.SelectedValue.ToString();
                 try
                 {
-                    if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Deseja realmente excluir?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (_multaController.Deletar(placa, cpf, dtDataMulta.Value))
                         {
-                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                            cbPlaca.Text = "";
+                            cbCPF.Text = "";
+                            dtDataMulta.Value = DateTime.Now;
+                            txtvalor.Text = "";
+                            rdPaga.Checked = false;
+                            rdNaoPaga.Checked = false;
+                            dtMultaPaga.Value = DateTime.Now;
+                            txtLocal.Text = "";
+                            txtDesc.Text = "";
                         }
                     }
                 }

@@ -295,11 +295,11 @@ namespace CamadaDesktop
 
                 try
                 {
-                    if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Deseja realmente excluir?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         if (_clienteController.Deletar(cpf))
                         {
-                            MessageBox.Show("Inativação realizada com Sucesso!");
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
                             txtNome.Text = "";
                             txtCPF.Text = "";
                             txtEndereço.Text = "";
