@@ -44,12 +44,12 @@ namespace CamadaDesktop
             return new ViagemController(viagemService);
         }
 
-        private void rdOcupante_CheckedChanged(object sender, EventArgs e)
+        private void rdOcupante_CheckedChanged_1(object sender, EventArgs e)
         {
             gbOcupante.Enabled = true;
         }
 
-        private void rdsemOcupante_CheckedChanged(object sender, EventArgs e)
+        private void rdsemOcupante_CheckedChanged_1(object sender, EventArgs e)
         {
             gbOcupante.Enabled = false;
         }
@@ -80,7 +80,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void BtnCadastrarViagens_Click(object sender, EventArgs e)
+        private void btnCadastrarViagens_Click_1(object sender, EventArgs e)
         {
             if (cbPlaca.Items.Count < 1)
             {

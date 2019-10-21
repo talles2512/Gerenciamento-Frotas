@@ -45,7 +45,7 @@ namespace CamadaDesktop
             ff.Dock = DockStyle.Fill;
             this.panelConteudo.Controls.Add(ff);
             this.panelConteudo.Tag = ff;
-           ff.Show();
+            ff.Show();
         }
 
         private void frmHome_Load(object sender, EventArgs e)

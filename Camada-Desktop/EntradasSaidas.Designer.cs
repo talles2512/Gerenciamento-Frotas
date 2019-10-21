@@ -293,15 +293,15 @@
             // cbTipoConsulta
             // 
             this.cbTipoConsulta.FormattingEnabled = true;
-            this.cbTipoConsulta.Location = new System.Drawing.Point(11, 50);
+            this.cbTipoConsulta.Location = new System.Drawing.Point(50, 25);
             this.cbTipoConsulta.Name = "cbTipoConsulta";
             this.cbTipoConsulta.Size = new System.Drawing.Size(162, 33);
-            this.cbTipoConsulta.TabIndex = 39;
+            this.cbTipoConsulta.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Location = new System.Drawing.Point(6, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 25);
             this.label2.TabIndex = 38;
@@ -310,10 +310,10 @@
             // cbPlacaConsulta
             // 
             this.cbPlacaConsulta.FormattingEnabled = true;
-            this.cbPlacaConsulta.Location = new System.Drawing.Point(179, 50);
+            this.cbPlacaConsulta.Location = new System.Drawing.Point(191, 104);
             this.cbPlacaConsulta.Name = "cbPlacaConsulta";
-            this.cbPlacaConsulta.Size = new System.Drawing.Size(186, 33);
-            this.cbPlacaConsulta.TabIndex = 14;
+            this.cbPlacaConsulta.Size = new System.Drawing.Size(216, 33);
+            this.cbPlacaConsulta.TabIndex = 17;
             // 
             // dtDataHoraEntradaSaidaConsulta
             // 
@@ -321,32 +321,32 @@
             this.dtDataHoraEntradaSaidaConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataHoraEntradaSaidaConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataHoraEntradaSaidaConsulta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dtDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(69, 98);
+            this.dtDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(304, 25);
             this.dtDataHoraEntradaSaidaConsulta.Name = "dtDataHoraEntradaSaidaConsulta";
-            this.dtDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(180, 31);
-            this.dtDataHoraEntradaSaidaConsulta.TabIndex = 17;
+            this.dtDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(311, 31);
+            this.dtDataHoraEntradaSaidaConsulta.TabIndex = 15;
             // 
             // lblDataHoraEntradaSaidaConsulta
             // 
             this.lblDataHoraEntradaSaidaConsulta.AutoSize = true;
-            this.lblDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(6, 101);
+            this.lblDataHoraEntradaSaidaConsulta.Location = new System.Drawing.Point(218, 28);
             this.lblDataHoraEntradaSaidaConsulta.Name = "lblDataHoraEntradaSaidaConsulta";
-            this.lblDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(66, 25);
+            this.lblDataHoraEntradaSaidaConsulta.Size = new System.Drawing.Size(80, 25);
             this.lblDataHoraEntradaSaidaConsulta.TabIndex = 37;
-            this.lblDataHoraEntradaSaidaConsulta.Text = "Data/Hr:";
+            this.lblDataHoraEntradaSaidaConsulta.Text = "Data/Hora:";
             // 
             // cbServicoExternoEntradaSaidaConsulta
             // 
             this.cbServicoExternoEntradaSaidaConsulta.FormattingEnabled = true;
-            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(371, 50);
+            this.cbServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(191, 64);
             this.cbServicoExternoEntradaSaidaConsulta.Name = "cbServicoExternoEntradaSaidaConsulta";
             this.cbServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(216, 33);
-            this.cbServicoExternoEntradaSaidaConsulta.TabIndex = 15;
+            this.cbServicoExternoEntradaSaidaConsulta.TabIndex = 16;
             // 
             // lblServicoExternoEntradaSaidaConsulta
             // 
             this.lblServicoExternoEntradaSaidaConsulta.AutoSize = true;
-            this.lblServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(366, 22);
+            this.lblServicoExternoEntradaSaidaConsulta.Location = new System.Drawing.Point(6, 70);
             this.lblServicoExternoEntradaSaidaConsulta.Name = "lblServicoExternoEntradaSaidaConsulta";
             this.lblServicoExternoEntradaSaidaConsulta.Size = new System.Drawing.Size(179, 25);
             this.lblServicoExternoEntradaSaidaConsulta.TabIndex = 35;
@@ -355,7 +355,7 @@
             // lblPlacaEntradaSaidaConsulta
             // 
             this.lblPlacaEntradaSaidaConsulta.AutoSize = true;
-            this.lblPlacaEntradaSaidaConsulta.Location = new System.Drawing.Point(178, 22);
+            this.lblPlacaEntradaSaidaConsulta.Location = new System.Drawing.Point(81, 107);
             this.lblPlacaEntradaSaidaConsulta.Name = "lblPlacaEntradaSaidaConsulta";
             this.lblPlacaEntradaSaidaConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaEntradaSaidaConsulta.TabIndex = 31;
@@ -372,7 +372,7 @@
             this.btnTrasferirEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirEntradaSaida.Location = new System.Drawing.Point(572, 92);
+            this.btnTrasferirEntradaSaida.Location = new System.Drawing.Point(577, 64);
             this.btnTrasferirEntradaSaida.Name = "btnTrasferirEntradaSaida";
             this.btnTrasferirEntradaSaida.Size = new System.Drawing.Size(38, 40);
             this.btnTrasferirEntradaSaida.TabIndex = 20;
@@ -385,9 +385,9 @@
             this.dgEntradaSaidaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgEntradaSaidaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEntradaSaidaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 138);
+            this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 153);
             this.dgEntradaSaidaConsulta.Name = "dgEntradaSaidaConsulta";
-            this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 301);
+            this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
             this.dgEntradaSaidaConsulta.TabIndex = 21;
             // 
             // btnTodosEntradaSaida
@@ -399,7 +399,7 @@
             this.btnTodosEntradaSaida.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnTodosEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosEntradaSaida.Location = new System.Drawing.Point(407, 92);
+            this.btnTodosEntradaSaida.Location = new System.Drawing.Point(456, 107);
             this.btnTodosEntradaSaida.Name = "btnTodosEntradaSaida";
             this.btnTodosEntradaSaida.Size = new System.Drawing.Size(159, 40);
             this.btnTodosEntradaSaida.TabIndex = 19;
@@ -418,7 +418,7 @@
             this.btnConsultarEntradaSaida.ForeColor = System.Drawing.Color.White;
             this.btnConsultarEntradaSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarEntradaSaida.Image")));
             this.btnConsultarEntradaSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarEntradaSaida.Location = new System.Drawing.Point(255, 92);
+            this.btnConsultarEntradaSaida.Location = new System.Drawing.Point(425, 64);
             this.btnConsultarEntradaSaida.Name = "btnConsultarEntradaSaida";
             this.btnConsultarEntradaSaida.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarEntradaSaida.TabIndex = 18;

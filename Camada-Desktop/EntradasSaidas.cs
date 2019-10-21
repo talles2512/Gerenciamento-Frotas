@@ -121,6 +121,11 @@ namespace CamadaDesktop
                     if (_entradaSaidaController.Cadastrar(entradaSaida, entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.Tipo, entradaSaida.DataHora))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        cbTipo.Text = "";
+                        dtDataHora.Value = DateTime.Now;
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
+                        cbCPF.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -246,6 +251,10 @@ namespace CamadaDesktop
                 {
                     dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
                     EntradaSaida = null;
+                    cbTipoConsulta.Text = "";
+                    cbServicoExternoEntradaSaidaConsulta.Text = "";
+                    cbPlacaConsulta.Text = "";
+                    dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
                 }
             }
         }
@@ -304,6 +313,11 @@ namespace CamadaDesktop
                         PlacaAntiga = "";
                         TipoAntigo = "";
                         dataAntiga = new DateTime(2000, 01, 01);
+                        cbTipo.Text = "";
+                        dtDataHora.Value = DateTime.Now;
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
+                        cbCPF.Text = "";
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -346,6 +360,11 @@ namespace CamadaDesktop
                         if (_entradaSaidaController.Deletar(placa, cNPJ, entradaSaidaTipo, dthora))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
+                            cbTipo.Text = "";
+                            dtDataHora.Value = DateTime.Now;
+                            cbPlaca.Text = "";
+                            cbServicoExterno.Text = "";
+                            cbCPF.Text = "";
                         }
                     }
                 }
