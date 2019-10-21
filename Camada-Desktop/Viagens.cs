@@ -21,6 +21,7 @@ namespace CamadaDesktop
     {
         private readonly ViagemController _viagemController;
         private Viagem Viagem;
+        List<Ocupante> ocupantes = new List<Ocupante>();
         string PlacaAntiga;
         long cnpjAntigo;
         string TipoAntigo;
@@ -62,20 +63,14 @@ namespace CamadaDesktop
                 cbCPF.DisplayMember = "MOTORISTA";
                 cbCPF.ValueMember = "MT_CPF";
 
+                cbPlaca.DataSource = _viagemController.PopularPlacas();
+                cbPlaca.DisplayMember = "MODELO";
+                cbPlaca.ValueMember = "VCL_PLACA";
+
             }
             catch (ConcorrenciaBancoException)
             {
                 cbCPF.DataSource = null;
-            }
-
-            try
-            {
-                cbPlaca.DataSource = _viagemController.PopularPlacas();
-                cbPlaca.DisplayMember = "MODELO";
-                cbPlaca.ValueMember = "VCL_PLACA";
-            }
-            catch (ConcorrenciaBancoException)
-            {
                 cbPlaca.DataSource = null;
             }
         }
@@ -121,6 +116,55 @@ namespace CamadaDesktop
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void BtnAddOcupante_Click(object sender, EventArgs e)
+        {
+            if(txtNomeOcupante.Text == "" || txtCPFOcupante.Text.Length < 11 || txtCPFOcupante.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPFOcupante.Text;
+
+                foreach (string str in strings)
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+                int requisicao = _viagemController.PopularRequisicao();
+
+                Ocupante ocupante = new Ocupante(txtNomeOcupante.Text, long.Parse(cpf), requisicao);
+                listboxOcupantes.Items.Add(ocupante.Nome);
+                ocupantes.Add(ocupante);
+
+                txtNomeOcupante.Text = "";
+                txtCPFOcupante.Text = "";
+            }
+        }
+
+        private void BtnRemoverOcupante_Click(object sender, EventArgs e)
+        {
+            if (txtNomeOcupante.Text == "")
+            {
+                MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                foreach(Ocupante ocupante in ocupantes)
+                {
+                    if(ocupante.Nome == txtNomeOcupante.Text)
+                    {
+                        listboxOcupantes.Items.Remove(ocupante.Nome);
+                        ocupantes.Remove(ocupante);
+                        break;
+                    }
+                }
+
+                txtNomeOcupante.Text = "";
             }
         }
     }

@@ -20,7 +20,7 @@ namespace CamadaModelagem.Data
         public void Cadastrar(Ocupante ocupante) //Exemplo Cadastrar
         {
             string query = "INSERT INTO [dbo].[TB_VIAGENS_OCUPANTES]([VGO_VG_REQ],[VGO_NOME],[VGO_CPF]) " +
-                "VALUES(" + ocupante.Viagem.Requisicao + ", '" + ocupante.Nome + "', " + ocupante.CPF + ")";
+                "VALUES(" + ocupante.Requisicao + ", '" + ocupante.Nome + "', " + ocupante.CPF + ")";
             _banco.ExecutarInstrucao(query);
         }
 
@@ -32,7 +32,7 @@ namespace CamadaModelagem.Data
 
         public void Alterar(Ocupante ocupante, int cpf)
         {
-            string Query = "UPDATE [dbo].[TB_VIAGENS_OCUPANTES] SET [VGO_VG_REQ] = " + ocupante.Viagem.Requisicao + ", [VGO_NOME] = '" + ocupante.Nome + "', [VGO_CPF] = " + ocupante.CPF + " WHERE [VGO_CPF] = " + cpf;
+            string Query = "UPDATE [dbo].[TB_VIAGENS_OCUPANTES] SET [VGO_VG_REQ] = " + ocupante.Requisicao + ", [VGO_NOME] = '" + ocupante.Nome + "', [VGO_CPF] = " + ocupante.CPF + " WHERE [VGO_CPF] = " + cpf;
             _banco.ExecutarInstrucao(Query);
         }
     }

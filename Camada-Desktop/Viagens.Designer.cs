@@ -321,6 +321,7 @@
             this.btnRemoverOcupante.Text = "Remover";
             this.btnRemoverOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRemoverOcupante.UseVisualStyleBackColor = false;
+            this.btnRemoverOcupante.Click += new System.EventHandler(this.BtnRemoverOcupante_Click);
             // 
             // btnAddOcupante
             // 
@@ -339,6 +340,7 @@
             this.btnAddOcupante.Text = "Adicionar";
             this.btnAddOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAddOcupante.UseVisualStyleBackColor = false;
+            this.btnAddOcupante.Click += new System.EventHandler(this.BtnAddOcupante_Click);
             // 
             // listboxOcupantes
             // 
