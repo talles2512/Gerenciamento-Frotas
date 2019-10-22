@@ -100,6 +100,7 @@
             // 
             // btnSeguros
             // 
+            this.btnSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeguros.FlatAppearance.BorderSize = 0;
             this.btnSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -128,6 +129,7 @@
             // 
             // pbLogo
             // 
+            this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
             this.pbLogo.Location = new System.Drawing.Point(-3, 7);
             this.pbLogo.Name = "pbLogo";
@@ -140,6 +142,7 @@
             // 
             this.btnViagem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnViagem.BackgroundImage")));
             this.btnViagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnViagem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnViagem.FlatAppearance.BorderSize = 0;
             this.btnViagem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnViagem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -168,6 +171,7 @@
             // 
             // btnVeiculos
             // 
+            this.btnVeiculos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVeiculos.FlatAppearance.BorderSize = 0;
             this.btnVeiculos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -185,6 +189,7 @@
             // 
             // btnSair
             // 
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -203,6 +208,7 @@
             // 
             this.btnClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClientes.BackgroundImage")));
             this.btnClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClientes.FlatAppearance.BorderSize = 0;
             this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -221,6 +227,7 @@
             // 
             this.btnFuncionarios.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFuncionarios.BackgroundImage")));
             this.btnFuncionarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFuncionarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFuncionarios.FlatAppearance.BorderSize = 0;
             this.btnFuncionarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnFuncionarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -237,6 +244,7 @@
             // 
             // btnEstoque
             // 
+            this.btnEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEstoque.FlatAppearance.BorderSize = 0;
             this.btnEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -254,6 +262,7 @@
             // 
             // btnSinistros
             // 
+            this.btnSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSinistros.FlatAppearance.BorderSize = 0;
             this.btnSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -271,6 +280,7 @@
             // 
             // btnMultas
             // 
+            this.btnMultas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMultas.FlatAppearance.BorderSize = 0;
             this.btnMultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnMultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -288,6 +298,7 @@
             // 
             // btnAbastecimento
             // 
+            this.btnAbastecimento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAbastecimento.FlatAppearance.BorderSize = 0;
             this.btnAbastecimento.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAbastecimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -305,6 +316,7 @@
             // 
             // btnManutencao
             // 
+            this.btnManutencao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnManutencao.FlatAppearance.BorderSize = 0;
             this.btnManutencao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnManutencao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -322,6 +334,7 @@
             // 
             // btnConveniados
             // 
+            this.btnConveniados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConveniados.FlatAppearance.BorderSize = 0;
             this.btnConveniados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConveniados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -339,6 +352,7 @@
             // 
             // btnEntradaSaida
             // 
+            this.btnEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -356,6 +370,7 @@
             // 
             // btnMotorista
             // 
+            this.btnMotorista.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMotorista.FlatAppearance.BorderSize = 0;
             this.btnMotorista.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnMotorista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -428,6 +443,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(256, 7);
             this.pictureBox1.Name = "pictureBox1";

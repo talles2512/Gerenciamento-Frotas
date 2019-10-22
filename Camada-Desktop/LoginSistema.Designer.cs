@@ -136,6 +136,7 @@
             // 
             // btnSair
             // 
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -153,6 +154,7 @@
             // btnLoginSistema
             // 
             this.btnLoginSistema.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnLoginSistema.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLoginSistema.FlatAppearance.BorderSize = 0;
             this.btnLoginSistema.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnLoginSistema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

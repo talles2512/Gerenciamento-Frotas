@@ -33,11 +33,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelOpc = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.iconcerrar = new System.Windows.Forms.PictureBox();
             this.btncoramarelo = new CamadaDesktop.RoundBtn();
             this.btncorvermelho = new CamadaDesktop.RoundBtn();
             this.btncorverde = new CamadaDesktop.RoundBtn();
             this.btncorazul = new CamadaDesktop.RoundBtn();
+            this.iconcerrar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelOpc.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,6 +88,54 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cores";
             // 
+            // btncoramarelo
+            // 
+            this.btncoramarelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btncoramarelo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncoramarelo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btncoramarelo.Location = new System.Drawing.Point(184, 31);
+            this.btncoramarelo.Name = "btncoramarelo";
+            this.btncoramarelo.Size = new System.Drawing.Size(52, 52);
+            this.btncoramarelo.TabIndex = 10;
+            this.btncoramarelo.UseVisualStyleBackColor = false;
+            this.btncoramarelo.Click += new System.EventHandler(this.btncoramarelo_Click);
+            // 
+            // btncorvermelho
+            // 
+            this.btncorvermelho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btncorvermelho.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncorvermelho.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btncorvermelho.Location = new System.Drawing.Point(126, 31);
+            this.btncorvermelho.Name = "btncorvermelho";
+            this.btncorvermelho.Size = new System.Drawing.Size(52, 52);
+            this.btncorvermelho.TabIndex = 9;
+            this.btncorvermelho.UseVisualStyleBackColor = false;
+            this.btncorvermelho.Click += new System.EventHandler(this.btncorvermelho_Click);
+            // 
+            // btncorverde
+            // 
+            this.btncorverde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btncorverde.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncorverde.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btncorverde.Location = new System.Drawing.Point(68, 31);
+            this.btncorverde.Name = "btncorverde";
+            this.btncorverde.Size = new System.Drawing.Size(52, 52);
+            this.btncorverde.TabIndex = 8;
+            this.btncorverde.UseVisualStyleBackColor = false;
+            this.btncorverde.Click += new System.EventHandler(this.btncorverde_Click);
+            // 
+            // btncorazul
+            // 
+            this.btncorazul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btncorazul.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncorazul.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btncorazul.Location = new System.Drawing.Point(10, 31);
+            this.btncorazul.Name = "btncorazul";
+            this.btncorazul.Size = new System.Drawing.Size(52, 52);
+            this.btncorazul.TabIndex = 0;
+            this.btncorazul.UseVisualStyleBackColor = false;
+            this.btncorazul.Click += new System.EventHandler(this.btncorazul_Click);
+            // 
             // iconcerrar
             // 
             this.iconcerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -100,50 +148,6 @@
             this.iconcerrar.TabIndex = 8;
             this.iconcerrar.TabStop = false;
             this.iconcerrar.Click += new System.EventHandler(this.iconcerrar_Click);
-            // 
-            // btncoramarelo
-            // 
-            this.btncoramarelo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btncoramarelo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btncoramarelo.Location = new System.Drawing.Point(184, 31);
-            this.btncoramarelo.Name = "btncoramarelo";
-            this.btncoramarelo.Size = new System.Drawing.Size(52, 52);
-            this.btncoramarelo.TabIndex = 10;
-            this.btncoramarelo.UseVisualStyleBackColor = false;
-            this.btncoramarelo.Click += new System.EventHandler(this.btncoramarelo_Click);
-            // 
-            // btncorvermelho
-            // 
-            this.btncorvermelho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btncorvermelho.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btncorvermelho.Location = new System.Drawing.Point(126, 31);
-            this.btncorvermelho.Name = "btncorvermelho";
-            this.btncorvermelho.Size = new System.Drawing.Size(52, 52);
-            this.btncorvermelho.TabIndex = 9;
-            this.btncorvermelho.UseVisualStyleBackColor = false;
-            this.btncorvermelho.Click += new System.EventHandler(this.btncorvermelho_Click);
-            // 
-            // btncorverde
-            // 
-            this.btncorverde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btncorverde.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btncorverde.Location = new System.Drawing.Point(68, 31);
-            this.btncorverde.Name = "btncorverde";
-            this.btncorverde.Size = new System.Drawing.Size(52, 52);
-            this.btncorverde.TabIndex = 8;
-            this.btncorverde.UseVisualStyleBackColor = false;
-            this.btncorverde.Click += new System.EventHandler(this.btncorverde_Click);
-            // 
-            // btncorazul
-            // 
-            this.btncorazul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btncorazul.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btncorazul.Location = new System.Drawing.Point(10, 31);
-            this.btncorazul.Name = "btncorazul";
-            this.btncorazul.Size = new System.Drawing.Size(52, 52);
-            this.btncorazul.TabIndex = 0;
-            this.btncorazul.UseVisualStyleBackColor = false;
-            this.btncorazul.Click += new System.EventHandler(this.btncorazul_Click);
             // 
             // Opcoes
             // 
