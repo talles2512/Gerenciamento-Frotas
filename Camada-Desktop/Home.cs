@@ -48,9 +48,22 @@ namespace CamadaDesktop
             ff.Show();
         }
 
-        private void frmHome_Load(object sender, EventArgs e)
+        public void frmHome_Load(object sender, EventArgs e)
         {
             pbLogo_Click(null, e);
+
+            tooltipopc.SetToolTip(this.opc, "Opções");
+            tooltipopc.Hide(opc);
+            tooltipminimizar.SetToolTip(this.iconminimizar, "Minimizar");
+            tooltipminimizar.Hide(iconminimizar);
+            tooltipfechar.SetToolTip(this.iconcerrar, "Fechar");
+            tooltipfechar.Hide(iconcerrar);
+            tooltiplogo.SetToolTip(this.pbLogo, "Rertonar ao Menu");
+            tooltiplogo.Hide(pbLogo);
+
+            Opcoes frmopc = new Opcoes();
+            frmopc.Opcoes_Load(this, new EventArgs());
+            MenuVertical.BackColor = frmopc.RecebeCor();
         }
 
         private void btnVeiculos_Click(object sender, EventArgs e)
@@ -141,6 +154,12 @@ namespace CamadaDesktop
             label2.Text = "Seguros";
         }
 
+        private void opc_Click(object sender, EventArgs e)
+        {
+            Opcoes frmopc = new Opcoes();
+            frmopc.ShowDialog();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (MenuVertical.Width == 250)
@@ -198,7 +217,7 @@ namespace CamadaDesktop
 
         private void lblver_Click(object sender, EventArgs e)
         {
-            //Erik INGLESSON
+            //ver 1.0
         }
     }
 }

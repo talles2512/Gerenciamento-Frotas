@@ -57,12 +57,18 @@
             this.ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sairOpcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opc = new System.Windows.Forms.PictureBox();
+            this.tooltipopc = new System.Windows.Forms.ToolTip(this.components);
+            this.tooltipfechar = new System.Windows.Forms.ToolTip(this.components);
+            this.tooltipminimizar = new System.Windows.Forms.ToolTip(this.components);
+            this.tooltiplogo = new System.Windows.Forms.ToolTip(this.components);
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconcerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.opc)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuVertical
@@ -453,6 +459,19 @@
             this.loggoutToolStripMenuItem.Text = "Encerrar";
             this.loggoutToolStripMenuItem.Click += new System.EventHandler(this.loggoutToolStripMenuItem_Click);
             // 
+            // opc
+            // 
+            this.opc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.opc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.opc.Image = ((System.Drawing.Image)(resources.GetObject("opc.Image")));
+            this.opc.Location = new System.Drawing.Point(899, 681);
+            this.opc.Name = "opc";
+            this.opc.Size = new System.Drawing.Size(18, 18);
+            this.opc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.opc.TabIndex = 8;
+            this.opc.TabStop = false;
+            this.opc.Click += new System.EventHandler(this.opc_Click);
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -460,6 +479,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(929, 709);
             this.ControlBox = false;
+            this.Controls.Add(this.opc);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.iconcerrar);
             this.Controls.Add(this.iconminimizar);
@@ -481,6 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconcerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.opc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,6 +536,11 @@
         private System.Windows.Forms.ToolStripMenuItem sairOpcToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loggoutToolStripMenuItem;
         private System.Windows.Forms.Button btnSeguros;
+        private System.Windows.Forms.PictureBox opc;
+        private System.Windows.Forms.ToolTip tooltipopc;
+        private System.Windows.Forms.ToolTip tooltipfechar;
+        private System.Windows.Forms.ToolTip tooltipminimizar;
+        private System.Windows.Forms.ToolTip tooltiplogo;
     }
 }
 
