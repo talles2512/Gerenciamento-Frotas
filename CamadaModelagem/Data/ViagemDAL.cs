@@ -24,7 +24,7 @@ namespace CamadaModelagem.Data
             int ocupante = Convert.ToInt32(viagem.Ocupante);
             string query = "INSERT INTO [dbo].[TB_VIAGENS] ([VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA])"
                 + "VALUES (" + viagem.Requisicao + ",'" + viagem.Placa + "', '" + viagem.CPF + "', " + ocupante
-                + ", '" + viagem.Destino + "', '" + viagem.DataSaida.ToShortDateString() + "')";
+                + ", '" + viagem.Destino + "', '" + viagem.DataSaida.ToString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

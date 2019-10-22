@@ -13,10 +13,12 @@ namespace CamadaModelagem.Services
     public class ViagemService
     {
         private readonly ViagemDAL _viagemDAL;
+        private readonly OcupanteDAL _ocupanteDAL;
 
-        public ViagemService(ViagemDAL viagemDAL)
+        public ViagemService(ViagemDAL viagemDAL, OcupanteDAL ocupanteDAL)
         {
             _viagemDAL = viagemDAL;
+            _ocupanteDAL = ocupanteDAL;
         }
 
         public bool Cadastrar(Viagem viagem, int requisicao)
@@ -29,7 +31,28 @@ namespace CamadaModelagem.Services
                     throw new RegistroExisteException("Já existe uma Manutenção com esses dados no sistema!");
                 }
 
-                return _viagemDAL.Cadastrar(viagem);
+                if (_viagemDAL.Cadastrar(viagem))
+                {
+                    if (viagem.Ocupantes.Any())
+                    {
+                        foreach(Ocupante ocupante in viagem.Ocupantes)
+                        {
+                            if (!_ocupanteDAL.Cadastrar(ocupante))
+                            {
+                                break;
+                            }
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (ConcorrenciaBancoException e)
             {
@@ -41,7 +64,9 @@ namespace CamadaModelagem.Services
         {
             try
             {
-                return _viagemDAL.BuscarViagem(requisicao);
+                Viagem viagem = _viagemDAL.BuscarViagem(requisicao);
+                viagem.Ocupantes = _ocupanteDAL.BuscarOcupantes(requisicao);
+                return viagem;
             }
             catch (ConcorrenciaBancoException e)
             {

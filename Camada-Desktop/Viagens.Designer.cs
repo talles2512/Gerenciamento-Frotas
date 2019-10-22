@@ -60,7 +60,7 @@
             this.dgViagensConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodasViagens = new System.Windows.Forms.Button();
             this.btnConsultarViagens = new System.Windows.Forms.Button();
-            this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
+            this.txtRequisicaoConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblreqConsulta = new System.Windows.Forms.Label();
             this.tbPageControlOcupantes = new System.Windows.Forms.TabPage();
             this.gbConsultaExame = new System.Windows.Forms.GroupBox();
@@ -307,6 +307,7 @@
             // btnRemoverOcupante
             // 
             this.btnRemoverOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRemoverOcupante.Enabled = false;
             this.btnRemoverOcupante.FlatAppearance.BorderSize = 0;
             this.btnRemoverOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnRemoverOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -350,6 +351,7 @@
             this.listboxOcupantes.Name = "listboxOcupantes";
             this.listboxOcupantes.Size = new System.Drawing.Size(378, 104);
             this.listboxOcupantes.TabIndex = 24;
+            this.listboxOcupantes.SelectedIndexChanged += new System.EventHandler(this.ListboxOcupantes_SelectedIndexChanged);
             // 
             // lblCPFOcupante
             // 
@@ -401,7 +403,7 @@
             this.gbConsultaViagens.Controls.Add(this.dgViagensConsulta);
             this.gbConsultaViagens.Controls.Add(this.btnTodasViagens);
             this.gbConsultaViagens.Controls.Add(this.btnConsultarViagens);
-            this.gbConsultaViagens.Controls.Add(this.txtPlacaConsulta);
+            this.gbConsultaViagens.Controls.Add(this.txtRequisicaoConsulta);
             this.gbConsultaViagens.Controls.Add(this.lblreqConsulta);
             this.gbConsultaViagens.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConsultaViagens.Location = new System.Drawing.Point(8, 10);
@@ -473,14 +475,15 @@
             this.btnConsultarViagens.Text = "    Consultar";
             this.btnConsultarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarViagens.UseVisualStyleBackColor = false;
+            this.btnConsultarViagens.Click += new System.EventHandler(this.BtnConsultarViagens_Click);
             // 
-            // txtPlacaConsulta
+            // txtRequisicaoConsulta
             // 
-            this.txtPlacaConsulta.Location = new System.Drawing.Point(86, 31);
-            this.txtPlacaConsulta.Mask = "999999999";
-            this.txtPlacaConsulta.Name = "txtPlacaConsulta";
-            this.txtPlacaConsulta.Size = new System.Drawing.Size(171, 32);
-            this.txtPlacaConsulta.TabIndex = 14;
+            this.txtRequisicaoConsulta.Location = new System.Drawing.Point(86, 31);
+            this.txtRequisicaoConsulta.Mask = "999999999";
+            this.txtRequisicaoConsulta.Name = "txtRequisicaoConsulta";
+            this.txtRequisicaoConsulta.Size = new System.Drawing.Size(171, 32);
+            this.txtRequisicaoConsulta.TabIndex = 14;
             // 
             // lblreqConsulta
             // 
@@ -617,7 +620,7 @@
         private System.Windows.Forms.DataGridView dgViagensConsulta;
         private System.Windows.Forms.Button btnTodasViagens;
         private System.Windows.Forms.Button btnConsultarViagens;
-        private System.Windows.Forms.MaskedTextBox txtPlacaConsulta;
+        private System.Windows.Forms.MaskedTextBox txtRequisicaoConsulta;
         private System.Windows.Forms.Label lblreqConsulta;
         private System.Windows.Forms.TabPage tbPageControlOcupantes;
         private System.Windows.Forms.GroupBox gbConsultaExame;
