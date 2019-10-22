@@ -14,7 +14,6 @@ namespace CamadaDesktop
     {
         int x = 0;
         int y = 0;
-        Color cor;
 
         public Opcoes()
         {
@@ -39,44 +38,39 @@ namespace CamadaDesktop
 
         public void Opcoes_Load(object sender, EventArgs e)
         {
-            cor = panelOpc.BackColor;
+            panelOpc.BackColor = Properties.Settings.Default.myColor;
         }
 
         private void iconcerrar_Click(object sender, EventArgs e)
         {
-            Opcoes_Load(this, new EventArgs());
-            frmHome frmhome = new frmHome();
-            frmhome.frmHome_Load(this, new EventArgs());
+            Properties.Settings.Default.Save();
             this.Close();
-        }
-
-        public Color RecebeCor()
-        {
-            return cor;
+            frmHome home = new frmHome();
+            home.frmHome_Load(this, new EventArgs());
         }
 
         private void btncorazul_Click(object sender, EventArgs e)
         {
             panelOpc.BackColor = Color.FromArgb(0, 122, 204);
-            cor = panelOpc.BackColor;
+            Properties.Settings.Default.myColor = Color.FromArgb(0, 122, 204);
         }
 
         private void btncorverde_Click(object sender, EventArgs e)
         {
             panelOpc.BackColor = Color.FromArgb(0, 64, 0);
-            cor = panelOpc.BackColor;
+            Properties.Settings.Default.myColor = Color.FromArgb(0, 64, 0);
         }
 
         private void btncorvermelho_Click(object sender, EventArgs e)
         {
             panelOpc.BackColor = Color.FromArgb(192, 0, 0);
-            cor = panelOpc.BackColor;
+            Properties.Settings.Default.myColor = Color.FromArgb(192, 0, 0);
         }
 
         private void btncoramarelo_Click(object sender, EventArgs e)
         {
             panelOpc.BackColor = Color.FromArgb(192, 192, 0);
-            cor = panelOpc.BackColor;
+            Properties.Settings.Default.myColor = Color.FromArgb(192, 192, 0);
         }
     }
 }

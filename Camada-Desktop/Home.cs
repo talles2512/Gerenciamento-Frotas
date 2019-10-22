@@ -58,12 +58,12 @@ namespace CamadaDesktop
             tooltipminimizar.Hide(iconminimizar);
             tooltipfechar.SetToolTip(this.iconcerrar, "Fechar");
             tooltipfechar.Hide(iconcerrar);
-            tooltiplogo.SetToolTip(this.pbLogo, "Rertonar ao Menu");
+            tooltiplogo.SetToolTip(this.pbLogo, "Retornar ao Menu");
             tooltiplogo.Hide(pbLogo);
+            tooltipminmenu.SetToolTip(this.pictureBox1, "Minimizar Menu");
+            tooltipminmenu.Hide(pictureBox1);
 
-            Opcoes frmopc = new Opcoes();
-            frmopc.Opcoes_Load(this, new EventArgs());
-            MenuVertical.BackColor = frmopc.RecebeCor();
+            MenuVertical.BackColor = Properties.Settings.Default.myColor;
         }
 
         private void btnVeiculos_Click(object sender, EventArgs e)

@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Drawing;
+
 namespace CamadaDesktop.Properties
 {
 
@@ -18,6 +20,7 @@ namespace CamadaDesktop.Properties
     {
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        internal Color myColor = Color.FromArgb(0, 122, 204);
 
         public static Settings Default
         {
