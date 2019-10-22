@@ -457,6 +457,7 @@
             this.btnTodasViagens.Text = "Consultar Todos";
             this.btnTodasViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodasViagens.UseVisualStyleBackColor = false;
+            this.btnTodasViagens.Click += new System.EventHandler(this.BtnTodasViagens_Click);
             // 
             // btnConsultarViagens
             // 

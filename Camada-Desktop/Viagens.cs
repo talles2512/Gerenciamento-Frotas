@@ -78,7 +78,7 @@ namespace CamadaDesktop
 
         private void btnCadastrarViagens_Click_1(object sender, EventArgs e)
         {
-            if(cbPlaca.Items.Count < 1)
+            if (cbPlaca.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -126,7 +126,7 @@ namespace CamadaDesktop
 
         private void BtnAddOcupante_Click(object sender, EventArgs e)
         {
-            if(txtNomeOcupante.Text == "" || txtCPFOcupante.Text.Length < 11 || txtCPFOcupante.Text == "   .   .   -")
+            if (txtNomeOcupante.Text == "" || txtCPFOcupante.Text.Length < 11 || txtCPFOcupante.Text == "   .   .   -")
             {
                 MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -159,9 +159,9 @@ namespace CamadaDesktop
             }
             else
             {
-                foreach(Ocupante ocupante in ocupantes)
+                foreach (Ocupante ocupante in ocupantes)
                 {
-                    if(ocupante.Nome == listboxOcupantes.SelectedItem.ToString())
+                    if (ocupante.Nome == listboxOcupantes.SelectedItem.ToString())
                     {
                         listboxOcupantes.Items.Remove(ocupante.Nome);
                         ocupantes.Remove(ocupante);
@@ -180,7 +180,7 @@ namespace CamadaDesktop
 
         private void BtnConsultarViagens_Click(object sender, EventArgs e)
         {
-            if(txtRequisicaoConsulta.Text == "")
+            if (txtRequisicaoConsulta.Text == "")
             {
                 MessageBox.Show("Preencha os campos corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -225,6 +225,41 @@ namespace CamadaDesktop
                 {
                     MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+            }
+        }
+
+        private void BtnTodasViagens_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Viagem> viagens = _viagemController.BuscarTodos();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Código Requisição", typeof(string));
+                dt.Columns.Add("Motorista - CPF", typeof(string));
+                dt.Columns.Add("Ocupantes", typeof(string));
+                dt.Columns.Add("Destino", typeof(string));
+                dt.Columns.Add("Data/Hora Saída", typeof(DateTime));
+
+                foreach (Viagem viagem in viagens)
+                {
+                    string existeOcupantes = null;
+
+                    if (viagem.Ocupante)
+                    {
+                        existeOcupantes = "Sim";
+                    }
+                    else
+                    {
+                        existeOcupantes = "Não";
+                    }
+                    dt.Rows.Add(viagem.Requisicao, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+
+                }
+                dgViagensConsulta.DataSource = dt;
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
