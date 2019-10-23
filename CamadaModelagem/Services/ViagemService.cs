@@ -28,7 +28,7 @@ namespace CamadaModelagem.Services
                 Viagem obj = _viagemDAL.BuscarViagem(requisicao);
                 if (obj != null)
                 {
-                    throw new RegistroExisteException("Já existe uma Manutenção com esses dados no sistema!");
+                    throw new RegistroExisteException("Já existe uma Viagem com esses dados no sistema!");
                 }
 
                 if (_viagemDAL.Cadastrar(viagem))
@@ -92,10 +92,17 @@ namespace CamadaModelagem.Services
         {
             try
             {
-                if (_viagemDAL.Deletar(requisicao))
+                if (_ocupanteDAL.Deletar(requisicao))
                 {
-                    return true;
-                }
+                    if (_viagemDAL.Deletar(requisicao))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        throw new IntegridadeException("Viagem não pode ser deletada, pois ainda está vinculada à outros serviços.");
+                    }
+                }   
                 else
                 {
                     throw new IntegridadeException("Viagem não pode ser deletada, pois ainda está vinculada à outros serviços.");

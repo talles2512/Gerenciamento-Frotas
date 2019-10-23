@@ -37,7 +37,7 @@ namespace CamadaModelagem.Data
 
         public bool Deletar(int requisicao)
         {
-            string Query = "DELETE [dbo].[TB_VIAGENS] WHERE [VGO_VG_REQ] = " + requisicao;
+            string Query = "DELETE [dbo].[TB_VIAGENS] WHERE [VG_REQ] = " + requisicao;
             try
             {
                 return _banco.ExecutarInstrucao(Query);

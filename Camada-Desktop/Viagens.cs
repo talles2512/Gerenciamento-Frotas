@@ -388,18 +388,5 @@ namespace CamadaDesktop
                 }
             }
         }
-
-        public void AtualizarCor()
-        {
-            btnCadastrarViagens.BackColor = Properties.Settings.Default.myColor;
-            btnConsultarViagens.BackColor = Properties.Settings.Default.myColor;
-            btnTodasViagens.BackColor = Properties.Settings.Default.myColor;
-            btnTrasferirViagens.BackColor = Properties.Settings.Default.myColor;
-            btnAlterarViagens.BackColor = Properties.Settings.Default.myColor;
-            btnAddOcupante.BackColor = Properties.Settings.Default.myColor;
-            btnRemoverOcupante.BackColor = Properties.Settings.Default.myColor;
-            btnConsultaOcupante.BackColor = Properties.Settings.Default.myColor;
-            btnConsultaTodosOcupante.BackColor = Properties.Settings.Default.myColor;
-        }
     }
 }
