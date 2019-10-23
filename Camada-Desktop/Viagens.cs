@@ -386,5 +386,51 @@ namespace CamadaDesktop
                 }
             }
         }
+
+        private void BtnExcluirViagens_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (cbCPF.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                int requisicao;
+
+                if (RequisicaoAntiga != int.MaxValue)
+                {
+                    requisicao = RequisicaoAntiga;
+                }
+                else
+                {
+                    requisicao = _viagemController.PopularRequisicao();
+                }
+
+                try
+                {
+                    if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_viagemController.Deletar(requisicao))
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                            RequisicaoAntiga = int.MaxValue;
+                        }
+                    }
+                }
+                catch (IntegridadeException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

@@ -157,6 +157,7 @@
             // rdsemOcupante
             // 
             this.rdsemOcupante.AutoSize = true;
+            this.rdsemOcupante.Checked = true;
             this.rdsemOcupante.Location = new System.Drawing.Point(134, 157);
             this.rdsemOcupante.Name = "rdsemOcupante";
             this.rdsemOcupante.Size = new System.Drawing.Size(116, 29);
@@ -173,7 +174,6 @@
             this.rdOcupante.Name = "rdOcupante";
             this.rdOcupante.Size = new System.Drawing.Size(116, 29);
             this.rdOcupante.TabIndex = 18;
-            this.rdOcupante.TabStop = true;
             this.rdOcupante.Text = "Com Ocupante";
             this.rdOcupante.UseVisualStyleBackColor = true;
             this.rdOcupante.CheckedChanged += new System.EventHandler(this.rdOcupante_CheckedChanged_1);
@@ -249,6 +249,7 @@
             this.btnExcluirViagens.Text = "Excluir";
             this.btnExcluirViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirViagens.UseVisualStyleBackColor = false;
+            this.btnExcluirViagens.Click += new System.EventHandler(this.BtnExcluirViagens_Click);
             // 
             // btnAlterarViagens
             // 
