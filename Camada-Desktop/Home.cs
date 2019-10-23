@@ -63,7 +63,7 @@ namespace CamadaDesktop
             tooltipminmenu.SetToolTip(this.pictureBox1, "Minimizar Menu");
             tooltipminmenu.Hide(pictureBox1);
 
-            MenuVertical.BackColor = Properties.Settings.Default.myColor;
+            AtualizarCor();
         }
 
         private void btnVeiculos_Click(object sender, EventArgs e)
@@ -156,9 +156,21 @@ namespace CamadaDesktop
 
         private void opc_Click(object sender, EventArgs e)
         {
-            Opcoes frmopc = new Opcoes();
+            Opcoes frmopc = new Opcoes();          
+            frmopc.FormClosed += new FormClosedEventHandler(fecharopc);
             frmopc.ShowDialog();
         }
+
+        private void fecharopc(object sender, FormClosedEventArgs e)
+        {
+            AtualizarCor();
+        }
+
+        public void AtualizarCor()
+        {
+            MenuVertical.BackColor = Properties.Settings.Default.myColor;
+        }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -201,9 +213,9 @@ namespace CamadaDesktop
         {
             if (MessageBox.Show("Deseja Realmente Deslogar?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Close();
-                LoginSistema login = new LoginSistema();
-                login.Show();
+                this.Close();
+                //LoginSistema login = new LoginSistema();
+                //login.Show();
             }
         }
 

@@ -87,6 +87,7 @@ namespace CamadaDesktop
             cbTipoCobertura.DataSource = Enum.GetValues(typeof(TipoSeguro));
             cbTipoCoberturaConsulta.DataSource = Enum.GetValues(typeof(TipoSeguro));
 
+            AtualizarCor();
         }
 
         private void CbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -767,6 +768,20 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarSeguros.BackColor = Properties.Settings.Default.myColor;
+            btnCadastrarCobertura.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarSeguros.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaCobertura.BackColor = Properties.Settings.Default.myColor;
+            btnTodosSeguros.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaTodosCobertura.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirSeguros.BackColor = Properties.Settings.Default.myColor;
+            btnTransfereCobertura.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarSeguros.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarCobertura.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

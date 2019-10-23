@@ -45,8 +45,6 @@ namespace CamadaDesktop
         {
             Properties.Settings.Default.Save();
             this.Close();
-            frmHome home = new frmHome();
-            home.frmHome_Load(this, new EventArgs());
         }
 
         private void btncorazul_Click(object sender, EventArgs e)

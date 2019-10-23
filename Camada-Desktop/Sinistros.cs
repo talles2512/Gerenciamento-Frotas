@@ -59,6 +59,7 @@ namespace CamadaDesktop
         {
             cbTipo.DataSource = Enum.GetValues(typeof(ItemSegurado));
             cbTipoConsulta.DataSource = Enum.GetValues(typeof(ItemSegurado));
+            AtualizarCor();
         }
 
         private void cbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -552,6 +553,15 @@ namespace CamadaDesktop
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarSinistros.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarSinistros.BackColor = Properties.Settings.Default.myColor;
+            btnTodosSinistros.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirSinistros.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarSinistros.BackColor = Properties.Settings.Default.myColor;
         }
 
     }

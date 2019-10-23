@@ -38,6 +38,11 @@ namespace CamadaDesktop
             return new ClienteController(clienteService);
         }
 
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+            AtualizarCor();
+        }
+
         private void btnCadastrarClientes_Click(object sender, EventArgs e)
         {
             if (txtNome.Text == "" || txtCPF.Text == "" || txtCPF.Text.Length < 12 || txtRG.Text == "" || txtTelefone.Text == "" || txtEndereço.Text == "" || txtemail.Text == "")
@@ -319,6 +324,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarClientes.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarClientes.BackColor = Properties.Settings.Default.myColor;
+            btnTodosClientes.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirClientes.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarClientes.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

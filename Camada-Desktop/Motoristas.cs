@@ -411,6 +411,7 @@ namespace CamadaDesktop
         private void Motoristas_Load(object sender, EventArgs e)
         {
             cbSituacaoExame.DataSource = Enum.GetValues(typeof(SituacaoExameMedico));
+            AtualizarCor();
         }
 
         private void btnCadastrarExame_Click(object sender, EventArgs e)
@@ -670,6 +671,21 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarMotorista.BackColor = Properties.Settings.Default.myColor;
+            btnCadastrarExame.BackColor = Properties.Settings.Default.myColor;
+            btnAddExameMedico.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarMotorista.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaExame.BackColor = Properties.Settings.Default.myColor;
+            btnTodosMotorista.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaTodosExame.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirMotorista.BackColor = Properties.Settings.Default.myColor;
+            btnTransfereExame.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarMotorista.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarExame.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

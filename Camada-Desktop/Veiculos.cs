@@ -45,6 +45,7 @@ namespace CamadaDesktop
         {
             cbCombustivel.DataSource = Enum.GetValues(typeof(VeiculoCombustivel));
             cbCor.DataSource = Enum.GetValues(typeof(VeiculoTipoCor));
+            AtualizarCor();
         }
 
         private void BtnCadastrarVeiculo_Click(object sender, EventArgs e)
@@ -435,6 +436,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarVeiculo.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarVeiculo.BackColor = Properties.Settings.Default.myColor;
+            btnTodosVeiculo.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirVeiculo.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarVeiculo.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

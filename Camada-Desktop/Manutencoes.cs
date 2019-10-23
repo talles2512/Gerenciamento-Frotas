@@ -73,6 +73,8 @@ namespace CamadaDesktop
             {
                 cbServicoExterno.DataSource = null;
             }
+
+            AtualizarCor();
         }
 
         private void BtnCadastrarManunt_Click(object sender, EventArgs e)
@@ -351,6 +353,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarManunt.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarManunt.BackColor = Properties.Settings.Default.myColor;
+            btnTodosManunt.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirManunt.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarManunt.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

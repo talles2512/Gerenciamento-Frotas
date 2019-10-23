@@ -90,6 +90,8 @@ namespace CamadaDesktop
             {
                 cbServicoExterno.DataSource = null;
             }
+
+            AtualizarCor();
         }
 
         private void BtnCadastrarEntradaSaida_Click(object sender, EventArgs e)
@@ -377,6 +379,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarEntradaSaida.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarEntradaSaida.BackColor = Properties.Settings.Default.myColor;
+            btnTodosEntradaSaida.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirEntradaSaida.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarEntradaSaida.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

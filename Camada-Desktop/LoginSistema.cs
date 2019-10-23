@@ -39,7 +39,20 @@ namespace CamadaDesktop
         {
             this.Hide();
             frmHome home = new frmHome();
+            home.FormClosed += new FormClosedEventHandler(fecharhome);
             home.Show();
+        }
+
+        private void fecharhome(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+            AtualizarCor();
+        }
+
+        public void AtualizarCor()
+        {
+            panelLogin.BackColor = Properties.Settings.Default.myColor;
+            btnLoginSistema.BackColor = Properties.Settings.Default.myColor;
         }
 
         private void btnSair_Click(object sender, EventArgs e)

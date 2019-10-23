@@ -85,6 +85,8 @@ namespace CamadaDesktop
                 cbCPF.DataSource = null;
                 cbCPFMultasConsulta = null;
             }
+
+            AtualizarCor();
         }
 
         private void btnCadastrarVeiculo_Click(object sender, EventArgs e)
@@ -430,6 +432,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }   
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarVeiculo.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarMultas.BackColor = Properties.Settings.Default.myColor;
+            btnTodosMultas.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirMultas.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarVeiculo.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

@@ -42,6 +42,7 @@ namespace CamadaDesktop
         private void Funcionarios_Load(object sender, EventArgs e)
         {
             cbPerfilAcesso.DataSource = Enum.GetValues(typeof(PerfilAcesso));
+            AtualizarCor();
         }
 
         private void btnCadastrarFuncionario_Click(object sender, EventArgs e)
@@ -238,6 +239,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarFuncionario.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarFuncionario.BackColor = Properties.Settings.Default.myColor;
+            btnTodosFuncionario.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirFuncionario.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarFuncionario.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

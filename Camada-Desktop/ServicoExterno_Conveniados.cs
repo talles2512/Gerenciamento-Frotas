@@ -60,6 +60,7 @@ namespace CamadaDesktop
         private void ServicoExterno_Conveniados_Load(object sender, EventArgs e)
         {
             cbTipo.DataSource = Enum.GetValues(typeof(TipoServicoExterno));
+            AtualizarCor();
         }
 
         private void BtnCadastrarServicoExterno_Click(object sender, EventArgs e)
@@ -459,6 +460,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarServicoExterno.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarConveniado.BackColor = Properties.Settings.Default.myColor;
+            btnTodosConveniado.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirConveniado.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarServicoExterno.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

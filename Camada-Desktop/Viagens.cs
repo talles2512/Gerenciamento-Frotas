@@ -68,6 +68,8 @@ namespace CamadaDesktop
                 cbCPF.DataSource = null;
                 cbPlaca.DataSource = null;
             }
+
+            AtualizarCor();
         }
 
         private void BtnAddOcupante_Click(object sender, EventArgs e)
@@ -385,6 +387,19 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarViagens.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarViagens.BackColor = Properties.Settings.Default.myColor;
+            btnTodasViagens.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirViagens.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarViagens.BackColor = Properties.Settings.Default.myColor;
+            btnAddOcupante.BackColor = Properties.Settings.Default.myColor;
+            btnRemoverOcupante.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaOcupante.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaTodosOcupante.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

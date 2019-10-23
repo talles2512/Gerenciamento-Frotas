@@ -38,6 +38,7 @@ namespace CamadaDesktop
         private void EstoquePecas_Load(object sender, EventArgs e)
         {
             txtid.Text = _estoquePecasController.PopulaID().ToString();
+            AtualizarCor();
         }
 
         private void btnCadastrarEstoque_Click(object sender, EventArgs e)
@@ -230,6 +231,15 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            btnCadastrarEstoque.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarEstoque.BackColor = Properties.Settings.Default.myColor;
+            btnTodosEstoque.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirEstoque.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarEstoque.BackColor = Properties.Settings.Default.myColor;
         }
     }
 }

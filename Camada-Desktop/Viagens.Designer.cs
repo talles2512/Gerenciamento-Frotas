@@ -63,12 +63,12 @@
             this.txtRequisicaoConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblreqConsulta = new System.Windows.Forms.Label();
             this.tbPageControlOcupantes = new System.Windows.Forms.TabPage();
-            this.gbConsultaExame = new System.Windows.Forms.GroupBox();
+            this.gbConsultaOcupante = new System.Windows.Forms.GroupBox();
             this.txtCPFOcupantesConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblCPFOcupantesConsulta = new System.Windows.Forms.Label();
-            this.dgExameConsulta = new System.Windows.Forms.DataGridView();
-            this.btnConsultaTodosExame = new System.Windows.Forms.Button();
-            this.btnConsultaExame = new System.Windows.Forms.Button();
+            this.dgOcupanteConsulta = new System.Windows.Forms.DataGridView();
+            this.btnConsultaTodosOcupante = new System.Windows.Forms.Button();
+            this.btnConsultaOcupante = new System.Windows.Forms.Button();
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,8 +78,8 @@
             this.gbConsultaViagens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViagensConsulta)).BeginInit();
             this.tbPageControlOcupantes.SuspendLayout();
-            this.gbConsultaExame.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).BeginInit();
+            this.gbConsultaOcupante.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOcupanteConsulta)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlViagens
@@ -500,27 +500,27 @@
             // tbPageControlOcupantes
             // 
             this.tbPageControlOcupantes.BackColor = System.Drawing.SystemColors.Control;
-            this.tbPageControlOcupantes.Controls.Add(this.gbConsultaExame);
+            this.tbPageControlOcupantes.Controls.Add(this.gbConsultaOcupante);
             this.tbPageControlOcupantes.Location = new System.Drawing.Point(4, 37);
             this.tbPageControlOcupantes.Name = "tbPageControlOcupantes";
             this.tbPageControlOcupantes.Size = new System.Drawing.Size(636, 523);
             this.tbPageControlOcupantes.TabIndex = 2;
             this.tbPageControlOcupantes.Text = "Ocupantes";
             // 
-            // gbConsultaExame
+            // gbConsultaOcupante
             // 
-            this.gbConsultaExame.Controls.Add(this.txtCPFOcupantesConsulta);
-            this.gbConsultaExame.Controls.Add(this.lblCPFOcupantesConsulta);
-            this.gbConsultaExame.Controls.Add(this.dgExameConsulta);
-            this.gbConsultaExame.Controls.Add(this.btnConsultaTodosExame);
-            this.gbConsultaExame.Controls.Add(this.btnConsultaExame);
-            this.gbConsultaExame.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConsultaExame.Location = new System.Drawing.Point(6, 6);
-            this.gbConsultaExame.Name = "gbConsultaExame";
-            this.gbConsultaExame.Size = new System.Drawing.Size(621, 514);
-            this.gbConsultaExame.TabIndex = 26;
-            this.gbConsultaExame.TabStop = false;
-            this.gbConsultaExame.Text = "Consulta";
+            this.gbConsultaOcupante.Controls.Add(this.txtCPFOcupantesConsulta);
+            this.gbConsultaOcupante.Controls.Add(this.lblCPFOcupantesConsulta);
+            this.gbConsultaOcupante.Controls.Add(this.dgOcupanteConsulta);
+            this.gbConsultaOcupante.Controls.Add(this.btnConsultaTodosOcupante);
+            this.gbConsultaOcupante.Controls.Add(this.btnConsultaOcupante);
+            this.gbConsultaOcupante.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbConsultaOcupante.Location = new System.Drawing.Point(6, 6);
+            this.gbConsultaOcupante.Name = "gbConsultaOcupante";
+            this.gbConsultaOcupante.Size = new System.Drawing.Size(621, 514);
+            this.gbConsultaOcupante.TabIndex = 26;
+            this.gbConsultaOcupante.TabStop = false;
+            this.gbConsultaOcupante.Text = "Consulta";
             // 
             // txtCPFOcupantesConsulta
             // 
@@ -539,50 +539,50 @@
             this.lblCPFOcupantesConsulta.TabIndex = 26;
             this.lblCPFOcupantesConsulta.Text = "CPF:";
             // 
-            // dgExameConsulta
+            // dgOcupanteConsulta
             // 
-            this.dgExameConsulta.BackgroundColor = System.Drawing.Color.White;
-            this.dgExameConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgExameConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgExameConsulta.Location = new System.Drawing.Point(7, 71);
-            this.dgExameConsulta.Name = "dgExameConsulta";
-            this.dgExameConsulta.Size = new System.Drawing.Size(608, 437);
-            this.dgExameConsulta.TabIndex = 23;
+            this.dgOcupanteConsulta.BackgroundColor = System.Drawing.Color.White;
+            this.dgOcupanteConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOcupanteConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dgOcupanteConsulta.Location = new System.Drawing.Point(7, 71);
+            this.dgOcupanteConsulta.Name = "dgOcupanteConsulta";
+            this.dgOcupanteConsulta.Size = new System.Drawing.Size(608, 437);
+            this.dgOcupanteConsulta.TabIndex = 23;
             // 
-            // btnConsultaTodosExame
+            // btnConsultaTodosOcupante
             // 
-            this.btnConsultaTodosExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultaTodosExame.FlatAppearance.BorderSize = 0;
-            this.btnConsultaTodosExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultaTodosExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultaTodosExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultaTodosExame.ForeColor = System.Drawing.Color.White;
-            this.btnConsultaTodosExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaTodosExame.Location = new System.Drawing.Point(456, 27);
-            this.btnConsultaTodosExame.Name = "btnConsultaTodosExame";
-            this.btnConsultaTodosExame.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaTodosExame.TabIndex = 21;
-            this.btnConsultaTodosExame.Text = "Consultar Todos";
-            this.btnConsultaTodosExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultaTodosExame.UseVisualStyleBackColor = false;
+            this.btnConsultaTodosOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaTodosOcupante.FlatAppearance.BorderSize = 0;
+            this.btnConsultaTodosOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultaTodosOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultaTodosOcupante.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultaTodosOcupante.ForeColor = System.Drawing.Color.White;
+            this.btnConsultaTodosOcupante.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultaTodosOcupante.Location = new System.Drawing.Point(456, 27);
+            this.btnConsultaTodosOcupante.Name = "btnConsultaTodosOcupante";
+            this.btnConsultaTodosOcupante.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultaTodosOcupante.TabIndex = 21;
+            this.btnConsultaTodosOcupante.Text = "Consultar Todos";
+            this.btnConsultaTodosOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultaTodosOcupante.UseVisualStyleBackColor = false;
             // 
-            // btnConsultaExame
+            // btnConsultaOcupante
             // 
-            this.btnConsultaExame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultaExame.FlatAppearance.BorderSize = 0;
-            this.btnConsultaExame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultaExame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultaExame.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultaExame.ForeColor = System.Drawing.Color.White;
-            this.btnConsultaExame.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaExame.Image")));
-            this.btnConsultaExame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultaExame.Location = new System.Drawing.Point(291, 27);
-            this.btnConsultaExame.Name = "btnConsultaExame";
-            this.btnConsultaExame.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultaExame.TabIndex = 20;
-            this.btnConsultaExame.Text = "    Consultar";
-            this.btnConsultaExame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultaExame.UseVisualStyleBackColor = false;
+            this.btnConsultaOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaOcupante.FlatAppearance.BorderSize = 0;
+            this.btnConsultaOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultaOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultaOcupante.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultaOcupante.ForeColor = System.Drawing.Color.White;
+            this.btnConsultaOcupante.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultaOcupante.Image")));
+            this.btnConsultaOcupante.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultaOcupante.Location = new System.Drawing.Point(291, 27);
+            this.btnConsultaOcupante.Name = "btnConsultaOcupante";
+            this.btnConsultaOcupante.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultaOcupante.TabIndex = 20;
+            this.btnConsultaOcupante.Text = "    Consultar";
+            this.btnConsultaOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultaOcupante.UseVisualStyleBackColor = false;
             // 
             // Viagens
             // 
@@ -606,9 +606,9 @@
             this.gbConsultaViagens.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViagensConsulta)).EndInit();
             this.tbPageControlOcupantes.ResumeLayout(false);
-            this.gbConsultaExame.ResumeLayout(false);
-            this.gbConsultaExame.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).EndInit();
+            this.gbConsultaOcupante.ResumeLayout(false);
+            this.gbConsultaOcupante.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOcupanteConsulta)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -626,12 +626,12 @@
         private System.Windows.Forms.MaskedTextBox txtRequisicaoConsulta;
         private System.Windows.Forms.Label lblreqConsulta;
         private System.Windows.Forms.TabPage tbPageControlOcupantes;
-        private System.Windows.Forms.GroupBox gbConsultaExame;
+        private System.Windows.Forms.GroupBox gbConsultaOcupante;
         private System.Windows.Forms.MaskedTextBox txtCPFOcupantesConsulta;
         private System.Windows.Forms.Label lblCPFOcupantesConsulta;
-        private System.Windows.Forms.DataGridView dgExameConsulta;
-        private System.Windows.Forms.Button btnConsultaTodosExame;
-        private System.Windows.Forms.Button btnConsultaExame;
+        private System.Windows.Forms.DataGridView dgOcupanteConsulta;
+        private System.Windows.Forms.Button btnConsultaTodosOcupante;
+        private System.Windows.Forms.Button btnConsultaOcupante;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox gbDadosViagens;
         private System.Windows.Forms.ComboBox cbCPF;
