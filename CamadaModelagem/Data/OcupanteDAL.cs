@@ -33,10 +33,17 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public void Deletar(int cpf) //Exemplo Deletar --- Será mudado para Inativar
+        public bool Deletar(int requisicao)
         {
-            string Query = "DELETE [dbo].[TB_VIAGENS_OCUPANTES] WHERE [VGO_CPF] = " + cpf;
-            _banco.ExecutarInstrucao(Query);
+            string Query = "DELETE [dbo].[TB_VIAGENS_OCUPANTES] WHERE [VGO_VG_REQ] = " + requisicao;
+            try
+            {
+                return _banco.ExecutarInstrucao(Query);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
         public void Alterar(Ocupante ocupante, int cpf)

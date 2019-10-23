@@ -22,19 +22,13 @@ namespace CamadaDesktop
         private readonly ViagemController _viagemController;
         private Viagem Viagem;
         List<Ocupante> ocupantes = new List<Ocupante>();
-        string PlacaAntiga;
-        long cnpjAntigo;
-        string TipoAntigo;
-        DateTime dataAntiga;
+        int RequisicaoAntiga;
         public Viagens()
         {
             InitializeComponent();
             _viagemController = InstanciarCamadas();
             Viagem = null;
-            PlacaAntiga = "";
-            cnpjAntigo = long.MaxValue;
-            TipoAntigo = "";
-            dataAntiga = new DateTime(2000, 01, 01);
+            RequisicaoAntiga = int.MaxValue;
         }
 
         private ViagemController InstanciarCamadas()
@@ -76,54 +70,6 @@ namespace CamadaDesktop
             }
         }
 
-        private void btnCadastrarViagens_Click_1(object sender, EventArgs e)
-        {
-            if (cbPlaca.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else if (rdOcupante.Checked && !ocupantes.Any())
-            {
-                MessageBox.Show("Cadastre ao menos um ocupante!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else if (cbCPF.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-
-                string cpf = cbCPF.SelectedValue.ToString();
-                string placa = cbPlaca.SelectedValue.ToString();
-
-                bool ocupante = false;
-
-                if (rdOcupante.Checked)
-                {
-                    ocupante = true;
-                }
-
-                try
-                {
-                    int requisicao = _viagemController.PopularRequisicao();
-                    Viagem viagem = new Viagem(requisicao, ocupante, txtDestino.Text, dtDataSaida.Value, placa, cpf);
-                    viagem.Ocupantes = ocupantes;
-                    if (_viagemController.Cadastrar(viagem, requisicao))
-                    {
-                        MessageBox.Show("Cadastro realizado com Sucesso!");
-                    }
-                }
-                catch (RegistroExisteException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
         private void BtnAddOcupante_Click(object sender, EventArgs e)
         {
             if (txtNomeOcupante.Text == "" || txtCPFOcupante.Text.Length < 11 || txtCPFOcupante.Text == "   .   .   -")
@@ -140,7 +86,17 @@ namespace CamadaDesktop
                 {
                     cpf = cpf.Replace(str, "");
                 }
-                int requisicao = _viagemController.PopularRequisicao();
+
+                int requisicao;
+
+                if (RequisicaoAntiga != int.MaxValue)
+                {
+                    requisicao = RequisicaoAntiga;
+                }
+                else
+                {
+                    requisicao = _viagemController.PopularRequisicao();
+                }
 
                 Ocupante ocupante = new Ocupante(txtNomeOcupante.Text, long.Parse(cpf), requisicao);
                 listboxOcupantes.Items.Add(ocupante.Nome);
@@ -178,6 +134,66 @@ namespace CamadaDesktop
             btnRemoverOcupante.Enabled = true;
         }
 
+        private void btnCadastrarViagens_Click_1(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (rdOcupante.Checked && !ocupantes.Any())
+            {
+                MessageBox.Show("Cadastre ao menos um ocupante!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (cbCPF.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                string cpf = cbCPF.SelectedValue.ToString();
+                string placa = cbPlaca.SelectedValue.ToString();
+
+                bool ocupante = false;
+
+                if (rdOcupante.Checked)
+                {
+                    ocupante = true;
+                }
+
+                try
+                {
+                    int requisicao;
+
+                    if (RequisicaoAntiga != int.MaxValue)
+                    {
+                        requisicao = RequisicaoAntiga;
+                    }
+                    else
+                    {
+                        requisicao = _viagemController.PopularRequisicao();
+                    }
+
+                    Viagem viagem = new Viagem(requisicao, ocupante, txtDestino.Text, dtDataSaida.Value, placa, cpf);
+                    viagem.Ocupantes = ocupantes;
+                    if (_viagemController.Cadastrar(viagem, requisicao))
+                    {
+                        MessageBox.Show("Cadastro realizado com Sucesso!");
+                    }
+                }
+                catch (RegistroExisteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        
+
         private void BtnConsultarViagens_Click(object sender, EventArgs e)
         {
             if (txtRequisicaoConsulta.Text == "")
@@ -198,6 +214,7 @@ namespace CamadaDesktop
                     {
                         DataTable dt = new DataTable();
                         dt.Columns.Add("Código Requisição", typeof(string));
+                        dt.Columns.Add("Veículo - Placa", typeof(string));
                         dt.Columns.Add("Motorista - CPF", typeof(string));
                         dt.Columns.Add("Ocupantes", typeof(string));
                         dt.Columns.Add("Destino", typeof(string));
@@ -213,7 +230,7 @@ namespace CamadaDesktop
                         {
                             existeOcupantes = "Não";
                         }
-                        dt.Rows.Add(viagem.Requisicao, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+                        dt.Rows.Add(viagem.Requisicao, viagem.Placa, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
                         dgViagensConsulta.DataSource = dt;
 
                         Viagem = viagem;
@@ -235,6 +252,7 @@ namespace CamadaDesktop
                 List<Viagem> viagens = _viagemController.BuscarTodos();
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Código Requisição", typeof(string));
+                dt.Columns.Add("Veículo - Placa", typeof(string));
                 dt.Columns.Add("Motorista - CPF", typeof(string));
                 dt.Columns.Add("Ocupantes", typeof(string));
                 dt.Columns.Add("Destino", typeof(string));
@@ -252,7 +270,7 @@ namespace CamadaDesktop
                     {
                         existeOcupantes = "Não";
                     }
-                    dt.Rows.Add(viagem.Requisicao, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+                    dt.Rows.Add(viagem.Requisicao, viagem.Placa, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
 
                 }
                 dgViagensConsulta.DataSource = dt;
@@ -260,6 +278,112 @@ namespace CamadaDesktop
             catch (ConcorrenciaBancoException ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void BtnTrasferirViagens_Click(object sender, EventArgs e)
+        {
+            if (Viagem == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                listboxOcupantes.Items.Clear();
+                ocupantes.Clear();
+
+                RequisicaoAntiga = Viagem.Requisicao;
+
+                txtDestino.Text = Viagem.Destino;
+                dtDataSaida.Value = Viagem.DataSaida;
+                cbPlaca.SelectedValue = Viagem.Placa;
+                cbCPF.SelectedValue = Viagem.CPF;
+
+                if (Viagem.Ocupante)
+                {
+                    rdOcupante.Checked = true;
+                    ocupantes = Viagem.Ocupantes;
+
+                    foreach(Ocupante ocupante in ocupantes)
+                    {
+                        listboxOcupantes.Items.Add(ocupante.Nome);
+                    }
+                }
+                else
+                {
+                    rdsemOcupante.Checked = true;
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlViagens.SelectTab("tbPageCadastroViagem");
+                if (tbControlViagens.SelectedTab == tbPageCadastroViagem)
+                {
+                    Viagem = null;
+                    txtRequisicaoConsulta.Text = "";
+                }
+            }
+        }
+
+        private void BtnAlterarViagens_Click(object sender, EventArgs e)
+        {
+            if (cbPlaca.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (rdOcupante.Checked && !ocupantes.Any())
+            {
+                MessageBox.Show("Cadastre ao menos um ocupante!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (cbCPF.Items.Count < 1)
+            {
+                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string cpf = cbCPF.SelectedValue.ToString();
+                string placa = cbPlaca.SelectedValue.ToString();
+
+                bool ocupante = false;
+
+                if (rdOcupante.Checked)
+                {
+                    ocupante = true;
+                }
+                else if (rdsemOcupante.Checked)
+                {
+                    ocupantes.Clear();
+                }
+
+                int requisicao;
+
+                if (RequisicaoAntiga != int.MaxValue)
+                {
+                    requisicao = RequisicaoAntiga;
+                }
+                else
+                {
+                    requisicao = _viagemController.PopularRequisicao();
+                }
+
+                Viagem viagem = new Viagem(requisicao, ocupante, txtDestino.Text, dtDataSaida.Value, placa, cpf);
+                viagem.Ocupantes = ocupantes;
+
+                try
+                {
+                    if (_viagemController.Alterar(viagem, viagem.Requisicao))
+                    {
+                        MessageBox.Show("Alteração realizada com Sucesso!");
+                        RequisicaoAntiga = int.MaxValue;
+                    }
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

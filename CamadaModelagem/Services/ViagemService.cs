@@ -114,7 +114,42 @@ namespace CamadaModelagem.Services
                 Viagem obj = _viagemDAL.BuscarViagem(requisicao);
                 if (obj != null)
                 {
-                    return _viagemDAL.Alterar(viagem, requisicao);
+                    if (viagem.Ocupante)
+                    {
+                        if (_viagemDAL.Alterar(viagem, requisicao))
+                        {
+                            if (_ocupanteDAL.Deletar(requisicao))
+                            {
+                                foreach (Ocupante ocupante in viagem.Ocupantes)
+                                {
+                                    if (!_ocupanteDAL.Cadastrar(ocupante))
+                                    {
+                                        break;
+                                    }
+                                }
+                                return true;
+                            }
+                            else
+                            {
+                                throw new ConcorrenciaBancoException("Não foi possível realizar esta ação. Favor tentar novamente mais tarde.");
+                            }
+                        }
+                        else
+                        {
+                            throw new ConcorrenciaBancoException("Não foi possível realizar esta ação. Favor tentar novamente mais tarde.");
+                        }
+                    }
+                    else
+                    {
+                        if (_ocupanteDAL.Deletar(requisicao))
+                        {
+                            return _viagemDAL.Alterar(viagem, requisicao);
+                        }
+                        else
+                        {
+                            throw new ConcorrenciaBancoException("Não foi possível realizar esta ação. Favor tentar novamente mais tarde.");
+                        }
+                    }
                 }
                 else
                 {

@@ -141,9 +141,9 @@
             // cbCPF
             // 
             this.cbCPF.FormattingEnabled = true;
-            this.cbCPF.Location = new System.Drawing.Point(214, 118);
+            this.cbCPF.Location = new System.Drawing.Point(255, 118);
             this.cbCPF.Name = "cbCPF";
-            this.cbCPF.Size = new System.Drawing.Size(197, 33);
+            this.cbCPF.Size = new System.Drawing.Size(281, 33);
             this.cbCPF.TabIndex = 17;
             // 
             // cbPlaca
@@ -151,7 +151,7 @@
             this.cbPlaca.FormattingEnabled = true;
             this.cbPlaca.Location = new System.Drawing.Point(11, 118);
             this.cbPlaca.Name = "cbPlaca";
-            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
+            this.cbPlaca.Size = new System.Drawing.Size(239, 33);
             this.cbPlaca.TabIndex = 16;
             // 
             // rdsemOcupante
@@ -181,7 +181,7 @@
             // lblCPF
             // 
             this.lblCPF.AutoSize = true;
-            this.lblCPF.Location = new System.Drawing.Point(209, 91);
+            this.lblCPF.Location = new System.Drawing.Point(250, 91);
             this.lblCPF.Name = "lblCPF";
             this.lblCPF.Size = new System.Drawing.Size(110, 25);
             this.lblCPF.TabIndex = 30;
@@ -267,6 +267,7 @@
             this.btnAlterarViagens.Text = "Alterar";
             this.btnAlterarViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAlterarViagens.UseVisualStyleBackColor = false;
+            this.btnAlterarViagens.Click += new System.EventHandler(this.BtnAlterarViagens_Click);
             // 
             // btnCadastrarViagens
             // 
@@ -430,6 +431,7 @@
             this.btnTrasferirViagens.TabIndex = 17;
             this.btnTrasferirViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirViagens.UseVisualStyleBackColor = false;
+            this.btnTrasferirViagens.Click += new System.EventHandler(this.BtnTrasferirViagens_Click);
             // 
             // dgViagensConsulta
             // 

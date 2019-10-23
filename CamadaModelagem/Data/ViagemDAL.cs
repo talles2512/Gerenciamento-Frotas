@@ -53,7 +53,7 @@ namespace CamadaModelagem.Data
             int ocupante = Convert.ToInt32(viagem.Ocupante);
             string Query = "UPDATE [dbo].[TB_VIAGENS] SET [VG_VCL_PLACA] ='" + viagem.Placa + "',[VG_MT_CPF] ='" + viagem.CPF 
                 + "',[VG_OCUPANTES] =" + ocupante + ",[VG_DESTINO] ='" + viagem.Destino + "',[VG_DTSAIDA] ='" 
-                + viagem.DataSaida + "' WHERE [VGO_VG_REQ] =" + requisicao;
+                + viagem.DataSaida + "' WHERE [VG_REQ] =" + requisicao;
             try
             {
                 return _banco.ExecutarInstrucao(Query);
