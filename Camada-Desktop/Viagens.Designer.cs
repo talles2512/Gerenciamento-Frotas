@@ -249,7 +249,7 @@
             this.btnExcluirViagens.Text = "Excluir";
             this.btnExcluirViagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirViagens.UseVisualStyleBackColor = false;
-            this.btnExcluirViagens.Click += new System.EventHandler(this.BtnExcluirViagens_Click);
+            this.btnExcluirViagens.Click += new System.EventHandler(this.btnExcluirViagens_Click);
             // 
             // btnAlterarViagens
             // 
