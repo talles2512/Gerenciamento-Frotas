@@ -21,6 +21,8 @@ namespace CamadaDesktop.Properties
 
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         internal Color myColor = Color.FromArgb(0, 122, 204);
+        internal Color myColorFundo = Color.FromKnownColor(KnownColor.Control);
+        internal Color myColorFonteMenu = Color.White;
 
         public static Settings Default
         {

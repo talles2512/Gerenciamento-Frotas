@@ -168,7 +168,28 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+            panelConteudo.BackColor = Properties.Settings.Default.myColorFundo;
+
             MenuVertical.BackColor = Properties.Settings.Default.myColor;
+        
+            btnVeiculos.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnViagem.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConveniados.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnManutencao.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAbastecimento.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnSinistros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnEstoque.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnFuncionarios.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnSair.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            label1.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            label3.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            lblver.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
 
 

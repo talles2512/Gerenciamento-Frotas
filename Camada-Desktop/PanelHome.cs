@@ -16,5 +16,15 @@ namespace CamadaDesktop
         {
             InitializeComponent();
         }
+
+        private void PanelHome_Load(object sender, EventArgs e)
+        {
+            AtualizarCor();
+        }
+
+        public void AtualizarCor()
+        {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+        }
     }
 }

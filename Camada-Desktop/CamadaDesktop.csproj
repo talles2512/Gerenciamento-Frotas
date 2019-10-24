@@ -52,9 +52,6 @@
     <Compile Include="Abastecimentos.Designer.cs">
       <DependentUpon>Abastecimentos.cs</DependentUpon>
     </Compile>
-    <Compile Include="RoundBtn.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Clientes.cs">
       <SubType>Form</SubType>
     </Compile>

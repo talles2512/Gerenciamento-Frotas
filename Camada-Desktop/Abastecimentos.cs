@@ -71,6 +71,8 @@ namespace CamadaDesktop
             {
                 cbServicoExterno.DataSource = null;
             }
+
+            AtualizarCor();
         }
 
         private void BtnCadastrarAbast_Click(object sender, EventArgs e)
@@ -325,6 +327,23 @@ namespace CamadaDesktop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        public void AtualizarCor()
+        {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+
+            btnCadastrarAbast.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarAbast.BackColor = Properties.Settings.Default.myColor;
+            btnTodosAbast.BackColor = Properties.Settings.Default.myColor;
+            btnTrasferirAbast.BackColor = Properties.Settings.Default.myColor;
+            btnAlterarAbast.BackColor = Properties.Settings.Default.myColor;
+
+            btnCadastrarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTodosAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTrasferirAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
     }
 }

@@ -675,6 +675,8 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+
             btnCadastrarMotorista.BackColor = Properties.Settings.Default.myColor;
             btnCadastrarExame.BackColor = Properties.Settings.Default.myColor;
             btnAddExameMedico.BackColor = Properties.Settings.Default.myColor;
@@ -686,6 +688,18 @@ namespace CamadaDesktop
             btnTransfereExame.BackColor = Properties.Settings.Default.myColor;
             btnAlterarMotorista.BackColor = Properties.Settings.Default.myColor;
             btnAlterarExame.BackColor = Properties.Settings.Default.myColor;
+
+            btnCadastrarMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnCadastrarExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAddExameMedico.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultaExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTodosMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultaTodosExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTrasferirMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTransfereExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
     }
 }

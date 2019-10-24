@@ -772,6 +772,8 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+
             btnCadastrarSeguros.BackColor = Properties.Settings.Default.myColor;
             btnCadastrarCobertura.BackColor = Properties.Settings.Default.myColor;
             btnConsultarSeguros.BackColor = Properties.Settings.Default.myColor;
@@ -782,6 +784,17 @@ namespace CamadaDesktop
             btnTransfereCobertura.BackColor = Properties.Settings.Default.myColor;
             btnAlterarSeguros.BackColor = Properties.Settings.Default.myColor;
             btnAlterarCobertura.BackColor = Properties.Settings.Default.myColor;
+                        
+            btnCadastrarSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnCadastrarCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultaCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTodosSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultaTodosCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTrasferirSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTransfereCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
     }
 }

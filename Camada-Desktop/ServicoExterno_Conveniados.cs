@@ -464,11 +464,19 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+
             btnCadastrarServicoExterno.BackColor = Properties.Settings.Default.myColor;
             btnConsultarConveniado.BackColor = Properties.Settings.Default.myColor;
             btnTodosConveniado.BackColor = Properties.Settings.Default.myColor;
             btnTrasferirConveniado.BackColor = Properties.Settings.Default.myColor;
             btnAlterarServicoExterno.BackColor = Properties.Settings.Default.myColor;
+
+            btnCadastrarServicoExterno.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarConveniado.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTodosConveniado.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTrasferirConveniado.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarServicoExterno.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
     }
 }

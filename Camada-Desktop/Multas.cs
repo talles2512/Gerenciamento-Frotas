@@ -436,11 +436,19 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
+
             btnCadastrarVeiculo.BackColor = Properties.Settings.Default.myColor;
             btnConsultarMultas.BackColor = Properties.Settings.Default.myColor;
             btnTodosMultas.BackColor = Properties.Settings.Default.myColor;
             btnTrasferirMultas.BackColor = Properties.Settings.Default.myColor;
             btnAlterarVeiculo.BackColor = Properties.Settings.Default.myColor;
+
+            btnCadastrarVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTodosMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnTrasferirMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnAlterarVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
     }
 }

@@ -51,8 +51,11 @@ namespace CamadaDesktop
 
         public void AtualizarCor()
         {
+            this.BackColor = Properties.Settings.Default.myColorFundo;
             panelLogin.BackColor = Properties.Settings.Default.myColor;
             btnLoginSistema.BackColor = Properties.Settings.Default.myColor;
+            label3.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            lblver.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
 
         private void btnSair_Click(object sender, EventArgs e)

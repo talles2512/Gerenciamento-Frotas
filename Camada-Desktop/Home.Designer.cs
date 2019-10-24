@@ -401,7 +401,7 @@
             // panelConteudo
             // 
             this.panelConteudo.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.panelConteudo.Location = new System.Drawing.Point(263, 82);
+            this.panelConteudo.Location = new System.Drawing.Point(263, 70);
             this.panelConteudo.Name = "panelConteudo";
             this.panelConteudo.Size = new System.Drawing.Size(646, 593);
             this.panelConteudo.TabIndex = 2;
