@@ -295,7 +295,9 @@ namespace CamadaDesktop
                 txtModelo.Text = Veiculo.Modelo;
                 txtChassi.Text = Veiculo.Chassi;
                 cbCor.SelectedItem = Veiculo.Cor;
+                cbCor.Text = Veiculo.Cor.ToString();
                 cbCombustivel.SelectedItem = Veiculo.Combustivel;
+                cbCombustivel.Text = Veiculo.Combustivel.ToString();
 
                 if (Veiculo.Alugado)
                 {
