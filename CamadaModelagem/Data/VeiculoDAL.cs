@@ -286,5 +286,81 @@ namespace CamadaModelagem.Data
             }
         }
 
+        public List<Veiculo> Pesquisar(string busca)
+        {
+            List<Veiculo> veiculos = new List<Veiculo>();
+            if (busca == "")
+            {
+                return veiculos;
+            }
+            string query = "select VCL_PLACA, VCL_MARCA, VCL_MODELO, VCL_CHASSI, VCL_ANO, VCL_COR, VCL_COMBUSTIVEL, VCL_ALUGADO, VCL_SITUACAO " +
+                "from TB_VEICULOS WHERE VCL_ALUGADO = 0 AND (VCL_PLACA LIKE '%" + busca + "%' OR VCL_MARCA LIKE '%" + busca + "%' OR VCL_MODELO LIKE '%" + busca + "%'" +
+                " OR VCL_CHASSI LIKE '%" + busca + "%')";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                VeiculoAlugado veiculoAlugado = null;
+                Veiculo veiculo = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    int ano = int.Parse(dr["VCL_ANO"].ToString());
+                    VeiculoTipoCor cor = (VeiculoTipoCor)Enum.Parse(typeof(VeiculoTipoCor), dr["VCL_COR"].ToString());
+                    VeiculoCombustivel combustivel = (VeiculoCombustivel)Enum.Parse(typeof(VeiculoCombustivel), dr["VCL_COMBUSTIVEL"].ToString());
+                    bool alugado = bool.Parse(dr["VCL_ALUGADO"].ToString());
+                    bool situacao = bool.Parse(dr["VCL_SITUACAO"].ToString());
+
+                    veiculo = new Veiculo(dr["VCL_PLACA"].ToString(), dr["VCL_MARCA"].ToString(), dr["VCL_MODELO"].ToString(), dr["VCL_CHASSI"].ToString(), ano, cor, combustivel, alugado, situacao, veiculoAlugado);
+                    veiculos.Add(veiculo);
+                }
+                return veiculos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<Veiculo> PesquisarAlugados(string busca)
+        {
+            List<Veiculo> veiculos = new List<Veiculo>();
+            if(busca == "")
+            {
+                return veiculos;
+            }
+            string query = "select V.VCL_PLACA, V.VCL_MARCA, V.VCL_MODELO, V.VCL_CHASSI, V.VCL_ANO, V.VCL_COR, V.VCL_COMBUSTIVEL, V.VCL_ALUGADO, V.VCL_SITUACAO, A.VCLAL_VALOR, A.VCLAL_DTINICIO, A.VCLAL_DTVENC " +
+                    "from TB_VEICULOS as V join TB_VEICULOS_ALUGUEL as A on V.VCL_PLACA = A.VCL_PLACA" +
+                    " WHERE V.VCL_PLACA LIKE '%" +busca +"%' OR V.VCL_MARCA LIKE '%" +busca +"%' OR V.VCL_MODELO LIKE '%" +busca + "%' OR V.VCL_CHASSI LIKE '%" +busca +"%'";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                VeiculoAlugado veiculoAlugado = null;
+                Veiculo veiculo = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    int ano = int.Parse(dr["VCL_ANO"].ToString());
+                    VeiculoTipoCor cor = (VeiculoTipoCor)Enum.Parse(typeof(VeiculoTipoCor), dr["VCL_COR"].ToString());
+                    VeiculoCombustivel combustivel = (VeiculoCombustivel)Enum.Parse(typeof(VeiculoCombustivel), dr["VCL_COMBUSTIVEL"].ToString());
+                    bool alugado = bool.Parse(dr["VCL_ALUGADO"].ToString());
+                    bool situacao = bool.Parse(dr["VCL_SITUACAO"].ToString());
+
+                    if (alugado)
+                    {
+                        double valor = double.Parse(dr["VCLAL_VALOR"].ToString());
+                        DateTime dtInicio = DateTime.Parse(dr["VCLAL_DTINICIO"].ToString());
+                        DateTime dtVencimento = DateTime.Parse(dr["VCLAL_DTVENC"].ToString());
+                        veiculoAlugado = new VeiculoAlugado(valor, dtInicio, dtVencimento);
+                    }
+                    veiculo = new Veiculo(dr["VCL_PLACA"].ToString(), dr["VCL_MARCA"].ToString(), dr["VCL_MODELO"].ToString(), dr["VCL_CHASSI"].ToString(), ano, cor, combustivel, alugado, situacao, veiculoAlugado);
+                    veiculos.Add(veiculo);
+                }
+                return veiculos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
     }
 }

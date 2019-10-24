@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Veiculos));
             this.tbControlVeiculos = new System.Windows.Forms.TabControl();
             this.tbPageCadastroVeiculo = new System.Windows.Forms.TabPage();
@@ -65,6 +66,9 @@
             this.btnConsultarVeiculo = new System.Windows.Forms.Button();
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -402,6 +406,8 @@
             // 
             // gbConsultaVeiculo
             // 
+            this.gbConsultaVeiculo.Controls.Add(this.textPesquisar);
+            this.gbConsultaVeiculo.Controls.Add(this.lbPesquisar);
             this.gbConsultaVeiculo.Controls.Add(this.btnTrasferirVeiculo);
             this.gbConsultaVeiculo.Controls.Add(this.dgVeiculoConsulta);
             this.gbConsultaVeiculo.Controls.Add(this.btnTodosVeiculo);
@@ -440,9 +446,9 @@
             this.dgVeiculoConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 68);
+            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 115);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
-            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 371);
+            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 324);
             this.dgVeiculoConsulta.TabIndex = 18;
             // 
             // btnTodosVeiculo
@@ -498,6 +504,23 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(18, 76);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 19;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(99, 76);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
+            this.textPesquisar.TabIndex = 20;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
             // 
             // Veiculos
             // 
@@ -560,5 +583,8 @@
         private System.Windows.Forms.DateTimePicker dtVencimento;
         private System.Windows.Forms.DateTimePicker dtInicio;
         private System.Windows.Forms.MaskedTextBox txtChassi;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.ToolTip tooltipPesquisar;
     }
 }

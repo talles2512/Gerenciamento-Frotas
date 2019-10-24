@@ -195,5 +195,21 @@ namespace CamadaModelagem.Services
             }
 
         }
+
+
+        public List<Veiculo> Pesquisar(string buscar)
+        {
+            List<Veiculo> veiculos = new List<Veiculo>();
+            try
+            {
+                veiculos.AddRange(_veiculoDAL.Pesquisar(buscar));
+                veiculos.AddRange(_veiculoDAL.PesquisarAlugados(buscar));
+                return veiculos;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
     }
 }

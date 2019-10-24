@@ -43,6 +43,9 @@ namespace CamadaDesktop
         }
         private void Veiculos_Load(object sender, EventArgs e)
         {
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pela placa, marca, modelo ou chassi do Veículo.");
+            tooltipPesquisar.Hide(lbPesquisar);
+
             cbCombustivel.DataSource = Enum.GetValues(typeof(VeiculoCombustivel));
             cbCor.DataSource = Enum.GetValues(typeof(VeiculoTipoCor));
             AtualizarCor();
@@ -92,7 +95,7 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.Text = DateTime.Now.Year.ToString();
+                        dtAno.Value = DateTime.Now;
                         cbCombustivel.Text = "";
                         cbCor.Text = "";
                         rdAlugado.Checked = false;
@@ -370,7 +373,7 @@ namespace CamadaDesktop
                         txtMarca.Clear();
                         txtModelo.Clear();
                         txtChassi.Clear();
-                        dtAno.Text = DateTime.Now.Year.ToString();
+                        dtAno.Value = DateTime.Now;
                         cbCombustivel.Text = "";
                         cbCor.Text = "";
                         rdAlugado.Checked = false;
@@ -416,7 +419,7 @@ namespace CamadaDesktop
                             txtMarca.Clear();
                             txtModelo.Clear();
                             txtChassi.Clear();
-                            dtAno.Text = DateTime.Now.Year.ToString();
+                            dtAno.Value = DateTime.Now;
                             cbCombustivel.Text = "";
                             cbCor.Text = "";
                             rdAlugado.Checked = false;
@@ -452,6 +455,72 @@ namespace CamadaDesktop
             btnTodosVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Veiculo> veiculos = _veiculoController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Placa", typeof(string));
+                dt.Columns.Add("Marca", typeof(string));
+                dt.Columns.Add("Modelo", typeof(string));
+                dt.Columns.Add("Chassi", typeof(string));
+                dt.Columns.Add("Ano", typeof(int));
+                dt.Columns.Add("Cor", typeof(string));
+                dt.Columns.Add("Combustível", typeof(string));
+                dt.Columns.Add("Alugado", typeof(string));
+                dt.Columns.Add("Situacao", typeof(string));
+                dt.Columns.Add("Valor Aluguel", typeof(double));
+                dt.Columns.Add("Data Inicio", typeof(DateTime));
+                dt.Columns.Add("Data Vencimento", typeof(DateTime));
+
+                foreach (Veiculo veiculo in veiculos)
+                {
+                    string alugado = null;
+                    string situacao = null;
+
+                    if (veiculo.Alugado)
+                    {
+                        alugado = "Sim";
+                    }
+                    else
+                    {
+                        alugado = "Não";
+                    }
+
+                    if (veiculo.SituacaoVeiculo)
+                    {
+                        situacao = "Ativo";
+                    }
+                    else
+                    {
+                        situacao = "Inativo";
+                    }
+
+                    if (veiculo.VeiculoAlugado == null)
+                    {
+                        dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
+                            , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
+                            , alugado, situacao);
+                    }
+                    else
+                    {
+                        dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
+                            , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
+                            , alugado, situacao, veiculo.VeiculoAlugado.Valor
+                            , veiculo.VeiculoAlugado.DataInicio, veiculo.VeiculoAlugado.DataVencimento);
+                    }
+                }
+                dgVeiculoConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
