@@ -145,6 +145,11 @@ namespace CamadaDesktop
 
         private void btnTodosClientes_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Cliente> clientes = _clienteController.BuscarTodos();
@@ -341,6 +346,11 @@ namespace CamadaDesktop
             btnTodosClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }
