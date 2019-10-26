@@ -249,6 +249,11 @@ namespace CamadaDesktop
 
         private void BtnTodasViagens_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Viagem> viagens = _viagemController.BuscarTodos();
@@ -456,6 +461,39 @@ namespace CamadaDesktop
             btnAddOcupante.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnConsultaOcupante.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnConsultaTodosOcupante.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorDataOcupantes.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorDataOcupantes.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorDataOcupantes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
+        }
+
+        private void btnConsultaOcupante_Click(object sender, EventArgs e)
+        {
+            //Falta Metodo
+        }
+
+        private void btnConsultaTodosOcupante_Click(object sender, EventArgs e)
+        {
+            panelConsultarPorDataOcupantes.Visible = true;
+        }
+
+        private void btnConsultarPorDataOcupantes_Click(object sender, EventArgs e)
+        {
+            //Falta Metodo
+        }
+
+        private void panelConsultarPorDataOcupantes_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorDataOcupantes.Visible = false;
         }
     }
 }

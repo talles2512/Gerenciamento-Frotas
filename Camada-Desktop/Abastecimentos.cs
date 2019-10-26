@@ -167,6 +167,12 @@ namespace CamadaDesktop
 
         private void BtnTodosAbast_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             if (cbPlacaAbastConsulta.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -339,11 +345,21 @@ namespace CamadaDesktop
             btnTrasferirAbast.BackColor = Properties.Settings.Default.myColor;
             btnAlterarAbast.BackColor = Properties.Settings.Default.myColor;
 
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+
             btnCadastrarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnConsultarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTodosAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarAbast.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;  
         }
     }
 }

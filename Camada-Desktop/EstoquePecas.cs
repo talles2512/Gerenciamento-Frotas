@@ -117,6 +117,11 @@ namespace CamadaDesktop
 
         private void btnTodosEstoque_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 List<EstoquePeca> pecas = _estoquePecasController.BuscarTodos();
@@ -248,6 +253,20 @@ namespace CamadaDesktop
             btnTodosEstoque.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirEstoque.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarEstoque.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

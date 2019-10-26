@@ -279,6 +279,11 @@ namespace CamadaDesktop
 
         private void BtnTodosSeguros_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Seguro> seguros = _seguroController.BuscarTodos();
@@ -297,9 +302,9 @@ namespace CamadaDesktop
                 foreach (Seguro seguro in seguros)
                 {
 
-                    if(seguro.Franquia != "")
+                    if (seguro.Franquia != "")
                     {
-                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ , seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
+                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
                                seguro.Franquia, seguro.ValorFranquia);
                     }
                     else
@@ -636,6 +641,12 @@ namespace CamadaDesktop
 
         private void BtnConsultaTodosCobertura_Click(object sender, EventArgs e)
         {
+            panelConsultarporDataCobertura.Visible = true;
+        }
+
+
+        private void btnConsultarporDataCobertura_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos();
@@ -795,6 +806,24 @@ namespace CamadaDesktop
             btnTransfereCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarSeguros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarporDataCobertura.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarporDataCobertura.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarporDataCobertura.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
+        }
+
+        private void panelConsultarporDataCobertura_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarporDataCobertura.Visible = false;
         }
     }
 }

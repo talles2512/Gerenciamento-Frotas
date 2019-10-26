@@ -193,6 +193,11 @@ namespace CamadaDesktop
 
         private void BtnTodosEntradaSaida_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             if (cbPlacaConsulta.Items.Count < 1)
             {
                 MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -390,12 +395,20 @@ namespace CamadaDesktop
             btnTodosEntradaSaida.BackColor = Properties.Settings.Default.myColor;
             btnTrasferirEntradaSaida.BackColor = Properties.Settings.Default.myColor;
             btnAlterarEntradaSaida.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
 
             btnCadastrarEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnConsultarEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTodosEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarEntradaSaida.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

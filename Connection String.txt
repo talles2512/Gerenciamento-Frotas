@@ -1,2 +1,0 @@
-Hebert:
-Data Source=DESKTOP-544EB45\SQLEXPRESS;Initial Catalog=DB_GERENCFROTA;Integrated Security=True

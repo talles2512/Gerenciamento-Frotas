@@ -256,12 +256,12 @@ namespace CamadaDesktop
                         {
                             DataTable dt = new DataTable();
                             dt.Columns.Add("ID", typeof(int));
-                            dt.Columns.Add("Item Segurado", typeof(string));
+                            dt.Columns.Add("Item Segurado - Placa", typeof(string));
                             dt.Columns.Add("Nº Apólice", typeof(long));
                             dt.Columns.Add("Data/Hora", typeof(DateTime));
                             dt.Columns.Add("Descrição", typeof(string));
 
-                            dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
 
                             dgSinistrosConsulta.DataSource = dt;
                         }
@@ -289,12 +289,12 @@ namespace CamadaDesktop
                         {
                             DataTable dt = new DataTable();
                             dt.Columns.Add("ID", typeof(int));
-                            dt.Columns.Add("Item Segurado", typeof(string));
+                            dt.Columns.Add("Item Segurado - CPF", typeof(string));
                             dt.Columns.Add("Nº Apólice", typeof(long));
                             dt.Columns.Add("Data/Hora", typeof(DateTime));
                             dt.Columns.Add("Descrição", typeof(string));
 
-                            dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
 
                             dgSinistrosConsulta.DataSource = dt;
                         }
@@ -311,46 +311,77 @@ namespace CamadaDesktop
 
         private void btnTodosSinistros_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             string tipo;
-            if (cbTipoConsulta.SelectedItem.ToString()=="")
+            if (cbTipoConsulta.SelectedItem.ToString() == "")
             {
                 MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                if(cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
                 {
                     tipo = "Veiculo";
+
+                    try
+                    {
+                        List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("ID", typeof(int));
+                        dt.Columns.Add("Item Segurado - Placa", typeof(string));
+                        dt.Columns.Add("Nº Apólice", typeof(long));
+                        dt.Columns.Add("Data/Hora", typeof(DateTime));
+                        dt.Columns.Add("Descrição", typeof(string));
+
+                        foreach (Sinistro sinistro in sinistros)
+                        {
+
+                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                        }
+
+                        dgSinistrosConsulta.DataSource = dt;
+
+                    }
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
                 }
                 else
                 {
                     tipo = "Motorista";
-                }
-                try
-                {
-                    List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
 
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("ID", typeof(int));
-                    dt.Columns.Add("Item Segurado", typeof(string));
-                    dt.Columns.Add("Nº Apólice", typeof(long));
-                    dt.Columns.Add("Data/Hora", typeof(DateTime));
-                    dt.Columns.Add("Descrição", typeof(string));
-
-                    foreach (Sinistro sinistro in sinistros)
+                    try
                     {
+                        List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
 
-                        dt.Rows.Add(sinistro.Id, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("ID", typeof(int));
+                        dt.Columns.Add("Item Segurado - CPF", typeof(string));
+                        dt.Columns.Add("Nº Apólice", typeof(long));
+                        dt.Columns.Add("Data/Hora", typeof(DateTime));
+                        dt.Columns.Add("Descrição", typeof(string));
+
+                        foreach (Sinistro sinistro in sinistros)
+                        {
+
+                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                        }
+
+                        dgSinistrosConsulta.DataSource = dt;
+
                     }
-
-                    dgSinistrosConsulta.DataSource = dt;
-
-                }
-                catch (ConcorrenciaBancoException)
-                {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                }
-            }     
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
+                }                
+            }
         }
 
         private void btnTrasferirSinistros_Click(object sender, EventArgs e)
@@ -362,9 +393,18 @@ namespace CamadaDesktop
             else
             {
                 int id = int.Parse(Sinistro.Id.ToString());
-                cbTipo.Text = Sinistro.ItemSegurado.ToString();
-                itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), Sinistro.ItemSegurado.ToString());
+                if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                {
+                    cbTipo.Text = "Veiculo";
+                }
+                else
+                {
+                    cbTipo.Text = "Motorista";
+                }
+                    
+                itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
                 numapoliceantigo = Sinistro.Seguro.NumeroApolice;
+                cbItemSegurado.Text = Sinistro.Item;
 
                 if (cbTipo.SelectedItem.ToString() == "Veiculo")
                 {
@@ -570,6 +610,15 @@ namespace CamadaDesktop
             btnTodosSinistros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirSinistros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarSinistros.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
 
     }

@@ -233,6 +233,11 @@ namespace CamadaDesktop
 
         private void btnTodosMultas_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Multa> multas = _multaController.BuscarTodos();
@@ -449,6 +454,15 @@ namespace CamadaDesktop
             btnTodosMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirMultas.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

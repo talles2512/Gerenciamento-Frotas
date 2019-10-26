@@ -341,11 +341,16 @@ namespace CamadaDesktop
             btnTrasferirClientes.BackColor = Properties.Settings.Default.myColor;
             btnAlterarClientes.BackColor = Properties.Settings.Default.myColor;
 
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+
             btnCadastrarClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnConsultarClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTodosClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarClientes.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
 
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)

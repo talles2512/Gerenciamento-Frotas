@@ -215,6 +215,11 @@ namespace CamadaDesktop
 
         private void BtnTodosConveniado_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<ServicoExterno> servicoExternos = _servicoExternoController.BuscarTodos();
@@ -477,6 +482,15 @@ namespace CamadaDesktop
             btnTodosConveniado.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirConveniado.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarServicoExterno.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

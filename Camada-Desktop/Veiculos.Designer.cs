@@ -60,20 +60,29 @@
             this.lblPlaca = new System.Windows.Forms.Label();
             this.tbPageConsultaVeiculo = new System.Windows.Forms.TabPage();
             this.gbConsultaVeiculo = new System.Windows.Forms.GroupBox();
+            this.panelConsultarPorData = new System.Windows.Forms.Panel();
+            this.gbData = new System.Windows.Forms.GroupBox();
+            this.btnConsultarPorData = new System.Windows.Forms.Button();
+            this.lblFimConsulta = new System.Windows.Forms.Label();
+            this.lblInicioConsulta = new System.Windows.Forms.Label();
+            this.dtFimConsulta = new System.Windows.Forms.DateTimePicker();
+            this.dtInicioConsulta = new System.Windows.Forms.DateTimePicker();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.btnTrasferirVeiculo = new System.Windows.Forms.Button();
             this.dgVeiculoConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosVeiculo = new System.Windows.Forms.Button();
             this.btnConsultarVeiculo = new System.Windows.Forms.Button();
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
-            this.lbPesquisar = new System.Windows.Forms.Label();
-            this.textPesquisar = new System.Windows.Forms.TextBox();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
             this.tbPageConsultaVeiculo.SuspendLayout();
             this.gbConsultaVeiculo.SuspendLayout();
+            this.panelConsultarPorData.SuspendLayout();
+            this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -406,6 +415,7 @@
             // 
             // gbConsultaVeiculo
             // 
+            this.gbConsultaVeiculo.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaVeiculo.Controls.Add(this.textPesquisar);
             this.gbConsultaVeiculo.Controls.Add(this.lbPesquisar);
             this.gbConsultaVeiculo.Controls.Add(this.btnTrasferirVeiculo);
@@ -422,6 +432,106 @@
             this.gbConsultaVeiculo.TabStop = false;
             this.gbConsultaVeiculo.Text = "Consulta";
             // 
+            // panelConsultarPorData
+            // 
+            this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelConsultarPorData.Controls.Add(this.gbData);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(438, 68);
+            this.panelConsultarPorData.Name = "panelConsultarPorData";
+            this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
+            this.panelConsultarPorData.TabIndex = 40;
+            this.panelConsultarPorData.Visible = false;
+            this.panelConsultarPorData.MouseLeave += new System.EventHandler(this.panelConsultarPorData_MouseLeave);
+            // 
+            // gbData
+            // 
+            this.gbData.BackColor = System.Drawing.SystemColors.Control;
+            this.gbData.Controls.Add(this.btnConsultarPorData);
+            this.gbData.Controls.Add(this.lblFimConsulta);
+            this.gbData.Controls.Add(this.lblInicioConsulta);
+            this.gbData.Controls.Add(this.dtFimConsulta);
+            this.gbData.Controls.Add(this.dtInicioConsulta);
+            this.gbData.Location = new System.Drawing.Point(3, 7);
+            this.gbData.Name = "gbData";
+            this.gbData.Size = new System.Drawing.Size(171, 201);
+            this.gbData.TabIndex = 0;
+            this.gbData.TabStop = false;
+            this.gbData.Text = "Data";
+            // 
+            // btnConsultarPorData
+            // 
+            this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPorData.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarPorData.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPorData.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorData.Image")));
+            this.btnConsultarPorData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPorData.Location = new System.Drawing.Point(6, 155);
+            this.btnConsultarPorData.Name = "btnConsultarPorData";
+            this.btnConsultarPorData.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultarPorData.TabIndex = 21;
+            this.btnConsultarPorData.Text = "    Consultar";
+            this.btnConsultarPorData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarPorData.UseVisualStyleBackColor = false;
+            this.btnConsultarPorData.Click += new System.EventHandler(this.btnConsultarPorData_Click);
+            // 
+            // lblFimConsulta
+            // 
+            this.lblFimConsulta.AutoSize = true;
+            this.lblFimConsulta.Location = new System.Drawing.Point(0, 90);
+            this.lblFimConsulta.Name = "lblFimConsulta";
+            this.lblFimConsulta.Size = new System.Drawing.Size(37, 25);
+            this.lblFimConsulta.TabIndex = 34;
+            this.lblFimConsulta.Text = "Fim:";
+            // 
+            // lblInicioConsulta
+            // 
+            this.lblInicioConsulta.AutoSize = true;
+            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 28);
+            this.lblInicioConsulta.Name = "lblInicioConsulta";
+            this.lblInicioConsulta.Size = new System.Drawing.Size(46, 25);
+            this.lblInicioConsulta.TabIndex = 33;
+            this.lblInicioConsulta.Text = "Inicio:";
+            // 
+            // dtFimConsulta
+            // 
+            this.dtFimConsulta.CustomFormat = "MM/yyyy";
+            this.dtFimConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtFimConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFimConsulta.Location = new System.Drawing.Point(6, 118);
+            this.dtFimConsulta.Name = "dtFimConsulta";
+            this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtFimConsulta.TabIndex = 20;
+            // 
+            // dtInicioConsulta
+            // 
+            this.dtInicioConsulta.CustomFormat = "MM/yyyy";
+            this.dtInicioConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicioConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtInicioConsulta.Location = new System.Drawing.Point(6, 56);
+            this.dtInicioConsulta.Name = "dtInicioConsulta";
+            this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtInicioConsulta.TabIndex = 19;
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(252, 30);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
+            this.textPesquisar.TabIndex = 20;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(171, 33);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 19;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // btnTrasferirVeiculo
             // 
             this.btnTrasferirVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -433,7 +543,7 @@
             this.btnTrasferirVeiculo.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirVeiculo.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirVeiculo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirVeiculo.Location = new System.Drawing.Point(580, 24);
+            this.btnTrasferirVeiculo.Location = new System.Drawing.Point(577, 24);
             this.btnTrasferirVeiculo.Name = "btnTrasferirVeiculo";
             this.btnTrasferirVeiculo.Size = new System.Drawing.Size(38, 40);
             this.btnTrasferirVeiculo.TabIndex = 17;
@@ -446,9 +556,9 @@
             this.dgVeiculoConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 115);
+            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 106);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
-            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 324);
+            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 333);
             this.dgVeiculoConsulta.TabIndex = 18;
             // 
             // btnTodosVeiculo
@@ -460,11 +570,11 @@
             this.btnTodosVeiculo.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosVeiculo.ForeColor = System.Drawing.Color.White;
             this.btnTodosVeiculo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosVeiculo.Location = new System.Drawing.Point(418, 24);
+            this.btnTodosVeiculo.Location = new System.Drawing.Point(438, 68);
             this.btnTodosVeiculo.Name = "btnTodosVeiculo";
-            this.btnTodosVeiculo.Size = new System.Drawing.Size(159, 40);
+            this.btnTodosVeiculo.Size = new System.Drawing.Size(177, 40);
             this.btnTodosVeiculo.TabIndex = 16;
-            this.btnTodosVeiculo.Text = "Consultar Todos";
+            this.btnTodosVeiculo.Text = "Consultar p/ Data";
             this.btnTodosVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosVeiculo.UseVisualStyleBackColor = false;
             this.btnTodosVeiculo.Click += new System.EventHandler(this.BtnTodosVeiculo_Click);
@@ -479,7 +589,7 @@
             this.btnConsultarVeiculo.ForeColor = System.Drawing.Color.White;
             this.btnConsultarVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarVeiculo.Image")));
             this.btnConsultarVeiculo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarVeiculo.Location = new System.Drawing.Point(266, 24);
+            this.btnConsultarVeiculo.Location = new System.Drawing.Point(425, 24);
             this.btnConsultarVeiculo.Name = "btnConsultarVeiculo";
             this.btnConsultarVeiculo.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarVeiculo.TabIndex = 15;
@@ -490,37 +600,20 @@
             // 
             // txtPlacaConsulta
             // 
-            this.txtPlacaConsulta.Location = new System.Drawing.Point(72, 32);
+            this.txtPlacaConsulta.Location = new System.Drawing.Point(60, 30);
             this.txtPlacaConsulta.Mask = ">L>L>L-0000";
             this.txtPlacaConsulta.Name = "txtPlacaConsulta";
-            this.txtPlacaConsulta.Size = new System.Drawing.Size(186, 32);
+            this.txtPlacaConsulta.Size = new System.Drawing.Size(105, 32);
             this.txtPlacaConsulta.TabIndex = 14;
             // 
             // lblPlacaConsulta
             // 
             this.lblPlacaConsulta.AutoSize = true;
-            this.lblPlacaConsulta.Location = new System.Drawing.Point(18, 39);
+            this.lblPlacaConsulta.Location = new System.Drawing.Point(6, 33);
             this.lblPlacaConsulta.Name = "lblPlacaConsulta";
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
-            // 
-            // lbPesquisar
-            // 
-            this.lbPesquisar.AutoSize = true;
-            this.lbPesquisar.Location = new System.Drawing.Point(18, 76);
-            this.lbPesquisar.Name = "lbPesquisar";
-            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
-            this.lbPesquisar.TabIndex = 19;
-            this.lbPesquisar.Text = "Pesquisar:";
-            // 
-            // textPesquisar
-            // 
-            this.textPesquisar.Location = new System.Drawing.Point(99, 76);
-            this.textPesquisar.Name = "textPesquisar";
-            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
-            this.textPesquisar.TabIndex = 20;
-            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
             // 
             // Veiculos
             // 
@@ -541,6 +634,9 @@
             this.tbPageConsultaVeiculo.ResumeLayout(false);
             this.gbConsultaVeiculo.ResumeLayout(false);
             this.gbConsultaVeiculo.PerformLayout();
+            this.panelConsultarPorData.ResumeLayout(false);
+            this.gbData.ResumeLayout(false);
+            this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).EndInit();
             this.ResumeLayout(false);
 
@@ -586,5 +682,12 @@
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
         private System.Windows.Forms.ToolTip tooltipPesquisar;
+        private System.Windows.Forms.Panel panelConsultarPorData;
+        private System.Windows.Forms.GroupBox gbData;
+        private System.Windows.Forms.Button btnConsultarPorData;
+        private System.Windows.Forms.Label lblFimConsulta;
+        private System.Windows.Forms.Label lblInicioConsulta;
+        private System.Windows.Forms.DateTimePicker dtFimConsulta;
+        private System.Windows.Forms.DateTimePicker dtInicioConsulta;
     }
 }

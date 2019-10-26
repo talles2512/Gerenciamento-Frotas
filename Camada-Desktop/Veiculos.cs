@@ -211,6 +211,11 @@ namespace CamadaDesktop
 
         private void BtnTodosVeiculo_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Veiculo> veiculos = _veiculoController.BuscarTodos();
@@ -229,7 +234,7 @@ namespace CamadaDesktop
                 dt.Columns.Add("Data Inicio", typeof(DateTime));
                 dt.Columns.Add("Data Vencimento", typeof(DateTime));
 
-                foreach(Veiculo veiculo in veiculos)
+                foreach (Veiculo veiculo in veiculos)
                 {
                     string alugado = null;
                     string situacao = null;
@@ -457,6 +462,10 @@ namespace CamadaDesktop
             btnTodosVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarVeiculo.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
         }
 
         private void TextPesquisar_TextChanged(object sender, EventArgs e)
@@ -523,6 +532,11 @@ namespace CamadaDesktop
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

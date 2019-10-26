@@ -121,6 +121,11 @@ namespace CamadaDesktop
 
         private void btnTodosFuncionario_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
             try
             {
                 List<Funcionario> funcionarios = _funcionarioController.BuscarTodos();
@@ -256,6 +261,15 @@ namespace CamadaDesktop
             btnTodosFuncionario.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnTrasferirFuncionario.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarFuncionario.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
         }
     }
 }

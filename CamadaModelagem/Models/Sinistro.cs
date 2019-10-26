@@ -11,13 +11,18 @@ namespace CamadaModelagem.Models
     {
         public int Id { get; set; }
         public ItemSegurado ItemSegurado { get; set; } //Duvidas futuras aqui
+        public string Item { get; set; } //Duvidas tambem aqui
         public string Descricao { get; set; }
         public DateTime DataHora { get; set; }
         public Seguro Seguro { get; set; }
 
-        public Sinistro()
+        public Sinistro(int id, string item, string descricao, DateTime dataHora, Seguro seguro)
         {
-
+            Id = id;
+            Item = item;
+            Descricao = descricao;
+            DataHora = dataHora;
+            Seguro = seguro;
         }
 
         public Sinistro(int id, ItemSegurado itemSegurado, string descricao, DateTime dataHora,Seguro seguro)

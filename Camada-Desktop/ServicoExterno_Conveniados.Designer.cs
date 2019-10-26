@@ -64,6 +64,13 @@
             this.dgConveniadoConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosConveniado = new System.Windows.Forms.Button();
             this.btnConsultarConveniado = new System.Windows.Forms.Button();
+            this.panelConsultarPorData = new System.Windows.Forms.Panel();
+            this.gbData = new System.Windows.Forms.GroupBox();
+            this.btnConsultarPorData = new System.Windows.Forms.Button();
+            this.lblFimConsulta = new System.Windows.Forms.Label();
+            this.lblInicioConsulta = new System.Windows.Forms.Label();
+            this.dtFimConsulta = new System.Windows.Forms.DateTimePicker();
+            this.dtInicioConsulta = new System.Windows.Forms.DateTimePicker();
             this.tbControlConveniados.SuspendLayout();
             this.tbPageCadastroConveniados.SuspendLayout();
             this.gbDadosConveniados.SuspendLayout();
@@ -71,6 +78,8 @@
             this.tbPageConsultaConveniados.SuspendLayout();
             this.gbConsultaConveniados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgConveniadoConsulta)).BeginInit();
+            this.panelConsultarPorData.SuspendLayout();
+            this.gbData.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbControlConveniados
@@ -390,6 +399,7 @@
             // 
             // gbConsultaConveniados
             // 
+            this.gbConsultaConveniados.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaConveniados.Controls.Add(this.txtCNPJConsulta);
             this.gbConsultaConveniados.Controls.Add(this.lblCNPJConsulta);
             this.gbConsultaConveniados.Controls.Add(this.btnTrasferirConveniado);
@@ -409,7 +419,7 @@
             this.txtCNPJConsulta.Location = new System.Drawing.Point(68, 37);
             this.txtCNPJConsulta.Mask = "00.000.000/0000-00";
             this.txtCNPJConsulta.Name = "txtCNPJConsulta";
-            this.txtCNPJConsulta.Size = new System.Drawing.Size(186, 32);
+            this.txtCNPJConsulta.Size = new System.Drawing.Size(168, 32);
             this.txtCNPJConsulta.TabIndex = 14;
             // 
             // lblCNPJConsulta
@@ -459,11 +469,11 @@
             this.btnTodosConveniado.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosConveniado.ForeColor = System.Drawing.Color.White;
             this.btnTodosConveniado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosConveniado.Location = new System.Drawing.Point(412, 29);
+            this.btnTodosConveniado.Location = new System.Drawing.Point(394, 29);
             this.btnTodosConveniado.Name = "btnTodosConveniado";
-            this.btnTodosConveniado.Size = new System.Drawing.Size(159, 40);
+            this.btnTodosConveniado.Size = new System.Drawing.Size(177, 40);
             this.btnTodosConveniado.TabIndex = 16;
-            this.btnTodosConveniado.Text = "Consultar Todos";
+            this.btnTodosConveniado.Text = "Consultar p/ Data";
             this.btnTodosConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTodosConveniado.UseVisualStyleBackColor = false;
             this.btnTodosConveniado.Click += new System.EventHandler(this.BtnTodosConveniado_Click);
@@ -478,7 +488,7 @@
             this.btnConsultarConveniado.ForeColor = System.Drawing.Color.White;
             this.btnConsultarConveniado.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarConveniado.Image")));
             this.btnConsultarConveniado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarConveniado.Location = new System.Drawing.Point(260, 29);
+            this.btnConsultarConveniado.Location = new System.Drawing.Point(242, 29);
             this.btnConsultarConveniado.Name = "btnConsultarConveniado";
             this.btnConsultarConveniado.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarConveniado.TabIndex = 15;
@@ -486,6 +496,89 @@
             this.btnConsultarConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;
             this.btnConsultarConveniado.Click += new System.EventHandler(this.BtnConsultarConveniado_Click);
+            // 
+            // panelConsultarPorData
+            // 
+            this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelConsultarPorData.Controls.Add(this.gbData);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 29);
+            this.panelConsultarPorData.Name = "panelConsultarPorData";
+            this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
+            this.panelConsultarPorData.TabIndex = 38;
+            this.panelConsultarPorData.Visible = false;
+            this.panelConsultarPorData.MouseLeave += new System.EventHandler(this.panelConsultarPorData_MouseLeave);
+            // 
+            // gbData
+            // 
+            this.gbData.BackColor = System.Drawing.SystemColors.Control;
+            this.gbData.Controls.Add(this.btnConsultarPorData);
+            this.gbData.Controls.Add(this.lblFimConsulta);
+            this.gbData.Controls.Add(this.lblInicioConsulta);
+            this.gbData.Controls.Add(this.dtFimConsulta);
+            this.gbData.Controls.Add(this.dtInicioConsulta);
+            this.gbData.Location = new System.Drawing.Point(3, 7);
+            this.gbData.Name = "gbData";
+            this.gbData.Size = new System.Drawing.Size(171, 201);
+            this.gbData.TabIndex = 0;
+            this.gbData.TabStop = false;
+            this.gbData.Text = "Data";
+            // 
+            // btnConsultarPorData
+            // 
+            this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPorData.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarPorData.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPorData.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorData.Image")));
+            this.btnConsultarPorData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPorData.Location = new System.Drawing.Point(6, 155);
+            this.btnConsultarPorData.Name = "btnConsultarPorData";
+            this.btnConsultarPorData.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultarPorData.TabIndex = 21;
+            this.btnConsultarPorData.Text = "    Consultar";
+            this.btnConsultarPorData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarPorData.UseVisualStyleBackColor = false;
+            this.btnConsultarPorData.Click += new System.EventHandler(this.btnConsultarPorData_Click);
+            // 
+            // lblFimConsulta
+            // 
+            this.lblFimConsulta.AutoSize = true;
+            this.lblFimConsulta.Location = new System.Drawing.Point(0, 90);
+            this.lblFimConsulta.Name = "lblFimConsulta";
+            this.lblFimConsulta.Size = new System.Drawing.Size(37, 25);
+            this.lblFimConsulta.TabIndex = 34;
+            this.lblFimConsulta.Text = "Fim:";
+            // 
+            // lblInicioConsulta
+            // 
+            this.lblInicioConsulta.AutoSize = true;
+            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 28);
+            this.lblInicioConsulta.Name = "lblInicioConsulta";
+            this.lblInicioConsulta.Size = new System.Drawing.Size(46, 25);
+            this.lblInicioConsulta.TabIndex = 33;
+            this.lblInicioConsulta.Text = "Inicio:";
+            // 
+            // dtFimConsulta
+            // 
+            this.dtFimConsulta.CustomFormat = "MM/yyyy";
+            this.dtFimConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtFimConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFimConsulta.Location = new System.Drawing.Point(6, 118);
+            this.dtFimConsulta.Name = "dtFimConsulta";
+            this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtFimConsulta.TabIndex = 20;
+            // 
+            // dtInicioConsulta
+            // 
+            this.dtInicioConsulta.CustomFormat = "MM/yyyy";
+            this.dtInicioConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicioConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtInicioConsulta.Location = new System.Drawing.Point(6, 56);
+            this.dtInicioConsulta.Name = "dtInicioConsulta";
+            this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtInicioConsulta.TabIndex = 19;
             // 
             // ServicoExterno_Conveniados
             // 
@@ -506,6 +599,9 @@
             this.gbConsultaConveniados.ResumeLayout(false);
             this.gbConsultaConveniados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgConveniadoConsulta)).EndInit();
+            this.panelConsultarPorData.ResumeLayout(false);
+            this.gbData.ResumeLayout(false);
+            this.gbData.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -547,5 +643,12 @@
         private System.Windows.Forms.RadioButton rdNaoConveniado;
         private System.Windows.Forms.DateTimePicker dtVencimento;
         private System.Windows.Forms.DateTimePicker dtInicio;
+        private System.Windows.Forms.Panel panelConsultarPorData;
+        private System.Windows.Forms.GroupBox gbData;
+        private System.Windows.Forms.Button btnConsultarPorData;
+        private System.Windows.Forms.Label lblFimConsulta;
+        private System.Windows.Forms.Label lblInicioConsulta;
+        private System.Windows.Forms.DateTimePicker dtFimConsulta;
+        private System.Windows.Forms.DateTimePicker dtInicioConsulta;
     }
 }

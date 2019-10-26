@@ -71,7 +71,8 @@ namespace CamadaModelagem.Data
                 {
                     int idsin = int.Parse(dr["SIN_ID"].ToString());
                     DateTime datasin = DateTime.Parse(dr["SIN_DATAHORA"].ToString());
-                    ItemSegurado item = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), dr["SIN_ITEMSEG"].ToString());
+                    string item = dr["SIN_ITEMSEG"].ToString();
+                    //ItemSegurado item = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), dr["SIN_ITEMSEG"].ToString());
                     
                     long napolice = long.Parse(dr["SIN_SEGURO"].ToString());
                     Seguro seguro = BuscarSeguro(tiposeg, napolice);
@@ -112,7 +113,8 @@ namespace CamadaModelagem.Data
                 {
                     int idsin = int.Parse(dr["SIN_ID"].ToString());
                     DateTime datasin = DateTime.Parse(dr["SIN_DATAHORA"].ToString());
-                    ItemSegurado item = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), dr["SIN_ITEMSEG"].ToString());
+                    string item = dr["SIN_ITEMSEG"].ToString();
+                    //ItemSegurado item = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), dr["SIN_ITEMSEG"].ToString());
                     long napolice = long.Parse(dr["SIN_SEGURO"].ToString());
                     Seguro seguro = BuscarSeguro(tiposeg, napolice);
                     sinistro = new Sinistro(idsin, item, dr["SIN_DESCRICAO"].ToString(), datasin, seguro);

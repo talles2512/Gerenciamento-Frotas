@@ -195,6 +195,11 @@ namespace CamadaDesktop
 
         private void btnTodosMotorista_Click(object sender, EventArgs e)
         {
+            panelConsultarPorData.Visible = true;
+        }
+
+        private void btnConsultarPorData_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 List<Motorista> motoristas = _motoristaController.BuscarTodos();
@@ -213,7 +218,7 @@ namespace CamadaDesktop
                 dt.Columns.Add("Orgão Emissor", typeof(string));
                 dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
                 dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
-           
+
                 foreach (Motorista motorista in motoristas)
                 {
                     string situacao = null;
@@ -405,6 +410,11 @@ namespace CamadaDesktop
             tbControlMotorista.SelectedTab = tbPageExames;
         }
 
+        private void panelConsultarPorData_MouseLeave_1(object sender, EventArgs e)
+        {
+            panelConsultarPorData.Visible = false;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //EXAME MEDICO
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
@@ -514,6 +524,12 @@ namespace CamadaDesktop
         }
 
         private void btnConsultaTodosExame_Click(object sender, EventArgs e)
+        {
+            panelConsultaporDataExames.Visible = true;
+        }
+
+
+        private void btnConsultaporDataExames_Click(object sender, EventArgs e)
         {
             try
             {
@@ -700,6 +716,29 @@ namespace CamadaDesktop
             btnTransfereExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarMotorista.ForeColor = Properties.Settings.Default.myColorFonteMenu;
             btnAlterarExame.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            btnConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            panelConsultarPorData.BackColor = Properties.Settings.Default.myColor;
+            btnConsultarPorData.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+
+            panelConsultaporDataExames.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaporDataExames.BackColor = Properties.Settings.Default.myColor;
+            btnConsultaporDataExames.ForeColor = Properties.Settings.Default.myColorFonteMenu;
+        }
+
+        private void panelConsultaporDataExames_MouseLeave(object sender, EventArgs e)
+        {
+            panelConsultaporDataExames.Visible = false;
+        }
+
+        private void btnConsultarPorData_Click(object sender, EventArgs e)
+        {
+            //sem Comportamento
+        }
+
+        private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
+        {
+            //sem Comportamento
         }
     }
 }
