@@ -48,12 +48,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Cliente> BuscarTodos()
+        public List<Cliente> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Cliente> clientes = new List<Cliente>();
             try
             {
-                clientes.AddRange(_clienteDAL.BuscarTodos());
+                clientes.AddRange(_clienteDAL.BuscarTodos(dtinicio, dtfim));
                 return clientes;
             }
             catch (ConcorrenciaBancoException)

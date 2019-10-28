@@ -152,8 +152,13 @@ namespace CamadaDesktop
         {
             try
             {
-                List<Cliente> clientes = _clienteController.BuscarTodos();
+                List<Cliente> clientes = _clienteController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
+                if(clientes == null)
+                {
+                    MessageBox.Show("Não existe cadastros nesse periodo de tempo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            
                 DataTable dt = new DataTable();
                 dt.Columns.Add("CPF", typeof(string));
                 dt.Columns.Add("Nome", typeof(string));

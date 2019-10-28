@@ -47,11 +47,11 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public List<Cliente> BuscarTodos()
+        public List<Cliente> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             try
             {
-                return _clienteService.BuscarTodos();
+                return _clienteService.BuscarTodos(dtinicio, dtfim);
             }
             catch (ConcorrenciaBancoException)
             {
