@@ -122,27 +122,34 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click_1(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<EstoquePeca> pecas = _estoquePecasController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("ID", typeof(int));
-                dt.Columns.Add("Valor", typeof(double));
-                dt.Columns.Add("Quantidade", typeof(int));
-                dt.Columns.Add("Descrição", typeof(string));
-
-                foreach (EstoquePeca estoquePeca in pecas)
-                {
-                    dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
-                }
-
-                dgEstoqueConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    List<EstoquePeca> pecas = _estoquePecasController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("ID", typeof(int));
+                    dt.Columns.Add("Valor", typeof(double));
+                    dt.Columns.Add("Quantidade", typeof(int));
+                    dt.Columns.Add("Descrição", typeof(string));
+
+                    foreach (EstoquePeca estoquePeca in pecas)
+                    {
+                        dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
+                    }
+
+                    dgEstoqueConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 

@@ -48,12 +48,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Funcionario> BuscarTodos()
+        public List<Funcionario> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
             try
             {
-                funcionarios.AddRange(_funcionarioDAL.BuscarTodos());
+                funcionarios.AddRange(_funcionarioDAL.BuscarTodos(dtinicio, dtfim));
                 return funcionarios;
             }
             catch (ConcorrenciaBancoException e)

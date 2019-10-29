@@ -411,6 +411,7 @@
             this.dtFimConsulta.Name = "dtFimConsulta";
             this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtFimConsulta.TabIndex = 20;
+            this.dtFimConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // dtInicioConsulta
             // 
@@ -421,6 +422,7 @@
             this.dtInicioConsulta.Name = "dtInicioConsulta";
             this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtInicioConsulta.TabIndex = 19;
+            this.dtInicioConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // lblrecebedata
             // 

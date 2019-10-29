@@ -66,8 +66,8 @@ namespace CamadaModelagem.Data
             List<Cliente> clientes = new List<Cliente>();
 
             string query = "SELECT * FROM [dbo].[TB_CLIENTES] WHERE" +
-                    "((YEAR([CLT_DTINICIO_CONTRATO]) >= '" + dtinicio.Year + "' AND YEAR([CLT_DTINICIO_CONTRATO]) <= '" + dtfim.Year +"') AND MONTH([CLT_DTINICIO_CONTRATO]) >= '" + dtinicio.Month + "') OR" +
-                    "((YEAR([CLT_DTINICIO_CONTRATO]) <= '" + dtfim.Year + "' AND YEAR([CLT_DTINICIO_CONTRATO]) >= '" + dtinicio.Year + "') AND MONTH([CLT_DTINICIO_CONTRATO]) <= '" + dtfim.Month + "')";
+                "(YEAR([CLT_DTINICIO_CONTRATO]) >= '" + dtinicio.Year + "' AND YEAR([CLT_DTINICIO_CONTRATO]) <= '" + dtfim.Year +"' )" +
+                "AND(MONTH([CLT_DTINICIO_CONTRATO]) >= '" + dtinicio.Month + "' AND MONTH([CLT_DTINICIO_CONTRATO]) <= '" + dtfim.Month + "')";
 
             try
             {

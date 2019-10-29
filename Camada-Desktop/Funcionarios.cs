@@ -126,9 +126,16 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            {
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+            }
             try
             {
-                List<Funcionario> funcionarios = _funcionarioController.BuscarTodos();
+                List<Funcionario> funcionarios = _funcionarioController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Nome", typeof(string));
@@ -149,6 +156,7 @@ namespace CamadaDesktop
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        
 
         private void btnTrasferirFuncionario_Click(object sender, EventArgs e)
         {

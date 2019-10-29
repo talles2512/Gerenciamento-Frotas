@@ -47,12 +47,12 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
-        public List<EstoquePeca> BuscarTodos()
+        public List<EstoquePeca> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<EstoquePeca> pecas = new List<EstoquePeca>();
             try
             {
-                pecas.AddRange(_estoquePecasDAL.BuscarTodos());
+                pecas.AddRange(_estoquePecasDAL.BuscarTodos(dtinicio, dtfim));
                 return pecas;
             }
             catch (ConcorrenciaBancoException e)

@@ -198,38 +198,45 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (cbPlacaConsulta.Items.Count < 1)
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            if (cbServicoExterno.Items.Count < 1)
-            {
-                MessageBox.Show("Cadastre uma garagem / estacionamento antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                try
+                if (cbPlacaConsulta.Items.Count < 1)
                 {
-                    List<EntradaSaida> entradasSaidas = _entradaSaidaController.BuscarTodos();
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Tipo", typeof(string));
-                    dt.Columns.Add("Placa", typeof(string));
-                    dt.Columns.Add("CNPJ", typeof(long));
-                    dt.Columns.Add("CPF", typeof(string));
-                    dt.Columns.Add("Data/Hora", typeof(DateTime));
-
-                    foreach (EntradaSaida entradaSaida in entradasSaidas)
+                    MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (cbServicoExterno.Items.Count < 1)
+                {
+                    MessageBox.Show("Cadastre uma garagem / estacionamento antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(entradaSaida.Tipo.ToString(), entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.CPF, entradaSaida.DataHora);
+                        List<EntradaSaida> entradasSaidas = _entradaSaidaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Tipo", typeof(string));
+                        dt.Columns.Add("Placa", typeof(string));
+                        dt.Columns.Add("CNPJ", typeof(long));
+                        dt.Columns.Add("CPF", typeof(string));
+                        dt.Columns.Add("Data/Hora", typeof(DateTime));
+
+                        foreach (EntradaSaida entradaSaida in entradasSaidas)
+                        {
+                            dt.Rows.Add(entradaSaida.Tipo.ToString(), entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.CPF, entradaSaida.DataHora);
+                        }
+                        dgEntradaSaidaConsulta.DataSource = dt;
                     }
-                    dgEntradaSaidaConsulta.DataSource = dt;
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+            }          
         }
 
         private void BtnTrasferirEntradaSaida_Click(object sender, EventArgs e)

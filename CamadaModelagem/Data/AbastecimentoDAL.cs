@@ -129,7 +129,7 @@ namespace CamadaModelagem.Data
         {
             List<Abastecimento> abastecimentos = new List<Abastecimento>();
             string query = "SELECT [ABS_ID], [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
-                "FROM[TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa +"'";
+                "FROM [TB_ABASTECIMENTO] WHERE [ABS_VCL_PLACA] = '" + placa +"'";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
@@ -154,11 +154,13 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Abastecimento> BuscarTodos()
+        public List<Abastecimento> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Abastecimento> abastecimentos = new List<Abastecimento>();
-            string query = "SELECT [ABS_VCL_PLACA], [ABS_SERVEXT_CNPJ], [ABS_TIPO], [ABS_LITROS], [ABS_VALOR], [ABS_DATA]" +
-                " FROM [DB_GERENCFROTA].[dbo].[TB_ABASTECIMENTO]";
+
+            string query = "SELECT * FROM [dbo].[TB_ABASTECIMENTO] WHERE" +
+                    "((YEAR([ABS_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([ABS_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([ABS_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([ABS_DATAREGISTRO]) <= '" + dtfim.Month + "')";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

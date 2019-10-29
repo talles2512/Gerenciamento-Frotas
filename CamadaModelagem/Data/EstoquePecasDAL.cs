@@ -57,10 +57,14 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
             }
         }
-        public List<EstoquePeca> BuscarTodos()
+        public List<EstoquePeca> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<EstoquePeca> pecas = new List<EstoquePeca>();
-            string query = "SELECT * FROM [dbo].[TB_ESTOQUE_PECAS]";
+
+            string query = "SELECT * FROM [dbo].[TB_ESTOQUE_PECAS] WHERE" +
+                    "((YEAR([EP_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([EP_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([EP_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([EP_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

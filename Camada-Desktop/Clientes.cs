@@ -150,37 +150,41 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<Cliente> clientes = _clienteController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                if(clientes == null)
-                {
-                    MessageBox.Show("Não existe cadastros nesse periodo de tempo", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            
-                DataTable dt = new DataTable();
-                dt.Columns.Add("CPF", typeof(string));
-                dt.Columns.Add("Nome", typeof(string));
-                dt.Columns.Add("RG", typeof(string));
-                dt.Columns.Add("Endereço", typeof(string));
-                dt.Columns.Add("e-mail", typeof(string));
-                dt.Columns.Add("Data Nascimento", typeof(DateTime));
-                dt.Columns.Add("Data Inicio Contrato", typeof(DateTime));
-
-                foreach (Cliente cliente in clientes)
-                {
-
-                    dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
-                        , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
-                }
-
-                dgClientesConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException)
+            else
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+
+
+                try
+                {
+                    List<Cliente> clientes = _clienteController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("CPF", typeof(string));
+                    dt.Columns.Add("Nome", typeof(string));
+                    dt.Columns.Add("RG", typeof(string));
+                    dt.Columns.Add("Endereço", typeof(string));
+                    dt.Columns.Add("e-mail", typeof(string));
+                    dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                    dt.Columns.Add("Data Inicio Contrato", typeof(DateTime));
+
+                    foreach (Cliente cliente in clientes)
+                    {
+
+                        dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
+                            , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
+                    }
+
+                    dgClientesConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                }
             }
         }
 

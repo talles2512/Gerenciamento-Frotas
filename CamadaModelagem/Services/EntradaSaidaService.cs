@@ -49,12 +49,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<EntradaSaida> BuscarTodos()
+        public List<EntradaSaida> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
             try
             {
-                entradasSaidas.AddRange(_entradaSaidaDAL.BuscarTodos());
+                entradasSaidas.AddRange(_entradaSaidaDAL.BuscarTodos(dtinicio, dtfim));
                 return entradasSaidas;
             }
             catch (ConcorrenciaBancoException e)

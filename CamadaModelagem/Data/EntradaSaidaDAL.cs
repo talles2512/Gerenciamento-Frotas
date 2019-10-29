@@ -94,6 +94,7 @@ namespace CamadaModelagem.Data
         public List<EntradaSaida> BuscarTodos(long cnpj)
         {
             List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
+
             string query = "SELECT [ES_ID], [ES_MT_CPF], [ES_VCL_PLACA], [ES_SERVEXT_CNPJ], [ES_TIPO], [ES_DATAHORA]" +
                 " FROM [DB_GERENCFROTA].[dbo].[TB_ENTRADA_SAIDA] WHERE [ES_SERVEXT_CNPJ] = " + cnpj;
             try
@@ -171,11 +172,12 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
             }
         }
-        public List<EntradaSaida> BuscarTodos()
+        public List<EntradaSaida> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<EntradaSaida> entradasSaidas = new List<EntradaSaida>();
-            string query = "SELECT [ES_ID], [ES_MT_CPF], [ES_VCL_PLACA], [ES_SERVEXT_CNPJ], [ES_TIPO], [ES_DATAHORA]" +
-                " FROM [DB_GERENCFROTA].[dbo].[TB_ENTRADA_SAIDA]";
+            string query = "SELECT* FROM [dbo].[TB_ENTRADA_SAIDA] WHERE" +
+                                "(YEAR([ES_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([ES_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                                "AND(MONTH([ES_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([ES_DATAREGISTRO]) <= '" + dtfim.Month + "')";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

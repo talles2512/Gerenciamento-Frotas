@@ -161,11 +161,13 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Manutencao> BuscarTodos()
+        public List<Manutencao> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Manutencao> manutencoes = new List<Manutencao>();
-            string query = "SELECT [MTC_TIPO], [MTC_SERVEXT_CNPJ], [MTC_DESCRICAO], [MTC_DATA], [MTC_VALOR], [MTC_SITUACAO]," +
-                " [MTC_VCL_PLACA] FROM [DB_GERENCFROTA].[dbo].[TB_MANUTENCAO]";
+
+            string query = "SELECT * FROM [dbo].[TB_MANUTENCAO] WHERE" +
+                    "((YEAR([MTC_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([MTC_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([MTC_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([MTC_DATAREGISTRO]) <= '" + dtfim.Month + "')";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

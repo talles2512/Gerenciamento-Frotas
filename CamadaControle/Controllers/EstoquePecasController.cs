@@ -46,11 +46,11 @@ namespace CamadaControle.Controllers
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
-        public List<EstoquePeca> BuscarTodos()
+        public List<EstoquePeca> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             try
             {
-                return _estoquePecasService.BuscarTodos();
+                return _estoquePecasService.BuscarTodos(dtinicio, dtfim);
             }
             catch (ConcorrenciaBancoException)
             {

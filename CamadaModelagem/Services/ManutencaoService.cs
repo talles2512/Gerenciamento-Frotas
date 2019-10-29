@@ -50,12 +50,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Manutencao> BuscarTodos()
+        public List<Manutencao> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Manutencao> manutencoes = new List<Manutencao>();
             try
             {
-                manutencoes.AddRange(_manutencaoDAL.BuscarTodos());
+                manutencoes.AddRange(_manutencaoDAL.BuscarTodos(dtinicio, dtfim));
                 return manutencoes;
             }
             catch (ConcorrenciaBancoException e)

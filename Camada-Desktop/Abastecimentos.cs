@@ -173,36 +173,44 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (cbPlacaAbastConsulta.Items.Count < 1)
+            if(dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                try
+                if (cbPlacaAbastConsulta.Items.Count < 1)
                 {
-                    List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos();
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Placa", typeof(string));
-                    dt.Columns.Add("CNPJ", typeof(long));
-                    dt.Columns.Add("Tipo Combustível", typeof(string));
-                    dt.Columns.Add("Quantidade (Litros)", typeof(double));
-                    dt.Columns.Add("Valor (Total)", typeof(double));
-                    dt.Columns.Add("Data", typeof(DateTime));
-
-                    foreach (Abastecimento abastecimento in abastecimentos)
+                    MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
-                                                    , abastecimento.Data);
+                        List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Placa", typeof(string));
+                        dt.Columns.Add("CNPJ", typeof(long));
+                        dt.Columns.Add("Tipo Combustível", typeof(string));
+                        dt.Columns.Add("Quantidade (Litros)", typeof(double));
+                        dt.Columns.Add("Valor (Total)", typeof(double));
+                        dt.Columns.Add("Data", typeof(DateTime));
+
+                        foreach (Abastecimento abastecimento in abastecimentos)
+                        {
+                            dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
+                                                        , abastecimento.Data);
+                        }
+                        dgVeiculoAbast.DataSource = dt;
                     }
-                    dgVeiculoAbast.DataSource = dt;
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+
+            }           
         }
 
         private void BtnTrasferirAbast_Click(object sender, EventArgs e)

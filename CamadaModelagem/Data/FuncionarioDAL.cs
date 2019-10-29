@@ -60,10 +60,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Funcionario> BuscarTodos()
+        public List<Funcionario> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
-            string query = "SELECT * FROM [TB_FUNCIONARIO]";
+
+            string query = "SELECT * FROM [dbo].[TB_FUNCIONARIO] WHERE" +
+                    "((YEAR([FUNC_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([FUNC_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([FUNC_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([FUNC_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

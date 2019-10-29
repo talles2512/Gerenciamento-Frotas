@@ -76,12 +76,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Abastecimento> BuscarTodos()
+        public List<Abastecimento> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Abastecimento> abastecimentos = new List<Abastecimento>();
             try
             {
-                abastecimentos.AddRange(_abastecimentoDAL.BuscarTodos());
+                abastecimentos.AddRange(_abastecimentoDAL.BuscarTodos(dtinicio, dtfim));
                 return abastecimentos;
             }
             catch (ConcorrenciaBancoException e)
