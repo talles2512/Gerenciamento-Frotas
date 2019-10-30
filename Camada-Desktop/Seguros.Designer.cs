@@ -55,6 +55,13 @@
             this.btnCadastrarSeguros = new System.Windows.Forms.Button();
             this.tbPageConsultaSeguros = new System.Windows.Forms.TabPage();
             this.gbConsultaSeguros = new System.Windows.Forms.GroupBox();
+            this.panelConsultarPorData = new System.Windows.Forms.Panel();
+            this.gbData = new System.Windows.Forms.GroupBox();
+            this.btnConsultarPorData = new System.Windows.Forms.Button();
+            this.lblFimConsulta = new System.Windows.Forms.Label();
+            this.lblInicioConsulta = new System.Windows.Forms.Label();
+            this.dtFimConsulta = new System.Windows.Forms.DateTimePicker();
+            this.dtInicioConsulta = new System.Windows.Forms.DateTimePicker();
             this.txtNApoliceConsulta = new System.Windows.Forms.MaskedTextBox();
             this.cbTipoConsulta = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,6 +72,13 @@
             this.btnConsultarSeguros = new System.Windows.Forms.Button();
             this.tbPageCobertura = new System.Windows.Forms.TabPage();
             this.gbConsultaCobertura = new System.Windows.Forms.GroupBox();
+            this.panelConsultarporDataCobertura = new System.Windows.Forms.Panel();
+            this.gbConsultarporDataCobertura = new System.Windows.Forms.GroupBox();
+            this.btnConsultarporDataCobertura = new System.Windows.Forms.Button();
+            this.lblfimConsultarporDataCobertura = new System.Windows.Forms.Label();
+            this.lblInicoConsultarporDataCobertura = new System.Windows.Forms.Label();
+            this.dtFimConsultarporDataCobertura = new System.Windows.Forms.DateTimePicker();
+            this.dtInicioConsultarporDataCobertura = new System.Windows.Forms.DateTimePicker();
             this.txtNApoliceCoberturaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblTipoCoberturaConsulta = new System.Windows.Forms.Label();
             this.cbTipoCoberturaConsulta = new System.Windows.Forms.ComboBox();
@@ -83,34 +97,20 @@
             this.btnExcluirCobertura = new System.Windows.Forms.Button();
             this.btnAlterarCobertura = new System.Windows.Forms.Button();
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
-            this.panelConsultarPorData = new System.Windows.Forms.Panel();
-            this.gbData = new System.Windows.Forms.GroupBox();
-            this.btnConsultarPorData = new System.Windows.Forms.Button();
-            this.lblFimConsulta = new System.Windows.Forms.Label();
-            this.lblInicioConsulta = new System.Windows.Forms.Label();
-            this.dtFimConsulta = new System.Windows.Forms.DateTimePicker();
-            this.dtInicioConsulta = new System.Windows.Forms.DateTimePicker();
-            this.panelConsultarporDataCobertura = new System.Windows.Forms.Panel();
-            this.gbConsultarporDataCobertura = new System.Windows.Forms.GroupBox();
-            this.btnConsultarporDataCobertura = new System.Windows.Forms.Button();
-            this.lblfimConsultarporDataCobertura = new System.Windows.Forms.Label();
-            this.lblInicoConsultarporDataCobertura = new System.Windows.Forms.Label();
-            this.dtFimConsultarporDataCobertura = new System.Windows.Forms.DateTimePicker();
-            this.dtInicioConsultarporDataCobertura = new System.Windows.Forms.DateTimePicker();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
             this.tbPageConsultaSeguros.SuspendLayout();
             this.gbConsultaSeguros.SuspendLayout();
+            this.panelConsultarPorData.SuspendLayout();
+            this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSegurosConsulta)).BeginInit();
             this.tbPageCobertura.SuspendLayout();
             this.gbConsultaCobertura.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).BeginInit();
-            this.gbDadosCobertura.SuspendLayout();
-            this.panelConsultarPorData.SuspendLayout();
-            this.gbData.SuspendLayout();
             this.panelConsultarporDataCobertura.SuspendLayout();
             this.gbConsultarporDataCobertura.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).BeginInit();
+            this.gbDadosCobertura.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbControlSeguros
@@ -420,6 +420,91 @@
             this.gbConsultaSeguros.TabStop = false;
             this.gbConsultaSeguros.Text = "Consulta";
             // 
+            // panelConsultarPorData
+            // 
+            this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelConsultarPorData.Controls.Add(this.gbData);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 72);
+            this.panelConsultarPorData.Name = "panelConsultarPorData";
+            this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
+            this.panelConsultarPorData.TabIndex = 37;
+            this.panelConsultarPorData.Visible = false;
+            this.panelConsultarPorData.MouseLeave += new System.EventHandler(this.panelConsultarPorData_MouseLeave);
+            // 
+            // gbData
+            // 
+            this.gbData.BackColor = System.Drawing.SystemColors.Control;
+            this.gbData.Controls.Add(this.btnConsultarPorData);
+            this.gbData.Controls.Add(this.lblFimConsulta);
+            this.gbData.Controls.Add(this.lblInicioConsulta);
+            this.gbData.Controls.Add(this.dtFimConsulta);
+            this.gbData.Controls.Add(this.dtInicioConsulta);
+            this.gbData.Location = new System.Drawing.Point(3, 7);
+            this.gbData.Name = "gbData";
+            this.gbData.Size = new System.Drawing.Size(171, 201);
+            this.gbData.TabIndex = 0;
+            this.gbData.TabStop = false;
+            this.gbData.Text = "Data";
+            // 
+            // btnConsultarPorData
+            // 
+            this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
+            this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarPorData.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarPorData.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarPorData.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorData.Image")));
+            this.btnConsultarPorData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarPorData.Location = new System.Drawing.Point(6, 155);
+            this.btnConsultarPorData.Name = "btnConsultarPorData";
+            this.btnConsultarPorData.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultarPorData.TabIndex = 23;
+            this.btnConsultarPorData.Text = "    Consultar";
+            this.btnConsultarPorData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarPorData.UseVisualStyleBackColor = false;
+            this.btnConsultarPorData.Click += new System.EventHandler(this.btnConsultarPorData_Click);
+            // 
+            // lblFimConsulta
+            // 
+            this.lblFimConsulta.AutoSize = true;
+            this.lblFimConsulta.Location = new System.Drawing.Point(0, 90);
+            this.lblFimConsulta.Name = "lblFimConsulta";
+            this.lblFimConsulta.Size = new System.Drawing.Size(37, 25);
+            this.lblFimConsulta.TabIndex = 34;
+            this.lblFimConsulta.Text = "Fim:";
+            // 
+            // lblInicioConsulta
+            // 
+            this.lblInicioConsulta.AutoSize = true;
+            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 28);
+            this.lblInicioConsulta.Name = "lblInicioConsulta";
+            this.lblInicioConsulta.Size = new System.Drawing.Size(46, 25);
+            this.lblInicioConsulta.TabIndex = 33;
+            this.lblInicioConsulta.Text = "Inicio:";
+            // 
+            // dtFimConsulta
+            // 
+            this.dtFimConsulta.CustomFormat = "MM/yyyy";
+            this.dtFimConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtFimConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFimConsulta.Location = new System.Drawing.Point(6, 118);
+            this.dtFimConsulta.Name = "dtFimConsulta";
+            this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtFimConsulta.TabIndex = 22;
+            this.dtFimConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
+            // 
+            // dtInicioConsulta
+            // 
+            this.dtInicioConsulta.CustomFormat = "MM/yyyy";
+            this.dtInicioConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicioConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtInicioConsulta.Location = new System.Drawing.Point(6, 56);
+            this.dtInicioConsulta.Name = "dtInicioConsulta";
+            this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
+            this.dtInicioConsulta.TabIndex = 21;
+            this.dtInicioConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
+            // 
             // txtNApoliceConsulta
             // 
             this.txtNApoliceConsulta.Location = new System.Drawing.Point(338, 25);
@@ -549,6 +634,91 @@
             this.gbConsultaCobertura.TabIndex = 26;
             this.gbConsultaCobertura.TabStop = false;
             this.gbConsultaCobertura.Text = "Consulta";
+            // 
+            // panelConsultarporDataCobertura
+            // 
+            this.panelConsultarporDataCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panelConsultarporDataCobertura.Controls.Add(this.gbConsultarporDataCobertura);
+            this.panelConsultarporDataCobertura.Location = new System.Drawing.Point(393, 68);
+            this.panelConsultarporDataCobertura.Name = "panelConsultarporDataCobertura";
+            this.panelConsultarporDataCobertura.Size = new System.Drawing.Size(177, 213);
+            this.panelConsultarporDataCobertura.TabIndex = 68;
+            this.panelConsultarporDataCobertura.Visible = false;
+            this.panelConsultarporDataCobertura.MouseLeave += new System.EventHandler(this.panelConsultarporDataCobertura_MouseLeave);
+            // 
+            // gbConsultarporDataCobertura
+            // 
+            this.gbConsultarporDataCobertura.BackColor = System.Drawing.SystemColors.Control;
+            this.gbConsultarporDataCobertura.Controls.Add(this.btnConsultarporDataCobertura);
+            this.gbConsultarporDataCobertura.Controls.Add(this.lblfimConsultarporDataCobertura);
+            this.gbConsultarporDataCobertura.Controls.Add(this.lblInicoConsultarporDataCobertura);
+            this.gbConsultarporDataCobertura.Controls.Add(this.dtFimConsultarporDataCobertura);
+            this.gbConsultarporDataCobertura.Controls.Add(this.dtInicioConsultarporDataCobertura);
+            this.gbConsultarporDataCobertura.Location = new System.Drawing.Point(3, 7);
+            this.gbConsultarporDataCobertura.Name = "gbConsultarporDataCobertura";
+            this.gbConsultarporDataCobertura.Size = new System.Drawing.Size(171, 201);
+            this.gbConsultarporDataCobertura.TabIndex = 0;
+            this.gbConsultarporDataCobertura.TabStop = false;
+            this.gbConsultarporDataCobertura.Text = "Data";
+            // 
+            // btnConsultarporDataCobertura
+            // 
+            this.btnConsultarporDataCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarporDataCobertura.FlatAppearance.BorderSize = 0;
+            this.btnConsultarporDataCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnConsultarporDataCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultarporDataCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultarporDataCobertura.ForeColor = System.Drawing.Color.White;
+            this.btnConsultarporDataCobertura.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarporDataCobertura.Image")));
+            this.btnConsultarporDataCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultarporDataCobertura.Location = new System.Drawing.Point(6, 155);
+            this.btnConsultarporDataCobertura.Name = "btnConsultarporDataCobertura";
+            this.btnConsultarporDataCobertura.Size = new System.Drawing.Size(159, 40);
+            this.btnConsultarporDataCobertura.TabIndex = 28;
+            this.btnConsultarporDataCobertura.Text = "    Consultar";
+            this.btnConsultarporDataCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsultarporDataCobertura.UseVisualStyleBackColor = false;
+            this.btnConsultarporDataCobertura.Click += new System.EventHandler(this.btnConsultarporDataCobertura_Click);
+            // 
+            // lblfimConsultarporDataCobertura
+            // 
+            this.lblfimConsultarporDataCobertura.AutoSize = true;
+            this.lblfimConsultarporDataCobertura.Location = new System.Drawing.Point(0, 90);
+            this.lblfimConsultarporDataCobertura.Name = "lblfimConsultarporDataCobertura";
+            this.lblfimConsultarporDataCobertura.Size = new System.Drawing.Size(37, 25);
+            this.lblfimConsultarporDataCobertura.TabIndex = 34;
+            this.lblfimConsultarporDataCobertura.Text = "Fim:";
+            // 
+            // lblInicoConsultarporDataCobertura
+            // 
+            this.lblInicoConsultarporDataCobertura.AutoSize = true;
+            this.lblInicoConsultarporDataCobertura.Location = new System.Drawing.Point(1, 28);
+            this.lblInicoConsultarporDataCobertura.Name = "lblInicoConsultarporDataCobertura";
+            this.lblInicoConsultarporDataCobertura.Size = new System.Drawing.Size(46, 25);
+            this.lblInicoConsultarporDataCobertura.TabIndex = 33;
+            this.lblInicoConsultarporDataCobertura.Text = "Inicio:";
+            // 
+            // dtFimConsultarporDataCobertura
+            // 
+            this.dtFimConsultarporDataCobertura.CustomFormat = "MM/yyyy";
+            this.dtFimConsultarporDataCobertura.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtFimConsultarporDataCobertura.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFimConsultarporDataCobertura.Location = new System.Drawing.Point(6, 118);
+            this.dtFimConsultarporDataCobertura.Name = "dtFimConsultarporDataCobertura";
+            this.dtFimConsultarporDataCobertura.Size = new System.Drawing.Size(159, 31);
+            this.dtFimConsultarporDataCobertura.TabIndex = 27;
+            this.dtFimConsultarporDataCobertura.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
+            // 
+            // dtInicioConsultarporDataCobertura
+            // 
+            this.dtInicioConsultarporDataCobertura.CustomFormat = "MM/yyyy";
+            this.dtInicioConsultarporDataCobertura.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
+            this.dtInicioConsultarporDataCobertura.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtInicioConsultarporDataCobertura.Location = new System.Drawing.Point(6, 56);
+            this.dtInicioConsultarporDataCobertura.Name = "dtInicioConsultarporDataCobertura";
+            this.dtInicioConsultarporDataCobertura.Size = new System.Drawing.Size(159, 31);
+            this.dtInicioConsultarporDataCobertura.TabIndex = 26;
+            this.dtInicioConsultarporDataCobertura.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // txtNApoliceCoberturaConsulta
             // 
@@ -778,172 +948,6 @@
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
             // 
-            // panelConsultarPorData
-            // 
-            this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panelConsultarPorData.Controls.Add(this.gbData);
-            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 72);
-            this.panelConsultarPorData.Name = "panelConsultarPorData";
-            this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
-            this.panelConsultarPorData.TabIndex = 37;
-            this.panelConsultarPorData.Visible = false;
-            this.panelConsultarPorData.MouseLeave += new System.EventHandler(this.panelConsultarPorData_MouseLeave);
-            // 
-            // gbData
-            // 
-            this.gbData.BackColor = System.Drawing.SystemColors.Control;
-            this.gbData.Controls.Add(this.btnConsultarPorData);
-            this.gbData.Controls.Add(this.lblFimConsulta);
-            this.gbData.Controls.Add(this.lblInicioConsulta);
-            this.gbData.Controls.Add(this.dtFimConsulta);
-            this.gbData.Controls.Add(this.dtInicioConsulta);
-            this.gbData.Location = new System.Drawing.Point(3, 7);
-            this.gbData.Name = "gbData";
-            this.gbData.Size = new System.Drawing.Size(171, 201);
-            this.gbData.TabIndex = 0;
-            this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
-            // 
-            // btnConsultarPorData
-            // 
-            this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
-            this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarPorData.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultarPorData.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarPorData.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorData.Image")));
-            this.btnConsultarPorData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarPorData.Location = new System.Drawing.Point(6, 155);
-            this.btnConsultarPorData.Name = "btnConsultarPorData";
-            this.btnConsultarPorData.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultarPorData.TabIndex = 23;
-            this.btnConsultarPorData.Text = "    Consultar";
-            this.btnConsultarPorData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultarPorData.UseVisualStyleBackColor = false;
-            this.btnConsultarPorData.Click += new System.EventHandler(this.btnConsultarPorData_Click);
-            // 
-            // lblFimConsulta
-            // 
-            this.lblFimConsulta.AutoSize = true;
-            this.lblFimConsulta.Location = new System.Drawing.Point(0, 90);
-            this.lblFimConsulta.Name = "lblFimConsulta";
-            this.lblFimConsulta.Size = new System.Drawing.Size(37, 25);
-            this.lblFimConsulta.TabIndex = 34;
-            this.lblFimConsulta.Text = "Fim:";
-            // 
-            // lblInicioConsulta
-            // 
-            this.lblInicioConsulta.AutoSize = true;
-            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 28);
-            this.lblInicioConsulta.Name = "lblInicioConsulta";
-            this.lblInicioConsulta.Size = new System.Drawing.Size(46, 25);
-            this.lblInicioConsulta.TabIndex = 33;
-            this.lblInicioConsulta.Text = "Inicio:";
-            // 
-            // dtFimConsulta
-            // 
-            this.dtFimConsulta.CustomFormat = "MM/yyyy";
-            this.dtFimConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtFimConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFimConsulta.Location = new System.Drawing.Point(6, 118);
-            this.dtFimConsulta.Name = "dtFimConsulta";
-            this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
-            this.dtFimConsulta.TabIndex = 22;
-            // 
-            // dtInicioConsulta
-            // 
-            this.dtInicioConsulta.CustomFormat = "MM/yyyy";
-            this.dtInicioConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtInicioConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtInicioConsulta.Location = new System.Drawing.Point(6, 56);
-            this.dtInicioConsulta.Name = "dtInicioConsulta";
-            this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
-            this.dtInicioConsulta.TabIndex = 21;
-            // 
-            // panelConsultarporDataCobertura
-            // 
-            this.panelConsultarporDataCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panelConsultarporDataCobertura.Controls.Add(this.gbConsultarporDataCobertura);
-            this.panelConsultarporDataCobertura.Location = new System.Drawing.Point(393, 68);
-            this.panelConsultarporDataCobertura.Name = "panelConsultarporDataCobertura";
-            this.panelConsultarporDataCobertura.Size = new System.Drawing.Size(177, 213);
-            this.panelConsultarporDataCobertura.TabIndex = 68;
-            this.panelConsultarporDataCobertura.Visible = false;
-            this.panelConsultarporDataCobertura.MouseLeave += new System.EventHandler(this.panelConsultarporDataCobertura_MouseLeave);
-            // 
-            // gbConsultarporDataCobertura
-            // 
-            this.gbConsultarporDataCobertura.BackColor = System.Drawing.SystemColors.Control;
-            this.gbConsultarporDataCobertura.Controls.Add(this.btnConsultarporDataCobertura);
-            this.gbConsultarporDataCobertura.Controls.Add(this.lblfimConsultarporDataCobertura);
-            this.gbConsultarporDataCobertura.Controls.Add(this.lblInicoConsultarporDataCobertura);
-            this.gbConsultarporDataCobertura.Controls.Add(this.dtFimConsultarporDataCobertura);
-            this.gbConsultarporDataCobertura.Controls.Add(this.dtInicioConsultarporDataCobertura);
-            this.gbConsultarporDataCobertura.Location = new System.Drawing.Point(3, 7);
-            this.gbConsultarporDataCobertura.Name = "gbConsultarporDataCobertura";
-            this.gbConsultarporDataCobertura.Size = new System.Drawing.Size(171, 201);
-            this.gbConsultarporDataCobertura.TabIndex = 0;
-            this.gbConsultarporDataCobertura.TabStop = false;
-            this.gbConsultarporDataCobertura.Text = "Data";
-            // 
-            // btnConsultarporDataCobertura
-            // 
-            this.btnConsultarporDataCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnConsultarporDataCobertura.FlatAppearance.BorderSize = 0;
-            this.btnConsultarporDataCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnConsultarporDataCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConsultarporDataCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultarporDataCobertura.ForeColor = System.Drawing.Color.White;
-            this.btnConsultarporDataCobertura.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarporDataCobertura.Image")));
-            this.btnConsultarporDataCobertura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarporDataCobertura.Location = new System.Drawing.Point(6, 155);
-            this.btnConsultarporDataCobertura.Name = "btnConsultarporDataCobertura";
-            this.btnConsultarporDataCobertura.Size = new System.Drawing.Size(159, 40);
-            this.btnConsultarporDataCobertura.TabIndex = 28;
-            this.btnConsultarporDataCobertura.Text = "    Consultar";
-            this.btnConsultarporDataCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsultarporDataCobertura.UseVisualStyleBackColor = false;
-            this.btnConsultarporDataCobertura.Click += new System.EventHandler(this.btnConsultarporDataCobertura_Click);
-            // 
-            // lblfimConsultarporDataCobertura
-            // 
-            this.lblfimConsultarporDataCobertura.AutoSize = true;
-            this.lblfimConsultarporDataCobertura.Location = new System.Drawing.Point(0, 90);
-            this.lblfimConsultarporDataCobertura.Name = "lblfimConsultarporDataCobertura";
-            this.lblfimConsultarporDataCobertura.Size = new System.Drawing.Size(37, 25);
-            this.lblfimConsultarporDataCobertura.TabIndex = 34;
-            this.lblfimConsultarporDataCobertura.Text = "Fim:";
-            // 
-            // lblInicoConsultarporDataCobertura
-            // 
-            this.lblInicoConsultarporDataCobertura.AutoSize = true;
-            this.lblInicoConsultarporDataCobertura.Location = new System.Drawing.Point(1, 28);
-            this.lblInicoConsultarporDataCobertura.Name = "lblInicoConsultarporDataCobertura";
-            this.lblInicoConsultarporDataCobertura.Size = new System.Drawing.Size(46, 25);
-            this.lblInicoConsultarporDataCobertura.TabIndex = 33;
-            this.lblInicoConsultarporDataCobertura.Text = "Inicio:";
-            // 
-            // dtFimConsultarporDataCobertura
-            // 
-            this.dtFimConsultarporDataCobertura.CustomFormat = "MM/yyyy";
-            this.dtFimConsultarporDataCobertura.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtFimConsultarporDataCobertura.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFimConsultarporDataCobertura.Location = new System.Drawing.Point(6, 118);
-            this.dtFimConsultarporDataCobertura.Name = "dtFimConsultarporDataCobertura";
-            this.dtFimConsultarporDataCobertura.Size = new System.Drawing.Size(159, 31);
-            this.dtFimConsultarporDataCobertura.TabIndex = 27;
-            // 
-            // dtInicioConsultarporDataCobertura
-            // 
-            this.dtInicioConsultarporDataCobertura.CustomFormat = "MM/yyyy";
-            this.dtInicioConsultarporDataCobertura.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
-            this.dtInicioConsultarporDataCobertura.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtInicioConsultarporDataCobertura.Location = new System.Drawing.Point(6, 56);
-            this.dtInicioConsultarporDataCobertura.Name = "dtInicioConsultarporDataCobertura";
-            this.dtInicioConsultarporDataCobertura.Size = new System.Drawing.Size(159, 31);
-            this.dtInicioConsultarporDataCobertura.TabIndex = 26;
-            // 
             // Seguros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -961,19 +965,19 @@
             this.tbPageConsultaSeguros.ResumeLayout(false);
             this.gbConsultaSeguros.ResumeLayout(false);
             this.gbConsultaSeguros.PerformLayout();
+            this.panelConsultarPorData.ResumeLayout(false);
+            this.gbData.ResumeLayout(false);
+            this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSegurosConsulta)).EndInit();
             this.tbPageCobertura.ResumeLayout(false);
             this.gbConsultaCobertura.ResumeLayout(false);
             this.gbConsultaCobertura.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).EndInit();
-            this.gbDadosCobertura.ResumeLayout(false);
-            this.gbDadosCobertura.PerformLayout();
-            this.panelConsultarPorData.ResumeLayout(false);
-            this.gbData.ResumeLayout(false);
-            this.gbData.PerformLayout();
             this.panelConsultarporDataCobertura.ResumeLayout(false);
             this.gbConsultarporDataCobertura.ResumeLayout(false);
             this.gbConsultarporDataCobertura.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).EndInit();
+            this.gbDadosCobertura.ResumeLayout(false);
+            this.gbDadosCobertura.PerformLayout();
             this.ResumeLayout(false);
 
         }

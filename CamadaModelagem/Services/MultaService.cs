@@ -51,12 +51,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Multa> BuscarTodos()
+        public List<Multa> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Multa> multas = new List<Multa>();
             try
             {
-                multas.AddRange(_multaDAL.BuscarTodos());
+                multas.AddRange(_multaDAL.BuscarTodos(dtinicio, dtfim));
                 return multas;
             }
             catch (ConcorrenciaBancoException)

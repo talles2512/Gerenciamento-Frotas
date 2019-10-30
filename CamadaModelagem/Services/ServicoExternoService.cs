@@ -73,13 +73,13 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<ServicoExterno> BuscarTodos()
+        public List<ServicoExterno> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
             try
             {
-                servicoExternos.AddRange(_servicoExternoDAL.BuscarTodosConveniados());
-                servicoExternos.AddRange(_servicoExternoDAL.BuscarTodos());
+                servicoExternos.AddRange(_servicoExternoDAL.BuscarTodosConveniados(dtinicio,dtfim));
+                servicoExternos.AddRange(_servicoExternoDAL.BuscarTodos(dtinicio,dtfim));
                 return servicoExternos;
             }
             catch (ConcorrenciaBancoException e)

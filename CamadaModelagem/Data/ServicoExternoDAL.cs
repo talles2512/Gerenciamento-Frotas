@@ -127,11 +127,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<ServicoExterno> BuscarTodos()
+        public List<ServicoExterno> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
             string query = "SELECT SERVEXT_CNPJ, SERVEXT_TIPO, SERVEXT_NOME, SERVEXT_TELEFONE, SERVEXT_EMAIL, SERVEXT_ENDERECO, SERVEXT_CONVENIADO " +
-                "from TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0";
+                "FROM TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0 AND" +
+                "((YEAR([SERVEXT_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SERVEXT_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH([SERVEXT_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SERVEXT_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
@@ -159,13 +162,16 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<ServicoExterno> BuscarTodosConveniados()
+        public List<ServicoExterno> BuscarTodosConveniados(DateTime dtinicio, DateTime dtfim)
         {
             List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
             string query = "SELECT S.SERVEXT_CNPJ, S.SERVEXT_TIPO, S.SERVEXT_NOME, S.SERVEXT_TELEFONE, S.SERVEXT_EMAIL, S.SERVEXT_ENDERECO, S.SERVEXT_CONVENIADO " +
                 ", C.SERVEXTCONV_VALOR, C.SERVEXTCONV_DTINICIO, C.SERVEXTCONV_DTVENC " +
                 "FROM TB_SERVICOS_EXTERNOS as S JOIN TB_SERVICOS_EXTERNOS_CONVENIADOS C " +
-                "ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ ORDER BY S.SERVEXT_TIPO";
+                "ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ " +
+                "WHERE ((YEAR(S.[SERVEXT_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR(S.[SERVEXT_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH(S.[SERVEXT_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH(S.[SERVEXT_DATAREGISTRO]) <= '" + dtfim.Month + "')" +
+                "ORDER BY S.SERVEXT_TIPO";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

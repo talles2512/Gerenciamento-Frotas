@@ -123,12 +123,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<SeguroCobertura> BuscarTodos()
+        public List<SeguroCobertura> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<SeguroCobertura> seguroCoberturas = new List<SeguroCobertura>();
             string Query = "";
             Query = "SELECT [SEGC_ID], [SEGC_DESCRICAO], [SEGC_SEGURO_NUMAPOLICE]" +
-                    " FROM [dbo].[TB_SEGCOBERTURA_VEICULO]";
+                    " FROM [dbo].[TB_SEGCOBERTURA_VEICULO]" +
+                    "WHERE ((YEAR([SEGC_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SEGC_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([SEGC_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SEGC_DATAREGISTRO]) <= '" + dtfim.Month + "')";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(Query);
@@ -143,7 +145,10 @@ namespace CamadaModelagem.Data
                 }
 
                 Query = "SELECT [SEGC_ID], [SEGC_DESCRICAO], [SEGC_SEGURO_NUMAPOLICE]" +
-                    " FROM [dbo].[TB_SEGCOBERTURA_MOTORISTA]";
+                    " FROM [dbo].[TB_SEGCOBERTURA_MOTORISTA]" +
+                    "WHERE ((YEAR([SEGC_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SEGC_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([SEGC_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SEGC_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
                 dt = _banco.BuscarRegistro(Query);
                 seguroCobertura = null;
                 dataRows = dt.Select();

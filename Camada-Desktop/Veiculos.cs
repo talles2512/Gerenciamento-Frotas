@@ -216,67 +216,74 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<Veiculo> veiculos = _veiculoController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Placa", typeof(string));
-                dt.Columns.Add("Marca", typeof(string));
-                dt.Columns.Add("Modelo", typeof(string));
-                dt.Columns.Add("Chassi", typeof(string));
-                dt.Columns.Add("Ano", typeof(int));
-                dt.Columns.Add("Cor", typeof(string));
-                dt.Columns.Add("Combustível", typeof(string));
-                dt.Columns.Add("Alugado", typeof(string));
-                dt.Columns.Add("Situacao", typeof(string));
-                dt.Columns.Add("Valor Aluguel", typeof(double));
-                dt.Columns.Add("Data Inicio", typeof(DateTime));
-                dt.Columns.Add("Data Vencimento", typeof(DateTime));
-
-                foreach (Veiculo veiculo in veiculos)
-                {
-                    string alugado = null;
-                    string situacao = null;
-
-                    if (veiculo.Alugado)
-                    {
-                        alugado = "Sim";
-                    }
-                    else
-                    {
-                        alugado = "Não";
-                    }
-
-                    if (veiculo.SituacaoVeiculo)
-                    {
-                        situacao = "Ativo";
-                    }
-                    else
-                    {
-                        situacao = "Inativo";
-                    }
-
-                    if (veiculo.VeiculoAlugado == null)
-                    {
-                        dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
-                            , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                            , alugado, situacao);
-                    }
-                    else
-                    {
-                        dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
-                            , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
-                            , alugado, situacao, veiculo.VeiculoAlugado.Valor
-                            , veiculo.VeiculoAlugado.DataInicio, veiculo.VeiculoAlugado.DataVencimento);
-                    }
-                }
-                dgVeiculoConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    List<Veiculo> veiculos = _veiculoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Placa", typeof(string));
+                    dt.Columns.Add("Marca", typeof(string));
+                    dt.Columns.Add("Modelo", typeof(string));
+                    dt.Columns.Add("Chassi", typeof(string));
+                    dt.Columns.Add("Ano", typeof(int));
+                    dt.Columns.Add("Cor", typeof(string));
+                    dt.Columns.Add("Combustível", typeof(string));
+                    dt.Columns.Add("Alugado", typeof(string));
+                    dt.Columns.Add("Situacao", typeof(string));
+                    dt.Columns.Add("Valor Aluguel", typeof(double));
+                    dt.Columns.Add("Data Inicio", typeof(DateTime));
+                    dt.Columns.Add("Data Vencimento", typeof(DateTime));
+
+                    foreach (Veiculo veiculo in veiculos)
+                    {
+                        string alugado = null;
+                        string situacao = null;
+
+                        if (veiculo.Alugado)
+                        {
+                            alugado = "Sim";
+                        }
+                        else
+                        {
+                            alugado = "Não";
+                        }
+
+                        if (veiculo.SituacaoVeiculo)
+                        {
+                            situacao = "Ativo";
+                        }
+                        else
+                        {
+                            situacao = "Inativo";
+                        }
+
+                        if (veiculo.VeiculoAlugado == null)
+                        {
+                            dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
+                                , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
+                                , alugado, situacao);
+                        }
+                        else
+                        {
+                            dt.Rows.Add(veiculo.Placa, veiculo.Marca, veiculo.Modelo
+                                , veiculo.Chassi, veiculo.Ano, veiculo.Cor.ToString(), veiculo.Combustivel.ToString()
+                                , alugado, situacao, veiculo.VeiculoAlugado.Valor
+                                , veiculo.VeiculoAlugado.DataInicio, veiculo.VeiculoAlugado.DataVencimento);
+                        }
+                    }
+                    dgVeiculoConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 

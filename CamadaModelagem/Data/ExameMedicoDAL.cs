@@ -67,10 +67,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<ExameMedico> BuscarTodos()
+        public List<ExameMedico> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<ExameMedico> exames = new List<ExameMedico>();
-            string query = "SELECT* FROM [dbo].[TB_EXAMEDICO]";
+
+            string query = "SELECT * FROM [dbo].[TB_EXAMEDICO] WHERE" +
+                    "((YEAR([EXAM_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([EXAM_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([EXAM_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([EXAM_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

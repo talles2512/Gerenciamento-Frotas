@@ -87,10 +87,13 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Multa> BuscarTodos()
+        public List<Multa> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Multa> multas = new List<Multa>();
-            string query = "SELECT * FROM [dbo].[TB_MULTAS]";
+
+            string query = "SELECT * FROM [dbo].[TB_MULTAS] WHERE" +
+                    "((YEAR([MULT_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([MULT_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([MULT_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([MULT_DATAREGISTRO]) <= '" + dtfim.Month + "')";
 
             try
             {

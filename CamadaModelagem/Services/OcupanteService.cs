@@ -35,6 +35,33 @@ namespace CamadaModelagem.Services
             //}
         }
 
+        public Ocupante BuscarOcupante(int req,string cpf)
+        {
+            try
+            {
+                Ocupante ocupante = _ocupanteDAL.BuscarOcupante(req,cpf);
+                return ocupante;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public List<Ocupante> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        {
+            List<Ocupante> ocupantes = new List<Ocupante>();
+            try
+            {
+                ocupantes.AddRange(_ocupanteDAL.BuscarTodos(dtinicio, dtfim));
+                return ocupantes;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
         public void Deletar(int cpf)
         {
             try

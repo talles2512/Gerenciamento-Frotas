@@ -146,11 +146,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Viagem> BuscarTodos()
+        public List<Viagem> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Viagem> viagens = new List<Viagem>();
             string query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA] " +
-                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS]";
+                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] " +
+                "WHERE ((YEAR([VG_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([VG_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH([VG_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([VG_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

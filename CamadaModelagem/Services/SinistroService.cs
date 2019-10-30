@@ -48,12 +48,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Sinistro> BuscarTodos(string tipo)
+        public List<Sinistro> BuscarTodos(string tipo, DateTime dtinicio, DateTime dtfim)
         {
             List<Sinistro> sinistros = new List<Sinistro>();
             try
             {
-                sinistros.AddRange(_sinistroDAL.BuscarTodos(tipo));
+                sinistros.AddRange(_sinistroDAL.BuscarTodos(tipo, dtinicio, dtfim));
                 return sinistros;
             }
             catch (ConcorrenciaBancoException)

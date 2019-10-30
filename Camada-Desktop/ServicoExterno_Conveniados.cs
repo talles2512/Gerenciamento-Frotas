@@ -220,54 +220,61 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<ServicoExterno> servicoExternos = _servicoExternoController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("CNPJ", typeof(long));
-                dt.Columns.Add("Tipo", typeof(string));
-                dt.Columns.Add("Nome", typeof(string));
-                dt.Columns.Add("Telefone", typeof(long));
-                dt.Columns.Add("Email", typeof(string));
-                dt.Columns.Add("Endereço", typeof(string));
-                dt.Columns.Add("Conveniado", typeof(string));
-                dt.Columns.Add("Valor Convênio", typeof(double));
-                dt.Columns.Add("Data Inicio", typeof(DateTime));
-                dt.Columns.Add("Data Vencimento", typeof(DateTime));
-
-                foreach (ServicoExterno servicoExterno in servicoExternos)
-                {
-                    string conveniado = null;
-
-                    if (servicoExterno.Conveniado)
-                    {
-                        conveniado = "Sim";
-                    }
-                    else
-                    {
-                        conveniado = "Não";
-                    }
-
-                    if (servicoExterno.ServicoExternoConveniado == null)
-                    {
-                        dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
-                            , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado);
-                    }
-                    else
-                    {
-                        dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
-                            , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado
-                            , servicoExterno.ServicoExternoConveniado.Valor, servicoExterno.ServicoExternoConveniado.DataInicio
-                            , servicoExterno.ServicoExternoConveniado.DataVencimento);
-                    }
-                }
-                dgConveniadoConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    List<ServicoExterno> servicoExternos = _servicoExternoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("CNPJ", typeof(long));
+                    dt.Columns.Add("Tipo", typeof(string));
+                    dt.Columns.Add("Nome", typeof(string));
+                    dt.Columns.Add("Telefone", typeof(long));
+                    dt.Columns.Add("Email", typeof(string));
+                    dt.Columns.Add("Endereço", typeof(string));
+                    dt.Columns.Add("Conveniado", typeof(string));
+                    dt.Columns.Add("Valor Convênio", typeof(double));
+                    dt.Columns.Add("Data Inicio", typeof(DateTime));
+                    dt.Columns.Add("Data Vencimento", typeof(DateTime));
+
+                    foreach (ServicoExterno servicoExterno in servicoExternos)
+                    {
+                        string conveniado = null;
+
+                        if (servicoExterno.Conveniado)
+                        {
+                            conveniado = "Sim";
+                        }
+                        else
+                        {
+                            conveniado = "Não";
+                        }
+
+                        if (servicoExterno.ServicoExternoConveniado == null)
+                        {
+                            dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                                , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado);
+                        }
+                        else
+                        {
+                            dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                                , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado
+                                , servicoExterno.ServicoExternoConveniado.Valor, servicoExterno.ServicoExternoConveniado.DataInicio
+                                , servicoExterno.ServicoExternoConveniado.DataVencimento);
+                        }
+                    }
+                    dgConveniadoConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 

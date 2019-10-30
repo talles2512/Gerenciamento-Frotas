@@ -87,7 +87,7 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Sinistro> BuscarTodos(string tipo)
+        public List<Sinistro> BuscarTodos(string tipo, DateTime dtinicio, DateTime dtfim)
         {
             List<Sinistro> sinistros = new List<Sinistro>();
             string query = "";
@@ -95,12 +95,16 @@ namespace CamadaModelagem.Data
 
             if(tipo == "Veiculo")
             {
-                query = "SELECT * FROM [dbo].[TB_SINISTRO_VEICULO]";
+                query = "SELECT * FROM [dbo].[TB_SINISTRO_VEICULO]"+
+                        "WHERE ((YEAR([SIN_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SIN_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                        "AND MONTH([SIN_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SIN_DATAREGISTRO]) <= '" + dtfim.Month + "')";
                 tiposeg = TipoSeguro.Automóvel;
             }
             else
             {
-                query = "SELECT * FROM [dbo].[TB_SINISTRO_MOTORISTA]";
+                query = "SELECT * FROM [dbo].[TB_SINISTRO_MOTORISTA]"+
+                        "WHERE ((YEAR([SIN_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SIN_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                        "AND MONTH([SIN_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SIN_DATAREGISTRO]) <= '" + dtfim.Month + "')";
                 tiposeg = TipoSeguro.Vida;
             }
             try

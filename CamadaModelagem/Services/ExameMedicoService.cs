@@ -47,12 +47,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<ExameMedico> BuscarTodos()
+        public List<ExameMedico> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<ExameMedico> exames = new List<ExameMedico>();
             try
             {
-                exames.AddRange(_exameMedicoDAL.BuscarTodos());
+                exames.AddRange(_exameMedicoDAL.BuscarTodos(dtinicio, dtfim));
                 return exames;
             }
             catch (ConcorrenciaBancoException)

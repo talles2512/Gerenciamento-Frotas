@@ -284,39 +284,47 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<Seguro> seguros = _seguroController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Número Apólice", typeof(long));
-                dt.Columns.Add("Seguradora", typeof(long));
-                dt.Columns.Add("Tipo de Seguro", typeof(string));
-                dt.Columns.Add("Item Segurado", typeof(string));
-                dt.Columns.Add("Valor", typeof(double));
-                dt.Columns.Add("Data Inicial", typeof(DateTime));
-                dt.Columns.Add("Data Vencimento", typeof(DateTime));
-                dt.Columns.Add("Tipo de Franquia", typeof(string));
-                dt.Columns.Add("Valor da Franquia", typeof(double));
-
-                foreach (Seguro seguro in seguros)
-                {
-
-                    if (seguro.Franquia != "")
-                    {
-                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
-                               seguro.Franquia, seguro.ValorFranquia);
-                    }
-                    else
-                    {
-                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia);
-                    }
-                }
-                dgSegurosConsulta.DataSource = dt;
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    List<Seguro> seguros = _seguroController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Número Apólice", typeof(long));
+                    dt.Columns.Add("Seguradora", typeof(long));
+                    dt.Columns.Add("Tipo de Seguro", typeof(string));
+                    dt.Columns.Add("Item Segurado", typeof(string));
+                    dt.Columns.Add("Valor", typeof(double));
+                    dt.Columns.Add("Data Inicial", typeof(DateTime));
+                    dt.Columns.Add("Data Vencimento", typeof(DateTime));
+                    dt.Columns.Add("Tipo de Franquia", typeof(string));
+                    dt.Columns.Add("Valor da Franquia", typeof(double));
+
+                    foreach (Seguro seguro in seguros)
+                    {
+
+                        if (seguro.Franquia != "")
+                        {
+                            dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
+                                   seguro.Franquia, seguro.ValorFranquia);
+                        }
+                        else
+                        {
+                            dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia);
+                        }
+                    }
+                    dgSegurosConsulta.DataSource = dt;
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
             }
         }
 
@@ -647,24 +655,31 @@ namespace CamadaDesktop
 
         private void btnConsultarporDataCobertura_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsultarporDataCobertura.Value < dtInicioConsultarporDataCobertura.Value)
             {
-                List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos();
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Número Apólice", typeof(long));
-                dt.Columns.Add("Tipo de Seguro", typeof(string));
-                dt.Columns.Add("Descrição", typeof(string));
-
-                foreach (SeguroCobertura seguroCobertura in seguroCoberturas)
-                {
-                    dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
-                }
-
-                dgCoberturaConsulta.DataSource = dt;
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                try
+                {
+                    List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos(dtInicioConsultarporDataCobertura.Value, dtFimConsultarporDataCobertura.Value);
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Número Apólice", typeof(long));
+                    dt.Columns.Add("Tipo de Seguro", typeof(string));
+                    dt.Columns.Add("Descrição", typeof(string));
+
+                    foreach (SeguroCobertura seguroCobertura in seguroCoberturas)
+                    {
+                        dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
+                    }
+
+                    dgCoberturaConsulta.DataSource = dt;
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 

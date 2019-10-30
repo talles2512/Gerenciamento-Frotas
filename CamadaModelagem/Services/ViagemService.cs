@@ -74,12 +74,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Viagem> BuscarTodos()
+        public List<Viagem> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Viagem> viagens = new List<Viagem>();
             try
             {
-                viagens.AddRange(_viagemDAL.BuscarTodos());
+                viagens.AddRange(_viagemDAL.BuscarTodos(dtinicio, dtfim));
                 return viagens;
             }
             catch (ConcorrenciaBancoException e)

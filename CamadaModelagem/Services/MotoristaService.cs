@@ -51,12 +51,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Motorista> BuscarTodos()
+        public List<Motorista> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Motorista> motoristas = new List<Motorista>();
             try
             {
-                motoristas.AddRange(_motoristaDAL.BuscarTodos());
+                motoristas.AddRange(_motoristaDAL.BuscarTodos(dtinicio, dtfim));
                 return motoristas;
             }
             catch (ConcorrenciaBancoException)

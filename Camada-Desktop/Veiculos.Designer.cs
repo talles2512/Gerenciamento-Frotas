@@ -504,6 +504,7 @@
             this.dtFimConsulta.Name = "dtFimConsulta";
             this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtFimConsulta.TabIndex = 20;
+            this.dtFimConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // dtInicioConsulta
             // 
@@ -514,6 +515,7 @@
             this.dtInicioConsulta.Name = "dtInicioConsulta";
             this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtInicioConsulta.TabIndex = 19;
+            this.dtInicioConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // textPesquisar
             // 
@@ -556,9 +558,9 @@
             this.dgVeiculoConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 106);
+            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 114);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
-            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 333);
+            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 325);
             this.dgVeiculoConsulta.TabIndex = 18;
             // 
             // btnTodosVeiculo

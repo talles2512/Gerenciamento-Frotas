@@ -300,12 +300,16 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Seguro> BuscarTodos()
+        public List<Seguro> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Seguro> seguros = new List<Seguro>();
+
             string Query = "";
             Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_PLACA], [SEG_VALOR], [SEG_DATAINICIO]," +
-                    " [SEG_FIMVIGENCIA], [SEG_FRANQUIA], [SEG_VALORFRANQUIA] FROM [dbo].[TB_SEGURO_VEICULO]";
+                    " [SEG_FIMVIGENCIA], [SEG_FRANQUIA], [SEG_VALORFRANQUIA] FROM [dbo].[TB_SEGURO_VEICULO]" +
+                    "WHERE ((YEAR([SEG_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SEG_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([SEG_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SEG_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(Query);
@@ -323,8 +327,12 @@ namespace CamadaModelagem.Data
                     seguro = new Seguro(numApolice, dr["SEG_ITEMSEG_PLACA"].ToString(), tipo, valor, dataInicio, dataFim, dr["SEG_FRANQUIA"].ToString(), valorFranquia, cNPJ);
                     seguros.Add(seguro);
                 }
+
                 Query = "SELECT [SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_CPF], [SEG_VALOR], [SEG_DATAINICIO]," +
-                " [SEG_FIMVIGENCIA] FROM [dbo].[TB_SEGURO_MOTORISTA]";
+                    " [SEG_FIMVIGENCIA] FROM [dbo].[TB_SEGURO_MOTORISTA]" +
+                    "WHERE ((YEAR([SEG_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([SEG_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                    "AND MONTH([SEG_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([SEG_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
                 dt = _banco.BuscarRegistro(Query);
                 seguro = null;
                 dataRows = dt.Select();

@@ -110,12 +110,15 @@ namespace CamadaModelagem.Data
             }  
         }
 
-        public List<Motorista> BuscarTodos()
+        public List<Motorista> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Motorista> motoristas = new List<Motorista>();
             string query = "SELECT M.[MT_CPF], M.[MT_NOME], M.[MT_RG], M.[MT_ENDERECO], M.[MT_DTNASCIMENTO], M.[MT_TELEFONE], M.[MT_TELEFONE_RECADO]" +
                 ", M.[MT_SITUACAO], C.[CNH_NUMERO], C.[CNH_DTEMISSAO], C.[CNH_DTVENC], C.[CNH_CATEGORIA], C.[CNH_ORGAOEMISSOR], C.[CNH_MT_CPF]" +
-                "FROM [TB_MOTORISTA] AS M JOIN [TB_CNH] AS C ON M.[MT_CPF] = C.[CNH_MT_CPF]";
+                "FROM [TB_MOTORISTA] AS M JOIN [TB_CNH] AS C ON M.[MT_CPF] = C.[CNH_MT_CPF] WHERE" +
+                "((YEAR(M.[MT_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR(M.[MT_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH(M.[MT_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH(M.[MT_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
 
             try
             {

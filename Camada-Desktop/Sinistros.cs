@@ -316,72 +316,79 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            string tipo;
-            if (cbTipoConsulta.SelectedItem.ToString() == "")
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                string tipo;
+                if (cbTipoConsulta.SelectedItem.ToString() == "")
                 {
-                    tipo = "Veiculo";
-
-                    try
-                    {
-                        List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
-
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("ID", typeof(int));
-                        dt.Columns.Add("Item Segurado - Placa", typeof(string));
-                        dt.Columns.Add("Nº Apólice", typeof(long));
-                        dt.Columns.Add("Data/Hora", typeof(DateTime));
-                        dt.Columns.Add("Descrição", typeof(string));
-
-                        foreach (Sinistro sinistro in sinistros)
-                        {
-
-                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
-                        }
-
-                        dgSinistrosConsulta.DataSource = dt;
-
-                    }
-                    catch (ConcorrenciaBancoException)
-                    {
-                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                    }
+                    MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    tipo = "Motorista";
-
-                    try
+                    if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
                     {
-                        List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo);
+                        tipo = "Veiculo";
 
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("ID", typeof(int));
-                        dt.Columns.Add("Item Segurado - CPF", typeof(string));
-                        dt.Columns.Add("Nº Apólice", typeof(long));
-                        dt.Columns.Add("Data/Hora", typeof(DateTime));
-                        dt.Columns.Add("Descrição", typeof(string));
-
-                        foreach (Sinistro sinistro in sinistros)
+                        try
                         {
+                            List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                            dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("ID", typeof(int));
+                            dt.Columns.Add("Item Segurado - Placa", typeof(string));
+                            dt.Columns.Add("Nº Apólice", typeof(long));
+                            dt.Columns.Add("Data/Hora", typeof(DateTime));
+                            dt.Columns.Add("Descrição", typeof(string));
+
+                            foreach (Sinistro sinistro in sinistros)
+                            {
+
+                                dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                            }
+
+                            dgSinistrosConsulta.DataSource = dt;
+
                         }
-
-                        dgSinistrosConsulta.DataSource = dt;
-
+                        catch (ConcorrenciaBancoException)
+                        {
+                            throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                        }
                     }
-                    catch (ConcorrenciaBancoException)
+                    else
                     {
-                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                        tipo = "Motorista";
+
+                        try
+                        {
+                            List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("ID", typeof(int));
+                            dt.Columns.Add("Item Segurado - CPF", typeof(string));
+                            dt.Columns.Add("Nº Apólice", typeof(long));
+                            dt.Columns.Add("Data/Hora", typeof(DateTime));
+                            dt.Columns.Add("Descrição", typeof(string));
+
+                            foreach (Sinistro sinistro in sinistros)
+                            {
+
+                                dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                            }
+
+                            dgSinistrosConsulta.DataSource = dt;
+
+                        }
+                        catch (ConcorrenciaBancoException)
+                        {
+                            throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                        }
                     }
-                }                
-            }
+                }
+            }          
         }
 
         private void btnTrasferirSinistros_Click(object sender, EventArgs e)

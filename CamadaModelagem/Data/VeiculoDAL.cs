@@ -130,11 +130,14 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public List<Veiculo> BuscarTodos()
+        public List<Veiculo> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Veiculo> veiculos = new List<Veiculo>();
             string query = "select VCL_PLACA, VCL_MARCA, VCL_MODELO, VCL_CHASSI, VCL_ANO, VCL_COR, VCL_COMBUSTIVEL, VCL_ALUGADO, VCL_SITUACAO " +
-                "from TB_VEICULOS WHERE VCL_ALUGADO = 0";
+                "from TB_VEICULOS WHERE VCL_ALUGADO = 0 AND " +
+                "((YEAR([VCL_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR([VCL_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH([VCL_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH([VCL_DATAREGISTRO]) <= '" + dtfim.Month + "')";
+
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);
@@ -160,12 +163,14 @@ namespace CamadaModelagem.Data
             }  
         }
 
-        public List<Veiculo> BuscarTodosAlugados()
+        public List<Veiculo> BuscarTodosAlugados(DateTime dtinicio, DateTime dtfim)
         {
             List<Veiculo> veiculos = new List<Veiculo>();
             string query = "select V.VCL_PLACA, V.VCL_MARCA, V.VCL_MODELO, V.VCL_CHASSI, V.VCL_ANO, V.VCL_COR, V.VCL_COMBUSTIVEL, V.VCL_ALUGADO, V.VCL_SITUACAO," +
                 " A.VCLAL_VALOR, A.VCLAL_DTINICIO, A.VCLAL_DTVENC from TB_VEICULOS as V join TB_VEICULOS_ALUGUEL as A " +
-                "on V.VCL_PLACA = A.VCL_PLACA";
+                "on V.VCL_PLACA = A.VCL_PLACA " +
+                "WHERE ((YEAR(V.[VCL_DATAREGISTRO]) >= '" + dtinicio.Year + "' AND YEAR(V.[VCL_DATAREGISTRO]) <= '" + dtfim.Year + "')" +
+                "AND MONTH(V.[VCL_DATAREGISTRO]) >= '" + dtinicio.Month + "' AND MONTH(V.[VCL_DATAREGISTRO]) <= '" + dtfim.Month + "')";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

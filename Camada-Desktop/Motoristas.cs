@@ -200,50 +200,57 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click_1(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
-                List<Motorista> motoristas = _motoristaController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("CPF", typeof(string));
-                dt.Columns.Add("Nome", typeof(string));
-                dt.Columns.Add("RG", typeof(string));
-                dt.Columns.Add("Data Nascimento", typeof(DateTime));
-                dt.Columns.Add("Endereço", typeof(string));
-                dt.Columns.Add("Telefone", typeof(long));
-                dt.Columns.Add("Telefone p/Recado", typeof(long));
-                dt.Columns.Add("Situação", typeof(string));
-                dt.Columns.Add("CNH Nº", typeof(long));
-                dt.Columns.Add("Categoria CNH", typeof(string));
-                dt.Columns.Add("Orgão Emissor", typeof(string));
-                dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
-                dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
-
-                foreach (Motorista motorista in motoristas)
-                {
-                    string situacao = null;
-
-                    if (motorista.Situacao)
-                    {
-                        situacao = "Ativo";
-                    }
-                    else
-                    {
-                        situacao = "Inativo";
-                    }
-
-                    dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
-                        , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
-                        , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
-                        , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
-                }
-
-                dgMotoristaConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException)
+            else
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                try
+                {
+                    List<Motorista> motoristas = _motoristaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("CPF", typeof(string));
+                    dt.Columns.Add("Nome", typeof(string));
+                    dt.Columns.Add("RG", typeof(string));
+                    dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                    dt.Columns.Add("Endereço", typeof(string));
+                    dt.Columns.Add("Telefone", typeof(long));
+                    dt.Columns.Add("Telefone p/Recado", typeof(long));
+                    dt.Columns.Add("Situação", typeof(string));
+                    dt.Columns.Add("CNH Nº", typeof(long));
+                    dt.Columns.Add("Categoria CNH", typeof(string));
+                    dt.Columns.Add("Orgão Emissor", typeof(string));
+                    dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
+                    dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
+
+                    foreach (Motorista motorista in motoristas)
+                    {
+                        string situacao = null;
+
+                        if (motorista.Situacao)
+                        {
+                            situacao = "Ativo";
+                        }
+                        else
+                        {
+                            situacao = "Inativo";
+                        }
+
+                        dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
+                            , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
+                            , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
+                            , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
+                    }
+
+                    dgMotoristaConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                }
             }
         }
 
@@ -531,28 +538,35 @@ namespace CamadaDesktop
 
         private void btnConsultaporDataExames_Click(object sender, EventArgs e)
         {
-            try
+            if (dtFimConsultaporDataExames.Value < dtInicioConsultaporDataExames.Value)
             {
-                List<ExameMedico> exames = _exameMedicoController.BuscarTodos();
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Data", typeof(DateTime));
-                dt.Columns.Add("Descrição", typeof(string));
-                dt.Columns.Add("Situação Exame", typeof(string));
-                dt.Columns.Add("CPF", typeof(string));
-
-
-                foreach (ExameMedico exameMedico in exames)
-                {
-                    dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
-                }
-
-                dgExameConsulta.DataSource = dt;
-
+                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (ConcorrenciaBancoException)
+            else
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                try
+                {
+                    List<ExameMedico> exames = _exameMedicoController.BuscarTodos(dtInicioConsultaporDataExames.Value, dtFimConsultaporDataExames.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Data", typeof(DateTime));
+                    dt.Columns.Add("Descrição", typeof(string));
+                    dt.Columns.Add("Situação Exame", typeof(string));
+                    dt.Columns.Add("CPF", typeof(string));
+
+
+                    foreach (ExameMedico exameMedico in exames)
+                    {
+                        dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
+                    }
+
+                    dgExameConsulta.DataSource = dt;
+
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                }
             }
         }
 

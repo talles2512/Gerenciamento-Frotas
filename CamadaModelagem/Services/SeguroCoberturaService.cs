@@ -49,12 +49,12 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<SeguroCobertura> BuscarTodos()
+        public List<SeguroCobertura> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<SeguroCobertura> segurosCoberturas = new List<SeguroCobertura>();
             try
             {
-                segurosCoberturas.AddRange(_seguroCoberturaDAL.BuscarTodos());
+                segurosCoberturas.AddRange(_seguroCoberturaDAL.BuscarTodos(dtinicio, dtfim));
                 return segurosCoberturas;
             }
             catch (ConcorrenciaBancoException e)

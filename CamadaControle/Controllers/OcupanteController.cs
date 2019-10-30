@@ -1,5 +1,6 @@
 ﻿using CamadaModelagem.Models;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CamadaControle.Controllers
 {
-    class OcupanteController
+    public class OcupanteController
     {
         private readonly OcupanteService _ocupanteService;
 
@@ -22,6 +23,30 @@ namespace CamadaControle.Controllers
         public void Cadastrar(Ocupante ocupante,int cpf)
         {
             _ocupanteService.Cadastrar(ocupante,cpf);
+        }
+
+        public Ocupante BuscarOcupante(int req,string cpf)
+        {
+            try
+            {
+                return _ocupanteService.BuscarOcupante(req,cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Ocupante> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        {
+            try
+            {
+                return _ocupanteService.BuscarTodos(dtinicio, dtfim);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public void Deletar(int cpf)

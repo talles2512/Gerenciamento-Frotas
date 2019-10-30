@@ -118,35 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnTransfereExame.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAW5JREFUWEftlE1KA0EQhWcRggcQEU8iIhJCCOLRXLnOAVy4EHHhMUSCZOEpgojL
-        jF91XiHRtqfnJwPCfFDpTFV1vdc9IcXAwL+mLMvJZrM51WO/SPyddc16pnQ/IDglPhB31sS5yvslIh4g
-        Z7exXxMIzGLijpkgLtTeLcxPiju6iYm2dQND5znijvUSU21vh8Q/NTsbGZ5pTDMYctlE3Glloq24YyaI
-        ucbmwYarLsQdm5Vtgsbsk9O3It70mMRmEmkTNGSfnL4lcUScECulk9hsIm6CQh3xF5ZDbbX/iGNyr6FY
-        gWkQuyZINBZ3yNttLLddaej7/mHypY74M8svcYd6fRN8LJRLQl9S3KHPTOS+joW9vxFxFzJ/kCvuyETy
-        JqjfsozCBr6MSTyEyg/IR995FRUm7MBbcYeEmXgMZdFU3ImZ4PmeZayWXSgc0PCkxlbijkzYLJtpB4yL
-        OzSYiZsuxB2bxczrSvGBgf4pii8EA0VaPoB6rQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnConsultaExame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAp1JREFUWEe1lzFIVVEcxkOiQSJCRKJBQkIcJEQaGsKhIaQhmh4R0SBNDhEODQ4N
-        ERESDhHxhoZoiBBpaBBxiIaIcHAIcZAIkYh4iEiDhMi7/f7nfB2evnf1nFfnBx/n3v/5f985Xq733nek
-        jKIoBur1+n00j1bQKlqiPsM4ztit1v8Lwb0sMIt2OS6F+W2Gx6hT1n+H0FG06VaIhP5ldFYR7UPIFfRb
-        uQ7O7fLf4nCIsR+NoHtoxXd4OP/OcEZR6WDuQ1sWZlgguqTpJmjpYH4C7XiH8ywyHFNLGpjnfEzaX0Pf
-        tX2buKOpeDANy28Bu2hEU1HQ/0D2v5tPuwqYpr3dBbxVORpsnfh++gSXcVlTcWD4LK+ZKyonge+pIizj
-        ocpxYLDL5uC4rX8nfGOKsIzXKseBYUNeM/eonAS+m4qwjHcqx4FhTV5jQOUkyLgtf/oVwPPBW535hspJ
-        4KsqwjKS74FH8pp5TuVo8JxA4fHN8aim4sAwiMKLJzWA/ieymjf9OWBgmnEJQIjdlEOaOhB6x1Dj5sc1
-        lQbG0yg8TGCL8+uaboJ5e/hMocbFvzJ0qCUdzBcJ+eXSBOdLaBJdRfYmrKBp1LjZAPW0G3A/BFxA4cEU
-        A/3rOnRw/gV9QlOcnlR0PBi70DNkXzylMF9Ddzk8yvjcV/dC3b4behWdBsZuAuwB85LxPfqIFlAVVaiH
-        TzGO7fug8YEWoP6NoU+t+WAh+yBpiTaXdxMsEl7rrci+CcJPscgPt1oJ2kT7346HQbh9vIa3ayuyb4IF
-        zqMDP+2Ztxuzvf+OGLSJw67EKkOeX1cGCwxHbKKq9jywht0TNb9cM8ytqzUfLHIOlb07amrLC2vZL+09
-        7wyD2gu15If17Ff3G/ur0QZ6VRTF8T+WqUB9xvf+kQAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="btnAddExameMedico.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -242,6 +213,35 @@
 </value>
   </data>
   <data name="btnConsultaporDataExames.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAp1JREFUWEe1lzFIVVEcxkOiQSJCRKJBQkIcJEQaGsKhIaQhmh4R0SBNDhEODQ4N
+        ERESDhHxhoZoiBBpaBBxiIaIcHAIcZAIkYh4iEiDhMi7/f7nfB2evnf1nFfnBx/n3v/5f985Xq733nek
+        jKIoBur1+n00j1bQKlqiPsM4ztit1v8Lwb0sMIt2OS6F+W2Gx6hT1n+H0FG06VaIhP5ldFYR7UPIFfRb
+        uQ7O7fLf4nCIsR+NoHtoxXd4OP/OcEZR6WDuQ1sWZlgguqTpJmjpYH4C7XiH8ywyHFNLGpjnfEzaX0Pf
+        tX2buKOpeDANy28Bu2hEU1HQ/0D2v5tPuwqYpr3dBbxVORpsnfh++gSXcVlTcWD4LK+ZKyonge+pIizj
+        ocpxYLDL5uC4rX8nfGOKsIzXKseBYUNeM/eonAS+m4qwjHcqx4FhTV5jQOUkyLgtf/oVwPPBW535hspJ
+        4KsqwjKS74FH8pp5TuVo8JxA4fHN8aim4sAwiMKLJzWA/ieymjf9OWBgmnEJQIjdlEOaOhB6x1Dj5sc1
+        lQbG0yg8TGCL8+uaboJ5e/hMocbFvzJ0qCUdzBcJ+eXSBOdLaBJdRfYmrKBp1LjZAPW0G3A/BFxA4cEU
+        A/3rOnRw/gV9QlOcnlR0PBi70DNkXzylMF9Ddzk8yvjcV/dC3b4behWdBsZuAuwB85LxPfqIFlAVVaiH
+        TzGO7fug8YEWoP6NoU+t+WAh+yBpiTaXdxMsEl7rrci+CcJPscgPt1oJ2kT7346HQbh9vIa3ayuyb4IF
+        zqMDP+2Ztxuzvf+OGLSJw67EKkOeX1cGCwxHbKKq9jywht0TNb9cM8ytqzUfLHIOlb07amrLC2vZL+09
+        7wyD2gu15If17Ff3G/ur0QZ6VRTF8T+WqUB9xvf+kQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnTransfereExame.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAW5JREFUWEftlE1KA0EQhWcRggcQEU8iIhJCCOLRXLnOAVy4EHHhMUSCZOEpgojL
+        jF91XiHRtqfnJwPCfFDpTFV1vdc9IcXAwL+mLMvJZrM51WO/SPyddc16pnQ/IDglPhB31sS5yvslIh4g
+        Z7exXxMIzGLijpkgLtTeLcxPiju6iYm2dQND5znijvUSU21vh8Q/NTsbGZ5pTDMYctlE3Glloq24YyaI
+        ucbmwYarLsQdm5Vtgsbsk9O3It70mMRmEmkTNGSfnL4lcUScECulk9hsIm6CQh3xF5ZDbbX/iGNyr6FY
+        gWkQuyZINBZ3yNttLLddaej7/mHypY74M8svcYd6fRN8LJRLQl9S3KHPTOS+joW9vxFxFzJ/kCvuyETy
+        JqjfsozCBr6MSTyEyg/IR995FRUm7MBbcYeEmXgMZdFU3ImZ4PmeZayWXSgc0PCkxlbijkzYLJtpB4yL
+        OzSYiZsuxB2bxczrSvGBgf4pii8EA0VaPoB6rQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnConsultaExame.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         wwAADsMBx2+oZAAAAp1JREFUWEe1lzFIVVEcxkOiQSJCRKJBQkIcJEQaGsKhIaQhmh4R0SBNDhEODQ4N

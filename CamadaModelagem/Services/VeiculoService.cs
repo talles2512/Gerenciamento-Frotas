@@ -75,13 +75,13 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public List<Veiculo> BuscarTodos()
+        public List<Veiculo> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             List<Veiculo> veiculos = new List<Veiculo>();
             try
             {
-                veiculos.AddRange(_veiculoDAL.BuscarTodosAlugados());
-                veiculos.AddRange(_veiculoDAL.BuscarTodos());
+                veiculos.AddRange(_veiculoDAL.BuscarTodosAlugados(dtinicio, dtfim));
+                veiculos.AddRange(_veiculoDAL.BuscarTodos(dtinicio, dtfim));
                 return veiculos;
             }
             catch (ConcorrenciaBancoException e)

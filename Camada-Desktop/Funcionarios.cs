@@ -132,29 +132,30 @@ namespace CamadaDesktop
             }
             else
             {
-            }
-            try
-            {
-                List<Funcionario> funcionarios = _funcionarioController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Nome", typeof(string));
-                dt.Columns.Add("Login", typeof(string));
-                dt.Columns.Add("Senha", typeof(string));
-                dt.Columns.Add("Perfil de Acesso", typeof(string));
-
-                foreach (Funcionario funcionario in funcionarios)
+                try
                 {
-                    dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
+                    List<Funcionario> funcionarios = _funcionarioController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Nome", typeof(string));
+                    dt.Columns.Add("Login", typeof(string));
+                    dt.Columns.Add("Senha", typeof(string));
+                    dt.Columns.Add("Perfil de Acesso", typeof(string));
+
+                    foreach (Funcionario funcionario in funcionarios)
+                    {
+                        dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
+                    }
+
+                    dgFuncionarioConsulta.DataSource = dt;
+
                 }
-
-                dgFuncionarioConsulta.DataSource = dt;
-
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
-            catch (ConcorrenciaBancoException ex)
-            {
-                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+
         }
         
 
