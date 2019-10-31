@@ -45,6 +45,9 @@ namespace CamadaDesktop
 
         private void Manutencoes_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirManunt, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirManunt);
+
             cbTipo.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
             cbTipoManuntConsulta.DataSource = Enum.GetValues(typeof(ManutencaoTipo));
 
@@ -251,6 +254,48 @@ namespace CamadaDesktop
                     cbTipoManuntConsulta.Text = "";
                     cbPlacaConsulta.Text = "";
                     Manutencao = null;
+
+                    btnCadastrarManunt.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarManunt.Enabled = true;
+                    btnExcluirManunt.Enabled = true;
+                }
+            }
+        }
+
+        private void dgVeiculoManunt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Manutencao == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                PlacaAntiga = Manutencao.Placa;
+                TipoAntigo = Manutencao.Tipo.ToString();
+                dataAntiga = Manutencao.Data;
+
+                cbTipo.SelectedItem = Manutencao.Tipo;
+                dtDataManunt.Value = Manutencao.Data;
+                txtValor.Text = Manutencao.Valor.ToString();
+                cbPlaca.SelectedValue = Manutencao.Placa;
+                cbServicoExterno.SelectedValue = Manutencao.CNPJ;
+                txtDescricao.Text = Manutencao.Descricao;
+                cbSituacao.SelectedItem = Manutencao.Situacao;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlManunt.SelectTab("tbPageCadastroManunt");
+                if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
+                {
+                    dtDataManuntConsulta.Value = DateTime.Now;
+                    cbTipoManuntConsulta.Text = "";
+                    cbPlacaConsulta.Text = "";
+                    Manutencao = null;
+
+                    btnCadastrarManunt.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarManunt.Enabled = true;
+                    btnExcluirManunt.Enabled = true;
                 }
             }
         }
@@ -312,6 +357,11 @@ namespace CamadaDesktop
                         cbServicoExterno.Text = "";
                         txtDescricao.Text = "";
                         cbSituacao.Text = "";
+
+                        btnCadastrarManunt.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarManunt.Enabled = false;
+                        btnExcluirManunt.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -353,6 +403,11 @@ namespace CamadaDesktop
                             cbServicoExterno.Text = "";
                             txtDescricao.Text = "";
                             cbSituacao.Text = "";
+
+                            btnCadastrarManunt.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarManunt.Enabled = false;
+                            btnExcluirManunt.Enabled = false;
                         }
                     }
                 }
@@ -391,6 +446,25 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cbTipo.Text = "";
+                dtDataManunt.Value = DateTime.Now;
+                txtValor.Text = "";
+                cbPlaca.Text = "";
+                cbServicoExterno.Text = "";
+                txtDescricao.Text = "";
+                cbSituacao.Text = "";
+
+                btnCadastrarManunt.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarManunt.Enabled = false;
+                btnExcluirManunt.Enabled = false;
+            }
         }
     }
 }

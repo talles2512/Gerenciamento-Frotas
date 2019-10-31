@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sinistros));
             this.tbControlSinistros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSinistros = new System.Windows.Forms.TabPage();
@@ -66,6 +67,8 @@
             this.dgSinistrosConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosSinistros = new System.Windows.Forms.Button();
             this.btnConsultarSinistros = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlSinistros.SuspendLayout();
             this.tbPageCadastroSinistros.SuspendLayout();
             this.gbDadosSinistros.SuspendLayout();
@@ -100,6 +103,7 @@
             // 
             // gbDadosSinistros
             // 
+            this.gbDadosSinistros.Controls.Add(this.lblCancelar);
             this.gbDadosSinistros.Controls.Add(this.cbTipo);
             this.gbDadosSinistros.Controls.Add(this.lblTipo);
             this.gbDadosSinistros.Controls.Add(this.txtid);
@@ -196,6 +200,7 @@
             // txtDesc
             // 
             this.txtDesc.Location = new System.Drawing.Point(11, 181);
+            this.txtDesc.MaxLength = 250;
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 85);
@@ -233,6 +238,8 @@
             // btnExcluirSinistros
             // 
             this.btnExcluirSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirSinistros.Enabled = false;
             this.btnExcluirSinistros.FlatAppearance.BorderSize = 0;
             this.btnExcluirSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -252,6 +259,8 @@
             // btnAlterarSinistros
             // 
             this.btnAlterarSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarSinistros.Enabled = false;
             this.btnAlterarSinistros.FlatAppearance.BorderSize = 0;
             this.btnAlterarSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -271,6 +280,7 @@
             // btnCadastrarSinistros
             // 
             this.btnCadastrarSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarSinistros.FlatAppearance.BorderSize = 0;
             this.btnCadastrarSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -278,7 +288,7 @@
             this.btnCadastrarSinistros.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarSinistros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarSinistros.Image")));
             this.btnCadastrarSinistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarSinistros.Location = new System.Drawing.Point(119, 307);
+            this.btnCadastrarSinistros.Location = new System.Drawing.Point(120, 307);
             this.btnCadastrarSinistros.Name = "btnCadastrarSinistros";
             this.btnCadastrarSinistros.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarSinistros.TabIndex = 20;
@@ -323,7 +333,7 @@
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.panelConsultarPorData.Controls.Add(this.gbData);
-            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 63);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 64);
             this.panelConsultarPorData.Name = "panelConsultarPorData";
             this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
             this.panelConsultarPorData.TabIndex = 39;
@@ -348,6 +358,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -406,7 +417,7 @@
             // 
             // dtDataSinistroConsulta
             // 
-            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy hh:mm";
+            this.dtDataSinistroConsulta.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dtDataSinistroConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataSinistroConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataSinistroConsulta.Location = new System.Drawing.Point(303, 24);
@@ -462,6 +473,7 @@
             this.btnTrasferirSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirSinistros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirSinistros.BackgroundImage")));
             this.btnTrasferirSinistros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirSinistros.FlatAppearance.BorderSize = 0;
             this.btnTrasferirSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -485,10 +497,12 @@
             this.dgSinistrosConsulta.Name = "dgSinistrosConsulta";
             this.dgSinistrosConsulta.Size = new System.Drawing.Size(608, 329);
             this.dgSinistrosConsulta.TabIndex = 20;
+            this.dgSinistrosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSinistrosConsulta_CellContentClick);
             // 
             // btnTodosSinistros
             // 
             this.btnTodosSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosSinistros.FlatAppearance.BorderSize = 0;
             this.btnTodosSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -507,6 +521,7 @@
             // btnConsultarSinistros
             // 
             this.btnConsultarSinistros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarSinistros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarSinistros.FlatAppearance.BorderSize = 0;
             this.btnConsultarSinistros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarSinistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -522,6 +537,22 @@
             this.btnConsultarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;
             this.btnConsultarSinistros.Click += new System.EventHandler(this.btnConsultarSinistros_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 64;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Sinistros
             // 
@@ -587,5 +618,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

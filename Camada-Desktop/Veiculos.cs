@@ -46,6 +46,9 @@ namespace CamadaDesktop
             tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pela placa, marca, modelo ou chassi do Veículo.");
             tooltipPesquisar.Hide(lbPesquisar);
 
+            toolTipTransfere.SetToolTip(this.btnTrasferirVeiculo, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirVeiculo);
+
             cbCombustivel.DataSource = Enum.GetValues(typeof(VeiculoCombustivel));
             cbCor.DataSource = Enum.GetValues(typeof(VeiculoTipoCor));
             AtualizarCor();
@@ -333,6 +336,66 @@ namespace CamadaDesktop
                 {
                     txtPlacaConsulta.Text = "";
                     Veiculo = null;
+
+                    btnCadastrarVeiculo.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarVeiculo.Enabled = true;
+                    btnExcluirVeiculo.Enabled = true;
+                }
+            }
+        }
+
+        private void dgVeiculoConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Veiculo == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtValor.Text = "";
+                dtInicio.Value = DateTime.Now;
+                dtVencimento.Value = DateTime.Now;
+
+                PlacaAntiga = Veiculo.Placa;
+                DateTime ano = new DateTime(Veiculo.Ano, DateTime.Now.Month, DateTime.Now.Day);
+                txtPlaca.Text = Veiculo.Placa;
+                txtMarca.Text = Veiculo.Marca;
+                dtAno.Value = ano;
+                txtModelo.Text = Veiculo.Modelo;
+                txtChassi.Text = Veiculo.Chassi;
+                cbCor.SelectedItem = Veiculo.Cor;
+                cbCor.Text = Veiculo.Cor.ToString();
+                cbCombustivel.SelectedItem = Veiculo.Combustivel;
+                cbCombustivel.Text = Veiculo.Combustivel.ToString();
+
+                if (Veiculo.Alugado)
+                {
+                    rdAlugado.Checked = true;
+                    txtValor.Enabled = true;
+                    dtInicio.Enabled = true;
+                    dtVencimento.Checked = true;
+
+                    txtValor.Text = Veiculo.VeiculoAlugado.Valor.ToString();
+                    dtInicio.Value = Veiculo.VeiculoAlugado.DataInicio;
+                    dtVencimento.Value = Veiculo.VeiculoAlugado.DataVencimento;
+                }
+                else
+                {
+                    rdNaoAlugado.Checked = true;
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlVeiculos.SelectTab("tbPageCadastroVeiculo");
+                if (tbControlVeiculos.SelectedTab == tbPageCadastroVeiculo)
+                {
+                    txtPlacaConsulta.Text = "";
+                    Veiculo = null;
+
+                    btnCadastrarVeiculo.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarVeiculo.Enabled = true;
+                    btnExcluirVeiculo.Enabled = true;
                 }
             }
         }
@@ -395,6 +458,11 @@ namespace CamadaDesktop
                         txtValor.Clear();
                         dtInicio.Value = DateTime.Now;
                         dtVencimento.Value = DateTime.Now;
+
+                        btnCadastrarVeiculo.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarVeiculo.Enabled = false;
+                        btnExcluirVeiculo.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -441,6 +509,11 @@ namespace CamadaDesktop
                             txtValor.Clear();
                             dtInicio.Value = DateTime.Now;
                             dtVencimento.Value = DateTime.Now;
+
+                            btnCadastrarVeiculo.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarVeiculo.Enabled = false;
+                            btnExcluirVeiculo.Enabled = false;
                         }
                     }                   
                 }
@@ -544,6 +617,30 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtPlaca.Clear();
+                txtMarca.Clear();
+                txtModelo.Clear();
+                txtChassi.Clear();
+                dtAno.Value = DateTime.Now;
+                cbCombustivel.Text = "";
+                cbCor.Text = "";
+                rdAlugado.Checked = false;
+                rdNaoAlugado.Checked = false;
+                txtValor.Clear();
+                dtInicio.Value = DateTime.Now;
+                dtVencimento.Value = DateTime.Now;
+
+                btnCadastrarVeiculo.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarVeiculo.Enabled = false;
+                btnExcluirVeiculo.Enabled = false;
+            }
         }
     }
 }

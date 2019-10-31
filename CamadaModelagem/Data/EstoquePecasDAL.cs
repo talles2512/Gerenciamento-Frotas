@@ -21,8 +21,9 @@ namespace CamadaModelagem.Data
 
         public bool Cadastrar(EstoquePeca estoquepeca)
         {
-            string query = "INSERT INTO [dbo].[TB_ESTOQUE_PECAS] ([EP_DESCRICAO],[EP_VALORUNIT],[EP_QUANTD])" +
-                "VALUES ('" + estoquepeca.Descricao + "', " + estoquepeca.ValorUnit + ", " + estoquepeca.Quantidade + ")";
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO [dbo].[TB_ESTOQUE_PECAS] ([EP_DESCRICAO],[EP_VALORUNIT],[EP_QUANTD],[EP_DATAREGISTRO])" +
+                "VALUES ('" + estoquepeca.Descricao + "', " + estoquepeca.ValorUnit + ", " + estoquepeca.Quantidade + ", '" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

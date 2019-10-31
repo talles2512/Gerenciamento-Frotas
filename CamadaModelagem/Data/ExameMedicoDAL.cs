@@ -25,9 +25,10 @@ namespace CamadaModelagem.Data
         {
             int situacaoexame = examemedico.Situacao.GetHashCode();
             string dataexame = examemedico.Data.ToString("yyyy/MM/dd");
+            DateTime datareg = DateTime.Now;
 
-            string query = "INSERT INTO[dbo].[TB_EXAMEDICO] ([EXAM_DATA],[EXAM_DESCRICAO],[EXAM_SITUACAO],[EXAM_MT_CPF])" +
-                "VALUES ('" + dataexame + "', '" + examemedico.Descricao + "', " + situacaoexame + ", '" + examemedico.Motorista.CPF + "')";
+            string query = "INSERT INTO[dbo].[TB_EXAMEDICO] ([EXAM_DATA],[EXAM_DESCRICAO],[EXAM_SITUACAO],[EXAM_MT_CPF],[EXAM_DATAREGISTRO])" +
+                "VALUES ('" + dataexame + "', '" + examemedico.Descricao + "', " + situacaoexame + ", '" + examemedico.Motorista.CPF + "','" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

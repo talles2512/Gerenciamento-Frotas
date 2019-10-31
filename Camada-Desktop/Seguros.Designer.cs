@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Seguros));
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
@@ -97,6 +98,10 @@
             this.btnExcluirCobertura = new System.Windows.Forms.Button();
             this.btnAlterarCobertura = new System.Windows.Forms.Button();
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipTransfereCobertura = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
+            this.lblCancelarCobertura = new System.Windows.Forms.Label();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -138,6 +143,7 @@
             // 
             // gbDadosSeguros
             // 
+            this.gbDadosSeguros.Controls.Add(this.lblCancelar);
             this.gbDadosSeguros.Controls.Add(this.txtNApolice);
             this.gbDadosSeguros.Controls.Add(this.cbFranquia);
             this.gbDadosSeguros.Controls.Add(this.cbTipo);
@@ -336,6 +342,8 @@
             // btnExcluirSeguros
             // 
             this.btnExcluirSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirSeguros.Enabled = false;
             this.btnExcluirSeguros.FlatAppearance.BorderSize = 0;
             this.btnExcluirSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -355,6 +363,8 @@
             // btnAlterarSeguros
             // 
             this.btnAlterarSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarSeguros.Enabled = false;
             this.btnAlterarSeguros.FlatAppearance.BorderSize = 0;
             this.btnAlterarSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -374,6 +384,7 @@
             // btnCadastrarSeguros
             // 
             this.btnCadastrarSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarSeguros.FlatAppearance.BorderSize = 0;
             this.btnCadastrarSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -449,6 +460,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -544,6 +556,7 @@
             this.btnTrasferirSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirSeguros.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirSeguros.BackgroundImage")));
             this.btnTrasferirSeguros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirSeguros.FlatAppearance.BorderSize = 0;
             this.btnTrasferirSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -567,10 +580,12 @@
             this.dgSegurosConsulta.Name = "dgSegurosConsulta";
             this.dgSegurosConsulta.Size = new System.Drawing.Size(608, 382);
             this.dgSegurosConsulta.TabIndex = 18;
+            this.dgSegurosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSegurosConsulta_CellContentClick);
             // 
             // btnTodosSeguros
             // 
             this.btnTodosSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosSeguros.FlatAppearance.BorderSize = 0;
             this.btnTodosSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -589,6 +604,7 @@
             // btnConsultarSeguros
             // 
             this.btnConsultarSeguros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarSeguros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarSeguros.FlatAppearance.BorderSize = 0;
             this.btnConsultarSeguros.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarSeguros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -664,6 +680,7 @@
             // btnConsultarporDataCobertura
             // 
             this.btnConsultarporDataCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarporDataCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarporDataCobertura.FlatAppearance.BorderSize = 0;
             this.btnConsultarporDataCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarporDataCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -759,6 +776,7 @@
             this.btnTransfereCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTransfereCobertura.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTransfereCobertura.BackgroundImage")));
             this.btnTransfereCobertura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTransfereCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTransfereCobertura.FlatAppearance.BorderSize = 0;
             this.btnTransfereCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTransfereCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -782,10 +800,12 @@
             this.dgCoberturaConsulta.Name = "dgCoberturaConsulta";
             this.dgCoberturaConsulta.Size = new System.Drawing.Size(614, 183);
             this.dgCoberturaConsulta.TabIndex = 25;
+            this.dgCoberturaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCoberturaConsulta_CellContentClick);
             // 
             // btnConsultaTodosCobertura
             // 
             this.btnConsultaTodosCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaTodosCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultaTodosCobertura.FlatAppearance.BorderSize = 0;
             this.btnConsultaTodosCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultaTodosCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -804,6 +824,7 @@
             // btnConsultaCobertura
             // 
             this.btnConsultaCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultaCobertura.FlatAppearance.BorderSize = 0;
             this.btnConsultaCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultaCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -822,6 +843,7 @@
             // 
             // gbDadosCobertura
             // 
+            this.gbDadosCobertura.Controls.Add(this.lblCancelarCobertura);
             this.gbDadosCobertura.Controls.Add(this.cbSeguro);
             this.gbDadosCobertura.Controls.Add(this.cbTipoCobertura);
             this.gbDadosCobertura.Controls.Add(this.lblTipoCobertura);
@@ -877,6 +899,7 @@
             // txtCoberturaDescricao
             // 
             this.txtCoberturaDescricao.Location = new System.Drawing.Point(11, 87);
+            this.txtCoberturaDescricao.MaxLength = 250;
             this.txtCoberturaDescricao.Multiline = true;
             this.txtCoberturaDescricao.Name = "txtCoberturaDescricao";
             this.txtCoberturaDescricao.Size = new System.Drawing.Size(439, 108);
@@ -894,6 +917,8 @@
             // btnExcluirCobertura
             // 
             this.btnExcluirCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirCobertura.Enabled = false;
             this.btnExcluirCobertura.FlatAppearance.BorderSize = 0;
             this.btnExcluirCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -913,6 +938,8 @@
             // btnAlterarCobertura
             // 
             this.btnAlterarCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarCobertura.Enabled = false;
             this.btnAlterarCobertura.FlatAppearance.BorderSize = 0;
             this.btnAlterarCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -932,6 +959,7 @@
             // btnCadastrarCobertura
             // 
             this.btnCadastrarCobertura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarCobertura.FlatAppearance.BorderSize = 0;
             this.btnCadastrarCobertura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -947,6 +975,38 @@
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 63;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
+            // 
+            // lblCancelarCobertura
+            // 
+            this.lblCancelarCobertura.AutoSize = true;
+            this.lblCancelarCobertura.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelarCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelarCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelarCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelarCobertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelarCobertura.Location = new System.Drawing.Point(497, 67);
+            this.lblCancelarCobertura.Name = "lblCancelarCobertura";
+            this.lblCancelarCobertura.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelarCobertura.TabIndex = 66;
+            this.lblCancelarCobertura.Text = "Cancelar";
+            this.lblCancelarCobertura.Visible = false;
+            this.lblCancelarCobertura.Click += new System.EventHandler(this.lblCancelarCobertura_Click);
             // 
             // Seguros
             // 
@@ -1052,5 +1112,9 @@
         private System.Windows.Forms.Label lblInicoConsultarporDataCobertura;
         private System.Windows.Forms.DateTimePicker dtFimConsultarporDataCobertura;
         private System.Windows.Forms.DateTimePicker dtInicioConsultarporDataCobertura;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.ToolTip toolTipTransfereCobertura;
+        private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.Label lblCancelarCobertura;
     }
 }

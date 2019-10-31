@@ -111,6 +111,7 @@
             // 
             this.txtLogin.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.txtLogin.Location = new System.Drawing.Point(105, 126);
+            this.txtLogin.MaxLength = 25;
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(197, 32);
             this.txtLogin.TabIndex = 1;
@@ -129,6 +130,7 @@
             // 
             this.txtSenha.Font = new System.Drawing.Font("Agency FB", 15.75F);
             this.txtSenha.Location = new System.Drawing.Point(105, 164);
+            this.txtSenha.MaxLength = 25;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(197, 32);
             this.txtSenha.TabIndex = 2;

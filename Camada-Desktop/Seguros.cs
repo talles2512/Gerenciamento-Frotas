@@ -59,6 +59,11 @@ namespace CamadaDesktop
 
         private void Seguros_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirSeguros, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirSeguros);
+            toolTipTransfereCobertura.SetToolTip(this.btnTransfereCobertura, "Transferir Dados");
+            toolTipTransfereCobertura.Hide(btnTransfereCobertura);
+
             try
             {
                 cbItemSegurado.DataSource = _seguroController.PopularPlacas();
@@ -360,6 +365,52 @@ namespace CamadaDesktop
                     txtNApoliceConsulta.Text = "";
                     cbTipoCoberturaConsulta.Text = "";
                     Seguro = null;
+
+                    btnCadastrarSeguros.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarSeguros.Enabled = true;
+                    btnExcluirSeguros.Enabled = true;
+                }
+            }
+        }
+
+        private void dgSegurosConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Seguro == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                NApoliceAntiga = Seguro.NumeroApolice;
+                TipoAntigo = Seguro.Tipo.ToString();
+
+                cbTipo.SelectedItem = Seguro.Tipo;
+                cbSeguradora.SelectedValue = Seguro.CNPJ;
+                txtNApolice.Text = Seguro.NumeroApolice.ToString();
+                cbItemSegurado.SelectedValue = Seguro.ItemSegurado;
+                txtValor.Text = Seguro.Valor.ToString();
+                dtInicio.Value = Seguro.DataInicio;
+                dtfimvigencia.Value = Seguro.FimVigencia;
+
+                if (Seguro.Franquia != "")
+                {
+                    cbFranquia.SelectedItem = Seguro.Franquia;
+                    txtValorFranquia.Text = Seguro.ValorFranquia.ToString();
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlSeguros.SelectTab("tbPageCadastroSeguros");
+                if (tbControlSeguros.SelectedTab == tbPageCadastroSeguros)
+                {
+                    txtNApoliceConsulta.Text = "";
+                    cbTipoCoberturaConsulta.Text = "";
+                    Seguro = null;
+
+                    btnCadastrarSeguros.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarSeguros.Enabled = true;
+                    btnExcluirSeguros.Enabled = true;
                 }
             }
         }
@@ -454,6 +505,11 @@ namespace CamadaDesktop
                             dtfimvigencia.Value = DateTime.Now;
                             cbFranquia.Text = "";
                             txtValorFranquia.Text = "";
+
+                            btnCadastrarSeguros.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarSeguros.Enabled = false;
+                            btnExcluirSeguros.Enabled = false;
                         }
                     }
                     catch (NaoEncontradoException ex)
@@ -520,6 +576,11 @@ namespace CamadaDesktop
                                 dtfimvigencia.Value = DateTime.Now;
                                 cbFranquia.Text = "";
                                 txtValorFranquia.Text = "";
+
+                                btnCadastrarSeguros.Visible = true;
+                                lblCancelar.Visible = false;
+                                btnAlterarSeguros.Enabled = false;
+                                btnExcluirSeguros.Enabled = false;
                             }
                         }
                     }
@@ -532,6 +593,27 @@ namespace CamadaDesktop
                         MessageBox.Show(ex.Message);
                     }
                 }
+            }
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cbTipo.Text = "";
+                cbSeguradora.Text = "";
+                txtNApolice.Text = "";
+                cbItemSegurado.Text = "";
+                txtValor.Text = "";
+                dtInicio.Value = DateTime.Now;
+                dtfimvigencia.Value = DateTime.Now;
+                cbFranquia.Text = "";
+                txtValorFranquia.Text = "";
+
+                btnCadastrarSeguros.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarSeguros.Enabled = false;
+                btnExcluirSeguros.Enabled = false;
             }
         }
 
@@ -704,6 +786,41 @@ namespace CamadaDesktop
                     cbTipoCoberturaConsulta.Text = "";
                     SeguroCobertura = null;
                     dgCoberturaConsulta.DataSource = null;
+
+                    btnCadastrarCobertura.Visible = false;
+                    lblCancelarCobertura.Visible = true;
+                    btnAlterarCobertura.Enabled = true;
+                    btnExcluirCobertura.Enabled = true;
+                }
+            }
+        }
+
+        private void dgCoberturaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (SeguroCobertura == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                NApoliceAntigaCobertura = SeguroCobertura.NumeroApolice;
+                TipoAntigoCobertura = SeguroCobertura.Tipo.ToString();
+
+                cbTipoCobertura.SelectedItem = SeguroCobertura.Tipo;
+                cbSeguro.SelectedValue = SeguroCobertura.NumeroApolice;
+                txtCoberturaDescricao.Text = SeguroCobertura.Descricao;
+
+                if (txtCoberturaDescricao.Text != "")
+                {
+                    txtNApoliceCoberturaConsulta.Text = "";
+                    cbTipoCoberturaConsulta.Text = "";
+                    SeguroCobertura = null;
+                    dgCoberturaConsulta.DataSource = null;
+
+                    btnCadastrarCobertura.Visible = false;
+                    lblCancelarCobertura.Visible = true;
+                    btnAlterarCobertura.Enabled = true;
+                    btnExcluirCobertura.Enabled = true;
                 }
             }
         }
@@ -744,6 +861,11 @@ namespace CamadaDesktop
                         cbTipoCobertura.Text = "";
                         cbSeguro.Text = "";
                         txtCoberturaDescricao.Text = "";
+
+                        btnCadastrarCobertura.Visible = true;
+                        lblCancelarCobertura.Visible = false;
+                        btnAlterarCobertura.Enabled = false;
+                        btnExcluirCobertura.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -782,6 +904,11 @@ namespace CamadaDesktop
                             cbTipoCobertura.Text = "";
                             cbSeguro.Text = "";
                             txtCoberturaDescricao.Text = "";
+
+                            btnCadastrarCobertura.Visible = true;
+                            lblCancelarCobertura.Visible = false;
+                            btnAlterarCobertura.Enabled = false;
+                            btnExcluirCobertura.Enabled = false;
                         }
                     }
                 }
@@ -839,6 +966,21 @@ namespace CamadaDesktop
         private void panelConsultarporDataCobertura_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarporDataCobertura.Visible = false;
+        }
+
+        private void lblCancelarCobertura_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cbTipoCobertura.Text = "";
+                cbSeguro.Text = "";
+                txtCoberturaDescricao.Text = "";
+
+                btnCadastrarCobertura.Visible = true;
+                lblCancelarCobertura.Visible = false;
+                btnAlterarCobertura.Enabled = false;
+                btnExcluirCobertura.Enabled = false;
+            }
         }
     }
 }

@@ -41,6 +41,8 @@ namespace CamadaDesktop
 
         private void Funcionarios_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirFuncionario, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirFuncionario);
             cbPerfilAcesso.DataSource = Enum.GetValues(typeof(PerfilAcesso));
             AtualizarCor();
         }
@@ -179,6 +181,40 @@ namespace CamadaDesktop
                 {
                     Funcionario = null;
                     txtLoginFuncionarioConsulta.Text = "";
+
+                    btnCadastrarFuncionario.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarFuncionario.Enabled = true;
+                    btnExcluirFuncionario.Enabled = true;
+                }
+            }
+        }
+
+        private void dgFuncionarioConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Funcionario == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtnome.Text = Funcionario.Nome;
+                txtLogin.Text = Funcionario.Login;
+                txtSenha.Text = Funcionario.Senha;
+                cbPerfilAcesso.SelectedItem = Funcionario.PerfilAcesso.ToString();
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+
+                tbControlFuncionario.SelectTab("tbPageCadastroFuncionario");
+                if (tbControlFuncionario.SelectedTab == tbPageCadastroFuncionario)
+                {
+                    Funcionario = null;
+                    txtLoginFuncionarioConsulta.Text = "";
+
+                    btnCadastrarFuncionario.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarFuncionario.Enabled = true;
+                    btnExcluirFuncionario.Enabled = true;
                 }
             }
         }
@@ -209,6 +245,11 @@ namespace CamadaDesktop
                         txtSenha.Text = "";
                         cbPerfilAcesso.Text = "";
                         loginantigo = "";
+
+                        btnCadastrarFuncionario.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarFuncionario.Enabled = false;
+                        btnExcluirFuncionario.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -241,6 +282,11 @@ namespace CamadaDesktop
                             txtLogin.Text = "";
                             txtSenha.Text = "";
                             cbPerfilAcesso.Text = "";
+
+                            btnCadastrarFuncionario.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarFuncionario.Enabled = false;
+                            btnExcluirFuncionario.Enabled = false;
                         }
                     }
                 }
@@ -279,6 +325,22 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtnome.Text = "";
+                txtLogin.Text = "";
+                txtSenha.Text = "";
+                cbPerfilAcesso.Text = "";
+
+                btnCadastrarFuncionario.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarFuncionario.Enabled = false;
+                btnExcluirFuncionario.Enabled = false;
+            }
         }
     }
 }

@@ -59,6 +59,9 @@ namespace CamadaDesktop
         {
             cbTipo.DataSource = Enum.GetValues(typeof(ItemSegurado));
             cbTipoConsulta.DataSource = Enum.GetValues(typeof(ItemSegurado));
+            toolTipTransfere.SetToolTip(this.btnTrasferirSinistros, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirSinistros);
+
             AtualizarCor();
         }
 
@@ -455,6 +458,84 @@ namespace CamadaDesktop
                     cbTipoConsulta.Text = "";
                     Sinistro = null;
                     txtid.Text = id.ToString();
+
+                    btnCadastrarSinistros.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarSinistros.Enabled = true;
+                    btnExcluirSinistros.Enabled = true;
+                }
+            }
+        }
+
+        private void dgSinistrosConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Sinistro == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                int id = int.Parse(Sinistro.Id.ToString());
+                if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                {
+                    cbTipo.Text = "Veiculo";
+                }
+                else
+                {
+                    cbTipo.Text = "Motorista";
+                }
+
+                itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                numapoliceantigo = Sinistro.Seguro.NumeroApolice;
+                cbItemSegurado.Text = Sinistro.Item;
+
+                if (cbTipo.SelectedItem.ToString() == "Veiculo")
+                {
+                    if (cbItemSegurado.Items.Count < 1)
+                    {
+                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        string placa = cbItemSegurado.SelectedValue.ToString();
+                        cbSeguro.DataSource = _sinistroController.PopularSeguroPlacas(placa);
+                        cbSeguro.DisplayMember = "APOLICE";
+                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                    }
+                }
+                else if (cbTipo.SelectedItem.ToString() == "Motorista")
+                {
+                    if (cbItemSegurado.Items.Count < 1)
+                    {
+                        MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        string cpf = cbItemSegurado.SelectedValue.ToString();
+                        cbSeguro.DataSource = _sinistroController.PopularSeguroCPFs(cpf);
+                        cbSeguro.DisplayMember = "APOLICE";
+                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                    }
+                }
+
+                dtDataSinistro.Value = Sinistro.DataHora;
+                datahoraantigo = Sinistro.DataHora;
+                txtDesc.Text = Sinistro.Descricao;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlSinistros.SelectTab("tbPageCadastroSinistros");
+                if (tbControlSinistros.SelectedTab == tbPageCadastroSinistros)
+                {
+                    txtIDSinistrosConsulta.Text = "";
+                    dtDataSinistroConsulta.Text = "";
+                    cbTipoConsulta.Text = "";
+                    Sinistro = null;
+                    txtid.Text = id.ToString();
+
+                    btnCadastrarSinistros.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarSinistros.Enabled = true;
+                    btnExcluirSinistros.Enabled = true;
                 }
             }
         }
@@ -498,6 +579,11 @@ namespace CamadaDesktop
                             cbTipo.Text = "";
                             cbItemSegurado.Text = "";
                             dtDataSinistro.Text = "";
+
+                            btnCadastrarSinistros.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarSinistros.Enabled = false;
+                            btnExcluirSinistros.Enabled = false;
                         }
                     }
                     catch (RegistroExisteException ex)
@@ -543,6 +629,11 @@ namespace CamadaDesktop
                             cbTipo.Text = "";
                             cbItemSegurado.Text = "";
                             dtDataSinistro.Text = "";
+
+                            btnCadastrarSinistros.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarSinistros.Enabled = false;
+                            btnExcluirSinistros.Enabled = false;
                         }
                     }
                     catch (RegistroExisteException ex)
@@ -588,6 +679,11 @@ namespace CamadaDesktop
                             cbTipo.Text = "";
                             cbItemSegurado.Text = "";
                             dtDataSinistro.Text = "";
+
+                            btnCadastrarSinistros.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarSinistros.Enabled = false;
+                            btnExcluirSinistros.Enabled = false;
                         }                 
                     }
                 }
@@ -628,6 +724,22 @@ namespace CamadaDesktop
             panelConsultarPorData.Visible = false;
         }
 
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtDesc.Text = "";
+                cbSeguro.Text = "";
+                cbTipo.Text = "";
+                cbItemSegurado.Text = "";
+                dtDataSinistro.Text = "";
+
+                btnCadastrarSinistros.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarSinistros.Enabled = false;
+                btnExcluirSinistros.Enabled = false;
+            }
+        }
     }
 }
 

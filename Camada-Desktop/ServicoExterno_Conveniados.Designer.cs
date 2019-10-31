@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicoExterno_Conveniados));
             this.tbControlConveniados = new System.Windows.Forms.TabControl();
             this.tbPageCadastroConveniados = new System.Windows.Forms.TabPage();
@@ -71,6 +72,8 @@
             this.dgConveniadoConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosConveniado = new System.Windows.Forms.Button();
             this.btnConsultarConveniado = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlConveniados.SuspendLayout();
             this.tbPageCadastroConveniados.SuspendLayout();
             this.gbDadosConveniados.SuspendLayout();
@@ -118,6 +121,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lblCancelar);
             this.panel1.Controls.Add(this.dtVencimento);
             this.panel1.Controls.Add(this.dtInicio);
             this.panel1.Controls.Add(this.rdNaoConveniado);
@@ -233,6 +237,7 @@
             // txtEndereco
             // 
             this.txtEndereco.Location = new System.Drawing.Point(8, 218);
+            this.txtEndereco.MaxLength = 150;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(377, 32);
             this.txtEndereco.TabIndex = 19;
@@ -249,6 +254,7 @@
             // txtemail
             // 
             this.txtemail.Location = new System.Drawing.Point(8, 155);
+            this.txtemail.MaxLength = 150;
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(377, 32);
             this.txtemail.TabIndex = 18;
@@ -281,9 +287,10 @@
             // 
             // txtNomeServico
             // 
-            this.txtNomeServico.Location = new System.Drawing.Point(200, 27);
+            this.txtNomeServico.Location = new System.Drawing.Point(200, 28);
+            this.txtNomeServico.MaxLength = 150;
             this.txtNomeServico.Name = "txtNomeServico";
-            this.txtNomeServico.Size = new System.Drawing.Size(265, 32);
+            this.txtNomeServico.Size = new System.Drawing.Size(377, 32);
             this.txtNomeServico.TabIndex = 15;
             // 
             // txtCNPJ
@@ -323,6 +330,8 @@
             // btnExcluirServicoExterno
             // 
             this.btnExcluirServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirServicoExterno.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirServicoExterno.Enabled = false;
             this.btnExcluirServicoExterno.FlatAppearance.BorderSize = 0;
             this.btnExcluirServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -342,6 +351,8 @@
             // btnAlterarServicoExterno
             // 
             this.btnAlterarServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarServicoExterno.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarServicoExterno.Enabled = false;
             this.btnAlterarServicoExterno.FlatAppearance.BorderSize = 0;
             this.btnAlterarServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -361,6 +372,7 @@
             // btnCadastrarServicoExterno
             // 
             this.btnCadastrarServicoExterno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarServicoExterno.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarServicoExterno.FlatAppearance.BorderSize = 0;
             this.btnCadastrarServicoExterno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarServicoExterno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -368,7 +380,7 @@
             this.btnCadastrarServicoExterno.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarServicoExterno.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarServicoExterno.Image")));
             this.btnCadastrarServicoExterno.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarServicoExterno.Location = new System.Drawing.Point(110, 453);
+            this.btnCadastrarServicoExterno.Location = new System.Drawing.Point(108, 453);
             this.btnCadastrarServicoExterno.Name = "btnCadastrarServicoExterno";
             this.btnCadastrarServicoExterno.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarServicoExterno.TabIndex = 25;
@@ -443,6 +455,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -521,6 +534,7 @@
             this.btnTrasferirConveniado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirConveniado.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirConveniado.BackgroundImage")));
             this.btnTrasferirConveniado.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirConveniado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirConveniado.FlatAppearance.BorderSize = 0;
             this.btnTrasferirConveniado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirConveniado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -544,10 +558,12 @@
             this.dgConveniadoConsulta.Name = "dgConveniadoConsulta";
             this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 419);
             this.dgConveniadoConsulta.TabIndex = 18;
+            this.dgConveniadoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgConveniadoConsulta_CellContentClick);
             // 
             // btnTodosConveniado
             // 
             this.btnTodosConveniado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosConveniado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosConveniado.FlatAppearance.BorderSize = 0;
             this.btnTodosConveniado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosConveniado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -566,6 +582,7 @@
             // btnConsultarConveniado
             // 
             this.btnConsultarConveniado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarConveniado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarConveniado.FlatAppearance.BorderSize = 0;
             this.btnConsultarConveniado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarConveniado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -581,6 +598,22 @@
             this.btnConsultarConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;
             this.btnConsultarConveniado.Click += new System.EventHandler(this.BtnConsultarConveniado_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(254, 457);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 66;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // ServicoExterno_Conveniados
             // 
@@ -652,5 +685,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

@@ -46,6 +46,9 @@ namespace CamadaDesktop
 
         private void EntradaSaida_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirEntradaSaida, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirEntradaSaida);
+
             cbTipo.DataSource = Enum.GetValues(typeof(EntradaSaidaTipo));
             cbTipoConsulta.DataSource = Enum.GetValues(typeof(EntradaSaidaTipo));
 
@@ -269,6 +272,50 @@ namespace CamadaDesktop
                     cbServicoExternoEntradaSaidaConsulta.Text = "";
                     cbPlacaConsulta.Text = "";
                     dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+
+                    btnAlterarEntradaSaida.Enabled = true;
+                    btnExcluirEntradaSaida.Enabled = true;
+                    btnCadastrarEntradaSaida.Visible = false;
+                    lblCancelar.Visible = true;
+                }
+            }
+        }
+
+        private void dgEntradaSaidaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (EntradaSaida == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                PlacaAntiga = EntradaSaida.Placa;
+                cnpjAntigo = EntradaSaida.CNPJ;
+                TipoAntigo = EntradaSaida.Tipo.ToString();
+                dataAntiga = EntradaSaida.DataHora;
+
+
+                cbTipo.SelectedItem = EntradaSaida.Tipo;
+                dtDataHora.Value = EntradaSaida.DataHora;
+                cbPlaca.SelectedValue = EntradaSaida.Placa;
+                cbServicoExterno.SelectedValue = EntradaSaida.CNPJ;
+                cbCPF.SelectedValue = EntradaSaida.CPF;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlEntradaSaida.SelectTab("tbPageCadastroEntradaSaida");
+                if (tbControlEntradaSaida.SelectedTab == tbPageCadastroEntradaSaida)
+                {
+                    dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+                    EntradaSaida = null;
+                    cbTipoConsulta.Text = "";
+                    cbServicoExternoEntradaSaidaConsulta.Text = "";
+                    cbPlacaConsulta.Text = "";
+                    dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+
+                    btnAlterarEntradaSaida.Enabled = true;
+                    btnExcluirEntradaSaida.Enabled = true;
+                    btnCadastrarEntradaSaida.Visible = false;
+                    lblCancelar.Visible = true;
                 }
             }
         }
@@ -332,6 +379,11 @@ namespace CamadaDesktop
                         cbPlaca.Text = "";
                         cbServicoExterno.Text = "";
                         cbCPF.Text = "";
+
+                        btnAlterarEntradaSaida.Enabled = false;
+                        btnExcluirEntradaSaida.Enabled = false;
+                        btnCadastrarEntradaSaida.Visible = true;
+                        lblCancelar.Visible = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -379,6 +431,11 @@ namespace CamadaDesktop
                             cbPlaca.Text = "";
                             cbServicoExterno.Text = "";
                             cbCPF.Text = "";
+
+                            btnAlterarEntradaSaida.Enabled = false;
+                            btnExcluirEntradaSaida.Enabled = false;
+                            btnCadastrarEntradaSaida.Visible = true;
+                            lblCancelar.Visible = false;
                         }
                     }
                 }
@@ -416,6 +473,23 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cbTipo.Text = "";
+                dtDataHora.Value = DateTime.Now;
+                cbPlaca.Text = "";
+                cbServicoExterno.Text = "";
+                cbCPF.Text = "";
+
+                btnAlterarEntradaSaida.Enabled = false;
+                btnExcluirEntradaSaida.Enabled = false;
+                btnCadastrarEntradaSaida.Visible = true;
+                lblCancelar.Visible = false;
+            }
         }
     }
 }

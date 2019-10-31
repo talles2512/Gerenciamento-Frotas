@@ -40,6 +40,8 @@ namespace CamadaDesktop
 
         private void Clientes_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirClientes, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirClientes);
             AtualizarCor();
         }
 
@@ -212,6 +214,11 @@ namespace CamadaDesktop
                 {
                     txtCPFClientesConsulta.Text = "";
                     Cliente = null;
+
+                    btnCadastrarClientes.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarClientes.Enabled = true;
+                    btnExcluirClientes.Enabled = true;
                 }
             }
         }
@@ -239,6 +246,11 @@ namespace CamadaDesktop
                 {
                     txtCPFClientesConsulta.Text = "";
                     Cliente = null;
+
+                    btnCadastrarClientes.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarClientes.Enabled = true;
+                    btnExcluirClientes.Enabled = true;
                 }
             }
         }
@@ -280,6 +292,11 @@ namespace CamadaDesktop
                         txtRG.Text = "";
                         txtTelefone.Text = "";
                         dtDataNascimento.Text = "";
+
+                        btnCadastrarClientes.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarClientes.Enabled = false;
+                        btnExcluirClientes.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -326,6 +343,11 @@ namespace CamadaDesktop
                             txtRG.Text = "";
                             txtTelefone.Text = "";
                             dtDataNascimento.Text = "";
+
+                            btnCadastrarClientes.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarClientes.Enabled = false;
+                            btnExcluirClientes.Enabled = false;
                         }
                     }
                 }
@@ -365,6 +387,25 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtNome.Text = "";
+                txtCPF.Text = "";
+                txtEndereço.Text = "";
+                txtemail.Text = "";
+                txtRG.Text = "";
+                txtTelefone.Text = "";
+                dtDataNascimento.Text = "";
+
+                btnCadastrarClientes.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarClientes.Enabled = false;
+                btnExcluirClientes.Enabled = false;
+            }
         }
     }
 }

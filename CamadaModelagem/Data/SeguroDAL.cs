@@ -23,21 +23,22 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(Seguro seguro)
         {
             string query = "";
+            DateTime datareg = DateTime.Now;
 
             if(seguro.Tipo.ToString() == "Automóvel")
             {
                 query = " INSERT INTO [dbo].[TB_SEGURO_VEICULO]([SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_PLACA], [SEG_VALOR],"
-                        + " [SEG_DATAINICIO], [SEG_FIMVIGENCIA], [SEG_FRANQUIA], [SEG_VALORFRANQUIA]) VALUES(" + seguro.NumeroApolice
+                        + " [SEG_DATAINICIO], [SEG_FIMVIGENCIA], [SEG_FRANQUIA], [SEG_VALORFRANQUIA], [SEG_DATAREGISTRO]) VALUES(" + seguro.NumeroApolice
                         + ", " + seguro.CNPJ + ", '" + seguro.ItemSegurado + "', " + seguro.Valor + ", '"
                         + seguro.DataInicio.ToShortDateString() + "', '" + seguro.FimVigencia.ToShortDateString() 
-                        + "', '" + seguro.Franquia + "', " + seguro.ValorFranquia + ")";
+                        + "', '" + seguro.Franquia + "', " + seguro.ValorFranquia + ",'" + datareg.ToShortDateString() + "')";
             }
             else if(seguro.Tipo.ToString() == "Vida")
             {
                 query = " INSERT INTO [dbo].[TB_SEGURO_MOTORISTA]([SEG_NUMAPOLICE], [SEG_SEGURADORA], [SEG_ITEMSEG_CPF], [SEG_VALOR],"
-                        + " [SEG_DATAINICIO], [SEG_FIMVIGENCIA]) VALUES(" + seguro.NumeroApolice + ", " + seguro.CNPJ + ", '" 
+                        + " [SEG_DATAINICIO], [SEG_FIMVIGENCIA], [SEG_DATAREGISTRO]) VALUES(" + seguro.NumeroApolice + ", " + seguro.CNPJ + ", '" 
                         + seguro.ItemSegurado + "', " + seguro.Valor + ", '" + seguro.DataInicio.ToShortDateString() + "', '"
-                        + seguro.FimVigencia.ToShortDateString() + "')";
+                        + seguro.FimVigencia.ToShortDateString() + "','" + datareg.ToShortDateString() + "')";
             }
             try
             {

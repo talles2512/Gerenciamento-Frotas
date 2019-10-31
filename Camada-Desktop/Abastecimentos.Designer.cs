@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abastecimentos));
             this.tbControlAbast = new System.Windows.Forms.TabControl();
             this.tbPageCadastroAbast = new System.Windows.Forms.TabPage();
             this.gbDadosAbast = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.lblLitros = new System.Windows.Forms.Label();
             this.txtQuantidadeLitros = new System.Windows.Forms.MaskedTextBox();
             this.cbPlaca = new System.Windows.Forms.ComboBox();
@@ -66,6 +68,7 @@
             this.btnTodosAbast = new System.Windows.Forms.Button();
             this.btnConsultarAbast = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlAbast.SuspendLayout();
             this.tbPageCadastroAbast.SuspendLayout();
             this.gbDadosAbast.SuspendLayout();
@@ -100,6 +103,7 @@
             // 
             // gbDadosAbast
             // 
+            this.gbDadosAbast.Controls.Add(this.lblCancelar);
             this.gbDadosAbast.Controls.Add(this.lblLitros);
             this.gbDadosAbast.Controls.Add(this.txtQuantidadeLitros);
             this.gbDadosAbast.Controls.Add(this.cbPlaca);
@@ -123,10 +127,26 @@
             this.gbDadosAbast.TabStop = false;
             this.gbDadosAbast.Text = "Dados";
             // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(268, 308);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
+            // 
             // lblLitros
             // 
             this.lblLitros.AutoSize = true;
-            this.lblLitros.Location = new System.Drawing.Point(214, 92);
+            this.lblLitros.Location = new System.Drawing.Point(209, 92);
             this.lblLitros.Name = "lblLitros";
             this.lblLitros.Size = new System.Drawing.Size(122, 25);
             this.lblLitros.TabIndex = 30;
@@ -134,7 +154,7 @@
             // 
             // txtQuantidadeLitros
             // 
-            this.txtQuantidadeLitros.Location = new System.Drawing.Point(219, 120);
+            this.txtQuantidadeLitros.Location = new System.Drawing.Point(214, 120);
             this.txtQuantidadeLitros.Mask = "00.00";
             this.txtQuantidadeLitros.Name = "txtQuantidadeLitros";
             this.txtQuantidadeLitros.Size = new System.Drawing.Size(100, 32);
@@ -151,7 +171,7 @@
             // cbServicoExterno
             // 
             this.cbServicoExterno.FormattingEnabled = true;
-            this.cbServicoExterno.Location = new System.Drawing.Point(11, 248);
+            this.cbServicoExterno.Location = new System.Drawing.Point(11, 246);
             this.cbServicoExterno.Name = "cbServicoExterno";
             this.cbServicoExterno.Size = new System.Drawing.Size(400, 33);
             this.cbServicoExterno.TabIndex = 18;
@@ -159,7 +179,7 @@
             // lblServicoExterno
             // 
             this.lblServicoExterno.AutoSize = true;
-            this.lblServicoExterno.Location = new System.Drawing.Point(6, 220);
+            this.lblServicoExterno.Location = new System.Drawing.Point(6, 218);
             this.lblServicoExterno.Name = "lblServicoExterno";
             this.lblServicoExterno.Size = new System.Drawing.Size(49, 25);
             this.lblServicoExterno.TabIndex = 28;
@@ -222,6 +242,8 @@
             // btnExcluirAbast
             // 
             this.btnExcluirAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirAbast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirAbast.Enabled = false;
             this.btnExcluirAbast.FlatAppearance.BorderSize = 0;
             this.btnExcluirAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -241,6 +263,8 @@
             // btnAlterarAbast
             // 
             this.btnAlterarAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarAbast.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarAbast.Enabled = false;
             this.btnAlterarAbast.FlatAppearance.BorderSize = 0;
             this.btnAlterarAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -260,6 +284,7 @@
             // btnCadastrarAbast
             // 
             this.btnCadastrarAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarAbast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarAbast.FlatAppearance.BorderSize = 0;
             this.btnCadastrarAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -279,7 +304,7 @@
             // lblPlaca
             // 
             this.lblPlaca.AutoSize = true;
-            this.lblPlaca.Location = new System.Drawing.Point(6, 155);
+            this.lblPlaca.Location = new System.Drawing.Point(6, 154);
             this.lblPlaca.Name = "lblPlaca";
             this.lblPlaca.Size = new System.Drawing.Size(104, 25);
             this.lblPlaca.TabIndex = 0;
@@ -346,6 +371,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -452,6 +478,7 @@
             this.btnTrasferirAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirAbast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirAbast.BackgroundImage")));
             this.btnTrasferirAbast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirAbast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirAbast.FlatAppearance.BorderSize = 0;
             this.btnTrasferirAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -475,10 +502,12 @@
             this.dgVeiculoAbast.Name = "dgVeiculoAbast";
             this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 329);
             this.dgVeiculoAbast.TabIndex = 20;
+            this.dgVeiculoAbast.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoAbast_CellContentClick);
             // 
             // btnTodosAbast
             // 
             this.btnTodosAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosAbast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosAbast.FlatAppearance.BorderSize = 0;
             this.btnTodosAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -497,6 +526,7 @@
             // btnConsultarAbast
             // 
             this.btnConsultarAbast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarAbast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarAbast.FlatAppearance.BorderSize = 0;
             this.btnConsultarAbast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarAbast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -586,5 +616,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
     }
 }

@@ -62,6 +62,9 @@ namespace CamadaDesktop
 
         private void Viagens_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirViagens, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirViagens);
+
             try
             {
                 cbCPF.DataSource = _viagemController.PopularCPFs();
@@ -191,6 +194,16 @@ namespace CamadaDesktop
                     if (_viagemController.Cadastrar(viagem, requisicao))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+                        txtDestino.Text = "";
+                        dtDataSaida.Value = DateTime.Now;
+                        cbPlaca.Text = "";
+                        cbCPF.Text = "";
+                        rdOcupante.Checked = false;
+                        rdsemOcupante.Checked = false;
+                        txtNomeOcupante.Text = "";
+                        txtCPFOcupante.Text = "";
+                        listboxOcupantes.DataSource = null;
+
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -344,6 +357,59 @@ namespace CamadaDesktop
                 {
                     Viagem = null;
                     txtRequisicaoConsulta.Text = "";
+
+                    btnCadastrarViagens.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarViagens.Enabled = true;
+                    btnExcluirViagens.Enabled = true;
+                }
+            }
+        }
+
+        private void dgViagensConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Viagem == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                listboxOcupantes.Items.Clear();
+                ocupantes.Clear();
+
+                RequisicaoAntiga = Viagem.Requisicao;
+
+                txtDestino.Text = Viagem.Destino;
+                dtDataSaida.Value = Viagem.DataSaida;
+                cbPlaca.SelectedValue = Viagem.Placa;
+                cbCPF.SelectedValue = Viagem.CPF;
+
+                if (Viagem.Ocupante)
+                {
+                    rdOcupante.Checked = true;
+                    ocupantes = Viagem.Ocupantes;
+
+                    foreach (Ocupante ocupante in ocupantes)
+                    {
+                        listboxOcupantes.Items.Add(ocupante.Nome);
+                    }
+                }
+                else
+                {
+                    rdsemOcupante.Checked = true;
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlViagens.SelectTab("tbPageCadastroViagem");
+                if (tbControlViagens.SelectedTab == tbPageCadastroViagem)
+                {
+                    Viagem = null;
+                    txtRequisicaoConsulta.Text = "";
+
+                    btnCadastrarViagens.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarViagens.Enabled = true;
+                    btnExcluirViagens.Enabled = true;
                 }
             }
         }
@@ -398,6 +464,21 @@ namespace CamadaDesktop
                     {
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         RequisicaoAntiga = int.MaxValue;
+
+                        txtDestino.Text = "";
+                        dtDataSaida.Value = DateTime.Now;
+                        cbPlaca.Text = "";
+                        cbCPF.Text = "";
+                        rdOcupante.Checked = false;
+                        rdsemOcupante.Checked = false;
+                        txtNomeOcupante.Text = "";
+                        txtCPFOcupante.Text = "";
+                        listboxOcupantes.DataSource = null;
+
+                        btnCadastrarViagens.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarViagens.Enabled = false;
+                        btnExcluirViagens.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -443,6 +524,21 @@ namespace CamadaDesktop
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
                             RequisicaoAntiga = int.MaxValue;
+
+                            txtDestino.Text = "";
+                            dtDataSaida.Value = DateTime.Now;
+                            cbPlaca.Text = "";
+                            cbCPF.Text = "";
+                            rdOcupante.Checked = false;
+                            rdsemOcupante.Checked = false;
+                            txtNomeOcupante.Text = "";
+                            txtCPFOcupante.Text = "";
+                            listboxOcupantes.DataSource = null;
+
+                            btnCadastrarViagens.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarViagens.Enabled = false;
+                            btnExcluirViagens.Enabled = false;
                         }
                     }
                 }
@@ -575,6 +671,29 @@ namespace CamadaDesktop
         private void panelConsultarPorDataOcupantes_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorDataOcupantes.Visible = false;
+        }
+
+
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtDestino.Text = "";
+                dtDataSaida.Value = DateTime.Now;
+                cbPlaca.Text = "";
+                cbCPF.Text = "";
+                rdOcupante.Checked = false;
+                rdsemOcupante.Checked = false;
+                txtNomeOcupante.Text = "";
+                txtCPFOcupante.Text = "";
+                listboxOcupantes.DataSource = null;
+
+                btnCadastrarViagens.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarViagens.Enabled = false;
+                btnExcluirViagens.Enabled = false;
+            }
         }
     }
 }

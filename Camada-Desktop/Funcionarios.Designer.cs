@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Funcionarios));
             this.tbControlFuncionario = new System.Windows.Forms.TabControl();
             this.tbPageCadastroFuncionario = new System.Windows.Forms.TabPage();
@@ -58,6 +59,8 @@
             this.dgFuncionarioConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosFuncionario = new System.Windows.Forms.Button();
             this.btnConsultarFuncionario = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlFuncionario.SuspendLayout();
             this.tbPageCadastroFuncionario.SuspendLayout();
             this.gbDadosFuncionario.SuspendLayout();
@@ -92,6 +95,7 @@
             // 
             // gbDadosFuncionario
             // 
+            this.gbDadosFuncionario.Controls.Add(this.lblCancelar);
             this.gbDadosFuncionario.Controls.Add(this.lblPerfilAcesso);
             this.gbDadosFuncionario.Controls.Add(this.cbPerfilAcesso);
             this.gbDadosFuncionario.Controls.Add(this.txtSenha);
@@ -131,6 +135,7 @@
             // txtSenha
             // 
             this.txtSenha.Location = new System.Drawing.Point(214, 119);
+            this.txtSenha.MaxLength = 25;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(197, 32);
             this.txtSenha.TabIndex = 16;
@@ -147,6 +152,7 @@
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(11, 119);
+            this.txtLogin.MaxLength = 25;
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(197, 32);
             this.txtLogin.TabIndex = 15;
@@ -163,6 +169,7 @@
             // txtnome
             // 
             this.txtnome.Location = new System.Drawing.Point(11, 56);
+            this.txtnome.MaxLength = 150;
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(487, 32);
             this.txtnome.TabIndex = 14;
@@ -179,6 +186,8 @@
             // btnExcluirFuncionario
             // 
             this.btnExcluirFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirFuncionario.Enabled = false;
             this.btnExcluirFuncionario.FlatAppearance.BorderSize = 0;
             this.btnExcluirFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -198,6 +207,8 @@
             // btnAlterarFuncionario
             // 
             this.btnAlterarFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarFuncionario.Enabled = false;
             this.btnAlterarFuncionario.FlatAppearance.BorderSize = 0;
             this.btnAlterarFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -217,6 +228,7 @@
             // btnCadastrarFuncionario
             // 
             this.btnCadastrarFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarFuncionario.FlatAppearance.BorderSize = 0;
             this.btnCadastrarFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -290,6 +302,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -367,6 +380,7 @@
             this.btnTrasferirFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirFuncionario.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirFuncionario.BackgroundImage")));
             this.btnTrasferirFuncionario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirFuncionario.FlatAppearance.BorderSize = 0;
             this.btnTrasferirFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -390,10 +404,12 @@
             this.dgFuncionarioConsulta.Name = "dgFuncionarioConsulta";
             this.dgFuncionarioConsulta.Size = new System.Drawing.Size(608, 372);
             this.dgFuncionarioConsulta.TabIndex = 18;
+            this.dgFuncionarioConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFuncionarioConsulta_CellContentClick);
             // 
             // btnTodosFuncionario
             // 
             this.btnTodosFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosFuncionario.FlatAppearance.BorderSize = 0;
             this.btnTodosFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -412,6 +428,7 @@
             // btnConsultarFuncionario
             // 
             this.btnConsultarFuncionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarFuncionario.FlatAppearance.BorderSize = 0;
             this.btnConsultarFuncionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarFuncionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -427,6 +444,22 @@
             this.btnConsultarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;
             this.btnConsultarFuncionario.Click += new System.EventHandler(this.btnConsultarFuncionario_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(267, 253);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 49;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Funcionarios
             // 
@@ -484,5 +517,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

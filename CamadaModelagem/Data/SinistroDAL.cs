@@ -24,17 +24,18 @@ namespace CamadaModelagem.Data
         {
             string query = "";
 
-            string data = sinistro.DataHora.ToString("yyyy/MM/dd hh:mm");
+            string data = sinistro.DataHora.ToString("yyyy/MM/dd HH:mm");
+            DateTime datareg = DateTime.Now;
             if (sinistro.ItemSegurado.ToString() == "Veiculo")
             {
 
-                query = "INSERT INTO [dbo].[TB_SINISTRO_VEICULO] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "')";
+                query = "INSERT INTO [dbo].[TB_SINISTRO_VEICULO] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA],[SIN_DATAREGISTRO])" +
+                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
             }
             else if (sinistro.ItemSegurado.ToString() == "Motorista")
             {
-                query = "INSERT INTO [dbo].[TB_SINISTRO_MOTORISTA] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "')";
+                query = "INSERT INTO [dbo].[TB_SINISTRO_MOTORISTA] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA],[SIN_DATAREGISTRO])" +
+                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
             }
             try
             {

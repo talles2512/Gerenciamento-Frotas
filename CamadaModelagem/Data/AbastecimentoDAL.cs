@@ -23,9 +23,10 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(Abastecimento abastecimento)
         {
             int tipoAbastecimento = abastecimento.Tipo.GetHashCode();
-            string query = " INSERT INTO [dbo].[TB_ABASTECIMENTO]([ABS_VCL_PLACA],[ABS_SERVEXT_CNPJ],[ABS_TIPO],[ABS_LITROS],[ABS_VALOR],[ABS_DATA])" +
+            DateTime datareg = DateTime.Now;
+            string query = " INSERT INTO [dbo].[TB_ABASTECIMENTO]([ABS_VCL_PLACA],[ABS_SERVEXT_CNPJ],[ABS_TIPO],[ABS_LITROS],[ABS_VALOR],[ABS_DATA],[ABS_DATAREGISTRO])" +
                 "VALUES('" + abastecimento.Placa + "', " + abastecimento.CNPJ + ", " + tipoAbastecimento + ", " + abastecimento.Litros + ", "
-                + abastecimento.Valor + ", '" + abastecimento.Data.ToShortDateString() + "')";
+                + abastecimento.Valor + ", '" + abastecimento.Data.ToShortDateString() + "', '" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

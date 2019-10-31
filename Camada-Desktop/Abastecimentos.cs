@@ -44,6 +44,9 @@ namespace CamadaDesktop
         }
         private void Abastecimento_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirAbast, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirAbast);
+
             cbTipo.DataSource = Enum.GetValues(typeof(AbastecimentoTipo));
             cbTipoAbastConsulta.DataSource = Enum.GetValues(typeof(AbastecimentoTipo));
 
@@ -103,6 +106,13 @@ namespace CamadaDesktop
                     if (_abastecimentoController.Cadastrar(abastecimento, abastecimento.Placa, abastecimento.Tipo, abastecimento.Data))
                     {
                         MessageBox.Show("Cadastro realizado com Sucesso!");
+
+                        cbTipo.Text = "";
+                        dtDataAbast.Value = DateTime.Now;
+                        txtValor.Text = "";
+                        txtQuantidadeLitros.Text = "";
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
                     }
                 }
                 catch (RegistroExisteException ex)
@@ -238,6 +248,49 @@ namespace CamadaDesktop
                 {
                     dtDataAbastConsulta.Value = DateTime.Now;
                     Abastecimento = null;
+
+                    cbTipoAbastConsulta.Text = "";
+                    cbPlacaAbastConsulta.Text = "";
+                    dtDataAbastConsulta.Value = DateTime.Now;
+
+                    btnCadastrarAbast.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarAbast.Enabled = true;
+                    btnExcluirAbast.Enabled = true;
+                }
+            }
+        }
+
+        private void dgVeiculoAbast_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Abastecimento == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                PlacaAntiga = Abastecimento.Placa;
+                TipoAntigo = Abastecimento.Tipo.ToString();
+                dataAntiga = Abastecimento.Data;
+
+                cbTipo.SelectedItem = Abastecimento.Tipo;
+                dtDataAbast.Value = Abastecimento.Data;
+                txtQuantidadeLitros.Text = Abastecimento.Litros.ToString();
+                txtValor.Text = Abastecimento.Valor.ToString();
+                cbPlaca.SelectedValue = Abastecimento.Placa;
+                cbServicoExterno.SelectedValue = Abastecimento.CNPJ;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlAbast.SelectTab("tbPageCadastroAbast");
+                if (tbControlAbast.SelectedTab == tbPageCadastroAbast)
+                {
+                    dtDataAbastConsulta.Value = DateTime.Now;
+                    Abastecimento = null;
+
+                    btnCadastrarAbast.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarAbast.Enabled = true;
+                    btnExcluirAbast.Enabled = true;
                 }
             }
         }
@@ -291,6 +344,18 @@ namespace CamadaDesktop
                         PlacaAntiga = "";
                         TipoAntigo = "";
                         dataAntiga = new DateTime(2000, 01, 01);
+
+                        cbTipo.Text = "";
+                        dtDataAbast.Value = DateTime.Now;
+                        txtValor.Text = "";
+                        txtQuantidadeLitros.Text = "";
+                        cbPlaca.Text = "";
+                        cbServicoExterno.Text = "";
+
+                        btnCadastrarAbast.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarAbast.Enabled = false;
+                        btnExcluirAbast.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -329,6 +394,18 @@ namespace CamadaDesktop
                         if (_abastecimentoController.Deletar(placa, abastecimentoTipo, dtDataAbast.Value))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
+
+                            cbTipo.Text = "";
+                            dtDataAbast.Value = DateTime.Now;
+                            txtValor.Text = "";
+                            txtQuantidadeLitros.Text = "";
+                            cbPlaca.Text = "";
+                            cbServicoExterno.Text = "";
+
+                            btnCadastrarAbast.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarAbast.Enabled = false;
+                            btnExcluirAbast.Enabled = false;
                         }
                     }
                 }
@@ -368,6 +445,26 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;  
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            {
+                if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cbTipo.Text = "";
+                    dtDataAbast.Value = DateTime.Now;
+                    txtValor.Text = "";
+                    txtQuantidadeLitros.Text = "";
+                    cbPlaca.Text = "";
+                    cbServicoExterno.Text = "";
+
+                    btnCadastrarAbast.Visible = true;
+                    lblCancelar.Visible = false;
+                    btnAlterarAbast.Enabled = false;
+                    btnExcluirAbast.Enabled = false;
+                }
+            }
         }
     }
 }

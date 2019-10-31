@@ -22,8 +22,9 @@ namespace CamadaModelagem.Data
 
         public bool Cadastrar(EntradaSaida entradaSaida) //Verificar Query
         {
-            string query = "INSERT INTO[dbo].[TB_ENTRADA_SAIDA] ([ES_MT_CPF],[ES_VCL_PLACA],[ES_SERVEXT_CNPJ],[ES_TIPO],[ES_DATAHORA]) " +
-                "VALUES ('" + entradaSaida.CPF + "', '" + entradaSaida.Placa + "', " + entradaSaida.CNPJ + ", '" + entradaSaida.Tipo.ToString() + "', '" + entradaSaida.DataHora.ToString() + "')";
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO[dbo].[TB_ENTRADA_SAIDA] ([ES_MT_CPF],[ES_VCL_PLACA],[ES_SERVEXT_CNPJ],[ES_TIPO],[ES_DATAHORA],[ES_DATAREGISTRO]) " +
+                "VALUES ('" + entradaSaida.CPF + "', '" + entradaSaida.Placa + "', " + entradaSaida.CNPJ + ", '" + entradaSaida.Tipo.ToString() + "', '" + entradaSaida.DataHora.ToString() + "','" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

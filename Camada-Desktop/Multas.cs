@@ -53,6 +53,9 @@ namespace CamadaDesktop
 
         private void Multas_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirMultas, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirMultas);
+
             try
             {
                 cbPlaca.DataSource = _multaController.PopularPlacas();
@@ -317,6 +320,56 @@ namespace CamadaDesktop
                     cbPlacaMultasConsulta.Text = "";
                     cbCPFMultasConsulta.Text = "";
                     Multa = null;
+
+                    btnCadastrarVeiculo.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarVeiculo.Enabled = true;
+                    btnExcluirVeiculo.Enabled = true;
+                }
+            }
+        }
+
+        private void dgMultasConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Multa == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                cbPlaca.Text = Multa.Veiculo.Placa;
+                placaantiga = Multa.Veiculo.Placa;
+                cbCPF.Text = Multa.Motorista.CPF;
+                cpfantigo = Multa.Motorista.CPF;
+                txtDesc.Text = Multa.Descricao;
+                txtLocal.Text = Multa.Local;
+                dtDataMulta.Value = Multa.DataOcorrencia;
+                dataantiga = Multa.DataOcorrencia;
+                txtvalor.Text = Multa.Valor.ToString();
+                dtMultaPaga.Text = Multa.MultasPagas.ToString();
+
+                if (Multa.Paga)
+                {
+                    rdPaga.Checked = true;
+                }
+                else
+                {
+                    rdNaoPaga.Checked = true;
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlMultas.SelectTab("tbPageCadastroMultas");
+                if (tbControlMultas.SelectedTab == tbPageCadastroMultas)
+                {
+                    dtDataMultasConsulta.Text = "";
+                    cbPlacaMultasConsulta.Text = "";
+                    cbCPFMultasConsulta.Text = "";
+                    Multa = null;
+
+                    btnCadastrarVeiculo.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarVeiculo.Enabled = true;
+                    btnExcluirVeiculo.Enabled = true;
                 }
             }
         }
@@ -384,6 +437,11 @@ namespace CamadaDesktop
                         dtMultaPaga.Value = DateTime.Now;
                         txtLocal.Text = "";
                         txtDesc.Text = "";
+
+                        btnCadastrarVeiculo.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarVeiculo.Enabled = false;
+                        btnExcluirVeiculo.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -432,6 +490,11 @@ namespace CamadaDesktop
                             dtMultaPaga.Value = DateTime.Now;
                             txtLocal.Text = "";
                             txtDesc.Text = "";
+
+                            btnCadastrarVeiculo.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarVeiculo.Enabled = false;
+                            btnExcluirVeiculo.Enabled = false;
                         }
                     }
                 }
@@ -470,6 +533,27 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                cbPlaca.Text = "";
+                cbCPF.Text = "";
+                dtDataMulta.Value = DateTime.Now;
+                txtvalor.Text = "";
+                rdPaga.Checked = false;
+                rdNaoPaga.Checked = false;
+                dtMultaPaga.Value = DateTime.Now;
+                txtLocal.Text = "";
+                txtDesc.Text = "";
+
+                btnCadastrarVeiculo.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarVeiculo.Enabled = false;
+                btnExcluirVeiculo.Enabled = false;
+            }
         }
     }
 }

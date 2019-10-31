@@ -23,9 +23,10 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(ServicoExterno servicoExterno)
         {
             int conveniado = Convert.ToInt32(servicoExterno.Conveniado);
+            DateTime datareg = DateTime.Now;
             string query = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS] ([SERVEXT_CNPJ],[SERVEXT_TIPO],[SERVEXT_NOME],[SERVEXT_TELEFONE],[SERVEXT_EMAIL],[SERVEXT_ENDERECO],"
-                + "[SERVEXT_CONVENIADO])" + "VALUES (" + servicoExterno.CNPJ + ", '" + servicoExterno.Tipo.ToString() + "', '" + servicoExterno.Nome + "', " + servicoExterno.Telefone + ", '"
-                + servicoExterno.Email + "', '" + servicoExterno.Endereco + "', " + conveniado + ")";
+                + "[SERVEXT_CONVENIADO], [SERVEXT_DATAREGISTRO])" + "VALUES (" + servicoExterno.CNPJ + ", '" + servicoExterno.Tipo.ToString() + "', '" + servicoExterno.Nome + "', " + servicoExterno.Telefone + ", '"
+                + servicoExterno.Email + "', '" + servicoExterno.Endereco + "', " + conveniado + ",'" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
@@ -38,13 +39,15 @@ namespace CamadaModelagem.Data
 
         public bool CadastrarConveniado(ServicoExterno servicoExterno)
         {
+            DateTime datareg = DateTime.Now;
             int conveniado = Convert.ToInt32(servicoExterno.Conveniado);
+
             string query1 = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS] ([SERVEXT_CNPJ],[SERVEXT_TIPO],[SERVEXT_NOME],[SERVEXT_TELEFONE],[SERVEXT_EMAIL],[SERVEXT_ENDERECO],"
-                + "[SERVEXT_CONVENIADO])" + "VALUES (" + servicoExterno.CNPJ + ", '" + servicoExterno.Tipo.ToString() + "', '" + servicoExterno.Nome + "', " + servicoExterno.Telefone + ", '"
-                + servicoExterno.Email + "', '" + servicoExterno.Endereco + "', " + conveniado + ")";
-            string query2 = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS]([SERVEXTCONV_VALOR],[SERVEXTCONV_DTINICIO],[SERVEXTCONV_DTVENC],[SERVEXTCONV_SERVEXT_CNPJ]) " +
+                + "[SERVEXT_CONVENIADO], [SERVEXT_DATAREGISTRO])" + "VALUES (" + servicoExterno.CNPJ + ", '" + servicoExterno.Tipo.ToString() + "', '" + servicoExterno.Nome + "', " + servicoExterno.Telefone + ", '"
+                + servicoExterno.Email + "', '" + servicoExterno.Endereco + "', " + conveniado + ",'" + datareg.ToShortDateString() + "')";
+            string query2 = "INSERT INTO [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS]([SERVEXTCONV_VALOR],[SERVEXTCONV_DTINICIO],[SERVEXTCONV_DTVENC],[SERVEXTCONV_SERVEXT_CNPJ],[SERVEXTCONV_DATAREGISTRO]) " +
                 "VALUES(" + servicoExterno.ServicoExternoConveniado.Valor + ", '" + servicoExterno.ServicoExternoConveniado.DataInicio.ToShortDateString() + "', '"
-                + servicoExterno.ServicoExternoConveniado.DataVencimento.ToShortDateString() + "', " + servicoExterno.CNPJ + ")";
+                + servicoExterno.ServicoExternoConveniado.DataVencimento.ToShortDateString() + "', " + servicoExterno.CNPJ + ",'" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutaTransaction(query1, query2);

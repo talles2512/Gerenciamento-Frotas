@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Viagens));
             this.tbControlViagens = new System.Windows.Forms.TabControl();
             this.tbPageCadastroViagem = new System.Windows.Forms.TabPage();
@@ -71,6 +72,9 @@
             this.lblreqConsulta = new System.Windows.Forms.Label();
             this.tbPageControlOcupantes = new System.Windows.Forms.TabPage();
             this.gbConsultaOcupante = new System.Windows.Forms.GroupBox();
+            this.lblCPFOcupanteConsulta = new System.Windows.Forms.Label();
+            this.txtCPFOcupanteConsulta = new System.Windows.Forms.MaskedTextBox();
+            this.txtReqOcupanteConsulta = new System.Windows.Forms.MaskedTextBox();
             this.panelConsultarPorDataOcupantes = new System.Windows.Forms.Panel();
             this.gbConsultarPorDataOcupantes = new System.Windows.Forms.GroupBox();
             this.btnConsultarPorDataOcupantes = new System.Windows.Forms.Button();
@@ -82,9 +86,8 @@
             this.dgOcupanteConsulta = new System.Windows.Forms.DataGridView();
             this.btnConsultaTodosOcupante = new System.Windows.Forms.Button();
             this.btnConsultaOcupante = new System.Windows.Forms.Button();
-            this.txtReqOcupanteConsulta = new System.Windows.Forms.MaskedTextBox();
-            this.lblCPFOcupanteConsulta = new System.Windows.Forms.Label();
-            this.txtCPFOcupanteConsulta = new System.Windows.Forms.MaskedTextBox();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -136,6 +139,7 @@
             // 
             // gbDadosViagens
             // 
+            this.gbDadosViagens.Controls.Add(this.lblCancelar);
             this.gbDadosViagens.Controls.Add(this.cbCPF);
             this.gbDadosViagens.Controls.Add(this.cbPlaca);
             this.gbDadosViagens.Controls.Add(this.rdsemOcupante);
@@ -239,6 +243,7 @@
             // txtDestino
             // 
             this.txtDestino.Location = new System.Drawing.Point(11, 56);
+            this.txtDestino.MaxLength = 150;
             this.txtDestino.Name = "txtDestino";
             this.txtDestino.Size = new System.Drawing.Size(379, 32);
             this.txtDestino.TabIndex = 14;
@@ -255,6 +260,8 @@
             // btnExcluirViagens
             // 
             this.btnExcluirViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirViagens.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirViagens.Enabled = false;
             this.btnExcluirViagens.FlatAppearance.BorderSize = 0;
             this.btnExcluirViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -274,6 +281,8 @@
             // btnAlterarViagens
             // 
             this.btnAlterarViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarViagens.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarViagens.Enabled = false;
             this.btnAlterarViagens.FlatAppearance.BorderSize = 0;
             this.btnAlterarViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -293,6 +302,7 @@
             // btnCadastrarViagens
             // 
             this.btnCadastrarViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarViagens.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarViagens.FlatAppearance.BorderSize = 0;
             this.btnCadastrarViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -329,6 +339,7 @@
             // btnRemoverOcupante
             // 
             this.btnRemoverOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRemoverOcupante.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemoverOcupante.Enabled = false;
             this.btnRemoverOcupante.FlatAppearance.BorderSize = 0;
             this.btnRemoverOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -349,6 +360,7 @@
             // btnAddOcupante
             // 
             this.btnAddOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAddOcupante.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddOcupante.FlatAppearance.BorderSize = 0;
             this.btnAddOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAddOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -440,7 +452,7 @@
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.panelConsultarPorData.Controls.Add(this.gbData);
-            this.panelConsultarPorData.Location = new System.Drawing.Point(397, 25);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(397, 24);
             this.panelConsultarPorData.Name = "panelConsultarPorData";
             this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
             this.panelConsultarPorData.TabIndex = 41;
@@ -465,6 +477,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -526,6 +539,7 @@
             this.btnTrasferirViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirViagens.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirViagens.BackgroundImage")));
             this.btnTrasferirViagens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirViagens.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirViagens.FlatAppearance.BorderSize = 0;
             this.btnTrasferirViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -549,10 +563,12 @@
             this.dgViagensConsulta.Name = "dgViagensConsulta";
             this.dgViagensConsulta.Size = new System.Drawing.Size(608, 433);
             this.dgViagensConsulta.TabIndex = 18;
+            this.dgViagensConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgViagensConsulta_CellContentClick);
             // 
             // btnTodasViagens
             // 
             this.btnTodasViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodasViagens.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodasViagens.FlatAppearance.BorderSize = 0;
             this.btnTodasViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodasViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -571,6 +587,7 @@
             // btnConsultarViagens
             // 
             this.btnConsultarViagens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarViagens.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarViagens.FlatAppearance.BorderSize = 0;
             this.btnConsultarViagens.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarViagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -632,6 +649,31 @@
             this.gbConsultaOcupante.TabStop = false;
             this.gbConsultaOcupante.Text = "Consulta";
             // 
+            // lblCPFOcupanteConsulta
+            // 
+            this.lblCPFOcupanteConsulta.AutoSize = true;
+            this.lblCPFOcupanteConsulta.Location = new System.Drawing.Point(273, 35);
+            this.lblCPFOcupanteConsulta.Name = "lblCPFOcupanteConsulta";
+            this.lblCPFOcupanteConsulta.Size = new System.Drawing.Size(41, 25);
+            this.lblCPFOcupanteConsulta.TabIndex = 44;
+            this.lblCPFOcupanteConsulta.Text = "CPF:";
+            // 
+            // txtCPFOcupanteConsulta
+            // 
+            this.txtCPFOcupanteConsulta.Location = new System.Drawing.Point(320, 31);
+            this.txtCPFOcupanteConsulta.Mask = "000.000.000-00";
+            this.txtCPFOcupanteConsulta.Name = "txtCPFOcupanteConsulta";
+            this.txtCPFOcupanteConsulta.Size = new System.Drawing.Size(188, 32);
+            this.txtCPFOcupanteConsulta.TabIndex = 43;
+            // 
+            // txtReqOcupanteConsulta
+            // 
+            this.txtReqOcupanteConsulta.Location = new System.Drawing.Point(91, 32);
+            this.txtReqOcupanteConsulta.Mask = "999999999";
+            this.txtReqOcupanteConsulta.Name = "txtReqOcupanteConsulta";
+            this.txtReqOcupanteConsulta.Size = new System.Drawing.Size(176, 32);
+            this.txtReqOcupanteConsulta.TabIndex = 15;
+            // 
             // panelConsultarPorDataOcupantes
             // 
             this.panelConsultarPorDataOcupantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -661,6 +703,7 @@
             // btnConsultarPorDataOcupantes
             // 
             this.btnConsultarPorDataOcupantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorDataOcupantes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorDataOcupantes.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorDataOcupantes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorDataOcupantes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -739,6 +782,7 @@
             // btnConsultaTodosOcupante
             // 
             this.btnConsultaTodosOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaTodosOcupante.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultaTodosOcupante.FlatAppearance.BorderSize = 0;
             this.btnConsultaTodosOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultaTodosOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -757,6 +801,7 @@
             // btnConsultaOcupante
             // 
             this.btnConsultaOcupante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultaOcupante.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultaOcupante.FlatAppearance.BorderSize = 0;
             this.btnConsultaOcupante.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultaOcupante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -773,30 +818,21 @@
             this.btnConsultaOcupante.UseVisualStyleBackColor = false;
             this.btnConsultaOcupante.Click += new System.EventHandler(this.btnConsultaOcupante_Click);
             // 
-            // txtReqOcupanteConsulta
+            // lblCancelar
             // 
-            this.txtReqOcupanteConsulta.Location = new System.Drawing.Point(91, 32);
-            this.txtReqOcupanteConsulta.Mask = "999999999";
-            this.txtReqOcupanteConsulta.Name = "txtReqOcupanteConsulta";
-            this.txtReqOcupanteConsulta.Size = new System.Drawing.Size(176, 32);
-            this.txtReqOcupanteConsulta.TabIndex = 15;
-            // 
-            // lblCPFOcupanteConsulta
-            // 
-            this.lblCPFOcupanteConsulta.AutoSize = true;
-            this.lblCPFOcupanteConsulta.Location = new System.Drawing.Point(273, 35);
-            this.lblCPFOcupanteConsulta.Name = "lblCPFOcupanteConsulta";
-            this.lblCPFOcupanteConsulta.Size = new System.Drawing.Size(41, 25);
-            this.lblCPFOcupanteConsulta.TabIndex = 44;
-            this.lblCPFOcupanteConsulta.Text = "CPF:";
-            // 
-            // txtCPFOcupanteConsulta
-            // 
-            this.txtCPFOcupanteConsulta.Location = new System.Drawing.Point(320, 31);
-            this.txtCPFOcupanteConsulta.Mask = "000.000.000-00";
-            this.txtCPFOcupanteConsulta.Name = "txtCPFOcupanteConsulta";
-            this.txtCPFOcupanteConsulta.Size = new System.Drawing.Size(188, 32);
-            this.txtCPFOcupanteConsulta.TabIndex = 43;
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(271, 417);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Viagens
             // 
@@ -891,5 +927,7 @@
         private System.Windows.Forms.MaskedTextBox txtReqOcupanteConsulta;
         private System.Windows.Forms.Label lblCPFOcupanteConsulta;
         private System.Windows.Forms.MaskedTextBox txtCPFOcupanteConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

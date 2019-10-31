@@ -76,6 +76,8 @@
             this.txtPlacaConsulta = new System.Windows.Forms.MaskedTextBox();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -110,6 +112,7 @@
             // 
             // gbDadosVeiculos
             // 
+            this.gbDadosVeiculos.Controls.Add(this.lblCancelar);
             this.gbDadosVeiculos.Controls.Add(this.txtChassi);
             this.gbDadosVeiculos.Controls.Add(this.lblDataVencimento);
             this.gbDadosVeiculos.Controls.Add(this.lblDataInicio);
@@ -236,6 +239,8 @@
             // btnExcluirVeiculo
             // 
             this.btnExcluirVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirVeiculo.Enabled = false;
             this.btnExcluirVeiculo.FlatAppearance.BorderSize = 0;
             this.btnExcluirVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -247,7 +252,7 @@
             this.btnExcluirVeiculo.Name = "btnExcluirVeiculo";
             this.btnExcluirVeiculo.Size = new System.Drawing.Size(146, 40);
             this.btnExcluirVeiculo.TabIndex = 28;
-            this.btnExcluirVeiculo.Text = "Excluir";
+            this.btnExcluirVeiculo.Text = " Inativar";
             this.btnExcluirVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExcluirVeiculo.UseVisualStyleBackColor = false;
             this.btnExcluirVeiculo.Click += new System.EventHandler(this.BtnExcluirVeiculo_Click);
@@ -255,6 +260,8 @@
             // btnAlterarVeiculo
             // 
             this.btnAlterarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarVeiculo.Enabled = false;
             this.btnAlterarVeiculo.FlatAppearance.BorderSize = 0;
             this.btnAlterarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -274,6 +281,7 @@
             // btnCadastrarVeiculo
             // 
             this.btnCadastrarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarVeiculo.FlatAppearance.BorderSize = 0;
             this.btnCadastrarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -309,6 +317,7 @@
             // txtModelo
             // 
             this.txtModelo.Location = new System.Drawing.Point(23, 119);
+            this.txtModelo.MaxLength = 25;
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(186, 32);
             this.txtModelo.TabIndex = 17;
@@ -316,6 +325,7 @@
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(215, 56);
+            this.txtMarca.MaxLength = 25;
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(186, 32);
             this.txtMarca.TabIndex = 15;
@@ -461,6 +471,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -539,6 +550,7 @@
             this.btnTrasferirVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirVeiculo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirVeiculo.BackgroundImage")));
             this.btnTrasferirVeiculo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirVeiculo.FlatAppearance.BorderSize = 0;
             this.btnTrasferirVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -562,10 +574,12 @@
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
             this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 325);
             this.dgVeiculoConsulta.TabIndex = 18;
+            this.dgVeiculoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoConsulta_CellContentClick);
             // 
             // btnTodosVeiculo
             // 
             this.btnTodosVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosVeiculo.FlatAppearance.BorderSize = 0;
             this.btnTodosVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -584,6 +598,7 @@
             // btnConsultarVeiculo
             // 
             this.btnConsultarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarVeiculo.FlatAppearance.BorderSize = 0;
             this.btnConsultarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -616,6 +631,22 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Veiculos
             // 
@@ -691,5 +722,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

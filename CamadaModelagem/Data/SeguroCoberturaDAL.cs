@@ -23,16 +23,17 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(SeguroCobertura seguroCobertura)
         {
             string query = "";
+            DateTime datareg = DateTime.Now;
 
             if (seguroCobertura.Tipo.ToString() == "Automóvel")
             {
-                query = " INSERT INTO[dbo].[TB_SEGCOBERTURA_VEICULO] ([SEGC_DESCRICAO],[SEGC_SEGURO_NUMAPOLICE])"
-                    + "VALUES('" + seguroCobertura.Descricao + "', " + seguroCobertura.NumeroApolice + ")";
+                query = " INSERT INTO[dbo].[TB_SEGCOBERTURA_VEICULO] ([SEGC_DESCRICAO],[SEGC_SEGURO_NUMAPOLICE],[SEGC_DATAREGISTRO])"
+                    + "VALUES('" + seguroCobertura.Descricao + "', " + seguroCobertura.NumeroApolice + ",'" + datareg.ToShortDateString() + "')";
             }
             else if (seguroCobertura.Tipo.ToString() == "Vida")
             {
-                query = " INSERT INTO[dbo].[TB_SEGCOBERTURA_MOTORISTA] ([SEGC_DESCRICAO],[SEGC_SEGURO_NUMAPOLICE])"
-                    + "VALUES('" + seguroCobertura.Descricao + "', " + seguroCobertura.NumeroApolice + ")";
+                query = " INSERT INTO[dbo].[TB_SEGCOBERTURA_MOTORISTA] ([SEGC_DESCRICAO],[SEGC_SEGURO_NUMAPOLICE],[SEGC_DATAREGISTRO])"
+                    + "VALUES('" + seguroCobertura.Descricao + "', " + seguroCobertura.NumeroApolice + ",'" + datareg.ToShortDateString() + "')";
             }
             try
             {

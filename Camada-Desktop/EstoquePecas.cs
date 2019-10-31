@@ -37,6 +37,8 @@ namespace CamadaDesktop
 
         private void EstoquePecas_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirEstoque, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirEstoque);
             txtid.Text = _estoquePecasController.PopulaID().ToString();
             AtualizarCor();
         }
@@ -173,6 +175,40 @@ namespace CamadaDesktop
                 {
                     EstoquePeca = null;
                     txtIDEstoqueConsulta.Text = "";
+
+                    btnCadastrarEstoque.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarEstoque.Enabled = true;
+                    btnExcluirEstoque.Enabled = true;
+                }
+            }
+        }
+
+        private void dgEstoqueConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (EstoquePeca == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtid.Text = EstoquePeca.Id.ToString();
+                txtValor.Text = EstoquePeca.ValorUnit.ToString();
+                nudQuantidade.Value = EstoquePeca.Quantidade;
+                txtDesc.Text = EstoquePeca.Descricao;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+
+                tbControlEstoque.SelectTab("tbPageCadastroEstoque");
+                if (tbControlEstoque.SelectedTab == tbPageCadastroEstoque)
+                {
+                    EstoquePeca = null;
+                    txtIDEstoqueConsulta.Text = "";
+
+                    btnCadastrarEstoque.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarEstoque.Enabled = true;
+                    btnExcluirEstoque.Enabled = true;
                 }
             }
         }
@@ -198,6 +234,11 @@ namespace CamadaDesktop
                         txtDesc.Text = "";
                         nudQuantidade.Value = 0;
                         txtid.Text = _estoquePecasController.PopulaID().ToString();
+
+                        btnCadastrarEstoque.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarEstoque.Enabled = false;
+                        btnExcluirEstoque.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -231,6 +272,11 @@ namespace CamadaDesktop
                             txtDesc.Text = "";
                             nudQuantidade.Value = 0;
                             txtid.Text = _estoquePecasController.PopulaID().ToString();
+
+                            btnCadastrarEstoque.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarEstoque.Enabled = false;
+                            btnExcluirEstoque.Enabled = false;
                         }
                     }
                 }
@@ -274,6 +320,22 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtValor.Text = "";
+                txtDesc.Text = "";
+                nudQuantidade.Value = 0;
+                txtid.Text = _estoquePecasController.PopulaID().ToString();
+
+                btnCadastrarEstoque.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarEstoque.Enabled = false;
+                btnExcluirEstoque.Enabled = false;
+            }
         }
     }
 }

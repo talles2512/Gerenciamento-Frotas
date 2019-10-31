@@ -59,6 +59,8 @@ namespace CamadaDesktop
 
         private void ServicoExterno_Conveniados_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirConveniado, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirConveniado);
             cbTipo.DataSource = Enum.GetValues(typeof(TipoServicoExterno));
             AtualizarCor();
         }
@@ -321,6 +323,63 @@ namespace CamadaDesktop
                 {
                     txtCNPJConsulta.Text = "";
                     ServicoExterno = null;
+
+                    btnCadastrarServicoExterno.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarServicoExterno.Enabled = true;
+                    btnExcluirServicoExterno.Enabled = true;
+                }
+            }
+        }
+
+        private void dgConveniadoConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ServicoExterno == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtValor.Text = "";
+                dtInicio.Value = DateTime.Now;
+                dtVencimento.Value = DateTime.Now;
+
+                cnpjAntigo = ServicoExterno.CNPJ;
+                TipoAntigo = ServicoExterno.Tipo.ToString();
+                txtCNPJ.Text = ServicoExterno.CNPJ.ToString();
+                txtNomeServico.Text = ServicoExterno.Nome;
+                cbTipo.SelectedItem = ServicoExterno.Tipo;
+                txtTelefone.Text = ServicoExterno.Telefone.ToString();
+                txtemail.Text = ServicoExterno.Email;
+                txtEndereco.Text = ServicoExterno.Endereco;
+
+                if (ServicoExterno.Conveniado)
+                {
+                    rdConveniado.Checked = true;
+                    txtValor.Enabled = true;
+                    dtInicio.Enabled = true;
+                    dtVencimento.Checked = true;
+
+                    txtValor.Text = ServicoExterno.ServicoExternoConveniado.Valor.ToString();
+                    dtInicio.Value = ServicoExterno.ServicoExternoConveniado.DataInicio;
+                    dtVencimento.Value = ServicoExterno.ServicoExternoConveniado.DataVencimento;
+                }
+                else
+                {
+                    rdNaoConveniado.Checked = true;
+                }
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlConveniados.SelectTab("tbPageCadastroConveniados");
+                if (tbControlConveniados.SelectedTab == tbPageCadastroConveniados)
+                {
+                    txtCNPJConsulta.Text = "";
+                    ServicoExterno = null;
+
+                    btnCadastrarServicoExterno.Visible = false;
+                    lblCancelar.Visible = true;
+                    btnAlterarServicoExterno.Enabled = true;
+                    btnExcluirServicoExterno.Enabled = true;
                 }
             }
         }
@@ -402,6 +461,11 @@ namespace CamadaDesktop
                         txtValor.Text = "";
                         dtInicio.Value = DateTime.Now;
                         dtVencimento.Value = DateTime.Now;
+
+                        btnCadastrarServicoExterno.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarServicoExterno.Enabled = false;
+                        btnExcluirServicoExterno.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -456,6 +520,11 @@ namespace CamadaDesktop
                             txtValor.Text = "";
                             dtInicio.Value = DateTime.Now;
                             dtVencimento.Value = DateTime.Now;
+
+                            btnCadastrarServicoExterno.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarServicoExterno.Enabled = false;
+                            btnExcluirServicoExterno.Enabled = false;
                         }
                     }
                 }
@@ -498,6 +567,29 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             panelConsultarPorData.Visible = false;
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtCNPJ.Text = "";
+                txtNomeServico.Text = "";
+                cbTipo.Text = "";
+                txtTelefone.Text = "";
+                txtemail.Text = "";
+                txtEndereco.Text = "";
+                rdConveniado.Checked = false;
+                rdNaoConveniado.Checked = false;
+                txtValor.Text = "";
+                dtInicio.Value = DateTime.Now;
+                dtVencimento.Value = DateTime.Now;
+
+                btnCadastrarServicoExterno.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarServicoExterno.Enabled = false;
+                btnExcluirServicoExterno.Enabled = false;
+            }
         }
     }
 }

@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntradasSaidas));
             this.tbControlEntradaSaida = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEntradaSaida = new System.Windows.Forms.TabPage();
             this.gbDadosEntradaSaida = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.cbCPF = new System.Windows.Forms.ComboBox();
             this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.cbServicoExterno = new System.Windows.Forms.ComboBox();
@@ -66,6 +68,7 @@
             this.dgEntradaSaidaConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosEntradaSaida = new System.Windows.Forms.Button();
             this.btnConsultarEntradaSaida = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEntradaSaida.SuspendLayout();
             this.tbPageCadastroEntradaSaida.SuspendLayout();
             this.gbDadosEntradaSaida.SuspendLayout();
@@ -100,6 +103,7 @@
             // 
             // gbDadosEntradaSaida
             // 
+            this.gbDadosEntradaSaida.Controls.Add(this.lblCancelar);
             this.gbDadosEntradaSaida.Controls.Add(this.cbCPF);
             this.gbDadosEntradaSaida.Controls.Add(this.cbPlaca);
             this.gbDadosEntradaSaida.Controls.Add(this.cbServicoExterno);
@@ -120,6 +124,22 @@
             this.gbDadosEntradaSaida.TabIndex = 1;
             this.gbDadosEntradaSaida.TabStop = false;
             this.gbDadosEntradaSaida.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(257, 249);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // cbCPF
             // 
@@ -203,6 +223,8 @@
             // btnExcluirEntradaSaida
             // 
             this.btnExcluirEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirEntradaSaida.Enabled = false;
             this.btnExcluirEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnExcluirEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -222,6 +244,8 @@
             // btnAlterarEntradaSaida
             // 
             this.btnAlterarEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarEntradaSaida.Enabled = false;
             this.btnAlterarEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnAlterarEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -241,6 +265,7 @@
             // btnCadastrarEntradaSaida
             // 
             this.btnCadastrarEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnCadastrarEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -329,6 +354,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -461,6 +487,7 @@
             this.btnTrasferirEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirEntradaSaida.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirEntradaSaida.BackgroundImage")));
             this.btnTrasferirEntradaSaida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnTrasferirEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -484,10 +511,12 @@
             this.dgEntradaSaidaConsulta.Name = "dgEntradaSaidaConsulta";
             this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
             this.dgEntradaSaidaConsulta.TabIndex = 21;
+            this.dgEntradaSaidaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEntradaSaidaConsulta_CellContentClick);
             // 
             // btnTodosEntradaSaida
             // 
             this.btnTodosEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnTodosEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -506,6 +535,7 @@
             // btnConsultarEntradaSaida
             // 
             this.btnConsultarEntradaSaida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarEntradaSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarEntradaSaida.FlatAppearance.BorderSize = 0;
             this.btnConsultarEntradaSaida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarEntradaSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -586,5 +616,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
     }
 }

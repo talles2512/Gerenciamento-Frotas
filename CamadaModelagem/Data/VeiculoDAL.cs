@@ -27,9 +27,10 @@ namespace CamadaModelagem.Data
             int combustivel = veiculo.Combustivel.GetHashCode();
             int alugado = Convert.ToInt32(veiculo.Alugado);
             int situacao = Convert.ToInt32(veiculo.SituacaoVeiculo);
+            DateTime datareg = DateTime.Now;
 
-            string query = "INSERT INTO [dbo].[TB_VEICULOS]([VCL_PLACA],[VCL_MARCA],[VCL_MODELO],[VCL_CHASSI],[VCL_ANO],[VCL_COR],[VCL_COMBUSTIVEL],[VCL_ALUGADO],[VCL_SITUACAO]) " +
-                "VALUES('" + veiculo.Placa + "', '" + veiculo.Marca + "', '" + veiculo.Modelo + "', '" + veiculo.Chassi + "', " + veiculo.Ano + ", " + cor + "," + combustivel + ", " + alugado + ", " + situacao + ")";
+            string query = "INSERT INTO [dbo].[TB_VEICULOS]([VCL_PLACA],[VCL_MARCA],[VCL_MODELO],[VCL_CHASSI],[VCL_ANO],[VCL_COR],[VCL_COMBUSTIVEL],[VCL_ALUGADO],[VCL_SITUACAO],[VCL_DATAREGISTRO]) " +
+                "VALUES('" + veiculo.Placa + "', '" + veiculo.Marca + "', '" + veiculo.Modelo + "', '" + veiculo.Chassi + "', " + veiculo.Ano + ", " + cor + "," + combustivel + ", " + alugado + ", " + situacao + ",'" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clientes));
             this.tbControlClientes = new System.Windows.Forms.TabControl();
             this.tbPageCadastroClientes = new System.Windows.Forms.TabPage();
             this.gbDadosClientes = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.lblDataNascimento = new System.Windows.Forms.Label();
             this.btnExcluirClientes = new System.Windows.Forms.Button();
             this.txtemail = new System.Windows.Forms.TextBox();
@@ -66,6 +68,7 @@
             this.dgClientesConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosClientes = new System.Windows.Forms.Button();
             this.btnConsultarClientes = new System.Windows.Forms.Button();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlClientes.SuspendLayout();
             this.tbPageCadastroClientes.SuspendLayout();
             this.gbDadosClientes.SuspendLayout();
@@ -113,6 +116,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lblCancelar);
             this.panel1.Controls.Add(this.lblDataNascimento);
             this.panel1.Controls.Add(this.btnExcluirClientes);
             this.panel1.Controls.Add(this.txtemail);
@@ -135,6 +139,22 @@
             this.panel1.Size = new System.Drawing.Size(609, 467);
             this.panel1.TabIndex = 0;
             // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(255, 333);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 46;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
+            // 
             // lblDataNascimento
             // 
             this.lblDataNascimento.AutoSize = true;
@@ -147,6 +167,8 @@
             // btnExcluirClientes
             // 
             this.btnExcluirClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirClientes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirClientes.Enabled = false;
             this.btnExcluirClientes.FlatAppearance.BorderSize = 0;
             this.btnExcluirClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -166,6 +188,7 @@
             // txtemail
             // 
             this.txtemail.Location = new System.Drawing.Point(8, 280);
+            this.txtemail.MaxLength = 150;
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(485, 32);
             this.txtemail.TabIndex = 20;
@@ -210,6 +233,7 @@
             // txtEndereço
             // 
             this.txtEndereço.Location = new System.Drawing.Point(8, 217);
+            this.txtEndereço.MaxLength = 150;
             this.txtEndereço.Name = "txtEndereço";
             this.txtEndereço.Size = new System.Drawing.Size(485, 32);
             this.txtEndereço.TabIndex = 19;
@@ -226,6 +250,7 @@
             // txtRG
             // 
             this.txtRG.Location = new System.Drawing.Point(211, 91);
+            this.txtRG.MaxLength = 15;
             this.txtRG.Name = "txtRG";
             this.txtRG.Size = new System.Drawing.Size(197, 32);
             this.txtRG.TabIndex = 16;
@@ -242,6 +267,8 @@
             // btnAlterarClientes
             // 
             this.btnAlterarClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarClientes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarClientes.Enabled = false;
             this.btnAlterarClientes.FlatAppearance.BorderSize = 0;
             this.btnAlterarClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -261,6 +288,7 @@
             // btnCadastrarClientes
             // 
             this.btnCadastrarClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarClientes.FlatAppearance.BorderSize = 0;
             this.btnCadastrarClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -280,6 +308,7 @@
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(8, 28);
+            this.txtNome.MaxLength = 150;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(485, 32);
             this.txtNome.TabIndex = 14;
@@ -368,6 +397,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -456,6 +486,7 @@
             this.btnTrasferirClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirClientes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirClientes.BackgroundImage")));
             this.btnTrasferirClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirClientes.FlatAppearance.BorderSize = 0;
             this.btnTrasferirClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -484,6 +515,7 @@
             // btnTodosClientes
             // 
             this.btnTodosClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosClientes.FlatAppearance.BorderSize = 0;
             this.btnTodosClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -502,6 +534,7 @@
             // btnConsultarClientes
             // 
             this.btnConsultarClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarClientes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarClientes.FlatAppearance.BorderSize = 0;
             this.btnConsultarClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -583,5 +616,7 @@
         private System.Windows.Forms.Label lblFimConsulta;
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

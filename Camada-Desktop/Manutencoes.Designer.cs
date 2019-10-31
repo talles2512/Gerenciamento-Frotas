@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manutencoes));
             this.tbControlManunt = new System.Windows.Forms.TabControl();
             this.tbPageCadastroManunt = new System.Windows.Forms.TabPage();
@@ -68,6 +69,8 @@
             this.btnTodosManunt = new System.Windows.Forms.Button();
             this.btnConsultarManunt = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlManunt.SuspendLayout();
             this.tbPageCadastroManunt.SuspendLayout();
             this.gbDadosManunt.SuspendLayout();
@@ -102,6 +105,7 @@
             // 
             // gbDadosManunt
             // 
+            this.gbDadosManunt.Controls.Add(this.lblCancelar);
             this.gbDadosManunt.Controls.Add(this.cbSituacao);
             this.gbDadosManunt.Controls.Add(this.lblSituacao);
             this.gbDadosManunt.Controls.Add(this.txtDescricao);
@@ -145,6 +149,7 @@
             // txtDescricao
             // 
             this.txtDescricao.Location = new System.Drawing.Point(11, 245);
+            this.txtDescricao.MaxLength = 250;
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(370, 58);
@@ -240,6 +245,8 @@
             // btnExcluirManunt
             // 
             this.btnExcluirManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirManunt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirManunt.Enabled = false;
             this.btnExcluirManunt.FlatAppearance.BorderSize = 0;
             this.btnExcluirManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -259,6 +266,8 @@
             // btnAlterarManunt
             // 
             this.btnAlterarManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarManunt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarManunt.Enabled = false;
             this.btnAlterarManunt.FlatAppearance.BorderSize = 0;
             this.btnAlterarManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -278,6 +287,7 @@
             // btnCadastrarManunt
             // 
             this.btnCadastrarManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarManunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarManunt.FlatAppearance.BorderSize = 0;
             this.btnCadastrarManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -364,6 +374,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -470,6 +481,7 @@
             this.btnTrasferirManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirManunt.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirManunt.BackgroundImage")));
             this.btnTrasferirManunt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirManunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirManunt.FlatAppearance.BorderSize = 0;
             this.btnTrasferirManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -493,10 +505,12 @@
             this.dgVeiculoManunt.Name = "dgVeiculoManunt";
             this.dgVeiculoManunt.Size = new System.Drawing.Size(608, 323);
             this.dgVeiculoManunt.TabIndex = 20;
+            this.dgVeiculoManunt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoManunt_CellContentClick);
             // 
             // btnTodosManunt
             // 
             this.btnTodosManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosManunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosManunt.FlatAppearance.BorderSize = 0;
             this.btnTodosManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -515,6 +529,7 @@
             // btnConsultarManunt
             // 
             this.btnConsultarManunt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarManunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarManunt.FlatAppearance.BorderSize = 0;
             this.btnConsultarManunt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarManunt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -539,6 +554,22 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Veículo - Placa:";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(267, 313);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Manutencoes
             // 
@@ -606,5 +637,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

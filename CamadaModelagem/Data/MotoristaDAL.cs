@@ -26,9 +26,10 @@ namespace CamadaModelagem.Data
             string datanascimento = motorista.DataNascimento.ToString("yyyy/MM/dd");
             string dtemissao = cnh.DataEmissao.ToString("yyyy/MM/dd");
             string dtvencimento = cnh.DataVencimento.ToString("yyyy/MM/dd");
+            DateTime datareg = DateTime.Now;
 
-            string query = "INSERT INTO[dbo].[TB_MOTORISTA]([MT_CPF],[MT_NOME],[MT_RG],[MT_ENDERECO],[MT_DTNASCIMENTO],[MT_TELEFONE],[MT_TELEFONE_RECADO],[MT_SITUACAO])" +
-                "VALUES ('" + motorista.CPF + "', '" + motorista.Name + "', '" + motorista.RG + "', '" + motorista.Endereco + "', '" + datanascimento + "', " + motorista.Telefone + ", " + motorista.TelefoneContato + ", " + situacao + ")" +
+            string query = "INSERT INTO[dbo].[TB_MOTORISTA]([MT_CPF],[MT_NOME],[MT_RG],[MT_ENDERECO],[MT_DTNASCIMENTO],[MT_TELEFONE],[MT_TELEFONE_RECADO],[MT_SITUACAO],[MT_DATAREGISTRO])" +
+                "VALUES ('" + motorista.CPF + "', '" + motorista.Name + "', '" + motorista.RG + "', '" + motorista.Endereco + "', '" + datanascimento + "', " + motorista.Telefone + ", " + motorista.TelefoneContato + ", " + situacao + ",'" + datareg.ToShortDateString() +"')" +
                 "INSERT INTO [dbo].[TB_CNH]([CNH_NUMERO],[CNH_DTEMISSAO],[CNH_DTVENC],[CNH_CATEGORIA],[CNH_ORGAOEMISSOR],[CNH_MT_CPF])" +
                 "VALUES (" + cnh.Numero + ", '" + dtemissao + "', '" + dtvencimento + "', '" + cnh.Categoria + "', '" + cnh.OrgaoEmissor + "', '" + motorista.CPF + "')";
             try

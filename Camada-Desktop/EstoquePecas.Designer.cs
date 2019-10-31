@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EstoquePecas));
             this.tbControlEstoque = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEstoque = new System.Windows.Forms.TabPage();
@@ -58,6 +59,8 @@
             this.dgEstoqueConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosEstoque = new System.Windows.Forms.Button();
             this.btnConsultarEstoque = new System.Windows.Forms.Button();
+            this.lblCancelar = new System.Windows.Forms.Label();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEstoque.SuspendLayout();
             this.tbPageCadastroEstoque.SuspendLayout();
             this.gbDadosEstoque.SuspendLayout();
@@ -93,6 +96,7 @@
             // 
             // gbDadosEstoque
             // 
+            this.gbDadosEstoque.Controls.Add(this.lblCancelar);
             this.gbDadosEstoque.Controls.Add(this.nudQuantidade);
             this.gbDadosEstoque.Controls.Add(this.lblQtd);
             this.gbDadosEstoque.Controls.Add(this.txtValor);
@@ -165,6 +169,7 @@
             // txtDesc
             // 
             this.txtDesc.Location = new System.Drawing.Point(11, 119);
+            this.txtDesc.MaxLength = 150;
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 85);
@@ -182,6 +187,8 @@
             // btnExcluirEstoque
             // 
             this.btnExcluirEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirEstoque.Enabled = false;
             this.btnExcluirEstoque.FlatAppearance.BorderSize = 0;
             this.btnExcluirEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -201,6 +208,8 @@
             // btnAlterarEstoque
             // 
             this.btnAlterarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarEstoque.Enabled = false;
             this.btnAlterarEstoque.FlatAppearance.BorderSize = 0;
             this.btnAlterarEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -220,6 +229,7 @@
             // btnCadastrarEstoque
             // 
             this.btnCadastrarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarEstoque.FlatAppearance.BorderSize = 0;
             this.btnCadastrarEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -293,6 +303,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -370,6 +381,7 @@
             this.btnTrasferirEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirEstoque.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirEstoque.BackgroundImage")));
             this.btnTrasferirEstoque.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirEstoque.FlatAppearance.BorderSize = 0;
             this.btnTrasferirEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -393,10 +405,12 @@
             this.dgEstoqueConsulta.Name = "dgEstoqueConsulta";
             this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 372);
             this.dgEstoqueConsulta.TabIndex = 18;
+            this.dgEstoqueConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEstoqueConsulta_CellContentClick);
             // 
             // btnTodosEstoque
             // 
             this.btnTodosEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosEstoque.FlatAppearance.BorderSize = 0;
             this.btnTodosEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -415,6 +429,7 @@
             // btnConsultarEstoque
             // 
             this.btnConsultarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarEstoque.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarEstoque.FlatAppearance.BorderSize = 0;
             this.btnConsultarEstoque.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -430,6 +445,22 @@
             this.btnConsultarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
             this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(265, 253);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // EstoquePecas
             // 
@@ -488,5 +519,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
     }
 }

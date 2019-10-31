@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Multas));
             this.tbControlMultas = new System.Windows.Forms.TabControl();
             this.tbPageCadastroMultas = new System.Windows.Forms.TabPage();
@@ -70,6 +71,8 @@
             this.dgMultasConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosMultas = new System.Windows.Forms.Button();
             this.btnConsultarMultas = new System.Windows.Forms.Button();
+            this.lblCancelar = new System.Windows.Forms.Label();
+            this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlMultas.SuspendLayout();
             this.tbPageCadastroMultas.SuspendLayout();
             this.gbDadosMulta.SuspendLayout();
@@ -104,6 +107,7 @@
             // 
             // gbDadosMulta
             // 
+            this.gbDadosMulta.Controls.Add(this.lblCancelar);
             this.gbDadosMulta.Controls.Add(this.cbCPF);
             this.gbDadosMulta.Controls.Add(this.cbPlaca);
             this.gbDadosMulta.Controls.Add(this.lblDataPagamento);
@@ -204,6 +208,7 @@
             // txtDesc
             // 
             this.txtDesc.Location = new System.Drawing.Point(11, 241);
+            this.txtDesc.MaxLength = 150;
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(487, 54);
@@ -238,6 +243,7 @@
             // txtLocal
             // 
             this.txtLocal.Location = new System.Drawing.Point(11, 178);
+            this.txtLocal.MaxLength = 150;
             this.txtLocal.Name = "txtLocal";
             this.txtLocal.Size = new System.Drawing.Size(487, 32);
             this.txtLocal.TabIndex = 21;
@@ -274,6 +280,8 @@
             // btnExcluirVeiculo
             // 
             this.btnExcluirVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExcluirVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcluirVeiculo.Enabled = false;
             this.btnExcluirVeiculo.FlatAppearance.BorderSize = 0;
             this.btnExcluirVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnExcluirVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -293,6 +301,8 @@
             // btnAlterarVeiculo
             // 
             this.btnAlterarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAlterarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarVeiculo.Enabled = false;
             this.btnAlterarVeiculo.FlatAppearance.BorderSize = 0;
             this.btnAlterarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnAlterarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -312,6 +322,7 @@
             // btnCadastrarVeiculo
             // 
             this.btnCadastrarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCadastrarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadastrarVeiculo.FlatAppearance.BorderSize = 0;
             this.btnCadastrarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnCadastrarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -319,7 +330,7 @@
             this.btnCadastrarVeiculo.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarVeiculo.Image")));
             this.btnCadastrarVeiculo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarVeiculo.Location = new System.Drawing.Point(119, 307);
+            this.btnCadastrarVeiculo.Location = new System.Drawing.Point(121, 307);
             this.btnCadastrarVeiculo.Name = "btnCadastrarVeiculo";
             this.btnCadastrarVeiculo.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarVeiculo.TabIndex = 23;
@@ -398,6 +409,7 @@
             // btnConsultarPorData
             // 
             this.btnConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarPorData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarPorData.FlatAppearance.BorderSize = 0;
             this.btnConsultarPorData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarPorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -513,6 +525,7 @@
             this.btnTrasferirMultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnTrasferirMultas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTrasferirMultas.BackgroundImage")));
             this.btnTrasferirMultas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTrasferirMultas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTrasferirMultas.FlatAppearance.BorderSize = 0;
             this.btnTrasferirMultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTrasferirMultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -536,10 +549,12 @@
             this.dgMultasConsulta.Name = "dgMultasConsulta";
             this.dgMultasConsulta.Size = new System.Drawing.Size(608, 296);
             this.dgMultasConsulta.TabIndex = 20;
+            this.dgMultasConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultasConsulta_CellContentClick);
             // 
             // btnTodosMultas
             // 
             this.btnTodosMultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnTodosMultas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTodosMultas.FlatAppearance.BorderSize = 0;
             this.btnTodosMultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnTodosMultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -558,6 +573,7 @@
             // btnConsultarMultas
             // 
             this.btnConsultarMultas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnConsultarMultas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConsultarMultas.FlatAppearance.BorderSize = 0;
             this.btnConsultarMultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnConsultarMultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -573,6 +589,22 @@
             this.btnConsultarMultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarMultas.UseVisualStyleBackColor = false;
             this.btnConsultarMultas.Click += new System.EventHandler(this.btnConsultarMultas_Click);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Multas
             // 
@@ -642,5 +674,7 @@
         private System.Windows.Forms.Label lblInicioConsulta;
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
+        private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.ToolTip toolTipTransfere;
     }
 }

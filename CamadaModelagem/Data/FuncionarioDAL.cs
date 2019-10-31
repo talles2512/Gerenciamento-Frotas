@@ -23,9 +23,9 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(Funcionario funcionario)
         {
             int perfilacesso = funcionario.PerfilAcesso.GetHashCode();
-
-            string query = "INSERT INTO [dbo].[TB_FUNCIONARIO] ([FUNC_NOME],[FUNC_LOGIN],[FUNC_SENHA],[FUNC_PERFIL_ACESSO])" +
-                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + perfilacesso + ")";
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO [dbo].[TB_FUNCIONARIO] ([FUNC_NOME],[FUNC_LOGIN],[FUNC_SENHA],[FUNC_PERFIL_ACESSO],[FUNC_DATAREGISTRO])" +
+                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + perfilacesso + ", '" + datareg.ToLongDateString() +"')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

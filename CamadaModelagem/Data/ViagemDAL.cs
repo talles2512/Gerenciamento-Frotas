@@ -22,9 +22,10 @@ namespace CamadaModelagem.Data
         public bool Cadastrar(Viagem viagem)
         {
             int ocupante = Convert.ToInt32(viagem.Ocupante);
-            string query = "INSERT INTO [dbo].[TB_VIAGENS] ([VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA])"
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO [dbo].[TB_VIAGENS] ([VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA],[VG_DATAREGISTRO])"
                 + "VALUES (" + viagem.Requisicao + ",'" + viagem.Placa + "', '" + viagem.CPF + "', " + ocupante
-                + ", '" + viagem.Destino + "', '" + viagem.DataSaida.ToString() + "')";
+                + ", '" + viagem.Destino + "', '" + viagem.DataSaida.ToString() + "','" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

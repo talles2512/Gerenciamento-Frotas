@@ -36,9 +36,10 @@ namespace CamadaModelagem.Data
             }
 
             int situacao = Convert.ToInt32(multa.Paga);
+            DateTime datareg = DateTime.Now;
 
-            string query = "INSERT INTO [dbo].[TB_MULTAS] ([MULT_VCL_PLACA],[MULT_MT_CPF],[MULT_DESCRICAO],[MULT_LOCAL],[MULT_DTOCORRENCIA],[MULT_VALOR],[MULT_PAGO],[MULTPAG_DTPAGAMENTO])" +
-                "VALUES ('" + multa.Veiculo.Placa + "', '" + multa.Motorista.CPF + "', '" + multa.Descricao + "', '" + multa.Local + "','" + multa.DataOcorrencia.ToShortDateString() + "'," + multa.Valor + "," + situacao + ",'" + datapaga + "')";
+            string query = "INSERT INTO [dbo].[TB_MULTAS] ([MULT_VCL_PLACA],[MULT_MT_CPF],[MULT_DESCRICAO],[MULT_LOCAL],[MULT_DTOCORRENCIA],[MULT_VALOR],[MULT_PAGO],[MULTPAG_DTPAGAMENTO],[MULT_DATAREGISTRO])" +
+                "VALUES ('" + multa.Veiculo.Placa + "', '" + multa.Motorista.CPF + "', '" + multa.Descricao + "', '" + multa.Local + "','" + multa.DataOcorrencia.ToShortDateString() + "'," + multa.Valor + "," + situacao + ",'" + datapaga + "','" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

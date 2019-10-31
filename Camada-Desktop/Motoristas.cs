@@ -282,8 +282,51 @@ namespace CamadaDesktop
                 {
                     txtCPFConsulta.Text = "";
                     Motorista = null;
+
+                    btnCadastrarMotorista.Visible = false;
+                    lblCancelarMot.Visible = true;
+                    btnAlterarMotorista.Enabled = true;
+                    btnExcluirMotorista.Enabled = true;
                 }
             }
+        }
+
+        private void dgMotoristaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (Motorista == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtCPF.Text = Motorista.CPF;
+                cpfantigo = Motorista.CPF;
+                txtNome.Text = Motorista.Name;
+                txtRG.Text = Motorista.RG;
+                txtEndereco.Text = Motorista.Endereco;
+                dtDataNascimento.Value = Motorista.DataNascimento;
+                txtTelefone.Text = Motorista.Telefone.ToString();
+                txtTelefoneContato.Text = Motorista.TelefoneContato.ToString();
+                txtCNHnumero.Text = Motorista.CNH.Numero.ToString();
+                cbCategoriaCNH.Text = Motorista.CNH.Categoria;
+                cbOrgaoEmissor.Text = Motorista.CNH.OrgaoEmissor;
+                dtDataEmissaoCNH.Value = Motorista.CNH.DataEmissao;
+                dtDataVencimentoCNH.Value = Motorista.CNH.DataVencimento;
+
+                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                tbControlMotorista.SelectTab("tbPageCadastroMotorista");
+                if (tbControlMotorista.SelectedTab == tbPageCadastroMotorista)
+                {
+                    txtCPFConsulta.Text = "";
+                    Motorista = null;
+
+                    btnCadastrarMotorista.Visible = false;
+                    lblCancelarMot.Visible = true;
+                    btnAlterarMotorista.Enabled = true;
+                    btnExcluirMotorista.Enabled = true;
+                }
+            }
+
         }
 
         private void btnAlterarMotorista_Click(object sender, EventArgs e)
@@ -345,6 +388,11 @@ namespace CamadaDesktop
                         cbOrgaoEmissor.Text = "";
                         dtDataEmissaoCNH.Value = DateTime.Now;
                         dtDataVencimentoCNH.Value = DateTime.Now;
+
+                        btnCadastrarMotorista.Visible = true;
+                        lblCancelarMot.Visible = false;
+                        btnAlterarMotorista.Enabled = false;
+                        btnExcluirMotorista.Enabled = false;
                     }
                 }
                 catch (NaoEncontradoException ex)
@@ -398,6 +446,11 @@ namespace CamadaDesktop
                             cbOrgaoEmissor.Text = "";
                             dtDataEmissaoCNH.Value = DateTime.Now;
                             dtDataVencimentoCNH.Value = DateTime.Now;
+
+                            btnCadastrarMotorista.Visible = true;
+                            lblCancelarMot.Visible = false;
+                            btnAlterarMotorista.Enabled = false;
+                            btnExcluirMotorista.Enabled = false;
                         }
                     }
                 }
@@ -421,12 +474,40 @@ namespace CamadaDesktop
         {
             panelConsultarPorData.Visible = false;
         }
+        private void lblCancelarMot_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtCPF.Text = "";
+                txtNome.Text = "";
+                txtRG.Text = "";
+                dtDataNascimento.Value = DateTime.Now;
+                txtEndereco.Text = "";
+                txtTelefone.Text = "";
+                txtTelefoneContato.Text = "";
+                txtCNHnumero.Text = "";
+                cbCategoriaCNH.Text = "";
+                cbOrgaoEmissor.Text = "";
+                dtDataEmissaoCNH.Value = DateTime.Now;
+                dtDataVencimentoCNH.Value = DateTime.Now;
+
+                btnCadastrarMotorista.Visible = true;
+                lblCancelarMot.Visible = false;
+                btnAlterarMotorista.Enabled = false;
+                btnExcluirMotorista.Enabled = false;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //EXAME MEDICO
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         private void Motoristas_Load(object sender, EventArgs e)
         {
+            toolTipTransfere.SetToolTip(this.btnTrasferirMotorista, "Transferir Dados");
+            toolTipTransfere.Hide(btnTrasferirMotorista);
+            toolTipTransfereExam.SetToolTip(this.btnTransfereExame, "Transferir Dados");
+            toolTipTransfereExam.Hide(btnTransfereExame);
+
             cbSituacaoExame.DataSource = Enum.GetValues(typeof(SituacaoExameMedico));
             AtualizarCor();
         }
@@ -590,7 +671,41 @@ namespace CamadaDesktop
                 dtDataExameConsulta.Value = DateTime.Now;
                 ExameMedico = null;
                 Motorista = null;
-                dgExameConsulta.ClearSelection();
+                dgExameConsulta.DataSource = null;
+
+                btnCadastrarExame.Visible = false;
+                lblCancelar.Visible = true;
+                btnAlterarExame.Enabled = true;
+                btnExcluirExame.Enabled = true;
+            }
+        }
+
+        private void dgExameConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ExameMedico == null)
+            {
+                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtCPFExames.Text = ExameMedico.Motorista.CPF;
+                cpfExameAntigo = ExameMedico.Motorista.CPF;
+                dtDataExame.Value = ExameMedico.Data;
+                dataExameAntigo = ExameMedico.Data;
+                cbSituacaoExame.Text = ExameMedico.Situacao.ToString();
+                txtExameDescricao.Text = ExameMedico.Descricao;
+
+
+                txtCPFExameConsulta.Text = "";
+                dtDataExameConsulta.Value = DateTime.Now;
+                ExameMedico = null;
+                Motorista = null;
+                dgExameConsulta.DataSource = null;
+
+                btnCadastrarExame.Visible = false;
+                lblCancelar.Visible = true;
+                btnAlterarExame.Enabled = true;
+                btnExcluirExame.Enabled = true;
             }
         }
 
@@ -634,6 +749,11 @@ namespace CamadaDesktop
                             dtDataExame.Text = "";
                             cbSituacaoExame.Text = "";
                             txtExameDescricao.Text = "";
+
+                            btnCadastrarExame.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarExame.Enabled = false;
+                            btnExcluirExame.Enabled = false;
                         }
                     }               
                 }
@@ -688,6 +808,11 @@ namespace CamadaDesktop
                                 dtDataExame.Text = "";
                                 cbSituacaoExame.Text = "";
                                 txtExameDescricao.Text = "";
+
+                                btnCadastrarExame.Visible = true;
+                                lblCancelar.Visible = false;
+                                btnAlterarExame.Enabled = false;
+                                btnExcluirExame.Enabled = false;
                             }
                         }                         
                     }
@@ -753,6 +878,22 @@ namespace CamadaDesktop
         private void panelConsultarPorData_MouseLeave(object sender, EventArgs e)
         {
             //sem Comportamento
+        }
+
+        private void lblCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                txtCPFExames.Text = "";
+                dtDataExame.Text = "";
+                cbSituacaoExame.Text = "";
+                txtExameDescricao.Text = "";
+
+                btnCadastrarExame.Visible = true;
+                lblCancelar.Visible = false;
+                btnAlterarExame.Enabled = false;
+                btnExcluirExame.Enabled = false;
+            }
         }
     }
 }

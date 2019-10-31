@@ -24,8 +24,9 @@ namespace CamadaModelagem.Data
         {
             int tipoManutencao = manuntencao.Tipo.GetHashCode();
             int situacaoManutencao = manuntencao.Situacao.GetHashCode();
-            string query = "INSERT INTO [dbo].[TB_MANUTENCAO] ([MTC_TIPO],[MTC_SERVEXT_CNPJ],[MTC_DESCRICAO],[MTC_DATA],[MTC_VALOR],[MTC_SITUACAO],[MTC_VCL_PLACA])" +
-                "VALUES (" + tipoManutencao + ", " + manuntencao.CNPJ + ", '" + manuntencao.Descricao + "','" + manuntencao.Data.ToShortDateString() + "', " + manuntencao.Valor + ", " + situacaoManutencao + ", '" + manuntencao.Placa + "')";
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO [dbo].[TB_MANUTENCAO] ([MTC_TIPO],[MTC_SERVEXT_CNPJ],[MTC_DESCRICAO],[MTC_DATA],[MTC_VALOR],[MTC_SITUACAO],[MTC_VCL_PLACA], [MTC_DATAREGISTRO])" +
+                "VALUES (" + tipoManutencao + ", " + manuntencao.CNPJ + ", '" + manuntencao.Descricao + "','" + manuntencao.Data.ToShortDateString() + "', " + manuntencao.Valor + ", " + situacaoManutencao + ", '" + manuntencao.Placa + "', '" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
