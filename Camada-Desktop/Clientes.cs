@@ -152,6 +152,13 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            
+            if(mesfinal - mesinicial > 3)
+            {
+                MessageBox.Show("Limite Máximo de 3 Meses", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             if (dtFimConsulta.Value < dtInicioConsulta.Value)
             {
                 MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -405,6 +412,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarClientes.Enabled = false;
                 btnExcluirClientes.Enabled = false;
+
+                Cliente = null;
             }
         }
     }

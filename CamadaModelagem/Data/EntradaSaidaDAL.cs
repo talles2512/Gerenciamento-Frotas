@@ -69,7 +69,7 @@ namespace CamadaModelagem.Data
         {
             string query = "SELECT [ES_ID], [ES_MT_CPF], [ES_VCL_PLACA], [ES_SERVEXT_CNPJ], [ES_TIPO], [ES_DATAHORA]" +
                 "FROM[TB_ENTRADA_SAIDA] WHERE [ES_VCL_PLACA] = '" + placa + "' AND [ES_SERVEXT_CNPJ] = " + cnpj 
-                + " AND [ES_TIPO] = '" + tipo.ToString() + "'  AND [ES_DATAHORA] = '" + data + "'";
+                + " AND [ES_TIPO] = '" + tipo.ToString() + "'  AND [ES_DATAHORA] = '" + data.ToString() + "'";
             try
             {
                 DataTable dt = _banco.BuscarRegistro(query);

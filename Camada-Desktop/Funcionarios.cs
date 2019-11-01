@@ -340,6 +340,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarFuncionario.Enabled = false;
                 btnExcluirFuncionario.Enabled = false;
+
+                Funcionario = null;
             }
         }
     }

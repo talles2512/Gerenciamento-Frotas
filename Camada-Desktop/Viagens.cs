@@ -693,6 +693,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarViagens.Enabled = false;
                 btnExcluirViagens.Enabled = false;
+
+                Viagem = null;
             }
         }
     }

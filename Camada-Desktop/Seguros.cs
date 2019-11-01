@@ -614,6 +614,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarSeguros.Enabled = false;
                 btnExcluirSeguros.Enabled = false;
+
+                Seguro = null;
             }
         }
 
@@ -980,6 +982,8 @@ namespace CamadaDesktop
                 lblCancelarCobertura.Visible = false;
                 btnAlterarCobertura.Enabled = false;
                 btnExcluirCobertura.Enabled = false;
+
+                SeguroCobertura = null;
             }
         }
     }

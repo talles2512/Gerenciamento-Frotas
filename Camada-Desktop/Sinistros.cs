@@ -414,7 +414,7 @@ namespace CamadaDesktop
                     
                 itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
                 numapoliceantigo = Sinistro.Seguro.NumeroApolice;
-                cbItemSegurado.Text = Sinistro.Item;
+                cbItemSegurado.SelectedValue = Sinistro.Item;
 
                 if (cbTipo.SelectedItem.ToString() == "Veiculo")
                 {
@@ -487,7 +487,7 @@ namespace CamadaDesktop
 
                 itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
                 numapoliceantigo = Sinistro.Seguro.NumeroApolice;
-                cbItemSegurado.Text = Sinistro.Item;
+                cbItemSegurado.SelectedValue = Sinistro.Item;
 
                 if (cbTipo.SelectedItem.ToString() == "Veiculo")
                 {
@@ -738,6 +738,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarSinistros.Enabled = false;
                 btnExcluirSinistros.Enabled = false;
+
+                Sinistro = null;
             }
         }
     }

@@ -44,6 +44,10 @@ namespace CamadaDesktop
         }
         private void Abastecimento_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
+
             toolTipTransfere.SetToolTip(this.btnTrasferirAbast, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirAbast);
 
@@ -141,7 +145,7 @@ namespace CamadaDesktop
                 try
                 {
                     AbastecimentoTipo abastecimentoTipo = (AbastecimentoTipo)Enum.Parse(typeof(AbastecimentoTipo), cbTipoAbastConsulta.SelectedItem.ToString());
-                    string placa = cbPlaca.SelectedValue.ToString();
+                    string placa = cbPlacaAbastConsulta.SelectedValue.ToString();
 
                     Abastecimento abastecimento = _abastecimentoController.BuscarAbastecimento(placa, abastecimentoTipo, dtDataAbastConsulta.Value);
                     if (abastecimento == null)
@@ -463,6 +467,8 @@ namespace CamadaDesktop
                     lblCancelar.Visible = false;
                     btnAlterarAbast.Enabled = false;
                     btnExcluirAbast.Enabled = false;
+
+                    Abastecimento = null;
                 }
             }
         }

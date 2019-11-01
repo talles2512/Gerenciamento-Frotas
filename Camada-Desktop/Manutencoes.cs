@@ -464,6 +464,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarManunt.Enabled = false;
                 btnExcluirManunt.Enabled = false;
+
+                Manutencao = null;
             }
         }
     }

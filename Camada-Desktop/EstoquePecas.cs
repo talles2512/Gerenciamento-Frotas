@@ -335,6 +335,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarEstoque.Enabled = false;
                 btnExcluirEstoque.Enabled = false;
+
+                EstoquePeca = null;
             }
         }
     }

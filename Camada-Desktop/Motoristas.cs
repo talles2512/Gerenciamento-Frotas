@@ -495,6 +495,8 @@ namespace CamadaDesktop
                 lblCancelarMot.Visible = false;
                 btnAlterarMotorista.Enabled = false;
                 btnExcluirMotorista.Enabled = false;
+
+                Motorista = null;
             }
         }
 
@@ -893,6 +895,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarExame.Enabled = false;
                 btnExcluirExame.Enabled = false;
+
+                ExameMedico = null;
             }
         }
     }

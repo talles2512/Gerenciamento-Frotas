@@ -51,7 +51,7 @@ namespace CamadaModelagem.Data
         {
             string Query = "";
             TipoSeguro tiposeg;
-            string datahora = data.ToString("yyyy/MM/dd hh:mm");
+            string datahora = data.ToString("yyyy/MM/dd HH:mm");
 
             if (tipo.ToString() == "Veiculo")
             {

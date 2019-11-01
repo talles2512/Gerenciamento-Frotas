@@ -489,6 +489,8 @@ namespace CamadaDesktop
                 btnExcluirEntradaSaida.Enabled = false;
                 btnCadastrarEntradaSaida.Visible = true;
                 lblCancelar.Visible = false;
+
+                EntradaSaida = null;
             }
         }
     }

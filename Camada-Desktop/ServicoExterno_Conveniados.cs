@@ -589,6 +589,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarServicoExterno.Enabled = false;
                 btnExcluirServicoExterno.Enabled = false;
+
+                ServicoExterno = null;
             }
         }
     }

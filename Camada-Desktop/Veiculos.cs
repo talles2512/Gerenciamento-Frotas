@@ -640,6 +640,8 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarVeiculo.Enabled = false;
                 btnExcluirVeiculo.Enabled = false;
+
+                Veiculo = null;
             }
         }
     }
