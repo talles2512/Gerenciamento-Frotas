@@ -61,6 +61,8 @@
             this.btnTodosFuncionario = new System.Windows.Forms.Button();
             this.btnConsultarFuncionario = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.tbControlFuncionario.SuspendLayout();
             this.tbPageCadastroFuncionario.SuspendLayout();
             this.gbDadosFuncionario.SuspendLayout();
@@ -274,6 +276,8 @@
             // 
             // gbConsultaFuncionario
             // 
+            this.gbConsultaFuncionario.Controls.Add(this.textPesquisar);
+            this.gbConsultaFuncionario.Controls.Add(this.lbPesquisar);
             this.gbConsultaFuncionario.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaFuncionario.Controls.Add(this.txtLoginFuncionarioConsulta);
             this.gbConsultaFuncionario.Controls.Add(this.lblLoginFuncionarioConsulta);
@@ -416,9 +420,9 @@
             this.dgFuncionarioConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgFuncionarioConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgFuncionarioConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgFuncionarioConsulta.Location = new System.Drawing.Point(7, 67);
+            this.dgFuncionarioConsulta.Location = new System.Drawing.Point(7, 107);
             this.dgFuncionarioConsulta.Name = "dgFuncionarioConsulta";
-            this.dgFuncionarioConsulta.Size = new System.Drawing.Size(608, 372);
+            this.dgFuncionarioConsulta.Size = new System.Drawing.Size(608, 332);
             this.dgFuncionarioConsulta.TabIndex = 18;
             this.dgFuncionarioConsulta.DoubleClick += new System.EventHandler(this.dgFuncionarioConsulta_DoubleClick);
             // 
@@ -460,6 +464,23 @@
             this.btnConsultarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;
             this.btnConsultarFuncionario.Click += new System.EventHandler(this.btnConsultarFuncionario_Click);
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 69);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
+            this.textPesquisar.TabIndex = 44;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 72);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 43;
+            this.lbPesquisar.Text = "Pesquisar:";
             // 
             // Funcionarios
             // 
@@ -519,5 +540,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.ToolTip toolTipTransfere;
         private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
     }
 }

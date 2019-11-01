@@ -115,5 +115,35 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
+        public List<Funcionario> Pesquisar(string busca)
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            if (busca == "")
+            {
+                return funcionarios;
+            }
+            string query = "SELECT * FROM[dbo].[TB_FUNCIONARIO] WHERE(FUNC_NOME LIKE '%" + busca + "%'" +
+                " OR FUNC_LOGIN LIKE '%" + busca + "%')";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Funcionario funcionario = null;
+                DataRow[] dataRows = dt.Select();
+
+                foreach (DataRow dr in dataRows)
+                {
+                    PerfilAcesso perfilAcesso = (PerfilAcesso)Enum.Parse(typeof(PerfilAcesso), dr["FUNC_PERFIL_ACESSO"].ToString());
+
+                    funcionario = new Funcionario(dr["FUNC_NOME"].ToString(), dr["FUNC_LOGIN"].ToString(), dr["FUNC_SENHA"].ToString(), perfilAcesso);
+                    funcionarios.Add(funcionario);
+                }
+                return funcionarios;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
     }
 }

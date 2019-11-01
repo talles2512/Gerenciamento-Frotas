@@ -20,6 +20,7 @@ namespace CamadaDesktop
     public partial class Funcionarios : Form
     {
         private readonly FuncionarioController _funcionarioController;
+        private List<Funcionario> ListaFuncionarios;
         private Funcionario Funcionario;
         string loginantigo;
 
@@ -163,7 +164,7 @@ namespace CamadaDesktop
                         {
                             dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
                         }
-
+                        ListaFuncionarios = funcionarios;
                         dgFuncionarioConsulta.DataSource = dt;
 
                     }
@@ -207,30 +208,44 @@ namespace CamadaDesktop
 
         private void dgFuncionarioConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Funcionario == null)
+            if (dgFuncionarioConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgFuncionarioConsulta.CurrentRow.Cells[1].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtnome.Text = Funcionario.Nome;
-                txtLogin.Text = Funcionario.Login;
-                txtSenha.Text = Funcionario.Senha;
-                cbPerfilAcesso.SelectedItem = Funcionario.PerfilAcesso.ToString();
+                string login = dgFuncionarioConsulta.CurrentRow.Cells[1].Value.ToString();
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-
-                tbControlFuncionario.SelectTab("tbPageCadastroFuncionario");
-                if (tbControlFuncionario.SelectedTab == tbPageCadastroFuncionario)
+                foreach (Funcionario funcionario in ListaFuncionarios)
                 {
-                    Funcionario = null;
-                    txtLoginFuncionarioConsulta.Text = "";
+                    if (funcionario.Login == login)
+                    {
+                        txtnome.Text = funcionario.Nome;
+                        txtLogin.Text = funcionario.Login;
+                        txtSenha.Text = funcionario.Senha;
+                        cbPerfilAcesso.SelectedItem = funcionario.PerfilAcesso.ToString();
 
-                    btnCadastrarFuncionario.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarFuncionario.Enabled = true;
-                    btnExcluirFuncionario.Enabled = true;
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+
+                        tbControlFuncionario.SelectTab("tbPageCadastroFuncionario");
+                        if (tbControlFuncionario.SelectedTab == tbPageCadastroFuncionario)
+                        {
+                            Funcionario = null;
+                            txtLoginFuncionarioConsulta.Text = "";
+
+                            btnCadastrarFuncionario.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarFuncionario.Enabled = true;
+                            btnExcluirFuncionario.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgFuncionarioConsulta.DataSource = null;
             }
         }
 
@@ -357,6 +372,32 @@ namespace CamadaDesktop
                 btnExcluirFuncionario.Enabled = false;
 
                 Funcionario = null;
+            }
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Funcionario> funcionarios = _funcionarioController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nome", typeof(string));
+                dt.Columns.Add("Login", typeof(string));
+                dt.Columns.Add("Senha", typeof(string));
+                dt.Columns.Add("Perfil de Acesso", typeof(string));
+
+                foreach (Funcionario funcionario in funcionarios)
+                {
+                    dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
+                }
+                ListaFuncionarios = funcionarios;
+                dgFuncionarioConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

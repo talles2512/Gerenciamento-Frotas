@@ -84,6 +84,18 @@ namespace CamadaControle.Controllers
 
         }
 
+        public List<Funcionario> Pesquisar(string busca)
+        {
+            try
+            {
+                return _funcionarioService.Pesquisar(busca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
         #endregion
 
         #region [AplicacaoWeb]
