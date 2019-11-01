@@ -33,6 +33,7 @@
             this.tbControlVeiculos = new System.Windows.Forms.TabControl();
             this.tbPageCadastroVeiculo = new System.Windows.Forms.TabPage();
             this.gbDadosVeiculos = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.txtChassi = new System.Windows.Forms.MaskedTextBox();
             this.lblDataVencimento = new System.Windows.Forms.Label();
             this.lblDataInicio = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -145,6 +145,22 @@
             this.gbDadosVeiculos.TabIndex = 1;
             this.gbDadosVeiculos.TabStop = false;
             this.gbDadosVeiculos.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // txtChassi
             // 
@@ -572,9 +588,10 @@
             this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 114);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
+            this.dgVeiculoConsulta.ReadOnly = true;
             this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 325);
             this.dgVeiculoConsulta.TabIndex = 18;
-            this.dgVeiculoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoConsulta_CellContentClick);
+            this.dgVeiculoConsulta.DoubleClick += new System.EventHandler(this.DgVeiculoConsulta_DoubleClick);
             // 
             // btnTodosVeiculo
             // 
@@ -631,22 +648,6 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 47;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Veiculos
             // 
