@@ -592,7 +592,7 @@
             this.dgVeiculoConsulta.ReadOnly = true;
             this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 325);
             this.dgVeiculoConsulta.TabIndex = 18;
-            this.dgVeiculoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoConsulta_CellContentClick);
+            this.dgVeiculoConsulta.DoubleClick += new System.EventHandler(this.DgVeiculoConsulta_DoubleClick);
             // 
             // btnTodosVeiculo
             // 
