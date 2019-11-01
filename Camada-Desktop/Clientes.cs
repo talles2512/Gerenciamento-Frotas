@@ -154,47 +154,52 @@ namespace CamadaDesktop
         {
             int mesinicial = dtInicioConsulta.Value.Month;
             int mesfinal = dtFimConsulta.Value.Month;
-            
-            if(mesfinal - mesinicial > 3)
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("Limite Máximo de 3 Meses", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
-            {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-
-
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Cliente> clientes = _clienteController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
 
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("CPF", typeof(string));
-                    dt.Columns.Add("Nome", typeof(string));
-                    dt.Columns.Add("RG", typeof(string));
-                    dt.Columns.Add("Endereço", typeof(string));
-                    dt.Columns.Add("e-mail", typeof(string));
-                    dt.Columns.Add("Data Nascimento", typeof(DateTime));
-                    dt.Columns.Add("Data Inicio Contrato", typeof(DateTime));
 
-                    foreach (Cliente cliente in clientes)
+                    try
                     {
+                        List<Cliente> clientes = _clienteController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                        dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
-                            , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("CPF", typeof(string));
+                        dt.Columns.Add("Nome", typeof(string));
+                        dt.Columns.Add("RG", typeof(string));
+                        dt.Columns.Add("Endereço", typeof(string));
+                        dt.Columns.Add("e-mail", typeof(string));
+                        dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                        dt.Columns.Add("Data Inicio Contrato", typeof(DateTime));
+
+                        foreach (Cliente cliente in clientes)
+                        {
+
+                            dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
+                                , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
+                        }
+
+                        dgClientesConsulta.DataSource = dt;
+
                     }
-
-                    dgClientesConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
                 }
-                catch (ConcorrenciaBancoException)
-                {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                }
-            }
+            }           
         }
 
         private void btnTrasferirClientes_Click(object sender, EventArgs e)

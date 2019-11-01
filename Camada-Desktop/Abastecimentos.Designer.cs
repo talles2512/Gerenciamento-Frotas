@@ -84,22 +84,20 @@
             this.tbControlAbast.Controls.Add(this.tbPageCadastroAbast);
             this.tbControlAbast.Controls.Add(this.tbPageConsultaAbast);
             this.tbControlAbast.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbControlAbast.Location = new System.Drawing.Point(1, 30);
-            this.tbControlAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbControlAbast.Location = new System.Drawing.Point(1, 24);
             this.tbControlAbast.Name = "tbControlAbast";
             this.tbControlAbast.SelectedIndex = 0;
-            this.tbControlAbast.Size = new System.Drawing.Size(859, 613);
+            this.tbControlAbast.Size = new System.Drawing.Size(644, 498);
             this.tbControlAbast.TabIndex = 24;
             // 
             // tbPageCadastroAbast
             // 
             this.tbPageCadastroAbast.BackColor = System.Drawing.SystemColors.Control;
             this.tbPageCadastroAbast.Controls.Add(this.gbDadosAbast);
-            this.tbPageCadastroAbast.Location = new System.Drawing.Point(4, 45);
-            this.tbPageCadastroAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageCadastroAbast.Location = new System.Drawing.Point(4, 37);
             this.tbPageCadastroAbast.Name = "tbPageCadastroAbast";
-            this.tbPageCadastroAbast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbPageCadastroAbast.Size = new System.Drawing.Size(851, 564);
+            this.tbPageCadastroAbast.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPageCadastroAbast.Size = new System.Drawing.Size(636, 457);
             this.tbPageCadastroAbast.TabIndex = 0;
             this.tbPageCadastroAbast.Text = "Cadastrar";
             // 
@@ -122,11 +120,9 @@
             this.gbDadosAbast.Controls.Add(this.btnCadastrarAbast);
             this.gbDadosAbast.Controls.Add(this.lblPlaca);
             this.gbDadosAbast.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDadosAbast.Location = new System.Drawing.Point(8, 7);
-            this.gbDadosAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDadosAbast.Location = new System.Drawing.Point(6, 6);
             this.gbDadosAbast.Name = "gbDadosAbast";
-            this.gbDadosAbast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbDadosAbast.Size = new System.Drawing.Size(828, 548);
+            this.gbDadosAbast.Size = new System.Drawing.Size(621, 445);
             this.gbDadosAbast.TabIndex = 1;
             this.gbDadosAbast.TabStop = false;
             this.gbDadosAbast.Text = "Dados";
@@ -139,10 +135,9 @@
             this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
             this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(363, 379);
-            this.lblCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCancelar.Location = new System.Drawing.Point(272, 308);
             this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(107, 42);
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
             this.lblCancelar.TabIndex = 47;
             this.lblCancelar.Text = "Cancelar";
             this.lblCancelar.Visible = false;
@@ -151,76 +146,68 @@
             // lblLitros
             // 
             this.lblLitros.AutoSize = true;
-            this.lblLitros.Location = new System.Drawing.Point(279, 113);
-            this.lblLitros.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLitros.Location = new System.Drawing.Point(209, 92);
             this.lblLitros.Name = "lblLitros";
-            this.lblLitros.Size = new System.Drawing.Size(167, 32);
+            this.lblLitros.Size = new System.Drawing.Size(122, 25);
             this.lblLitros.TabIndex = 30;
             this.lblLitros.Text = "Quantidade/Litros:";
             // 
             // txtQuantidadeLitros
             // 
-            this.txtQuantidadeLitros.Location = new System.Drawing.Point(285, 148);
-            this.txtQuantidadeLitros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuantidadeLitros.Location = new System.Drawing.Point(214, 120);
             this.txtQuantidadeLitros.Mask = "00.00";
             this.txtQuantidadeLitros.Name = "txtQuantidadeLitros";
-            this.txtQuantidadeLitros.Size = new System.Drawing.Size(132, 39);
+            this.txtQuantidadeLitros.Size = new System.Drawing.Size(100, 32);
             this.txtQuantidadeLitros.TabIndex = 29;
             // 
             // cbPlaca
             // 
             this.cbPlaca.FormattingEnabled = true;
-            this.cbPlaca.Location = new System.Drawing.Point(15, 224);
-            this.cbPlaca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPlaca.Location = new System.Drawing.Point(11, 182);
             this.cbPlaca.Name = "cbPlaca";
-            this.cbPlaca.Size = new System.Drawing.Size(261, 39);
+            this.cbPlaca.Size = new System.Drawing.Size(197, 33);
             this.cbPlaca.TabIndex = 17;
             // 
             // cbServicoExterno
             // 
             this.cbServicoExterno.FormattingEnabled = true;
-            this.cbServicoExterno.Location = new System.Drawing.Point(15, 303);
-            this.cbServicoExterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbServicoExterno.Location = new System.Drawing.Point(11, 246);
             this.cbServicoExterno.Name = "cbServicoExterno";
-            this.cbServicoExterno.Size = new System.Drawing.Size(532, 39);
+            this.cbServicoExterno.Size = new System.Drawing.Size(400, 33);
             this.cbServicoExterno.TabIndex = 18;
             // 
             // lblServicoExterno
             // 
             this.lblServicoExterno.AutoSize = true;
-            this.lblServicoExterno.Location = new System.Drawing.Point(8, 268);
-            this.lblServicoExterno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblServicoExterno.Location = new System.Drawing.Point(6, 218);
             this.lblServicoExterno.Name = "lblServicoExterno";
-            this.lblServicoExterno.Size = new System.Drawing.Size(65, 32);
+            this.lblServicoExterno.Size = new System.Drawing.Size(49, 25);
             this.lblServicoExterno.TabIndex = 28;
             this.lblServicoExterno.Text = "Posto:";
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(15, 148);
-            this.txtValor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtValor.Location = new System.Drawing.Point(11, 120);
             this.txtValor.Mask = "000000000";
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(261, 39);
+            this.txtValor.Size = new System.Drawing.Size(197, 32);
             this.txtValor.TabIndex = 16;
             // 
             // lblValor
             // 
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(8, 113);
-            this.lblValor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblValor.Location = new System.Drawing.Point(6, 92);
             this.lblValor.Name = "lblValor";
-            this.lblValor.Size = new System.Drawing.Size(101, 32);
+            this.lblValor.Size = new System.Drawing.Size(75, 25);
             this.lblValor.TabIndex = 26;
             this.lblValor.Text = "Valor total:";
             // 
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(279, 34);
-            this.lblData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblData.Location = new System.Drawing.Point(209, 28);
             this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(55, 32);
+            this.lblData.Size = new System.Drawing.Size(42, 25);
             this.lblData.TabIndex = 25;
             this.lblData.Text = "Data:";
             // 
@@ -229,29 +216,26 @@
             this.dtDataAbast.CustomFormat = "dd/mm/yyyy";
             this.dtDataAbast.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataAbast.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataAbast.Location = new System.Drawing.Point(285, 69);
-            this.dtDataAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtDataAbast.Location = new System.Drawing.Point(214, 56);
             this.dtDataAbast.Name = "dtDataAbast";
             this.dtDataAbast.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataAbast.Size = new System.Drawing.Size(377, 36);
+            this.dtDataAbast.Size = new System.Drawing.Size(284, 31);
             this.dtDataAbast.TabIndex = 15;
             // 
             // cbTipo
             // 
             this.cbTipo.FormattingEnabled = true;
-            this.cbTipo.Location = new System.Drawing.Point(15, 69);
-            this.cbTipo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTipo.Location = new System.Drawing.Point(11, 56);
             this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(261, 39);
+            this.cbTipo.Size = new System.Drawing.Size(197, 33);
             this.cbTipo.TabIndex = 14;
             // 
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(8, 34);
-            this.lblTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTipo.Location = new System.Drawing.Point(6, 28);
             this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(51, 32);
+            this.lblTipo.Size = new System.Drawing.Size(38, 25);
             this.lblTipo.TabIndex = 22;
             this.lblTipo.Text = "Tipo:";
             // 
@@ -267,10 +251,9 @@
             this.btnExcluirAbast.ForeColor = System.Drawing.Color.White;
             this.btnExcluirAbast.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirAbast.Image")));
             this.btnExcluirAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirAbast.Location = new System.Drawing.Point(325, 487);
-            this.btnExcluirAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExcluirAbast.Location = new System.Drawing.Point(244, 396);
             this.btnExcluirAbast.Name = "btnExcluirAbast";
-            this.btnExcluirAbast.Size = new System.Drawing.Size(195, 49);
+            this.btnExcluirAbast.Size = new System.Drawing.Size(146, 40);
             this.btnExcluirAbast.TabIndex = 21;
             this.btnExcluirAbast.Text = "Excluir";
             this.btnExcluirAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -289,10 +272,9 @@
             this.btnAlterarAbast.ForeColor = System.Drawing.Color.White;
             this.btnAlterarAbast.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarAbast.Image")));
             this.btnAlterarAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarAbast.Location = new System.Drawing.Point(325, 431);
-            this.btnAlterarAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAlterarAbast.Location = new System.Drawing.Point(244, 350);
             this.btnAlterarAbast.Name = "btnAlterarAbast";
-            this.btnAlterarAbast.Size = new System.Drawing.Size(195, 49);
+            this.btnAlterarAbast.Size = new System.Drawing.Size(146, 40);
             this.btnAlterarAbast.TabIndex = 20;
             this.btnAlterarAbast.Text = "Alterar";
             this.btnAlterarAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -310,10 +292,9 @@
             this.btnCadastrarAbast.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarAbast.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarAbast.Image")));
             this.btnCadastrarAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarAbast.Location = new System.Drawing.Point(159, 374);
-            this.btnCadastrarAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCadastrarAbast.Location = new System.Drawing.Point(119, 304);
             this.btnCadastrarAbast.Name = "btnCadastrarAbast";
-            this.btnCadastrarAbast.Size = new System.Drawing.Size(519, 49);
+            this.btnCadastrarAbast.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarAbast.TabIndex = 19;
             this.btnCadastrarAbast.Text = "Cadastrar";
             this.btnCadastrarAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -323,10 +304,9 @@
             // lblPlaca
             // 
             this.lblPlaca.AutoSize = true;
-            this.lblPlaca.Location = new System.Drawing.Point(8, 190);
-            this.lblPlaca.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlaca.Location = new System.Drawing.Point(6, 154);
             this.lblPlaca.Name = "lblPlaca";
-            this.lblPlaca.Size = new System.Drawing.Size(140, 32);
+            this.lblPlaca.Size = new System.Drawing.Size(104, 25);
             this.lblPlaca.TabIndex = 0;
             this.lblPlaca.Text = "Veículo - Placa:";
             // 
@@ -334,11 +314,10 @@
             // 
             this.tbPageConsultaAbast.BackColor = System.Drawing.SystemColors.Control;
             this.tbPageConsultaAbast.Controls.Add(this.gbConsultaAbast);
-            this.tbPageConsultaAbast.Location = new System.Drawing.Point(4, 45);
-            this.tbPageConsultaAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPageConsultaAbast.Location = new System.Drawing.Point(4, 37);
             this.tbPageConsultaAbast.Name = "tbPageConsultaAbast";
-            this.tbPageConsultaAbast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbPageConsultaAbast.Size = new System.Drawing.Size(851, 564);
+            this.tbPageConsultaAbast.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPageConsultaAbast.Size = new System.Drawing.Size(636, 457);
             this.tbPageConsultaAbast.TabIndex = 1;
             this.tbPageConsultaAbast.Text = "Consultar";
             // 
@@ -356,11 +335,9 @@
             this.gbConsultaAbast.Controls.Add(this.btnConsultarAbast);
             this.gbConsultaAbast.Controls.Add(this.lblPlacaConsulta);
             this.gbConsultaAbast.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConsultaAbast.Location = new System.Drawing.Point(11, 12);
-            this.gbConsultaAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbConsultaAbast.Location = new System.Drawing.Point(8, 10);
             this.gbConsultaAbast.Name = "gbConsultaAbast";
-            this.gbConsultaAbast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbConsultaAbast.Size = new System.Drawing.Size(828, 548);
+            this.gbConsultaAbast.Size = new System.Drawing.Size(621, 445);
             this.gbConsultaAbast.TabIndex = 2;
             this.gbConsultaAbast.TabStop = false;
             this.gbConsultaAbast.Text = "Consulta";
@@ -369,10 +346,9 @@
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.panelConsultarPorData.Controls.Add(this.gbData);
-            this.panelConsultarPorData.Location = new System.Drawing.Point(525, 79);
-            this.panelConsultarPorData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelConsultarPorData.Location = new System.Drawing.Point(394, 64);
             this.panelConsultarPorData.Name = "panelConsultarPorData";
-            this.panelConsultarPorData.Size = new System.Drawing.Size(236, 262);
+            this.panelConsultarPorData.Size = new System.Drawing.Size(177, 213);
             this.panelConsultarPorData.TabIndex = 35;
             this.panelConsultarPorData.Visible = false;
             this.panelConsultarPorData.MouseLeave += new System.EventHandler(this.panelConsultarPorData_MouseLeave);
@@ -385,11 +361,9 @@
             this.gbData.Controls.Add(this.lblInicioConsulta);
             this.gbData.Controls.Add(this.dtFimConsulta);
             this.gbData.Controls.Add(this.dtInicioConsulta);
-            this.gbData.Location = new System.Drawing.Point(4, 9);
-            this.gbData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbData.Location = new System.Drawing.Point(3, 7);
             this.gbData.Name = "gbData";
-            this.gbData.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbData.Size = new System.Drawing.Size(228, 247);
+            this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
             this.gbData.Text = "Data";
@@ -405,10 +379,9 @@
             this.btnConsultarPorData.ForeColor = System.Drawing.Color.White;
             this.btnConsultarPorData.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorData.Image")));
             this.btnConsultarPorData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarPorData.Location = new System.Drawing.Point(8, 191);
-            this.btnConsultarPorData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsultarPorData.Location = new System.Drawing.Point(6, 155);
             this.btnConsultarPorData.Name = "btnConsultarPorData";
-            this.btnConsultarPorData.Size = new System.Drawing.Size(212, 49);
+            this.btnConsultarPorData.Size = new System.Drawing.Size(159, 40);
             this.btnConsultarPorData.TabIndex = 21;
             this.btnConsultarPorData.Text = "    Consultar";
             this.btnConsultarPorData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -418,20 +391,18 @@
             // lblFimConsulta
             // 
             this.lblFimConsulta.AutoSize = true;
-            this.lblFimConsulta.Location = new System.Drawing.Point(0, 111);
-            this.lblFimConsulta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFimConsulta.Location = new System.Drawing.Point(0, 90);
             this.lblFimConsulta.Name = "lblFimConsulta";
-            this.lblFimConsulta.Size = new System.Drawing.Size(47, 32);
+            this.lblFimConsulta.Size = new System.Drawing.Size(37, 25);
             this.lblFimConsulta.TabIndex = 34;
             this.lblFimConsulta.Text = "Fim:";
             // 
             // lblInicioConsulta
             // 
             this.lblInicioConsulta.AutoSize = true;
-            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 34);
-            this.lblInicioConsulta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInicioConsulta.Location = new System.Drawing.Point(1, 28);
             this.lblInicioConsulta.Name = "lblInicioConsulta";
-            this.lblInicioConsulta.Size = new System.Drawing.Size(61, 32);
+            this.lblInicioConsulta.Size = new System.Drawing.Size(46, 25);
             this.lblInicioConsulta.TabIndex = 33;
             this.lblInicioConsulta.Text = "Inicio:";
             // 
@@ -440,10 +411,9 @@
             this.dtFimConsulta.CustomFormat = "MM/yyyy";
             this.dtFimConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtFimConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFimConsulta.Location = new System.Drawing.Point(8, 145);
-            this.dtFimConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtFimConsulta.Location = new System.Drawing.Point(6, 118);
             this.dtFimConsulta.Name = "dtFimConsulta";
-            this.dtFimConsulta.Size = new System.Drawing.Size(211, 36);
+            this.dtFimConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtFimConsulta.TabIndex = 20;
             this.dtFimConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
@@ -452,29 +422,26 @@
             this.dtInicioConsulta.CustomFormat = "MM/yyyy";
             this.dtInicioConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtInicioConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtInicioConsulta.Location = new System.Drawing.Point(8, 69);
-            this.dtInicioConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtInicioConsulta.Location = new System.Drawing.Point(6, 56);
             this.dtInicioConsulta.Name = "dtInicioConsulta";
-            this.dtInicioConsulta.Size = new System.Drawing.Size(211, 36);
+            this.dtInicioConsulta.Size = new System.Drawing.Size(159, 31);
             this.dtInicioConsulta.TabIndex = 19;
             this.dtInicioConsulta.Value = new System.DateTime(2019, 10, 1, 0, 0, 0, 0);
             // 
             // cbPlacaAbastConsulta
             // 
             this.cbPlacaAbastConsulta.FormattingEnabled = true;
-            this.cbPlacaAbastConsulta.Location = new System.Drawing.Point(395, 30);
-            this.cbPlacaAbastConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPlacaAbastConsulta.Location = new System.Drawing.Point(296, 25);
             this.cbPlacaAbastConsulta.Name = "cbPlacaAbastConsulta";
-            this.cbPlacaAbastConsulta.Size = new System.Drawing.Size(261, 39);
+            this.cbPlacaAbastConsulta.Size = new System.Drawing.Size(197, 33);
             this.cbPlacaAbastConsulta.TabIndex = 15;
             // 
             // lblDataAbastConsulta
             // 
             this.lblDataAbastConsulta.AutoSize = true;
-            this.lblDataAbastConsulta.Location = new System.Drawing.Point(3, 79);
-            this.lblDataAbastConsulta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDataAbastConsulta.Location = new System.Drawing.Point(2, 64);
             this.lblDataAbastConsulta.Name = "lblDataAbastConsulta";
-            this.lblDataAbastConsulta.Size = new System.Drawing.Size(55, 32);
+            this.lblDataAbastConsulta.Size = new System.Drawing.Size(42, 25);
             this.lblDataAbastConsulta.TabIndex = 29;
             this.lblDataAbastConsulta.Text = "Data:";
             // 
@@ -483,29 +450,26 @@
             this.dtDataAbastConsulta.CustomFormat = "dd/mm/yyyy";
             this.dtDataAbastConsulta.Font = new System.Drawing.Font("Calibri Light", 14.25F, System.Drawing.FontStyle.Italic);
             this.dtDataAbastConsulta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDataAbastConsulta.Location = new System.Drawing.Point(67, 79);
-            this.dtDataAbastConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtDataAbastConsulta.Location = new System.Drawing.Point(50, 64);
             this.dtDataAbastConsulta.Name = "dtDataAbastConsulta";
             this.dtDataAbastConsulta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtDataAbastConsulta.Size = new System.Drawing.Size(193, 36);
+            this.dtDataAbastConsulta.Size = new System.Drawing.Size(146, 31);
             this.dtDataAbastConsulta.TabIndex = 16;
             // 
             // cbTipoAbastConsulta
             // 
             this.cbTipoAbastConsulta.FormattingEnabled = true;
-            this.cbTipoAbastConsulta.Location = new System.Drawing.Point(67, 31);
-            this.cbTipoAbastConsulta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTipoAbastConsulta.Location = new System.Drawing.Point(50, 25);
             this.cbTipoAbastConsulta.Name = "cbTipoAbastConsulta";
-            this.cbTipoAbastConsulta.Size = new System.Drawing.Size(247, 39);
+            this.cbTipoAbastConsulta.Size = new System.Drawing.Size(186, 33);
             this.cbTipoAbastConsulta.TabIndex = 14;
             // 
             // lblTipoAbastConsulta
             // 
             this.lblTipoAbastConsulta.AutoSize = true;
-            this.lblTipoAbastConsulta.Location = new System.Drawing.Point(8, 34);
-            this.lblTipoAbastConsulta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTipoAbastConsulta.Location = new System.Drawing.Point(6, 28);
             this.lblTipoAbastConsulta.Name = "lblTipoAbastConsulta";
-            this.lblTipoAbastConsulta.Size = new System.Drawing.Size(51, 32);
+            this.lblTipoAbastConsulta.Size = new System.Drawing.Size(38, 25);
             this.lblTipoAbastConsulta.TabIndex = 26;
             this.lblTipoAbastConsulta.Text = "Tipo:";
             // 
@@ -521,10 +485,9 @@
             this.btnTrasferirAbast.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrasferirAbast.ForeColor = System.Drawing.Color.White;
             this.btnTrasferirAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrasferirAbast.Location = new System.Drawing.Point(769, 79);
-            this.btnTrasferirAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTrasferirAbast.Location = new System.Drawing.Point(577, 64);
             this.btnTrasferirAbast.Name = "btnTrasferirAbast";
-            this.btnTrasferirAbast.Size = new System.Drawing.Size(51, 49);
+            this.btnTrasferirAbast.Size = new System.Drawing.Size(38, 40);
             this.btnTrasferirAbast.TabIndex = 19;
             this.btnTrasferirAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrasferirAbast.UseVisualStyleBackColor = false;
@@ -535,11 +498,10 @@
             this.dgVeiculoAbast.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoAbast.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoAbast.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoAbast.Location = new System.Drawing.Point(9, 135);
-            this.dgVeiculoAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgVeiculoAbast.Location = new System.Drawing.Point(7, 110);
             this.dgVeiculoAbast.Name = "dgVeiculoAbast";
             this.dgVeiculoAbast.RowHeadersWidth = 51;
-            this.dgVeiculoAbast.Size = new System.Drawing.Size(811, 405);
+            this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 329);
             this.dgVeiculoAbast.TabIndex = 20;
             this.dgVeiculoAbast.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoAbast_CellContentClick);
             // 
@@ -553,10 +515,9 @@
             this.btnTodosAbast.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTodosAbast.ForeColor = System.Drawing.Color.White;
             this.btnTodosAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTodosAbast.Location = new System.Drawing.Point(525, 79);
-            this.btnTodosAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTodosAbast.Location = new System.Drawing.Point(394, 64);
             this.btnTodosAbast.Name = "btnTodosAbast";
-            this.btnTodosAbast.Size = new System.Drawing.Size(236, 49);
+            this.btnTodosAbast.Size = new System.Drawing.Size(177, 40);
             this.btnTodosAbast.TabIndex = 18;
             this.btnTodosAbast.Text = "Consultar p/ Data";
             this.btnTodosAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -574,10 +535,9 @@
             this.btnConsultarAbast.ForeColor = System.Drawing.Color.White;
             this.btnConsultarAbast.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarAbast.Image")));
             this.btnConsultarAbast.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultarAbast.Location = new System.Drawing.Point(323, 79);
-            this.btnConsultarAbast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsultarAbast.Location = new System.Drawing.Point(242, 64);
             this.btnConsultarAbast.Name = "btnConsultarAbast";
-            this.btnConsultarAbast.Size = new System.Drawing.Size(195, 49);
+            this.btnConsultarAbast.Size = new System.Drawing.Size(146, 40);
             this.btnConsultarAbast.TabIndex = 17;
             this.btnConsultarAbast.Text = "    Consultar";
             this.btnConsultarAbast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -587,21 +547,19 @@
             // lblPlacaConsulta
             // 
             this.lblPlacaConsulta.AutoSize = true;
-            this.lblPlacaConsulta.Location = new System.Drawing.Point(323, 34);
-            this.lblPlacaConsulta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlacaConsulta.Location = new System.Drawing.Point(242, 28);
             this.lblPlacaConsulta.Name = "lblPlacaConsulta";
-            this.lblPlacaConsulta.Size = new System.Drawing.Size(64, 32);
+            this.lblPlacaConsulta.Size = new System.Drawing.Size(48, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
             // Abastecimentos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 657);
+            this.ClientSize = new System.Drawing.Size(646, 534);
             this.Controls.Add(this.tbControlAbast);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Abastecimentos";
             this.Text = "Abastecimento";
             this.Load += new System.EventHandler(this.Abastecimento_Load);

@@ -46,7 +46,18 @@ namespace CamadaDesktop
         {
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
-            
+
+            cbTipoAbastConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoAbastConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbServicoExterno.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbServicoExterno.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlacaAbastConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlacaAbastConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             toolTipTransfere.SetToolTip(this.btnTrasferirAbast, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirAbast);
@@ -187,44 +198,56 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if(dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                if (cbPlacaAbastConsulta.Items.Count < 1)
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    try
+                    if (cbPlacaAbastConsulta.Items.Count < 1)
                     {
-                        List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("Placa", typeof(string));
-                        dt.Columns.Add("CNPJ", typeof(long));
-                        dt.Columns.Add("Tipo Combustível", typeof(string));
-                        dt.Columns.Add("Quantidade (Litros)", typeof(double));
-                        dt.Columns.Add("Valor (Total)", typeof(double));
-                        dt.Columns.Add("Data", typeof(DateTime));
-
-                        foreach (Abastecimento abastecimento in abastecimentos)
+                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        try
                         {
-                            dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
-                                                        , abastecimento.Data);
-                        }
-                        dgVeiculoAbast.DataSource = dt;
-                    }
-                    catch (ConcorrenciaBancoException ex)
-                    {
-                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
+                            List<Abastecimento> abastecimentos = _abastecimentoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
-            }           
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("Placa", typeof(string));
+                            dt.Columns.Add("CNPJ", typeof(long));
+                            dt.Columns.Add("Tipo Combustível", typeof(string));
+                            dt.Columns.Add("Quantidade (Litros)", typeof(double));
+                            dt.Columns.Add("Valor (Total)", typeof(double));
+                            dt.Columns.Add("Data", typeof(DateTime));
+
+                            foreach (Abastecimento abastecimento in abastecimentos)
+                            {
+                                dt.Rows.Add(abastecimento.Placa, abastecimento.CNPJ, abastecimento.Tipo.ToString(), abastecimento.Litros, abastecimento.Valor
+                                                            , abastecimento.Data);
+                            }
+                            dgVeiculoAbast.DataSource = dt;
+                        }
+                        catch (ConcorrenciaBancoException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+
+                }
+            }          
         }
 
         private void BtnTrasferirAbast_Click(object sender, EventArgs e)

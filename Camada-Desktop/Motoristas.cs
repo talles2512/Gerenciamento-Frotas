@@ -200,58 +200,70 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click_1(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Motorista> motoristas = _motoristaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("CPF", typeof(string));
-                    dt.Columns.Add("Nome", typeof(string));
-                    dt.Columns.Add("RG", typeof(string));
-                    dt.Columns.Add("Data Nascimento", typeof(DateTime));
-                    dt.Columns.Add("Endereço", typeof(string));
-                    dt.Columns.Add("Telefone", typeof(long));
-                    dt.Columns.Add("Telefone p/Recado", typeof(long));
-                    dt.Columns.Add("Situação", typeof(string));
-                    dt.Columns.Add("CNH Nº", typeof(long));
-                    dt.Columns.Add("Categoria CNH", typeof(string));
-                    dt.Columns.Add("Orgão Emissor", typeof(string));
-                    dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
-                    dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
-
-                    foreach (Motorista motorista in motoristas)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        string situacao = null;
+                        List<Motorista> motoristas = _motoristaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                        if (motorista.Situacao)
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("CPF", typeof(string));
+                        dt.Columns.Add("Nome", typeof(string));
+                        dt.Columns.Add("RG", typeof(string));
+                        dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                        dt.Columns.Add("Endereço", typeof(string));
+                        dt.Columns.Add("Telefone", typeof(long));
+                        dt.Columns.Add("Telefone p/Recado", typeof(long));
+                        dt.Columns.Add("Situação", typeof(string));
+                        dt.Columns.Add("CNH Nº", typeof(long));
+                        dt.Columns.Add("Categoria CNH", typeof(string));
+                        dt.Columns.Add("Orgão Emissor", typeof(string));
+                        dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
+                        dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
+
+                        foreach (Motorista motorista in motoristas)
                         {
-                            situacao = "Ativo";
-                        }
-                        else
-                        {
-                            situacao = "Inativo";
+                            string situacao = null;
+
+                            if (motorista.Situacao)
+                            {
+                                situacao = "Ativo";
+                            }
+                            else
+                            {
+                                situacao = "Inativo";
+                            }
+
+                            dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
+                                , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
+                                , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
+                                , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
                         }
 
-                        dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
-                            , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
-                            , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
-                            , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
+                        dgMotoristaConsulta.DataSource = dt;
+
                     }
-
-                    dgMotoristaConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
                 }
-                catch (ConcorrenciaBancoException)
-                {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                }
-            }
+            }           
         }
 
         private void btnTrasferirMotorista_Click(object sender, EventArgs e)
@@ -505,6 +517,15 @@ namespace CamadaDesktop
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         private void Motoristas_Load(object sender, EventArgs e)
         {
+            cbCategoriaCNH.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCategoriaCNH.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbOrgaoEmissor.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbOrgaoEmissor.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbSituacaoExame.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSituacaoExame.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirMotorista, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirMotorista);
             toolTipTransfereExam.SetToolTip(this.btnTransfereExame, "Transferir Dados");
@@ -621,36 +642,48 @@ namespace CamadaDesktop
 
         private void btnConsultaporDataExames_Click(object sender, EventArgs e)
         {
-            if (dtFimConsultaporDataExames.Value < dtInicioConsultaporDataExames.Value)
+            int mesinicialexames = dtInicioConsultaporDataExames.Value.Month;
+            int mesfinalexames = dtFimConsultaporDataExames.Value.Month;
+            int anoinicialexames = dtInicioConsultaporDataExames.Value.Year;
+            int anofinalexames = dtFimConsultaporDataExames.Value.Year;
+
+            if (mesfinalexames - mesinicialexames > 3 || anofinalexames - anoinicialexames > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsultaporDataExames.Value < dtInicioConsultaporDataExames.Value)
                 {
-                    List<ExameMedico> exames = _exameMedicoController.BuscarTodos(dtInicioConsultaporDataExames.Value, dtFimConsultaporDataExames.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Data", typeof(DateTime));
-                    dt.Columns.Add("Descrição", typeof(string));
-                    dt.Columns.Add("Situação Exame", typeof(string));
-                    dt.Columns.Add("CPF", typeof(string));
-
-
-                    foreach (ExameMedico exameMedico in exames)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
+                        List<ExameMedico> exames = _exameMedicoController.BuscarTodos(dtInicioConsultaporDataExames.Value, dtFimConsultaporDataExames.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Data", typeof(DateTime));
+                        dt.Columns.Add("Descrição", typeof(string));
+                        dt.Columns.Add("Situação Exame", typeof(string));
+                        dt.Columns.Add("CPF", typeof(string));
+
+
+                        foreach (ExameMedico exameMedico in exames)
+                        {
+                            dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
+                        }
+
+                        dgExameConsulta.DataSource = dt;
+
                     }
-
-                    dgExameConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
                 }
-                catch (ConcorrenciaBancoException)
-                {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                }
-            }
+            }           
         }
 
         private void btnTransfereExame_Click(object sender, EventArgs e)

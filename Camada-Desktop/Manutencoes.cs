@@ -45,6 +45,24 @@ namespace CamadaDesktop
 
         private void Manutencoes_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoManuntConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoManuntConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlacaConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlacaConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbServicoExterno.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbServicoExterno.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbSituacao.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSituacao.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirManunt, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirManunt);
 
@@ -182,48 +200,60 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                if (cbPlacaConsulta.Items.Count < 1)
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                if (cbServicoExterno.Items.Count < 1)
-                {
-                    MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    try
+                    if (cbPlacaConsulta.Items.Count < 1)
                     {
-                        List<Manutencao> manutencoes = _manutencaoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("Tipo", typeof(string));
-                        dt.Columns.Add("CNPJ", typeof(long));
-                        dt.Columns.Add("Placa", typeof(string));
-                        dt.Columns.Add("Descrição", typeof(string));
-                        dt.Columns.Add("Valor Manutenção", typeof(double));
-                        dt.Columns.Add("Data", typeof(DateTime));
-                        dt.Columns.Add("Situação", typeof(string));
-
-                        foreach (Manutencao manutencao in manutencoes)
-                        {
-                            dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
-                                , manutencao.Data, manutencao.Situacao.ToString());
-                        }
-                        dgVeiculoManunt.DataSource = dt;
+                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    catch (ConcorrenciaBancoException ex)
+                    if (cbServicoExterno.Items.Count < 1)
                     {
-                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Cadastre uma oficina antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            List<Manutencao> manutencoes = _manutencaoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("Tipo", typeof(string));
+                            dt.Columns.Add("CNPJ", typeof(long));
+                            dt.Columns.Add("Placa", typeof(string));
+                            dt.Columns.Add("Descrição", typeof(string));
+                            dt.Columns.Add("Valor Manutenção", typeof(double));
+                            dt.Columns.Add("Data", typeof(DateTime));
+                            dt.Columns.Add("Situação", typeof(string));
+
+                            foreach (Manutencao manutencao in manutencoes)
+                            {
+                                dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
+                                    , manutencao.Data, manutencao.Situacao.ToString());
+                            }
+                            dgVeiculoManunt.DataSource = dt;
+                        }
+                        catch (ConcorrenciaBancoException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                 }
-            }           
+            }                     
         }
 
         private void BtnTrasferirManunt_Click(object sender, EventArgs e)

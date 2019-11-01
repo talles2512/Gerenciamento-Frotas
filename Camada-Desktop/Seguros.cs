@@ -59,6 +59,30 @@ namespace CamadaDesktop
 
         private void Seguros_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbSeguradora.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSeguradora.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbItemSegurado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbItemSegurado.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbFranquia.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbFranquia.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoCobertura.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoCobertura.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbSeguro.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSeguro.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoCoberturaConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoCoberturaConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirSeguros, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirSeguros);
             toolTipTransfereCobertura.SetToolTip(this.btnTransfereCobertura, "Transferir Dados");
@@ -289,48 +313,60 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Seguro> seguros = _seguroController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Número Apólice", typeof(long));
-                    dt.Columns.Add("Seguradora", typeof(long));
-                    dt.Columns.Add("Tipo de Seguro", typeof(string));
-                    dt.Columns.Add("Item Segurado", typeof(string));
-                    dt.Columns.Add("Valor", typeof(double));
-                    dt.Columns.Add("Data Inicial", typeof(DateTime));
-                    dt.Columns.Add("Data Vencimento", typeof(DateTime));
-                    dt.Columns.Add("Tipo de Franquia", typeof(string));
-                    dt.Columns.Add("Valor da Franquia", typeof(double));
-
-                    foreach (Seguro seguro in seguros)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
+                        List<Seguro> seguros = _seguroController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                        if (seguro.Franquia != "")
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Número Apólice", typeof(long));
+                        dt.Columns.Add("Seguradora", typeof(long));
+                        dt.Columns.Add("Tipo de Seguro", typeof(string));
+                        dt.Columns.Add("Item Segurado", typeof(string));
+                        dt.Columns.Add("Valor", typeof(double));
+                        dt.Columns.Add("Data Inicial", typeof(DateTime));
+                        dt.Columns.Add("Data Vencimento", typeof(DateTime));
+                        dt.Columns.Add("Tipo de Franquia", typeof(string));
+                        dt.Columns.Add("Valor da Franquia", typeof(double));
+
+                        foreach (Seguro seguro in seguros)
                         {
-                            dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
-                                   seguro.Franquia, seguro.ValorFranquia);
+
+                            if (seguro.Franquia != "")
+                            {
+                                dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
+                                       seguro.Franquia, seguro.ValorFranquia);
+                            }
+                            else
+                            {
+                                dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia);
+                            }
                         }
-                        else
-                        {
-                            dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia);
-                        }
+                        dgSegurosConsulta.DataSource = dt;
                     }
-                    dgSegurosConsulta.DataSource = dt;
-                }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
 
-            }
+                }
+            }           
         }
 
         private void BtnTrasferirSeguros_Click(object sender, EventArgs e)
@@ -739,32 +775,44 @@ namespace CamadaDesktop
 
         private void btnConsultarporDataCobertura_Click(object sender, EventArgs e)
         {
-            if (dtFimConsultarporDataCobertura.Value < dtInicioConsultarporDataCobertura.Value)
+            int mesinicialcob = dtInicioConsultarporDataCobertura.Value.Month;
+            int mesfinalcob = dtFimConsultarporDataCobertura.Value.Month;
+            int anoinicialcob = dtInicioConsultarporDataCobertura.Value.Year;
+            int anofinalcob = dtFimConsultarporDataCobertura.Value.Year;
+
+            if (mesfinalcob - mesinicialcob > 3 || anofinalcob - anoinicialcob > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsultarporDataCobertura.Value < dtInicioConsultarporDataCobertura.Value)
                 {
-                    List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos(dtInicioConsultarporDataCobertura.Value, dtFimConsultarporDataCobertura.Value);
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Número Apólice", typeof(long));
-                    dt.Columns.Add("Tipo de Seguro", typeof(string));
-                    dt.Columns.Add("Descrição", typeof(string));
-
-                    foreach (SeguroCobertura seguroCobertura in seguroCoberturas)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
-                    }
+                        List<SeguroCobertura> seguroCoberturas = _seguroCoberturaController.BuscarTodos(dtInicioConsultarporDataCobertura.Value, dtFimConsultarporDataCobertura.Value);
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Número Apólice", typeof(long));
+                        dt.Columns.Add("Tipo de Seguro", typeof(string));
+                        dt.Columns.Add("Descrição", typeof(string));
 
-                    dgCoberturaConsulta.DataSource = dt;
+                        foreach (SeguroCobertura seguroCobertura in seguroCoberturas)
+                        {
+                            dt.Rows.Add(seguroCobertura.NumeroApolice, seguroCobertura.Tipo.ToString(), seguroCobertura.Descricao);
+                        }
+
+                        dgCoberturaConsulta.DataSource = dt;
+                    }
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+            }          
         }
 
         private void BtnTransfereCobertura_Click(object sender, EventArgs e)

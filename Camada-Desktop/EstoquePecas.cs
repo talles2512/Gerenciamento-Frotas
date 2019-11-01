@@ -124,35 +124,47 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click_1(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<EstoquePeca> pecas = _estoquePecasController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("ID", typeof(int));
-                    dt.Columns.Add("Valor", typeof(double));
-                    dt.Columns.Add("Quantidade", typeof(int));
-                    dt.Columns.Add("Descrição", typeof(string));
-
-                    foreach (EstoquePeca estoquePeca in pecas)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
+                        List<EstoquePeca> pecas = _estoquePecasController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("ID", typeof(int));
+                        dt.Columns.Add("Valor", typeof(double));
+                        dt.Columns.Add("Quantidade", typeof(int));
+                        dt.Columns.Add("Descrição", typeof(string));
+
+                        foreach (EstoquePeca estoquePeca in pecas)
+                        {
+                            dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
+                        }
+
+                        dgEstoqueConsulta.DataSource = dt;
+
                     }
-
-                    dgEstoqueConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+            }           
         }
 
         private void btnTrasferirEstoque_Click(object sender, EventArgs e)

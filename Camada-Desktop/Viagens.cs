@@ -62,6 +62,12 @@ namespace CamadaDesktop
 
         private void Viagens_Load(object sender, EventArgs e)
         {
+            cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbCPF.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCPF.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirViagens, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirViagens);
 
@@ -277,45 +283,57 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Viagem> viagens = _viagemController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Código Requisição", typeof(string));
-                    dt.Columns.Add("Veículo - Placa", typeof(string));
-                    dt.Columns.Add("Motorista - CPF", typeof(string));
-                    dt.Columns.Add("Ocupantes", typeof(string));
-                    dt.Columns.Add("Destino", typeof(string));
-                    dt.Columns.Add("Data/Hora Saída", typeof(DateTime));
-
-                    foreach (Viagem viagem in viagens)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        string existeOcupantes = null;
+                        List<Viagem> viagens = _viagemController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Código Requisição", typeof(string));
+                        dt.Columns.Add("Veículo - Placa", typeof(string));
+                        dt.Columns.Add("Motorista - CPF", typeof(string));
+                        dt.Columns.Add("Ocupantes", typeof(string));
+                        dt.Columns.Add("Destino", typeof(string));
+                        dt.Columns.Add("Data/Hora Saída", typeof(DateTime));
 
-                        if (viagem.Ocupante)
+                        foreach (Viagem viagem in viagens)
                         {
-                            existeOcupantes = "Sim";
-                        }
-                        else
-                        {
-                            existeOcupantes = "Não";
-                        }
-                        dt.Rows.Add(viagem.Requisicao, viagem.Placa, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+                            string existeOcupantes = null;
 
+                            if (viagem.Ocupante)
+                            {
+                                existeOcupantes = "Sim";
+                            }
+                            else
+                            {
+                                existeOcupantes = "Não";
+                            }
+                            dt.Rows.Add(viagem.Requisicao, viagem.Placa, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+
+                        }
+                        dgViagensConsulta.DataSource = dt;
                     }
-                    dgViagensConsulta.DataSource = dt;
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }            
+            }         
         }
 
         private void BtnTrasferirViagens_Click(object sender, EventArgs e)
@@ -641,30 +659,43 @@ namespace CamadaDesktop
 
         private void btnConsultarPorDataOcupantes_Click(object sender, EventArgs e)
         {
-            if (dtFimConsultarPorDataOcupantes.Value < dtInicioConsultarPorDataOcupantes.Value)
+            int mesinicialocup = dtInicioConsultarPorDataOcupantes.Value.Month;
+            int mesfinalocup = dtFimConsultarPorDataOcupantes.Value.Month;
+            int anoinicialocup = dtInicioConsultarPorDataOcupantes.Value.Year;
+            int anofinalocup = dtFimConsultarPorDataOcupantes.Value.Year;
+
+            if (mesfinalocup - mesinicialocup > 3 || anofinalocup - anoinicialocup > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsultarPorDataOcupantes.Value < dtInicioConsultarPorDataOcupantes.Value)
                 {
-                    List<Ocupante> ocupantes = _ocupanteController.BuscarTodos(dtInicioConsultarPorDataOcupantes.Value, dtFimConsultarPorDataOcupantes.Value);
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Requisição", typeof(int));
-                    dt.Columns.Add("Nome", typeof(string));
-                    dt.Columns.Add("CPF", typeof(string));
-
-                    foreach (Ocupante ocupante in ocupantes)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(ocupante.Requisicao, ocupante.Nome, ocupante.CPF);
+                        List<Ocupante> ocupantes = _ocupanteController.BuscarTodos(dtInicioConsultarPorDataOcupantes.Value, dtFimConsultarPorDataOcupantes.Value);
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Requisição", typeof(int));
+                        dt.Columns.Add("Nome", typeof(string));
+                        dt.Columns.Add("CPF", typeof(string));
+
+                        foreach (Ocupante ocupante in ocupantes)
+                        {
+                            dt.Rows.Add(ocupante.Requisicao, ocupante.Nome, ocupante.CPF);
+                        }
+                        dgOcupanteConsulta.DataSource = dt;
                     }
-                    dgOcupanteConsulta.DataSource = dt;
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+
             }
         }
 

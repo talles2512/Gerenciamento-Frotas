@@ -57,6 +57,18 @@ namespace CamadaDesktop
 
         private void Sinistros_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbItemSegurado.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbItemSegurado.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbSeguro.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSeguro.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             cbTipo.DataSource = Enum.GetValues(typeof(ItemSegurado));
             cbTipoConsulta.DataSource = Enum.GetValues(typeof(ItemSegurado));
             toolTipTransfere.SetToolTip(this.btnTrasferirSinistros, "Transferir Dados");
@@ -319,79 +331,91 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                string tipo;
-                if (cbTipoConsulta.SelectedItem.ToString() == "")
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                    string tipo;
+                    if (cbTipoConsulta.SelectedItem.ToString() == "")
                     {
-                        tipo = "Veiculo";
-
-                        try
-                        {
-                            List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                            DataTable dt = new DataTable();
-                            dt.Columns.Add("ID", typeof(int));
-                            dt.Columns.Add("Item Segurado - Placa", typeof(string));
-                            dt.Columns.Add("Nº Apólice", typeof(long));
-                            dt.Columns.Add("Data/Hora", typeof(DateTime));
-                            dt.Columns.Add("Descrição", typeof(string));
-
-                            foreach (Sinistro sinistro in sinistros)
-                            {
-
-                                dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
-                            }
-
-                            dgSinistrosConsulta.DataSource = dt;
-
-                        }
-                        catch (ConcorrenciaBancoException)
-                        {
-                            throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                        }
+                        MessageBox.Show("Selecione tipo para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
-                        tipo = "Motorista";
-
-                        try
+                        if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
                         {
-                            List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
+                            tipo = "Veiculo";
 
-                            DataTable dt = new DataTable();
-                            dt.Columns.Add("ID", typeof(int));
-                            dt.Columns.Add("Item Segurado - CPF", typeof(string));
-                            dt.Columns.Add("Nº Apólice", typeof(long));
-                            dt.Columns.Add("Data/Hora", typeof(DateTime));
-                            dt.Columns.Add("Descrição", typeof(string));
-
-                            foreach (Sinistro sinistro in sinistros)
+                            try
                             {
+                                List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                                dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add("ID", typeof(int));
+                                dt.Columns.Add("Item Segurado - Placa", typeof(string));
+                                dt.Columns.Add("Nº Apólice", typeof(long));
+                                dt.Columns.Add("Data/Hora", typeof(DateTime));
+                                dt.Columns.Add("Descrição", typeof(string));
+
+                                foreach (Sinistro sinistro in sinistros)
+                                {
+
+                                    dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                                }
+
+                                dgSinistrosConsulta.DataSource = dt;
+
                             }
-
-                            dgSinistrosConsulta.DataSource = dt;
-
+                            catch (ConcorrenciaBancoException)
+                            {
+                                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                            }
                         }
-                        catch (ConcorrenciaBancoException)
+                        else
                         {
-                            throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                            tipo = "Motorista";
+
+                            try
+                            {
+                                List<Sinistro> sinistros = _sinistroController.BuscarTodos(tipo, dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add("ID", typeof(int));
+                                dt.Columns.Add("Item Segurado - CPF", typeof(string));
+                                dt.Columns.Add("Nº Apólice", typeof(long));
+                                dt.Columns.Add("Data/Hora", typeof(DateTime));
+                                dt.Columns.Add("Descrição", typeof(string));
+
+                                foreach (Sinistro sinistro in sinistros)
+                                {
+
+                                    dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
+                                }
+
+                                dgSinistrosConsulta.DataSource = dt;
+
+                            }
+                            catch (ConcorrenciaBancoException)
+                            {
+                                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                            }
                         }
                     }
                 }
-            }          
+            }                  
         }
 
         private void btnTrasferirSinistros_Click(object sender, EventArgs e)

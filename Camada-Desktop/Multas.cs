@@ -53,6 +53,18 @@ namespace CamadaDesktop
 
         private void Multas_Load(object sender, EventArgs e)
         {
+            cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlacaMultasConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlacaMultasConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbCPF.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCPF.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbCPFMultasConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCPFMultasConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirMultas, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirMultas);
 
@@ -241,47 +253,59 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Multa> multas = _multaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Placa", typeof(string));
-                    dt.Columns.Add("CPF", typeof(string));
-                    dt.Columns.Add("Descrição", typeof(string));
-                    dt.Columns.Add("Local", typeof(string));
-                    dt.Columns.Add("Data Ocorrencia", typeof(DateTime));
-                    dt.Columns.Add("Valor", typeof(double));
-                    dt.Columns.Add("Pago", typeof(string));
-                    dt.Columns.Add("Data Pagamento", typeof(DateTime));
-
-                    string situacao = null;
-
-                    foreach (Multa multa in multas)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        if (multa.Paga)
+                        List<Multa> multas = _multaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Placa", typeof(string));
+                        dt.Columns.Add("CPF", typeof(string));
+                        dt.Columns.Add("Descrição", typeof(string));
+                        dt.Columns.Add("Local", typeof(string));
+                        dt.Columns.Add("Data Ocorrencia", typeof(DateTime));
+                        dt.Columns.Add("Valor", typeof(double));
+                        dt.Columns.Add("Pago", typeof(string));
+                        dt.Columns.Add("Data Pagamento", typeof(DateTime));
+
+                        string situacao = null;
+
+                        foreach (Multa multa in multas)
                         {
-                            situacao = "Sim";
+                            if (multa.Paga)
+                            {
+                                situacao = "Sim";
+                            }
+                            else
+                            {
+                                situacao = "Não";
+                            }
+                            dt.Rows.Add(multa.Veiculo.Placa, multa.Motorista.CPF, multa.Descricao, multa.Local, multa.DataOcorrencia, multa.Valor, situacao, multa.MultasPagas);
                         }
-                        else
-                        {
-                            situacao = "Não";
-                        }
-                        dt.Rows.Add(multa.Veiculo.Placa, multa.Motorista.CPF, multa.Descricao, multa.Local, multa.DataOcorrencia, multa.Valor, situacao, multa.MultasPagas);
+                        dgMultasConsulta.DataSource = dt;
                     }
-                    dgMultasConsulta.DataSource = dt;
+                    catch (ConcorrenciaBancoException)
+                    {
+                        throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                    }
                 }
-                catch (ConcorrenciaBancoException)
-                {
-                    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-                }
-            }
+            }        
         }
 
         private void btnTrasferirMultas_Click(object sender, EventArgs e)

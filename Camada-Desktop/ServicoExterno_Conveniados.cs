@@ -59,6 +59,9 @@ namespace CamadaDesktop
 
         private void ServicoExterno_Conveniados_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirConveniado, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirConveniado);
             cbTipo.DataSource = Enum.GetValues(typeof(TipoServicoExterno));
@@ -222,62 +225,74 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<ServicoExterno> servicoExternos = _servicoExternoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("CNPJ", typeof(long));
-                    dt.Columns.Add("Tipo", typeof(string));
-                    dt.Columns.Add("Nome", typeof(string));
-                    dt.Columns.Add("Telefone", typeof(long));
-                    dt.Columns.Add("Email", typeof(string));
-                    dt.Columns.Add("Endereço", typeof(string));
-                    dt.Columns.Add("Conveniado", typeof(string));
-                    dt.Columns.Add("Valor Convênio", typeof(double));
-                    dt.Columns.Add("Data Inicio", typeof(DateTime));
-                    dt.Columns.Add("Data Vencimento", typeof(DateTime));
-
-                    foreach (ServicoExterno servicoExterno in servicoExternos)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        string conveniado = null;
+                        List<ServicoExterno> servicoExternos = _servicoExternoController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
 
-                        if (servicoExterno.Conveniado)
-                        {
-                            conveniado = "Sim";
-                        }
-                        else
-                        {
-                            conveniado = "Não";
-                        }
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("CNPJ", typeof(long));
+                        dt.Columns.Add("Tipo", typeof(string));
+                        dt.Columns.Add("Nome", typeof(string));
+                        dt.Columns.Add("Telefone", typeof(long));
+                        dt.Columns.Add("Email", typeof(string));
+                        dt.Columns.Add("Endereço", typeof(string));
+                        dt.Columns.Add("Conveniado", typeof(string));
+                        dt.Columns.Add("Valor Convênio", typeof(double));
+                        dt.Columns.Add("Data Inicio", typeof(DateTime));
+                        dt.Columns.Add("Data Vencimento", typeof(DateTime));
 
-                        if (servicoExterno.ServicoExternoConveniado == null)
+                        foreach (ServicoExterno servicoExterno in servicoExternos)
                         {
-                            dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
-                                , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado);
+                            string conveniado = null;
+
+                            if (servicoExterno.Conveniado)
+                            {
+                                conveniado = "Sim";
+                            }
+                            else
+                            {
+                                conveniado = "Não";
+                            }
+
+                            if (servicoExterno.ServicoExternoConveniado == null)
+                            {
+                                dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                                    , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado);
+                            }
+                            else
+                            {
+                                dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                                    , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado
+                                    , servicoExterno.ServicoExternoConveniado.Valor, servicoExterno.ServicoExternoConveniado.DataInicio
+                                    , servicoExterno.ServicoExternoConveniado.DataVencimento);
+                            }
                         }
-                        else
-                        {
-                            dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
-                                , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado
-                                , servicoExterno.ServicoExternoConveniado.Valor, servicoExterno.ServicoExternoConveniado.DataInicio
-                                , servicoExterno.ServicoExternoConveniado.DataVencimento);
-                        }
+                        dgConveniadoConsulta.DataSource = dt;
+
                     }
-                    dgConveniadoConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+            }           
         }
 
         private void BtnTrasferirConveniado_Click(object sender, EventArgs e)

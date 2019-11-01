@@ -41,8 +41,12 @@ namespace CamadaDesktop
 
         private void Funcionarios_Load(object sender, EventArgs e)
         {
+            cbPerfilAcesso.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPerfilAcesso.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirFuncionario, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirFuncionario);
+
             cbPerfilAcesso.DataSource = Enum.GetValues(typeof(PerfilAcesso));
             AtualizarCor();
         }
@@ -128,36 +132,47 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    List<Funcionario> funcionarios = _funcionarioController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Nome", typeof(string));
-                    dt.Columns.Add("Login", typeof(string));
-                    dt.Columns.Add("Senha", typeof(string));
-                    dt.Columns.Add("Perfil de Acesso", typeof(string));
-
-                    foreach (Funcionario funcionario in funcionarios)
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
                     {
-                        dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
+                        List<Funcionario> funcionarios = _funcionarioController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("Nome", typeof(string));
+                        dt.Columns.Add("Login", typeof(string));
+                        dt.Columns.Add("Senha", typeof(string));
+                        dt.Columns.Add("Perfil de Acesso", typeof(string));
+
+                        foreach (Funcionario funcionario in funcionarios)
+                        {
+                            dt.Rows.Add(funcionario.Nome, funcionario.Login, funcionario.Senha, funcionario.PerfilAcesso.ToString());
+                        }
+
+                        dgFuncionarioConsulta.DataSource = dt;
+
                     }
-
-                    dgFuncionarioConsulta.DataSource = dt;
-
+                    catch (ConcorrenciaBancoException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch (ConcorrenciaBancoException ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-
+            }          
         }
         
 

@@ -46,6 +46,27 @@ namespace CamadaDesktop
 
         private void EntradaSaida_Load(object sender, EventArgs e)
         {
+            cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbTipoConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbTipoConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbPlacaConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbPlacaConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbServicoExterno.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbServicoExterno.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbServicoExternoEntradaSaidaConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbServicoExternoEntradaSaidaConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            cbCPF.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCPF.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             toolTipTransfere.SetToolTip(this.btnTrasferirEntradaSaida, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirEntradaSaida);
 
@@ -201,45 +222,57 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            if (dtFimConsulta.Value < dtInicioConsulta.Value)
+            int mesinicial = dtInicioConsulta.Value.Month;
+            int mesfinal = dtFimConsulta.Value.Month;
+            int anoinicial = dtInicioConsulta.Value.Year;
+            int anofinal = dtFimConsulta.Value.Year;
+
+            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
             {
-                MessageBox.Show("A Data Final deve ser maior que a data de Início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                if (cbPlacaConsulta.Items.Count < 1)
+                if (dtFimConsulta.Value < dtInicioConsulta.Value)
                 {
-                    MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                if (cbServicoExterno.Items.Count < 1)
-                {
-                    MessageBox.Show("Cadastre uma garagem / estacionamento antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("A Data final deve ser maior que a data de início!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    try
+                    if (cbPlacaConsulta.Items.Count < 1)
                     {
-                        List<EntradaSaida> entradasSaidas = _entradaSaidaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
-
-                        DataTable dt = new DataTable();
-                        dt.Columns.Add("Tipo", typeof(string));
-                        dt.Columns.Add("Placa", typeof(string));
-                        dt.Columns.Add("CNPJ", typeof(long));
-                        dt.Columns.Add("CPF", typeof(string));
-                        dt.Columns.Add("Data/Hora", typeof(DateTime));
-
-                        foreach (EntradaSaida entradaSaida in entradasSaidas)
-                        {
-                            dt.Rows.Add(entradaSaida.Tipo.ToString(), entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.CPF, entradaSaida.DataHora);
-                        }
-                        dgEntradaSaidaConsulta.DataSource = dt;
+                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    catch (ConcorrenciaBancoException ex)
+                    if (cbServicoExterno.Items.Count < 1)
                     {
-                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Cadastre uma garagem / estacionamento antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            List<EntradaSaida> entradasSaidas = _entradaSaidaController.BuscarTodos(dtInicioConsulta.Value, dtFimConsulta.Value);
+
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("Tipo", typeof(string));
+                            dt.Columns.Add("Placa", typeof(string));
+                            dt.Columns.Add("CNPJ", typeof(long));
+                            dt.Columns.Add("CPF", typeof(string));
+                            dt.Columns.Add("Data/Hora", typeof(DateTime));
+
+                            foreach (EntradaSaida entradaSaida in entradasSaidas)
+                            {
+                                dt.Rows.Add(entradaSaida.Tipo.ToString(), entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.CPF, entradaSaida.DataHora);
+                            }
+                            dgEntradaSaidaConsulta.DataSource = dt;
+                        }
+                        catch (ConcorrenciaBancoException ex)
+                        {
+                            MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
                 }
-            }          
+            }                    
         }
 
         private void BtnTrasferirEntradaSaida_Click(object sender, EventArgs e)
