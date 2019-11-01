@@ -367,7 +367,11 @@ namespace CamadaDesktop
 
         private void DgVeiculoConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            if (dgVeiculoConsulta.DataSource == null)
+            {
+
+            }
+            else if (dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString() == "")
             {
                 MessageBox.Show("Selecione uma linha válida!");
             }

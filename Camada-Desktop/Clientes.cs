@@ -19,6 +19,7 @@ namespace CamadaDesktop
     public partial class Clientes : Form
     {
         private readonly ClienteController _clienteController;
+        private List<Cliente> ListaClientes;
         private Cliente Cliente;
         string cpfantigo;
 
@@ -40,6 +41,8 @@ namespace CamadaDesktop
 
         private void Clientes_Load(object sender, EventArgs e)
         {
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome, CPF ou email do Cliente.");
+            tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirClientes, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirClientes);
             AtualizarCor();
@@ -190,7 +193,7 @@ namespace CamadaDesktop
                             dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
                                 , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
                         }
-
+                        ListaClientes = clientes;
                         dgClientesConsulta.DataSource = dt;
 
                     }
@@ -237,34 +240,48 @@ namespace CamadaDesktop
 
         private void dgClientesConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Cliente == null)
+            if (dgClientesConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgClientesConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtCPF.Text = Cliente.CPF;
-                cpfantigo = Cliente.CPF;
-                txtNome.Text = Cliente.Nome;
-                txtRG.Text = Cliente.RG;
-                txtEndereço.Text = Cliente.Endereco;
-                txtTelefone.Text = Cliente.Telefone.ToString();
-                txtemail.Text = Cliente.Email;
-                dtDataNascimento.Value = Cliente.DataNascimento;
-                lblrecebedata.Text = Cliente.DataInicioContrato.ToString();
+                string cpf = dgClientesConsulta.CurrentRow.Cells[0].Value.ToString();
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlClientes.SelectTab("tbPageCadastroClientes");
-                if (tbControlClientes.SelectedTab == tbPageCadastroClientes)
+                foreach (Cliente cliente in ListaClientes)
                 {
-                    txtCPFClientesConsulta.Text = "";
-                    Cliente = null;
+                    if (cliente.CPF == cpf)
+                    {
+                        txtCPF.Text = cliente.CPF;
+                        cpfantigo = cliente.CPF;
+                        txtNome.Text = cliente.Nome;
+                        txtRG.Text = cliente.RG;
+                        txtEndereço.Text = cliente.Endereco;
+                        txtTelefone.Text = cliente.Telefone.ToString();
+                        txtemail.Text = cliente.Email;
+                        dtDataNascimento.Value = cliente.DataNascimento;
+                        lblrecebedata.Text = cliente.DataInicioContrato.ToString();
 
-                    btnCadastrarClientes.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarClientes.Enabled = true;
-                    btnExcluirClientes.Enabled = true;
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlClientes.SelectTab("tbPageCadastroClientes");
+                        if (tbControlClientes.SelectedTab == tbPageCadastroClientes)
+                        {
+                            txtCPFClientesConsulta.Text = "";
+                            Cliente = null;
+
+                            btnCadastrarClientes.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarClientes.Enabled = true;
+                            btnExcluirClientes.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgClientesConsulta.DataSource = null;
             }
         }
 
@@ -420,6 +437,37 @@ namespace CamadaDesktop
                 btnExcluirClientes.Enabled = false;
 
                 Cliente = null;
+            }
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Cliente> clientes = _clienteController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("CPF", typeof(string));
+                dt.Columns.Add("Nome", typeof(string));
+                dt.Columns.Add("RG", typeof(string));
+                dt.Columns.Add("Endereço", typeof(string));
+                dt.Columns.Add("e-mail", typeof(string));
+                dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                dt.Columns.Add("Data Inicio Contrato", typeof(DateTime));
+
+                foreach (Cliente cliente in clientes)
+                {
+
+                    dt.Rows.Add(cliente.CPF, cliente.Nome, cliente.RG
+                        , cliente.Endereco, cliente.Email, cliente.DataNascimento, cliente.DataInicioContrato);
+                }
+                ListaClientes = clientes;
+                dgClientesConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

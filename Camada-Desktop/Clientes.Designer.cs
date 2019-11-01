@@ -69,6 +69,9 @@
             this.btnTodosClientes = new System.Windows.Forms.Button();
             this.btnConsultarClientes = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlClientes.SuspendLayout();
             this.tbPageCadastroClientes.SuspendLayout();
             this.gbDadosClientes.SuspendLayout();
@@ -352,6 +355,8 @@
             // 
             // gbConsultaClientes
             // 
+            this.gbConsultaClientes.Controls.Add(this.textPesquisar);
+            this.gbConsultaClientes.Controls.Add(this.lbPesquisar);
             this.gbConsultaClientes.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaClientes.Controls.Add(this.lblrecebedata);
             this.gbConsultaClientes.Controls.Add(this.txtCPFClientesConsulta);
@@ -507,10 +512,10 @@
             this.dgClientesConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgClientesConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgClientesConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgClientesConsulta.Location = new System.Drawing.Point(7, 68);
+            this.dgClientesConsulta.Location = new System.Drawing.Point(7, 109);
             this.dgClientesConsulta.Name = "dgClientesConsulta";
             this.dgClientesConsulta.ReadOnly = true;
-            this.dgClientesConsulta.Size = new System.Drawing.Size(608, 426);
+            this.dgClientesConsulta.Size = new System.Drawing.Size(608, 385);
             this.dgClientesConsulta.TabIndex = 18;
             this.dgClientesConsulta.DoubleClick += new System.EventHandler(this.dgClientesConsulta_DoubleClick);
             // 
@@ -552,6 +557,23 @@
             this.btnConsultarClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarClientes.UseVisualStyleBackColor = false;
             this.btnConsultarClientes.Click += new System.EventHandler(this.btnConsultarClientes_Click);
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(97, 71);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
+            this.textPesquisar.TabIndex = 36;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(16, 74);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 35;
+            this.lbPesquisar.Text = "Pesquisar:";
             // 
             // Clientes
             // 
@@ -620,5 +642,8 @@
         private System.Windows.Forms.DateTimePicker dtFimConsulta;
         private System.Windows.Forms.ToolTip toolTipTransfere;
         private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.ToolTip tooltipPesquisar;
     }
 }

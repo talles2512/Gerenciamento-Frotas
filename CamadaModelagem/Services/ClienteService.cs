@@ -92,8 +92,20 @@ namespace CamadaModelagem.Services
             {
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
+        }
 
-
+        public List<Cliente> Pesquisar(string buscar)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            try
+            {
+                clientes.AddRange(_clienteDAL.Pesquisar(buscar));
+                return clientes;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

@@ -120,5 +120,38 @@ namespace CamadaModelagem.Data
             }
 
         }
+
+        public List<Cliente> Pesquisar(string busca)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            if (busca == "")
+            {
+                return clientes;
+            }
+            string query = "SELECT * FROM[dbo].[TB_CLIENTES] WHERE(CLT_CPF LIKE '%" + busca + "%'" +
+                " OR CLT_NOME LIKE '%" + busca + "%' OR CLT_EMAIL LIKE '%" + busca + "%')";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Cliente cliente = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    DateTime dtnascimento = Convert.ToDateTime(dr["CLT_DTNASCIMENTO"].ToString());
+                    DateTime dtiniciocontrato = Convert.ToDateTime(dr["CLT_DTINICIO_CONTRATO"].ToString());
+                    long telefone = long.Parse(dr["CLT_TELEFONE"].ToString());
+
+                    cliente = new Cliente(dr["CLT_CPF"].ToString(), dr["CLT_NOME"].ToString(), dr["CLT_RG"].ToString(), dr["CLT_ENDERECO"].ToString(), telefone, dr["CLT_EMAIL"].ToString(), dtnascimento, dtiniciocontrato);
+
+                    clientes.Add(cliente);
+                }
+
+                return clientes;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
     }
 }
