@@ -205,7 +205,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgFuncionarioConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgFuncionarioConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Funcionario == null)
             {

@@ -752,7 +752,7 @@
             this.dgMotoristaConsulta.ReadOnly = true;
             this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 426);
             this.dgMotoristaConsulta.TabIndex = 18;
-            this.dgMotoristaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMotoristaConsulta_CellContentClick);
+            this.dgMotoristaConsulta.DoubleClick += new System.EventHandler(this.dgMotoristaConsulta_DoubleClick);
             // 
             // btnTodosMotorista
             // 
@@ -957,7 +957,7 @@
             this.dgExameConsulta.ReadOnly = true;
             this.dgExameConsulta.Size = new System.Drawing.Size(604, 153);
             this.dgExameConsulta.TabIndex = 25;
-            this.dgExameConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgExameConsulta_CellContentClick);
+            this.dgExameConsulta.DoubleClick += new System.EventHandler(this.dgExameConsulta_DoubleClick);
             // 
             // btnConsultaTodosExame
             // 

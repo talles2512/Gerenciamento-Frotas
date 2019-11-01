@@ -410,7 +410,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgSegurosConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgSegurosConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Seguro == null)
             {
@@ -845,7 +845,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgCoberturaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgCoberturaConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (SeguroCobertura == null)
             {

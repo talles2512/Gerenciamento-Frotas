@@ -235,7 +235,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgClientesConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgClientesConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Cliente == null)
             {
@@ -244,6 +244,7 @@ namespace CamadaDesktop
             else
             {
                 txtCPF.Text = Cliente.CPF;
+                cpfantigo = Cliente.CPF;
                 txtNome.Text = Cliente.Nome;
                 txtRG.Text = Cliente.RG;
                 txtEndereço.Text = Cliente.Endereco;

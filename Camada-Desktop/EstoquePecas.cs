@@ -196,7 +196,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgEstoqueConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgEstoqueConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (EstoquePeca == null)
             {
@@ -223,6 +223,7 @@ namespace CamadaDesktop
                     btnExcluirEstoque.Enabled = true;
                 }
             }
+
         }
 
         private void btnAlterarEstoque_Click(object sender, EventArgs e)

@@ -598,7 +598,7 @@
             this.dgSegurosConsulta.ReadOnly = true;
             this.dgSegurosConsulta.Size = new System.Drawing.Size(608, 382);
             this.dgSegurosConsulta.TabIndex = 18;
-            this.dgSegurosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSegurosConsulta_CellContentClick);
+            this.dgSegurosConsulta.DoubleClick += new System.EventHandler(this.dgSegurosConsulta_DoubleClick);
             // 
             // btnTodosSeguros
             // 
@@ -820,7 +820,7 @@
             this.dgCoberturaConsulta.ReadOnly = true;
             this.dgCoberturaConsulta.Size = new System.Drawing.Size(614, 183);
             this.dgCoberturaConsulta.TabIndex = 25;
-            this.dgCoberturaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCoberturaConsulta_CellContentClick);
+            this.dgCoberturaConsulta.DoubleClick += new System.EventHandler(this.dgCoberturaConsulta_DoubleClick);
             // 
             // btnConsultaTodosCobertura
             // 

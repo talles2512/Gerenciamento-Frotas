@@ -523,7 +523,7 @@
             this.dgVeiculoManunt.ReadOnly = true;
             this.dgVeiculoManunt.Size = new System.Drawing.Size(608, 323);
             this.dgVeiculoManunt.TabIndex = 20;
-            this.dgVeiculoManunt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoManunt_CellContentClick);
+            this.dgVeiculoManunt.DoubleClick += new System.EventHandler(this.dgVeiculoManunt_DoubleClick);
             // 
             // btnTodosManunt
             // 

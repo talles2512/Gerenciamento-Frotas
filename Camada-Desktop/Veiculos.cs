@@ -365,6 +365,71 @@ namespace CamadaDesktop
             }
         }
 
+        private void DgVeiculoConsulta_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
+            }
+            else
+            {
+                string placa = dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString();
+
+                foreach (Veiculo veiculo in ListaVeiculos)
+                {
+                    if (veiculo.Placa == placa)
+                    {
+                        txtValor.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
+
+                        PlacaAntiga = veiculo.Placa;
+                        DateTime ano = new DateTime(veiculo.Ano, DateTime.Now.Month, DateTime.Now.Day);
+                        txtPlaca.Text = veiculo.Placa;
+                        txtMarca.Text = veiculo.Marca;
+                        dtAno.Value = ano;
+                        txtModelo.Text = veiculo.Modelo;
+                        txtChassi.Text = veiculo.Chassi;
+                        cbCor.SelectedItem = veiculo.Cor;
+                        cbCor.Text = veiculo.Cor.ToString();
+                        cbCombustivel.SelectedItem = veiculo.Combustivel;
+                        cbCombustivel.Text = veiculo.Combustivel.ToString();
+
+                        if (veiculo.Alugado)
+                        {
+                            rdAlugado.Checked = true;
+                            txtValor.Enabled = true;
+                            dtInicio.Enabled = true;
+                            dtVencimento.Checked = true;
+
+                            txtValor.Text = veiculo.VeiculoAlugado.Valor.ToString();
+                            dtInicio.Value = veiculo.VeiculoAlugado.DataInicio;
+                            dtVencimento.Value = veiculo.VeiculoAlugado.DataVencimento;
+                        }
+                        else
+                        {
+                            rdNaoAlugado.Checked = true;
+                        }
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlVeiculos.SelectTab("tbPageCadastroVeiculo");
+                        if (tbControlVeiculos.SelectedTab == tbPageCadastroVeiculo)
+                        {
+                            txtPlacaConsulta.Text = "";
+                            Veiculo = null;
+
+                            btnCadastrarVeiculo.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarVeiculo.Enabled = true;
+                            btnExcluirVeiculo.Enabled = true;
+                        }
+                    }
+                }
+                textPesquisar.Text = "";
+                dgVeiculoConsulta.DataSource = null;
+            }
+        }
+
         private void BtnAlterarVeiculo_Click(object sender, EventArgs e)
         {
             if (txtPlaca.Text == "" || txtChassi.Text == "" || txtChassi.Text.Length < 17 || txtMarca.Text == "" || txtModelo.Text == "")
@@ -609,71 +674,6 @@ namespace CamadaDesktop
 
                 Veiculo = null;
             }
-        }
-
-        private void DgVeiculoConsulta_DoubleClick(object sender, EventArgs e)
-        {
-            if(dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString() == "")
-            {
-                MessageBox.Show("Selecione uma linha válida!");
-            }
-            else
-            {
-                string placa = dgVeiculoConsulta.CurrentRow.Cells[0].Value.ToString();
-
-                foreach(Veiculo veiculo in ListaVeiculos)
-                {
-                    if(veiculo.Placa == placa)
-                    {
-                        txtValor.Text = "";
-                        dtInicio.Value = DateTime.Now;
-                        dtVencimento.Value = DateTime.Now;
-
-                        PlacaAntiga = veiculo.Placa;
-                        DateTime ano = new DateTime(veiculo.Ano, DateTime.Now.Month, DateTime.Now.Day);
-                        txtPlaca.Text = veiculo.Placa;
-                        txtMarca.Text = veiculo.Marca;
-                        dtAno.Value = ano;
-                        txtModelo.Text = veiculo.Modelo;
-                        txtChassi.Text = veiculo.Chassi;
-                        cbCor.SelectedItem = veiculo.Cor;
-                        cbCor.Text = veiculo.Cor.ToString();
-                        cbCombustivel.SelectedItem = veiculo.Combustivel;
-                        cbCombustivel.Text = veiculo.Combustivel.ToString();
-
-                        if (veiculo.Alugado)
-                        {
-                            rdAlugado.Checked = true;
-                            txtValor.Enabled = true;
-                            dtInicio.Enabled = true;
-                            dtVencimento.Checked = true;
-
-                            txtValor.Text = veiculo.VeiculoAlugado.Valor.ToString();
-                            dtInicio.Value = veiculo.VeiculoAlugado.DataInicio;
-                            dtVencimento.Value = veiculo.VeiculoAlugado.DataVencimento;
-                        }
-                        else
-                        {
-                            rdNaoAlugado.Checked = true;
-                        }
-
-                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                        tbControlVeiculos.SelectTab("tbPageCadastroVeiculo");
-                        if (tbControlVeiculos.SelectedTab == tbPageCadastroVeiculo)
-                        {
-                            txtPlacaConsulta.Text = "";
-                            Veiculo = null;
-
-                            btnCadastrarVeiculo.Visible = false;
-                            lblCancelar.Visible = true;
-                            btnAlterarVeiculo.Enabled = true;
-                            btnExcluirVeiculo.Enabled = true;
-                        }
-                    }
-                }
-                textPesquisar.Text = "";
-                dgVeiculoConsulta.DataSource = null;
-            }
-        }
+        }       
     }
 }

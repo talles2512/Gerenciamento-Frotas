@@ -581,7 +581,7 @@
             this.dgViagensConsulta.ReadOnly = true;
             this.dgViagensConsulta.Size = new System.Drawing.Size(608, 433);
             this.dgViagensConsulta.TabIndex = 18;
-            this.dgViagensConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgViagensConsulta_CellContentClick);
+            this.dgViagensConsulta.DoubleClick += new System.EventHandler(this.dgViagensConsulta_DoubleClick);
             // 
             // btnTodasViagens
             // 

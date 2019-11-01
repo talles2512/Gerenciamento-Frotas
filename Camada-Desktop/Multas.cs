@@ -353,7 +353,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgMultasConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgMultasConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Multa == null)
             {
@@ -396,6 +396,7 @@ namespace CamadaDesktop
                     btnExcluirVeiculo.Enabled = true;
                 }
             }
+
         }
 
         private void btnAlterarVeiculo_Click(object sender, EventArgs e)

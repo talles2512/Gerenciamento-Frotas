@@ -423,7 +423,7 @@
             this.dgEstoqueConsulta.ReadOnly = true;
             this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 372);
             this.dgEstoqueConsulta.TabIndex = 18;
-            this.dgEstoqueConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEstoqueConsulta_CellContentClick);
+            this.dgEstoqueConsulta.DoubleClick += new System.EventHandler(this.dgEstoqueConsulta_DoubleClick);
             // 
             // btnTodosEstoque
             // 

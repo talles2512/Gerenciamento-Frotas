@@ -288,7 +288,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgVeiculoAbast_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgVeiculoAbast_DoubleClick(object sender, EventArgs e)
         {
             if (Abastecimento == null)
             {
@@ -313,6 +313,10 @@ namespace CamadaDesktop
                 {
                     dtDataAbastConsulta.Value = DateTime.Now;
                     Abastecimento = null;
+
+                    cbTipoAbastConsulta.Text = "";
+                    cbPlacaAbastConsulta.Text = "";
+                    dtDataAbastConsulta.Value = DateTime.Now;
 
                     btnCadastrarAbast.Visible = false;
                     lblCancelar.Visible = true;

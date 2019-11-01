@@ -33,6 +33,7 @@
             this.tbControlFuncionario = new System.Windows.Forms.TabControl();
             this.tbPageCadastroFuncionario = new System.Windows.Forms.TabPage();
             this.gbDadosFuncionario = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.lblPerfilAcesso = new System.Windows.Forms.Label();
             this.cbPerfilAcesso = new System.Windows.Forms.ComboBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -60,7 +61,6 @@
             this.btnTodosFuncionario = new System.Windows.Forms.Button();
             this.btnConsultarFuncionario = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlFuncionario.SuspendLayout();
             this.tbPageCadastroFuncionario.SuspendLayout();
             this.gbDadosFuncionario.SuspendLayout();
@@ -114,6 +114,22 @@
             this.gbDadosFuncionario.TabIndex = 1;
             this.gbDadosFuncionario.TabStop = false;
             this.gbDadosFuncionario.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(267, 253);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 49;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // lblPerfilAcesso
             // 
@@ -404,7 +420,7 @@
             this.dgFuncionarioConsulta.Name = "dgFuncionarioConsulta";
             this.dgFuncionarioConsulta.Size = new System.Drawing.Size(608, 372);
             this.dgFuncionarioConsulta.TabIndex = 18;
-            this.dgFuncionarioConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFuncionarioConsulta_CellContentClick);
+            this.dgFuncionarioConsulta.DoubleClick += new System.EventHandler(this.dgFuncionarioConsulta_DoubleClick);
             // 
             // btnTodosFuncionario
             // 
@@ -444,22 +460,6 @@
             this.btnConsultarFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;
             this.btnConsultarFuncionario.Click += new System.EventHandler(this.btnConsultarFuncionario_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(267, 253);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 49;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Funcionarios
             // 

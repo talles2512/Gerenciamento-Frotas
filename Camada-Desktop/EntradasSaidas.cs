@@ -314,7 +314,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgEntradaSaidaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgEntradaSaidaConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (EntradaSaida == null)
             {

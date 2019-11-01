@@ -505,7 +505,7 @@
             this.dgVeiculoAbast.RowHeadersWidth = 51;
             this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 329);
             this.dgVeiculoAbast.TabIndex = 20;
-            this.dgVeiculoAbast.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoAbast_CellContentClick);
+            this.dgVeiculoAbast.DoubleClick += new System.EventHandler(this.dgVeiculoAbast_DoubleClick);
             // 
             // btnTodosAbast
             // 

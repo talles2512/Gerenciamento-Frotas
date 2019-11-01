@@ -513,7 +513,7 @@
             this.dgEntradaSaidaConsulta.ReadOnly = true;
             this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
             this.dgEntradaSaidaConsulta.TabIndex = 21;
-            this.dgEntradaSaidaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEntradaSaidaConsulta_CellContentClick);
+            this.dgEntradaSaidaConsulta.DoubleClick += new System.EventHandler(this.dgEntradaSaidaConsulta_DoubleClick);
             // 
             // btnTodosEntradaSaida
             // 

@@ -576,7 +576,7 @@
             this.dgConveniadoConsulta.ReadOnly = true;
             this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 419);
             this.dgConveniadoConsulta.TabIndex = 18;
-            this.dgConveniadoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgConveniadoConsulta_CellContentClick);
+            this.dgConveniadoConsulta.DoubleClick += new System.EventHandler(this.dgConveniadoConsulta_DoubleClick);
             // 
             // btnTodosConveniado
             // 

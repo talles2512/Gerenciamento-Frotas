@@ -567,7 +567,7 @@
             this.dgMultasConsulta.ReadOnly = true;
             this.dgMultasConsulta.Size = new System.Drawing.Size(608, 296);
             this.dgMultasConsulta.TabIndex = 20;
-            this.dgMultasConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultasConsulta_CellContentClick);
+            this.dgMultasConsulta.DoubleClick += new System.EventHandler(this.dgMultasConsulta_DoubleClick);
             // 
             // btnTodosMultas
             // 

@@ -303,7 +303,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgMotoristaConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgMotoristaConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Motorista == null)
             {
@@ -338,7 +338,6 @@ namespace CamadaDesktop
                     btnExcluirMotorista.Enabled = true;
                 }
             }
-
         }
 
         private void btnAlterarMotorista_Click(object sender, EventArgs e)
@@ -715,7 +714,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgExameConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgExameConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (ExameMedico == null)
             {

@@ -293,7 +293,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgVeiculoManunt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgVeiculoManunt_DoubleClick(object sender, EventArgs e)
         {
             if (Manutencao == null)
             {

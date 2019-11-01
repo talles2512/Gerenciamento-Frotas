@@ -347,7 +347,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgConveniadoConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgConveniadoConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (ServicoExterno == null)
             {
@@ -607,6 +607,6 @@ namespace CamadaDesktop
 
                 ServicoExterno = null;
             }
-        }
+        }       
     }
 }

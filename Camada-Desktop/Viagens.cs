@@ -384,7 +384,7 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgViagensConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgViagensConsulta_DoubleClick(object sender, EventArgs e)
         {
             if (Viagem == null)
             {

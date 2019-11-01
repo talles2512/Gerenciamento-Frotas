@@ -512,7 +512,7 @@
             this.dgClientesConsulta.ReadOnly = true;
             this.dgClientesConsulta.Size = new System.Drawing.Size(608, 426);
             this.dgClientesConsulta.TabIndex = 18;
-            this.dgClientesConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgClientesConsulta_CellContentClick);
+            this.dgClientesConsulta.DoubleClick += new System.EventHandler(this.dgClientesConsulta_DoubleClick);
             // 
             // btnTodosClientes
             // 
