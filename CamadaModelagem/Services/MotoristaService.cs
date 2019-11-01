@@ -120,7 +120,20 @@ namespace CamadaModelagem.Services
                     throw new IntegridadeException("CPF do Motorista não pode ser alterado, pois ainda está vinculado à Seguradoras.");
                 }
             }
+        }
 
+        public List<Motorista> Pesquisar(string buscar)
+        {
+            List<Motorista> motoristas = new List<Motorista>();
+            try
+            {
+                motoristas.AddRange(_motoristaDAL.Pesquisar(buscar));
+                return motoristas;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
     }
 }

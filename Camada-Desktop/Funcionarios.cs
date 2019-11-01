@@ -45,6 +45,9 @@ namespace CamadaDesktop
             cbPerfilAcesso.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbPerfilAcesso.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome ou Login do Funcionário.");
+            tooltipPesquisar.Hide(lbPesquisar);
+
             toolTipTransfere.SetToolTip(this.btnTrasferirFuncionario, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirFuncionario);
 

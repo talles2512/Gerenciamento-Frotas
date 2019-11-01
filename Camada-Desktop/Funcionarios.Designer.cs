@@ -47,6 +47,8 @@
             this.btnCadastrarFuncionario = new System.Windows.Forms.Button();
             this.tbPageConsultaFuncionario = new System.Windows.Forms.TabPage();
             this.gbConsultaFuncionario = new System.Windows.Forms.GroupBox();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.panelConsultarPorData = new System.Windows.Forms.Panel();
             this.gbData = new System.Windows.Forms.GroupBox();
             this.btnConsultarPorData = new System.Windows.Forms.Button();
@@ -61,8 +63,7 @@
             this.btnTodosFuncionario = new System.Windows.Forms.Button();
             this.btnConsultarFuncionario = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.textPesquisar = new System.Windows.Forms.TextBox();
-            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlFuncionario.SuspendLayout();
             this.tbPageCadastroFuncionario.SuspendLayout();
             this.gbDadosFuncionario.SuspendLayout();
@@ -293,6 +294,23 @@
             this.gbConsultaFuncionario.TabStop = false;
             this.gbConsultaFuncionario.Text = "Consulta";
             // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 69);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
+            this.textPesquisar.TabIndex = 44;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 72);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 43;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // panelConsultarPorData
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -465,23 +483,6 @@
             this.btnConsultarFuncionario.UseVisualStyleBackColor = false;
             this.btnConsultarFuncionario.Click += new System.EventHandler(this.btnConsultarFuncionario_Click);
             // 
-            // textPesquisar
-            // 
-            this.textPesquisar.Location = new System.Drawing.Point(87, 69);
-            this.textPesquisar.Name = "textPesquisar";
-            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
-            this.textPesquisar.TabIndex = 44;
-            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
-            // 
-            // lbPesquisar
-            // 
-            this.lbPesquisar.AutoSize = true;
-            this.lbPesquisar.Location = new System.Drawing.Point(6, 72);
-            this.lbPesquisar.Name = "lbPesquisar";
-            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
-            this.lbPesquisar.TabIndex = 43;
-            this.lbPesquisar.Text = "Pesquisar:";
-            // 
             // Funcionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,5 +543,6 @@
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.ToolTip tooltipPesquisar;
     }
 }

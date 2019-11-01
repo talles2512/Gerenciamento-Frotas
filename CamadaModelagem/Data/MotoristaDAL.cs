@@ -148,5 +148,44 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
+        public List<Motorista> Pesquisar(string busca)
+        {
+            List<Motorista> motoristas = new List<Motorista>();
+            if (busca == "")
+            {
+                return motoristas;
+            }
+            string query = "SELECT M.[MT_CPF], M.[MT_NOME], M.[MT_RG], M.[MT_ENDERECO], M.[MT_DTNASCIMENTO], M.[MT_TELEFONE], M.[MT_TELEFONE_RECADO]" +
+                ", M.[MT_SITUACAO], C.[CNH_NUMERO], C.[CNH_DTEMISSAO], C.[CNH_DTVENC], C.[CNH_CATEGORIA], C.[CNH_ORGAOEMISSOR], C.[CNH_MT_CPF]" +
+                "FROM [TB_MOTORISTA] AS M JOIN [TB_CNH] AS C ON M.[MT_CPF] = C.[CNH_MT_CPF] WHERE(MT_CPF LIKE '%" + busca + "%'" +
+                " OR MT_NOME LIKE '%" + busca + "%' OR MT_ENDERECO LIKE '%" + busca + "%')";
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Motorista motorista = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    DateTime dtnascimento = Convert.ToDateTime(dr["MT_DTNASCIMENTO"].ToString());
+                    long telefone = long.Parse(dr["MT_TELEFONE"].ToString());
+                    long telefonerecado = long.Parse(dr["MT_TELEFONE_RECADO"].ToString());
+                    bool situacao = bool.Parse(dr["MT_SITUACAO"].ToString());
+                    cNH.Numero = long.Parse(dr["CNH_NUMERO"].ToString());
+                    cNH.DataEmissao = Convert.ToDateTime(dr["CNH_DTEMISSAO"].ToString());
+                    cNH.DataVencimento = Convert.ToDateTime(dr["CNH_DTVENC"].ToString());
+                    cNH.Categoria = dr["CNH_CATEGORIA"].ToString();
+                    cNH.OrgaoEmissor = dr["CNH_ORGAOEMISSOR"].ToString();
+                    motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_DTNASCIMENTO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
+                    motoristas.Add(motorista);
+                }
+
+                return motoristas;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
     }
 }

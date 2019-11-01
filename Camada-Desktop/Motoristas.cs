@@ -21,6 +21,7 @@ namespace CamadaDesktop
     {
         private readonly MotoristaController _motoristaController;
         private readonly ExameMedicoController _exameMedicoController;
+        private List<Motorista> ListaMotoristas;
         private Motorista Motorista;
         private CNH cNH;
         private ExameMedico ExameMedico;
@@ -305,38 +306,52 @@ namespace CamadaDesktop
 
         private void dgMotoristaConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Motorista == null)
+            if (dgMotoristaConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgMotoristaConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtCPF.Text = Motorista.CPF;
-                cpfantigo = Motorista.CPF;
-                txtNome.Text = Motorista.Name;
-                txtRG.Text = Motorista.RG;
-                txtEndereco.Text = Motorista.Endereco;
-                dtDataNascimento.Value = Motorista.DataNascimento;
-                txtTelefone.Text = Motorista.Telefone.ToString();
-                txtTelefoneContato.Text = Motorista.TelefoneContato.ToString();
-                txtCNHnumero.Text = Motorista.CNH.Numero.ToString();
-                cbCategoriaCNH.Text = Motorista.CNH.Categoria;
-                cbOrgaoEmissor.Text = Motorista.CNH.OrgaoEmissor;
-                dtDataEmissaoCNH.Value = Motorista.CNH.DataEmissao;
-                dtDataVencimentoCNH.Value = Motorista.CNH.DataVencimento;
+                string cpf = dgMotoristaConsulta.CurrentRow.Cells[0].Value.ToString();
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlMotorista.SelectTab("tbPageCadastroMotorista");
-                if (tbControlMotorista.SelectedTab == tbPageCadastroMotorista)
+                foreach (Motorista motorista in ListaMotoristas)
                 {
-                    txtCPFConsulta.Text = "";
-                    Motorista = null;
+                    if (motorista.CPF == cpf)
+                    {
+                        txtCPF.Text = motorista.CPF;
+                        cpfantigo = motorista.CPF;
+                        txtNome.Text = motorista.Name;
+                        txtRG.Text = motorista.RG;
+                        txtEndereco.Text = motorista.Endereco;
+                        dtDataNascimento.Value = motorista.DataNascimento;
+                        txtTelefone.Text = motorista.Telefone.ToString();
+                        txtTelefoneContato.Text = motorista.TelefoneContato.ToString();
+                        txtCNHnumero.Text = motorista.CNH.Numero.ToString();
+                        cbCategoriaCNH.Text = motorista.CNH.Categoria;
+                        cbOrgaoEmissor.Text = motorista.CNH.OrgaoEmissor;
+                        dtDataEmissaoCNH.Value = motorista.CNH.DataEmissao;
+                        dtDataVencimentoCNH.Value = motorista.CNH.DataVencimento;
 
-                    btnCadastrarMotorista.Visible = false;
-                    lblCancelarMot.Visible = true;
-                    btnAlterarMotorista.Enabled = true;
-                    btnExcluirMotorista.Enabled = true;
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlMotorista.SelectTab("tbPageCadastroMotorista");
+                        if (tbControlMotorista.SelectedTab == tbPageCadastroMotorista)
+                        {
+                            txtCPFConsulta.Text = "";
+                            Motorista = null;
+
+                            btnCadastrarMotorista.Visible = false;
+                            lblCancelarMot.Visible = true;
+                            btnAlterarMotorista.Enabled = true;
+                            btnExcluirMotorista.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgMotoristaConsulta.DataSource = null;
             }
         }
 
@@ -525,6 +540,8 @@ namespace CamadaDesktop
             cbSituacaoExame.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbSituacaoExame.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome, CPF ou Endereço do Motorista.");
+            tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirMotorista, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirMotorista);
             toolTipTransfereExam.SetToolTip(this.btnTransfereExame, "Transferir Dados");
@@ -929,6 +946,55 @@ namespace CamadaDesktop
                 btnExcluirExame.Enabled = false;
 
                 ExameMedico = null;
+            }
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Motorista> motoristas = _motoristaController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("CPF", typeof(string));
+                dt.Columns.Add("Nome", typeof(string));
+                dt.Columns.Add("RG", typeof(string));
+                dt.Columns.Add("Data Nascimento", typeof(DateTime));
+                dt.Columns.Add("Endereço", typeof(string));
+                dt.Columns.Add("Telefone", typeof(long));
+                dt.Columns.Add("Telefone p/Recado", typeof(long));
+                dt.Columns.Add("Situação", typeof(string));
+                dt.Columns.Add("CNH Nº", typeof(long));
+                dt.Columns.Add("Categoria CNH", typeof(string));
+                dt.Columns.Add("Orgão Emissor", typeof(string));
+                dt.Columns.Add("Data Emissão CNH", typeof(DateTime));
+                dt.Columns.Add("Data Vencimento CNH", typeof(DateTime));
+
+                foreach (Motorista motorista in motoristas)
+                {
+                    string situacao = null;
+
+                    if (motorista.Situacao)
+                    {
+                        situacao = "Ativo";
+                    }
+                    else
+                    {
+                        situacao = "Inativo";
+                    }
+
+                    dt.Rows.Add(motorista.CPF, motorista.Name, motorista.RG
+                        , motorista.DataNascimento, motorista.Endereco, motorista.Telefone, motorista.TelefoneContato
+                        , situacao, motorista.CNH.Numero, motorista.CNH.Categoria, motorista.CNH.OrgaoEmissor
+                        , motorista.CNH.DataEmissao, motorista.CNH.DataVencimento);
+                }
+                ListaMotoristas = motoristas;
+                dgMotoristaConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

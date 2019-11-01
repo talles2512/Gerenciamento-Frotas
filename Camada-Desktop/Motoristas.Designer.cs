@@ -112,6 +112,9 @@
             this.lblCPFExames = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereExam = new System.Windows.Forms.ToolTip(this.components);
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlMotorista.SuspendLayout();
             this.tbPageCadastroMotorista.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -583,6 +586,8 @@
             // 
             // gbConsultaVeiculo
             // 
+            this.gbConsultaVeiculo.Controls.Add(this.textPesquisar);
+            this.gbConsultaVeiculo.Controls.Add(this.lbPesquisar);
             this.gbConsultaVeiculo.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaVeiculo.Controls.Add(this.btnTrasferirMotorista);
             this.gbConsultaVeiculo.Controls.Add(this.btnConsultarMotorista);
@@ -747,10 +752,10 @@
             this.dgMotoristaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMotoristaConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgMotoristaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgMotoristaConsulta.Location = new System.Drawing.Point(7, 68);
+            this.dgMotoristaConsulta.Location = new System.Drawing.Point(7, 112);
             this.dgMotoristaConsulta.Name = "dgMotoristaConsulta";
             this.dgMotoristaConsulta.ReadOnly = true;
-            this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 426);
+            this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 382);
             this.dgMotoristaConsulta.TabIndex = 18;
             this.dgMotoristaConsulta.DoubleClick += new System.EventHandler(this.dgMotoristaConsulta_DoubleClick);
             // 
@@ -1170,6 +1175,23 @@
             this.lblCPFExames.TabIndex = 0;
             this.lblCPFExames.Text = "CPF:";
             // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(108, 74);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
+            this.textPesquisar.TabIndex = 38;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(27, 77);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 37;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // Motoristas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1291,5 +1313,8 @@
         private System.Windows.Forms.ToolTip toolTipTransfereExam;
         private System.Windows.Forms.Label lblCancelarMot;
         private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.ToolTip tooltipPesquisar;
     }
 }

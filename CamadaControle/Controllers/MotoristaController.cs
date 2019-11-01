@@ -90,6 +90,18 @@ namespace CamadaControle.Controllers
                 throw new IntegridadeException(e.Message);
             }
         }
+
+        public List<Motorista> Pesquisar(string busca)
+        {
+            try
+            {
+                return _motoristaService.Pesquisar(busca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
         #endregion
 
         #region [AplicacaoWeb]
