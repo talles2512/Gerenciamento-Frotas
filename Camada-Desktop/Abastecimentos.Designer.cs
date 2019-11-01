@@ -96,7 +96,7 @@
             this.tbPageCadastroAbast.Controls.Add(this.gbDadosAbast);
             this.tbPageCadastroAbast.Location = new System.Drawing.Point(4, 37);
             this.tbPageCadastroAbast.Name = "tbPageCadastroAbast";
-            this.tbPageCadastroAbast.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPageCadastroAbast.Padding = new System.Windows.Forms.Padding(3);
             this.tbPageCadastroAbast.Size = new System.Drawing.Size(636, 457);
             this.tbPageCadastroAbast.TabIndex = 0;
             this.tbPageCadastroAbast.Text = "Cadastrar";
@@ -316,7 +316,7 @@
             this.tbPageConsultaAbast.Controls.Add(this.gbConsultaAbast);
             this.tbPageConsultaAbast.Location = new System.Drawing.Point(4, 37);
             this.tbPageConsultaAbast.Name = "tbPageConsultaAbast";
-            this.tbPageConsultaAbast.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbPageConsultaAbast.Padding = new System.Windows.Forms.Padding(3);
             this.tbPageConsultaAbast.Size = new System.Drawing.Size(636, 457);
             this.tbPageConsultaAbast.TabIndex = 1;
             this.tbPageConsultaAbast.Text = "Consultar";
@@ -497,9 +497,11 @@
             // 
             this.dgVeiculoAbast.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoAbast.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgVeiculoAbast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgVeiculoAbast.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgVeiculoAbast.Location = new System.Drawing.Point(7, 110);
             this.dgVeiculoAbast.Name = "dgVeiculoAbast";
+            this.dgVeiculoAbast.ReadOnly = true;
             this.dgVeiculoAbast.RowHeadersWidth = 51;
             this.dgVeiculoAbast.Size = new System.Drawing.Size(608, 329);
             this.dgVeiculoAbast.TabIndex = 20;

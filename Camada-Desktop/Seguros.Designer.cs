@@ -33,6 +33,7 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosSeguros = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.txtNApolice = new System.Windows.Forms.MaskedTextBox();
             this.cbFranquia = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
@@ -89,6 +90,7 @@
             this.btnConsultaTodosCobertura = new System.Windows.Forms.Button();
             this.btnConsultaCobertura = new System.Windows.Forms.Button();
             this.gbDadosCobertura = new System.Windows.Forms.GroupBox();
+            this.lblCancelarCobertura = new System.Windows.Forms.Label();
             this.cbSeguro = new System.Windows.Forms.ComboBox();
             this.cbTipoCobertura = new System.Windows.Forms.ComboBox();
             this.lblTipoCobertura = new System.Windows.Forms.Label();
@@ -100,8 +102,6 @@
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereCobertura = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
-            this.lblCancelarCobertura = new System.Windows.Forms.Label();
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -172,6 +172,22 @@
             this.gbDadosSeguros.TabIndex = 1;
             this.gbDadosSeguros.TabStop = false;
             this.gbDadosSeguros.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 63;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // txtNApolice
             // 
@@ -575,9 +591,11 @@
             // 
             this.dgSegurosConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgSegurosConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgSegurosConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgSegurosConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgSegurosConsulta.Location = new System.Drawing.Point(7, 118);
             this.dgSegurosConsulta.Name = "dgSegurosConsulta";
+            this.dgSegurosConsulta.ReadOnly = true;
             this.dgSegurosConsulta.Size = new System.Drawing.Size(608, 382);
             this.dgSegurosConsulta.TabIndex = 18;
             this.dgSegurosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSegurosConsulta_CellContentClick);
@@ -795,9 +813,11 @@
             // 
             this.dgCoberturaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgCoberturaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCoberturaConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgCoberturaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgCoberturaConsulta.Location = new System.Drawing.Point(1, 114);
             this.dgCoberturaConsulta.Name = "dgCoberturaConsulta";
+            this.dgCoberturaConsulta.ReadOnly = true;
             this.dgCoberturaConsulta.Size = new System.Drawing.Size(614, 183);
             this.dgCoberturaConsulta.TabIndex = 25;
             this.dgCoberturaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCoberturaConsulta_CellContentClick);
@@ -860,6 +880,22 @@
             this.gbDadosCobertura.TabIndex = 24;
             this.gbDadosCobertura.TabStop = false;
             this.gbDadosCobertura.Text = "Dados";
+            // 
+            // lblCancelarCobertura
+            // 
+            this.lblCancelarCobertura.AutoSize = true;
+            this.lblCancelarCobertura.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelarCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelarCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelarCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelarCobertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelarCobertura.Location = new System.Drawing.Point(497, 67);
+            this.lblCancelarCobertura.Name = "lblCancelarCobertura";
+            this.lblCancelarCobertura.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelarCobertura.TabIndex = 66;
+            this.lblCancelarCobertura.Text = "Cancelar";
+            this.lblCancelarCobertura.Visible = false;
+            this.lblCancelarCobertura.Click += new System.EventHandler(this.lblCancelarCobertura_Click);
             // 
             // cbSeguro
             // 
@@ -975,38 +1011,6 @@
             this.btnCadastrarCobertura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 63;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
-            // 
-            // lblCancelarCobertura
-            // 
-            this.lblCancelarCobertura.AutoSize = true;
-            this.lblCancelarCobertura.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelarCobertura.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelarCobertura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelarCobertura.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelarCobertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelarCobertura.Location = new System.Drawing.Point(497, 67);
-            this.lblCancelarCobertura.Name = "lblCancelarCobertura";
-            this.lblCancelarCobertura.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelarCobertura.TabIndex = 66;
-            this.lblCancelarCobertura.Text = "Cancelar";
-            this.lblCancelarCobertura.Visible = false;
-            this.lblCancelarCobertura.Click += new System.EventHandler(this.lblCancelarCobertura_Click);
             // 
             // Seguros
             // 

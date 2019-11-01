@@ -33,6 +33,7 @@
             this.tbControlMultas = new System.Windows.Forms.TabControl();
             this.tbPageCadastroMultas = new System.Windows.Forms.TabPage();
             this.gbDadosMulta = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.cbCPF = new System.Windows.Forms.ComboBox();
             this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.lblDataPagamento = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.dgMultasConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosMultas = new System.Windows.Forms.Button();
             this.btnConsultarMultas = new System.Windows.Forms.Button();
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlMultas.SuspendLayout();
             this.tbPageCadastroMultas.SuspendLayout();
@@ -134,6 +134,22 @@
             this.gbDadosMulta.TabIndex = 1;
             this.gbDadosMulta.TabStop = false;
             this.gbDadosMulta.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // cbCPF
             // 
@@ -544,9 +560,11 @@
             // 
             this.dgMultasConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgMultasConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMultasConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgMultasConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgMultasConsulta.Location = new System.Drawing.Point(7, 143);
             this.dgMultasConsulta.Name = "dgMultasConsulta";
+            this.dgMultasConsulta.ReadOnly = true;
             this.dgMultasConsulta.Size = new System.Drawing.Size(608, 296);
             this.dgMultasConsulta.TabIndex = 20;
             this.dgMultasConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultasConsulta_CellContentClick);
@@ -589,22 +607,6 @@
             this.btnConsultarMultas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarMultas.UseVisualStyleBackColor = false;
             this.btnConsultarMultas.Click += new System.EventHandler(this.btnConsultarMultas_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(273, 311);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 47;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Multas
             // 

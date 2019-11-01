@@ -34,6 +34,7 @@
             this.tbPageCadastroViagem = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbDadosViagens = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.cbCPF = new System.Windows.Forms.ComboBox();
             this.cbPlaca = new System.Windows.Forms.ComboBox();
             this.rdsemOcupante = new System.Windows.Forms.RadioButton();
@@ -87,7 +88,6 @@
             this.btnConsultaTodosOcupante = new System.Windows.Forms.Button();
             this.btnConsultaOcupante = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -161,6 +161,22 @@
             this.gbDadosViagens.TabIndex = 3;
             this.gbDadosViagens.TabStop = false;
             this.gbDadosViagens.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(271, 417);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // cbCPF
             // 
@@ -558,9 +574,11 @@
             // 
             this.dgViagensConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgViagensConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgViagensConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgViagensConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgViagensConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgViagensConsulta.Name = "dgViagensConsulta";
+            this.dgViagensConsulta.ReadOnly = true;
             this.dgViagensConsulta.Size = new System.Drawing.Size(608, 433);
             this.dgViagensConsulta.TabIndex = 18;
             this.dgViagensConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgViagensConsulta_CellContentClick);
@@ -773,9 +791,11 @@
             // 
             this.dgOcupanteConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgOcupanteConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOcupanteConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgOcupanteConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgOcupanteConsulta.Location = new System.Drawing.Point(7, 116);
             this.dgOcupanteConsulta.Name = "dgOcupanteConsulta";
+            this.dgOcupanteConsulta.ReadOnly = true;
             this.dgOcupanteConsulta.Size = new System.Drawing.Size(608, 392);
             this.dgOcupanteConsulta.TabIndex = 23;
             // 
@@ -817,22 +837,6 @@
             this.btnConsultaOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaOcupante.UseVisualStyleBackColor = false;
             this.btnConsultaOcupante.Click += new System.EventHandler(this.btnConsultaOcupante_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(271, 417);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 47;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Viagens
             // 

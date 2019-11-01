@@ -506,9 +506,11 @@
             // 
             this.dgEntradaSaidaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgEntradaSaidaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEntradaSaidaConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgEntradaSaidaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgEntradaSaidaConsulta.Location = new System.Drawing.Point(7, 153);
             this.dgEntradaSaidaConsulta.Name = "dgEntradaSaidaConsulta";
+            this.dgEntradaSaidaConsulta.ReadOnly = true;
             this.dgEntradaSaidaConsulta.Size = new System.Drawing.Size(608, 286);
             this.dgEntradaSaidaConsulta.TabIndex = 21;
             this.dgEntradaSaidaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEntradaSaidaConsulta_CellContentClick);

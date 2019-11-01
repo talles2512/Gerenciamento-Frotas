@@ -34,6 +34,7 @@
             this.tbPageCadastroConveniados = new System.Windows.Forms.TabPage();
             this.gbDadosConveniados = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.dtVencimento = new System.Windows.Forms.DateTimePicker();
             this.dtInicio = new System.Windows.Forms.DateTimePicker();
             this.rdNaoConveniado = new System.Windows.Forms.RadioButton();
@@ -73,7 +74,6 @@
             this.btnTodosConveniado = new System.Windows.Forms.Button();
             this.btnConsultarConveniado = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlConveniados.SuspendLayout();
             this.tbPageCadastroConveniados.SuspendLayout();
             this.gbDadosConveniados.SuspendLayout();
@@ -149,6 +149,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(609, 467);
             this.panel1.TabIndex = 0;
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(254, 457);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 66;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // dtVencimento
             // 
@@ -553,9 +569,11 @@
             // 
             this.dgConveniadoConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgConveniadoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgConveniadoConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgConveniadoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgConveniadoConsulta.Location = new System.Drawing.Point(7, 75);
             this.dgConveniadoConsulta.Name = "dgConveniadoConsulta";
+            this.dgConveniadoConsulta.ReadOnly = true;
             this.dgConveniadoConsulta.Size = new System.Drawing.Size(608, 419);
             this.dgConveniadoConsulta.TabIndex = 18;
             this.dgConveniadoConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgConveniadoConsulta_CellContentClick);
@@ -598,22 +616,6 @@
             this.btnConsultarConveniado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;
             this.btnConsultarConveniado.Click += new System.EventHandler(this.BtnConsultarConveniado_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(254, 457);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 66;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // ServicoExterno_Conveniados
             // 

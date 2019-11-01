@@ -745,9 +745,11 @@
             // 
             this.dgMotoristaConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgMotoristaConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMotoristaConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgMotoristaConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgMotoristaConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgMotoristaConsulta.Name = "dgMotoristaConsulta";
+            this.dgMotoristaConsulta.ReadOnly = true;
             this.dgMotoristaConsulta.Size = new System.Drawing.Size(608, 426);
             this.dgMotoristaConsulta.TabIndex = 18;
             this.dgMotoristaConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMotoristaConsulta_CellContentClick);
@@ -948,9 +950,11 @@
             // 
             this.dgExameConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgExameConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgExameConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgExameConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgExameConsulta.Location = new System.Drawing.Point(11, 105);
             this.dgExameConsulta.Name = "dgExameConsulta";
+            this.dgExameConsulta.ReadOnly = true;
             this.dgExameConsulta.Size = new System.Drawing.Size(604, 153);
             this.dgExameConsulta.TabIndex = 25;
             this.dgExameConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgExameConsulta_CellContentClick);

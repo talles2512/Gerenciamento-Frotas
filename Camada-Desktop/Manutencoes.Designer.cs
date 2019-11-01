@@ -33,6 +33,7 @@
             this.tbControlManunt = new System.Windows.Forms.TabControl();
             this.tbPageCadastroManunt = new System.Windows.Forms.TabPage();
             this.gbDadosManunt = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.cbSituacao = new System.Windows.Forms.ComboBox();
             this.lblSituacao = new System.Windows.Forms.Label();
             this.txtDescricao = new System.Windows.Forms.TextBox();
@@ -70,7 +71,6 @@
             this.btnConsultarManunt = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlManunt.SuspendLayout();
             this.tbPageCadastroManunt.SuspendLayout();
             this.gbDadosManunt.SuspendLayout();
@@ -130,6 +130,22 @@
             this.gbDadosManunt.TabIndex = 1;
             this.gbDadosManunt.TabStop = false;
             this.gbDadosManunt.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(267, 313);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // cbSituacao
             // 
@@ -500,9 +516,11 @@
             // 
             this.dgVeiculoManunt.BackgroundColor = System.Drawing.Color.White;
             this.dgVeiculoManunt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgVeiculoManunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgVeiculoManunt.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgVeiculoManunt.Location = new System.Drawing.Point(7, 116);
             this.dgVeiculoManunt.Name = "dgVeiculoManunt";
+            this.dgVeiculoManunt.ReadOnly = true;
             this.dgVeiculoManunt.Size = new System.Drawing.Size(608, 323);
             this.dgVeiculoManunt.TabIndex = 20;
             this.dgVeiculoManunt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVeiculoManunt_CellContentClick);
@@ -554,22 +572,6 @@
             this.lblPlacaConsulta.Size = new System.Drawing.Size(104, 25);
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Veículo - Placa:";
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(267, 313);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 47;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Manutencoes
             // 

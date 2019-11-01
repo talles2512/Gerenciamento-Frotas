@@ -33,6 +33,7 @@
             this.tbControlSinistros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSinistros = new System.Windows.Forms.TabPage();
             this.gbDadosSinistros = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.lblTipo = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@
             this.btnTodosSinistros = new System.Windows.Forms.Button();
             this.btnConsultarSinistros = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.tbControlSinistros.SuspendLayout();
             this.tbPageCadastroSinistros.SuspendLayout();
             this.gbDadosSinistros.SuspendLayout();
@@ -126,6 +126,22 @@
             this.gbDadosSinistros.TabIndex = 1;
             this.gbDadosSinistros.TabStop = false;
             this.gbDadosSinistros.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 64;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // cbTipo
             // 
@@ -492,9 +508,11 @@
             // 
             this.dgSinistrosConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgSinistrosConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgSinistrosConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgSinistrosConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgSinistrosConsulta.Location = new System.Drawing.Point(7, 110);
             this.dgSinistrosConsulta.Name = "dgSinistrosConsulta";
+            this.dgSinistrosConsulta.ReadOnly = true;
             this.dgSinistrosConsulta.Size = new System.Drawing.Size(608, 329);
             this.dgSinistrosConsulta.TabIndex = 20;
             this.dgSinistrosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSinistrosConsulta_CellContentClick);
@@ -537,22 +555,6 @@
             this.btnConsultarSinistros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;
             this.btnConsultarSinistros.Click += new System.EventHandler(this.btnConsultarSinistros_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(272, 311);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 64;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // Sinistros
             // 

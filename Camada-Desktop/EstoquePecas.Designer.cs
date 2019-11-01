@@ -33,6 +33,7 @@
             this.tbControlEstoque = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEstoque = new System.Windows.Forms.TabPage();
             this.gbDadosEstoque = new System.Windows.Forms.GroupBox();
+            this.lblCancelar = new System.Windows.Forms.Label();
             this.nudQuantidade = new System.Windows.Forms.NumericUpDown();
             this.lblQtd = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.MaskedTextBox();
@@ -59,7 +60,6 @@
             this.dgEstoqueConsulta = new System.Windows.Forms.DataGridView();
             this.btnTodosEstoque = new System.Windows.Forms.Button();
             this.btnConsultarEstoque = new System.Windows.Forms.Button();
-            this.lblCancelar = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEstoque.SuspendLayout();
             this.tbPageCadastroEstoque.SuspendLayout();
@@ -115,6 +115,22 @@
             this.gbDadosEstoque.TabIndex = 1;
             this.gbDadosEstoque.TabStop = false;
             this.gbDadosEstoque.Text = "Dados";
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
+            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
+            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCancelar.Location = new System.Drawing.Point(265, 253);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
+            this.lblCancelar.TabIndex = 47;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Visible = false;
+            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // nudQuantidade
             // 
@@ -400,9 +416,11 @@
             // 
             this.dgEstoqueConsulta.BackgroundColor = System.Drawing.Color.White;
             this.dgEstoqueConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEstoqueConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgEstoqueConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgEstoqueConsulta.Location = new System.Drawing.Point(7, 67);
             this.dgEstoqueConsulta.Name = "dgEstoqueConsulta";
+            this.dgEstoqueConsulta.ReadOnly = true;
             this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 372);
             this.dgEstoqueConsulta.TabIndex = 18;
             this.dgEstoqueConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEstoqueConsulta_CellContentClick);
@@ -445,22 +463,6 @@
             this.btnConsultarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
             this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
-            // 
-            // lblCancelar
-            // 
-            this.lblCancelar.AutoSize = true;
-            this.lblCancelar.BackColor = System.Drawing.Color.Transparent;
-            this.lblCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCancelar.Font = new System.Drawing.Font("Agency FB", 20.25F);
-            this.lblCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelar.Location = new System.Drawing.Point(265, 253);
-            this.lblCancelar.Name = "lblCancelar";
-            this.lblCancelar.Size = new System.Drawing.Size(89, 32);
-            this.lblCancelar.TabIndex = 47;
-            this.lblCancelar.Text = "Cancelar";
-            this.lblCancelar.Visible = false;
-            this.lblCancelar.Click += new System.EventHandler(this.lblCancelar_Click);
             // 
             // EstoquePecas
             // 
