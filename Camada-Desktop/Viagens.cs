@@ -21,6 +21,7 @@ namespace CamadaDesktop
     {
         private readonly ViagemController _viagemController;
         private readonly OcupanteController _ocupanteController;
+        private List<Viagem> ListaViagens;
         private Viagem Viagem;
         List<Ocupante> ocupantes = new List<Ocupante>();
         int RequisicaoAntiga;
@@ -68,6 +69,8 @@ namespace CamadaDesktop
             cbCPF.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbCPF.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Número da Requisição, Placa do Veículo, CPF do Motorista ou Endereço da Viagem.");
+            tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirViagens, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirViagens);
 
@@ -209,6 +212,7 @@ namespace CamadaDesktop
                         txtNomeOcupante.Text = "";
                         txtCPFOcupante.Text = "";
                         listboxOcupantes.DataSource = null;
+                        listboxOcupantes.Items.Clear();
 
                     }
                 }
@@ -386,49 +390,63 @@ namespace CamadaDesktop
 
         private void dgViagensConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Viagem == null)
+            if (dgViagensConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgViagensConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                listboxOcupantes.Items.Clear();
-                ocupantes.Clear();
+                int requisicao = int.Parse(dgViagensConsulta.CurrentRow.Cells[0].Value.ToString());
 
-                RequisicaoAntiga = Viagem.Requisicao;
-
-                txtDestino.Text = Viagem.Destino;
-                dtDataSaida.Value = Viagem.DataSaida;
-                cbPlaca.SelectedValue = Viagem.Placa;
-                cbCPF.SelectedValue = Viagem.CPF;
-
-                if (Viagem.Ocupante)
+                foreach (Viagem viagem in ListaViagens)
                 {
-                    rdOcupante.Checked = true;
-                    ocupantes = Viagem.Ocupantes;
-
-                    foreach (Ocupante ocupante in ocupantes)
+                    if (viagem.Requisicao == requisicao)
                     {
-                        listboxOcupantes.Items.Add(ocupante.Nome);
+                        listboxOcupantes.Items.Clear();
+                        ocupantes.Clear();
+
+                        RequisicaoAntiga = viagem.Requisicao;
+
+                        txtDestino.Text = viagem.Destino;
+                        dtDataSaida.Value = viagem.DataSaida;
+                        cbPlaca.SelectedValue = viagem.Placa;
+                        cbCPF.SelectedValue = viagem.CPF;
+
+                        if (viagem.Ocupante)
+                        {
+                            rdOcupante.Checked = true;
+                            ocupantes = viagem.Ocupantes;
+
+                            foreach (Ocupante ocupante in ocupantes)
+                            {
+                                listboxOcupantes.Items.Add(ocupante.Nome);
+                            }
+                        }
+                        else
+                        {
+                            rdsemOcupante.Checked = true;
+                        }
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlViagens.SelectTab("tbPageCadastroViagem");
+                        if (tbControlViagens.SelectedTab == tbPageCadastroViagem)
+                        {
+                            Viagem = null;
+                            txtRequisicaoConsulta.Text = "";
+
+                            btnCadastrarViagens.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarViagens.Enabled = true;
+                            btnExcluirViagens.Enabled = true;
+                        }
                     }
                 }
-                else
-                {
-                    rdsemOcupante.Checked = true;
-                }
-
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlViagens.SelectTab("tbPageCadastroViagem");
-                if (tbControlViagens.SelectedTab == tbPageCadastroViagem)
-                {
-                    Viagem = null;
-                    txtRequisicaoConsulta.Text = "";
-
-                    btnCadastrarViagens.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarViagens.Enabled = true;
-                    btnExcluirViagens.Enabled = true;
-                }
+                textPesquisar.Text = "";
+                dgViagensConsulta.DataSource = null;
             }
         }
 
@@ -492,6 +510,7 @@ namespace CamadaDesktop
                         txtNomeOcupante.Text = "";
                         txtCPFOcupante.Text = "";
                         listboxOcupantes.DataSource = null;
+                        listboxOcupantes.Items.Clear();
 
                         btnCadastrarViagens.Visible = true;
                         lblCancelar.Visible = false;
@@ -552,6 +571,7 @@ namespace CamadaDesktop
                             txtNomeOcupante.Text = "";
                             txtCPFOcupante.Text = "";
                             listboxOcupantes.DataSource = null;
+                            listboxOcupantes.Items.Clear();
 
                             btnCadastrarViagens.Visible = true;
                             lblCancelar.Visible = false;
@@ -726,6 +746,50 @@ namespace CamadaDesktop
                 btnExcluirViagens.Enabled = false;
 
                 Viagem = null;
+            }
+        }
+
+        private void LbPesquisar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Viagem> viagens = _viagemController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Código Requisição", typeof(string));
+                dt.Columns.Add("Veículo - Placa", typeof(string));
+                dt.Columns.Add("Motorista - CPF", typeof(string));
+                dt.Columns.Add("Ocupantes", typeof(string));
+                dt.Columns.Add("Destino", typeof(string));
+                dt.Columns.Add("Data/Hora Saída", typeof(DateTime));
+
+                foreach (Viagem viagem in viagens)
+                {
+                    string existeOcupantes = null;
+
+                    if (viagem.Ocupante)
+                    {
+                        existeOcupantes = "Sim";
+                    }
+                    else
+                    {
+                        existeOcupantes = "Não";
+                    }
+                    dt.Rows.Add(viagem.Requisicao, viagem.Placa, viagem.CPF, existeOcupantes, viagem.Destino, viagem.DataSaida);
+
+                }
+                ListaViagens = viagens;
+                dgViagensConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

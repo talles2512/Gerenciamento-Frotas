@@ -228,5 +228,67 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
             }
         }
+
+        public List<Viagem> Pesquisar(string busca)
+        {
+            List<Viagem> viagens = new List<Viagem>();
+            string query;
+
+            if (busca == "")
+            {
+                return viagens;
+            }
+
+            if(DetectaChar(busca) > 0)
+            {
+                query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA] " +
+                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] WHERE(VG_VCL_PLACA LIKE '%" + busca + "%'" +
+                " OR VG_MT_CPF LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
+            }
+            else
+            {
+                query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA] " +
+                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] WHERE(VG_REQ BETWEEN "+ busca + " AND " + busca +
+                " OR VG_VCL_PLACA LIKE '%" + busca + "%' OR VG_MT_CPF LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
+            }
+
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                Viagem viagem = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    int numRequisicao = int.Parse(dr["VG_REQ"].ToString());
+                    bool ocupante = bool.Parse(dr["VG_OCUPANTES"].ToString());
+                    DateTime dataSaida = Convert.ToDateTime(dr["VG_DTSAIDA"].ToString());
+
+                    viagem = new Viagem(numRequisicao, ocupante, dr["VG_DESTINO"].ToString(), dataSaida, dr["VG_VCL_PLACA"].ToString()
+                        , dr["VG_MT_CPF"].ToString());
+                    viagens.Add(viagem);
+                }
+                return viagens;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        private int DetectaChar(string busca)
+        {
+            int contador = 0;
+
+            char[] caracteres = busca.ToCharArray();
+            foreach (char caractere in caracteres)
+            {
+                if (!char.IsDigit(caractere))
+                {
+                    contador++;
+                }
+            }
+
+            return contador;
+        }
     }
 }

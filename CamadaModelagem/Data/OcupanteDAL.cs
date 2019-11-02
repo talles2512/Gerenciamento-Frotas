@@ -21,8 +21,9 @@ namespace CamadaModelagem.Data
         //Os exemplos abaixo não são funcionais, irão ser adaptados futuramente
         public bool Cadastrar(Ocupante ocupante) //Exemplo Cadastrar
         {
-            string query = "INSERT INTO [dbo].[TB_VIAGENS_OCUPANTES]([VGO_VG_REQ],[VGO_NOME],[VGO_CPF])"
-                + "VALUES(" + ocupante.Requisicao + ",'" + ocupante.Nome + "','" + ocupante.CPF + "')";
+            DateTime datareg = DateTime.Now;
+            string query = "INSERT INTO [dbo].[TB_VIAGENS_OCUPANTES]([VGO_VG_REQ],[VGO_NOME],[VGO_CPF],[VGO_DATAREGISTRO])"
+                + "VALUES(" + ocupante.Requisicao + ",'" + ocupante.Nome + "','" + ocupante.CPF + "','" + datareg.ToShortDateString() + "')";
             try
             {
                 return _banco.ExecutarInstrucao(query);

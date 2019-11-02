@@ -208,5 +208,27 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
+        public List<Viagem> Pesquisar(string buscar)
+        {
+            List<Viagem> viagens = new List<Viagem>();
+            try
+            {
+                viagens.AddRange(_viagemDAL.Pesquisar(buscar));
+
+                foreach(Viagem viagem in viagens)
+                {
+                    if (viagem.Ocupante)
+                    {
+                        viagem.Ocupantes = _ocupanteDAL.BuscarOcupantes(viagem.Requisicao);
+                    }
+                }
+                return viagens;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
     }
 }
