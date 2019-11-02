@@ -50,7 +50,7 @@ namespace CamadaDesktop
             cbCombustivel.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbCombustivel.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pela placa, marca, modelo ou chassi do Veículo.");
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pela Placa, Marca, Modelo ou Chassi do Veículo.");
             tooltipPesquisar.Hide(lbPesquisar);
 
             toolTipTransfere.SetToolTip(this.btnTrasferirVeiculo, "Transferir Dados");
