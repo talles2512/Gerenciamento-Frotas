@@ -294,5 +294,133 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
+        public List<ServicoExterno> Pesquisar(string busca)
+        {
+            List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
+            string query;
+
+            if (busca == "")
+            {
+                return servicoExternos;
+            }
+
+            if (DetectaChar(busca) > 0)
+            {
+                query = "SELECT SERVEXT_CNPJ, SERVEXT_TIPO, SERVEXT_NOME, SERVEXT_TELEFONE, SERVEXT_EMAIL, SERVEXT_ENDERECO, SERVEXT_CONVENIADO" +
+                " FROM TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0 AND(SERVEXT_TIPO LIKE '%" + busca + "%'" +
+                " OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
+                " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
+            }
+            else
+            {
+                query = "SELECT SERVEXT_CNPJ, SERVEXT_TIPO, SERVEXT_NOME, SERVEXT_TELEFONE, SERVEXT_EMAIL, SERVEXT_ENDERECO, SERVEXT_CONVENIADO" +
+                " FROM TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0 AND(SERVEXT_CNPJ BETWEEN "+ busca + " AND " + busca +
+                " OR SERVEXT_TIPO LIKE '%" + busca + "%' OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
+                " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
+            }
+
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                ServicoExternoConveniado servicoExternoConveniado = null;
+                ServicoExterno servicoExterno = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    long cNPJ = long.Parse(dr["SERVEXT_CNPJ"].ToString());
+                    TipoServicoExterno tipo = (TipoServicoExterno)Enum.Parse(typeof(TipoServicoExterno), dr["SERVEXT_TIPO"].ToString());
+                    long telefone = long.Parse(dr["SERVEXT_TELEFONE"].ToString());
+                    bool conveniado = bool.Parse(dr["SERVEXT_CONVENIADO"].ToString());
+
+
+                    servicoExterno = new ServicoExterno(cNPJ, tipo, dr["SERVEXT_NOME"].ToString(), telefone, dr["SERVEXT_EMAIL"].ToString()
+                        , dr["SERVEXT_ENDERECO"].ToString()
+                        , conveniado, servicoExternoConveniado);
+                    servicoExternos.Add(servicoExterno);
+                }
+                return servicoExternos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        public List<ServicoExterno> PesquisarConveniados(string busca)
+        {
+            List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
+            string query;
+
+            if (busca == "")
+            {
+                return servicoExternos;
+            }
+
+            if (DetectaChar(busca) > 0)
+            {
+                query = "SELECT S.SERVEXT_CNPJ, S.SERVEXT_TIPO, S.SERVEXT_NOME, S.SERVEXT_TELEFONE, S.SERVEXT_EMAIL, S.SERVEXT_ENDERECO, S.SERVEXT_CONVENIADO," +
+                    " C.SERVEXTCONV_VALOR, C.SERVEXTCONV_DTINICIO, C.SERVEXTCONV_DTVENC FROM TB_SERVICOS_EXTERNOS as S JOIN TB_SERVICOS_EXTERNOS_CONVENIADOS C" +
+                    " ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ WHERE (SERVEXT_TIPO LIKE '%" + busca + "%'" +
+                    " OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
+                    " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
+            }
+            else
+            {
+                query = "SELECT S.SERVEXT_CNPJ, S.SERVEXT_TIPO, S.SERVEXT_NOME, S.SERVEXT_TELEFONE, S.SERVEXT_EMAIL, S.SERVEXT_ENDERECO, S.SERVEXT_CONVENIADO," +
+                    " C.SERVEXTCONV_VALOR, C.SERVEXTCONV_DTINICIO, C.SERVEXTCONV_DTVENC FROM TB_SERVICOS_EXTERNOS as S JOIN TB_SERVICOS_EXTERNOS_CONVENIADOS C" +
+                    " ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ WHERE (SERVEXT_CNPJ BETWEEN " + busca + " AND " + busca +
+                    " OR SERVEXT_TIPO LIKE '%" + busca + "%' OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
+                    " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
+            }
+
+            try
+            {
+                DataTable dt = _banco.BuscarRegistro(query);
+                ServicoExternoConveniado servicoExternoConveniado = null;
+                ServicoExterno servicoExterno = null;
+                DataRow[] dataRows = dt.Select();
+                foreach (DataRow dr in dataRows)
+                {
+                    long cNPJ = long.Parse(dr["SERVEXT_CNPJ"].ToString());
+                    TipoServicoExterno tipo = (TipoServicoExterno)Enum.Parse(typeof(TipoServicoExterno), dr["SERVEXT_TIPO"].ToString());
+                    long telefone = long.Parse(dr["SERVEXT_TELEFONE"].ToString());
+                    bool conveniado = bool.Parse(dr["SERVEXT_CONVENIADO"].ToString());
+
+                    if (conveniado)
+                    {
+                        double valor = double.Parse(dr["SERVEXTCONV_VALOR"].ToString());
+                        DateTime dtInicio = DateTime.Parse(dr["SERVEXTCONV_DTINICIO"].ToString());
+                        DateTime dtVencimento = DateTime.Parse(dr["SERVEXTCONV_DTVENC"].ToString());
+                        servicoExternoConveniado = new ServicoExternoConveniado(valor, dtInicio, dtVencimento);
+                    }
+                    servicoExterno = new ServicoExterno(cNPJ, tipo, dr["SERVEXT_NOME"].ToString(), telefone, dr["SERVEXT_EMAIL"].ToString()
+                        , dr["SERVEXT_ENDERECO"].ToString()
+                        , conveniado, servicoExternoConveniado);
+                    servicoExternos.Add(servicoExterno);
+                }
+                return servicoExternos;
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+        }
+
+        private int DetectaChar(string busca)
+        {
+            int contador = 0;
+
+            char[] caracteres = busca.ToCharArray();
+            foreach (char caractere in caracteres)
+            {
+                if (!char.IsDigit(caractere))
+                {
+                    contador++;
+                }
+            }
+
+            return contador;
+        }
     }
 }
