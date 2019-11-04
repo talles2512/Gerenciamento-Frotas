@@ -146,5 +146,19 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException(e.Message);
             }
         }
+
+        public List<Seguro> Pesquisar(string buscar)
+        {
+            List<Seguro> seguros = new List<Seguro>();
+            try
+            {
+                seguros.AddRange(_seguroDAL.Pesquisar(buscar));
+                return seguros;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
     }
 }

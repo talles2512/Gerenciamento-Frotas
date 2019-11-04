@@ -21,6 +21,7 @@ namespace CamadaDesktop
     {
         private readonly SeguroController _seguroController;
         private readonly SeguroCoberturaController _seguroCoberturaController;
+        private List<Seguro> ListaSeguros;
         private Seguro Seguro;
         private SeguroCobertura SeguroCobertura;
         long NApoliceAntiga;
@@ -83,6 +84,10 @@ namespace CamadaDesktop
             cbTipoCoberturaConsulta.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipoCoberturaConsulta.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome ou CPF do Motorista." +
+                " \nMarca, Placa ou Modelo do Veículo." +
+                " \nNome da Seguradora ou CNPJ ou Número da Apolice do Seguro.");
+            tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirSeguros, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirSeguros);
             toolTipTransfereCobertura.SetToolTip(this.btnTransfereCobertura, "Transferir Dados");
@@ -412,42 +417,56 @@ namespace CamadaDesktop
 
         private void dgSegurosConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Seguro == null)
+            if (dgSegurosConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgSegurosConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                NApoliceAntiga = Seguro.NumeroApolice;
-                TipoAntigo = Seguro.Tipo.ToString();
+                string itemsegurado = dgSegurosConsulta.CurrentRow.Cells[3].Value.ToString();
 
-                cbTipo.SelectedItem = Seguro.Tipo;
-                cbSeguradora.SelectedValue = Seguro.CNPJ;
-                txtNApolice.Text = Seguro.NumeroApolice.ToString();
-                cbItemSegurado.SelectedValue = Seguro.ItemSegurado;
-                txtValor.Text = Seguro.Valor.ToString();
-                dtInicio.Value = Seguro.DataInicio;
-                dtfimvigencia.Value = Seguro.FimVigencia;
-
-                if (Seguro.Franquia != "")
+                foreach (Seguro seguro in ListaSeguros)
                 {
-                    cbFranquia.SelectedItem = Seguro.Franquia;
-                    txtValorFranquia.Text = Seguro.ValorFranquia.ToString();
-                }
+                    if (seguro.ItemSegurado == itemsegurado)
+                    {
+                        NApoliceAntiga = seguro.NumeroApolice;
+                        TipoAntigo = seguro.Tipo.ToString();
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlSeguros.SelectTab("tbPageCadastroSeguros");
-                if (tbControlSeguros.SelectedTab == tbPageCadastroSeguros)
-                {
-                    txtNApoliceConsulta.Text = "";
-                    cbTipoCoberturaConsulta.Text = "";
-                    Seguro = null;
+                        cbTipo.SelectedItem = seguro.Tipo;
+                        cbSeguradora.SelectedValue = seguro.CNPJ;
+                        txtNApolice.Text = seguro.NumeroApolice.ToString();
+                        cbItemSegurado.SelectedValue = seguro.ItemSegurado;
+                        txtValor.Text = seguro.Valor.ToString();
+                        dtInicio.Value = seguro.DataInicio;
+                        dtfimvigencia.Value = seguro.FimVigencia;
 
-                    btnCadastrarSeguros.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarSeguros.Enabled = true;
-                    btnExcluirSeguros.Enabled = true;
+                        if (seguro.Franquia != "")
+                        {
+                            cbFranquia.SelectedItem = seguro.Franquia;
+                            txtValorFranquia.Text = seguro.ValorFranquia.ToString();
+                        }
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlSeguros.SelectTab("tbPageCadastroSeguros");
+                        if (tbControlSeguros.SelectedTab == tbPageCadastroSeguros)
+                        {
+                            txtNApoliceConsulta.Text = "";
+                            cbTipoCoberturaConsulta.Text = "";
+                            Seguro = null;
+
+                            btnCadastrarSeguros.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarSeguros.Enabled = true;
+                            btnExcluirSeguros.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgSegurosConsulta.DataSource = null;
             }
         }
 
@@ -636,14 +655,14 @@ namespace CamadaDesktop
         {
             if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cbTipo.Text = "";
-                cbSeguradora.Text = "";
+                cbTipo.SelectedItem = cbTipo.Items[0];
+                cbSeguradora.SelectedItem = cbSeguradora.Items[0];
+                cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
                 txtNApolice.Text = "";
-                cbItemSegurado.Text = "";
                 txtValor.Text = "";
                 dtInicio.Value = DateTime.Now;
                 dtfimvigencia.Value = DateTime.Now;
-                cbFranquia.Text = "";
+                cbFranquia.SelectedItem = cbFranquia.Items[0];
                 txtValorFranquia.Text = "";
 
                 btnCadastrarSeguros.Visible = true;
@@ -1032,6 +1051,46 @@ namespace CamadaDesktop
                 btnExcluirCobertura.Enabled = false;
 
                 SeguroCobertura = null;
+            }
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Seguro> seguros = _seguroController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Número Apólice", typeof(long));
+                dt.Columns.Add("Seguradora", typeof(long));
+                dt.Columns.Add("Tipo de Seguro", typeof(string));
+                dt.Columns.Add("Item Segurado", typeof(string));
+                dt.Columns.Add("Valor", typeof(double));
+                dt.Columns.Add("Data Inicial", typeof(DateTime));
+                dt.Columns.Add("Data Vencimento", typeof(DateTime));
+                dt.Columns.Add("Tipo de Franquia", typeof(string));
+                dt.Columns.Add("Valor da Franquia", typeof(double));
+
+                foreach (Seguro seguro in seguros)
+                {
+
+                    if (seguro.Franquia != "")
+                    {
+                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia,
+                               seguro.Franquia, seguro.ValorFranquia);
+                    }
+                    else
+                    {
+                        dt.Rows.Add(seguro.NumeroApolice, seguro.CNPJ, seguro.Tipo.ToString(), seguro.ItemSegurado, seguro.Valor, seguro.DataInicio, seguro.FimVigencia);
+                    }
+                }
+                ListaSeguros = seguros;
+                dgSegurosConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

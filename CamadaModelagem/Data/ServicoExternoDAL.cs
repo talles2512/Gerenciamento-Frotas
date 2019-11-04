@@ -263,10 +263,10 @@ namespace CamadaModelagem.Data
 
                 else if (servicoExterno.ServicoExternoConveniado == null) //Caso altere o serviço externo e remova seu convênio
                 {
-                    query1 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] = '" + servicoExterno.Tipo.ToString() + "',[SERVEXT_NOME]='" + servicoExterno.Nome
+                    query1 = "DELETE FROM [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + servicoExterno.CNPJ;
+                    query2 = "UPDATE [dbo].[TB_SERVICOS_EXTERNOS] SET [SERVEXT_CNPJ] =" + servicoExterno.CNPJ + ",[SERVEXT_TIPO] = '" + servicoExterno.Tipo.ToString() + "',[SERVEXT_NOME]='" + servicoExterno.Nome
                         + "',[SERVEXT_TELEFONE] =" + servicoExterno.Telefone + ",[SERVEXT_EMAIL] ='" + servicoExterno.Email + "',[SERVEXT_ENDERECO] ='" + servicoExterno.Endereco + "',[SERVEXT_CONVENIADO] ="
-                        + conveniado + " WHERE [SERVEXT_CNPJ] =" + cnpj;
-                    query2 = "DELETE FROM [dbo].[TB_SERVICOS_EXTERNOS_CONVENIADOS] WHERE [SERVEXTCONV_SERVEXT_CNPJ] = " + servicoExterno.CNPJ;
+                        + conveniado + " WHERE [SERVEXT_CNPJ] =" + cnpj;       
                 }
                 else  //Caso altere o serviço externo e seu convênio
                 {
@@ -315,7 +315,7 @@ namespace CamadaModelagem.Data
             else
             {
                 query = "SELECT SERVEXT_CNPJ, SERVEXT_TIPO, SERVEXT_NOME, SERVEXT_TELEFONE, SERVEXT_EMAIL, SERVEXT_ENDERECO, SERVEXT_CONVENIADO" +
-                " FROM TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0 AND(SERVEXT_CNPJ BETWEEN "+ busca + " AND " + busca +
+                " FROM TB_SERVICOS_EXTERNOS WHERE SERVEXT_CONVENIADO = 0 AND (CONVERT(varchar,SERVEXT_CNPJ) LIKE '%" + busca + "%'" +
                 " OR SERVEXT_TIPO LIKE '%" + busca + "%' OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
                 " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
             }
