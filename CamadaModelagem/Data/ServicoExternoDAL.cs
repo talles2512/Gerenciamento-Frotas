@@ -369,7 +369,7 @@ namespace CamadaModelagem.Data
             {
                 query = "SELECT S.SERVEXT_CNPJ, S.SERVEXT_TIPO, S.SERVEXT_NOME, S.SERVEXT_TELEFONE, S.SERVEXT_EMAIL, S.SERVEXT_ENDERECO, S.SERVEXT_CONVENIADO," +
                     " C.SERVEXTCONV_VALOR, C.SERVEXTCONV_DTINICIO, C.SERVEXTCONV_DTVENC FROM TB_SERVICOS_EXTERNOS as S JOIN TB_SERVICOS_EXTERNOS_CONVENIADOS C" +
-                    " ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ WHERE (SERVEXT_CNPJ BETWEEN " + busca + " AND " + busca +
+                    " ON S.SERVEXT_CNPJ = C.SERVEXTCONV_SERVEXT_CNPJ WHERE (CONVERT(varchar,SERVEXT_CNPJ) LIKE '%" + busca + "%'" +
                     " OR SERVEXT_TIPO LIKE '%" + busca + "%' OR SERVEXT_NOME LIKE '%" + busca + "%' OR SERVEXT_EMAIL LIKE '%" + busca + "%'" +
                     " OR SERVEXT_ENDERECO LIKE '%" + busca + "%')";
             }

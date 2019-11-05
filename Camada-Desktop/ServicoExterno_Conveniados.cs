@@ -63,6 +63,9 @@ namespace CamadaDesktop
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo CNPJ, Nome, Endereço, Email ou Tipo do Serviço Externo.");
+            tooltipPesquisar.Hide(lbPesquisar);
+
             toolTipTransfere.SetToolTip(this.btnTrasferirConveniado, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirConveniado);
             cbTipo.DataSource = Enum.GetValues(typeof(TipoServicoExterno));
@@ -606,7 +609,7 @@ namespace CamadaDesktop
             {
                 txtCNPJ.Text = "";
                 txtNomeServico.Text = "";
-                cbTipo.Text = "";
+                cbTipo.SelectedItem = cbTipo.Items[0];
                 txtTelefone.Text = "";
                 txtemail.Text = "";
                 txtEndereco.Text = "";

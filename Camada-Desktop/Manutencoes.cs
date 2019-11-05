@@ -20,6 +20,7 @@ namespace CamadaDesktop
     public partial class Manutencoes : Form
     {
         private readonly ManutencaoController _manutencaoController;
+        private List<Manutencao> ListaManutencoes;
         private Manutencao Manutencao;
         string PlacaAntiga;
         string TipoAntigo;
@@ -245,6 +246,7 @@ namespace CamadaDesktop
                                 dt.Rows.Add(manutencao.Tipo.ToString(), manutencao.CNPJ, manutencao.Placa, manutencao.Descricao, manutencao.Valor
                                     , manutencao.Data, manutencao.Situacao.ToString());
                             }
+                            ListaManutencoes = manutencoes;
                             dgVeiculoManunt.DataSource = dt;
                         }
                         catch (ConcorrenciaBancoException ex)
@@ -295,38 +297,54 @@ namespace CamadaDesktop
 
         private void dgVeiculoManunt_DoubleClick(object sender, EventArgs e)
         {
-            if (Manutencao == null)
+            if (dgVeiculoManunt.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgVeiculoManunt.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                PlacaAntiga = Manutencao.Placa;
-                TipoAntigo = Manutencao.Tipo.ToString();
-                dataAntiga = Manutencao.Data;
+                long cnpj = long.Parse(dgVeiculoManunt.CurrentRow.Cells[1].Value.ToString());
+                string placa = dgVeiculoManunt.CurrentRow.Cells[2].Value.ToString();
+                string descricao = dgVeiculoManunt.CurrentRow.Cells[3].Value.ToString();
+                DateTime data = Convert.ToDateTime(dgVeiculoManunt.CurrentRow.Cells[5].Value);
 
-                cbTipo.SelectedItem = Manutencao.Tipo;
-                dtDataManunt.Value = Manutencao.Data;
-                txtValor.Text = Manutencao.Valor.ToString();
-                cbPlaca.SelectedValue = Manutencao.Placa;
-                cbServicoExterno.SelectedValue = Manutencao.CNPJ;
-                txtDescricao.Text = Manutencao.Descricao;
-                cbSituacao.SelectedItem = Manutencao.Situacao;
-
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlManunt.SelectTab("tbPageCadastroManunt");
-                if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
+                foreach (Manutencao manutencao in ListaManutencoes)
                 {
-                    dtDataManuntConsulta.Value = DateTime.Now;
-                    cbTipoManuntConsulta.Text = "";
-                    cbPlacaConsulta.Text = "";
-                    Manutencao = null;
+                    if (manutencao.Placa == placa && manutencao.CNPJ == cnpj && manutencao.Data == data && manutencao.Descricao == descricao)
+                    {
+                        PlacaAntiga = manutencao.Placa;
+                        TipoAntigo = manutencao.Tipo.ToString();
+                        dataAntiga = manutencao.Data;
 
-                    btnCadastrarManunt.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarManunt.Enabled = true;
-                    btnExcluirManunt.Enabled = true;
+                        cbTipo.SelectedItem = manutencao.Tipo;
+                        dtDataManunt.Value = manutencao.Data;
+                        txtValor.Text = manutencao.Valor.ToString();
+                        cbPlaca.SelectedValue = manutencao.Placa;
+                        cbServicoExterno.SelectedValue = manutencao.CNPJ;
+                        txtDescricao.Text = manutencao.Descricao;
+                        cbSituacao.SelectedItem = manutencao.Situacao;
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlManunt.SelectTab("tbPageCadastroManunt");
+                        if (tbControlManunt.SelectedTab == tbPageCadastroManunt)
+                        {
+                            dtDataManuntConsulta.Value = DateTime.Now;
+                            cbTipoManuntConsulta.Text = "";
+                            cbPlacaConsulta.Text = "";
+                            Manutencao = null;
+
+                            btnCadastrarManunt.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarManunt.Enabled = true;
+                            btnExcluirManunt.Enabled = true;
+                        }
+                    }
                 }
+                dgVeiculoManunt.DataSource = null;
             }
         }
 
@@ -380,13 +398,13 @@ namespace CamadaDesktop
                         PlacaAntiga = "";
                         TipoAntigo = "";
                         dataAntiga = new DateTime(2000, 01, 01);
-                        cbTipo.Text = "";
+                        cbTipo.SelectedItem = cbTipo.Items[0];
                         dtDataManunt.Value = DateTime.Now;
                         txtValor.Text = "";
-                        cbPlaca.Text = "";
-                        cbServicoExterno.Text = "";
+                        cbPlaca.SelectedItem = cbPlaca.Items[0];
+                        cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
                         txtDescricao.Text = "";
-                        cbSituacao.Text = "";
+                        cbSituacao.SelectedItem = cbSituacao.Items[0];
 
                         btnCadastrarManunt.Visible = true;
                         lblCancelar.Visible = false;
@@ -426,13 +444,13 @@ namespace CamadaDesktop
                         if (_manutencaoController.Deletar(placa, manutencaoTipo, dtDataManunt.Value))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
-                            cbTipo.Text = "";
+                            cbTipo.SelectedItem = cbTipo.Items[0];
                             dtDataManunt.Value = DateTime.Now;
                             txtValor.Text = "";
-                            cbPlaca.Text = "";
-                            cbServicoExterno.Text = "";
+                            cbPlaca.SelectedItem = cbPlaca.Items[0];
+                            cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
                             txtDescricao.Text = "";
-                            cbSituacao.Text = "";
+                            cbSituacao.SelectedItem = cbSituacao.Items[0];
 
                             btnCadastrarManunt.Visible = true;
                             lblCancelar.Visible = false;
@@ -482,13 +500,13 @@ namespace CamadaDesktop
         {
             if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cbTipo.Text = "";
+                cbTipo.SelectedItem = cbTipo.Items[0];
                 dtDataManunt.Value = DateTime.Now;
                 txtValor.Text = "";
-                cbPlaca.Text = "";
-                cbServicoExterno.Text = "";
+                cbPlaca.SelectedItem = cbPlaca.Items[0];
+                cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
                 txtDescricao.Text = "";
-                cbSituacao.Text = "";
+                cbSituacao.SelectedItem = cbSituacao.Items[0];
 
                 btnCadastrarManunt.Visible = true;
                 lblCancelar.Visible = false;

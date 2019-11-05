@@ -19,6 +19,7 @@ namespace CamadaDesktop
     public partial class Multas : Form
     {
         private readonly CamadaControle.Controllers.MultaController _multaController;
+        private List<Multa> ListaMultas; 
         private Multa Multa;
         string cpfantigo;
         string placaantiga;
@@ -298,6 +299,7 @@ namespace CamadaDesktop
                             }
                             dt.Rows.Add(multa.Veiculo.Placa, multa.Motorista.CPF, multa.Descricao, multa.Local, multa.DataOcorrencia, multa.Valor, situacao, multa.MultasPagas);
                         }
+                        ListaMultas = multas;
                         dgMultasConsulta.DataSource = dt;
                     }
                     catch (ConcorrenciaBancoException)
@@ -355,46 +357,62 @@ namespace CamadaDesktop
 
         private void dgMultasConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Multa == null)
+            if (dgMultasConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgMultasConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                cbPlaca.Text = Multa.Veiculo.Placa;
-                placaantiga = Multa.Veiculo.Placa;
-                cbCPF.Text = Multa.Motorista.CPF;
-                cpfantigo = Multa.Motorista.CPF;
-                txtDesc.Text = Multa.Descricao;
-                txtLocal.Text = Multa.Local;
-                dtDataMulta.Value = Multa.DataOcorrencia;
-                dataantiga = Multa.DataOcorrencia;
-                txtvalor.Text = Multa.Valor.ToString();
-                dtMultaPaga.Text = Multa.MultasPagas.ToString();
+                string placa = dgMultasConsulta.CurrentRow.Cells[0].Value.ToString();
+                string cpf = dgMultasConsulta.CurrentRow.Cells[1].Value.ToString();
+                string descricao = dgMultasConsulta.CurrentRow.Cells[2].Value.ToString();
+                DateTime dataOcorrencia = Convert.ToDateTime(dgMultasConsulta.CurrentRow.Cells[4].Value);
 
-                if (Multa.Paga)
+                foreach (Multa multa in ListaMultas)
                 {
-                    rdPaga.Checked = true;
-                }
-                else
-                {
-                    rdNaoPaga.Checked = true;
-                }
+                    if (multa.Veiculo.Placa == placa && multa.Motorista.CPF == cpf && multa.DataOcorrencia == dataOcorrencia && multa.Descricao == descricao)
+                    {
+                        cbPlaca.Text = multa.Veiculo.Placa;
+                        placaantiga = multa.Veiculo.Placa;
+                        cbCPF.Text = multa.Motorista.CPF;
+                        cpfantigo = multa.Motorista.CPF;
+                        txtDesc.Text = multa.Descricao;
+                        txtLocal.Text = multa.Local;
+                        dtDataMulta.Value = multa.DataOcorrencia;
+                        dataantiga = multa.DataOcorrencia;
+                        txtvalor.Text = multa.Valor.ToString();
+                        dtMultaPaga.Text = multa.MultasPagas.ToString();
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlMultas.SelectTab("tbPageCadastroMultas");
-                if (tbControlMultas.SelectedTab == tbPageCadastroMultas)
-                {
-                    dtDataMultasConsulta.Text = "";
-                    cbPlacaMultasConsulta.Text = "";
-                    cbCPFMultasConsulta.Text = "";
-                    Multa = null;
+                        if (multa.Paga)
+                        {
+                            rdPaga.Checked = true;
+                        }
+                        else
+                        {
+                            rdNaoPaga.Checked = true;
+                        }
 
-                    btnCadastrarVeiculo.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarVeiculo.Enabled = true;
-                    btnExcluirVeiculo.Enabled = true;
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlMultas.SelectTab("tbPageCadastroMultas");
+                        if (tbControlMultas.SelectedTab == tbPageCadastroMultas)
+                        {
+                            dtDataMultasConsulta.Text = "";
+                            cbPlacaMultasConsulta.Text = "";
+                            cbCPFMultasConsulta.Text = "";
+                            Multa = null;
+
+                            btnCadastrarVeiculo.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarVeiculo.Enabled = true;
+                            btnExcluirVeiculo.Enabled = true;
+                        }
+                    }
                 }
+                dgMultasConsulta.DataSource = null;
             }
 
         }
@@ -453,8 +471,8 @@ namespace CamadaDesktop
                         MessageBox.Show("Alteração realizada com Sucesso!");
                         cpfantigo = "";
                         placaantiga = "";
-                        cbPlaca.Text = "";
-                        cbCPF.Text = "";
+                        cbPlaca.SelectedItem = cbPlaca.Items[0];
+                        cbCPF.SelectedItem = cbCPF.Items[0];
                         dtDataMulta.Value = DateTime.Now;
                         txtvalor.Text = "";
                         rdPaga.Checked = false;
@@ -506,8 +524,8 @@ namespace CamadaDesktop
                         if (_multaController.Deletar(placa, cpf, dtDataMulta.Value))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
-                            cbPlaca.Text = "";
-                            cbCPF.Text = "";
+                            cbPlaca.SelectedItem = cbPlaca.Items[0];
+                            cbCPF.SelectedItem = cbCPF.Items[0];
                             dtDataMulta.Value = DateTime.Now;
                             txtvalor.Text = "";
                             rdPaga.Checked = false;
@@ -564,8 +582,8 @@ namespace CamadaDesktop
         {
             if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cbPlaca.Text = "";
-                cbCPF.Text = "";
+                cbPlaca.SelectedItem = cbPlaca.Items[0];
+                cbCPF.SelectedItem = cbCPF.Items[0];
                 dtDataMulta.Value = DateTime.Now;
                 txtvalor.Text = "";
                 rdPaga.Checked = false;
