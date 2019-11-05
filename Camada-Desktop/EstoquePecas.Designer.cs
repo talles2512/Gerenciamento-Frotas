@@ -61,6 +61,8 @@
             this.btnTodosEstoque = new System.Windows.Forms.Button();
             this.btnConsultarEstoque = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.tbControlEstoque.SuspendLayout();
             this.tbPageCadastroEstoque.SuspendLayout();
             this.gbDadosEstoque.SuspendLayout();
@@ -275,6 +277,8 @@
             // 
             // gbConsultaEstoque
             // 
+            this.gbConsultaEstoque.Controls.Add(this.textPesquisar);
+            this.gbConsultaEstoque.Controls.Add(this.lbPesquisar);
             this.gbConsultaEstoque.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaEstoque.Controls.Add(this.txtIDEstoqueConsulta);
             this.gbConsultaEstoque.Controls.Add(this.lblIDEstoqueConsulta);
@@ -418,10 +422,10 @@
             this.dgEstoqueConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEstoqueConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgEstoqueConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgEstoqueConsulta.Location = new System.Drawing.Point(7, 67);
+            this.dgEstoqueConsulta.Location = new System.Drawing.Point(7, 108);
             this.dgEstoqueConsulta.Name = "dgEstoqueConsulta";
             this.dgEstoqueConsulta.ReadOnly = true;
-            this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 372);
+            this.dgEstoqueConsulta.Size = new System.Drawing.Size(608, 331);
             this.dgEstoqueConsulta.TabIndex = 18;
             this.dgEstoqueConsulta.DoubleClick += new System.EventHandler(this.dgEstoqueConsulta_DoubleClick);
             // 
@@ -463,6 +467,23 @@
             this.btnConsultarEstoque.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
             this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 66);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
+            this.textPesquisar.TabIndex = 43;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 69);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 42;
+            this.lbPesquisar.Text = "Pesquisar:";
             // 
             // EstoquePecas
             // 
@@ -523,5 +544,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
     }
 }

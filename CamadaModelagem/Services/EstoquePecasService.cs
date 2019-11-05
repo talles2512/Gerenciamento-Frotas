@@ -102,5 +102,19 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
+
+        public List<EstoquePeca> Pesquisar(string buscar)
+        {
+            List<EstoquePeca> estoquePecas = new List<EstoquePeca>();
+            try
+            {
+                estoquePecas.AddRange(_estoquePecasDAL.Pesquisar(buscar));
+                return estoquePecas;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
     }
 }

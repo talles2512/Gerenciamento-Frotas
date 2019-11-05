@@ -276,7 +276,7 @@ namespace CamadaDesktop
                         txtnome.Text = "";
                         txtLogin.Text = "";
                         txtSenha.Text = "";
-                        cbPerfilAcesso.Text = "";
+                        cbPerfilAcesso.SelectedItem = cbPerfilAcesso.Items[0];
                         loginantigo = "";
 
                         btnCadastrarFuncionario.Visible = true;
@@ -314,7 +314,7 @@ namespace CamadaDesktop
                             txtnome.Text = "";
                             txtLogin.Text = "";
                             txtSenha.Text = "";
-                            cbPerfilAcesso.Text = "";
+                            cbPerfilAcesso.SelectedItem = cbPerfilAcesso.Items[0];
 
                             btnCadastrarFuncionario.Visible = true;
                             lblCancelar.Visible = false;
@@ -367,7 +367,7 @@ namespace CamadaDesktop
                 txtnome.Text = "";
                 txtLogin.Text = "";
                 txtSenha.Text = "";
-                cbPerfilAcesso.Text = "";
+                cbPerfilAcesso.SelectedItem = cbPerfilAcesso.Items[0];
 
                 btnCadastrarFuncionario.Visible = true;
                 lblCancelar.Visible = false;

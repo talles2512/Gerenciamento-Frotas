@@ -242,14 +242,18 @@ namespace CamadaModelagem.Data
             if(DetectaChar(busca) > 0)
             {
                 query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA] " +
-                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] WHERE(VG_VCL_PLACA LIKE '%" + busca + "%'" +
-                " OR VG_MT_CPF LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
+                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] JOIN [dbo].[TB_MOTORISTA] ON VG_MT_CPF = MT_CPF" +
+                " JOIN [dbo].[TB_VEICULOS] ON VG_VCL_PLACA = VCL_PLACA WHERE(VG_VCL_PLACA LIKE '%" + busca + "%'" +
+                " OR VG_MT_CPF LIKE '%" + busca + "%' OR MT_NOME LIKE '%" + busca + "%' OR VCL_MODELO LIKE '%" + busca + "%'" +
+                " OR VCL_MARCA LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
             }
             else
             {
-                query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA] " +
-                "FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] WHERE(VG_REQ BETWEEN "+ busca + " AND " + busca +
-                " OR VG_VCL_PLACA LIKE '%" + busca + "%' OR VG_MT_CPF LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
+                query = "SELECT [VG_REQ],[VG_VCL_PLACA],[VG_MT_CPF],[VG_OCUPANTES],[VG_DESTINO],[VG_DTSAIDA]" +
+                " FROM[DB_GERENCFROTA].[dbo].[TB_VIAGENS] JOIN [dbo].[TB_MOTORISTA] ON VG_MT_CPF = MT_CPF" +
+                " JOIN [dbo].[TB_VEICULOS] ON VG_VCL_PLACA = VCL_PLACA WHERE(CONVERT(varchar,VG_REQ) LIKE '%" + busca + "%'" +
+                " OR VG_VCL_PLACA LIKE '%" + busca + "%' OR VG_MT_CPF LIKE '%" + busca + "%' OR MT_NOME LIKE '%" + busca + "%'" +
+                " OR VCL_MODELO LIKE '%" + busca + "%' OR VCL_MARCA LIKE '%" + busca + "%' OR VG_DESTINO LIKE '%" + busca + "%')";
             }
 
             try
