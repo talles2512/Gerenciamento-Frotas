@@ -8,7 +8,7 @@ namespace CamadaModelagem.Models.Enums
 {
     public enum PerfilAcesso : int
     {
-        Atedimento = 1,
+        Atendimento = 1,
         Operacional = 2,
         Motorista = 3,
         Administrador = 4,
