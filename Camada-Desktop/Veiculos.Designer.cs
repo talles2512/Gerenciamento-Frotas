@@ -78,6 +78,8 @@
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -86,6 +88,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlVeiculos
@@ -112,6 +115,7 @@
             // 
             // gbDadosVeiculos
             // 
+            this.gbDadosVeiculos.Controls.Add(this.pbpermissao);
             this.gbDadosVeiculos.Controls.Add(this.lblCancelar);
             this.gbDadosVeiculos.Controls.Add(this.txtChassi);
             this.gbDadosVeiculos.Controls.Add(this.lblDataVencimento);
@@ -650,6 +654,19 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(398, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 74;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // Veiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -673,6 +690,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -726,5 +744,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.ToolTip toolTipTransfere;
         private System.Windows.Forms.Label lblCancelar;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
+        private System.Windows.Forms.PictureBox pbpermissao;
     }
 }

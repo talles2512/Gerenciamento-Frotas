@@ -54,6 +54,13 @@ namespace CamadaDesktop
         }
         private void Veiculos_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+            
             cbCor.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbCor.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -370,7 +377,15 @@ namespace CamadaDesktop
                     btnCadastrarVeiculo.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarVeiculo.Enabled = true;
-                    btnExcluirVeiculo.Enabled = true;
+
+                    if(PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirVeiculo.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirVeiculo.Enabled = true;
+                    }
                 }
             }
         }
@@ -435,7 +450,15 @@ namespace CamadaDesktop
                             btnCadastrarVeiculo.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarVeiculo.Enabled = true;
-                            btnExcluirVeiculo.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirVeiculo.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirVeiculo.Enabled = true;
+                            }
                         }
                     }
                 }

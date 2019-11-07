@@ -28,6 +28,7 @@ namespace CamadaDesktop
         string cpfantigo;
         string cpfExameAntigo;
         DateTime dataExameAntigo;
+        PerfilAcesso PerfilAcesso;
 
         public Motoristas()
         {
@@ -38,6 +39,18 @@ namespace CamadaDesktop
             cNH = null;
             cpfantigo = "";
             cpfExameAntigo = "";
+        }
+
+        public Motoristas(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _motoristaController = InstanciarCamadas();
+            _exameMedicoController = InstanciarCamadasExames();
+            Motorista = null;
+            cNH = null;
+            cpfantigo = "";
+            cpfExameAntigo = "";
+            PerfilAcesso = perfilAcesso;
         }
 
         private MotoristaController InstanciarCamadas()
@@ -299,7 +312,15 @@ namespace CamadaDesktop
                     btnCadastrarMotorista.Visible = false;
                     lblCancelarMot.Visible = true;
                     btnAlterarMotorista.Enabled = true;
-                    btnExcluirMotorista.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirMotorista.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirMotorista.Enabled = true;
+                    }
                 }
             }
         }
@@ -346,7 +367,15 @@ namespace CamadaDesktop
                             btnCadastrarMotorista.Visible = false;
                             lblCancelarMot.Visible = true;
                             btnAlterarMotorista.Enabled = true;
-                            btnExcluirMotorista.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirMotorista.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirMotorista.Enabled = true;
+                            }
                         }
                     }
                 }
@@ -531,6 +560,20 @@ namespace CamadaDesktop
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         private void Motoristas_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao1.Visible = true;
+                toolTipPermissao1.SetToolTip(this.pbpermissao1, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao1.Hide(pbpermissao1);
+            }
+
             cbCategoriaCNH.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbCategoriaCNH.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -727,7 +770,15 @@ namespace CamadaDesktop
                 btnCadastrarExame.Visible = false;
                 lblCancelar.Visible = true;
                 btnAlterarExame.Enabled = true;
-                btnExcluirExame.Enabled = true;
+
+                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                {
+                    btnExcluirMotorista.Enabled = false;
+                }
+                else
+                {
+                    btnExcluirMotorista.Enabled = true;
+                }
             }
         }
 
@@ -756,7 +807,15 @@ namespace CamadaDesktop
                 btnCadastrarExame.Visible = false;
                 lblCancelar.Visible = true;
                 btnAlterarExame.Enabled = true;
-                btnExcluirExame.Enabled = true;
+
+                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                {
+                    btnExcluirMotorista.Enabled = false;
+                }
+                else
+                {
+                    btnExcluirMotorista.Enabled = true;
+                }
             }
         }
 

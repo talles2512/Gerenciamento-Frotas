@@ -25,6 +25,8 @@ namespace CamadaDesktop
         string PlacaAntiga;
         string TipoAntigo;
         DateTime dataAntiga;
+        PerfilAcesso PerfilAcesso;
+
         public Abastecimentos()
         {
             InitializeComponent();
@@ -35,6 +37,18 @@ namespace CamadaDesktop
             dataAntiga = new DateTime(2000, 01, 01);
         }
 
+        public Abastecimentos(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _abastecimentoController = InstanciarCamadas();
+            Abastecimento = null;
+            PlacaAntiga = "";
+            TipoAntigo = "";
+            dataAntiga = new DateTime(2000, 01, 01);
+            PerfilAcesso = perfilAcesso;
+
+        }
+
         private AbastecimentoController InstanciarCamadas()
         {
             Banco banco = new Banco();
@@ -43,8 +57,16 @@ namespace CamadaDesktop
             AbastecimentoService abastecimentoService = new AbastecimentoService(abastecimentoDAL, veiculoDAL);
             return new AbastecimentoController(abastecimentoService);
         }
+
         private void Abastecimento_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -285,7 +307,16 @@ namespace CamadaDesktop
                     btnCadastrarAbast.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarAbast.Enabled = true;
-                    btnExcluirAbast.Enabled = true;
+
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirAbast.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirAbast.Enabled = true;
+                    }
+                    
                 }
             }
         }
@@ -335,7 +366,15 @@ namespace CamadaDesktop
                             btnCadastrarAbast.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarAbast.Enabled = true;
-                            btnExcluirAbast.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirAbast.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirAbast.Enabled = true;
+                            }
                         }
                     }
                 }

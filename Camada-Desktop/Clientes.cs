@@ -2,6 +2,7 @@
 using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
@@ -22,6 +23,7 @@ namespace CamadaDesktop
         private List<Cliente> ListaClientes;
         private Cliente Cliente;
         string cpfantigo;
+        PerfilAcesso PerfilAcesso;
 
         public Clientes()
         {
@@ -29,6 +31,15 @@ namespace CamadaDesktop
             _clienteController = InstanciarCamadas();
             Cliente = null;
             cpfantigo = "";
+        }
+
+        public Clientes(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _clienteController = InstanciarCamadas();
+            Cliente = null;
+            cpfantigo = "";
+            PerfilAcesso = perfilAcesso;
         }
 
         private ClienteController InstanciarCamadas()
@@ -41,6 +52,13 @@ namespace CamadaDesktop
 
         private void Clientes_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome, CPF ou email do Cliente.");
             tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirClientes, "Transferir Dados");
@@ -233,7 +251,15 @@ namespace CamadaDesktop
                     btnCadastrarClientes.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarClientes.Enabled = true;
-                    btnExcluirClientes.Enabled = true;
+
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirClientes.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirClientes.Enabled = true;
+                    }
                 }
             }
         }
@@ -276,7 +302,15 @@ namespace CamadaDesktop
                             btnCadastrarClientes.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarClientes.Enabled = true;
-                            btnExcluirClientes.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirClientes.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirClientes.Enabled = true;
+                            }
                         }
                     }
                 }

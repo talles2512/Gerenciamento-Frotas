@@ -47,6 +47,8 @@
             this.btnCadastrarEstoque = new System.Windows.Forms.Button();
             this.tbPageConsultaEstoque = new System.Windows.Forms.TabPage();
             this.gbConsultaEstoque = new System.Windows.Forms.GroupBox();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.panelConsultarPorData = new System.Windows.Forms.Panel();
             this.gbData = new System.Windows.Forms.GroupBox();
             this.btnConsultarPorData = new System.Windows.Forms.Button();
@@ -61,8 +63,8 @@
             this.btnTodosEstoque = new System.Windows.Forms.Button();
             this.btnConsultarEstoque = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.textPesquisar = new System.Windows.Forms.TextBox();
-            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEstoque.SuspendLayout();
             this.tbPageCadastroEstoque.SuspendLayout();
             this.gbDadosEstoque.SuspendLayout();
@@ -72,6 +74,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEstoqueConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlEstoque
@@ -98,6 +101,7 @@
             // 
             // gbDadosEstoque
             // 
+            this.gbDadosEstoque.Controls.Add(this.pbpermissao);
             this.gbDadosEstoque.Controls.Add(this.lblCancelar);
             this.gbDadosEstoque.Controls.Add(this.nudQuantidade);
             this.gbDadosEstoque.Controls.Add(this.lblQtd);
@@ -294,6 +298,23 @@
             this.gbConsultaEstoque.TabStop = false;
             this.gbConsultaEstoque.Text = "Consulta";
             // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 66);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
+            this.textPesquisar.TabIndex = 43;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 69);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 42;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // panelConsultarPorData
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -468,22 +489,18 @@
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
             this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
             // 
-            // textPesquisar
+            // pbpermissao
             // 
-            this.textPesquisar.Location = new System.Drawing.Point(87, 66);
-            this.textPesquisar.Name = "textPesquisar";
-            this.textPesquisar.Size = new System.Drawing.Size(159, 32);
-            this.textPesquisar.TabIndex = 43;
-            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
-            // 
-            // lbPesquisar
-            // 
-            this.lbPesquisar.AutoSize = true;
-            this.lbPesquisar.Location = new System.Drawing.Point(6, 69);
-            this.lbPesquisar.Name = "lbPesquisar";
-            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
-            this.lbPesquisar.TabIndex = 42;
-            this.lbPesquisar.Text = "Pesquisar:";
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 341);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 77;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // EstoquePecas
             // 
@@ -507,6 +524,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEstoqueConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -546,5 +564,7 @@
         private System.Windows.Forms.ToolTip toolTipTransfere;
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }

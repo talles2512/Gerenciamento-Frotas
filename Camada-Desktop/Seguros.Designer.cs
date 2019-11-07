@@ -57,6 +57,8 @@
             this.btnCadastrarSeguros = new System.Windows.Forms.Button();
             this.tbPageConsultaSeguros = new System.Windows.Forms.TabPage();
             this.gbConsultaSeguros = new System.Windows.Forms.GroupBox();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.panelConsultarPorData = new System.Windows.Forms.Panel();
             this.gbData = new System.Windows.Forms.GroupBox();
             this.btnConsultarPorData = new System.Windows.Forms.Button();
@@ -102,9 +104,11 @@
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereCobertura = new System.Windows.Forms.ToolTip(this.components);
-            this.textPesquisar = new System.Windows.Forms.TextBox();
-            this.lbPesquisar = new System.Windows.Forms.Label();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao1 = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao1 = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -119,6 +123,8 @@
             this.gbConsultarporDataCobertura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).BeginInit();
             this.gbDadosCobertura.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlSeguros
@@ -146,6 +152,7 @@
             // 
             // gbDadosSeguros
             // 
+            this.gbDadosSeguros.Controls.Add(this.pbpermissao);
             this.gbDadosSeguros.Controls.Add(this.lblCancelar);
             this.gbDadosSeguros.Controls.Add(this.txtNApolice);
             this.gbDadosSeguros.Controls.Add(this.cbFranquia);
@@ -451,6 +458,23 @@
             this.gbConsultaSeguros.TabIndex = 2;
             this.gbConsultaSeguros.TabStop = false;
             this.gbConsultaSeguros.Text = "Consulta";
+            // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 76);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(139, 32);
+            this.textPesquisar.TabIndex = 71;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 79);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 70;
+            this.lbPesquisar.Text = "Pesquisar:";
             // 
             // panelConsultarPorData
             // 
@@ -868,6 +892,7 @@
             // 
             // gbDadosCobertura
             // 
+            this.gbDadosCobertura.Controls.Add(this.pbpermissao1);
             this.gbDadosCobertura.Controls.Add(this.lblCancelarCobertura);
             this.gbDadosCobertura.Controls.Add(this.cbSeguro);
             this.gbDadosCobertura.Controls.Add(this.cbTipoCobertura);
@@ -943,7 +968,7 @@
             this.txtCoberturaDescricao.MaxLength = 250;
             this.txtCoberturaDescricao.Multiline = true;
             this.txtCoberturaDescricao.Name = "txtCoberturaDescricao";
-            this.txtCoberturaDescricao.Size = new System.Drawing.Size(439, 108);
+            this.txtCoberturaDescricao.Size = new System.Drawing.Size(393, 108);
             this.txtCoberturaDescricao.TabIndex = 16;
             // 
             // lblDescricaoCobertura
@@ -1017,22 +1042,31 @@
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
             // 
-            // textPesquisar
+            // pbpermissao
             // 
-            this.textPesquisar.Location = new System.Drawing.Point(87, 76);
-            this.textPesquisar.Name = "textPesquisar";
-            this.textPesquisar.Size = new System.Drawing.Size(139, 32);
-            this.textPesquisar.TabIndex = 71;
-            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
-            // lbPesquisar
+            // pbpermissao1
             // 
-            this.lbPesquisar.AutoSize = true;
-            this.lbPesquisar.Location = new System.Drawing.Point(6, 79);
-            this.lbPesquisar.Name = "lbPesquisar";
-            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
-            this.lbPesquisar.TabIndex = 70;
-            this.lbPesquisar.Text = "Pesquisar:";
+            this.pbpermissao1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao1.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao1.Image")));
+            this.pbpermissao1.Location = new System.Drawing.Point(410, 155);
+            this.pbpermissao1.Name = "pbpermissao1";
+            this.pbpermissao1.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao1.TabIndex = 77;
+            this.pbpermissao1.TabStop = false;
+            this.pbpermissao1.Visible = false;
             // 
             // Seguros
             // 
@@ -1064,6 +1098,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).EndInit();
             this.gbDadosCobertura.ResumeLayout(false);
             this.gbDadosCobertura.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1145,5 +1181,9 @@
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
         private System.Windows.Forms.ToolTip tooltipPesquisar;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.PictureBox pbpermissao1;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao1;
     }
 }

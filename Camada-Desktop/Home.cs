@@ -59,6 +59,13 @@ namespace CamadaDesktop
 
         public void frmHome_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             pbLogo_Click(null, e);
 
             tooltipopc.SetToolTip(this.opc, "Opções");
@@ -93,19 +100,19 @@ namespace CamadaDesktop
 
         private void btnMotorista_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Motoristas());
+            AbrirForms(new Motoristas(PerfilAcesso));
             label2.Text = "Motoristas";
         }
 
         private void btnEntradaSaida_Click(object sender, EventArgs e)
         {
-            AbrirForms(new EntradasSaidas());
+            AbrirForms(new EntradasSaidas(PerfilAcesso));
             label2.Text = "Entrada/Saída";
         }
 
         private void btnConveniados_Click(object sender, EventArgs e)
         {
-            AbrirForms(new ServicoExterno_Conveniados());
+            AbrirForms(new ServicoExterno_Conveniados(PerfilAcesso));
             label2.Text = "Serviços Externos";
         }
 
@@ -117,36 +124,36 @@ namespace CamadaDesktop
 
         private void btnViagem_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Viagens());
+            AbrirForms(new Viagens(PerfilAcesso));
             label2.Text = "Viagens";
         }
 
         private void btnManutencao_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Manutencoes());
+            AbrirForms(new Manutencoes(PerfilAcesso));
             label2.Text = "Manutenção";
         }
 
         private void btnAbastecimento_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Abastecimentos());
+            AbrirForms(new Abastecimentos(PerfilAcesso));
             label2.Text = "Abastecimento";
         }
 
         private void btnMultas_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Multas());
+            AbrirForms(new Multas(PerfilAcesso));
             label2.Text = "Multas";
         }
        private void btnSinistros_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Sinistros());
+            AbrirForms(new Sinistros(PerfilAcesso));
             label2.Text = "Sinistros";
         }
 
         private void btnEstoque_Click(object sender, EventArgs e)
         {
-            AbrirForms(new EstoquePecas());
+            AbrirForms(new EstoquePecas(PerfilAcesso));
             label2.Text = "Estoque";
         }
 
@@ -158,13 +165,13 @@ namespace CamadaDesktop
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Clientes());
+            AbrirForms(new Clientes(PerfilAcesso));
             label2.Text = "Clientes";
         }
 
         private void btnSeguros_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Seguros());
+            AbrirForms(new Seguros(PerfilAcesso));
             label2.Text = "Seguros";
         }
 
@@ -178,6 +185,7 @@ namespace CamadaDesktop
         private void fecharopc(object sender, FormClosedEventArgs e)
         {
             AtualizarCor();
+            AbrirForms(new PanelHome());
         }
 
         public void AtualizarCor()

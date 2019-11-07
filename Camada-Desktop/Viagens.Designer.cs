@@ -91,6 +91,8 @@
             this.btnConsultaOcupante = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,6 +108,7 @@
             this.panelConsultarPorDataOcupantes.SuspendLayout();
             this.gbConsultarPorDataOcupantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOcupanteConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlViagens
@@ -142,6 +145,7 @@
             // 
             // gbDadosViagens
             // 
+            this.gbDadosViagens.Controls.Add(this.pbpermissao);
             this.gbDadosViagens.Controls.Add(this.lblCancelar);
             this.gbDadosViagens.Controls.Add(this.cbCPF);
             this.gbDadosViagens.Controls.Add(this.cbPlaca);
@@ -860,6 +864,19 @@
             this.btnConsultaOcupante.UseVisualStyleBackColor = false;
             this.btnConsultaOcupante.Click += new System.EventHandler(this.btnConsultaOcupante_Click);
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 505);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // Viagens
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -891,6 +908,7 @@
             this.gbConsultarPorDataOcupantes.ResumeLayout(false);
             this.gbConsultarPorDataOcupantes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOcupanteConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -958,5 +976,7 @@
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
         private System.Windows.Forms.ToolTip tooltipPesquisar;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }

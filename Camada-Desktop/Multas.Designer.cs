@@ -73,6 +73,8 @@
             this.btnTodosMultas = new System.Windows.Forms.Button();
             this.btnConsultarMultas = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlMultas.SuspendLayout();
             this.tbPageCadastroMultas.SuspendLayout();
             this.gbDadosMulta.SuspendLayout();
@@ -81,6 +83,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultasConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlMultas
@@ -107,6 +110,7 @@
             // 
             // gbDadosMulta
             // 
+            this.gbDadosMulta.Controls.Add(this.pbpermissao);
             this.gbDadosMulta.Controls.Add(this.lblCancelar);
             this.gbDadosMulta.Controls.Add(this.cbCPF);
             this.gbDadosMulta.Controls.Add(this.cbPlaca);
@@ -608,6 +612,19 @@
             this.btnConsultarMultas.UseVisualStyleBackColor = false;
             this.btnConsultarMultas.Click += new System.EventHandler(this.btnConsultarMultas_Click);
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // Multas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,6 +646,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultasConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -678,5 +696,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }

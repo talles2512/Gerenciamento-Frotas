@@ -24,6 +24,8 @@ namespace CamadaDesktop
         private ServicoExterno ServicoExterno;
         private string TipoAntigo;
         private long cnpjAntigo;
+        PerfilAcesso PerfilAcesso;
+
         public ServicoExterno_Conveniados()
         {
             InitializeComponent();
@@ -32,6 +34,17 @@ namespace CamadaDesktop
             TipoAntigo = "";
             cnpjAntigo = long.MaxValue;
         }
+
+        public ServicoExterno_Conveniados(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _servicoExternoController = InstanciarCamadas();
+            ServicoExterno = null;
+            TipoAntigo = "";
+            cnpjAntigo = long.MaxValue;
+            PerfilAcesso = perfilAcesso;
+        }
+
         private ServicoExternoController InstanciarCamadas()
         {
             Banco banco = new Banco();
@@ -60,6 +73,13 @@ namespace CamadaDesktop
 
         private void ServicoExterno_Conveniados_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -347,7 +367,15 @@ namespace CamadaDesktop
                     btnCadastrarServicoExterno.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarServicoExterno.Enabled = true;
-                    btnExcluirServicoExterno.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirServicoExterno.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirServicoExterno.Enabled = true;
+                    }
                 }
             }
         }
@@ -409,7 +437,15 @@ namespace CamadaDesktop
                             btnCadastrarServicoExterno.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarServicoExterno.Enabled = true;
-                            btnExcluirServicoExterno.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirServicoExterno.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirServicoExterno.Enabled = true;
+                            }
                         }
                     }
                 }

@@ -77,6 +77,8 @@
             this.btnConsultarConveniado = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlConveniados.SuspendLayout();
             this.tbPageCadastroConveniados.SuspendLayout();
             this.gbDadosConveniados.SuspendLayout();
@@ -86,6 +88,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgConveniadoConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlConveniados
@@ -124,6 +127,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pbpermissao);
             this.panel1.Controls.Add(this.lblCancelar);
             this.panel1.Controls.Add(this.dtVencimento);
             this.panel1.Controls.Add(this.dtInicio);
@@ -639,6 +643,19 @@
             this.btnConsultarConveniado.UseVisualStyleBackColor = false;
             this.btnConsultarConveniado.Click += new System.EventHandler(this.BtnConsultarConveniado_Click);
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(377, 545);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // ServicoExterno_Conveniados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,6 +678,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgConveniadoConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -714,5 +732,7 @@
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Label lbPesquisar;
         private System.Windows.Forms.ToolTip tooltipPesquisar;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }

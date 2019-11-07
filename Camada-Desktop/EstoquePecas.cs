@@ -2,6 +2,7 @@
 using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
@@ -21,6 +22,7 @@ namespace CamadaDesktop
         private readonly EstoquePecasController _estoquePecasController;
         private List<EstoquePeca> ListaEstoquePecas;
         private EstoquePeca EstoquePeca;
+        PerfilAcesso PerfilAcesso;
 
         public EstoquePecas()
         {
@@ -28,6 +30,15 @@ namespace CamadaDesktop
             _estoquePecasController = InstanciarCamadas();
             EstoquePeca = null;
         }
+
+        public EstoquePecas(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _estoquePecasController = InstanciarCamadas();
+            EstoquePeca = null;
+            PerfilAcesso = perfilAcesso;
+        }
+
         private EstoquePecasController InstanciarCamadas()
         {
             Banco banco = new Banco();
@@ -38,6 +49,13 @@ namespace CamadaDesktop
 
         private void EstoquePecas_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             toolTipTransfere.SetToolTip(this.btnTrasferirEstoque, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirEstoque);
             txtid.Text = _estoquePecasController.PopulaID().ToString();
@@ -193,6 +211,15 @@ namespace CamadaDesktop
                     lblCancelar.Visible = true;
                     btnAlterarEstoque.Enabled = true;
                     btnExcluirEstoque.Enabled = true;
+
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirEstoque.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirEstoque.Enabled = true;
+                    }
                 }
             }
         }
@@ -231,7 +258,15 @@ namespace CamadaDesktop
                             btnCadastrarEstoque.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarEstoque.Enabled = true;
-                            btnExcluirEstoque.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirEstoque.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirEstoque.Enabled = true;
+                            }
                         }
                     }
                 }

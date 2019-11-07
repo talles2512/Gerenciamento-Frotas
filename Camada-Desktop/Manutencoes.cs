@@ -25,6 +25,8 @@ namespace CamadaDesktop
         string PlacaAntiga;
         string TipoAntigo;
         DateTime dataAntiga;
+        PerfilAcesso PerfilAcesso;
+
         public Manutencoes()
         {
             InitializeComponent();
@@ -34,6 +36,17 @@ namespace CamadaDesktop
             TipoAntigo = "";
             dataAntiga = new DateTime(2000,01,01);
 
+        }
+
+        public Manutencoes(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _manutencaoController = InstanciarCamadas();
+            Manutencao = null;
+            PlacaAntiga = "";
+            TipoAntigo = "";
+            dataAntiga = new DateTime(2000, 01, 01);
+            PerfilAcesso = perfilAcesso;
         }
 
         private ManutencaoController InstanciarCamadas()
@@ -46,6 +59,13 @@ namespace CamadaDesktop
 
         private void Manutencoes_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -290,7 +310,15 @@ namespace CamadaDesktop
                     btnCadastrarManunt.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarManunt.Enabled = true;
-                    btnExcluirManunt.Enabled = true;
+
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirManunt.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirManunt.Enabled = true;
+                    }                    
                 }
             }
         }
@@ -340,7 +368,15 @@ namespace CamadaDesktop
                             btnCadastrarManunt.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarManunt.Enabled = true;
-                            btnExcluirManunt.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirManunt.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirManunt.Enabled = true;
+                            }
                         }
                     }
                 }

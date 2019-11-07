@@ -65,6 +65,8 @@
             this.tooltipminmenu = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipFuncionario = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -72,11 +74,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.opc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.MenuVertical.Controls.Add(this.pbpermissao);
             this.MenuVertical.Controls.Add(this.btnSeguros);
             this.MenuVertical.Controls.Add(this.label3);
             this.MenuVertical.Controls.Add(this.pbLogo);
@@ -491,6 +495,19 @@
             this.opc.TabStop = false;
             this.opc.Click += new System.EventHandler(this.opc_Click);
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(197, 587);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 77;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,6 +538,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.opc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,6 +581,8 @@
         private System.Windows.Forms.ToolTip tooltipminmenu;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip tooltipFuncionario;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }
 

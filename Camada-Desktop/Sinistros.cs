@@ -26,7 +26,7 @@ namespace CamadaDesktop
         ItemSegurado itemseguradoantigo;
         DateTime datahoraantigo;
         long numapoliceantigo;
-
+        PerfilAcesso PerfilAcesso;
 
         public Sinistros()
         {
@@ -36,6 +36,17 @@ namespace CamadaDesktop
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
+        }
+
+        public Sinistros(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _sinistroController = InstanciarCamadas1();
+            _seguroController = InstanciarCamadas2();
+            Sinistro = null;
+            Seguro = null;
+            numapoliceantigo = 0;
+            PerfilAcesso = perfilAcesso;
         }
 
         private SinistroController InstanciarCamadas1()
@@ -57,6 +68,13 @@ namespace CamadaDesktop
 
         private void Sinistros_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -486,7 +504,15 @@ namespace CamadaDesktop
                     btnCadastrarSinistros.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarSinistros.Enabled = true;
-                    btnExcluirSinistros.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirSinistros.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirSinistros.Enabled = true;
+                    }
                 }
             }
         }
@@ -559,7 +585,15 @@ namespace CamadaDesktop
                     btnCadastrarSinistros.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarSinistros.Enabled = true;
-                    btnExcluirSinistros.Enabled = true;
+
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirSinistros.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirSinistros.Enabled = true;
+                    }
                 }
             }
         }

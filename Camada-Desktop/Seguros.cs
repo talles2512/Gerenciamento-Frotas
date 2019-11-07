@@ -29,6 +29,8 @@ namespace CamadaDesktop
         string TipoAntigo;
         long NApoliceAntigaCobertura;
         string TipoAntigoCobertura;
+        PerfilAcesso PerfilAcesso;
+
         public Seguros()
         {
             InitializeComponent();
@@ -41,6 +43,21 @@ namespace CamadaDesktop
             SeguroCobertura = null;
             NApoliceAntigaCobertura = long.MaxValue;
             TipoAntigoCobertura = "";
+        }
+
+        public Seguros(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _seguroController = InstanciarCamadas1();
+            _seguroCoberturaController = InstanciarCamadas2();
+            Seguro = null;
+            NApoliceAntiga = long.MaxValue;
+            TipoAntigo = "";
+
+            SeguroCobertura = null;
+            NApoliceAntigaCobertura = long.MaxValue;
+            TipoAntigoCobertura = "";
+            PerfilAcesso = perfilAcesso;
         }
 
         private SeguroController InstanciarCamadas1()
@@ -61,6 +78,20 @@ namespace CamadaDesktop
 
         private void Seguros_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao1.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao1, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao1);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -412,7 +443,15 @@ namespace CamadaDesktop
                     btnCadastrarSeguros.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarSeguros.Enabled = true;
-                    btnExcluirSeguros.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirSeguros.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirSeguros.Enabled = true;
+                    }
                 }
             }
         }
@@ -463,7 +502,15 @@ namespace CamadaDesktop
                             btnCadastrarSeguros.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarSeguros.Enabled = true;
-                            btnExcluirSeguros.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirSeguros.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirSeguros.Enabled = true;
+                            }
                         }
                     }
                 }
@@ -861,7 +908,15 @@ namespace CamadaDesktop
                     btnCadastrarCobertura.Visible = false;
                     lblCancelarCobertura.Visible = true;
                     btnAlterarCobertura.Enabled = true;
-                    btnExcluirCobertura.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirCobertura.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirCobertura.Enabled = true;
+                    }
                 }
             }
         }
@@ -903,7 +958,15 @@ namespace CamadaDesktop
                             btnCadastrarCobertura.Visible = false;
                             lblCancelarCobertura.Visible = true;
                             btnAlterarCobertura.Enabled = true;
-                            btnExcluirCobertura.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirCobertura.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirCobertura.Enabled = true;
+                            }
                         }
                     }
                 }

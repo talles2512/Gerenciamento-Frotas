@@ -26,6 +26,8 @@ namespace CamadaDesktop
         long cnpjAntigo;
         string TipoAntigo;
         DateTime dataAntiga;
+        PerfilAcesso PerfilAcesso;
+
         public EntradasSaidas()
         {
             InitializeComponent();
@@ -35,6 +37,18 @@ namespace CamadaDesktop
             cnpjAntigo = long.MaxValue;
             TipoAntigo = "";
             dataAntiga = new DateTime(2000, 01, 01);
+        }
+
+        public EntradasSaidas(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _entradaSaidaController = InstanciarCamadas();
+            EntradaSaida = null;
+            PlacaAntiga = "";
+            cnpjAntigo = long.MaxValue;
+            TipoAntigo = "";
+            dataAntiga = new DateTime(2000, 01, 01);
+            PerfilAcesso = perfilAcesso;
         }
 
         private EntradaSaidaController InstanciarCamadas()
@@ -47,6 +61,13 @@ namespace CamadaDesktop
 
         private void EntradaSaida_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -360,10 +381,18 @@ namespace CamadaDesktop
                             cbPlacaConsulta.Text = "";
                             dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
 
-                            btnAlterarEntradaSaida.Enabled = true;
-                            btnExcluirEntradaSaida.Enabled = true;
+                            btnAlterarEntradaSaida.Enabled = true;                           
                             btnCadastrarEntradaSaida.Visible = false;
                             lblCancelar.Visible = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirEntradaSaida.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirEntradaSaida.Enabled = true;
+                            }
                         }
                     }
                 }
@@ -432,9 +461,17 @@ namespace CamadaDesktop
                         cbCPF.SelectedItem = cbCPF.Items[0];
 
                         btnAlterarEntradaSaida.Enabled = false;
-                        btnExcluirEntradaSaida.Enabled = false;
                         btnCadastrarEntradaSaida.Visible = true;
                         lblCancelar.Visible = false;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnExcluirEntradaSaida.Enabled = false;
+                        }
+                        else
+                        {
+                            btnExcluirEntradaSaida.Enabled = true;
+                        }
                     }
                 }
                 catch (NaoEncontradoException ex)

@@ -69,6 +69,8 @@
             this.btnTodosEntradaSaida = new System.Windows.Forms.Button();
             this.btnConsultarEntradaSaida = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEntradaSaida.SuspendLayout();
             this.tbPageCadastroEntradaSaida.SuspendLayout();
             this.gbDadosEntradaSaida.SuspendLayout();
@@ -77,6 +79,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEntradaSaidaConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlEntradaSaida
@@ -103,6 +106,7 @@
             // 
             // gbDadosEntradaSaida
             // 
+            this.gbDadosEntradaSaida.Controls.Add(this.pbpermissao);
             this.gbDadosEntradaSaida.Controls.Add(this.lblCancelar);
             this.gbDadosEntradaSaida.Controls.Add(this.cbCPF);
             this.gbDadosEntradaSaida.Controls.Add(this.cbPlaca);
@@ -554,6 +558,19 @@
             this.btnConsultarEntradaSaida.UseVisualStyleBackColor = false;
             this.btnConsultarEntradaSaida.Click += new System.EventHandler(this.BtnConsultarEntradaSaida_Click);
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(381, 337);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // EntradasSaidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,6 +592,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEntradaSaidaConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -620,5 +638,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }

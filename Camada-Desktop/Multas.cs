@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CamadaModelagem.Models;
 using CamadaModelagem.Services.Exceptions;
+using CamadaModelagem.Models.Enums;
 
 namespace CamadaDesktop
 {
@@ -24,6 +25,7 @@ namespace CamadaDesktop
         string cpfantigo;
         string placaantiga;
         DateTime dataantiga;
+        PerfilAcesso PerfilAcesso;
 
         public Multas()
         {
@@ -32,6 +34,16 @@ namespace CamadaDesktop
             Multa = null;
             cpfantigo = "";
             placaantiga = "";
+        }
+
+        public Multas(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _multaController = InstanciarCamadas();
+            Multa = null;
+            cpfantigo = "";
+            placaantiga = "";
+            PerfilAcesso = perfilAcesso;
         }
 
         private MultaController InstanciarCamadas()
@@ -54,6 +66,13 @@ namespace CamadaDesktop
 
         private void Multas_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -350,7 +369,15 @@ namespace CamadaDesktop
                     btnCadastrarVeiculo.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarVeiculo.Enabled = true;
-                    btnExcluirVeiculo.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirVeiculo.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirVeiculo.Enabled = true;
+                    }
                 }
             }
         }
@@ -408,7 +435,15 @@ namespace CamadaDesktop
                             btnCadastrarVeiculo.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarVeiculo.Enabled = true;
-                            btnExcluirVeiculo.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirVeiculo.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirVeiculo.Enabled = true;
+                            }
                         }
                     }
                 }

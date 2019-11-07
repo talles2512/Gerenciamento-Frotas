@@ -25,6 +25,8 @@ namespace CamadaDesktop
         private Viagem Viagem;
         List<Ocupante> ocupantes = new List<Ocupante>();
         int RequisicaoAntiga;
+        PerfilAcesso PerfilAcesso;
+
         public Viagens()
         {
             InitializeComponent();
@@ -32,6 +34,16 @@ namespace CamadaDesktop
             _ocupanteController = InstaciarCamadasOcupantes();
             Viagem = null;
             RequisicaoAntiga = int.MaxValue;
+        }
+
+        public Viagens(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            _viagemController = InstanciarCamadas();
+            _ocupanteController = InstaciarCamadasOcupantes();
+            Viagem = null;
+            RequisicaoAntiga = int.MaxValue;
+            PerfilAcesso = perfilAcesso;
         }
 
         private ViagemController InstanciarCamadas()
@@ -63,6 +75,13 @@ namespace CamadaDesktop
 
         private void Viagens_Load(object sender, EventArgs e)
         {
+            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+            {
+                pbpermissao.Visible = true;
+                toolTipPermissao.SetToolTip(this.pbpermissao, "Sem permissão para realizar essa ação!\nPara mais detalhes consulte seu Administrador.");
+                toolTipPermissao.Hide(pbpermissao);
+            }
+
             cbPlaca.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbPlaca.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -385,7 +404,15 @@ namespace CamadaDesktop
                     btnCadastrarViagens.Visible = false;
                     lblCancelar.Visible = true;
                     btnAlterarViagens.Enabled = true;
-                    btnExcluirViagens.Enabled = true;
+                    
+                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    {
+                        btnExcluirViagens.Enabled = false;
+                    }
+                    else
+                    {
+                        btnExcluirViagens.Enabled = true;
+                    }
                 }
             }
         }
@@ -443,7 +470,15 @@ namespace CamadaDesktop
                             btnCadastrarViagens.Visible = false;
                             lblCancelar.Visible = true;
                             btnAlterarViagens.Enabled = true;
-                            btnExcluirViagens.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirViagens.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirViagens.Enabled = true;
+                            }
                         }
                     }
                 }

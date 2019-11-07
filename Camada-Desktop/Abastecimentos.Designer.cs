@@ -69,6 +69,8 @@
             this.btnConsultarAbast = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
+            this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlAbast.SuspendLayout();
             this.tbPageCadastroAbast.SuspendLayout();
             this.gbDadosAbast.SuspendLayout();
@@ -77,6 +79,7 @@
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoAbast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlAbast
@@ -103,6 +106,7 @@
             // 
             // gbDadosAbast
             // 
+            this.gbDadosAbast.Controls.Add(this.pbpermissao);
             this.gbDadosAbast.Controls.Add(this.lblCancelar);
             this.gbDadosAbast.Controls.Add(this.lblLitros);
             this.gbDadosAbast.Controls.Add(this.txtQuantidadeLitros);
@@ -555,6 +559,19 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 396);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 75;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
+            // 
             // Abastecimentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,6 +593,7 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoAbast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -621,5 +639,7 @@
         private System.Windows.Forms.DateTimePicker dtInicioConsulta;
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.ToolTip toolTipTransfere;
+        private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.ToolTip toolTipPermissao;
     }
 }
