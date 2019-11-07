@@ -20,6 +20,7 @@ namespace CamadaDesktop
     public partial class EntradasSaidas : Form
     {
         private readonly EntradaSaidaController _entradaSaidaController;
+        private List<EntradaSaida> ListaEntradasSaidas;
         private EntradaSaida EntradaSaida;
         string PlacaAntiga;
         long cnpjAntigo;
@@ -264,6 +265,7 @@ namespace CamadaDesktop
                             {
                                 dt.Rows.Add(entradaSaida.Tipo.ToString(), entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.CPF, entradaSaida.DataHora);
                             }
+                            ListaEntradasSaidas = entradasSaidas;
                             dgEntradaSaidaConsulta.DataSource = dt;
                         }
                         catch (ConcorrenciaBancoException ex)
@@ -316,40 +318,56 @@ namespace CamadaDesktop
 
         private void dgEntradaSaidaConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (EntradaSaida == null)
+            if (dgEntradaSaidaConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgEntradaSaidaConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                PlacaAntiga = EntradaSaida.Placa;
-                cnpjAntigo = EntradaSaida.CNPJ;
-                TipoAntigo = EntradaSaida.Tipo.ToString();
-                dataAntiga = EntradaSaida.DataHora;
+                string tipo = dgEntradaSaidaConsulta.CurrentRow.Cells[0].Value.ToString();
+                string placa = dgEntradaSaidaConsulta.CurrentRow.Cells[1].Value.ToString();
+                long cnpj = long.Parse(dgEntradaSaidaConsulta.CurrentRow.Cells[2].Value.ToString());
+                DateTime dataHora = Convert.ToDateTime(dgEntradaSaidaConsulta.CurrentRow.Cells[4].Value);
 
-
-                cbTipo.SelectedItem = EntradaSaida.Tipo;
-                dtDataHora.Value = EntradaSaida.DataHora;
-                cbPlaca.SelectedValue = EntradaSaida.Placa;
-                cbServicoExterno.SelectedValue = EntradaSaida.CNPJ;
-                cbCPF.SelectedValue = EntradaSaida.CPF;
-
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlEntradaSaida.SelectTab("tbPageCadastroEntradaSaida");
-                if (tbControlEntradaSaida.SelectedTab == tbPageCadastroEntradaSaida)
+                foreach (EntradaSaida entradaSaida in ListaEntradasSaidas)
                 {
-                    dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
-                    EntradaSaida = null;
-                    cbTipoConsulta.Text = "";
-                    cbServicoExternoEntradaSaidaConsulta.Text = "";
-                    cbPlacaConsulta.Text = "";
-                    dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+                    if (entradaSaida.Placa == placa && entradaSaida.CNPJ == cnpj && entradaSaida.DataHora == dataHora && entradaSaida.Tipo.ToString() == tipo)
+                    {
+                        PlacaAntiga = entradaSaida.Placa;
+                        cnpjAntigo = entradaSaida.CNPJ;
+                        TipoAntigo = entradaSaida.Tipo.ToString();
+                        dataAntiga = entradaSaida.DataHora;
 
-                    btnAlterarEntradaSaida.Enabled = true;
-                    btnExcluirEntradaSaida.Enabled = true;
-                    btnCadastrarEntradaSaida.Visible = false;
-                    lblCancelar.Visible = true;
+
+                        cbTipo.SelectedItem = entradaSaida.Tipo;
+                        dtDataHora.Value = entradaSaida.DataHora;
+                        cbPlaca.SelectedValue = entradaSaida.Placa;
+                        cbServicoExterno.SelectedValue = entradaSaida.CNPJ;
+                        cbCPF.SelectedValue = entradaSaida.CPF;
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlEntradaSaida.SelectTab("tbPageCadastroEntradaSaida");
+                        if (tbControlEntradaSaida.SelectedTab == tbPageCadastroEntradaSaida)
+                        {
+                            dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+                            EntradaSaida = null;
+                            cbTipoConsulta.Text = "";
+                            cbServicoExternoEntradaSaidaConsulta.Text = "";
+                            cbPlacaConsulta.Text = "";
+                            dtDataHoraEntradaSaidaConsulta.Value = DateTime.Now;
+
+                            btnAlterarEntradaSaida.Enabled = true;
+                            btnExcluirEntradaSaida.Enabled = true;
+                            btnCadastrarEntradaSaida.Visible = false;
+                            lblCancelar.Visible = true;
+                        }
+                    }
                 }
+                dgEntradaSaidaConsulta.DataSource = null;
             }
         }
 
@@ -407,11 +425,11 @@ namespace CamadaDesktop
                         PlacaAntiga = "";
                         TipoAntigo = "";
                         dataAntiga = new DateTime(2000, 01, 01);
-                        cbTipo.Text = "";
+                        cbTipo.SelectedItem = cbTipo.Items[0];
                         dtDataHora.Value = DateTime.Now;
-                        cbPlaca.Text = "";
-                        cbServicoExterno.Text = "";
-                        cbCPF.Text = "";
+                        cbPlaca.SelectedItem = cbPlaca.Items[0];
+                        cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
+                        cbCPF.SelectedItem = cbCPF.Items[0];
 
                         btnAlterarEntradaSaida.Enabled = false;
                         btnExcluirEntradaSaida.Enabled = false;
@@ -459,11 +477,11 @@ namespace CamadaDesktop
                         if (_entradaSaidaController.Deletar(placa, cNPJ, entradaSaidaTipo, dthora))
                         {
                             MessageBox.Show("Exclusão realizada com Sucesso!");
-                            cbTipo.Text = "";
+                            cbTipo.SelectedItem = cbTipo.Items[0];
                             dtDataHora.Value = DateTime.Now;
-                            cbPlaca.Text = "";
-                            cbServicoExterno.Text = "";
-                            cbCPF.Text = "";
+                            cbPlaca.SelectedItem = cbPlaca.Items[0];
+                            cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
+                            cbCPF.SelectedItem = cbCPF.Items[0];
 
                             btnAlterarEntradaSaida.Enabled = false;
                             btnExcluirEntradaSaida.Enabled = false;
@@ -512,11 +530,11 @@ namespace CamadaDesktop
         {
             if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                cbTipo.Text = "";
+                cbTipo.SelectedItem = cbTipo.Items[0];
                 dtDataHora.Value = DateTime.Now;
-                cbPlaca.Text = "";
-                cbServicoExterno.Text = "";
-                cbCPF.Text = "";
+                cbPlaca.SelectedItem = cbPlaca.Items[0];
+                cbServicoExterno.SelectedItem = cbServicoExterno.Items[0];
+                cbCPF.SelectedItem = cbCPF.Items[0];
 
                 btnAlterarEntradaSaida.Enabled = false;
                 btnExcluirEntradaSaida.Enabled = false;

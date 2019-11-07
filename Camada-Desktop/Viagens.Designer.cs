@@ -58,6 +58,8 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.tbPageConsultaViagens = new System.Windows.Forms.TabPage();
             this.gbConsultaViagens = new System.Windows.Forms.GroupBox();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
             this.panelConsultarPorData = new System.Windows.Forms.Panel();
             this.gbData = new System.Windows.Forms.GroupBox();
             this.btnConsultarPorData = new System.Windows.Forms.Button();
@@ -88,8 +90,6 @@
             this.btnConsultaTodosOcupante = new System.Windows.Forms.Button();
             this.btnConsultaOcupante = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.textPesquisar = new System.Windows.Forms.TextBox();
-            this.lbPesquisar = new System.Windows.Forms.Label();
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlViagens.SuspendLayout();
             this.tbPageCadastroViagem.SuspendLayout();
@@ -469,6 +469,23 @@
             this.gbConsultaViagens.TabStop = false;
             this.gbConsultaViagens.Text = "Consulta";
             // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(86, 72);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
+            this.textPesquisar.TabIndex = 43;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(5, 75);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 42;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // panelConsultarPorData
             // 
             this.panelConsultarPorData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -842,24 +859,6 @@
             this.btnConsultaOcupante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnConsultaOcupante.UseVisualStyleBackColor = false;
             this.btnConsultaOcupante.Click += new System.EventHandler(this.btnConsultaOcupante_Click);
-            // 
-            // textPesquisar
-            // 
-            this.textPesquisar.Location = new System.Drawing.Point(86, 72);
-            this.textPesquisar.Name = "textPesquisar";
-            this.textPesquisar.Size = new System.Drawing.Size(193, 32);
-            this.textPesquisar.TabIndex = 43;
-            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
-            // 
-            // lbPesquisar
-            // 
-            this.lbPesquisar.AutoSize = true;
-            this.lbPesquisar.Location = new System.Drawing.Point(5, 75);
-            this.lbPesquisar.Name = "lbPesquisar";
-            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
-            this.lbPesquisar.TabIndex = 42;
-            this.lbPesquisar.Text = "Pesquisar:";
-            this.lbPesquisar.Click += new System.EventHandler(this.LbPesquisar_Click);
             // 
             // Viagens
             // 

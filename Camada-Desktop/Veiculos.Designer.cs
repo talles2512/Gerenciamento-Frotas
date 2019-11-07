@@ -587,10 +587,10 @@
             this.dgVeiculoConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVeiculoConsulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgVeiculoConsulta.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 114);
+            this.dgVeiculoConsulta.Location = new System.Drawing.Point(7, 68);
             this.dgVeiculoConsulta.Name = "dgVeiculoConsulta";
             this.dgVeiculoConsulta.ReadOnly = true;
-            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 325);
+            this.dgVeiculoConsulta.Size = new System.Drawing.Size(608, 371);
             this.dgVeiculoConsulta.TabIndex = 18;
             this.dgVeiculoConsulta.DoubleClick += new System.EventHandler(this.DgVeiculoConsulta_DoubleClick);
             // 

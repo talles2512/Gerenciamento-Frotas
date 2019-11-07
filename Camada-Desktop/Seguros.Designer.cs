@@ -102,6 +102,9 @@
             this.btnCadastrarCobertura = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereCobertura = new System.Windows.Forms.ToolTip(this.components);
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.lbPesquisar = new System.Windows.Forms.Label();
+            this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
@@ -430,6 +433,8 @@
             // 
             // gbConsultaSeguros
             // 
+            this.gbConsultaSeguros.Controls.Add(this.textPesquisar);
+            this.gbConsultaSeguros.Controls.Add(this.lbPesquisar);
             this.gbConsultaSeguros.Controls.Add(this.panelConsultarPorData);
             this.gbConsultaSeguros.Controls.Add(this.txtNApoliceConsulta);
             this.gbConsultaSeguros.Controls.Add(this.cbTipoConsulta);
@@ -538,7 +543,7 @@
             this.txtNApoliceConsulta.Location = new System.Drawing.Point(338, 25);
             this.txtNApoliceConsulta.Mask = "0000000000000000";
             this.txtNApoliceConsulta.Name = "txtNApoliceConsulta";
-            this.txtNApoliceConsulta.Size = new System.Drawing.Size(197, 32);
+            this.txtNApoliceConsulta.Size = new System.Drawing.Size(136, 32);
             this.txtNApoliceConsulta.TabIndex = 69;
             // 
             // cbTipoConsulta
@@ -1012,6 +1017,23 @@
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
             // 
+            // textPesquisar
+            // 
+            this.textPesquisar.Location = new System.Drawing.Point(87, 76);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(139, 32);
+            this.textPesquisar.TabIndex = 71;
+            this.textPesquisar.TextChanged += new System.EventHandler(this.TextPesquisar_TextChanged);
+            // 
+            // lbPesquisar
+            // 
+            this.lbPesquisar.AutoSize = true;
+            this.lbPesquisar.Location = new System.Drawing.Point(6, 79);
+            this.lbPesquisar.Name = "lbPesquisar";
+            this.lbPesquisar.Size = new System.Drawing.Size(75, 25);
+            this.lbPesquisar.TabIndex = 70;
+            this.lbPesquisar.Text = "Pesquisar:";
+            // 
             // Seguros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1120,5 +1142,8 @@
         private System.Windows.Forms.ToolTip toolTipTransfereCobertura;
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.Label lblCancelarCobertura;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Label lbPesquisar;
+        private System.Windows.Forms.ToolTip tooltipPesquisar;
     }
 }

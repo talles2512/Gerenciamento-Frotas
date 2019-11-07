@@ -69,7 +69,9 @@ namespace CamadaDesktop
             cbCPF.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbCPF.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Número da Requisição, Placa do Veículo, CPF do Motorista ou Endereço da Viagem.");
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo Nome ou CPF do Motorista." +
+                                        " \nMarca, Placa ou Modelo do Veículo." +
+                                        " \nEndereço ou Número da Requisção da Viagem.");
             tooltipPesquisar.Hide(lbPesquisar);
             toolTipTransfere.SetToolTip(this.btnTrasferirViagens, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirViagens);
@@ -503,8 +505,8 @@ namespace CamadaDesktop
 
                         txtDestino.Text = "";
                         dtDataSaida.Value = DateTime.Now;
-                        cbPlaca.Text = "";
-                        cbCPF.Text = "";
+                        cbPlaca.SelectedItem = cbPlaca.Items[0];
+                        cbCPF.SelectedItem = cbCPF.Items[0];
                         rdOcupante.Checked = false;
                         rdsemOcupante.Checked = false;
                         txtNomeOcupante.Text = "";
@@ -564,8 +566,8 @@ namespace CamadaDesktop
 
                             txtDestino.Text = "";
                             dtDataSaida.Value = DateTime.Now;
-                            cbPlaca.Text = "";
-                            cbCPF.Text = "";
+                            cbPlaca.SelectedItem = cbPlaca.Items[0];
+                            cbCPF.SelectedItem = cbCPF.Items[0];
                             rdOcupante.Checked = false;
                             rdsemOcupante.Checked = false;
                             txtNomeOcupante.Text = "";
@@ -732,8 +734,8 @@ namespace CamadaDesktop
             {
                 txtDestino.Text = "";
                 dtDataSaida.Value = DateTime.Now;
-                cbPlaca.Text = "";
-                cbCPF.Text = "";
+                cbPlaca.SelectedItem = cbPlaca.Items[0];
+                cbCPF.SelectedItem = cbCPF.Items[0];
                 rdOcupante.Checked = false;
                 rdsemOcupante.Checked = false;
                 txtNomeOcupante.Text = "";
@@ -747,11 +749,6 @@ namespace CamadaDesktop
 
                 Viagem = null;
             }
-        }
-
-        private void LbPesquisar_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void TextPesquisar_TextChanged(object sender, EventArgs e)

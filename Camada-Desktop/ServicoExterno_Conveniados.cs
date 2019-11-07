@@ -20,6 +20,7 @@ namespace CamadaDesktop
     public partial class ServicoExterno_Conveniados : Form
     {
         private readonly ServicoExternoController _servicoExternoController;
+        private List<ServicoExterno> ListaServicoExternos;
         private ServicoExterno ServicoExterno;
         private string TipoAntigo;
         private long cnpjAntigo;
@@ -61,6 +62,9 @@ namespace CamadaDesktop
         {
             cbTipo.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbTipo.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            tooltipPesquisar.SetToolTip(lbPesquisar, "Pesquise pelo CNPJ, Nome, Endereço, Email ou Tipo do Serviço Externo.");
+            tooltipPesquisar.Hide(lbPesquisar);
 
             toolTipTransfere.SetToolTip(this.btnTrasferirConveniado, "Transferir Dados");
             toolTipTransfere.Hide(btnTrasferirConveniado);
@@ -284,6 +288,7 @@ namespace CamadaDesktop
                                     , servicoExterno.ServicoExternoConveniado.DataVencimento);
                             }
                         }
+                        ListaServicoExternos = servicoExternos;
                         dgConveniadoConsulta.DataSource = dt;
 
                     }
@@ -349,53 +354,67 @@ namespace CamadaDesktop
 
         private void dgConveniadoConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (ServicoExterno == null)
+            if (dgConveniadoConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgConveniadoConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtValor.Text = "";
-                dtInicio.Value = DateTime.Now;
-                dtVencimento.Value = DateTime.Now;
+                long cnpj = long.Parse(dgConveniadoConsulta.CurrentRow.Cells[0].Value.ToString());
 
-                cnpjAntigo = ServicoExterno.CNPJ;
-                TipoAntigo = ServicoExterno.Tipo.ToString();
-                txtCNPJ.Text = ServicoExterno.CNPJ.ToString();
-                txtNomeServico.Text = ServicoExterno.Nome;
-                cbTipo.SelectedItem = ServicoExterno.Tipo;
-                txtTelefone.Text = ServicoExterno.Telefone.ToString();
-                txtemail.Text = ServicoExterno.Email;
-                txtEndereco.Text = ServicoExterno.Endereco;
-
-                if (ServicoExterno.Conveniado)
+                foreach (ServicoExterno servicoExterno in ListaServicoExternos)
                 {
-                    rdConveniado.Checked = true;
-                    txtValor.Enabled = true;
-                    dtInicio.Enabled = true;
-                    dtVencimento.Checked = true;
+                    if (servicoExterno.CNPJ == cnpj)
+                    {
+                        txtValor.Text = "";
+                        dtInicio.Value = DateTime.Now;
+                        dtVencimento.Value = DateTime.Now;
 
-                    txtValor.Text = ServicoExterno.ServicoExternoConveniado.Valor.ToString();
-                    dtInicio.Value = ServicoExterno.ServicoExternoConveniado.DataInicio;
-                    dtVencimento.Value = ServicoExterno.ServicoExternoConveniado.DataVencimento;
-                }
-                else
-                {
-                    rdNaoConveniado.Checked = true;
-                }
+                        cnpjAntigo = servicoExterno.CNPJ;
+                        TipoAntigo = servicoExterno.Tipo.ToString();
+                        txtCNPJ.Text = servicoExterno.CNPJ.ToString();
+                        txtNomeServico.Text = servicoExterno.Nome;
+                        cbTipo.SelectedItem = servicoExterno.Tipo;
+                        txtTelefone.Text = servicoExterno.Telefone.ToString();
+                        txtemail.Text = servicoExterno.Email;
+                        txtEndereco.Text = servicoExterno.Endereco;
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlConveniados.SelectTab("tbPageCadastroConveniados");
-                if (tbControlConveniados.SelectedTab == tbPageCadastroConveniados)
-                {
-                    txtCNPJConsulta.Text = "";
-                    ServicoExterno = null;
+                        if (servicoExterno.Conveniado)
+                        {
+                            rdConveniado.Checked = true;
+                            txtValor.Enabled = true;
+                            dtInicio.Enabled = true;
+                            dtVencimento.Checked = true;
 
-                    btnCadastrarServicoExterno.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarServicoExterno.Enabled = true;
-                    btnExcluirServicoExterno.Enabled = true;
+                            txtValor.Text = servicoExterno.ServicoExternoConveniado.Valor.ToString();
+                            dtInicio.Value = servicoExterno.ServicoExternoConveniado.DataInicio;
+                            dtVencimento.Value = servicoExterno.ServicoExternoConveniado.DataVencimento;
+                        }
+                        else
+                        {
+                            rdNaoConveniado.Checked = true;
+                        }
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlConveniados.SelectTab("tbPageCadastroConveniados");
+                        if (tbControlConveniados.SelectedTab == tbPageCadastroConveniados)
+                        {
+                            txtCNPJConsulta.Text = "";
+                            ServicoExterno = null;
+
+                            btnCadastrarServicoExterno.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarServicoExterno.Enabled = true;
+                            btnExcluirServicoExterno.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgConveniadoConsulta.DataSource = null;
             }
         }
 
@@ -590,7 +609,7 @@ namespace CamadaDesktop
             {
                 txtCNPJ.Text = "";
                 txtNomeServico.Text = "";
-                cbTipo.Text = "";
+                cbTipo.SelectedItem = cbTipo.Items[0];
                 txtTelefone.Text = "";
                 txtemail.Text = "";
                 txtEndereco.Text = "";
@@ -607,6 +626,60 @@ namespace CamadaDesktop
 
                 ServicoExterno = null;
             }
-        }       
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicoExterno> servicoExternos = _servicoExternoController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("CNPJ", typeof(long));
+                dt.Columns.Add("Tipo", typeof(string));
+                dt.Columns.Add("Nome", typeof(string));
+                dt.Columns.Add("Telefone", typeof(long));
+                dt.Columns.Add("Email", typeof(string));
+                dt.Columns.Add("Endereço", typeof(string));
+                dt.Columns.Add("Conveniado", typeof(string));
+                dt.Columns.Add("Valor Convênio", typeof(double));
+                dt.Columns.Add("Data Inicio", typeof(DateTime));
+                dt.Columns.Add("Data Vencimento", typeof(DateTime));
+
+                foreach (ServicoExterno servicoExterno in servicoExternos)
+                {
+                    string conveniado = null;
+
+                    if (servicoExterno.Conveniado)
+                    {
+                        conveniado = "Sim";
+                    }
+                    else
+                    {
+                        conveniado = "Não";
+                    }
+
+                    if (servicoExterno.ServicoExternoConveniado == null)
+                    {
+                        dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                            , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado);
+                    }
+                    else
+                    {
+                        dt.Rows.Add(servicoExterno.CNPJ, servicoExterno.Tipo.ToString(), servicoExterno.Nome
+                            , servicoExterno.Telefone, servicoExterno.Email, servicoExterno.Endereco, conveniado
+                            , servicoExterno.ServicoExternoConveniado.Valor, servicoExterno.ServicoExternoConveniado.DataInicio
+                            , servicoExterno.ServicoExternoConveniado.DataVencimento);
+                    }
+                }
+                ListaServicoExternos = servicoExternos;
+                dgConveniadoConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
     }
 }

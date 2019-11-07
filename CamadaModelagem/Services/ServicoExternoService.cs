@@ -214,5 +214,20 @@ namespace CamadaModelagem.Services
                 }
             }
         }
+
+        public List<ServicoExterno> Pesquisar(string buscar)
+        {
+            List<ServicoExterno> servicoExternos = new List<ServicoExterno>();
+            try
+            {
+                servicoExternos.AddRange(_servicoExternoDAL.Pesquisar(buscar));
+                servicoExternos.AddRange(_servicoExternoDAL.PesquisarConveniados(buscar));
+                return servicoExternos;
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
     }  
 }

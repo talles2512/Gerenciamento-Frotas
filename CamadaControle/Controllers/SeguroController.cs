@@ -130,6 +130,18 @@ namespace CamadaControle.Controllers
             }
         }
 
+        public List<Seguro> Pesquisar(string busca)
+        {
+            try
+            {
+                return _seguroService.Pesquisar(busca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
         #endregion
 
         #region [AplicacaoWeb]

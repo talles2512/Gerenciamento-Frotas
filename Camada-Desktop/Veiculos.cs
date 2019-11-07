@@ -23,12 +23,22 @@ namespace CamadaDesktop
         private List<Veiculo> ListaVeiculos;
         private Veiculo Veiculo;
         string PlacaAntiga;
+
+        PerfilAcesso PerfilAcesso;
         public Veiculos()
         {
             InitializeComponent();
             _veiculoController = InstanciarCamadas();
             Veiculo = null;
             PlacaAntiga = "";
+        }
+        public Veiculos(PerfilAcesso perfilAcesso) // <<<------- Instanciando o Perfil de Acesso para ser usado neste menu
+        {
+            InitializeComponent();
+            _veiculoController = InstanciarCamadas();
+            Veiculo = null;
+            PlacaAntiga = "";
+            PerfilAcesso = perfilAcesso;
         }
 
         private VeiculoController InstanciarCamadas()

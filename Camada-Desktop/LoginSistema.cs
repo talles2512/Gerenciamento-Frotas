@@ -1,4 +1,10 @@
-﻿using System;
+﻿using CamadaControle.Controllers;
+using CamadaModelagem.Data;
+using CamadaModelagem.Data.Configuration;
+using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
+using CamadaModelagem.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +21,22 @@ namespace CamadaDesktop
         int x = 0;
         int y = 0;
 
+        private readonly FuncionarioController _funcionarioController;
+
         public LoginSistema()
         {
             InitializeComponent();
             this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
             this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
+            _funcionarioController = InstanciarCamadas();
+        }
+
+        private FuncionarioController InstanciarCamadas()
+        {
+            Banco banco = new Banco();
+            FuncionarioDAL funcionarioDAL = new FuncionarioDAL(banco);
+            FuncionarioService funcionarioService = new FuncionarioService(funcionarioDAL);
+            return new FuncionarioController(funcionarioService);
         }
 
         private void frmHome_MouseDown(object sender, MouseEventArgs e)
@@ -37,10 +54,42 @@ namespace CamadaDesktop
         }
         private void btnLoginSistema_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmHome home = new frmHome();
-            home.FormClosed += new FormClosedEventHandler(fecharhome);
-            home.Show();
+            if (txtLogin.Text == "" || txtSenha.Text == "")
+            {
+                MessageBox.Show("Insira o usuário e a senha corretamente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                Funcionario funcionario = _funcionarioController.BuscarCPF(txtLogin.Text);
+                if(funcionario == null)
+                {
+                    MessageBox.Show("Usuário inexistente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    if (txtLogin.Text == funcionario.Login)
+                    {
+                        if (txtSenha.Text == funcionario.Senha)
+                        {
+                            PerfilAcesso perfilAcesso = funcionario.PerfilAcesso;
+                            this.Hide();
+                            frmHome home = new frmHome(perfilAcesso);
+                            home.FormClosed += new FormClosedEventHandler(fecharhome);
+                            home.Show();
+                            txtLogin.Text = "";
+                            txtSenha.Text = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Senha inválida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+            }
         }
 
         private void fecharhome(object sender, FormClosedEventArgs e)
@@ -63,6 +112,29 @@ namespace CamadaDesktop
             if (MessageBox.Show("Deseja Realmente Sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
+            }
+        }
+
+        private void TxtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLoginSistema_Click(sender, e);
+            }
+        }
+
+        private void TxtLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if(txtSenha.Text == "")
+                {
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    btnLoginSistema_Click(sender, e);
+                }
             }
         }
     }

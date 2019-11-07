@@ -19,6 +19,7 @@ namespace CamadaDesktop
     public partial class EstoquePecas : Form
     {
         private readonly EstoquePecasController _estoquePecasController;
+        private List<EstoquePeca> ListaEstoquePecas;
         private EstoquePeca EstoquePeca;
 
         public EstoquePecas()
@@ -97,11 +98,11 @@ namespace CamadaDesktop
                     {
                         DataTable dt = new DataTable();
                         dt.Columns.Add("ID", typeof(int));
+                        dt.Columns.Add("Descrição", typeof(string));
                         dt.Columns.Add("Valor", typeof(double));
                         dt.Columns.Add("Quantidade", typeof(int));
-                        dt.Columns.Add("Descrição", typeof(string));
 
-                        dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
+                        dt.Rows.Add(estoquePeca.Id, estoquePeca.Descricao, estoquePeca.ValorUnit, estoquePeca.Quantidade);
 
                         dgEstoqueConsulta.DataSource = dt;
 
@@ -147,15 +148,15 @@ namespace CamadaDesktop
 
                         DataTable dt = new DataTable();
                         dt.Columns.Add("ID", typeof(int));
+                        dt.Columns.Add("Descrição", typeof(string));
                         dt.Columns.Add("Valor", typeof(double));
                         dt.Columns.Add("Quantidade", typeof(int));
-                        dt.Columns.Add("Descrição", typeof(string));
+
 
                         foreach (EstoquePeca estoquePeca in pecas)
                         {
-                            dt.Rows.Add(estoquePeca.Id, estoquePeca.ValorUnit, estoquePeca.Quantidade, estoquePeca.Descricao);
+                            dt.Rows.Add(estoquePeca.Id, estoquePeca.Descricao, estoquePeca.ValorUnit, estoquePeca.Quantidade);
                         }
-
                         dgEstoqueConsulta.DataSource = dt;
 
                     }
@@ -198,32 +199,45 @@ namespace CamadaDesktop
 
         private void dgEstoqueConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (EstoquePeca == null)
+            if (dgEstoqueConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgEstoqueConsulta.CurrentRow.Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtid.Text = EstoquePeca.Id.ToString();
-                txtValor.Text = EstoquePeca.ValorUnit.ToString();
-                nudQuantidade.Value = EstoquePeca.Quantidade;
-                txtDesc.Text = EstoquePeca.Descricao;
+                int id = int.Parse(dgEstoqueConsulta.CurrentRow.Cells[0].Value.ToString());
 
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-
-                tbControlEstoque.SelectTab("tbPageCadastroEstoque");
-                if (tbControlEstoque.SelectedTab == tbPageCadastroEstoque)
+                foreach (EstoquePeca estoquePeca in ListaEstoquePecas)
                 {
-                    EstoquePeca = null;
-                    txtIDEstoqueConsulta.Text = "";
+                    if (estoquePeca.Id == id)
+                    {
+                        txtid.Text = estoquePeca.Id.ToString();
+                        txtValor.Text = estoquePeca.ValorUnit.ToString();
+                        nudQuantidade.Value = estoquePeca.Quantidade;
+                        txtDesc.Text = estoquePeca.Descricao;
 
-                    btnCadastrarEstoque.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarEstoque.Enabled = true;
-                    btnExcluirEstoque.Enabled = true;
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+
+                        tbControlEstoque.SelectTab("tbPageCadastroEstoque");
+                        if (tbControlEstoque.SelectedTab == tbPageCadastroEstoque)
+                        {
+                            EstoquePeca = null;
+                            txtIDEstoqueConsulta.Text = "";
+
+                            btnCadastrarEstoque.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarEstoque.Enabled = true;
+                            btnExcluirEstoque.Enabled = true;
+                        }
+                    }
                 }
+                textPesquisar.Text = "";
+                dgEstoqueConsulta.DataSource = null;
             }
-
         }
 
         private void btnAlterarEstoque_Click(object sender, EventArgs e)
@@ -350,6 +364,33 @@ namespace CamadaDesktop
                 btnExcluirEstoque.Enabled = false;
 
                 EstoquePeca = null;
+            }
+        }
+
+        private void TextPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<EstoquePeca> estoquePecas = _estoquePecasController.Pesquisar(textPesquisar.Text);
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ID", typeof(int));
+                dt.Columns.Add("Descrição", typeof(string));
+                dt.Columns.Add("Valor", typeof(double));
+                dt.Columns.Add("Quantidade", typeof(int));
+
+
+                foreach (EstoquePeca estoquePeca in estoquePecas)
+                {
+                    dt.Rows.Add(estoquePeca.Id, estoquePeca.Descricao, estoquePeca.ValorUnit, estoquePeca.Quantidade);
+                }
+                ListaEstoquePecas = estoquePecas;
+                dgEstoqueConsulta.DataSource = dt;
+
+            }
+            catch (ConcorrenciaBancoException ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
