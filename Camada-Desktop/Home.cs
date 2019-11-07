@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CamadaModelagem.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +15,20 @@ namespace CamadaDesktop
     {
         int x = 0;
         int y = 0;
+        PerfilAcesso PerfilAcesso;
 
         public frmHome()
         {
             InitializeComponent();
             this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
             this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
+        }
+        public frmHome(PerfilAcesso perfilAcesso)
+        {
+            InitializeComponent();
+            this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
+            this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
+            PerfilAcesso = perfilAcesso;
         }
 
         private void frmHome_MouseDown(object sender, MouseEventArgs e)
@@ -64,11 +73,16 @@ namespace CamadaDesktop
             tooltipminmenu.Hide(pictureBox1);
 
             AtualizarCor();
+
+            if (PerfilAcesso == PerfilAcesso.Operacional) // <<<<------------- testando o escopo de visibilidade
+            {
+                btnFuncionarios.Enabled = false;
+            }
         }
 
         private void btnVeiculos_Click(object sender, EventArgs e)
         {
-            AbrirForms(new Veiculos());
+            AbrirForms(new Veiculos(PerfilAcesso)); // <<<<----------------- Jogando o perfil de Acesso para o Menu de Veiculos
             label2.Text = "Veículos";
         }
 

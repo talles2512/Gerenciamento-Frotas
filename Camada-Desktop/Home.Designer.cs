@@ -64,6 +64,7 @@
             this.tooltiplogo = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipminmenu = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tooltipFuncionario = new System.Windows.Forms.ToolTip(this.components);
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconminimizar)).BeginInit();
@@ -561,6 +562,7 @@
         private System.Windows.Forms.ToolTip tooltiplogo;
         private System.Windows.Forms.ToolTip tooltipminmenu;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip tooltipFuncionario;
     }
 }
 

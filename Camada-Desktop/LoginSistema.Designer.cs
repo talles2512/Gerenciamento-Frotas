@@ -115,6 +115,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(197, 32);
             this.txtLogin.TabIndex = 1;
+            this.txtLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLogin_KeyDown);
             // 
             // lblSenha
             // 
@@ -135,6 +136,7 @@
             this.txtSenha.Size = new System.Drawing.Size(197, 32);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSenha_KeyDown);
             // 
             // btnSair
             // 
