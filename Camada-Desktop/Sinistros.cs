@@ -21,6 +21,7 @@ namespace CamadaDesktop
     {
         private readonly SinistroController _sinistroController;
         private readonly SeguroController _seguroController;
+        private List<Sinistro> ListaSinistros;
         private Sinistro Sinistro;
         private Seguro Seguro;
         ItemSegurado itemseguradoantigo;
@@ -393,7 +394,7 @@ namespace CamadaDesktop
 
                                     dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
                                 }
-
+                                ListaSinistros = sinistros;
                                 dgSinistrosConsulta.DataSource = dt;
 
                             }
@@ -422,7 +423,7 @@ namespace CamadaDesktop
 
                                     dt.Rows.Add(sinistro.Id, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.DataHora, sinistro.Descricao);
                                 }
-
+                                ListaSinistros = sinistros;
                                 dgSinistrosConsulta.DataSource = dt;
 
                             }
@@ -517,84 +518,97 @@ namespace CamadaDesktop
             }
         }
 
-        private void dgSinistrosConsulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgSinistrosConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (Sinistro == null)
+            if (dgSinistrosConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgSinistrosConsulta.CurrentRow.Cells[1].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                int id = int.Parse(Sinistro.Id.ToString());
-                if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                string itemSegurado = dgSinistrosConsulta.CurrentRow.Cells[1].Value.ToString();
+
+                foreach (Sinistro sinistro in ListaSinistros)
                 {
-                    cbTipo.Text = "Veiculo";
+                    if (sinistro.Item == itemSegurado)
+                    {
+                        int id = int.Parse(sinistro.Id.ToString());
+                        if (cbTipoConsulta.SelectedValue.ToString() == "Veiculo")
+                        {
+                            cbTipo.Text = "Veiculo";
+                        }
+                        else
+                        {
+                            cbTipo.Text = "Motorista";
+                        }
+
+                        itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        numapoliceantigo = sinistro.Seguro.NumeroApolice;
+                        cbItemSegurado.SelectedValue = sinistro.Item;
+
+                        if (cbTipo.SelectedItem.ToString() == "Veiculo")
+                        {
+                            if (cbItemSegurado.Items.Count < 1)
+                            {
+                                MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                string placa = cbItemSegurado.SelectedValue.ToString();
+                                cbSeguro.DataSource = _sinistroController.PopularSeguroPlacas(placa);
+                                cbSeguro.DisplayMember = "APOLICE";
+                                cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                            }
+                        }
+                        else if (cbTipo.SelectedItem.ToString() == "Motorista")
+                        {
+                            if (cbItemSegurado.Items.Count < 1)
+                            {
+                                MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                string cpf = cbItemSegurado.SelectedValue.ToString();
+                                cbSeguro.DataSource = _sinistroController.PopularSeguroCPFs(cpf);
+                                cbSeguro.DisplayMember = "APOLICE";
+                                cbSeguro.ValueMember = "SEG_NUMAPOLICE";
+                            }
+                        }
+
+                        dtDataSinistro.Value = sinistro.DataHora;
+                        datahoraantigo = sinistro.DataHora;
+                        txtDesc.Text = sinistro.Descricao;
+
+                        MessageBox.Show("Dados enviados para a Tela de Cadastro.");
+                        tbControlSinistros.SelectTab("tbPageCadastroSinistros");
+                        if (tbControlSinistros.SelectedTab == tbPageCadastroSinistros)
+                        {
+                            txtIDSinistrosConsulta.Text = "";
+                            dtDataSinistroConsulta.Text = "";
+                            cbTipoConsulta.Text = "";
+                            Sinistro = null;
+                            txtid.Text = id.ToString();
+
+                            btnCadastrarSinistros.Visible = false;
+                            lblCancelar.Visible = true;
+                            btnAlterarSinistros.Enabled = true;
+
+                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            {
+                                btnExcluirSinistros.Enabled = false;
+                            }
+                            else
+                            {
+                                btnExcluirSinistros.Enabled = true;
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    cbTipo.Text = "Motorista";
-                }
-
-                itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
-                numapoliceantigo = Sinistro.Seguro.NumeroApolice;
-                cbItemSegurado.SelectedValue = Sinistro.Item;
-
-                if (cbTipo.SelectedItem.ToString() == "Veiculo")
-                {
-                    if (cbItemSegurado.Items.Count < 1)
-                    {
-                        MessageBox.Show("Cadastre um veículo antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        string placa = cbItemSegurado.SelectedValue.ToString();
-                        cbSeguro.DataSource = _sinistroController.PopularSeguroPlacas(placa);
-                        cbSeguro.DisplayMember = "APOLICE";
-                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
-                    }
-                }
-                else if (cbTipo.SelectedItem.ToString() == "Motorista")
-                {
-                    if (cbItemSegurado.Items.Count < 1)
-                    {
-                        MessageBox.Show("Cadastre um motorista antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        string cpf = cbItemSegurado.SelectedValue.ToString();
-                        cbSeguro.DataSource = _sinistroController.PopularSeguroCPFs(cpf);
-                        cbSeguro.DisplayMember = "APOLICE";
-                        cbSeguro.ValueMember = "SEG_NUMAPOLICE";
-                    }
-                }
-
-                dtDataSinistro.Value = Sinistro.DataHora;
-                datahoraantigo = Sinistro.DataHora;
-                txtDesc.Text = Sinistro.Descricao;
-
-                MessageBox.Show("Dados enviados para a Tela de Cadastro.");
-                tbControlSinistros.SelectTab("tbPageCadastroSinistros");
-                if (tbControlSinistros.SelectedTab == tbPageCadastroSinistros)
-                {
-                    txtIDSinistrosConsulta.Text = "";
-                    dtDataSinistroConsulta.Text = "";
-                    cbTipoConsulta.Text = "";
-                    Sinistro = null;
-                    txtid.Text = id.ToString();
-
-                    btnCadastrarSinistros.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarSinistros.Enabled = true;
-
-                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
-                    {
-                        btnExcluirSinistros.Enabled = false;
-                    }
-                    else
-                    {
-                        btnExcluirSinistros.Enabled = true;
-                    }
-                }
+                dgSinistrosConsulta.DataSource = null;
             }
         }
 
@@ -633,9 +647,9 @@ namespace CamadaDesktop
                             MessageBox.Show("Alteração realizada com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
-                            cbSeguro.Text = "";
-                            cbTipo.Text = "";
-                            cbItemSegurado.Text = "";
+                            cbSeguro.SelectedItem = cbSeguro.Items[0];
+                            cbTipo.SelectedItem = cbTipo.Items[0];
+                            cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
                             dtDataSinistro.Text = "";
 
                             btnCadastrarSinistros.Visible = true;
@@ -683,9 +697,9 @@ namespace CamadaDesktop
                             MessageBox.Show("Alteração realizada com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
-                            cbSeguro.Text = "";
-                            cbTipo.Text = "";
-                            cbItemSegurado.Text = "";
+                            cbSeguro.SelectedItem = cbSeguro.Items[0];
+                            cbTipo.SelectedItem = cbTipo.Items[0];
+                            cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
                             dtDataSinistro.Text = "";
 
                             btnCadastrarSinistros.Visible = true;
@@ -733,9 +747,9 @@ namespace CamadaDesktop
                             MessageBox.Show("Exclusão realizada com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
-                            cbSeguro.Text = "";
-                            cbTipo.Text = "";
-                            cbItemSegurado.Text = "";
+                            cbSeguro.SelectedItem = cbSeguro.Items[0];
+                            cbTipo.SelectedItem = cbTipo.Items[0];
+                            cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
                             dtDataSinistro.Text = "";
 
                             btnCadastrarSinistros.Visible = true;
@@ -787,9 +801,9 @@ namespace CamadaDesktop
             if (MessageBox.Show("Deseja realmente cancelar manipulação de dados?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 txtDesc.Text = "";
-                cbSeguro.Text = "";
-                cbTipo.Text = "";
-                cbItemSegurado.Text = "";
+                cbSeguro.SelectedItem = cbSeguro.Items[0];
+                cbTipo.SelectedItem = cbTipo.Items[0];
+                cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
                 dtDataSinistro.Text = "";
 
                 btnCadastrarSinistros.Visible = true;
@@ -800,6 +814,8 @@ namespace CamadaDesktop
                 Sinistro = null;
             }
         }
+
+
     }
 }
 

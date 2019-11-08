@@ -4,6 +4,7 @@ using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
 using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
+using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,34 +61,41 @@ namespace CamadaDesktop
             }
             else
             {
-                Funcionario funcionario = _funcionarioController.BuscarCPF(txtLogin.Text);
-                if(funcionario == null)
+                try
                 {
-                    MessageBox.Show("Usuário inexistente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    if (txtLogin.Text == funcionario.Login)
+                    Funcionario funcionario = _funcionarioController.BuscarCPF(txtLogin.Text);
+                    if (funcionario == null)
                     {
-                        if (txtSenha.Text == funcionario.Senha)
-                        {
-                            PerfilAcesso perfilAcesso = funcionario.PerfilAcesso;
-                            this.Hide();
-                            frmHome home = new frmHome(perfilAcesso);
-                            home.FormClosed += new FormClosedEventHandler(fecharhome);
-                            home.Show();
-                            txtLogin.Text = "";
-                            txtSenha.Text = "";
-                        }
-                        else
-                        {
-                            MessageBox.Show("Senha inválida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        MessageBox.Show("Usuário inexistente!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
-                        MessageBox.Show("Usuário inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        if (txtLogin.Text == funcionario.Login)
+                        {
+                            if (txtSenha.Text == funcionario.Senha)
+                            {
+                                PerfilAcesso perfilAcesso = funcionario.PerfilAcesso;
+                                this.Hide();
+                                frmHome home = new frmHome(perfilAcesso);
+                                home.FormClosed += new FormClosedEventHandler(fecharhome);
+                                home.Show();
+                                txtLogin.Text = "";
+                                txtSenha.Text = "";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Senha inválida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuário inválido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
                     }
+                }
+                catch (ConcorrenciaBancoException)
+                {
+                    MessageBox.Show("Sistema em Manutenção. Contate seu Administrador.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }

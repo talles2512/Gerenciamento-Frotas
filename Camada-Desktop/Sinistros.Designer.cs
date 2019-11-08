@@ -33,6 +33,7 @@
             this.tbControlSinistros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSinistros = new System.Windows.Forms.TabPage();
             this.gbDadosSinistros = new System.Windows.Forms.GroupBox();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.cbTipo = new System.Windows.Forms.ComboBox();
             this.lblTipo = new System.Windows.Forms.Label();
@@ -69,17 +70,16 @@
             this.btnTodosSinistros = new System.Windows.Forms.Button();
             this.btnConsultarSinistros = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlSinistros.SuspendLayout();
             this.tbPageCadastroSinistros.SuspendLayout();
             this.gbDadosSinistros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.tbPageConsultaSinistros.SuspendLayout();
             this.gbConsultaSinistros.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSinistrosConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlSinistros
@@ -130,6 +130,19 @@
             this.gbDadosSinistros.TabIndex = 1;
             this.gbDadosSinistros.TabStop = false;
             this.gbDadosSinistros.Text = "Dados";
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -519,7 +532,7 @@
             this.dgSinistrosConsulta.ReadOnly = true;
             this.dgSinistrosConsulta.Size = new System.Drawing.Size(608, 329);
             this.dgSinistrosConsulta.TabIndex = 20;
-            this.dgSinistrosConsulta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSinistrosConsulta_CellContentClick);
+            this.dgSinistrosConsulta.DoubleClick += new System.EventHandler(this.DgSinistrosConsulta_DoubleClick);
             // 
             // btnTodosSinistros
             // 
@@ -560,19 +573,6 @@
             this.btnConsultarSinistros.UseVisualStyleBackColor = false;
             this.btnConsultarSinistros.Click += new System.EventHandler(this.btnConsultarSinistros_Click);
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 76;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
             // Sinistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +587,7 @@
             this.tbPageCadastroSinistros.ResumeLayout(false);
             this.gbDadosSinistros.ResumeLayout(false);
             this.gbDadosSinistros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.tbPageConsultaSinistros.ResumeLayout(false);
             this.gbConsultaSinistros.ResumeLayout(false);
             this.gbConsultaSinistros.PerformLayout();
@@ -594,7 +595,6 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSinistrosConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }

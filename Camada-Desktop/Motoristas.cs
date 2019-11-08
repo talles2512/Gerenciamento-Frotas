@@ -24,6 +24,7 @@ namespace CamadaDesktop
         private List<Motorista> ListaMotoristas;
         private Motorista Motorista;
         private CNH cNH;
+        private List<ExameMedico> ListaExamesMedicos;
         private ExameMedico ExameMedico;
         string cpfantigo;
         string cpfExameAntigo;
@@ -733,7 +734,7 @@ namespace CamadaDesktop
                         {
                             dt.Rows.Add(exameMedico.Data, exameMedico.Descricao, exameMedico.Situacao, exameMedico.Motorista.CPF);
                         }
-
+                        ListaExamesMedicos = exames;
                         dgExameConsulta.DataSource = dt;
 
                     }
@@ -784,38 +785,53 @@ namespace CamadaDesktop
 
         private void dgExameConsulta_DoubleClick(object sender, EventArgs e)
         {
-            if (ExameMedico == null)
+            if (dgExameConsulta.DataSource == null)
             {
-                MessageBox.Show("Use a função Consultar antes de realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (dgExameConsulta.CurrentRow.Cells[1].Value.ToString() == "")
+            {
+                MessageBox.Show("Selecione uma linha válida!");
             }
             else
             {
-                txtCPFExames.Text = ExameMedico.Motorista.CPF;
-                cpfExameAntigo = ExameMedico.Motorista.CPF;
-                dtDataExame.Value = ExameMedico.Data;
-                dataExameAntigo = ExameMedico.Data;
-                cbSituacaoExame.Text = ExameMedico.Situacao.ToString();
-                txtExameDescricao.Text = ExameMedico.Descricao;
+                DateTime data = Convert.ToDateTime(dgExameConsulta.CurrentRow.Cells[0].Value);
+                string descricao = dgExameConsulta.CurrentRow.Cells[1].Value.ToString();
+                string cpf = dgExameConsulta.CurrentRow.Cells[3].Value.ToString();
+
+                foreach (ExameMedico exameMedico in ListaExamesMedicos)
+                {
+                    if (exameMedico.Motorista.CPF == cpf && exameMedico.Data == data && exameMedico.Descricao == descricao)
+                    {
+                        txtCPFExames.Text = exameMedico.Motorista.CPF;
+                        cpfExameAntigo = exameMedico.Motorista.CPF;
+                        dtDataExame.Value = exameMedico.Data;
+                        dataExameAntigo = exameMedico.Data;
+                        cbSituacaoExame.Text = exameMedico.Situacao.ToString();
+                        txtExameDescricao.Text = exameMedico.Descricao;
 
 
-                txtCPFExameConsulta.Text = "";
-                dtDataExameConsulta.Value = DateTime.Now;
-                ExameMedico = null;
-                Motorista = null;
+                        txtCPFExameConsulta.Text = "";
+                        dtDataExameConsulta.Value = DateTime.Now;
+                        ExameMedico = null;
+                        Motorista = null;
+                        dgExameConsulta.DataSource = null;
+
+                        btnCadastrarExame.Visible = false;
+                        lblCancelar.Visible = true;
+                        btnAlterarExame.Enabled = true;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnExcluirMotorista.Enabled = false;
+                        }
+                        else
+                        {
+                            btnExcluirMotorista.Enabled = true;
+                        }
+                    }
+                }
                 dgExameConsulta.DataSource = null;
-
-                btnCadastrarExame.Visible = false;
-                lblCancelar.Visible = true;
-                btnAlterarExame.Enabled = true;
-
-                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
-                {
-                    btnExcluirMotorista.Enabled = false;
-                }
-                else
-                {
-                    btnExcluirMotorista.Enabled = true;
-                }
             }
         }
 
