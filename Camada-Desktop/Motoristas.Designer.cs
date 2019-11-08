@@ -34,6 +34,7 @@
             this.tbPageCadastroMotorista = new System.Windows.Forms.TabPage();
             this.gbDadosVeiculos = new System.Windows.Forms.GroupBox();
             this.panelConteudoMotorista = new System.Windows.Forms.Panel();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelarMot = new System.Windows.Forms.Label();
             this.gbExameMedico = new System.Windows.Forms.GroupBox();
             this.btnAddExameMedico = new System.Windows.Forms.Button();
@@ -100,6 +101,7 @@
             this.btnConsultaTodosExame = new System.Windows.Forms.Button();
             this.btnConsultaExame = new System.Windows.Forms.Button();
             this.gbDadosExames = new System.Windows.Forms.GroupBox();
+            this.pbpermissao1 = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.lblSituacaoExame = new System.Windows.Forms.Label();
             this.cbSituacaoExame = new System.Windows.Forms.ComboBox();
@@ -115,14 +117,13 @@
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereExam = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao1 = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao1 = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlMotorista.SuspendLayout();
             this.tbPageCadastroMotorista.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
             this.panelConteudoMotorista.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.gbExameMedico.SuspendLayout();
             this.gbCNH.SuspendLayout();
             this.tbPageConsultaMotorista.SuspendLayout();
@@ -136,7 +137,6 @@
             this.gbConsultaporDataExames.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).BeginInit();
             this.gbDadosExames.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -202,6 +202,19 @@
             this.panelConteudoMotorista.Name = "panelConteudoMotorista";
             this.panelConteudoMotorista.Size = new System.Drawing.Size(612, 474);
             this.panelConteudoMotorista.TabIndex = 26;
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(401, 666);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelarMot
             // 
@@ -651,7 +664,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 
@@ -856,7 +869,7 @@
             this.gbConsultaporDataExames.Size = new System.Drawing.Size(171, 201);
             this.gbConsultaporDataExames.TabIndex = 0;
             this.gbConsultaporDataExames.TabStop = false;
-            this.gbConsultaporDataExames.Text = "Data";
+            this.gbConsultaporDataExames.Text = "Data de Registro";
             // 
             // btnConsultaporDataExames
             // 
@@ -1050,6 +1063,19 @@
             this.gbDadosExames.TabStop = false;
             this.gbDadosExames.Text = "Dados";
             // 
+            // pbpermissao1
+            // 
+            this.pbpermissao1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao1.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao1.Image")));
+            this.pbpermissao1.Location = new System.Drawing.Point(429, 198);
+            this.pbpermissao1.Name = "pbpermissao1";
+            this.pbpermissao1.Size = new System.Drawing.Size(34, 33);
+            this.pbpermissao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao1.TabIndex = 77;
+            this.pbpermissao1.TabStop = false;
+            this.pbpermissao1.Visible = false;
+            // 
             // lblCancelar
             // 
             this.lblCancelar.AutoSize = true;
@@ -1200,32 +1226,6 @@
             this.lblCPFExames.TabIndex = 0;
             this.lblCPFExames.Text = "CPF:";
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(401, 666);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 76;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
-            // pbpermissao1
-            // 
-            this.pbpermissao1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao1.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao1.Image")));
-            this.pbpermissao1.Location = new System.Drawing.Point(429, 198);
-            this.pbpermissao1.Name = "pbpermissao1";
-            this.pbpermissao1.Size = new System.Drawing.Size(34, 33);
-            this.pbpermissao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao1.TabIndex = 77;
-            this.pbpermissao1.TabStop = false;
-            this.pbpermissao1.Visible = false;
-            // 
             // Motoristas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1241,6 +1241,7 @@
             this.gbDadosVeiculos.ResumeLayout(false);
             this.panelConteudoMotorista.ResumeLayout(false);
             this.panelConteudoMotorista.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.gbExameMedico.ResumeLayout(false);
             this.gbCNH.ResumeLayout(false);
             this.gbCNH.PerformLayout();
@@ -1260,7 +1261,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgExameConsulta)).EndInit();
             this.gbDadosExames.ResumeLayout(false);
             this.gbDadosExames.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).EndInit();
             this.ResumeLayout(false);
 

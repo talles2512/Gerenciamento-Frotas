@@ -386,7 +386,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 

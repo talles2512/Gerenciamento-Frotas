@@ -34,6 +34,7 @@
             this.tbPageCadastroClientes = new System.Windows.Forms.TabPage();
             this.gbDadosClientes = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.lblDataNascimento = new System.Windows.Forms.Label();
             this.btnExcluirClientes = new System.Windows.Forms.Button();
@@ -72,18 +73,17 @@
             this.btnConsultarClientes = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlClientes.SuspendLayout();
             this.tbPageCadastroClientes.SuspendLayout();
             this.gbDadosClientes.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.tbPageConsultaClientes.SuspendLayout();
             this.gbConsultaClientes.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientesConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlClientes
@@ -145,6 +145,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(609, 467);
             this.panel1.TabIndex = 0;
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(381, 421);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -418,7 +431,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Inicio do Contrato";
             // 
             // btnConsultarPorData
             // 
@@ -579,19 +592,6 @@
             this.btnConsultarClientes.UseVisualStyleBackColor = false;
             this.btnConsultarClientes.Click += new System.EventHandler(this.btnConsultarClientes_Click);
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(381, 421);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 76;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
             // Clientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,6 +607,7 @@
             this.gbDadosClientes.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.tbPageConsultaClientes.ResumeLayout(false);
             this.gbConsultaClientes.ResumeLayout(false);
             this.gbConsultaClientes.PerformLayout();
@@ -614,7 +615,6 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgClientesConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }

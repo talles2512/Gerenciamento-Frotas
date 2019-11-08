@@ -249,12 +249,9 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click(object sender, EventArgs e)
         {
-            int mesinicial = dtInicioConsulta.Value.Month;
-            int mesfinal = dtFimConsulta.Value.Month;
-            int anoinicial = dtInicioConsulta.Value.Year;
-            int anofinal = dtFimConsulta.Value.Year;
+            TimeSpan dtlimite = Convert.ToDateTime(dtFimConsulta.Value).Subtract(Convert.ToDateTime(dtInicioConsulta.Value));
 
-            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
+            if (dtlimite.TotalDays >= 93)
             {
                 MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

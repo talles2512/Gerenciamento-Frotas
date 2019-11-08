@@ -33,6 +33,7 @@
             this.tbControlVeiculos = new System.Windows.Forms.TabControl();
             this.tbPageCadastroVeiculo = new System.Windows.Forms.TabPage();
             this.gbDadosVeiculos = new System.Windows.Forms.GroupBox();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.txtChassi = new System.Windows.Forms.MaskedTextBox();
             this.lblDataVencimento = new System.Windows.Forms.Label();
@@ -79,16 +80,15 @@
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.tbPageConsultaVeiculo.SuspendLayout();
             this.gbConsultaVeiculo.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlVeiculos
@@ -149,6 +149,19 @@
             this.gbDadosVeiculos.TabIndex = 1;
             this.gbDadosVeiculos.TabStop = false;
             this.gbDadosVeiculos.Text = "Dados";
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(398, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 74;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -486,7 +499,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 
@@ -654,19 +667,6 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(398, 399);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 74;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
             // Veiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,6 +683,7 @@
             this.tbPageCadastroVeiculo.ResumeLayout(false);
             this.gbDadosVeiculos.ResumeLayout(false);
             this.gbDadosVeiculos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.tbPageConsultaVeiculo.ResumeLayout(false);
             this.gbConsultaVeiculo.ResumeLayout(false);
             this.gbConsultaVeiculo.PerformLayout();
@@ -690,7 +691,6 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }

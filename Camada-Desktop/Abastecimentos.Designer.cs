@@ -33,6 +33,7 @@
             this.tbControlAbast = new System.Windows.Forms.TabControl();
             this.tbPageCadastroAbast = new System.Windows.Forms.TabPage();
             this.gbDadosAbast = new System.Windows.Forms.GroupBox();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.lblLitros = new System.Windows.Forms.Label();
             this.txtQuantidadeLitros = new System.Windows.Forms.MaskedTextBox();
@@ -69,17 +70,16 @@
             this.btnConsultarAbast = new System.Windows.Forms.Button();
             this.lblPlacaConsulta = new System.Windows.Forms.Label();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlAbast.SuspendLayout();
             this.tbPageCadastroAbast.SuspendLayout();
             this.gbDadosAbast.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.tbPageConsultaAbast.SuspendLayout();
             this.gbConsultaAbast.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoAbast)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlAbast
@@ -130,6 +130,19 @@
             this.gbDadosAbast.TabIndex = 1;
             this.gbDadosAbast.TabStop = false;
             this.gbDadosAbast.Text = "Dados";
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 396);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 75;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -370,7 +383,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 
@@ -559,19 +572,6 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(396, 396);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 75;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
             // Abastecimentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -586,6 +586,7 @@
             this.tbPageCadastroAbast.ResumeLayout(false);
             this.gbDadosAbast.ResumeLayout(false);
             this.gbDadosAbast.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.tbPageConsultaAbast.ResumeLayout(false);
             this.gbConsultaAbast.ResumeLayout(false);
             this.gbConsultaAbast.PerformLayout();
@@ -593,7 +594,6 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgVeiculoAbast)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }

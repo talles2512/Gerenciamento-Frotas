@@ -33,6 +33,7 @@
             this.tbControlSeguros = new System.Windows.Forms.TabControl();
             this.tbPageCadastroSeguros = new System.Windows.Forms.TabPage();
             this.gbDadosSeguros = new System.Windows.Forms.GroupBox();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.txtNApolice = new System.Windows.Forms.MaskedTextBox();
             this.cbFranquia = new System.Windows.Forms.ComboBox();
@@ -92,6 +93,7 @@
             this.btnConsultaTodosCobertura = new System.Windows.Forms.Button();
             this.btnConsultaCobertura = new System.Windows.Forms.Button();
             this.gbDadosCobertura = new System.Windows.Forms.GroupBox();
+            this.pbpermissao1 = new System.Windows.Forms.PictureBox();
             this.lblCancelarCobertura = new System.Windows.Forms.Label();
             this.cbSeguro = new System.Windows.Forms.ComboBox();
             this.cbTipoCobertura = new System.Windows.Forms.ComboBox();
@@ -105,13 +107,12 @@
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfereCobertura = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao1 = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao1 = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlSeguros.SuspendLayout();
             this.tbPageCadastroSeguros.SuspendLayout();
             this.gbDadosSeguros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.tbPageConsultaSeguros.SuspendLayout();
             this.gbConsultaSeguros.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
@@ -123,7 +124,6 @@
             this.gbConsultarporDataCobertura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).BeginInit();
             this.gbDadosCobertura.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,6 +182,19 @@
             this.gbDadosSeguros.TabIndex = 1;
             this.gbDadosSeguros.TabStop = false;
             this.gbDadosSeguros.Text = "Dados";
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 76;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -500,7 +513,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 
@@ -722,7 +735,7 @@
             this.gbConsultarporDataCobertura.Size = new System.Drawing.Size(171, 201);
             this.gbConsultarporDataCobertura.TabIndex = 0;
             this.gbConsultarporDataCobertura.TabStop = false;
-            this.gbConsultarporDataCobertura.Text = "Data";
+            this.gbConsultarporDataCobertura.Text = "Data de Registro";
             // 
             // btnConsultarporDataCobertura
             // 
@@ -911,6 +924,19 @@
             this.gbDadosCobertura.TabStop = false;
             this.gbDadosCobertura.Text = "Dados";
             // 
+            // pbpermissao1
+            // 
+            this.pbpermissao1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao1.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao1.Image")));
+            this.pbpermissao1.Location = new System.Drawing.Point(410, 155);
+            this.pbpermissao1.Name = "pbpermissao1";
+            this.pbpermissao1.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao1.TabIndex = 77;
+            this.pbpermissao1.TabStop = false;
+            this.pbpermissao1.Visible = false;
+            // 
             // lblCancelarCobertura
             // 
             this.lblCancelarCobertura.AutoSize = true;
@@ -1042,32 +1068,6 @@
             this.btnCadastrarCobertura.UseVisualStyleBackColor = false;
             this.btnCadastrarCobertura.Click += new System.EventHandler(this.BtnCadastrarCobertura_Click);
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(396, 399);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 76;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
-            // pbpermissao1
-            // 
-            this.pbpermissao1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao1.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao1.Image")));
-            this.pbpermissao1.Location = new System.Drawing.Point(410, 155);
-            this.pbpermissao1.Name = "pbpermissao1";
-            this.pbpermissao1.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao1.TabIndex = 77;
-            this.pbpermissao1.TabStop = false;
-            this.pbpermissao1.Visible = false;
-            // 
             // Seguros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1082,6 +1082,7 @@
             this.tbPageCadastroSeguros.ResumeLayout(false);
             this.gbDadosSeguros.ResumeLayout(false);
             this.gbDadosSeguros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.tbPageConsultaSeguros.ResumeLayout(false);
             this.gbConsultaSeguros.ResumeLayout(false);
             this.gbConsultaSeguros.PerformLayout();
@@ -1098,7 +1099,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgCoberturaConsulta)).EndInit();
             this.gbDadosCobertura.ResumeLayout(false);
             this.gbDadosCobertura.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbpermissao1)).EndInit();
             this.ResumeLayout(false);
 

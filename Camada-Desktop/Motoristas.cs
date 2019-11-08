@@ -215,12 +215,9 @@ namespace CamadaDesktop
 
         private void btnConsultarPorData_Click_1(object sender, EventArgs e)
         {
-            int mesinicial = dtInicioConsulta.Value.Month;
-            int mesfinal = dtFimConsulta.Value.Month;
-            int anoinicial = dtInicioConsulta.Value.Year;
-            int anofinal = dtFimConsulta.Value.Year;
+            TimeSpan dtlimite = Convert.ToDateTime(dtFimConsulta.Value).Subtract(Convert.ToDateTime(dtInicioConsulta.Value));
 
-            if (mesfinal - mesinicial > 3 || anofinal - anoinicial > 0)
+            if (dtlimite.TotalDays >= 93)
             {
                 MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -702,12 +699,9 @@ namespace CamadaDesktop
 
         private void btnConsultaporDataExames_Click(object sender, EventArgs e)
         {
-            int mesinicialexames = dtInicioConsultaporDataExames.Value.Month;
-            int mesfinalexames = dtFimConsultaporDataExames.Value.Month;
-            int anoinicialexames = dtInicioConsultaporDataExames.Value.Year;
-            int anofinalexames = dtFimConsultaporDataExames.Value.Year;
+            TimeSpan dtlimiteexame = Convert.ToDateTime(dtFimConsultaporDataExames.Value).Subtract(Convert.ToDateTime(dtInicioConsultaporDataExames.Value));
 
-            if (mesfinalexames - mesinicialexames > 3 || anofinalexames - anoinicialexames > 0)
+            if (dtlimiteexame.TotalDays >= 93)
             {
                 MessageBox.Show("Ops, limite maximo atingido! Pesquise no prazo maximo de três meses.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

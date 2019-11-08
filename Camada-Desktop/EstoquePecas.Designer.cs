@@ -33,6 +33,7 @@
             this.tbControlEstoque = new System.Windows.Forms.TabControl();
             this.tbPageCadastroEstoque = new System.Windows.Forms.TabPage();
             this.gbDadosEstoque = new System.Windows.Forms.GroupBox();
+            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.lblCancelar = new System.Windows.Forms.Label();
             this.nudQuantidade = new System.Windows.Forms.NumericUpDown();
             this.lblQtd = new System.Windows.Forms.Label();
@@ -63,18 +64,17 @@
             this.btnTodosEstoque = new System.Windows.Forms.Button();
             this.btnConsultarEstoque = new System.Windows.Forms.Button();
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
-            this.pbpermissao = new System.Windows.Forms.PictureBox();
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.tbControlEstoque.SuspendLayout();
             this.tbPageCadastroEstoque.SuspendLayout();
             this.gbDadosEstoque.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantidade)).BeginInit();
             this.tbPageConsultaEstoque.SuspendLayout();
             this.gbConsultaEstoque.SuspendLayout();
             this.panelConsultarPorData.SuspendLayout();
             this.gbData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEstoqueConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).BeginInit();
             this.SuspendLayout();
             // 
             // tbControlEstoque
@@ -121,6 +121,19 @@
             this.gbDadosEstoque.TabIndex = 1;
             this.gbDadosEstoque.TabStop = false;
             this.gbDadosEstoque.Text = "Dados";
+            // 
+            // pbpermissao
+            // 
+            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
+            this.pbpermissao.Location = new System.Drawing.Point(396, 341);
+            this.pbpermissao.Name = "pbpermissao";
+            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
+            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbpermissao.TabIndex = 77;
+            this.pbpermissao.TabStop = false;
+            this.pbpermissao.Visible = false;
             // 
             // lblCancelar
             // 
@@ -339,7 +352,7 @@
             this.gbData.Size = new System.Drawing.Size(171, 201);
             this.gbData.TabIndex = 0;
             this.gbData.TabStop = false;
-            this.gbData.Text = "Data";
+            this.gbData.Text = "Data de Registro";
             // 
             // btnConsultarPorData
             // 
@@ -489,19 +502,6 @@
             this.btnConsultarEstoque.UseVisualStyleBackColor = false;
             this.btnConsultarEstoque.Click += new System.EventHandler(this.btnConsultarEstoque_Click);
             // 
-            // pbpermissao
-            // 
-            this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(396, 341);
-            this.pbpermissao.Name = "pbpermissao";
-            this.pbpermissao.Size = new System.Drawing.Size(53, 40);
-            this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbpermissao.TabIndex = 77;
-            this.pbpermissao.TabStop = false;
-            this.pbpermissao.Visible = false;
-            // 
             // EstoquePecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,6 +516,7 @@
             this.tbPageCadastroEstoque.ResumeLayout(false);
             this.gbDadosEstoque.ResumeLayout(false);
             this.gbDadosEstoque.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantidade)).EndInit();
             this.tbPageConsultaEstoque.ResumeLayout(false);
             this.gbConsultaEstoque.ResumeLayout(false);
@@ -524,7 +525,6 @@
             this.gbData.ResumeLayout(false);
             this.gbData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEstoqueConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbpermissao)).EndInit();
             this.ResumeLayout(false);
 
         }
