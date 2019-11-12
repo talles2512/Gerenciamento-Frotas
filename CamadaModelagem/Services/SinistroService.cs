@@ -20,11 +20,11 @@ namespace CamadaModelagem.Services
             _sinistroDAL = sinitroDAL;
         }
 
-        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice, string tipo)
         {
             try
             {
-                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item); //Falta criar os métodos de busca
+                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item, tipo); //Falta criar os métodos de busca
                 if (obj != null)
                 {
                     throw new RegistroExisteException("Já existe um sinistro com esse dados no sistema!");
@@ -36,11 +36,11 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
-        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string item, string tipo)
         {
             try
             {
-                return _sinistroDAL.BuscarSinistro(id, data, tipo);
+                return _sinistroDAL.BuscarSinistro(id, data, item, tipo);
             }
             catch (ConcorrenciaBancoException e)
             {
@@ -62,11 +62,11 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Deletar(Sinistro sinistro, int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data, string tipo)
         {
             try
             {
-                return _sinistroDAL.Deletar(sinistro, id, data);
+                return _sinistroDAL.Deletar(sinistro, id, data, tipo);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -74,16 +74,16 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice, string tipo)
         {
             try
             {
-                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item); //Falta criar os métodos de busca
+                Sinistro obj = _sinistroDAL.BuscarSinistro(id, data, item, tipo); //Falta criar os métodos de busca
                 if (obj == null)
                 {
                     throw new NaoEncontradoException("Sinistro não encontrado.");
                 }
-                return _sinistroDAL.Alterar(sinistro, id, data, numapolice);
+                return _sinistroDAL.Alterar(sinistro, id, data, numapolice, tipo);
             }
             catch (ConcorrenciaBancoException)
             {

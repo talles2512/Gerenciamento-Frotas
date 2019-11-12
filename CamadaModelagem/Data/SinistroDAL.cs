@@ -47,7 +47,7 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string item, string tipo)
         {
             string Query = "";
             TipoSeguro tiposeg;
@@ -72,13 +72,13 @@ namespace CamadaModelagem.Data
                 {
                     int idsin = int.Parse(dr["SIN_ID"].ToString());
                     DateTime datasin = DateTime.Parse(dr["SIN_DATAHORA"].ToString());
-                    string item = dr["SIN_ITEMSEG"].ToString();
+                    string itemseg = dr["SIN_ITEMSEG"].ToString();
                     //ItemSegurado item = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), dr["SIN_ITEMSEG"].ToString());
                     
                     long napolice = long.Parse(dr["SIN_SEGURO"].ToString());
                     Seguro seguro = BuscarSeguro(tiposeg, napolice);
 
-                    sinistro = new Sinistro(idsin, item, dr["SIN_DESCRICAO"].ToString(), datasin, seguro);
+                    sinistro = new Sinistro(idsin, itemseg, dr["SIN_DESCRICAO"].ToString(), datasin, seguro);
                 }
                 return sinistro;
             }
@@ -135,16 +135,16 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public bool Deletar(Sinistro sinistro, int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data, string tipo)
         {
             string dataantiga = data.ToString("yyyy/MM/dd hh:mm");
             string query = "";
 
-            if (sinistro.ItemSegurado.ToString() == "Veiculo")
+            if (tipo == "Veiculo")
             {
                 query = "DELETE [dbo].[TB_SINISTRO_VEICULO] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + dataantiga + "'";
             }
-            else if (sinistro.ItemSegurado.ToString() == "Motorista")
+            else if (tipo == "Motorista")
             {
                 query = "DELETE [dbo].[TB_SINISTRO_MOTORISTA] WHERE [SIN_ID] = " + id + " AND [SIN_DATAHORA] = '" + dataantiga + "'";
             }
@@ -158,19 +158,19 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, DateTime data, long numapolice, string tipo)
         {
             string query = "";
 
             string datahora = sinistro.DataHora.ToString("yyyy/MM/dd hh:mm");
             string dataantiga = data.ToString("yyyy/MM/dd hh:mm");
-            if (sinistro.ItemSegurado.ToString() == "Veiculo")
+            if (tipo == "Veiculo")
             {
 
                 query = "UPDATE [dbo].[TB_SINISTRO_VEICULO] SET[SIN_ITEMSEG] = '" + sinistro.Item + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "' " +
                     "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";
     }
-            else if (sinistro.ItemSegurado.ToString() == "Motorista")
+            else if (tipo == "Motorista")
             {
                 query = "UPDATE [dbo].[TB_SINISTRO_MOTORISTA] SET[SIN_ITEMSEG] = '" + sinistro.Item + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "'" +
                     "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";

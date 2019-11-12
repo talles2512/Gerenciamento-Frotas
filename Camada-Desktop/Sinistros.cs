@@ -27,6 +27,7 @@ namespace CamadaDesktop
         string itemseguradoantigo;
         DateTime datahoraantigo;
         long numapoliceantigo;
+        string tipoantigo;
         PerfilAcesso PerfilAcesso;
 
         public Sinistros()
@@ -37,7 +38,8 @@ namespace CamadaDesktop
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
-            string itemseguradoantigo = "";
+            itemseguradoantigo = "";
+            tipoantigo = "";
         }
 
         public Sinistros(PerfilAcesso perfilAcesso)
@@ -48,7 +50,8 @@ namespace CamadaDesktop
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
-            string itemseguradoantigo = "";
+            itemseguradoantigo = "";
+            tipoantigo = "";
             PerfilAcesso = perfilAcesso;
         }
 
@@ -196,7 +199,7 @@ namespace CamadaDesktop
 
                     try
                     {
-                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice))
+                        if (_sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice, cbTipo.SelectedValue.ToString()))
                         {
                             MessageBox.Show("Cadastro realizado com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
@@ -242,7 +245,7 @@ namespace CamadaDesktop
                     Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
                     try
                     {
-                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice))
+                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice, cbTipo.SelectedValue.ToString()))
                         {
                             MessageBox.Show("Cadastro realizado com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
@@ -285,7 +288,7 @@ namespace CamadaDesktop
                         //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
                         string itemsegurado = cbItemSegurado.SelectedValue.ToString();
 
-                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
+                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado, cbTipo.SelectedValue.ToString());
                         if (sinistro == null)
                         {
                             MessageBox.Show("Não existe cadastro com esse Identificador,Data e Tipo!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -319,7 +322,7 @@ namespace CamadaDesktop
                         //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
                         string itemsegurado = cbItemSegurado.SelectedValue.ToString();
 
-                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
+                        Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado, cbTipo.SelectedValue.ToString());
                         if (sinistro == null)
                         {
                             MessageBox.Show("Não existe cadastro com esse Identificador,Data e Tipo!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -459,6 +462,7 @@ namespace CamadaDesktop
                     
                 itemseguradoantigo = cbTipoConsulta.SelectedItem.ToString();
                 numapoliceantigo = Sinistro.Seguro.NumeroApolice;
+                tipoantigo = cbTipoConsulta.SelectedValue.ToString();
                 cbItemSegurado.SelectedValue = Sinistro.Item;
 
                 if (cbTipo.SelectedItem.ToString() == "Veiculo")
@@ -550,6 +554,7 @@ namespace CamadaDesktop
 
                         itemseguradoantigo = cbTipoConsulta.SelectedItem.ToString();
                         numapoliceantigo = sinistro.Seguro.NumeroApolice;
+                        tipoantigo = cbTipoConsulta.SelectedValue.ToString();
                         cbItemSegurado.SelectedValue = sinistro.Item;
 
                         if (cbTipo.SelectedItem.ToString() == "Veiculo")
@@ -645,11 +650,13 @@ namespace CamadaDesktop
 
                     try
                     {
-                        if (_sinistroController.Alterar(sinistro, id, itemseguradoantigo, datahoraantigo,  numapoliceantigo))
+                        if (_sinistroController.Alterar(sinistro, id, itemseguradoantigo, datahoraantigo,  numapoliceantigo, tipoantigo))
                         {
                             MessageBox.Show("Alteração realizada com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
+                            tipoantigo = "";
+
                             cbSeguro.SelectedItem = cbSeguro.Items[0];
                             cbTipo.SelectedItem = cbTipo.Items[0];
                             cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
@@ -696,11 +703,13 @@ namespace CamadaDesktop
                     Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
                     try
                     {
-                        if (_sinistroController.Alterar(sinistro, id, itemseguradoantigo, datahoraantigo, numapoliceantigo))
+                        if (_sinistroController.Alterar(sinistro, id, itemseguradoantigo, datahoraantigo, numapoliceantigo, tipoantigo))
                         {
                             MessageBox.Show("Alteração realizada com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
                             txtDesc.Text = "";
+                            tipoantigo = "";
+
                             cbSeguro.SelectedItem = cbSeguro.Items[0];
                             cbTipo.SelectedItem = cbTipo.Items[0];
                             cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
@@ -752,24 +761,28 @@ namespace CamadaDesktop
 
                 Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
 
-                if (_sinistroController.Deletar(sinistro, id, datahoraantigo))
-                {
+
                     if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Exclusão realizada com Sucesso!");
-                        txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
-                        txtDesc.Text = "";
-                        cbSeguro.SelectedItem = cbSeguro.Items[0];
-                        cbTipo.SelectedItem = cbTipo.Items[0];
-                        cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
-                        dtDataSinistro.Value = DateTime.Now;
+                        if (_sinistroController.Deletar(sinistro, id, datahoraantigo, tipoantigo))
+                        {
+                            MessageBox.Show("Exclusão realizada com Sucesso!");
+                            txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                            txtDesc.Text = "";
+                            tipoantigo = "";
 
-                        btnCadastrarSinistros.Visible = true;
-                        lblCancelar.Visible = false;
-                        btnAlterarSinistros.Enabled = false;
-                        btnExcluirSinistros.Enabled = false;
-                    }
+                            cbSeguro.SelectedItem = cbSeguro.Items[0];
+                            cbTipo.SelectedItem = cbTipo.Items[0];
+                            cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
+                            dtDataSinistro.Value = DateTime.Now;
+
+                            btnCadastrarSinistros.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarSinistros.Enabled = false;
+                            btnExcluirSinistros.Enabled = false;
+                        }
                 }
+                
 
             }
             catch (NaoEncontradoException ex)

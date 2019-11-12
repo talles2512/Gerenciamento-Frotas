@@ -22,11 +22,11 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice, string tipo)
         {      
             try
             {
-                return _sinistroService.Cadastrar(sinistro, id, data, item, numapolice);
+                return _sinistroService.Cadastrar(sinistro, id, data, item, numapolice, tipo);
             }
             catch (RegistroExisteException e)
             {
@@ -38,11 +38,11 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string item, string tipo)
         {
             try
             {
-                return _sinistroService.BuscarSinistro(id, data, tipo);
+                return _sinistroService.BuscarSinistro(id, data, item, tipo);
             }
             catch (ConcorrenciaBancoException e)
             {
@@ -62,11 +62,11 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public bool Deletar(Sinistro sinistro, int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data, string tipo)
         {
             try
             {
-                return _sinistroService.Deletar(sinistro, id, data);
+                return _sinistroService.Deletar(sinistro, id, data, tipo);
             }
             catch
             {
@@ -74,11 +74,11 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice, string tipo)
         {
             try
             {
-                return _sinistroService.Alterar(sinistro, id, item, data, numapolice);
+                return _sinistroService.Alterar(sinistro, id, item, data, numapolice, tipo);
             }
             catch
             {
