@@ -16,19 +16,14 @@ namespace CamadaModelagem.Models
         public DateTime DataHora { get; set; }
         public Seguro Seguro { get; set; }
 
-        public Sinistro(int id, string item, string descricao, DateTime dataHora, Seguro seguro)
+        public Sinistro()
+        {
+        }
+
+        public Sinistro(int id, string item, string descricao, DateTime dataHora,Seguro seguro)
         {
             Id = id;
             Item = item;
-            Descricao = descricao;
-            DataHora = dataHora;
-            Seguro = seguro;
-        }
-
-        public Sinistro(int id, ItemSegurado itemSegurado, string descricao, DateTime dataHora,Seguro seguro)
-        {
-            Id = id;
-            ItemSegurado = itemSegurado;
             Descricao = descricao;
             DataHora = dataHora;
             Seguro = seguro;

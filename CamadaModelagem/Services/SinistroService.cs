@@ -20,7 +20,7 @@ namespace CamadaModelagem.Services
             _sinistroDAL = sinitroDAL;
         }
 
-        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, ItemSegurado item, long numapolice)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace CamadaModelagem.Services
                 throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
-        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, ItemSegurado item, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice)
         {
             try
             {

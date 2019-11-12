@@ -24,7 +24,7 @@ namespace CamadaDesktop
         private List<Sinistro> ListaSinistros;
         private Sinistro Sinistro;
         private Seguro Seguro;
-        ItemSegurado itemseguradoantigo;
+        string itemseguradoantigo;
         DateTime datahoraantigo;
         long numapoliceantigo;
         PerfilAcesso PerfilAcesso;
@@ -37,6 +37,7 @@ namespace CamadaDesktop
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
+            string itemseguradoantigo = "";
         }
 
         public Sinistros(PerfilAcesso perfilAcesso)
@@ -47,6 +48,7 @@ namespace CamadaDesktop
             Sinistro = null;
             Seguro = null;
             numapoliceantigo = 0;
+            string itemseguradoantigo = "";
             PerfilAcesso = perfilAcesso;
         }
 
@@ -184,7 +186,7 @@ namespace CamadaDesktop
                 else
                 {
                     TipoSeguro tipoSeguro = TipoSeguro.Automóvel;
-                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    string itemsegurado = cbItemSegurado.SelectedValue.ToString();
                     int id = int.Parse(txtid.Text);
                     long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
@@ -194,7 +196,7 @@ namespace CamadaDesktop
 
                     try
                     {
-                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.ItemSegurado, numapolice))
+                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice))
                         {
                             MessageBox.Show("Cadastro realizado com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
@@ -229,7 +231,8 @@ namespace CamadaDesktop
                 else
                 {
                     TipoSeguro tipoSeguro = TipoSeguro.Vida;
-                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    string itemsegurado = cbItemSegurado.SelectedValue.ToString();
                     int id = int.Parse(txtid.Text);
                     long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
@@ -239,7 +242,7 @@ namespace CamadaDesktop
                     Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
                     try
                     {
-                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.ItemSegurado, numapolice))
+                        if ( _sinistroController.Cadastrar(sinistro, id, dtDataSinistro.Value, sinistro.Item, numapolice))
                         {
                             MessageBox.Show("Cadastro realizado com Sucesso!");
                             txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
@@ -279,8 +282,9 @@ namespace CamadaDesktop
                     try
                     {
                         int id = int.Parse(txtIDSinistrosConsulta.Text);
-                        ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
-                        
+                        //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        string itemsegurado = cbItemSegurado.SelectedValue.ToString();
+
                         Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
                         if (sinistro == null)
                         {
@@ -312,7 +316,8 @@ namespace CamadaDesktop
                     try
                     {
                         int id = int.Parse(txtIDSinistrosConsulta.Text);
-                        ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        string itemsegurado = cbItemSegurado.SelectedValue.ToString();
 
                         Sinistro sinistro = _sinistroController.BuscarSinistro(id, dtDataSinistroConsulta.Value, itemsegurado);
                         if (sinistro == null)
@@ -452,7 +457,7 @@ namespace CamadaDesktop
                     cbTipo.Text = "Motorista";
                 }
                     
-                itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                itemseguradoantigo = cbTipoConsulta.SelectedItem.ToString();
                 numapoliceantigo = Sinistro.Seguro.NumeroApolice;
                 cbItemSegurado.SelectedValue = Sinistro.Item;
 
@@ -543,7 +548,7 @@ namespace CamadaDesktop
                             cbTipo.Text = "Motorista";
                         }
 
-                        itemseguradoantigo = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipoConsulta.SelectedItem.ToString());
+                        itemseguradoantigo = cbTipoConsulta.SelectedItem.ToString();
                         numapoliceantigo = sinistro.Seguro.NumeroApolice;
                         cbItemSegurado.SelectedValue = sinistro.Item;
 
@@ -629,9 +634,10 @@ namespace CamadaDesktop
                 else
                 {
                     TipoSeguro tipoSeguro = TipoSeguro.Automóvel;
-                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    string itemsegurado = cbItemSegurado.SelectedValue.ToString();
                     int id = int.Parse(txtid.Text);
-                    long seg = long.Parse(cbSeguro.ValueMember.ToString());
+                    long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
                     Seguro seguro = _seguroController.BuscarSeguro(tipoSeguro, seg);
                     long numapolice = Convert.ToInt64(seguro.NumeroApolice);
@@ -679,7 +685,8 @@ namespace CamadaDesktop
                 else
                 {
                     TipoSeguro tipoSeguro = TipoSeguro.Vida;
-                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                    string itemsegurado = cbItemSegurado.SelectedValue.ToString();
                     int id = int.Parse(txtid.Text);
                     long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
@@ -723,39 +730,47 @@ namespace CamadaDesktop
 
         private void btnExcluirSinistros_Click(object sender, EventArgs e)
         {
+            TipoSeguro tipoSeguro;
             try
             {
-                if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if(cbTipo.Text == "Veiculo")
                 {
-                    TipoSeguro tipoSeguro = TipoSeguro.Vida;
-                    ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
-                    int id = int.Parse(txtid.Text);
-                    long seg = long.Parse(cbSeguro.SelectedValue.ToString());
+                    tipoSeguro = TipoSeguro.Automóvel;
+                }
+                else
+                {
+                    tipoSeguro = TipoSeguro.Vida;
+                }
+                
+                //ItemSegurado itemsegurado = (ItemSegurado)Enum.Parse(typeof(ItemSegurado), cbTipo.SelectedItem.ToString());
+                string itemsegurado = cbItemSegurado.SelectedValue.ToString();
+                int id = int.Parse(txtid.Text);
+                long seg = long.Parse(cbSeguro.SelectedValue.ToString());
 
-                    Seguro seguro = _sinistroController.BuscarSeguro(tipoSeguro, seg);
-                    long numapolice = Convert.ToInt64(seguro.NumeroApolice);
+                Seguro seguro = _sinistroController.BuscarSeguro(tipoSeguro, seg);
+                long numapolice = Convert.ToInt64(seguro.NumeroApolice);
 
-                    Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
+                Sinistro sinistro = new Sinistro(id, itemsegurado, txtDesc.Text, dtDataSinistro.Value, seguro);
 
-                    if (_sinistroController.Deletar(sinistro, id, datahoraantigo))
+                if (_sinistroController.Deletar(sinistro, id, datahoraantigo))
+                {
+                    if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("Deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            MessageBox.Show("Exclusão realizada com Sucesso!");
-                            txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
-                            txtDesc.Text = "";
-                            cbSeguro.SelectedItem = cbSeguro.Items[0];
-                            cbTipo.SelectedItem = cbTipo.Items[0];
-                            cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
-                            dtDataSinistro.Text = "";
+                        MessageBox.Show("Exclusão realizada com Sucesso!");
+                        txtid.Text = _sinistroController.PopularID(cbTipo.SelectedItem.ToString()).ToString();
+                        txtDesc.Text = "";
+                        cbSeguro.SelectedItem = cbSeguro.Items[0];
+                        cbTipo.SelectedItem = cbTipo.Items[0];
+                        cbItemSegurado.SelectedItem = cbItemSegurado.Items[0];
+                        dtDataSinistro.Value = DateTime.Now;
 
-                            btnCadastrarSinistros.Visible = true;
-                            lblCancelar.Visible = false;
-                            btnAlterarSinistros.Enabled = false;
-                            btnExcluirSinistros.Enabled = false;
-                        }                 
+                        btnCadastrarSinistros.Visible = true;
+                        lblCancelar.Visible = false;
+                        btnAlterarSinistros.Enabled = false;
+                        btnExcluirSinistros.Enabled = false;
                     }
                 }
+
             }
             catch (NaoEncontradoException ex)
             {

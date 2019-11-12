@@ -30,12 +30,12 @@ namespace CamadaModelagem.Data
             {
 
                 query = "INSERT INTO [dbo].[TB_SINISTRO_VEICULO] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA],[SIN_DATAREGISTRO])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
+                    "VALUES ('" + sinistro.Item + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
             }
             else if (sinistro.ItemSegurado.ToString() == "Motorista")
             {
                 query = "INSERT INTO [dbo].[TB_SINISTRO_MOTORISTA] ([SIN_ITEMSEG],[SIN_SEGURO],[SIN_DESCRICAO],[SIN_DATAHORA],[SIN_DATAREGISTRO])" +
-                    "VALUES ('" + sinistro.ItemSegurado + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
+                    "VALUES ('" + sinistro.Item + "', " + numapolice + ", '" + sinistro.Descricao + "', '" + data + "','" + datareg.ToShortDateString() + "')";
             }
             try
             {
@@ -47,7 +47,7 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
         {
             string Query = "";
             TipoSeguro tiposeg;
@@ -167,12 +167,12 @@ namespace CamadaModelagem.Data
             if (sinistro.ItemSegurado.ToString() == "Veiculo")
             {
 
-                query = "UPDATE [dbo].[TB_SINISTRO_VEICULO] SET[SIN_ITEMSEG] = '" + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "' " +
+                query = "UPDATE [dbo].[TB_SINISTRO_VEICULO] SET[SIN_ITEMSEG] = '" + sinistro.Item + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "' " +
                     "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";
     }
             else if (sinistro.ItemSegurado.ToString() == "Motorista")
             {
-                query = "UPDATE [dbo].[TB_SINISTRO_MOTORISTA] SET[SIN_ITEMSEG] = '" + sinistro.ItemSegurado + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "'" +
+                query = "UPDATE [dbo].[TB_SINISTRO_MOTORISTA] SET[SIN_ITEMSEG] = '" + sinistro.Item + "', [SIN_SEGURO] = " + numapolice + ", [SIN_DESCRICAO] = '" + sinistro.Descricao + "', [SIN_DATAHORA] = '" + datahora + "'" +
                     "WHERE [SIN_ID] = " + id + " AND SIN_DATAHORA = '" + dataantiga + "'";
             }
             try

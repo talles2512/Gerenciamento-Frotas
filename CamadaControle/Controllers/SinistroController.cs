@@ -22,7 +22,7 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, ItemSegurado item, long numapolice)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice)
         {      
             try
             {
@@ -38,7 +38,7 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string tipo)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace CamadaControle.Controllers
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, ItemSegurado item, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice)
         {
             try
             {
