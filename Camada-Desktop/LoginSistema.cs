@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CamadaDesktop
 {
@@ -26,11 +27,21 @@ namespace CamadaDesktop
 
         public LoginSistema()
         {
+            //Thread t = new Thread(new ThreadStart(StartForm));
+            //t.Start();
+            //Thread.Sleep(6000);          
             InitializeComponent();
+            //t.Abort();
+            //this.BringToFront();
             this.MouseDown += new MouseEventHandler(frmHome_MouseDown);
             this.MouseMove += new MouseEventHandler(frmHome_MouseMove);
             _funcionarioController = InstanciarCamadas();
         }
+
+        //public void StartForm()
+        //{
+        //    Application.Run(new SplashScreen());
+        //}
 
         private FuncionarioController InstanciarCamadas()
         {

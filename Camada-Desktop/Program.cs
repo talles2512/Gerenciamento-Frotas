@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CamadaDesktop
 {
@@ -16,7 +17,7 @@ namespace CamadaDesktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginSistema());
+            Application.Run(new SplashScreen());
         }
     }
 }
