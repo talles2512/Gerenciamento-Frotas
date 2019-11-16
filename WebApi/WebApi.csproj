@@ -96,7 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AbastecimentoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EntradaSaidaController.cs" />
+    <Compile Include="Controllers\EstoquePecasController.cs" />
     <Compile Include="Controllers\MotoristaController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -125,9 +128,6 @@
     <Compile Include="Infraestructure\Entity\TB_VEICULOS_ALUGUEL.cs" />
     <Compile Include="Infraestructure\Entity\TB_VIAGENS.cs" />
     <Compile Include="Infraestructure\Entity\TB_VIAGENS_OCUPANTES.cs" />
-    <Compile Include="Instancia\InstanciaCliente.cs" />
-    <Compile Include="Instancia\InstanciaMotorista.cs" />
-    <Compile Include="Instancia\InstanciaVeiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,12 @@
 ﻿using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,28 +14,28 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/Cliente")]
-    public class ClienteController : ApiController
+    [RoutePrefix("api/EstoquePecas")]
+    public class EstoquePecasController : ApiController
     {
-        private readonly ClienteService _clienteService;
+        private readonly EstoquePecasService _estoquePecasService;
 
-        public ClienteController()
+        public EstoquePecasController()
         {
             Banco banco = new Banco();
-            ClienteDAL clienteDAL = new ClienteDAL(banco);
-            _clienteService = new ClienteService(clienteDAL);
+            EstoquePecasDAL estoquePecasDAL = new EstoquePecasDAL(banco);
+            _estoquePecasService = new EstoquePecasService(estoquePecasDAL);
         }
-        public ClienteController(ClienteService clienteService)
+        public EstoquePecasController(EstoquePecasService estoquePecasService)
         {
-            _clienteService = clienteService;
+            _estoquePecasService = estoquePecasService;
         }
 
         #region [AplicacaoDesktop]
-        public bool Cadastrar(Cliente cliente, string cpf)
+        public bool Cadastrar(EstoquePeca estoquePeca, int idpeca)
         {
             try
             {
-                return _clienteService.Cadastrar(cliente, cpf);
+                return _estoquePecasService.Cadastrar(estoquePeca, idpeca);
             }
             catch (RegistroExisteException e)
             {
@@ -45,11 +47,22 @@ namespace WebApi.Controllers
             }
         }
 
-        public Cliente BuscarCPF(string cpf)
+        public EstoquePeca BuscarEstoquePecas(int idpeca)
         {
             try
             {
-                return _clienteService.BuscarCPF(cpf);
+                return _estoquePecasService.BuscarEstoquePecas(idpeca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        public List<EstoquePeca> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        {
+            try
+            {
+                return _estoquePecasService.BuscarTodos(dtinicio, dtfim);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -57,11 +70,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<Cliente> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        public bool Deletar(int idpeca)
         {
             try
             {
-                return _clienteService.BuscarTodos(dtinicio, dtfim);
+                return _estoquePecasService.Deletar(idpeca);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -69,11 +82,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Deletar(string cpf)
+        public bool Alterar(EstoquePeca estoquePeca, int idpeca)
         {
             try
             {
-                return _clienteService.Deletar(cpf);
+                return _estoquePecasService.Alterar(estoquePeca, idpeca);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -82,27 +95,23 @@ namespace WebApi.Controllers
 
         }
 
-        public bool Alterar(Cliente cliente, string cpf)
+        public int PopulaID()
         {
             try
             {
-                return _clienteService.Alterar(cliente, cpf);
+                return _estoquePecasService.PopulaID();
             }
-            catch (NaoEncontradoException e)
+            catch
             {
-                throw new NaoEncontradoException(e.Message);
-            }
-            catch (ConcorrenciaBancoException e)
-            {
-                throw new ConcorrenciaBancoException(e.Message);
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
             }
         }
 
-        public List<Cliente> Pesquisar(string busca)
+        public List<EstoquePeca> Pesquisar(string busca)
         {
             try
             {
-                return _clienteService.Pesquisar(busca);
+                return _estoquePecasService.Pesquisar(busca);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -114,16 +123,16 @@ namespace WebApi.Controllers
 
         #region [AplicacaoWeb]
 
-        // GET: api/Cliente?cpf=VALOR
+        // GET: api/EstoquePecas?id=VALOR
         [HttpGet]
-        public IHttpActionResult Get(string cpf)
+        public IHttpActionResult Get(int id)
         {
             try
             {
-                var result = _clienteService.BuscarCPF(cpf);
+                var result = _estoquePecasService.BuscarEstoquePecas(id);
                 if (result == null)
                 {
-                    return BadRequest("Cliente não encontrado!");
+                    return BadRequest("Estoque de Peças não encontrado!");
                 }
                 else
                 {
@@ -136,39 +145,17 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/Cliente?cpf=VALOR&nome=VALOR
-        [HttpGet]
-        public IHttpActionResult Get(string cpf, string nome) //Testando multiparametrização
-        {
-            try
-            {
-                var result = _clienteService.BuscarCPF(cpf);
-                if (result == null)
-                {
-                    return BadRequest("Cliente não encontrado!");
-                }
-                else
-                {
-                    return Ok(result);
-                }
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                return BadRequest("Favor tentar novamente mais tarde.");
-            }
-        }
-
-        //POST: api/Cliente
+        //POST: api/EstoquePecas
         [HttpPost]
         [Route("add")]
-        public IHttpActionResult Post([FromBody] Cliente cliente)
+        public IHttpActionResult Post([FromBody] EstoquePeca estoquePeca)
         {
-            if (cliente == null)
+            if (estoquePeca == null)
                 return BadRequest();
 
             try
             {
-                bool result = _clienteService.Cadastrar(cliente, cliente.CPF);
+                bool result = _estoquePecasService.Cadastrar(estoquePeca, estoquePeca.Id);
                 if (result)
                 {
                     return Ok();
@@ -188,18 +175,6 @@ namespace WebApi.Controllers
             }
 
         }
-
-        //// PUT: api/Veiculos/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Veiculos/5
-        //public void Delete(int id)
-        //{
-        //}
-
-
 
         #endregion
     }

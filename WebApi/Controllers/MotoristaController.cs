@@ -1,4 +1,7 @@
-﻿using CamadaModelagem.Models;
+﻿using CamadaModelagem.Data;
+using CamadaModelagem.Data.Configuration;
+using CamadaModelagem.Models;
+using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -6,25 +9,125 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApi.Instancia;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/motoristas")]
+    [RoutePrefix("api/Motorista")]
     public class MotoristaController : ApiController
     {
-        #region [AplicacaoWeb]
-        // GET: api/Motoristas/5
-        [HttpGet]
-        public IHttpActionResult Get(string id)
+        private readonly MotoristaService _motoristaService;
+
+
+        public MotoristaController()
         {
-            InstanciaMotorista instanciaMotorista = new InstanciaMotorista();
+            Banco banco = new Banco();
+            MotoristaDAL motoristaDAL = new MotoristaDAL(banco);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            _motoristaService = new MotoristaService(motoristaDAL, entradaSaidaDAL, seguroDAL);
+        }
+        public MotoristaController(MotoristaService motoristaService)
+        {
+            _motoristaService = motoristaService;
+        }
+
+        #region [AplicacaoDesktop]
+        public bool Cadastrar(Motorista motorista, CNH cnh)
+        {
             try
             {
-                var result = instanciaMotorista._motoristaService.BuscarCPF(id);
+                return _motoristaService.Cadastrar(motorista, cnh);
+            }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public Motorista BuscarCPF(string cpf)
+        {
+            try
+            {
+                return _motoristaService.BuscarCPF(cpf);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public List<Motorista> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        {
+            try
+            {
+                return _motoristaService.BuscarTodos(dtinicio, dtfim);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public bool Inativar(string cpf)
+        {
+            try
+            {
+                return _motoristaService.Inativar(cpf);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+        }
+
+        public bool Alterar(Motorista motorista, CNH cnh, string cpf)
+        {
+            try
+            {
+                return _motoristaService.Alterar(motorista, cnh, cpf);
+            }
+            catch (NaoEncontradoException e)
+            {
+                throw new NaoEncontradoException(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
+            catch (IntegridadeException e)
+            {
+                throw new IntegridadeException(e.Message);
+            }
+        }
+
+        public List<Motorista> Pesquisar(string busca)
+        {
+            try
+            {
+                return _motoristaService.Pesquisar(busca);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        #endregion
+
+        #region [AplicacaoWeb]
+        // GET: api/Motorista?cpf=VALOR
+        [HttpGet]
+        public IHttpActionResult Get(string cpf)
+        {
+            try
+            {
+                var result = _motoristaService.BuscarCPF(cpf);
                 if (result == null)
                 {
-                    return BadRequest("Veículo não encontrado!");
+                    return BadRequest("Motorista não encontrado!");
                 }
                 else
                 {
@@ -37,7 +140,7 @@ namespace WebApi.Controllers
             }
         }
 
-        //POST: api/Motoristas
+        //POST: api/Motorista
         [HttpPost]
         [Route("add")]
         public IHttpActionResult Post([FromBody] Motorista motorista)
@@ -47,8 +150,7 @@ namespace WebApi.Controllers
 
             try
             {
-                InstanciaMotorista instanciaMotorista = new InstanciaMotorista();
-                bool result = instanciaMotorista._motoristaService.Cadastrar(motorista, motorista.CNH);
+                bool result = _motoristaService.Cadastrar(motorista, motorista.CNH);
                 if (result)
                 {
                     return Ok();

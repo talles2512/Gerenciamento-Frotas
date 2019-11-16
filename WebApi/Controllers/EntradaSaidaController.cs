@@ -1,10 +1,12 @@
 ﻿using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,28 +14,28 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/Cliente")]
-    public class ClienteController : ApiController
+    [RoutePrefix("api/EntradaSaida")]
+    public class EntradaSaidaController : ApiController
     {
-        private readonly ClienteService _clienteService;
+        private readonly EntradaSaidaService _entradaSaidaService;
 
-        public ClienteController()
+        public EntradaSaidaController()
         {
             Banco banco = new Banco();
-            ClienteDAL clienteDAL = new ClienteDAL(banco);
-            _clienteService = new ClienteService(clienteDAL);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            _entradaSaidaService = new EntradaSaidaService(entradaSaidaDAL);
         }
-        public ClienteController(ClienteService clienteService)
+        public EntradaSaidaController(EntradaSaidaService entradaSaidaService)
         {
-            _clienteService = clienteService;
+            _entradaSaidaService = entradaSaidaService;
         }
 
         #region [AplicacaoDesktop]
-        public bool Cadastrar(Cliente cliente, string cpf)
+        public bool Cadastrar(EntradaSaida entradaSaida, string placa, long cnpj, EntradaSaidaTipo tipo, DateTime data) //Mudança na Query, Verificar
         {
             try
             {
-                return _clienteService.Cadastrar(cliente, cpf);
+                return _entradaSaidaService.Cadastrar(entradaSaida, placa, cnpj, tipo, data);
             }
             catch (RegistroExisteException e)
             {
@@ -43,13 +45,14 @@ namespace WebApi.Controllers
             {
                 throw new ConcorrenciaBancoException(e.Message);
             }
+
         }
 
-        public Cliente BuscarCPF(string cpf)
+        public EntradaSaida BuscarEntradaSaida(string placa, long cnpj, EntradaSaidaTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.BuscarCPF(cpf);
+                return _entradaSaidaService.BuscarEntradaSaida(placa, cnpj, tipo, data);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -57,11 +60,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<Cliente> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        public List<EntradaSaida> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             try
             {
-                return _clienteService.BuscarTodos(dtinicio, dtfim);
+                return _entradaSaidaService.BuscarTodos(dtinicio, dtfim);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -69,24 +72,27 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Deletar(string cpf)
+        public bool Deletar(string placa, long cnpj, EntradaSaidaTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.Deletar(cpf);
+                return _entradaSaidaService.Deletar(placa, cnpj, tipo, data);
             }
-            catch (ConcorrenciaBancoException)
+            catch (IntegridadeException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new IntegridadeException(e.Message);
             }
-
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public bool Alterar(Cliente cliente, string cpf)
+        public bool Alterar(EntradaSaida entradaSaida, string placa, long cnpj, EntradaSaidaTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.Alterar(cliente, cpf);
+                return _entradaSaidaService.Alterar(entradaSaida, placa, cnpj, tipo, data);
             }
             catch (NaoEncontradoException e)
             {
@@ -98,11 +104,34 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<Cliente> Pesquisar(string busca)
+        public DataTable PopularCPFs()
         {
             try
             {
-                return _clienteService.Pesquisar(busca);
+                return _entradaSaidaService.PopularCPFs();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+        public DataTable PopularPlacas()
+        {
+            try
+            {
+                return _entradaSaidaService.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _entradaSaidaService.PopularServicosExternos();
             }
             catch (ConcorrenciaBancoException)
             {
@@ -114,16 +143,16 @@ namespace WebApi.Controllers
 
         #region [AplicacaoWeb]
 
-        // GET: api/Cliente?cpf=VALOR
+        // GET: api/EntradaSaida?placa=VALOR&cnpj=VALOR&tipo=VALOR&data=VALOR
         [HttpGet]
-        public IHttpActionResult Get(string cpf)
+        public IHttpActionResult Get(string placa, long cnpj, EntradaSaidaTipo tipo, DateTime data)
         {
             try
             {
-                var result = _clienteService.BuscarCPF(cpf);
+                var result = _entradaSaidaService.BuscarEntradaSaida(placa, cnpj, tipo, data);
                 if (result == null)
                 {
-                    return BadRequest("Cliente não encontrado!");
+                    return BadRequest("Entrada ou Saída não encontrada!");
                 }
                 else
                 {
@@ -136,39 +165,17 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/Cliente?cpf=VALOR&nome=VALOR
-        [HttpGet]
-        public IHttpActionResult Get(string cpf, string nome) //Testando multiparametrização
-        {
-            try
-            {
-                var result = _clienteService.BuscarCPF(cpf);
-                if (result == null)
-                {
-                    return BadRequest("Cliente não encontrado!");
-                }
-                else
-                {
-                    return Ok(result);
-                }
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                return BadRequest("Favor tentar novamente mais tarde.");
-            }
-        }
-
-        //POST: api/Cliente
+        //POST: api/EntradaSaida
         [HttpPost]
         [Route("add")]
-        public IHttpActionResult Post([FromBody] Cliente cliente)
+        public IHttpActionResult Post([FromBody] EntradaSaida entradaSaida)
         {
-            if (cliente == null)
+            if (entradaSaida == null)
                 return BadRequest();
 
             try
             {
-                bool result = _clienteService.Cadastrar(cliente, cliente.CPF);
+                bool result = _entradaSaidaService.Cadastrar(entradaSaida, entradaSaida.Placa, entradaSaida.CNPJ, entradaSaida.Tipo, entradaSaida.DataHora);
                 if (result)
                 {
                     return Ok();
@@ -188,18 +195,6 @@ namespace WebApi.Controllers
             }
 
         }
-
-        //// PUT: api/Veiculos/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Veiculos/5
-        //public void Delete(int id)
-        //{
-        //}
-
-
 
         #endregion
     }

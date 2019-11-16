@@ -1,10 +1,12 @@
 ﻿using CamadaModelagem.Data;
 using CamadaModelagem.Data.Configuration;
 using CamadaModelagem.Models;
+using CamadaModelagem.Models.Enums;
 using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,28 +14,29 @@ using System.Web.Http;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/Cliente")]
-    public class ClienteController : ApiController
+    [RoutePrefix("api/Abastecimento")]
+    public class AbastecimentoController : ApiController
     {
-        private readonly ClienteService _clienteService;
+        private readonly AbastecimentoService _abastecimentoService;
 
-        public ClienteController()
+        public AbastecimentoController()
         {
             Banco banco = new Banco();
-            ClienteDAL clienteDAL = new ClienteDAL(banco);
-            _clienteService = new ClienteService(clienteDAL);
+            AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
+            VeiculoDAL veiculoDAL = new VeiculoDAL(banco);
+            _abastecimentoService = new AbastecimentoService(abastecimentoDAL, veiculoDAL);
         }
-        public ClienteController(ClienteService clienteService)
+        public AbastecimentoController(AbastecimentoService abastecimentoService)
         {
-            _clienteService = clienteService;
+            _abastecimentoService = abastecimentoService;
         }
 
         #region [AplicacaoDesktop]
-        public bool Cadastrar(Cliente cliente, string cpf)
+        public bool Cadastrar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.Cadastrar(cliente, cpf);
+                return _abastecimentoService.Cadastrar(abastecimento, placa, tipo, data);
             }
             catch (RegistroExisteException e)
             {
@@ -45,11 +48,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public Cliente BuscarCPF(string cpf)
+        public Abastecimento BuscarAbastecimento(string placa, AbastecimentoTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.BuscarCPF(cpf);
+                return _abastecimentoService.BuscarAbastecimento(placa, tipo, data);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -57,11 +60,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<Cliente> BuscarTodos(DateTime dtinicio, DateTime dtfim)
+        public List<Abastecimento> BuscarTodos(DateTime dtinicio, DateTime dtfim)
         {
             try
             {
-                return _clienteService.BuscarTodos(dtinicio, dtfim);
+                return _abastecimentoService.BuscarTodos(dtinicio, dtfim);
             }
             catch (ConcorrenciaBancoException)
             {
@@ -69,24 +72,27 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Deletar(string cpf)
+        public bool Deletar(string placa, AbastecimentoTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.Deletar(cpf);
+                return _abastecimentoService.Deletar(placa, tipo, data);
             }
-            catch (ConcorrenciaBancoException)
+            catch (IntegridadeException e)
             {
-                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+                throw new IntegridadeException(e.Message);
             }
-
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+            }
         }
 
-        public bool Alterar(Cliente cliente, string cpf)
+        public bool Alterar(Abastecimento abastecimento, string placa, AbastecimentoTipo tipo, DateTime data)
         {
             try
             {
-                return _clienteService.Alterar(cliente, cpf);
+                return _abastecimentoService.Alterar(abastecimento, placa, tipo, data);
             }
             catch (NaoEncontradoException e)
             {
@@ -98,11 +104,23 @@ namespace WebApi.Controllers
             }
         }
 
-        public List<Cliente> Pesquisar(string busca)
+        public DataTable PopularPlacas()
         {
             try
             {
-                return _clienteService.Pesquisar(busca);
+                return _abastecimentoService.PopularPlacas();
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        public DataTable PopularServicosExternos()
+        {
+            try
+            {
+                return _abastecimentoService.PopularServicosExternos();
             }
             catch (ConcorrenciaBancoException)
             {
@@ -114,16 +132,16 @@ namespace WebApi.Controllers
 
         #region [AplicacaoWeb]
 
-        // GET: api/Cliente?cpf=VALOR
+        // GET: api/Abastecimento?placa=VALOR&tipo=VALOR&data=VALOR
         [HttpGet]
-        public IHttpActionResult Get(string cpf)
+        public IHttpActionResult Get(string placa, AbastecimentoTipo tipo, DateTime data)
         {
             try
             {
-                var result = _clienteService.BuscarCPF(cpf);
+                var result = _abastecimentoService.BuscarAbastecimento(placa, tipo, data);
                 if (result == null)
                 {
-                    return BadRequest("Cliente não encontrado!");
+                    return BadRequest("Abastecimento não encontrado!");
                 }
                 else
                 {
@@ -136,39 +154,17 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/Cliente?cpf=VALOR&nome=VALOR
-        [HttpGet]
-        public IHttpActionResult Get(string cpf, string nome) //Testando multiparametrização
-        {
-            try
-            {
-                var result = _clienteService.BuscarCPF(cpf);
-                if (result == null)
-                {
-                    return BadRequest("Cliente não encontrado!");
-                }
-                else
-                {
-                    return Ok(result);
-                }
-            }
-            catch (ConcorrenciaBancoException)
-            {
-                return BadRequest("Favor tentar novamente mais tarde.");
-            }
-        }
-
-        //POST: api/Cliente
+        //POST: api/Abastecimento
         [HttpPost]
         [Route("add")]
-        public IHttpActionResult Post([FromBody] Cliente cliente)
+        public IHttpActionResult Post([FromBody] Abastecimento abastecimento)
         {
-            if (cliente == null)
+            if (abastecimento == null)
                 return BadRequest();
 
             try
             {
-                bool result = _clienteService.Cadastrar(cliente, cliente.CPF);
+                bool result = _abastecimentoService.Cadastrar(abastecimento, abastecimento.Placa, abastecimento.Tipo, abastecimento.Data);
                 if (result)
                 {
                     return Ok();
@@ -188,19 +184,6 @@ namespace WebApi.Controllers
             }
 
         }
-
-        //// PUT: api/Veiculos/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Veiculos/5
-        //public void Delete(int id)
-        //{
-        //}
-
-
-
         #endregion
     }
 }

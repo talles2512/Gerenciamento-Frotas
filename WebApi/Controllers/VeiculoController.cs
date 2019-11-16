@@ -6,12 +6,12 @@ using CamadaModelagem.Services;
 using CamadaModelagem.Services.Exceptions;
 using System.Collections.Generic;
 using System;
-using CamadaControle.Instancia;
+using CamadaModelagem.Data.Configuration;
 
 namespace WebApi.Controllerss
 {
 
-    [RoutePrefix("api/veiculo")]
+    [RoutePrefix("api/Veiculo")]
     public class VeiculoController : ApiController
     {
 
@@ -19,7 +19,13 @@ namespace WebApi.Controllerss
 
         public VeiculoController()
         {
-
+            Banco banco = new Banco();
+            VeiculoDAL veiculoDAL = new VeiculoDAL(banco);
+            ManutencaoDAL manutencaoDAL = new ManutencaoDAL(banco);
+            AbastecimentoDAL abastecimentoDAL = new AbastecimentoDAL(banco);
+            EntradaSaidaDAL entradaSaidaDAL = new EntradaSaidaDAL(banco);
+            SeguroDAL seguroDAL = new SeguroDAL(banco);
+            _veiculoService = new VeiculoService(veiculoDAL, manutencaoDAL, abastecimentoDAL, entradaSaidaDAL, seguroDAL);
         }
         public VeiculoController(VeiculoService veiculoService)
         {
@@ -122,10 +128,9 @@ namespace WebApi.Controllerss
         [HttpGet]
         public IHttpActionResult Get(string placa)
         {
-            InstanciaVeiculo instanciaVeiculo = new InstanciaVeiculo();
             try
             {
-                var result = instanciaVeiculo._veiculoService.BuscarPlaca(placa);
+                var result = _veiculoService.BuscarPlaca(placa);
                 if (result == null)
                 {
                     return BadRequest("Veículo não encontrado!");
@@ -145,10 +150,9 @@ namespace WebApi.Controllerss
         [HttpGet]
         public IHttpActionResult Get(string placa, string modelo)
         {
-            InstanciaVeiculo instanciaVeiculo = new InstanciaVeiculo();
             try
             {
-                var result = instanciaVeiculo._veiculoService.BuscarPlaca(placa);
+                var result = _veiculoService.BuscarPlaca(placa);
                 if (result == null)
                 {
                     return BadRequest("Veículo não encontrado!");
@@ -164,7 +168,7 @@ namespace WebApi.Controllerss
             }
         }
 
-        //POST: api/veiculo
+        //POST: api/Veiculo
         [HttpPost]
        [Route("add")]
         public IHttpActionResult Post([FromBody] Veiculo veiculo)
@@ -174,8 +178,7 @@ namespace WebApi.Controllerss
 
             try
             {
-                InstanciaVeiculo instanciaVeiculo = new InstanciaVeiculo();
-                bool result = instanciaVeiculo._veiculoService.Cadastrar(veiculo, veiculo.Placa);
+                bool result = _veiculoService.Cadastrar(veiculo, veiculo.Placa);
                 if (result)
                 {
                     return Ok();
