@@ -107,5 +107,30 @@ namespace CamadaModelagem.Data.Configuration
                 sqlConnection.Close();
             }
         }
+
+        public int TestarConexao()
+        {
+            Configuracao configuracao = new Configuracao();
+
+            string stringConexao = configuracao.StringConfiguracao;
+            string query = "SELECT COUNT(GRANTOR) FROM DB_GERENCFROTA.INFORMATION_SCHEMA.COLUMN_PRIVILEGES";
+
+            SqlConnection sqlConnection = new SqlConnection(stringConexao);
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+            try
+            {
+                sqlConnection.Open();
+                return (int) sqlCommand.ExecuteScalar();
+            }
+            catch (Exception)
+            {
+                throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }

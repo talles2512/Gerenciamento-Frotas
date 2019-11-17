@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CamadaModelagem.Data.Configuration;
 
 namespace CamadaDesktop
 {
     public partial class SplashScreen : Form
     {
+        int contador = 0;
         public SplashScreen()
         {
             InitializeComponent();
@@ -27,9 +29,23 @@ namespace CamadaDesktop
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            LoginSistema login = new LoginSistema();
-            login.Show();
-            this.Hide();
+            if(contador < 1)
+            {
+                contador++;
+                try
+                {
+                    int teste = new Banco().TestarConexao();
+                    LoginSistema login = new LoginSistema();
+                    login.Show();
+                    this.Hide();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro de Conexão! Contate seu Administrador para saber mais.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Close();
+                }        
+            }
+            
         }
     }
 }
