@@ -11,9 +11,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Multa")]
     public class OcupanteController : ApiController
     {
         private readonly OcupanteService _ocupanteService;
@@ -31,9 +34,20 @@ namespace WebApi.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(Ocupante ocupante, int cpf)
+        public bool Cadastrar(Ocupante ocupante)
         {
-            _ocupanteService.Cadastrar(ocupante, cpf);
+            try
+            {
+                return _ocupanteService.Cadastrar(ocupante);
+        }
+            catch (RegistroExisteException e)
+            {
+                throw new RegistroExisteException(e.Message);
+    }
+            catch (ConcorrenciaBancoException e)
+            {
+                throw new ConcorrenciaBancoException(e.Message);
+}
         }
 
         public Ocupante BuscarOcupante(int req, string cpf)

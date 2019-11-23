@@ -7,10 +7,11 @@ using CamadaModelagem.Services.Exceptions;
 using System.Collections.Generic;
 using System;
 using CamadaModelagem.Data.Configuration;
+using System.Web.Http.Cors;
 
 namespace WebApi.Controllerss
 {
-
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Veiculo")]
     public class VeiculoController : ApiController
     {

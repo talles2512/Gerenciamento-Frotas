@@ -154,7 +154,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Teste da API\Teste de Integração da API\Gerenciamento-Frotas-master\CamadaModelagem\CamadaModelagem.csproj">
+    <ProjectReference Include="..\CamadaModelagem\CamadaModelagem.csproj">
       <Project>{e5513510-a071-473d-a2cb-02ed2d976908}</Project>
       <Name>CamadaModelagem</Name>
     </ProjectReference>

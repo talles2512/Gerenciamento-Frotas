@@ -25,7 +25,7 @@ namespace CamadaModelagem.Data
             int perfilacesso = funcionario.PerfilAcesso.GetHashCode();
             DateTime datareg = DateTime.Now;
             string query = "INSERT INTO [dbo].[TB_FUNCIONARIO] ([FUNC_NOME],[FUNC_LOGIN],[FUNC_SENHA],[FUNC_PERFIL_ACESSO],[FUNC_DATAREGISTRO])" +
-                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + perfilacesso + ", '" + datareg.ToLongDateString() +"')";
+                "VALUES ('" + funcionario.Nome + "', '" + funcionario.Login + "', '" + funcionario.Senha + "', " + perfilacesso + ", '" + datareg.ToShortDateString() +"')";
             try
             {
                 return _banco.ExecutarInstrucao(query);
