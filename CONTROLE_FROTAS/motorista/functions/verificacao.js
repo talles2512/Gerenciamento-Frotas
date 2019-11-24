@@ -8,45 +8,49 @@ function enviardados(dados)
     }
    
 
-    if (dados.inputRg == "" || document.dados.tx_rg.value.length <= 6) {
+    if (dados.inputRg == "" || document.dados.tx_RG.value.length <= 6) {
         alert("Preencha a RG corretamente!");
-        document.dados.tx_rg.focus();
+        document.dados.tx_RG.focus();
         return false;
     }
 
-    if (document.dados.tx_cpf.value == "" || document.dados.tx_cpf.value.length <= 10) {
+    if (document.dados.tx_CPF.value == "" || document.dados.tx_CPF.value.length <= 10) {
         alert("Preencha os CPF corretamente!");
-        document.dados.tx_cpf.focus();
+        document.dados.tx_CPF.focus();
         return false;
     }
-    if (document.dados.tx_endereco.value == "") {
+    if (document.dados.tx_Endereco.value == "") {
         alert("Preencha ENDEREÇO corretamente!");
-        document.dados.tx_endereco.focus();
+        document.dados.tx_Endereco.focus();
         return false;
     }
 
-    if (document.dados.tx_cnh.value == "" || document.dados.tx_cnh.value.length <= 10) {
+    if (document.dados.tx_CNH_Numero.value == "" || document.dados.tx_CNH_Numero.value.length <= 10) {
         alert("Preencha os CNH corretamente!");
-        document.dados.tx_cnh.focus();
+        document.dados.tx_CNH_Numero.focus();
         return false;
     } 
 
    
 
-    if (document.dados.tx_telefone1.value == ""||  document.dados.tx_telefone1.value.length <= 9) {
-        alert("Preencha TELEFONE corretamente!");
-        document.dados.tx_telefone1.focus();
+    if (document.dados.tx_Telefone.value == ""||  document.dados.tx_Telefone.value.length <= 9) {
+        alert("Preencha o TELEFONE corretamente!");
+        document.dados.tx_Telefone.focus();
         return false;
     }
 
     
-    if (document.dados.tx_telefone2.value == ""||  document.dados.tx_telefone2.value.length <= 9) {
-        alert("Preencha TELEFONE 2 corretamente!");
-        document.dados.tx_telefone2.focus();
+    if (document.dados.tx_TelefoneContato.value == ""||  document.dados.tx_TelefoneContato.value.length <= 9) {
+        alert("Preencha o TELEFONE CONTATO corretamente!");
+        document.dados.tx_TelefoneContato.focus();
         return false;
     }
 
-
+    if (document.dados.tx_CNH_OrgaoEmissor.value == "" || document.dados.tx_CNH_OrgaoEmissor.value.length <= 1) {
+        alert("Preencha o Orgão Emissor corretamente!");
+        document.dados.tx_CNH_OrgaoEmissor.focus();
+        return false;
+    }
    
 
       
@@ -55,9 +59,8 @@ function enviardados(dados)
 
     else {
         alert('Dados cadastrados')
-        
        console.log(inputs)
-
+ 
        document.querySelector(".cadastro_veiculos form").reset()
        document.dados.tx_nome.focus();
     };}

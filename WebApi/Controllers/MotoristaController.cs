@@ -152,6 +152,7 @@ namespace WebApi.Controllers
 
             try
             {
+                motorista.Situacao = true;
                 bool result = _motoristaService.Cadastrar(motorista, motorista.CNH);
                 if (result)
                 {

@@ -183,7 +183,7 @@
         <form name="dados" onSubmit="return;">
           <div class="form-row ">
             <div class="form-group col-md-3 ">                  
-                    <label for="inputPlaca">Nome</label>
+                    <label for="inputNome">Nome</label>
                     <input  name="tx_nome" type="text" class="form-control" id="Nome" placeholder="Digite seu nome">
                           
               <!-- <label  for="inputchassi">Nome</label>
@@ -191,50 +191,64 @@
             </div>
             <div class="form-group col-md-3">
               <label for="inputRg">Rg</label>
-              <input name="tx_rg" type="text" class="form-control" id="Rg" placeholder="00000000-0" >
+              <input name="tx_RG" type="text" class="form-control" id="RG" placeholder="00000000-0" >
             </div>
             <div class="form-group col-md-3">
-              <label for="inputPassword4">Cpf</label>
-              <input  name="tx_cpf" type="text" class="form-control" id="cpf" placeholder="000.000.000-00" >
+              <label for="inputCPF">Cpf</label>
+              <input  name="tx_CPF" type="text" class="form-control" id="CPF" placeholder="000.000.000-00" >
             </div>
             <div class="form-group col-md-3">
-              <label for="inputPassword4">Data de Nascimento</label>
-              <input name="tx_data" type="date" class="form-control" id="Nascimento" placeholder="Digite o modelo" required >
+              <label for="inputDataNascimento">Data de Nascimento</label>
+              <input name="tx_DataNascimento" type="date" class="form-control" id="DataNascimento" placeholder="Digite o modelo" required >
             </div>
           </div>
           <div class="form-row ">
           <div class="form-group col-md-8">
             <label for="inputAddress">Endereço</label>
-            <input name="tx_endereco" type="text" class="form-control" id="Endereco" placeholder="" >
+            <input name="tx_Endereco" type="text" class="form-control" id="Endereco" placeholder="" >
           </div>
           
           </div>
           <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputAddress2">Telefone-Contato</label>
-            <input name="tx_telefone1" type="text" class="form-control" id="Telefone1" placeholder="(xx)1232-244" >
+            <label for="inputTelefone">Telefone</label>
+            <input name="tx_Telefone" type="text" class="form-control" id="Telefone" placeholder="(xx)1232-244" >
           </div>
           <div class="form-group col-md-4">
-            <label for="inputAddress2">Telefone-Contato</label>
-            <input name="tx_telefone2" type="text" class="form-control" id="Telefone2" placeholder="(xx)1232-244" >
+            <label for="inputTelefoneContato">Telefone Contato</label>
+            <input name="tx_TelefoneContato" type="text" class="form-control" id="TelefoneContato" placeholder="(xx)1232-244" >
           </div>
         </div>
           <div class="form-row">
             <div class="form-group col-md-3">
-              <label for="inputCity">CNH</label>
-              <input name="tx_cnh" type="text" class="form-control" id="Cnh" placeholder="(xx)1232-244" >
+              <label for="inputCNHNumero">CNH</label>
+              <input name="tx_CNH_Numero" type="text" class="form-control" id="CNH_Numero" placeholder="(xx)1232-244" >
             </div>
             <div class="form-group col-md-3">
-              <label for="inputCity">Data-Emissão</label>
-              <input name="tx_data" type="date" class="form-control" id="Data-Emissão" placeholder="(xx)1232-244"  required>
+              <label for="inputCNHEmissao">Data Emissão</label>
+              <input name="tx_CNH_DataEmissao" type="date" class="form-control" id="CNH_DataEmissao" placeholder="(xx)1232-244"  required>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputCity">Data Vencimento</label>
-              <input name="tx_data" type="date" class="form-control" id="Data-vencimento" placeholder="(xx)1232-244" required>
+              <label for="inputCNHVencimento">Data Vencimento</label>
+              <input name="tx_CNH_DataVencimento" type="date" class="form-control" id="CNH_DataVencimento" placeholder="(xx)1232-244" required>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputCity">Orgão Emissão</label>
-              <input name="" type="text" class="form-control" id="Data-vencimento" placeholder="Ex: SP" required>
+              <label for="inputCNHOrgaoEmissor">Orgão Emissão</label>
+              <input name="tx_CNH_OrgaoEmissor" type="text" class="form-control" id="CNH_OrgaoEmissor" placeholder="Ex: SP" required>
+            </div>
+            <div class="form-group col-md-6">
+              <div name="tx_categoria" class="form-group col-md-6">
+                <label for="inputCNHCategoria">Categoria</label>
+                <select name="tx_CNH_Categoria" id="CNH_Categoria" class="form-control" required>
+                  <option name="tx_CNH_Categoria" selected></option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>ACC</option>
+                </select>
+              </div>
             </div>
             
            
