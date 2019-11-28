@@ -139,40 +139,18 @@
 
         <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
           spellcheck="false" autocorrect="off" tabindex="1">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-
-              <th scope="col">Endereço</th>
-              <th scope="col">Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Gabriel Fernandes Escolare</td>
-              <td>Av Estrada das Lagrimas, 502</td>
-              <td>114743-8892</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Pablo Antunes Silvestre</td>
-              <td>Rua Calisto Medeiros, 120</td>
-              <td>114747-4292</td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>João Paulo Formigonne</td>
-              <td>Rua Esperança Bendita, 50</td>
-              <td>114744-6554</td>
-
-            </tr>
-          </tbody>
-        </table>
+          <table id="tabela-motoristas" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th id="Nome" scope="col">Nome</th>
+                <th id="CPF" scope="col">CPF</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Telefone</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
 
       </div>
 
@@ -287,14 +265,13 @@
 
 
 
-
         <script src="functions/jquery.js"></script>
         <script src="functions/bootstrap.js"></script>
         <script src="functions/function.js"></script>  
       <script src="functions/function-api-GET.js"></script>
       <script src="functions/function-api-POST.js"></script>
       <script src="functions/json.js"></script>
-
+      
       <script type="text/javascript">
 
         $(document).ready(function () {

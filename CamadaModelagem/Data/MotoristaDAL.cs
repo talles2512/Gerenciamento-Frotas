@@ -100,7 +100,7 @@ namespace CamadaModelagem.Data
                     cNH.Categoria = dr["CNH_CATEGORIA"].ToString();
                     cNH.OrgaoEmissor = dr["CNH_ORGAOEMISSOR"].ToString();
 
-                   motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_DTNASCIMENTO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
+                   motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_ENDERECO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
                 }
                
                 return motorista;
@@ -137,7 +137,7 @@ namespace CamadaModelagem.Data
                     cNH.DataVencimento = Convert.ToDateTime(dr["CNH_DTVENC"].ToString());
                     cNH.Categoria = dr["CNH_CATEGORIA"].ToString();
                     cNH.OrgaoEmissor = dr["CNH_ORGAOEMISSOR"].ToString();
-                    motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_DTNASCIMENTO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
+                    motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_ENDERECO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
                     motoristas.Add(motorista);
                 }
                
@@ -176,7 +176,7 @@ namespace CamadaModelagem.Data
                     cNH.DataVencimento = Convert.ToDateTime(dr["CNH_DTVENC"].ToString());
                     cNH.Categoria = dr["CNH_CATEGORIA"].ToString();
                     cNH.OrgaoEmissor = dr["CNH_ORGAOEMISSOR"].ToString();
-                    motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_DTNASCIMENTO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
+                    motorista = new Motorista(dr["MT_CPF"].ToString(), dr["MT_NOME"].ToString(), dr["MT_RG"].ToString(), dr["MT_ENDERECO"].ToString(), dtnascimento, telefone, telefonerecado, situacao, cNH);
                     motoristas.Add(motorista);
                 }
 

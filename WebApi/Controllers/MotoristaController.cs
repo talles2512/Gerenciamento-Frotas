@@ -142,6 +142,28 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Motorista?pesquisa=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _motoristaService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Motorista não encontrado!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Motorista
         [HttpPost]
         [Route("add")]
