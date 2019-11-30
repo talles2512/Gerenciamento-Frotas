@@ -8,9 +8,6 @@ $(document).ready(function () {
         $(this).addClass('btn-color-primary');
     });
    
-
-
-    
     $('#consultar-veiculos').click(function(){
         $('.cadastro_veiculos').hide();
         $('.consulta_veiculos').show();
@@ -26,4 +23,11 @@ $(document).ready(function () {
             GET(pesquisa);
         }
     });
+
+    $('#Telefone').mask('(00) 0000-0000');
+    $('#TelefoneContato').mask('(00) 0000-0000');
+    $('#CNH_Numero').mask('000000000000');
+    $('#Cpf').mask('000.000.000-00');
+    $('#Rg').mask('AAAAAAAA-A');
+
 });

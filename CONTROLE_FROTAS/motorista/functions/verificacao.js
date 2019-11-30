@@ -58,9 +58,6 @@ function enviardados(dados)
 
 
     else {
-        alert('Dados cadastrados')
-       console.log(inputs)
- 
-       document.querySelector(".cadastro_veiculos form").reset()
+        console.log(inputs);
        document.dados.tx_nome.focus();
     };}

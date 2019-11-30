@@ -169,11 +169,11 @@
             </div>
             <div class="form-group col-md-3">
               <label for="inputRg">Rg</label>
-              <input name="tx_RG" type="text" class="form-control" id="RG" placeholder="00000000-0" >
+              <input name="tx_RG" type="text" class="form-control" id="Rg" placeholder="00000000-0" >
             </div>
             <div class="form-group col-md-3">
               <label for="inputCPF">Cpf</label>
-              <input  name="tx_CPF" type="text" class="form-control" id="CPF" placeholder="000.000.000-00" >
+              <input  name="tx_CPF" type="text" class="form-control" id="Cpf" placeholder="000.000.000-00" >
             </div>
             <div class="form-group col-md-3">
               <label for="inputDataNascimento">Data de Nascimento</label>
@@ -190,17 +190,17 @@
           <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputTelefone">Telefone</label>
-            <input name="tx_Telefone" type="text" class="form-control" id="Telefone" placeholder="(xx)1232-244" >
+            <input name="tx_Telefone" type="text" class="form-control" id="Telefone" placeholder="(00) 0000-0000" >
           </div>
           <div class="form-group col-md-4">
             <label for="inputTelefoneContato">Telefone Contato</label>
-            <input name="tx_TelefoneContato" type="text" class="form-control" id="TelefoneContato" placeholder="(xx)1232-244" >
+            <input name="tx_TelefoneContato" type="text" class="form-control" id="TelefoneContato" placeholder="(00) 0000-0000" >
           </div>
         </div>
           <div class="form-row">
             <div class="form-group col-md-3">
               <label for="inputCNHNumero">CNH</label>
-              <input name="tx_CNH_Numero" type="text" class="form-control" id="CNH_Numero" placeholder="(xx)1232-244" >
+              <input name="tx_CNH_Numero" type="text" class="form-control" id="CNH_Numero" placeholder="000000000000" >
             </div>
             <div class="form-group col-md-3">
               <label for="inputCNHEmissao">Data Emissão</label>
@@ -264,14 +264,13 @@
       </div>
 
 
-
         <script src="functions/jquery.js"></script>
+        <script src="functions/masked-inputs.js"></script> <!--Biblioteca de Masked Inputs-->
         <script src="functions/bootstrap.js"></script>
         <script src="functions/function.js"></script>  
       <script src="functions/function-api-GET.js"></script>
       <script src="functions/function-api-POST.js"></script>
       <script src="functions/json.js"></script>
-      
       <script type="text/javascript">
 
         $(document).ready(function () {

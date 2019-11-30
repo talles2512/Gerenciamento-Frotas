@@ -42,6 +42,10 @@ form.addEventListener("submit",function(event){
          body: JSON.stringify(Motorista) }))
         .then(response => {
             if (response.status === 200) {
+                
+                alert('Dados cadastrados')
+                document.querySelector(".cadastro_veiculos form").reset()
+
                 return response.json();
             } else {
                 throw new Error('Ops! Houve um erro em nosso servidor.');
@@ -70,12 +74,12 @@ function formToJson(inputs){
 
 function CriaJSON(dados){
     var name = dados["Nome"];
-    var cpf = dados["CPF"];
-    var rg = dados["RG"];
+    var cpf = LimpaMascara(dados["Cpf"]);
+    var rg = LimpaMascara(dados["Rg"]);
     var endereco = dados["Endereco"];
     var dataNascimento = dados["DataNascimento"];
-    var telefone = dados["Telefone"];
-    var telefoneContato = dados["TelefoneContato"];
+    var telefone = LimpaMascara(dados["Telefone"]);
+    var telefoneContato = LimpaMascara(dados["TelefoneContato"]);
 
     var numero = dados["CNH_Numero"];
     var categoria = dados["CNH_Categoria"];
@@ -101,4 +105,18 @@ function CriaJSON(dados){
    }
 
    return Motorista
+}
+
+function LimpaMascara(input){
+    var strings = [".", "/", "-", ",", "(", ")", " "];
+    
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    return input;
 }
