@@ -51,6 +51,14 @@
 
         <li class="">
 
+          <a href="../viagens/viagens.html">
+            
+            <i class="fa fa-plane" aria-hidden="true"></i>
+            Viagens</a>
+        </li>
+
+        <li class="">
+
           <a href="../seguros/seguros.html">
             <i class="fa fa-id-card" aria-hidden="true"></i>
             Seguros</a>
@@ -69,15 +77,7 @@
             <i class="fa fa-users" aria-hidden="true"></i>
             Clientes</a>
         </li>
-        <li class="">
-
-          <a href="../viagens/viagens.html">
-            
-            <i class="fa fa-plane" aria-hidden="true"></i>
-            Viagens e alugueis</a>
-        </li>
-
-
+        
         <li class="">
 
           <a href="../financeiro/financeiro.html">
@@ -139,40 +139,19 @@
 
         <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
           spellcheck="false" autocorrect="off" tabindex="1">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Cpf Motorista</th>
-
-              <th scope="col">Destino</th>
-              <th scope="col">Data Saida</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>498.122.023-44</td>
-              <td>Bahia-BH</td>
-              <td>24/05/2019</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>128.312.022-11</td>
-              <td>Rio de Janeiro-JR</td>
-              <td>12/02/2019</td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>038.120.419-02</td>
-              <td>Minas Gerais-MG</td>
-              <td>28/08/2019</td>
-
-            </tr>
-          </tbody>
-        </table>
+          <table id="tabela-viagens" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th scope="col">Código</th>
+                <th scope="col">Veículo</th>
+                <th scope="col">Motorista</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Data da Saída</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
 
       </div>
 

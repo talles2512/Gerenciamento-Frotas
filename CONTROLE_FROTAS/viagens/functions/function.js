@@ -17,4 +17,12 @@ $(document).ready(function () {
         $('#cadastro-veiculos').removeClass('btn-color-primary');
         $(this).addClass('btn-color-primary')
     });
+
+    $('#search-input').on('input',function (e) {
+        var pesquisa = document.getElementById('search-input').value;
+
+        if(pesquisa != ""){
+            GET(pesquisa);
+        }
+    });
 });

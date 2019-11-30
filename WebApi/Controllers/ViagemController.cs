@@ -180,6 +180,28 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Viagem?pesquisa=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _viagemService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Viagem não encontrada!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Viagem
         [HttpPost]
         [Route("add")]
