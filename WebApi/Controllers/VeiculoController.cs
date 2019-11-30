@@ -169,6 +169,29 @@ namespace WebApi.Controllerss
             }
         }
 
+        // GET: api/Veiculo?pesquisa=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _veiculoService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Veículo não encontrado!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+
         //POST: api/Veiculo
         [HttpPost]
        [Route("add")]

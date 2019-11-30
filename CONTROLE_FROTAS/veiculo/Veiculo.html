@@ -52,6 +52,14 @@
 
         <li class="">
 
+          <a href="../viagens/viagens.html">
+            
+            <i class="fa fa-plane" aria-hidden="true"></i>
+            Viagens</a>
+        </li>
+
+        <li class="">
+
           <a href="../seguros/seguros.html">
             <i class="fa fa-id-card" aria-hidden="true"></i>
             Seguros</a>
@@ -70,15 +78,7 @@
             <i class="fa fa-users" aria-hidden="true"></i>
             Clientes</a>
         </li>
-        <li class="">
-
-          <a href="../viagens/viagens.html">
-            
-            <i class="fa fa-plane" aria-hidden="true"></i>
-            Viagens e alugueis</a>
-        </li>
-
-
+        
         <li class="">
 
           <a href="../financeiro/financeiro.html">
@@ -139,40 +139,18 @@
 
         <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
           spellcheck="false" autocorrect="off" tabindex="1">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-
-              <th scope="col">Endereço</th>
-              <th scope="col">Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Gabriel Fernandes Escolare</td>
-              <td>Av Estrada das Lagrimas, 502</td>
-              <td>114743-8892</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Pablo Antunes Silvestre</td>
-              <td>Rua Calisto Medeiros, 120</td>
-              <td>114747-4292</td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>João Paulo Formigonne</td>
-              <td>Rua Esperança Bendita, 50</td>
-              <td>114744-6554</td>
-
-            </tr>
-          </tbody>
-        </table>
+          <table id="tabela-veiculos" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th id="Nome" scope="col">Placa</th>
+                <th id="CPF" scope="col">Modelo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Chassi</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
 
       </div>
 
