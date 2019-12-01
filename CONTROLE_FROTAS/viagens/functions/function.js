@@ -5,11 +5,10 @@ $(document).ready(function () {
         $('.cadastro_veiculos').show();
         $('.consulta_veiculos').hide();
         $('#consultar-veiculos').removeClass('btn-color-primary');
-        $(this).addClass('btn-color-primary');
+        $(this).addClass('btn-color-primary');    
+        GETMotorista();
+        GETVeiculo();
     });
-   
-
-
     
     $('#consultar-veiculos').click(function(){
         $('.cadastro_veiculos').hide();

@@ -161,18 +161,21 @@
       <div class="cadastro_veiculos container " >
         <form name="dados" onSubmit="return enviardados();">
           <div class="form-row ">
-            <div class="form-group col-md-3 ">                  
+            <div class="form-group col-md-5 ">                  
                     <label for="inputPlaca">Cpf Motorista</label>
-                    <input  name="tx_viagens" type="text" class="form-control" id="CpfMotorista" placeholder="Digite Cpf Motorista" required>
-                          
+                    <select name="tx_Motorista" id="CpfMotorista" class="form-control" required>
+                        <option name="tx_Motorista" selected></option>
+                      </select>
               <!-- <label  for="inputchassi">Nome</label>
               <input name="tx-nome" type="text" nameclass="form-control " for="customControlValidation1"id="nome" placeholder="Digite o nome" autofocus   >               -->
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
               <label for="inputPlaca">Placa</label>
-              <input name="tx_viagens" type="text" class="form-control" id="Placa" placeholder="Digite Placa" required>
+              <select name="tx_Veiculo" id="PlacaVeiculo" class="form-control" required>
+                  <option name="tx_Veiculo" selected></option>
+                </select>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-5">
               <label for="inputPassword4">Destino</label>
               <input  name="tx_viagens" type="text" class="form-control" id="Destino" placeholder="Digite Destino" required>
             </div>

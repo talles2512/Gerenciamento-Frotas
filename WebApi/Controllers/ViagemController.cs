@@ -20,6 +20,8 @@ namespace WebApi.Controllers
     public class ViagemController : ApiController
     {
         private readonly ViagemService _viagemService;
+        private readonly MotoristaDAL _motoristaDAL;
+        private readonly VeiculoDAL _veiculoDAL;
 
         public ViagemController()
         {
@@ -27,6 +29,10 @@ namespace WebApi.Controllers
             ViagemDAL viagemDAL = new ViagemDAL(banco);
             OcupanteDAL ocupanteDAL = new OcupanteDAL(banco);
             _viagemService = new ViagemService(viagemDAL, ocupanteDAL);
+
+            _motoristaDAL = new MotoristaDAL(banco);
+            _veiculoDAL = new VeiculoDAL(banco);
+
         }
         public ViagemController(ViagemService viagemService)
         {
@@ -202,6 +208,64 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Viagem?cpfs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetMotoristas(string cpfs)
+        {
+            try
+            {
+                var result = _viagemService.PopularCPFs();
+                if (result == null)
+                {
+                    return BadRequest("Motoristas não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CPFs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CPFs.Add(dr["MOTORISTA"].ToString());
+                    }
+
+                    return Ok(CPFs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/Viagem?placas=VALOR
+        [HttpGet]
+        public IHttpActionResult GetVeiculos(string placas)
+        {
+            try
+            {
+                var result = _viagemService.PopularPlacas();
+                if (result == null)
+                {
+                    return BadRequest("Veiculos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Viagem
         [HttpPost]
         [Route("add")]
@@ -209,6 +273,23 @@ namespace WebApi.Controllers
         {
             if (viagem == null)
                 return BadRequest();
+
+            Motorista motorista = _motoristaDAL.BuscarCPF(viagem.CPF);
+            if (motorista == null)
+            {
+                return BadRequest();
+            }
+
+            Veiculo veiculo = _veiculoDAL.BuscarPlaca(viagem.Placa);
+            if(veiculo == null)
+            {
+                veiculo = _veiculoDAL.BuscarPlacaAlugado(viagem.Placa);
+
+                if(veiculo == null)
+                {
+                    return BadRequest();
+                }
+            }
 
             try
             {
