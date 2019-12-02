@@ -39,3 +39,21 @@ function formToJson(inputs){
    
     return dados
 }
+
+
+
+
+
+function LimpaMascara(input){
+    var strings = [".", "/", "-", ",", "(", ")", " "];
+    
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    return input;
+}
