@@ -119,6 +119,7 @@
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipPermissao1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAtivarMotorista = new System.Windows.Forms.Button();
             this.tbControlMotorista.SuspendLayout();
             this.tbPageCadastroMotorista.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -177,6 +178,8 @@
             // panelConteudoMotorista
             // 
             this.panelConteudoMotorista.AutoScroll = true;
+            this.panelConteudoMotorista.Controls.Add(this.btnExcluirMotorista);
+            this.panelConteudoMotorista.Controls.Add(this.btnAtivarMotorista);
             this.panelConteudoMotorista.Controls.Add(this.pbpermissao);
             this.panelConteudoMotorista.Controls.Add(this.lblCancelarMot);
             this.panelConteudoMotorista.Controls.Add(this.gbExameMedico);
@@ -187,7 +190,6 @@
             this.panelConteudoMotorista.Controls.Add(this.lblTelefone);
             this.panelConteudoMotorista.Controls.Add(this.txtEndereco);
             this.panelConteudoMotorista.Controls.Add(this.lblEndereco);
-            this.panelConteudoMotorista.Controls.Add(this.btnExcluirMotorista);
             this.panelConteudoMotorista.Controls.Add(this.btnAlterarMotorista);
             this.panelConteudoMotorista.Controls.Add(this.btnCadastrarMotorista);
             this.panelConteudoMotorista.Controls.Add(this.txtNome);
@@ -208,7 +210,7 @@
             this.pbpermissao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbpermissao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbpermissao.Image = ((System.Drawing.Image)(resources.GetObject("pbpermissao.Image")));
-            this.pbpermissao.Location = new System.Drawing.Point(401, 666);
+            this.pbpermissao.Location = new System.Drawing.Point(401, 646);
             this.pbpermissao.Name = "pbpermissao";
             this.pbpermissao.Size = new System.Drawing.Size(53, 40);
             this.pbpermissao.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -224,7 +226,7 @@
             this.lblCancelarMot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCancelarMot.Font = new System.Drawing.Font("Agency FB", 20.25F);
             this.lblCancelarMot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCancelarMot.Location = new System.Drawing.Point(277, 578);
+            this.lblCancelarMot.Location = new System.Drawing.Point(273, 558);
             this.lblCancelarMot.Name = "lblCancelarMot";
             this.lblCancelarMot.Size = new System.Drawing.Size(89, 32);
             this.lblCancelarMot.TabIndex = 48;
@@ -472,7 +474,7 @@
             this.btnExcluirMotorista.ForeColor = System.Drawing.Color.White;
             this.btnExcluirMotorista.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirMotorista.Image")));
             this.btnExcluirMotorista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluirMotorista.Location = new System.Drawing.Point(249, 666);
+            this.btnExcluirMotorista.Location = new System.Drawing.Point(249, 645);
             this.btnExcluirMotorista.Name = "btnExcluirMotorista";
             this.btnExcluirMotorista.Size = new System.Drawing.Size(146, 40);
             this.btnExcluirMotorista.TabIndex = 30;
@@ -493,7 +495,7 @@
             this.btnAlterarMotorista.ForeColor = System.Drawing.Color.White;
             this.btnAlterarMotorista.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterarMotorista.Image")));
             this.btnAlterarMotorista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarMotorista.Location = new System.Drawing.Point(249, 620);
+            this.btnAlterarMotorista.Location = new System.Drawing.Point(249, 600);
             this.btnAlterarMotorista.Name = "btnAlterarMotorista";
             this.btnAlterarMotorista.Size = new System.Drawing.Size(146, 40);
             this.btnAlterarMotorista.TabIndex = 28;
@@ -513,7 +515,7 @@
             this.btnCadastrarMotorista.ForeColor = System.Drawing.Color.White;
             this.btnCadastrarMotorista.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarMotorista.Image")));
             this.btnCadastrarMotorista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastrarMotorista.Location = new System.Drawing.Point(126, 574);
+            this.btnCadastrarMotorista.Location = new System.Drawing.Point(126, 554);
             this.btnCadastrarMotorista.Name = "btnCadastrarMotorista";
             this.btnCadastrarMotorista.Size = new System.Drawing.Size(389, 40);
             this.btnCadastrarMotorista.TabIndex = 27;
@@ -1226,6 +1228,28 @@
             this.lblCPFExames.TabIndex = 0;
             this.lblCPFExames.Text = "CPF:";
             // 
+            // btnAtivarMotorista
+            // 
+            this.btnAtivarMotorista.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAtivarMotorista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAtivarMotorista.Enabled = false;
+            this.btnAtivarMotorista.FlatAppearance.BorderSize = 0;
+            this.btnAtivarMotorista.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
+            this.btnAtivarMotorista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAtivarMotorista.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtivarMotorista.ForeColor = System.Drawing.Color.White;
+            this.btnAtivarMotorista.Image = ((System.Drawing.Image)(resources.GetObject("btnAtivarMotorista.Image")));
+            this.btnAtivarMotorista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAtivarMotorista.Location = new System.Drawing.Point(249, 644);
+            this.btnAtivarMotorista.Name = "btnAtivarMotorista";
+            this.btnAtivarMotorista.Size = new System.Drawing.Size(146, 40);
+            this.btnAtivarMotorista.TabIndex = 77;
+            this.btnAtivarMotorista.Text = " Ativar";
+            this.btnAtivarMotorista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAtivarMotorista.UseVisualStyleBackColor = false;
+            this.btnAtivarMotorista.Visible = false;
+            this.btnAtivarMotorista.Click += new System.EventHandler(this.btnAtivarMotorista_Click);
+            // 
             // Motoristas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,5 +1380,6 @@
         private System.Windows.Forms.PictureBox pbpermissao1;
         private System.Windows.Forms.ToolTip toolTipPermissao;
         private System.Windows.Forms.ToolTip toolTipPermissao1;
+        private System.Windows.Forms.Button btnAtivarMotorista;
     }
 }

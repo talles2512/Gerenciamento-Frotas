@@ -65,11 +65,11 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Inativar(string cpf)
+        public bool Inativar(string cpf, bool sit)
         {
             try
             {
-                return _motoristaDAL.Inativar(cpf);
+                return _motoristaDAL.Inativar(cpf, sit);
             }
             catch (ConcorrenciaBancoException)
             {

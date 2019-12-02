@@ -204,17 +204,36 @@ namespace CamadaModelagem.Data
                 throw new ConcorrenciaBancoException("Erro de concorrência de banco!");
             }
         }
-        public bool Inativar(string placa) //Exemplo Deletar --- Será mudado para Inativar
+        public bool Inativar(string placa, bool sit) 
         {
-            string Query = "UPDATE TB_VEICULOS SET VCL_SITUACAO = 0 WHERE VCL_PLACA = '" + placa + "' ";
-            try
+            if (sit)
             {
-                return _banco.ExecutarInstrucao(Query);
+                string query = "DELETE TB_VIAGENS_OCUPANTES WHERE EXISTS (SELECT VG_VCL_PLACA FROM TB_VIAGENS WHERE VG_VCL_PLACA = '" + placa + "')";
+                string Query = "UPDATE TB_VEICULOS SET VCL_SITUACAO = 0 WHERE VCL_PLACA = '" + placa + "' ";
+                string Query2 = "DELETE FROM [TB_VIAGENS] WHERE [VG_VCL_PLACA] = '" + placa + "' ";
+                try
+                {
+                    _banco.ExecutarInstrucao(query);
+                    return _banco.ExecutaTransaction(Query, Query2);
+                }
+                catch (ConcorrenciaBancoException e)
+                {
+                    throw new ConcorrenciaBancoException(e.Message);
+                }
             }
-            catch (ConcorrenciaBancoException e)
+            else
             {
-                throw new ConcorrenciaBancoException(e.Message);
+                string Query = "UPDATE TB_VEICULOS SET VCL_SITUACAO = 1 WHERE VCL_PLACA = '" + placa + "' ";
+                try
+                {
+                    return _banco.ExecutarInstrucao(Query);
+                }
+                catch (ConcorrenciaBancoException e)
+                {
+                    throw new ConcorrenciaBancoException(e.Message);
+                }
             }
+            
         }
 
         public bool Alterar(Veiculo veiculo, string placa)

@@ -42,17 +42,33 @@ namespace CamadaModelagem.Data
             }
         }
 
-        public bool Inativar(string cpf) //Alterado, Validar
+        public bool Inativar(string cpf, bool sit) //Alterado, Validar
         {
-            string Query = "UPDATE [TB_MOTORISTA] SET [MT_SITUACAO] = 0 WHERE [MT_CPF] = '" + cpf + "' ";
+            if (sit)
+            {
+                string Query = "UPDATE [TB_MOTORISTA] SET [MT_SITUACAO] = 0 WHERE [MT_CPF] = '" + cpf + "' ";
 
-            try
-            {
-                return _banco.ExecutarInstrucao(Query);
+                try
+                {
+                    return _banco.ExecutarInstrucao(Query);
+                }
+                catch (ConcorrenciaBancoException e)
+                {
+                    throw new ConcorrenciaBancoException(e.Message);
+                }
             }
-            catch (ConcorrenciaBancoException e)
+            else
             {
-                throw new ConcorrenciaBancoException(e.Message);
+                string Query = "UPDATE [TB_MOTORISTA] SET [MT_SITUACAO] = 1 WHERE [MT_CPF] = '" + cpf + "' ";
+
+                try
+                {
+                    return _banco.ExecutarInstrucao(Query);
+                }
+                catch (ConcorrenciaBancoException e)
+                {
+                    throw new ConcorrenciaBancoException(e.Message);
+                }
             }
         }
 

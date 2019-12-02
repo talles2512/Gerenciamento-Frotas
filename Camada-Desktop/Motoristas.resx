@@ -118,6 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnExcluirMotorista.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAWdJREFUWEftlyFOA0EYhTekAskBEAgEglT0AAhSVVWBbBA9ABq1qoJUoDgBJ0AR
+        NAeoQhN0QxAcYJfvbR6zdEuzXdjFMF/ykn0z//zvb5M2O0kT8jzfybIsRS/orSKtpapxefsQMEOP6Jig
+        va/SmvdmLm8fmr8SdmC7hvZUY9s+BFz5cSPb1GyE6fvoomP1HbcKkx+xuUQ36LojqfdSWY4tYeMc3dp2
+        hjKUZVvC4gS9o+eOpYyJY0v4WnpsHP6FlOXY76FojvZtA6xNORx+hvhTyfbzZzi1DagXmtvWQ/ECDWwD
+        rN2jka28/hVTW/mRamwDrA3QwrYeFeuQbUDNURwgDhAHiAPEAeIAcYD/PcAdbz1DW70BXUq28kPV2AbU
+        Sz1t61GxDtkGCNj1YwG+J9kWVGvETwZ4QGe2v0a91NO2Hj7FmAN6hT7heeUS2lTqoV48j91+Ozike8IT
+        ql7Dm0o91u8BBUnyAer1MYaA2XskAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnAtivarMotorista.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAW5JREFUWEftlE1KA0EQhWcRggcQEU8iIhJCCOLRXLnOAVy4EHHhMUSCZOEpgojL
+        jF91XiHRtqfnJwPCfFDpTFV1vdc9IcXAwL+mLMvJZrM51WO/SPyddc16pnQ/IDglPhB31sS5yvslIh4g
+        Z7exXxMIzGLijpkgLtTeLcxPiju6iYm2dQND5znijvUSU21vh8Q/NTsbGZ5pTDMYctlE3Glloq24YyaI
+        ucbmwYarLsQdm5Vtgsbsk9O3It70mMRmEmkTNGSfnL4lcUScECulk9hsIm6CQh3xF5ZDbbX/iGNyr6FY
+        gWkQuyZINBZ3yNttLLddaej7/mHypY74M8svcYd6fRN8LJRLQl9S3KHPTOS+joW9vxFxFzJ/kCvuyETy
+        JqjfsozCBr6MSTyEyg/IR995FRUm7MBbcYeEmXgMZdFU3ImZ4PmeZayWXSgc0PCkxlbijkzYLJtpB4yL
+        OzSYiZsuxB2bxczrSvGBgf4pii8EA0VaPoB6rQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="pbpermissao.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -139,18 +163,6 @@
         wwAADsMBx2+oZAAAAHNJREFUWEftl0EKgDAMBPN/cuzLfEifEM3CnixFCkZFdmBPSdi5VNBWiQjP9Emc
         a3VkSdsnYMa1OiQgAQlI4H8CeYRve1vIxr4BzE67V3EIdN4/DrolIIFPCLz7DFfBIfsGMONaHRKQgAQk
         IIEsufH33OwAVAHNO2e1RZkAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnExcluirMotorista.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAWdJREFUWEftlyFOA0EYhTekAskBEAgEglT0AAhSVVWBbBA9ABq1qoJUoDgBJ0AR
-        NAeoQhN0QxAcYJfvbR6zdEuzXdjFMF/ykn0z//zvb5M2O0kT8jzfybIsRS/orSKtpapxefsQMEOP6Jig
-        va/SmvdmLm8fmr8SdmC7hvZUY9s+BFz5cSPb1GyE6fvoomP1HbcKkx+xuUQ36LojqfdSWY4tYeMc3dp2
-        hjKUZVvC4gS9o+eOpYyJY0v4WnpsHP6FlOXY76FojvZtA6xNORx+hvhTyfbzZzi1DagXmtvWQ/ECDWwD
-        rN2jka28/hVTW/mRamwDrA3QwrYeFeuQbUDNURwgDhAHiAPEAeIAcYD/PcAdbz1DW70BXUq28kPV2AbU
-        Sz1t61GxDtkGCNj1YwG+J9kWVGvETwZ4QGe2v0a91NO2Hj7FmAN6hT7heeUS2lTqoV48j91+Ozike8IT
-        ql7Dm0o91u8BBUnyAer1MYaA2XskAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnAlterarMotorista.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
