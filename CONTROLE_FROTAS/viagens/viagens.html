@@ -142,7 +142,7 @@
           <table id="tabela-viagens" class="table">
             <thead class="thead-dark">
               <tr id="cabecalho">
-                <th scope="col">Código</th>
+                <th scope="col">Cod. Requisição</th>
                 <th scope="col">Veículo</th>
                 <th scope="col">Motorista</th>
                 <th scope="col">Destino</th>
@@ -159,7 +159,7 @@
 
 
       <div class="cadastro_veiculos container " >
-        <form name="dados" onSubmit="return enviardados();">
+        <form name="dados">
           <div class="form-row ">
             <div class="form-group col-md-5 ">                  
                     <label for="inputPlaca">Motorista</label>
@@ -176,17 +176,19 @@
                 </select>
             </div>
             <div class="form-group col-md-5">
-              <label for="inputPassword4">Destino</label>
-              <input  name="tx_viagens" type="text" class="form-control" id="Destino" placeholder="Digite o Endereço de Destino" required>
+              <label for="inputDestino">Destino</label>
+              <input  name="tx_destino" type="text" class="form-control" id="Destino" placeholder="Digite o Endereço de Destino" required>
             </div>
             <div class="form-group col-md-3">
               <label for="inputPassword4">Data Saida</label>
-              <input name="tx_viagens" type="date" class="form-control" id="DataSaida" placeholder="" required>
+              <input name="tx_data-saida" type="date" class="form-control" id="DataSaida" placeholder="" required>
             </div>
           </div>
           <div class="form-row ">
               <div class="form-group col-md-3">
-                  <label for="inputPassword4">Ocupantes</label> 
+                  <label for="inputPassword4">Ocupantes</label><br>
+                  <input id="ocupantes-sim" type="radio" name="ocupantes" onchange="MudaOcupantes()" value="true"> Sim
+                  <input id="ocupantes-nao" type="radio" name="ocupantes" onchange="MudaOcupantes()" value="false" checked> Não<br> 
               </div>
           </div>
           <div class="form-row ">
@@ -197,12 +199,12 @@
           </div>
           <div class="form-row ">
               <div class="form-group col-md-5">
-                  <label for="inputPassword4">Nome do Ocupante</label>
-                  <input  name="tx_viagens" type="text" class="form-control" id="NomeOcupante" placeholder="Digite o nome do Ocupante" required>
+                  <label id="lbl-NomeOcupante" for="inputPassword4">Nome do Ocupante</label>
+                  <input  name="tx_NomeOcupante" type="text" class="form-control" id="NomeOcupante" placeholder="Digite o nome do Ocupante">
                 </div>
               <div class="form-group col-md-5">
-                    <label for="inputPassword4">CPF do Ocupante</label>
-                    <input  name="tx_viagens" type="text" class="form-control" id="CpfOcupante" placeholder="Digite o CPF do Ocupante" required>
+                    <label id="lbl-CpfOcupante" for="inputPassword4">CPF do Ocupante</label>
+                    <input  name="tx_CpfOcupante" type="text" class="form-control" id="CpfOcupante" placeholder="Digite o CPF do Ocupante">
               </div>
           </div>
           <div class="form-row ">

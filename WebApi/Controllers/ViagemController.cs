@@ -293,7 +293,52 @@ namespace WebApi.Controllers
 
             try
             {
+                int requisicao = _viagemService.PopularRequisicao();
+                viagem.Requisicao = requisicao;
+                viagem.Ocupante = false;
+
                 bool result = _viagemService.Cadastrar(viagem, viagem.Requisicao);
+                if (result)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Houve um erro na operação!");
+                }
+            }
+            catch (RegistroExisteException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (ConcorrenciaBancoException e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        //POST: api/Viagem
+        [HttpPost]
+        [Route("add/Ocupantes")]
+        public IHttpActionResult Post([FromBody] List<Ocupante> ocupantes)
+        {
+            if (ocupantes == null)
+                return BadRequest();
+
+            try
+            {
+                int requisicao = (_viagemService.PopularRequisicao()-1);
+                foreach (Ocupante ocupante in ocupantes)
+                {
+                    ocupante.Requisicao = requisicao;
+                }
+
+                Viagem viagem = _viagemService.BuscarViagem(requisicao);
+                viagem.Ocupantes = ocupantes;
+                viagem.Ocupante = true;
+
+                bool result = _viagemService.Alterar(viagem, requisicao);
                 if (result)
                 {
                     return Ok();

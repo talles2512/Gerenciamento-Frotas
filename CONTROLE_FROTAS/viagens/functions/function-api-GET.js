@@ -41,7 +41,6 @@ function GETMotorista(){
               .then(function(response){
                   if(response.ok){
                       response.json().then(function(data){
-                          console.log(data);
                           PopulaMotoristas(data)
                         });
                   }
@@ -57,9 +56,6 @@ function PopulaMotoristas(data){
     var contador = 1;
         data.forEach(element => {
 
-            console.log(element);
-            console.log(CortarIdentificador(element));
-
             var elem = document.createElement('option');
             elem.value = CortarIdentificador(element);
             elem.text  = element;
@@ -73,7 +69,6 @@ function GETVeiculo(){
               .then(function(response){
                   if(response.ok){
                       response.json().then(function(data){
-                          console.log(data);
                           PopulaVeiculos(data)
                         });
                   }
@@ -88,9 +83,6 @@ function GETVeiculo(){
     var select = document.getElementById("PlacaVeiculo");
     var contador = 1;
         data.forEach(element => {
-
-            console.log(element);
-            console.log(CortarIdentificador(element));
 
             var elem = document.createElement('option');
             elem.value = CortarIdentificador(element);

@@ -8,6 +8,7 @@ $(document).ready(function () {
         $(this).addClass('btn-color-primary');    
         GETMotorista();
         GETVeiculo();
+        MudaOcupantes();
     });
     
     $('#consultar-veiculos').click(function(){
@@ -29,7 +30,15 @@ $(document).ready(function () {
         var nome = document.getElementById("NomeOcupante").value;
         var cpf = LimpaMascara(document.getElementById("CpfOcupante").value);
 
-        if(nome != "" && cpf != ""){
+        if(nome == ""){
+            alert("Preencha o Nome do Ocupante corretamente!");
+            document.getElementById("NomeOcupante").focus();
+        }
+        else if(cpf == ""){
+            alert("Preencha o CPF do Ocupante corretamente!");
+            document.getElementById("CpfOcupante").focus();
+        }
+        else{
             var listaOcupantes = document.getElementById("lista-ocupantes");
             var elemento = document.createElement('option');
             elemento.value = nome +"-" +cpf;
@@ -50,4 +59,32 @@ $(document).ready(function () {
     });
 
     $('#CpfOcupante').mask('000.000.000-00');
+
 });
+
+function MudaOcupantes(){
+    var ocupantes = document.getElementsByName("ocupantes");
+    ocupantes.forEach(element => {
+        if(element.checked){
+            if(element.value == "true"){
+                document.getElementById("lista-ocupantes").style.display = "block";
+                document.getElementById("lbl-NomeOcupante").style.display = "block";
+                document.getElementById("NomeOcupante").style.display = "block";
+                document.getElementById("lbl-CpfOcupante").style.display = "block";
+                document.getElementById("CpfOcupante").style.display = "block";
+                document.getElementById("rem-ocupante").style.display = "block";
+                document.getElementById("add-ocupante").style.display = "block";
+                
+            }
+            else{
+                document.getElementById("lista-ocupantes").style.display = "none";
+                document.getElementById("lbl-NomeOcupante").style.display = "none";
+                document.getElementById("NomeOcupante").style.display = "none";
+                document.getElementById("lbl-CpfOcupante").style.display = "none";
+                document.getElementById("CpfOcupante").style.display = "none";
+                document.getElementById("add-ocupante").style.display = "none";
+                document.getElementById("rem-ocupante").style.display = "none";
+            }
+        }
+    });
+}

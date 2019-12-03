@@ -1,7 +1,7 @@
 function enviardados(dados)
 {       
    
-    if (dados.inputPlaca == "" ||  document.dados.tx_nome.value.length <= 2 ) {
+    if (dados.inputNome == "" ||  document.dados.tx_nome.value.length <= 2 ) {
         alert("Preencha o NOME COMPLETO corretamente!");
         document.dados.tx_nome.focus();
         return false;
