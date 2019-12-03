@@ -147,6 +147,27 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/EstoquePecas?pesquisa=VALOR
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _estoquePecasService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Estoques não encontrados!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/EstoquePecas
         [HttpPost]
         [Route("add")]
