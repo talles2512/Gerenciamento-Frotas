@@ -159,6 +159,28 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/ServicoExterno?cnpj=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _servicoExternoService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Serviços Externos não encontrados!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/ServicoExterno
         [HttpPost]
         [Route("add")]
@@ -169,6 +191,10 @@ namespace WebApi.Controllers
 
             try
             {
+                if (!servicoExterno.Conveniado)
+                {
+                    servicoExterno.ServicoExternoConveniado = null;
+                }
                 bool result = _servicoExternoService.Cadastrar(servicoExterno, servicoExterno.CNPJ);
                 if (result)
                 {

@@ -160,6 +160,28 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Cliente?pesquisa=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _clienteService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Cliente não encontrado!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Cliente
         [HttpPost]
         [Route("add")]
