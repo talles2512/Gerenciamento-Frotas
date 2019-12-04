@@ -30,6 +30,7 @@ namespace CamadaDesktop
         string cpfExameAntigo;
         DateTime dataExameAntigo;
         PerfilAcesso PerfilAcesso;
+        bool situacao;
 
         public Motoristas()
         {
@@ -40,6 +41,7 @@ namespace CamadaDesktop
             cNH = null;
             cpfantigo = "";
             cpfExameAntigo = "";
+            situacao = true;
         }
 
         public Motoristas(PerfilAcesso perfilAcesso)
@@ -52,6 +54,7 @@ namespace CamadaDesktop
             cpfantigo = "";
             cpfExameAntigo = "";
             PerfilAcesso = perfilAcesso;
+            situacao = true;
         }
 
         private MotoristaController InstanciarCamadas()
@@ -306,21 +309,60 @@ namespace CamadaDesktop
                 tbControlMotorista.SelectTab("tbPageCadastroMotorista");
                 if (tbControlMotorista.SelectedTab == tbPageCadastroMotorista)
                 {
-                    txtCPFConsulta.Text = "";
-                    Motorista = null;
-
-                    btnCadastrarMotorista.Visible = false;
-                    lblCancelarMot.Visible = true;
-                    btnAlterarMotorista.Enabled = true;
-                    
-                    if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    if (Motorista.Situacao)
                     {
-                        btnExcluirMotorista.Enabled = false;
+                        txtCPFConsulta.Text = "";
+                        Motorista = null;
+
+                        btnCadastrarMotorista.Visible = false;
+                        lblCancelarMot.Visible = true;
+                        btnAlterarMotorista.Enabled = true;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnExcluirMotorista.Enabled = false;
+                        }
+                        else
+                        {
+                            btnExcluirMotorista.Enabled = true;
+                        }
                     }
                     else
                     {
-                        btnExcluirMotorista.Enabled = true;
-                    }
+                        txtCPF.Enabled = false;
+                        txtNome.Enabled = false;
+                        txtRG.Enabled = false;
+                        dtDataNascimento.Enabled = false;
+                        txtEndereco.Enabled = false;
+                        txtTelefone.Enabled = false;
+                        txtTelefoneContato.Enabled = false;
+                        txtCNHnumero.Enabled = false;
+                        cbCategoriaCNH.Enabled = false;
+                        cbOrgaoEmissor.Enabled = false;
+                        dtDataEmissaoCNH.Enabled = false;
+                        dtDataVencimentoCNH.Enabled = false;
+                        situacao = false;
+
+                        txtCPFConsulta.Text = "";
+                        Motorista = null;
+
+                        btnCadastrarMotorista.Visible = false;
+                        lblCancelarMot.Visible = true;
+                        btnAlterarMotorista.Enabled = false;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnAtivarMotorista.Enabled = false;
+                            btnExcluirMotorista.Visible = false;
+                            btnAtivarMotorista.Visible = true;
+                        }
+                        else
+                        {
+                            btnAtivarMotorista.Enabled = true;
+                            btnExcluirMotorista.Visible = false;
+                            btnAtivarMotorista.Visible = true;
+                        }
+                    }                    
                 }
             }
         }
@@ -361,20 +403,56 @@ namespace CamadaDesktop
                         tbControlMotorista.SelectTab("tbPageCadastroMotorista");
                         if (tbControlMotorista.SelectedTab == tbPageCadastroMotorista)
                         {
-                            txtCPFConsulta.Text = "";
-                            Motorista = null;
-
-                            btnCadastrarMotorista.Visible = false;
-                            lblCancelarMot.Visible = true;
-                            btnAlterarMotorista.Enabled = true;
-
-                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            if (motorista.Situacao)
                             {
-                                btnExcluirMotorista.Enabled = false;
+                                txtCPFConsulta.Text = "";
+                                Motorista = null;
+
+                                btnCadastrarMotorista.Visible = false;
+                                lblCancelarMot.Visible = true;
+                                btnAlterarMotorista.Enabled = true;
+
+                                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                                {
+                                    btnExcluirMotorista.Enabled = false;
+                                }
+                                else
+                                {
+                                    btnExcluirMotorista.Enabled = true;
+                                }
                             }
                             else
                             {
-                                btnExcluirMotorista.Enabled = true;
+                                txtCPF.Enabled = false;
+                                txtNome.Enabled = false;
+                                txtRG.Enabled = false;
+                                dtDataNascimento.Enabled = false;
+                                txtEndereco.Enabled = false;
+                                txtTelefone.Enabled = false;
+                                txtTelefoneContato.Enabled = false;
+                                txtCNHnumero.Enabled = false;
+                                cbCategoriaCNH.Enabled = false;
+                                cbOrgaoEmissor.Enabled = false;
+                                dtDataEmissaoCNH.Enabled = false;
+                                dtDataVencimentoCNH.Enabled = false;
+                                situacao = false;
+
+                                btnCadastrarMotorista.Visible = false;
+                                lblCancelarMot.Visible = true;
+                                btnAlterarMotorista.Enabled = false;
+
+                                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                                {
+                                    btnAtivarMotorista.Enabled = false;
+                                    btnExcluirMotorista.Visible = false;
+                                    btnAtivarMotorista.Visible = true;
+                                }
+                                else
+                                {
+                                    btnAtivarMotorista.Enabled = true;
+                                    btnExcluirMotorista.Visible = false;
+                                    btnAtivarMotorista.Visible = true;
+                                }
                             }
                         }
                     }
@@ -486,7 +564,7 @@ namespace CamadaDesktop
                 {
                     if (MessageBox.Show("Deseja realmente inativar?", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_motoristaController.Inativar(cpf))
+                        if (_motoristaController.Inativar(cpf, situacao))
                         {
                             MessageBox.Show("Inativação realizada com Sucesso!");
                             txtCPF.Text = "";
@@ -506,6 +584,78 @@ namespace CamadaDesktop
                             lblCancelarMot.Visible = false;
                             btnAlterarMotorista.Enabled = false;
                             btnExcluirMotorista.Enabled = false;
+                        }
+                    }
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+        private void btnAtivarMotorista_Click(object sender, EventArgs e)
+        {
+            if (txtCPF.Text == "")
+            {
+                MessageBox.Show("Preencha o campo CPF corretamente para realizar esta opereção!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string[] strings = new string[] { ".", "/", "-", ",", "(", ")", " " };
+
+                string cpf = txtCPF.Text;
+                foreach (string str in strings) //limpando as strings
+                {
+                    cpf = cpf.Replace(str, "");
+                }
+
+                try
+                {
+                    if (MessageBox.Show("Deseja realmente ativar?", "Ativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_motoristaController.Inativar(cpf, situacao))
+                        {
+                            MessageBox.Show("Ativação realizada com Sucesso!");
+                            txtCPF.Text = "";
+                            txtNome.Text = "";
+                            txtRG.Text = "";
+                            dtDataNascimento.Value = DateTime.Now;
+                            txtEndereco.Text = "";
+                            txtTelefone.Text = "";
+                            txtTelefoneContato.Text = "";
+                            txtCNHnumero.Text = "";
+                            cbCategoriaCNH.Text = "";
+                            cbOrgaoEmissor.Text = "";
+                            dtDataEmissaoCNH.Value = DateTime.Now;
+                            dtDataVencimentoCNH.Value = DateTime.Now;
+
+                            btnCadastrarMotorista.Visible = true;
+                            lblCancelarMot.Visible = false;
+                            btnAlterarMotorista.Enabled = false;
+                            btnExcluirMotorista.Enabled = false;
+                            btnExcluirMotorista.Visible = true;
+                            btnAtivarMotorista.Visible = false;
+                            btnAtivarMotorista.Enabled = false;
+
+                            txtCPF.Enabled = true;
+                            txtNome.Enabled = true;
+                            txtRG.Enabled = true;
+                            dtDataNascimento.Enabled = true;
+                            txtEndereco.Enabled = true;
+                            txtTelefone.Enabled = true;
+                            txtTelefoneContato.Enabled = true;
+                            txtCNHnumero.Enabled = true;
+                            cbCategoriaCNH.Enabled = true;
+                            cbOrgaoEmissor.Enabled = true;
+                            dtDataEmissaoCNH.Enabled = true;
+                            dtDataVencimentoCNH.Enabled = true;
+                            situacao = true;
                         }
                     }
                 }
@@ -546,12 +696,29 @@ namespace CamadaDesktop
                 dtDataEmissaoCNH.Value = DateTime.Now;
                 dtDataVencimentoCNH.Value = DateTime.Now;
 
+                Motorista = null;
+
                 btnCadastrarMotorista.Visible = true;
                 lblCancelarMot.Visible = false;
                 btnAlterarMotorista.Enabled = false;
                 btnExcluirMotorista.Enabled = false;
+                btnExcluirMotorista.Visible = true;
+                btnAtivarMotorista.Visible = false;
+                btnAtivarMotorista.Enabled = false;
 
-                Motorista = null;
+                txtCPF.Enabled = true;
+                txtNome.Enabled = true;
+                txtRG.Enabled = true;
+                dtDataNascimento.Enabled = true;
+                txtEndereco.Enabled = true;
+                txtTelefone.Enabled = true;
+                txtTelefoneContato.Enabled = true;
+                txtCNHnumero.Enabled = true;
+                cbCategoriaCNH.Enabled = true;
+                cbOrgaoEmissor.Enabled = true;
+                dtDataEmissaoCNH.Enabled = true;
+                dtDataVencimentoCNH.Enabled = true;
+                situacao = true;
             }
         }
 

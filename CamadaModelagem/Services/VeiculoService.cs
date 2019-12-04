@@ -90,11 +90,11 @@ namespace CamadaModelagem.Services
             }
         }
 
-        public bool Inativar(string placa)
+        public bool Inativar(string placa, bool sit)
         {
             try
             {
-                return _veiculoDAL.Inativar(placa);
+                return _veiculoDAL.Inativar(placa, sit);
             }
             catch (ConcorrenciaBancoException e)
             {

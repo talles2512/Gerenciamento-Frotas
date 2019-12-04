@@ -23,6 +23,7 @@ namespace CamadaDesktop
         private List<Veiculo> ListaVeiculos;
         private Veiculo Veiculo;
         string PlacaAntiga;
+        bool situacao;
 
         PerfilAcesso PerfilAcesso;
         public Veiculos()
@@ -31,6 +32,7 @@ namespace CamadaDesktop
             _veiculoController = InstanciarCamadas();
             Veiculo = null;
             PlacaAntiga = "";
+            situacao = true;
         }
         public Veiculos(PerfilAcesso perfilAcesso) // <<<------- Instanciando o Perfil de Acesso para ser usado neste menu
         {
@@ -39,6 +41,7 @@ namespace CamadaDesktop
             Veiculo = null;
             PlacaAntiga = "";
             PerfilAcesso = perfilAcesso;
+            situacao = true;
         }
 
         private VeiculoController InstanciarCamadas()
@@ -370,20 +373,56 @@ namespace CamadaDesktop
                 tbControlVeiculos.SelectTab("tbPageCadastroVeiculo");
                 if(tbControlVeiculos.SelectedTab == tbPageCadastroVeiculo)
                 {
-                    txtPlacaConsulta.Text = "";
-                    Veiculo = null;
-
-                    btnCadastrarVeiculo.Visible = false;
-                    lblCancelar.Visible = true;
-                    btnAlterarVeiculo.Enabled = true;
-
-                    if(PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                    if (Veiculo.SituacaoVeiculo)
                     {
-                        btnExcluirVeiculo.Enabled = false;
+                        txtPlacaConsulta.Text = "";
+                        Veiculo = null;
+
+                        btnCadastrarVeiculo.Visible = false;
+                        lblCancelar.Visible = true;
+                        btnAlterarVeiculo.Enabled = true;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnExcluirVeiculo.Enabled = false;
+                        }
+                        else
+                        {
+                            btnExcluirVeiculo.Enabled = true;
+                        }
                     }
                     else
                     {
-                        btnExcluirVeiculo.Enabled = true;
+                        txtPlaca.Enabled = false;
+                        txtMarca.Enabled = false;
+                        txtModelo.Enabled = false;
+                        txtChassi.Enabled = false;
+                        dtAno.Enabled = false;
+                        cbCombustivel.Enabled = false;
+                        cbCor.Enabled = false;
+                        rdAlugado.Enabled = false;
+                        rdNaoAlugado.Enabled = false;
+                        txtValor.Enabled = false;
+                        dtInicio.Enabled = false;
+                        dtVencimento.Enabled = false;
+
+                        btnCadastrarVeiculo.Visible = false;
+                        lblCancelar.Visible = true;
+                        btnAlterarVeiculo.Enabled = false;                       
+                        situacao = false;
+
+                        if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                        {
+                            btnAtivarVeiculo.Enabled = false;
+                            btnAtivarVeiculo.Visible = false;
+                            btnExcluirVeiculo.Visible = false;
+                        }
+                        else
+                        {
+                            btnAtivarVeiculo.Enabled = true;
+                            btnAtivarVeiculo.Visible = true;
+                            btnExcluirVeiculo.Visible = false;
+                        }
                     }
                 }
             }
@@ -443,20 +482,56 @@ namespace CamadaDesktop
                         tbControlVeiculos.SelectTab("tbPageCadastroVeiculo");
                         if (tbControlVeiculos.SelectedTab == tbPageCadastroVeiculo)
                         {
-                            txtPlacaConsulta.Text = "";
-                            Veiculo = null;
-
-                            btnCadastrarVeiculo.Visible = false;
-                            lblCancelar.Visible = true;
-                            btnAlterarVeiculo.Enabled = true;
-
-                            if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                            if (veiculo.SituacaoVeiculo)
                             {
-                                btnExcluirVeiculo.Enabled = false;
+                                txtPlacaConsulta.Text = "";
+                                Veiculo = null;
+
+                                btnCadastrarVeiculo.Visible = false;
+                                lblCancelar.Visible = true;
+                                btnAlterarVeiculo.Enabled = true;
+
+                                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                                {
+                                    btnExcluirVeiculo.Enabled = false;
+                                }
+                                else
+                                {
+                                    btnExcluirVeiculo.Enabled = true;
+                                }
                             }
                             else
                             {
-                                btnExcluirVeiculo.Enabled = true;
+                                txtPlaca.Enabled = false;
+                                txtMarca.Enabled = false;
+                                txtModelo.Enabled = false;
+                                txtChassi.Enabled = false;
+                                dtAno.Enabled = false;
+                                cbCombustivel.Enabled = false;
+                                cbCor.Enabled = false;
+                                rdAlugado.Enabled = false;
+                                rdNaoAlugado.Enabled = false;
+                                txtValor.Enabled = false;
+                                dtInicio.Enabled = false;
+                                dtVencimento.Enabled = false;
+
+                                btnCadastrarVeiculo.Visible = false;
+                                lblCancelar.Visible = true;
+                                btnAlterarVeiculo.Enabled = false;
+                                situacao = false;
+
+                                if (PerfilAcesso == PerfilAcesso.Atendimento || PerfilAcesso == PerfilAcesso.Operacional)
+                                {
+                                    btnAtivarVeiculo.Enabled = false;
+                                    btnAtivarVeiculo.Visible = true;
+                                    btnExcluirVeiculo.Visible = false;
+                                }
+                                else
+                                {
+                                    btnAtivarVeiculo.Enabled = true;
+                                    btnAtivarVeiculo.Visible = true;
+                                    btnExcluirVeiculo.Visible = false;
+                                }
                             }
                         }
                     }
@@ -558,9 +633,9 @@ namespace CamadaDesktop
                 string placa = txtPlaca.Text.Replace("-", "");
                 try
                 {
-                    if (MessageBox.Show("Deseja realmente inativar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Deseja realmente inativar?\nAtenção! As viagens vinculadas a esse veículo serão excluidas nessa ação.", "Inativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if (_veiculoController.Inativar(placa))
+                        if (_veiculoController.Inativar(placa, situacao))
                         {
                             MessageBox.Show("Inativação realizada com Sucesso!");
                             txtPlaca.Clear();
@@ -582,6 +657,70 @@ namespace CamadaDesktop
                             btnExcluirVeiculo.Enabled = false;
                         }
                     }                   
+                }
+                catch (NaoEncontradoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (ConcorrenciaBancoException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btnAtivarVeiculo_Click(object sender, EventArgs e)
+        {
+            if (txtPlaca.Text == "   -")
+            {
+                MessageBox.Show("Preencha o campo Placa corretamente para realizar esta operação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string placa = txtPlaca.Text.Replace("-", "");
+                try
+                {
+                    if (MessageBox.Show("Deseja realmente ativar?\nAtenção! As viagens vinculados a esse veículo foram excluidas, cadastre novamente para atribuir novas.", "Ativar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (_veiculoController.Inativar(placa, situacao))
+                        {
+                            MessageBox.Show("Ativação realizada com Sucesso!");
+                            txtPlaca.Clear();
+                            txtMarca.Clear();
+                            txtModelo.Clear();
+                            txtChassi.Clear();
+                            dtAno.Value = DateTime.Now;
+                            cbCombustivel.Text = "";
+                            cbCor.Text = "";
+                            rdAlugado.Checked = false;
+                            rdNaoAlugado.Checked = false;
+                            txtValor.Clear();
+                            dtInicio.Value = DateTime.Now;
+                            dtVencimento.Value = DateTime.Now;
+
+                            btnCadastrarVeiculo.Visible = true;
+                            lblCancelar.Visible = false;
+                            btnAlterarVeiculo.Enabled = false;
+                            btnExcluirVeiculo.Visible = true;
+                            btnExcluirVeiculo.Enabled = false;
+                            btnAtivarVeiculo.Enabled = false;
+                            btnAtivarVeiculo.Visible = false;
+
+                            txtPlaca.Enabled = true;
+                            txtMarca.Enabled = true;
+                            txtModelo.Enabled = true;
+                            txtChassi.Enabled = true;
+                            dtAno.Enabled = true;
+                            cbCombustivel.Enabled = true;
+                            cbCor.Enabled = true;
+                            rdAlugado.Enabled = true;
+                            rdNaoAlugado.Enabled = true;
+                            txtValor.Enabled = true;
+                            dtInicio.Enabled = true;
+                            dtVencimento.Enabled = true;
+                            situacao = true;
+                        }
+                    }
                 }
                 catch (NaoEncontradoException ex)
                 {
@@ -707,9 +846,26 @@ namespace CamadaDesktop
                 lblCancelar.Visible = false;
                 btnAlterarVeiculo.Enabled = false;
                 btnExcluirVeiculo.Enabled = false;
+                btnAtivarVeiculo.Enabled = false;
+                btnAtivarVeiculo.Visible = false;
+                btnExcluirVeiculo.Visible = true;
 
                 Veiculo = null;
+
+                txtPlaca.Enabled = true;
+                txtMarca.Enabled = true;
+                txtModelo.Enabled = true;
+                txtChassi.Enabled = true;
+                dtAno.Enabled = true;
+                cbCombustivel.Enabled = true;
+                cbCor.Enabled = true;
+                rdAlugado.Enabled = true;
+                rdNaoAlugado.Enabled = true;
+                txtValor.Enabled = true;
+                dtInicio.Enabled = true;
+                dtVencimento.Enabled = true;
+                situacao = true;
             }
-        }       
+        }
     }
 }

@@ -80,6 +80,7 @@
             this.tooltipPesquisar = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipTransfere = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipPermissao = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAtivarVeiculo = new System.Windows.Forms.Button();
             this.tbControlVeiculos.SuspendLayout();
             this.tbPageCadastroVeiculo.SuspendLayout();
             this.gbDadosVeiculos.SuspendLayout();
@@ -142,6 +143,7 @@
             this.gbDadosVeiculos.Controls.Add(this.lblModelo);
             this.gbDadosVeiculos.Controls.Add(this.lblMarca);
             this.gbDadosVeiculos.Controls.Add(this.lblPlaca);
+            this.gbDadosVeiculos.Controls.Add(this.btnAtivarVeiculo);
             this.gbDadosVeiculos.Font = new System.Drawing.Font("Agency FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDadosVeiculos.Location = new System.Drawing.Point(6, 6);
             this.gbDadosVeiculos.Name = "gbDadosVeiculos";
@@ -667,6 +669,28 @@
             this.lblPlacaConsulta.TabIndex = 17;
             this.lblPlacaConsulta.Text = "Placa:";
             // 
+            // btnAtivarVeiculo
+            // 
+            this.btnAtivarVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAtivarVeiculo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAtivarVeiculo.Enabled = false;
+            this.btnAtivarVeiculo.FlatAppearance.BorderSize = 0;
+            this.btnAtivarVeiculo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
+            this.btnAtivarVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAtivarVeiculo.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtivarVeiculo.ForeColor = System.Drawing.Color.White;
+            this.btnAtivarVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnAtivarVeiculo.Image")));
+            this.btnAtivarVeiculo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAtivarVeiculo.Location = new System.Drawing.Point(246, 399);
+            this.btnAtivarVeiculo.Name = "btnAtivarVeiculo";
+            this.btnAtivarVeiculo.Size = new System.Drawing.Size(146, 40);
+            this.btnAtivarVeiculo.TabIndex = 75;
+            this.btnAtivarVeiculo.Text = " Ativar";
+            this.btnAtivarVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAtivarVeiculo.UseVisualStyleBackColor = false;
+            this.btnAtivarVeiculo.Visible = false;
+            this.btnAtivarVeiculo.Click += new System.EventHandler(this.btnAtivarVeiculo_Click);
+            // 
             // Veiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,5 +770,6 @@
         private System.Windows.Forms.Label lblCancelar;
         private System.Windows.Forms.ToolTip toolTipPermissao;
         private System.Windows.Forms.PictureBox pbpermissao;
+        private System.Windows.Forms.Button btnAtivarVeiculo;
     }
 }

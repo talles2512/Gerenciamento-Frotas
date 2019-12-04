@@ -171,6 +171,18 @@
         IIEsufH33OwAVAHNO2e1RZkAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnAtivarVeiculo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFuSURBVFhH7ZRNSgNBEIVnEYIHEBFPIiISQgji0Vy5zgFc
+        uBBx4TFEgmThKYKIy4xfdV4h0ban5ycDwnxQ6UxVdb3XPSHFwMC/pizLyWazOdVjv0j8nXXNeqZ0PyA4
+        JT4Qd9bEucr7JSIeIGe3sV8TCMxi4o6ZIC7U3i3MT4o7uomJtnUDQ+c54o71ElNtb4fEPzU7GxmeaUwz
+        GHLZRNxpZaKtuGMmiLnG5sGGqy7EHZuVbYLG7JPTtyLe9JjEZhJpEzRkn5y+JXFEnBArpZPYbCJugkId
+        8ReWQ221/4hjcq+hWIFpELsmSDQWd8jbbSy3XWno+/5h8qWO+DPLL3GHen0TfCyUS0JfUtyhz0zkvo6F
+        vb8RcRcyf5Ar7shE8iao37KMwga+jEk8hMoPyEffeRUVJuzAW3GHhJl4DGXRVNyJmeD5nmWsll0oHNDw
+        pMZW4o5M2CybaQeMizs0mImbLsQdm8XM60rxgYH+KYovBANFWj6Aeq0AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnConsultarPorData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
