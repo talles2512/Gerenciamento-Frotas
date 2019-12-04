@@ -165,104 +165,107 @@
 
 
       <div class="form-row consulta_veiculos">
+        <div class="form-group col-md-1.5">
+            <label for="inputTipo">Tipo</label>
+            <select name="tx_Tipo" id="TipoConsulta" class="form-control" required>
+              <option name="tx_Tipo" selected></option>
+              <option value="Gasolina">Gasolina</option>
+              <option value="Gasolina_Aditiva">Gasolina Aditivada</option>
+              <option value="Etanol">Etanol</option>
+              <option value="Eletrico">Eletrico</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Gas_Natural">Gás Natural</option>
+              <option value="Flex">Flex</option>
+            </select>
+        </div>
 
-        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
-          spellcheck="false" autocorrect="off" tabindex="1">
-          <table id="tabela-motoristas" class="table">
-            <thead class="thead-dark">
-              <tr id="cabecalho">
-                <th id="Nome" scope="col">Nome</th>
-                <th id="CPF" scope="col">CPF</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Telefone</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <div class="form-group col-md-3">
+            <label for="inputData">Data</label>
+            <input name="tx_Data" type="date" class="form-control" id="DataConsulta" placeholder="" required >
+        </div>
 
-      </div>
+        <div class="form-group col-md-3">
+            <label for="inputPlaca">Veículo</label>
+            <select name="tx_Veiculo" id="PlacaVeiculoConsulta" class="form-control" required>
+                <option name="tx_Veiculo" selected></option>
+            </select>
+        </div>
+
+    </div>
+    <div class="form-row consulta_veiculos">
+        <table id="tabela-abastecimentos" class="table">
+          <thead class="thead-dark">
+            <tr id="cabecalho">
+              <th scope="col">Placa</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Litros</th>
+              <th scope="col">Data</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+
+    </div>
 
 
 
 
       <div class="cadastro_veiculos container " >
-        <form name="dados" onSubmit="return;">
+        <form name="dados" onSubmit="">
           <div class="form-row ">
-            <div class="form-group col-md-3 ">                  
-                    <label for="inputNome">Nome</label>
-                    <input  name="tx_nome" type="text" class="form-control" id="Nome" placeholder="Digite seu nome">
-                          
-              <!-- <label  for="inputchassi">Nome</label>
-              <input name="tx-nome" type="text" nameclass="form-control " for="customControlValidation1"id="nome" placeholder="Digite o nome" autofocus   >               -->
+            <div class="form-group col-md-2">
+            <label for="inputState">Tipo de Manutenção</label>
+            <select name="tx_Tipo" id="Tipo" class="form-control" required>
+                <option name="tx_Tipo" selected></option>
+                <option value="0">Preventiva</option>
+                <option value="1">Corretiva</option>
+              </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputRg">Rg</label>
-              <input name="tx_RG" type="text" class="form-control" id="Rg" placeholder="00000000-0" >
+                <label for="inputData">Data</label>
+                <input name="tx_Data" type="date" class="form-control" id="Data" placeholder="" required >
             </div>
-            <div class="form-group col-md-3">
-              <label for="inputCPF">Cpf</label>
-              <input  name="tx_CPF" type="text" class="form-control" id="Cpf" placeholder="000.000.000-00" >
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputDataNascimento">Data de Nascimento</label>
-              <input name="tx_DataNascimento" type="date" class="form-control" id="DataNascimento" placeholder="Digite o modelo" required >
+            <div class="form-group col-md-4">
+                <label for="inputPlaca">Veículo</label>
+                <select name="tx_Veiculo" id="PlacaVeiculo" class="form-control" required>
+                    <option name="tx_Veiculo" selected></option>
+                </select>
             </div>
           </div>
-          <div class="form-row ">
-          <div class="form-group col-md-8">
-            <label for="inputAddress">Endereço</label>
-            <input name="tx_Endereco" type="text" class="form-control" id="Endereco" placeholder="" >
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                  <label for="inputPlaca">Oficina</label>
+                  <select name="tx_Oficina" id="CnpjOficina" class="form-control" required>
+                      <option name="tx_Oficina" selected></option>
+                  </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputState">Situação</label>
+                <select name="tx_Situacao" id="Situacao" class="form-control" required>
+                    <option name="tx_Situacao" selected></option>
+                    <option value="0">Pendente</option>
+                    <option value="1">Realizada</option>
+                  </select>
+                </div>
+            <div class="form-group col-md-3">
+                <label id="lbl-valor" for="inputTelefoneContato">Valor</label>
+                <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="R$ 000000.00" >
+              </div>
           </div>
           
-          </div>
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputTelefone">Telefone</label>
-            <input name="tx_Telefone" type="text" class="form-control" id="Telefone" placeholder="(00) 0000-0000" >
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputTelefoneContato">Telefone Contato</label>
-            <input name="tx_TelefoneContato" type="text" class="form-control" id="TelefoneContato" placeholder="(00) 0000-0000" >
-          </div>
-        </div>
-          <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="inputCNHNumero">CNH</label>
-              <input name="tx_CNH_Numero" type="text" class="form-control" id="CNH_Numero" placeholder="000000000000" >
+        <div class="form-row ">
+            <div class="form-group col-md-8">
+                <label id="lbl-descricao" for="inputTelefoneContato">Descrição</label>
+                <input style="height: 100px;" name="tx_Descricao" type="text" class="form-control" id="Descricao" >
             </div>
-            <div class="form-group col-md-3">
-              <label for="inputCNHEmissao">Data Emissão</label>
-              <input name="tx_CNH_DataEmissao" type="date" class="form-control" id="CNH_DataEmissao" placeholder="(xx)1232-244"  required>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputCNHVencimento">Data Vencimento</label>
-              <input name="tx_CNH_DataVencimento" type="date" class="form-control" id="CNH_DataVencimento" placeholder="(xx)1232-244" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputCNHOrgaoEmissor">Orgão Emissão</label>
-              <input name="tx_CNH_OrgaoEmissor" type="text" class="form-control" id="CNH_OrgaoEmissor" placeholder="Ex: SP" required>
-            </div>
-            <div class="form-group col-md-6">
-              <div name="tx_categoria" class="form-group col-md-6">
-                <label for="inputCNHCategoria">Categoria</label>
-                <select name="tx_CNH_Categoria" id="CNH_Categoria" class="form-control" required>
-                  <option name="tx_CNH_Categoria" selected></option>
-                  <option>A</option>
-                  <option>B</option>
-                  <option>C</option>
-                  <option>D</option>
-                  <option>E</option>
-                  <option>ACC</option>
-                </select>
-              </div>
-            </div>
-            
-           
+          
           </div>
-          <div class="form-group">
-
-          </div>
+      
+          
+         
           <!-- <button id="sucesso" type="submit" class="btn btn-info" data-toggle="modal" data-target="#ExemploModalCentralizado"  >
             Cadastrar
           </button> -->
@@ -293,13 +296,28 @@
       </div>
 
 
+
+      <!-- jQuery CDN - Slim version (=without AJAX) -->
+      <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+      <!-- Popper.JS -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script> -->
+      <!-- Bootstrap JS -->
+      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script> -->
+
         <script src="functions/jquery.js"></script>
-        <script src="functions/masked-inputs.js"></script> <!--Biblioteca de Masked Inputs-->
+        <script src="functions/masked-inputs.js"></script>
         <script src="functions/bootstrap.js"></script>
-        <script src="functions/function.js"></script>  
+      <script src="functions/function.js"></script>
       <script src="functions/function-api-GET.js"></script>
       <script src="functions/function-api-POST.js"></script>
       <script src="functions/json.js"></script>
+
       <script type="text/javascript">
 
         $(document).ready(function () {

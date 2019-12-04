@@ -156,6 +156,64 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Abastecimento?cnpjs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPostos(string cnpjs)
+        {
+            try
+            {
+                var result = _abastecimentoService.PopularServicosExternos();
+                if (result == null)
+                {
+                    return BadRequest("Postos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CNPJs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CNPJs.Add(dr["SERVEXT_NOME"].ToString() + "-" + dr["SERVEXT_CNPJ"].ToString());
+                    }
+
+                    return Ok(CNPJs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/Abastecimento?placas=VALOR
+        [HttpGet]
+        public IHttpActionResult GetVeiculos(string placas)
+        {
+            try
+            {
+                var result = _abastecimentoService.PopularPlacas();
+                if (result == null)
+                {
+                    return BadRequest("Veiculos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Abastecimento
         [HttpPost]
         [Route("add")]
