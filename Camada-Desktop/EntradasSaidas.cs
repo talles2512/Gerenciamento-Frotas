@@ -226,6 +226,8 @@ namespace CamadaDesktop
                         dgEntradaSaidaConsulta.DataSource = dt;
 
                         EntradaSaida = entradaSaida;
+                        ListaEntradasSaidas = new List<EntradaSaida>();
+                        ListaEntradasSaidas.Add(entradaSaida);
                         entradaSaida = null;
                     }
 

@@ -211,6 +211,8 @@ namespace CamadaDesktop
                         dgVeiculoConsulta.DataSource = dt;
 
                         Veiculo = veiculo;
+                        ListaVeiculos = new List<Veiculo>();
+                        ListaVeiculos.Add(veiculo);
                         veiculo = null;
                     }
                     

@@ -157,6 +157,8 @@ namespace CamadaDesktop
                         dgClientesConsulta.DataSource = dt;
                     }
                     Cliente = cliente;
+                    ListaClientes = new List<Cliente>();
+                    ListaClientes.Add(cliente);
                     cliente = null;
                 }
                 catch (ConcorrenciaBancoException)

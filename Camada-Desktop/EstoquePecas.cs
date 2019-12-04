@@ -125,6 +125,8 @@ namespace CamadaDesktop
                         dgEstoqueConsulta.DataSource = dt;
 
                         EstoquePeca = estoquePeca;
+                        ListaEstoquePecas = new List<EstoquePeca>();
+                        ListaEstoquePecas.Add(estoquePeca);
                         estoquePeca = null;
                     }
 

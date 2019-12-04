@@ -199,6 +199,8 @@ namespace CamadaDesktop
                         dgMotoristaConsulta.DataSource = dt;
                     }
                     Motorista = motorista;
+                    ListaMotoristas = new List<Motorista>();
+                    ListaMotoristas.Add(motorista);
                     motorista = null;
                 }
                 catch (ConcorrenciaBancoException)
@@ -682,6 +684,8 @@ namespace CamadaDesktop
                         dgExameConsulta.DataSource = dt;
                     }
                     ExameMedico = exameMedico;
+                    ListaExamesMedicos = new List<ExameMedico>();
+                    ListaExamesMedicos.Add(exameMedico);
                     exameMedico = null;
                 }
                 catch (ConcorrenciaBancoException)

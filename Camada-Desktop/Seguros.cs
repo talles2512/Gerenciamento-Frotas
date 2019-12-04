@@ -333,6 +333,8 @@ namespace CamadaDesktop
                             dgSegurosConsulta.DataSource = dt;
                         }
                         Seguro = seguro;
+                        ListaSeguros = new List<Seguro>();
+                        ListaSeguros.Add(seguro);
                         seguro = null;
                     }    
                 }
@@ -823,6 +825,8 @@ namespace CamadaDesktop
                         dgCoberturaConsulta.DataSource = dt;
                     }
                     SeguroCobertura = seguroCobertura;
+                    ListaSeguroCoberturas = new List<SeguroCobertura>();
+                    ListaSeguroCoberturas.Add(seguroCobertura);
                     seguroCobertura = null;
                 }
                 catch (ConcorrenciaBancoException ex)

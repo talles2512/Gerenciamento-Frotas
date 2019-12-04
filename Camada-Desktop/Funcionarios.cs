@@ -118,6 +118,8 @@ namespace CamadaDesktop
                         dgFuncionarioConsulta.DataSource = dt;
 
                         Funcionario = funcionario;
+                        ListaFuncionarios = new List<Funcionario>();
+                        ListaFuncionarios.Add(funcionario);
                         funcionario = null;
                     }
 

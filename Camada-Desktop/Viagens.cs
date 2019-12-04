@@ -290,6 +290,8 @@ namespace CamadaDesktop
                         dgViagensConsulta.DataSource = dt;
 
                         Viagem = viagem;
+                        ListaViagens = new List<Viagem>();
+                        ListaViagens.Add(viagem);
                         viagem = null;
                     }
 

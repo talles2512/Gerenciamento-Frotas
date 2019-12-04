@@ -203,6 +203,8 @@ namespace CamadaDesktop
                         dgVeiculoAbast.DataSource = dt;
 
                         Abastecimento = abastecimento;
+                        ListaAbastecimentos = new List<Abastecimento>();
+                        ListaAbastecimentos.Add(abastecimento);
                         abastecimento = null;
                     }
                 }

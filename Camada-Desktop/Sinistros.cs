@@ -307,6 +307,8 @@ namespace CamadaDesktop
                             dgSinistrosConsulta.DataSource = dt;
                         }
                         Sinistro = sinistro;
+                        ListaSinistros = new List<Sinistro>();
+                        ListaSinistros.Add(sinistro);
                         sinistro = null;
                     }
                     catch (ConcorrenciaBancoException)

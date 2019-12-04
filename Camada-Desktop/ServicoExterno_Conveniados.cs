@@ -231,6 +231,8 @@ namespace CamadaDesktop
                         dgConveniadoConsulta.DataSource = dt;
 
                         ServicoExterno = servicoExterno;
+                        ListaServicoExternos = new List<ServicoExterno>();
+                        ListaServicoExternos.Add(servicoExterno);
                         servicoExterno = null;
                     }
 

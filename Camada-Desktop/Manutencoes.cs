@@ -179,7 +179,7 @@ namespace CamadaDesktop
                 try
                 {
                     ManutencaoTipo manutencaoTipo = (ManutencaoTipo)Enum.Parse(typeof(ManutencaoTipo), cbTipoManuntConsulta.SelectedItem.ToString());
-                    string placa = cbPlaca.SelectedValue.ToString();
+                    string placa = cbPlacaConsulta.SelectedValue.ToString();
 
                     Manutencao manutencao = _manutencaoController.BuscarManutencao(placa, manutencaoTipo, dtDataManuntConsulta.Value);
                     if (manutencao == null)
@@ -203,6 +203,8 @@ namespace CamadaDesktop
                         dgVeiculoManunt.DataSource = dt;
 
                         Manutencao = manutencao;
+                        ListaManutencoes = new List<Manutencao>();
+                        ListaManutencoes.Add(manutencao);
                         manutencao = null;
                     }
 
