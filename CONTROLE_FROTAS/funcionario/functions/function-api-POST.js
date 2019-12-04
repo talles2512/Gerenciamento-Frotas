@@ -1,32 +1,48 @@
 let form = document.querySelector(".cadastro_veiculos")
-let inputs = document.querySelectorAll(".cadastro_veiculos form input")
+var inputs = document.querySelectorAll(".cadastro_veiculos form input, select")
    
 form.addEventListener("submit",function(event){
     event.preventDefault();
 
-    let dados = formToJson(inputs)
-    console.log(JSON.stringify(dados))
-    
-     fetch('http://localhost:44367/api/Veiculos', {
-        method: 'get',
-        mode: 'cors',
-        
-        // headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin': '*',
-        //     'Access-Control-Allow-Credentials': true
-        // }
-        // body: JSON.stringify({id:1})
-    })
-   
 
-    .then(function(response){
-        return response.text()
-    })
-    .then(function(response){
-        console.log(response)
-    })
+        
+    let dados = formToJson(inputs)
+   const teste  = enviardados(dados);
+   console.log(teste)
+
+    var Funcionario = CriaJSON(dados);
+    console.log(Funcionario)
+    if(teste == false){
+        return false;
+    }
+
+    fetch(new Request('http://localhost:54035/api/Funcionario/add', { method: 'POST',
+         headers: new Headers(
+             {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+             }
+         ),
+         body: JSON.stringify(Funcionario) }))
+        .then(response => {
+            if (response.status === 200) {
+                
+                alert('Dados cadastrados')
+                document.querySelector(".cadastro_veiculos form").reset()
+
+                return response.json();
+            } else {
+                throw new Error('Ops! Houve um erro em nosso servidor.');
+            }
+        })
+        .then(response => {
+            console.debug(response);
+            // ...
+        }).catch(error => {
+            console.error(error);
+        });
+
+
 })
 
 function formToJson(inputs){
@@ -38,4 +54,35 @@ function formToJson(inputs){
 
    
     return dados
+}
+
+function CriaJSON(dados){
+    var nome = dados["Nome"];
+    var login = dados["Login"];
+    var senha = dados["Senha"];
+    var perfilacesso = dados["PerfilAcesso"];
+    
+
+   var Funcionario = {
+       Nome : nome,
+       Login : login,
+       Senha : senha,
+       PerfilAcesso : perfilacesso,
+   }
+
+   return Funcionario
+}
+
+function LimpaMascara(input){
+    var strings = [".", "/", "-", ",", "(", ")", " "];
+    
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    return input;
 }

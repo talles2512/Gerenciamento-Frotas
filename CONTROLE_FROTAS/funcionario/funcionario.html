@@ -28,80 +28,94 @@
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3>Frederick</h3>
-        <strong>fk</strong>
-      </div>
+        <div class="sidebar-header">
+          <h3>Top Frota</h3>
+          <strong>TP</strong>
+        </div>
+  
+        <ul class="list-unstyled components">
+          <li class="">
+            <a href="../veiculo/Veiculo.html" c>
+              <i class="fa fa-car" aria-hidden="true"></i>
+              Veículos
+            </a>
+  
+          </li>
+  
+          <li class="">
+  
+            <a href="../motorista/motorista.html">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Motorista</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../viagens/viagens.html">
+              
+              <i class="fa fa-road" aria-hidden="true"></i>
+              Viagens</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../serviços externos/serviços externos.html">
+                
+                <i class="fa fa-columns" aria-hidden="true"></i>
+                </i>            Serviços Externos</a>
+          </li>
 
-      <ul class="list-unstyled components">
-        <li class="">
-          <a href="../veiculo/Veiculo.html" c>
-            <i class="fa fa-car" aria-hidden="true"></i>
-            Veículos
-          </a>
+          <li class="">
+  
+              <a href="../entradasaida/entradasaida.html">
+                <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+                Entrada / Saída</a>
+          </li>
 
-        </li>
+          <li class="">
+  
+            <a href="../seguros/seguros.html">
+              <i class="fa fa-id-card" aria-hidden="true"></i>
+              Seguros</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../manutencao/manutencao.html"">
+              
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+              Manutenção</a>
+          </li>
 
-        <li class="">
+          <li class="">
+  
+              <a href="../estoquepecas/estoquepecas.html">
+                <i class="fa fa-truck-loading" aria-hidden="true"></i>
+                Estoque de Peças</a>
+            </li>
+  
+  
+          <li class="">
+  
+            <a href="../funcionario/funcionario.html">
+              
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+  
+              Funcionario</a>
+          </li>
 
-          <a href="../motorista/motorista.html">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            Motorista</a>
-        </li>
-
-        <li class="">
-
-          <a href="../seguros/seguros.html">
-            <i class="fa fa-id-card" aria-hidden="true"></i>
-            Seguros</a>
-        </li>
-
-        <li class="">
-
-          <a href="../manutencao/manutencao.html"">
-            
-            <i class="fa fa-cogs" aria-hidden="true"></i>
-            Manutenção</a>
-        </li>
-        <li class="">
-
-          <a href="../clientes/clientes.html">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            Clientes</a>
-        </li>
-        <li class="">
-
-          <a href="../viagens/viagens.html">
-            
-            <i class="fa fa-plane" aria-hidden="true"></i>
-            Viagens e alugueis</a>
-        </li>
-
-
-        <li class="">
-
-          <a href="../financeiro/financeiro.html">
-            
-            <i class="fa fa-columns" aria-hidden="true"></i>
-            </i>            Financeiro</a>
-        </li>
-
+          <li class="">
+  
+              <a href="../clientes/clientes.html">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Clientes</a>
+            </li>
+        </ul>
+  
+  
      
-
-        <li class="">
-
-          <a href="../funcionario/funcionario.html">
-            
-            <i class="fa fa-users" aria-hidden="true"></i>
-
-            Funcionario</a>
-        </li>
-      </ul>
-
-
-   
-
-    </nav>
+  
+      </nav>
 
     <!-- Page Content  -->
     <div id="content">
@@ -136,44 +150,20 @@
 
 
       <div class="form-row consulta_veiculos">
-
-        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
+          <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
           spellcheck="false" autocorrect="off" tabindex="1">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-
-              <th scope="col">ID</th>
-              <th scope="col">Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Gabriel Fernandes Escolare</td>
-              <td>487702</td>
-              <td>114743-8892</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Pablo Antunes Silvestre</td>
-              <td>554903</td>
-              <td>114747-4292</td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>João Paulo Formigonne</td>
-              <td>499960</td>
-              <td>114744-6554</td>
-
-            </tr>
-          </tbody>
-        </table>
-
+          <table id="tabela-funcionario" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th id="Nome" scope="col">Nome</th>
+                <th id="Login" scope="col">Login</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Perfil de Acesso</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>         
       </div>
 
 
@@ -183,84 +173,45 @@
         <form name="dados" onSubmit="return enviardados();">
           <div class="form-row ">
             <div class="form-group col-md-3 ">                  
-                    <label for="inputPlaca">Nome</label>
-                    <input  name="tx_motorista" type="text" class="form-control" id="Nome" placeholder="Digite seu nome" required>
-                          
-              <!-- <label  for="inputchassi">Nome</label>
-              <input name="tx-nome" type="text" nameclass="form-control " for="customControlValidation1"id="nome" placeholder="Digite o nome" autofocus   >               -->
+                    <label for="inputNome">Nome</label>
+                    <input  name="tx_Nome" type="text" class="form-control" id="Nome" placeholder="Digite o nome" required>
+
             </div>
             <div class="form-group col-md-3">
-              <label for="inputPlaca">Rg</label>
-              <input name="tx_motorista" type="text" class="form-control" id="Rg" placeholder="00000000-0" required>
+              <label for="inputLogin">Login</label>
+              <input name="tx_Login" type="text" class="form-control" id="Login" placeholder="Digite o Login" required>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputPassword4">Cpf</label>
-              <input  name="tx_cpf" type="text" class="form-control" id="cpf" placeholder="000.000.000-00" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputPassword4">Data de Nascimento</label>
-              <input name="tx_motorista" type="date" class="form-control" id="Nascimento" placeholder="Digite o modelo" required>
+              <label for="inputSenha">Senha</label>
+              <input  name="tx_Senha" type="text" class="form-control" id="Senha" placeholder="Digite a Senha" required>
             </div>
           </div>
           <div class="form-row ">
-          <div class="form-group col-md-8">
-            <label for="inputAddress">Endereço</label>
-            <input name="tx_motorista" type="text" class="form-control" id="Endereco" placeholder="" required>
-          </div>
+              <div name="tx_comb" class="form-group col-md-4">
+                  <label for="inputState">Perfil de Acesso</label>
+                  <select name="tx_comb" id="PerfilAcesso" class="form-control" required>
+                    <option name="tx_comb" selected></option>
+                    <option>Atendimento </option>
+                    <option>Operacional </option>
+                    <option>Mototista </option>
+                    <option>Administrador </option>
+                    <option>Master </option>
+                  </select>
+                </div>
           
-          </div>
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputAddress2">Telefone-Contato</label>
-            <input name="tx_motorista" type="text" class="form-control" id="Telefone" placeholder="(xx)1232-244" required>
-          </div>
-        
-        </div>
-          <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="inputCity">Login</label>
-              <input name="tx_motorista" type="text" class="form-control" id="Login" placeholder="User Name" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputCity">Senha</label>
-              <input name="tx_motorista" type="password" class="form-control" id="Senha" placeholder="*******" required>
-            </div>
-            
-            
-            
-           
-          </div>
+          </div>     
           <div class="form-group">
 
-          </div>
-          <!-- <button id="sucesso" type="submit" class="btn btn-info" data-toggle="modal" data-target="#ExemploModalCentralizado"  >
-            Cadastrar
-          </button> -->
-          <button class="btn btn-info" type="submit">Cadastrar</button> 
-          <!-- <Modal >
-          <div class="modal Toggle" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
-            aria-labelledby="1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                  <h5 class="modal-title" id="1">Veiculos</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div> -->
-                <!-- <div class="modal-body">
-                  Veiculos Cadastrado com Sucesso
-                </div>  -->
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-color-primary" data-dismiss="modal">Fechar</button>
-
-                </div> -->
+            </div>
+            <button class="btn btn-info" type="submit">Cadastrar</button> 
+                </div>
               </div>
             </div>
+  
+          </form>
+        </div>            
           </div>
-
-        </form>
-      </div>
+          
 
 
       <script src="functions/jquery.js"></script>

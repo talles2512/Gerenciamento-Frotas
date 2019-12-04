@@ -135,6 +135,27 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Funcionario?pesquisa=VALOR
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _funcionarioService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Funcionários não encontrados!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Funcionario
         [HttpPost]
         [Route("add")]
