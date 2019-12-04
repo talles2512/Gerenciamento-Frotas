@@ -7,6 +7,9 @@ function GET(placa,tipo,data){
                         PopulaTabela(data);
                       });
                 }
+                else if(response.status == 400){
+                  alert("Manutenção não encontrada");
+                }
         
             })
             .catch(function(err){

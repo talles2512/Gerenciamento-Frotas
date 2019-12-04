@@ -7,6 +7,9 @@ function GET(placa,tipo,data){
                         PopulaTabela(data);
                       });
                 }
+                else if(response.status == 400){
+                    alert("Abastecimento não encontrado!");
+                  }
         
             })
             .catch(function(err){

@@ -7,6 +7,9 @@ function GET(placa,cnpj,tipo,datahora){
                           PopulaTabela(data);
                         });
                   }
+                  else if(response.status == 400){
+                    alert("Entrada ou Saída não encontrada!");
+                  }
           
               })
               .catch(function(err){
