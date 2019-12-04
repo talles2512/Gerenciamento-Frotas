@@ -175,6 +175,7 @@
                 <th id="CPF" scope="col">Modelo</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Chassi</th>
+                <th scope="col">Alugado</th>
               </tr>
             </thead>
             <tbody>
@@ -190,76 +191,103 @@
         <form name="dados" onSubmit="return;">
           <div class="form-row ">
             <div class="form-group col-md-4 ">
-              <label for="inputchassi">Chassi</label>
-              <input name="tx_chassi" type="text" class="form-control" id="chassi" placeholder="Digite o chassi" autofocus >
+              <label for="inputChassi">Chassi</label>
+              <input name="tx_Chassi" type="text" class="form-control" id="Chassi" placeholder="Digite o chassi" autofocus >
             </div>
             <div class="form-group col-md-4">
               <label for="inputPlaca">Placa</label>
-              <input name="tx_placa"  type="text" class="form-control" id="PLACA" placeholder="Digite a placa" >
+              <input name="tx_Placa"  type="text" class="form-control" id="Placa" placeholder="AAA-0000" >
             </div>
             <div class="form-group col-md-4">
               <label for="inputModelo">Modelo</label>
-              <input name="tx_modelo" type="text" class="form-control" id="MODELO" placeholder="Digite o modelo" >
+              <input name="tx_Modelo" type="text" class="form-control" id="Modelo" placeholder="Digite o modelo" >
             </div>
-          </div>
-          <div class="form-group">
-            <label for="inputAddress">Marca</label>
-            <input name="tx_marca" type="text" class="form-control" id="MARCA" placeholder="Digite a marca" >
-          </div>
-          <div class="form-group">
-            <label for="inputAddress2">Cor</label>
-            <input name="tx_cor" type="text" class="form-control" id="Cor" placeholder="Digite a cor" >
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputCity">Ano</label>
-              <input name="tx_ano" type="text" class="form-control" id="Ano" >
+          <div class="form-group col-md-4">
+            <label for="inputMarca">Marca</label>
+            <input name="tx_Marca" type="text" class="form-control" id="Marca" placeholder="Digite a marca" >
+          </div>
+            <div class="form-group col-md-2">
+              <label for="inputAno">Ano</label>
+              <input name="tx_Ano" type="text" class="form-control" id="Ano" >
             </div>
-            <div name="tx_comb" class="form-group col-md-4">
-              <label for="inputState">Combustível</label>
-              <select name="tx_comb" id="box" class="form-control" required>
-                <option name="tx_comb" selected></option>
-                <option>Gasolina </option>
-                <option>Etanol </option>
-                <option>Híbrido </option>
-                <option>Elétrico </option>
+          <div class="form-group col-md-3">
+            <div name="tx_Cor" class="form-group col-md-6">
+              <label for="inputCor">Cor</label>
+              <select name="tx_Cor" id="Cor" class="form-control" required>
+                <option name="tx_Cor" selected></option>
+                <option value="1">Amarelo</option>
+                <option value="2">Azul</option>
+                <option value="3">Bege</option>
+                <option value="4">Branca</option>
+                <option value="5">Cinza</option>
+                <option value="6">Dourada</option>
+                <option value="7">Grena</option>
+                <option value="8">Laranja</option>
+                <option value="9">Marrom</option>
+                <option value="10">Prata</option>
+                <option value="11">Preta</option>
+                <option value="12">Rosa</option>
+                <option value="13">Roxa</option>
+                <option value="14">Verde</option>
+                <option value="15">Vermelha</option>
+                <option value="16">Fantasia</option>
+                <option value="17">Outras</option>
               </select>
             </div>
-            
-          </div>
-          <div class="form-group">
-          </div>
-          <!-- <button id="sucesso" type="submit" class="btn btn-info" data-toggle="modal" data-target="#ExemploModalCentralizado"  >
-            Cadastrar
-          </button> -->
-          <button class="btn btn-info" type="submit" >Cadastrar</button> 
-          <!-- <Modal >
-          <div class="modal Toggle" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
-            aria-labelledby="1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                  <h5 class="modal-title" id="1">Veiculos</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div> -->
-                <!-- <div class="modal-body">
-                  Veiculos Cadastrado com Sucesso
-                </div>  -->
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-color-primary" data-dismiss="modal">Fechar</button>
-
-                </div> -->
-              </div>
+          </div>  
+        </div>
+        <div class="form-row">  
+            <div name="tx_Comb" class="form-group col-md-3">
+              <label for="inputComb">Combustível</label>
+              <select name="tx_Comb" id="Comb" class="form-control" required>
+                <option name="tx_Comb" selected></option>
+                <option value="1">Gasolina </option>
+                <option value="2">Gasolina Aditivada </option>
+                <option value="3">Etanol </option>
+                <option value="4">Eletrico </option>
+                <option value="5">Diesel </option>
+                <option value="6">Gas Natural </option>
+                <option value="7">Flex </option>
+              </select>
             </div>
           </div>
-
+            <div class="form-row ">
+              <div class="form-group col-md-3">
+                  <label for="inputAlugado">Alugado</label><br>
+                  <input id="alugado-sim" type="radio" name="alugados" onchange="MudaAluguel()" value="true" checked> Sim
+                  <input id="alugado-nao" type="radio" name="alugados" onchange="MudaAluguel()" value="false" > Não<br> 
+              </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-valor" for="inputValor">Valor</label>
+            <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="Digite o valor" >
+          </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-dtinicio" for="inputDtInicio">Data Inicio</label>
+            <input name="tx_DtInicio" type="date" class="form-control" id="DtInicio" placeholder="" >
+          </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-dtfim" for="inputDtInicio">Data Vencimento</label>
+            <input name="tx_DtFim" type="date" class="form-control" id="DtFim" placeholder="" >
+          </div>            
+          </div>
+        
+          <div class="form-group">
+          <button class="btn btn-info" type="submit" >Cadastrar</button> 
+          </div>
+        </div>
+            </div>
+          </div>
+        </div> 
+         
         </form>
       </div>
+    </div> 
 
       
       <script src="functions/jquery.js"></script>
+      <script src="functions/masked-inputs.js"></script>
       <script src="functions/bootstrap.js"></script>    
       <script src="functions/function.js"></script>
       <script src="functions/function-api-GET.js"></script>

@@ -31,8 +31,21 @@ function PopulaTabela(data){
           row.innerHTML = "<td>"+ element["Placa"]+"</td>"
                           +"<td>"+element["Modelo"]+"</td>"
                           +"<td>"+element["Marca"]+"</td>"
-                          +"<td>"+element["Chassi"]+"</td>";
+                          +"<td>"+element["Chassi"]+"</td>"
+                          +"<td>"+NomeiaAlugado(element["Alugado"])+"</td>";
       });
+}
+
+function NomeiaAlugado(alugado){
+    var tipo;
+    if(alugado){
+        tipo = "Sim";
+    }
+    else{
+        tipo = "Não";
+    }
+
+    return tipo;
 }
     
         

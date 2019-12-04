@@ -166,7 +166,7 @@
 
       <div class="form-row consulta_veiculos">
         <div class="form-group col-md-1.5">
-            <label for="inputTipo">Tipo</label>
+            <label for="inputTipo">Tipo de Combustível</label>
             <select name="tx_Tipo" id="TipoConsulta" class="form-control" required>
               <option name="tx_Tipo" selected></option>
               <option value="Gasolina">Gasolina</option>
@@ -216,14 +216,19 @@
       <div class="cadastro_veiculos container " >
         <form name="dados" onSubmit="">
           <div class="form-row ">
-            <div class="form-group col-md-2">
-            <label for="inputState">Tipo de Manutenção</label>
-            <select name="tx_Tipo" id="Tipo" class="form-control" required>
+            <div class="form-group col-md-1.5">
+              <label for="inputTipo">Tipo de Combustível</label>
+              <select name="tx_Tipo" id="Tipo" class="form-control" required>
                 <option name="tx_Tipo" selected></option>
-                <option value="0">Preventiva</option>
-                <option value="1">Corretiva</option>
+                <option value="Gasolina">Gasolina</option>
+                <option value="Gasolina_Aditiva">Gasolina Aditivada</option>
+                <option value="Etanol">Etanol</option>
+                <option value="Eletrico">Eletrico</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Gas_Natural">Gás Natural</option>
+                <option value="Flex">Flex</option>
               </select>
-            </div>
+          </div>
             <div class="form-group col-md-3">
                 <label for="inputData">Data</label>
                 <input name="tx_Data" type="date" class="form-control" id="Data" placeholder="" required >
@@ -237,19 +242,11 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-4">
-                  <label for="inputPlaca">Oficina</label>
-                  <select name="tx_Oficina" id="CnpjOficina" class="form-control" required>
-                      <option name="tx_Oficina" selected></option>
+                  <label for="inputPlaca">Posto</label>
+                  <select name="tx_Posto" id="CnpjPosto" class="form-control" required>
+                      <option name="tx_Posto" selected></option>
                   </select>
             </div>
-            <div class="form-group col-md-2">
-                <label for="inputState">Situação</label>
-                <select name="tx_Situacao" id="Situacao" class="form-control" required>
-                    <option name="tx_Situacao" selected></option>
-                    <option value="0">Pendente</option>
-                    <option value="1">Realizada</option>
-                  </select>
-                </div>
             <div class="form-group col-md-3">
                 <label id="lbl-valor" for="inputTelefoneContato">Valor</label>
                 <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="R$ 000000.00" >

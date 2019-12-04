@@ -202,6 +202,10 @@ namespace WebApi.Controllerss
 
             try
             {
+                if (!veiculo.Alugado)
+                {
+                    veiculo.VeiculoAlugado = null;
+                }
                 bool result = _veiculoService.Cadastrar(veiculo, veiculo.Placa);
                 if (result)
                 {

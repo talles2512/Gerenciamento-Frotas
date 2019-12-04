@@ -35,9 +35,19 @@ $(document).ready(function () {
 
 function MudaConveniado(){
     var conveniados = document.getElementsByName("conveniado");
+    console.log(conveniados[i]);
+
+    for(var i = 0; i<conveniados.length; i++){
+        if(conveniados[i].checked){
+            if(conveniados[i].value == true){
+
+            }
+        }
+    }
     conveniados.forEach(element => {
         if(element.checked){
             if(element.value == "true"){
+                console.log("Ingleson");
                 document.getElementById("lbl-valor").style.display = "block";
                 document.getElementById("Valor").style.display = "block";
                 document.getElementById("lbl-data-inicio").style.display = "block";
