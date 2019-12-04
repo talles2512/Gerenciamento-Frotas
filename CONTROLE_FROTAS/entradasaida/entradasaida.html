@@ -158,16 +158,43 @@
 
 
       <div class="form-row consulta_veiculos">
+          <div class="form-group col-md-1.5">
+              <label for="inputTipo">Tipo</label>
+              <select name="tx_Tipo" id="TipoConsulta" class="form-control" required>
+                <option name="tx_Tipo" selected></option>
+                <option value="0">Entrada</option>
+                <option value="1">Saída</option>
+              </select>
+          </div>
 
-        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
-          spellcheck="false" autocorrect="off" tabindex="1">
-          <table id="tabela-motoristas" class="table">
+          <div class="form-group col-md-3">
+              <label for="inputDataHora">Data/Hora</label>
+              <input name="tx_DataHora" type="datetime-local" class="form-control" id="DataHoraConsulta" placeholder="" required >
+          </div>
+
+          <div class="form-group col-md-3">
+              <label for="inputPlaca">Veículo</label>
+              <select name="tx_Veiculo" id="PlacaVeiculoConsulta" class="form-control" required>
+                  <option name="tx_Veiculo" selected></option>
+              </select>
+          </div>
+
+          <div class="form-group col-md-4">
+              <label for="inputPlaca">Garagem / Estacionamento</label>
+              <select name="tx_GarEst" id="CnpjGarEstConsulta" class="form-control" required>
+                  <option name="tx_GarEst" selected></option>
+              </select>
+          </div>
+      </div>
+      <div class="form-row consulta_veiculos">
+          <table id="tabela-entradas-saidas" class="table">
             <thead class="thead-dark">
               <tr id="cabecalho">
-                <th id="ID" scope="col">ID</th>
-                <th scope="Descricao">Descrição</th>
-                <th scope="ValorUnit">Valor Unitário</th>
-                <th scope="Quantidade">Quantidade</th>
+                <th id="Nome" scope="col">Tipo</th>
+                <th id="CPF" scope="col">Placa</th>
+                <th scope="col">CPF</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Data/Hora</th>
               </tr>
             </thead>
             <tbody>
@@ -180,37 +207,78 @@
 
 
       <div class="cadastro_veiculos container " >
-        <form name="dados" onSubmit="return;">       
+        <form name="dados" onSubmit="return;">
           <div class="form-row ">
-          <div class="form-group col-md-8">
-            <label for="inputDescricao">Descrição</label>
-            <input name="tx_Descricao" type="text" class="form-control" id="Descricao" placeholder="Digite a descrição" >
-          </div>        
-          </div>
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputValor">Valor Unitário</label>
-            <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="Digite o valor unitário" >
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputQuantidade">Quantidade</label>
-            <input name="tx_Quantidade" type="text" class="form-control" id="Quantidade" placeholder="Digite a quantidade" required >
-          </div>
-        </div>
-        <div class="form-group">
-
-        </div>
-        <button class="btn btn-info" type="submit">Cadastrar</button> 
+              <div class="form-group col-md-2">
+                  <label for="inputTipo">Tipo</label>
+                  <select name="tx_Tipo" id="Tipo" class="form-control" required>
+                    <option name="tx_Tipo" selected></option>
+                    <option value="0">Entrada</option>
+                    <option value="1">Saída</option>
+                  </select>
+                </div>
+            <div class="form-group col-md-3">
+              <label for="inputDataHora">Data/Hora</label>
+              <input name="tx_DataHora" type="datetime-local" class="form-control" id="DataHora" placeholder="" required >
             </div>
           </div>
-        </div>
+          <div class="form-row ">
+              <div class="form-group col-md-4">
+                  <label for="inputPlaca">Veículo</label>
+                  <select name="tx_Veiculo" id="PlacaVeiculo" class="form-control" required>
+                      <option name="tx_Veiculo" selected></option>
+                  </select>
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="inputPlaca">Garagem / Estacionamento</label>
+                  <select name="tx_GarEst" id="CnpjGarEst" class="form-control" required>
+                      <option name="tx_GarEst" selected></option>
+                  </select>
+              </div>
           </div>
+          <div class="form-row">
+              <div class="form-group col-md-5 ">                  
+                  <label for="inputPlaca">Motorista</label>
+                  <select name="tx_Motorista" id="CpfMotorista" class="form-control" required>
+                      <option name="tx_Motorista" selected></option>
+                    </select>
+          </div>
+        </div>
+          <div class="form-group">
+
+          </div>
+          <!-- <button id="sucesso" type="submit" class="btn btn-info" data-toggle="modal" data-target="#ExemploModalCentralizado"  >
+            Cadastrar
+          </button> -->
+          <button class="btn btn-info" type="submit">Cadastrar</button> 
+          <!-- <Modal >
+          <div class="modal Toggle" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+            aria-labelledby="1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                  <h5 class="modal-title" id="1">Veiculos</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div> -->
+                <!-- <div class="modal-body">
+                  Veiculos Cadastrado com Sucesso
+                </div>  -->
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-color-primary" data-dismiss="modal">Fechar</button>
+
+                </div> -->
+              </div>
+            </div>
+          </div>
+
         </form>
       </div>
 
 
         <script src="functions/jquery.js"></script>
-        <script src="functions/masked-inputs.js"></script>
+        <script src="functions/masked-inputs.js"></script> <!--Biblioteca de Masked Inputs-->
         <script src="functions/bootstrap.js"></script>
         <script src="functions/function.js"></script>  
       <script src="functions/function-api-GET.js"></script>

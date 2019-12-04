@@ -167,6 +167,93 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/EntradaSaida?cnpjs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetGaragemEstacionamentos(string cnpjs)
+        {
+            try
+            {
+                var result = _entradaSaidaService.PopularServicosExternos();
+                if (result == null)
+                {
+                    return BadRequest("Garagens / Estacionamentos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CNPJs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CNPJs.Add(dr["SERVEXT_NOME"].ToString() + "-" + dr["SERVEXT_CNPJ"].ToString());
+                    }
+
+                    return Ok(CNPJs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/EntradaSaida?cpfs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetMotoristas(string cpfs)
+        {
+            try
+            {
+                var result = _entradaSaidaService.PopularCPFs();
+                if (result == null)
+                {
+                    return BadRequest("Motoristas não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CPFs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CPFs.Add(dr["MOTORISTA"].ToString());
+                    }
+
+                    return Ok(CPFs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/EntradaSaida?placas=VALOR
+        [HttpGet]
+        public IHttpActionResult GetVeiculos(string placas)
+        {
+            try
+            {
+                var result = _entradaSaidaService.PopularPlacas();
+                if (result == null)
+                {
+                    return BadRequest("Veiculos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/EntradaSaida
         [HttpPost]
         [Route("add")]
