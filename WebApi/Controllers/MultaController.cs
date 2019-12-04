@@ -173,6 +173,86 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Multa?pesquisa=VALOR
+        //[HttpGet]
+        //public IHttpActionResult GetPesquisa(string pesquisa)
+        //{
+        //    try
+        //    {
+        //        var result = _multaService.Pesquisar(pesquisa);
+        //        if (result == null)
+        //        {
+        //            return BadRequest("Multa não encontrada!");
+        //        }
+        //        else
+        //        {
+        //            return Ok(result);
+        //        }
+        //    }
+        //    catch (ConcorrenciaBancoException)
+        //    {
+        //        return BadRequest("Favor tentar novamente mais tarde.");
+        //    }
+        //}
+
+        // GET: api/Multa?cpfs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetMotoristas(string cpfs)
+        {
+            try
+            {
+                var result = _multaService.PopularCPF();
+                if (result == null)
+                {
+                    return BadRequest("Motoristas não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CPFs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CPFs.Add(dr["NOMECPF"].ToString());
+                    }
+
+                    return Ok(CPFs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/Multa?placas=VALOR
+        [HttpGet]
+        public IHttpActionResult GetVeiculos(string placas)
+        {
+            try
+            {
+                var result = _multaService.PopularPlacas();
+                if (result == null)
+                {
+                    return BadRequest("Veiculos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Multa
         [HttpPost]
         [Route("add")]

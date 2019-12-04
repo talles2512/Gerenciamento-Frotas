@@ -157,16 +157,35 @@
 
 
       <div class="form-row consulta_veiculos">
+        <div class="form-group col-md-3">
+          <label for="inputPlaca">Veículo</label>
+          <select name="tx_Veiculo" id="PlacaVeiculoConsulta" class="form-control" required>
+              <option name="tx_Veiculo" selected></option>
+          </select>
+      </div>
+      <div class="form-group col-md-4">                  
+        <label for="inputPlaca">Motorista</label>
+        <select name="tx_Motorista" id="CpfMotoristaConsulta" class="form-control" required>
+            <option name="tx_Motorista" selected></option>
+          </select>
+       </div>
 
-        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
-          spellcheck="false" autocorrect="off" tabindex="1">
-          <table id="tabela-motoristas" class="table">
+        <div class="form-group col-md-3">
+            <label for="inputData">Data</label>
+            <input name="tx_Data" type="date" class="form-control" id="DataConsulta" placeholder="" required >
+        </div>
+    </div>
+      <div class="form-row consulta_veiculos">
+
+          <table id="tabela-multas" class="table">
             <thead class="thead-dark">
               <tr id="cabecalho">
-                <th id="ID" scope="col">ID</th>
-                <th scope="Descricao">Descrição</th>
-                <th scope="ValorUnit">Valor Unitário</th>
-                <th scope="Quantidade">Quantidade</th>
+                <th scope="col">Placa-Veículo</th>
+                <th scope="col">CPF-Motorista</th>
+                <th scope="col">Local</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Pago</th>
               </tr>
             </thead>
             <tbody>
@@ -179,42 +198,74 @@
 
 
       <div class="cadastro_veiculos container " >
-        <form name="dados" onSubmit="return;">       
+        <form name="dados">
           <div class="form-row ">
-          <div class="form-group col-md-8">
-            <label for="inputDescricao">Descrição</label>
-            <input name="tx_Descricao" type="text" class="form-control" id="Descricao" placeholder="Digite a descrição" >
-          </div>        
-          </div>
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputValor">Valor Unitário</label>
-            <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="Digite o valor unitário" >
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputQuantidade">Quantidade</label>
-            <input name="tx_Quantidade" type="text" class="form-control" id="Quantidade" placeholder="Digite a quantidade" required >
-          </div>
-        </div>
-        <div class="form-group">
-
-        </div>
-        <button class="btn btn-info" type="submit">Cadastrar</button> 
+            <div class="form-group col-md-5 ">                  
+                    <label for="inputPlaca">Motorista</label>
+                    <select name="tx_Motorista" id="CpfMotorista" class="form-control" required>
+                        <option name="tx_Motorista" selected></option>
+                      </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPlaca">Veículo</label>
+              <select name="tx_Veiculo" id="PlacaVeiculo" class="form-control" required>
+                  <option name="tx_Veiculo" selected></option>
+              </select>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="inputDescricao">Descrição</label>
+              <input  name="tx_Descricao" type="text" class="form-control" id="Descricao" placeholder="Digite a descrição" required>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="inputLocal">Local</label>
+              <input  name="tx_Local" type="text" class="form-control" id="Local" placeholder="Digite o local" required>
             </div>
           </div>
-        </div>
+          <div class="form-row ">
+            <div class="form-group col-md-3">
+              <label for="inputData">Data Ocorrência</label>
+              <input name="tx_Data" type="date" class="form-control" id="Data" placeholder="" required>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputValor">Valor</label>
+              <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="Digite o valor" required>
+            </div>
           </div>
+          <div class="form-row ">
+              <div class="form-group col-md-3">
+                  <label for="inputPaga">Situação</label><br>
+                  <input id="Paga-sim" type="radio" name="paga" onchange="PagaMulta()" value="true" checked> Paga
+                  <input id="Paga-nao" type="radio" name="paga" onchange="PagaMulta()" value="false"> Não Paga<br> 
+              </div>
+              <div class="form-group col-md-3">
+                <label id="lbl-DataPaga" for="inputDataPaga">Data Pagamento</label>
+                <input name="tx_DataPaga" type="date" class="form-control" id="DataPaga" placeholder="">
+              </div>
+          </div>  
+          <div class="form-row">
+            <div class="form-group col-md-3">
+                <br>
+                <button class="btn btn-info" type="submit">Cadastrar</button>  
+            </div>
+      </div>
+          </div>
+          </div>         
+      </div>          
+              </div>
+            </div>
+          </div>
+
         </form>
       </div>
 
-
-        <script src="functions/jquery.js"></script>
-        <script src="functions/masked-inputs.js"></script>
-        <script src="functions/bootstrap.js"></script>
-        <script src="functions/function.js"></script>  
+      <script src="functions/jquery.js"></script>
+      <script src="functions/masked-inputs.js"></script> <!--Biblioteca de Masked Inputs-->
+      <script src="functions/bootstrap.js"></script>    
+      <script src="functions/function.js"></script>
       <script src="functions/function-api-GET.js"></script>
       <script src="functions/function-api-POST.js"></script>
       <script src="functions/json.js"></script>
+
       <script type="text/javascript">
 
         $(document).ready(function () {
