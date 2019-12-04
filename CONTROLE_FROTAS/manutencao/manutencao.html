@@ -29,8 +29,8 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3>Frederick</h3>
-        <strong>fk</strong>
+        <h3>Top Frota</h3>
+        <strong>TP</strong>
       </div>
 
       <ul class="list-unstyled components">
@@ -51,6 +51,29 @@
 
         <li class="">
 
+          <a href="../viagens/viagens.html">
+            
+            <i class="fa fa-road" aria-hidden="true"></i>
+            Viagens</a>
+        </li>
+
+        <li class="">
+
+            <a href="../serviços externos/serviços externos.html">
+              
+              <i class="fa fa-columns" aria-hidden="true"></i>
+              </i>            Serviços Externos</a>
+        </li>
+
+        <li class="">
+
+            <a href="../entradasaida/entradasaida.html">
+              <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+              Entrada / Saída</a>
+        </li>
+
+        <li class="">
+
           <a href="../seguros/seguros.html">
             <i class="fa fa-id-card" aria-hidden="true"></i>
             Seguros</a>
@@ -63,39 +86,30 @@
             <i class="fa fa-cogs" aria-hidden="true"></i>
             Manutenção</a>
         </li>
-        <li class="">
-
-          <a href="../clientes/clientes.html">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            Clientes</a>
-        </li>
-        <li class="">
-
-          <a href="../viagens/viagens.html">
-            
-            <i class="fa fa-plane" aria-hidden="true"></i>
-            Viagens e alugueis</a>
-        </li>
-
 
         <li class="">
 
-          <a href="../financeiro/financeiro.html">
-            
-            <i class="fa fa-columns" aria-hidden="true"></i>
-            </i>            Financeiro</a>
-        </li>
+            <a href="../estoquepecas/estoquepecas.html">
+              <i class="fa fa-truck-loading" aria-hidden="true"></i>
+              Estoque de Peças</a>
+          </li>
 
-     
 
         <li class="">
 
           <a href="../funcionario/funcionario.html">
             
-            <i class="fa fa-users" aria-hidden="true"></i>
+            <i class="fa fa-address-card" aria-hidden="true"></i>
 
             Funcionario</a>
         </li>
+
+        <li class="">
+
+            <a href="../clientes/clientes.html">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              Clientes</a>
+          </li>
       </ul>
 
 
@@ -136,104 +150,98 @@
 
 
       <div class="form-row consulta_veiculos">
+        <div class="form-group col-md-1.5">
+            <label for="inputTipo">Tipo</label>
+            <select name="tx_Tipo" id="TipoConsulta" class="form-control" required>
+              <option name="tx_Tipo" selected></option>
+              <option value="Preventiva">Preventiva</option>
+              <option value="Corretiva">Corretiva</option>
+            </select>
+        </div>
 
-        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
-          spellcheck="false" autocorrect="off" tabindex="1">
-        <table class="table">
+        <div class="form-group col-md-3">
+            <label for="inputData">Data</label>
+            <input name="tx_Data" type="date" class="form-control" id="DataConsulta" placeholder="" required >
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="inputPlaca">Veículo</label>
+            <select name="tx_Veiculo" id="PlacaVeiculoConsulta" class="form-control" required>
+                <option name="tx_Veiculo" selected></option>
+            </select>
+        </div>
+
+    </div>
+    <div class="form-row consulta_veiculos">
+        <table id="tabela-manuntecoes" class="table">
           <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">ID Motorista</th>
-
+            <tr id="cabecalho">
+              <th scope="col">Tipo</th>
               <th scope="col">Placa</th>
+              <th scope="col">Oficina</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Valor</th>
               <th scope="col">Data</th>
+              <th scope="col">Situação</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>487.650.003-44</td>
-              <td>QQj-4009</td>
-              <td>03/05/2019</td>
-
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>295.940.028-12</td>
-              <td>BMW-5547</td>
-              <td>28/07/2019</td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>492.055.120-33</td>
-              <td>BVB-7002</td>
-              <td>28/08/2019</td>
-
-            </tr>
           </tbody>
         </table>
 
-      </div>
+    </div>
 
 
 
 
       <div class="cadastro_veiculos container " >
-        <form name="dados" onSubmit="return enviardados();">
+        <form name="dados" onSubmit="">
           <div class="form-row ">
-            <div class="form-group col-md-3 ">                  
-                    <label for="inputPlaca">Cpf Motorista</label>
-                    <input  name="tx_motorista" type="number" class="form-control" id="Nome" placeholder="DIgite ID" required>
-                          
-              <!-- <label  for="inputchassi">Nome</label>
-              <input name="tx-nome" type="text" nameclass="form-control " for="customControlValidation1"id="nome" placeholder="Digite o nome" autofocus   >               -->
+            <div class="form-group col-md-2">
+            <label for="inputState">Tipo de Manutenção</label>
+            <select name="tx_Tipo" id="Tipo" class="form-control" required>
+                <option name="tx_Tipo" selected></option>
+                <option value="0">Preventiva</option>
+                <option value="1">Corretiva</option>
+              </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputPlaca">Placa</label>
-              <input name="tx_placa" type="text" class="form-control" id="Rg" placeholder="Digite Placa" required>
+                <label for="inputData">Data</label>
+                <input name="tx_Data" type="date" class="form-control" id="Data" placeholder="" required >
             </div>
+            <div class="form-group col-md-4">
+                <label for="inputPlaca">Veículo</label>
+                <select name="tx_Veiculo" id="PlacaVeiculo" class="form-control" required>
+                    <option name="tx_Veiculo" selected></option>
+                </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+                  <label for="inputPlaca">Oficina</label>
+                  <select name="tx_Oficina" id="CnpjOficina" class="form-control" required>
+                      <option name="tx_Oficina" selected></option>
+                  </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputState">Situação</label>
+                <select name="tx_Situacao" id="Situacao" class="form-control" required>
+                    <option name="tx_Situacao" selected></option>
+                    <option value="0">Pendente</option>
+                    <option value="1">Realizada</option>
+                  </select>
+                </div>
             <div class="form-group col-md-3">
-              <label for="inputPassword4">Valor</label>
-              <input  name="tx_valor" type="text" class="form-control" id="cpf" placeholder="R$0.00" required>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputPassword4">Data</label>
-              <input name="tx_data" type="date" class="form-control" id="Nascimento" placeholder="" required>
-            </div>
+                <label id="lbl-valor" for="inputTelefoneContato">Valor</label>
+                <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="R$ 000000.00" >
+              </div>
           </div>
           
-          <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputAddress2">Serviço Externo CNPJ</label>
-            <input name="tx_cnpj" type="text" class="form-control" id="Telefone1" placeholder="Digite CNPJ" required>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputState">Tipo de Manutenção</label>
-            <select id="inputState" class="form-control" required>
-              <option selected></option>
-              <option> Corretiva </option>
-              <option> Preventiva </option>
-             
-            </select>
-          </div>
-        
-
-        <div class="form-group col-md-2">
-          <label for="inputState">Situação</label>
-          <select id="inputState" class="form-control">
-            <option selected></option>
-            <option> Pronto </option>
-            <option> Não Pronto </option>
-           
-          </select>
-        </div>
-      </div>
         <div class="form-row ">
-          <div class="form-group col-md-8">
-            <label for="inputAddress">Descriçao</label>
-            <input style="height: 100px;" name="tx_manutencao" type="text"  class="form-control" id="Descricao=" required>
-          </div>
+            <div class="form-group col-md-8">
+                <label id="lbl-descricao" for="inputTelefoneContato">Descrição</label>
+                <input style="height: 100px;" name="tx_Descricao" type="text" class="form-control" id="Descricao" >
+            </div>
           
           </div>
       
@@ -284,7 +292,7 @@
         crossorigin="anonymous"></script> -->
 
         <script src="functions/jquery.js"></script>
-
+        <script src="functions/masked-inputs.js"></script>
         <script src="functions/bootstrap.js"></script>
       <script src="functions/function.js"></script>
       <script src="functions/function-api-GET.js"></script>

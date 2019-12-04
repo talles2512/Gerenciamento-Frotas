@@ -155,6 +155,64 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Manutencao?cnpjs=VALOR
+        [HttpGet]
+        public IHttpActionResult GetOficinas(string cnpjs)
+        {
+            try
+            {
+                var result = _manutencaoService.PopularServicosExternos();
+                if (result == null)
+                {
+                    return BadRequest("Oficinas não encontradas!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> CNPJs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CNPJs.Add(dr["SERVEXT_NOME"].ToString() + "-" + dr["SERVEXT_CNPJ"].ToString());
+                    }
+
+                    return Ok(CNPJs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+        // GET: api/Manutencao?placas=VALOR
+        [HttpGet]
+        public IHttpActionResult GetVeiculos(string placas)
+        {
+            try
+            {
+                var result = _manutencaoService.PopularPlacas();
+                if (result == null)
+                {
+                    return BadRequest("Veiculos não encontrados!");
+                }
+                else
+                {
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Manutencao
         [HttpPost]
         [Route("add")]
