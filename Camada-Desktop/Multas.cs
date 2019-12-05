@@ -256,6 +256,8 @@ namespace CamadaDesktop
                         dgMultasConsulta.DataSource = dt;
                         }
                         Multa = multa;
+                        ListaMultas = new List<Multa>();
+                        ListaMultas.Add(multa);
                         multa = null;
                     }    
                 }
