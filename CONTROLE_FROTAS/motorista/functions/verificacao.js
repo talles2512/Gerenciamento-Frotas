@@ -45,12 +45,6 @@ function enviardados(dados)
         document.dados.tx_TelefoneContato.focus();
         return false;
     }
-
-    if (document.dados.tx_CNH_OrgaoEmissor.value == "" || document.dados.tx_CNH_OrgaoEmissor.value.length <= 1) {
-        alert("Preencha o Orgão Emissor corretamente!");
-        document.dados.tx_CNH_OrgaoEmissor.focus();
-        return false;
-    }
    
 
       

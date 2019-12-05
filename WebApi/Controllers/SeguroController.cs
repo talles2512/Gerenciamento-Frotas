@@ -180,6 +180,28 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Seguro?pesquisa=VALOR
+        [HttpGet]
+        public IHttpActionResult GetPesquisa(string pesquisa)
+        {
+            try
+            {
+                var result = _seguroService.Pesquisar(pesquisa);
+                if (result == null)
+                {
+                    return BadRequest("Seguro não encontrado!");
+                }
+                else
+                {
+                    return Ok(result);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
         //POST: api/Seguro
         [HttpPost]
         [Route("add")]
