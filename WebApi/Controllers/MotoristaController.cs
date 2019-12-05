@@ -74,11 +74,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Inativar(string cpf)
+        public bool Inativar(string cpf, bool sit)
         {
             try
             {
-                return _motoristaService.Inativar(cpf);
+                return _motoristaService.Inativar(cpf, sit);
             }
             catch (ConcorrenciaBancoException e)
             {

@@ -35,11 +35,11 @@ namespace WebApi.Controllers
 
         #region [AplicacaoDesktop]
 
-        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, ItemSegurado item, long numapolice)
+        public bool Cadastrar(Sinistro sinistro, int id, DateTime data, string item, long numapolice, string tipo)
         {
             try
             {
-                return _sinistroService.Cadastrar(sinistro, id, data, item, numapolice);
+                return _sinistroService.Cadastrar(sinistro, id, data, item, numapolice, tipo);
             }
             catch (RegistroExisteException e)
             {
@@ -51,11 +51,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public Sinistro BuscarSinistro(int id, DateTime data, ItemSegurado tipo)
+        public Sinistro BuscarSinistro(int id, DateTime data, string item, string tipo)
         {
             try
             {
-                return _sinistroService.BuscarSinistro(id, data, tipo);
+                return _sinistroService.BuscarSinistro(id, data, item, tipo);
             }
             catch (ConcorrenciaBancoException e)
             {
@@ -75,11 +75,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Deletar(Sinistro sinistro, int id, DateTime data)
+        public bool Deletar(Sinistro sinistro, int id, DateTime data, string tipo)
         {
             try
             {
-                return _sinistroService.Deletar(sinistro, id, data);
+                return _sinistroService.Deletar(sinistro, id, data, tipo);
             }
             catch
             {
@@ -87,11 +87,11 @@ namespace WebApi.Controllers
             }
         }
 
-        public bool Alterar(Sinistro sinistro, int id, ItemSegurado item, DateTime data, long numapolice)
+        public bool Alterar(Sinistro sinistro, int id, string item, DateTime data, long numapolice, string tipo)
         {
             try
             {
-                return _sinistroService.Alterar(sinistro, id, item, data, numapolice);
+                return _sinistroService.Alterar(sinistro, id, item, data, numapolice, tipo);
             }
             catch
             {
@@ -177,11 +177,11 @@ namespace WebApi.Controllers
 
         // GET: api/Sinistro?id=VALOR&data=VALOR&tipo=VALOR
         [HttpGet]
-        public IHttpActionResult Get(int id, DateTime data, ItemSegurado tipo)
+        public IHttpActionResult Get(int id, DateTime data, string item, string tipo)
         {
             try
             {
-                var result = _sinistroService.BuscarSinistro(id, data, tipo);
+                var result = _sinistroService.BuscarSinistro(id, data, item, tipo);
                 if (result == null)
                 {
                     return BadRequest("Sinistro não encontrado!");
@@ -207,7 +207,7 @@ namespace WebApi.Controllers
 
             try
             {
-                bool result = _sinistroService.Cadastrar(sinistro, sinistro.Id, sinistro.DataHora, sinistro.ItemSegurado, sinistro.Seguro.NumeroApolice);
+                bool result = _sinistroService.Cadastrar(sinistro, sinistro.Id, sinistro.DataHora, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.ItemSegurado.ToString());
                 if (result)
                 {
                     return Ok();

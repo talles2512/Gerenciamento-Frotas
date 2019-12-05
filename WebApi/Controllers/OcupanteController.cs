@@ -34,20 +34,9 @@ namespace WebApi.Controllers
 
         #region [AplicacaoDesktop]
 
-        public bool Cadastrar(Ocupante ocupante)
+        public void Cadastrar(Ocupante ocupante)
         {
-            try
-            {
-                return _ocupanteService.Cadastrar(ocupante);
-        }
-            catch (RegistroExisteException e)
-            {
-                throw new RegistroExisteException(e.Message);
-    }
-            catch (ConcorrenciaBancoException e)
-            {
-                throw new ConcorrenciaBancoException(e.Message);
-}
+            _ocupanteService.Cadastrar(ocupante);
         }
 
         public Ocupante BuscarOcupante(int req, string cpf)

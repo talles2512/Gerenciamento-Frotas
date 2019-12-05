@@ -75,11 +75,11 @@ namespace WebApi.Controllerss
             }
         }
 
-        public bool Inativar(string placa)
+        public bool Inativar(string placa, bool sit)
         {
             try
             {
-                return _veiculoService.Inativar(placa);
+                return _veiculoService.Inativar(placa, sit);
             }
             catch (ConcorrenciaBancoException e)
             {
