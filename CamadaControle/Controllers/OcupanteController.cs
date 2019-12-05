@@ -20,9 +20,9 @@ namespace CamadaControle.Controllers
 
         #region [AplicacaoDesktop]
 
-        public void Cadastrar(Ocupante ocupante,int cpf)
+        public void Cadastrar(Ocupante ocupante)
         {
-            _ocupanteService.Cadastrar(ocupante,cpf);
+            _ocupanteService.Cadastrar(ocupante);
         }
 
         public Ocupante BuscarOcupante(int req,string cpf)

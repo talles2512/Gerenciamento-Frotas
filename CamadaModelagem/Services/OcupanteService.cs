@@ -18,21 +18,22 @@ namespace CamadaModelagem.Services
             _ocupanteDAL = ocupanteDAL;
         }
 
-        public void Cadastrar(Ocupante ocupante, int cpf)
+        public bool Cadastrar(Ocupante ocupante)
         {
-            //try
-            //{
-            //    Ocupante obj = _ocupanteDAL.BuscarOcupante(cpf); //Falta criar os métodos de busca
-            //    if (obj != null)
-            //    {
-            //        throw new RegistroExisteException("Já existe um ocupante com esse CPF no sistema!");
-            //    }
-            //    _ocupanteDAL.Cadastrar(ocupante);
-            //}
-            //catch (ConcorrenciaBancoException)
-            //{
-            //    throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
-            //}
+
+            try
+            {
+                Ocupante obj = _ocupanteDAL.BuscarOcupante(ocupante.Requisicao, ocupante.CPF.ToString()); //Falta criar os métodos de busca
+                if (obj != null)
+                {
+                    throw new RegistroExisteException("Já existe uma multa com esse dados no sistema!");
+                }
+                return _ocupanteDAL.Cadastrar(ocupante);
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                throw new ConcorrenciaBancoException("Favor tentar novamente mais tarde.");
+            }
         }
 
         public Ocupante BuscarOcupante(int req,string cpf)

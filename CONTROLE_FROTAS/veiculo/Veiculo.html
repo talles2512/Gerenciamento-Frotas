@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Frotas-</title>
+
+ 
+  <link rel="stylesheet" href="style4.css">
+
+  <link rel="stylesheet" href="bootstrap.css">
+ 
+
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <script src="functions/verificacao.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>Top Frota</h3>
+          <strong>TP</strong>
+        </div>
+  
+        <ul class="list-unstyled components">
+          <li class="">
+            <a href="../veiculo/Veiculo.html" >
+              <i class="fa fa-car" aria-hidden="true"></i>
+              Veículos
+            </a>
+  
+          </li>
+  
+          <li class="">
+  
+            <a href="../motorista/motorista.html">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Motorista</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../viagens/viagens.html">
+              
+              <i class="fa fa-road" aria-hidden="true"></i>
+              Viagens</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../serviços externos/serviços externos.html">
+                
+                <i class="fa fa-columns" aria-hidden="true"></i>
+                </i>            Serviços Externos</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../entradasaida/entradasaida.html">
+                <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+                Entrada / Saída</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../manutencao/manutencao.html">
+              
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+              Manutenção</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../abastecimento/abastecimento.html">
+              
+              <i class="fas fa-gas-pump" aria-hidden="true"></i>
+              Abastecimento</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../seguros/seguros.html">
+              <i class="fa fa-id-card" aria-hidden="true"></i>
+              Seguros</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../multas/multas.html">
+              <i class="fa fa-sticky-note" aria-hidden="true"></i>
+              Multas</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../sinistros/sinistros.html">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                Sinistros</a>
+            </li>
+  
+          <li class="">
+  
+              <a href="../estoquepecas/estoquepecas.html">
+                <i class="fa fa-truck-loading" aria-hidden="true"></i>
+                Estoque de Peças</a>
+            </li>
+  
+  
+          <li class="">
+  
+            <a href="../funcionario/funcionario.html">
+              
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+  
+              Funcionario</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../clientes/clientes.html">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Clientes</a>
+            </li>
+        </ul>
+  
+  
+     
+  
+      </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+          </button>
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" id="consultar-veiculos" href="#">Consulta</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" id="cadastro-veiculos" href="#">Cadastro</a>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="form-row consulta_veiculos">
+
+        <input id="search-input" class="form-control col-md-6" placeholder="Procurar" autocomplete="off"
+          spellcheck="false" autocorrect="off" tabindex="1">
+          <table id="tabela-veiculos" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th id="Nome" scope="col">Placa</th>
+                <th id="CPF" scope="col">Modelo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Chassi</th>
+                <th scope="col">Alugado</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+      </div>
+
+
+
+
+      <div class="cadastro_veiculos container " >
+        <form name="dados" onSubmit="return;">
+          <div class="form-row ">
+            <div class="form-group col-md-4 ">
+              <label for="inputChassi">Chassi</label>
+              <input name="tx_Chassi" type="text" class="form-control" id="Chassi" placeholder="Digite o chassi" autofocus >
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPlaca">Placa</label>
+              <input name="tx_Placa"  type="text" class="form-control" id="Placa" placeholder="AAA-0000" >
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputModelo">Modelo</label>
+              <input name="tx_Modelo" type="text" class="form-control" id="Modelo" placeholder="Digite o modelo" >
+            </div>
+          </div>
+          <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputMarca">Marca</label>
+            <input name="tx_Marca" type="text" class="form-control" id="Marca" placeholder="Digite a marca" >
+          </div>
+            <div class="form-group col-md-2">
+              <label for="inputAno">Ano</label>
+              <input name="tx_Ano" type="text" class="form-control" id="Ano" >
+            </div>
+          <div class="form-group col-md-3">
+            <div name="tx_Cor" class="form-group col-md-6">
+              <label for="inputCor">Cor</label>
+              <select name="tx_Cor" id="Cor" class="form-control" required>
+                <option name="tx_Cor" selected></option>
+                <option value="1">Amarelo</option>
+                <option value="2">Azul</option>
+                <option value="3">Bege</option>
+                <option value="4">Branca</option>
+                <option value="5">Cinza</option>
+                <option value="6">Dourada</option>
+                <option value="7">Grena</option>
+                <option value="8">Laranja</option>
+                <option value="9">Marrom</option>
+                <option value="10">Prata</option>
+                <option value="11">Preta</option>
+                <option value="12">Rosa</option>
+                <option value="13">Roxa</option>
+                <option value="14">Verde</option>
+                <option value="15">Vermelha</option>
+                <option value="16">Fantasia</option>
+                <option value="17">Outras</option>
+              </select>
+            </div>
+          </div>  
+        </div>
+        <div class="form-row">  
+            <div name="tx_Comb" class="form-group col-md-3">
+              <label for="inputComb">Combustível</label>
+              <select name="tx_Comb" id="Comb" class="form-control" required>
+                <option name="tx_Comb" selected></option>
+                <option value="1">Gasolina </option>
+                <option value="2">Gasolina Aditivada </option>
+                <option value="3">Etanol </option>
+                <option value="4">Eletrico </option>
+                <option value="5">Diesel </option>
+                <option value="6">Gas Natural </option>
+                <option value="7">Flex </option>
+              </select>
+            </div>
+          </div>
+            <div class="form-row ">
+              <div class="form-group col-md-3">
+                  <label for="inputAlugado">Alugado</label><br>
+                  <input id="alugado-sim" type="radio" name="alugados" onchange="MudaAluguel()" value="true" checked> Sim
+                  <input id="alugado-nao" type="radio" name="alugados" onchange="MudaAluguel()" value="false" > Não<br> 
+              </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-valor" for="inputValor">Valor</label>
+            <input name="tx_Valor" type="text" class="form-control" id="Valor" placeholder="Digite o valor" >
+          </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-dtinicio" for="inputDtInicio">Data Inicio</label>
+            <input name="tx_DtInicio" type="date" class="form-control" id="DtInicio" placeholder="" >
+          </div>
+          <div class="form-group col-md-3">
+            <label id="lbl-dtfim" for="inputDtInicio">Data Vencimento</label>
+            <input name="tx_DtFim" type="date" class="form-control" id="DtFim" placeholder="" >
+          </div>            
+          </div>
+        
+          <div class="form-group">
+          <button class="btn btn-info" type="submit" >Cadastrar</button> 
+          </div>
+        </div>
+            </div>
+          </div>
+        </div> 
+         
+        </form>
+      </div>
+    </div> 
+
+      
+      <script src="functions/jquery.js"></script>
+      <script src="functions/masked-inputs.js"></script>
+      <script src="functions/bootstrap.js"></script>    
+      <script src="functions/function.js"></script>
+      <script src="functions/function-api-GET.js"></script>
+      <script src="functions/function-api-POST.js"></script>
+      <script src="functions/json.js"></script>
+      <script src="../seeds.js"></script>
+     
+  
+
+      <script type="text/javascript">
+
+        $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+          });
+        });
+      </script>
+</body>
+
+</html>
