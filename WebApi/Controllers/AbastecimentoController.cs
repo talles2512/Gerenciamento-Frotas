@@ -242,6 +242,11 @@ namespace WebApi.Controllers
             {
                 return BadRequest(e.Message);
             }
+            catch (TipoCombustivelException)
+            {
+                HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
+                return ResponseMessage(message);
+            }
 
         }
         #endregion

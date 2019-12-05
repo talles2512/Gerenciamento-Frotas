@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#consultar-veiculos').removeClass('btn-color-primary');
         $(this).addClass('btn-color-primary');
         GETVeiculo();
-        GETOficina();
+        GETPosto();
     });
    
     $('#consultar-veiculos').click(function(){
@@ -50,6 +50,7 @@ $(document).ready(function () {
     });
 
     $('#Valor').mask('R$ 000000000');
+    $('#Litros').mask('00.00');
 
     $('#consultar-veiculos').click();
 });

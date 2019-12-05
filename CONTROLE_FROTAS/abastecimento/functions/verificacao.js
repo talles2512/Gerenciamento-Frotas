@@ -7,9 +7,9 @@ function enviardados(dados)
         return false;
     }
 
-    if (document.dados.Descricao.value == "" || document.dados.Descricao.value.length <= 3) {
-        alert("Preencha a Descrição corretamente!");
-        document.dados.Nome.focus();
+    if (document.dados.Litros.value.length < 1){
+        alert("Preencha o Litros corretamente!");
+        document.dados.Valor.focus();
         return false;
     }
 

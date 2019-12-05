@@ -7,9 +7,14 @@ form.addEventListener("submit",function(event){
 
         
     let dados = formToJson(inputs)
+    const teste  = enviardados(dados);
+   console.log(teste);
 
-    var Manutencao = CriaJSON(dados);
-    console.log(Manutencao)
+    var Abastecimento = CriaJSON(dados);
+    console.log(Abastecimento)
+    if(teste == false){
+        return false;
+    }
 
     // console.log(JSON.stringify(dados))
     
@@ -27,14 +32,14 @@ form.addEventListener("submit",function(event){
     //})
      
     
-    fetch(new Request('http://localhost:54035/api/Manutencao/add', { method: 'POST',
+    fetch(new Request('http://localhost:54035/api/Abastecimento/add', { method: 'POST',
          headers: new Headers(
              {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
              }
          ),
-         body: JSON.stringify(Manutencao) }))
+         body: JSON.stringify(Abastecimento) }))
         .then(response => {
             if (response.status === 200) {
                 
@@ -42,7 +47,11 @@ form.addEventListener("submit",function(event){
                 document.querySelector(".cadastro_veiculos form").reset()
 
                 return response.json();
-            } else {
+            }
+            else if(response.status == 406){
+                alert("Combustível escolhido é incompatível com o veículo!");
+            }
+             else {
                 throw new Error('Ops! Houve um erro em nosso servidor.');
             }
         })
@@ -71,24 +80,22 @@ function formToJson(inputs){
 
 function CriaJSON(dados){
     var placa = dados["PlacaVeiculo"];
-    var cnpj = dados["CnpjOficina"];
+    var cnpj = dados["CnpjPosto"];
     var data = dados["Data"];
     var tipo = dados["Tipo"];
+    var litros = dados["Litros"];
     var valor = LimpaReal(dados["Valor"]);
-    var situacao = dados["Situacao"];
-    var descricao = dados["Descricao"];
 
-   var Manutencao = {
+   var Abastecimento = {
        CNPJ : cnpj,
        Data : data,
-       Descricao : descricao,
+       Litros : litros,
        Placa : placa,
-       Situacao : situacao,
        Tipo : tipo,
        Valor : valor
    }
 
-   return Manutencao
+   return Abastecimento
 }
 
 function LimpaMascara(input){
@@ -106,6 +113,21 @@ function LimpaMascara(input){
 }
 
 function LimpaReal(input){
+    var strings = [".", "R", "$", " "];
+    
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    for(var i = 0; i<=strings.length; i++){
+        input = input.replace(strings[i],"");
+    }
+
+    return input;
+}
+
+
+function VerificaLitros(input){
     var strings = [".", "R", "$", " "];
     
     for(var i = 0; i<=strings.length; i++){

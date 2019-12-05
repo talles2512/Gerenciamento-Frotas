@@ -38,12 +38,12 @@ function PopulaTabela(data){
                             +"<td>"+data["Data"]+"</td>";
   }
 
-function GETOficina(){
+function GETPosto(){
   fetch('http://localhost:54035/api/abastecimento?cnpjs=A')
             .then(function(response){
                 if(response.ok){
                     response.json().then(function(data){
-                        PopulaOficinas(data)
+                        PopulaPosto(data)
                       });
                 }
         
@@ -53,8 +53,8 @@ function GETOficina(){
               });
 }
         
-function PopulaOficinas(data){
-  var select = document.getElementById("CnpjOficina");
+function PopulaPosto(data){
+  var select = document.getElementById("CnpjPosto");
   var contador = 1;
       data.forEach(element => {
 
