@@ -177,10 +177,11 @@ namespace WebApi.Controllers
 
         // GET: api/Sinistro?id=VALOR&data=VALOR&tipo=VALOR
         [HttpGet]
-        public IHttpActionResult Get(int id, DateTime data, string item, string tipo)
+        public IHttpActionResult Get(int id, DateTime data, string tipo)
         {
             try
             {
+                string item = "";
                 var result = _sinistroService.BuscarSinistro(id, data, item, tipo);
                 if (result == null)
                 {
@@ -197,6 +198,88 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Sinistro?tipo=VALOR
+        [HttpGet]
+        public IHttpActionResult GetItens(string tipo)
+        {
+            try
+            {
+                DataTable result;
+                if(tipo == "Veiculo")
+                {
+                    result = _sinistroService.PopularPlacas();
+
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["MODELO"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+                else
+                {
+                    result = _sinistroService.PopularCPFs();
+
+                    DataRow[] dataRows = result.Select();
+                    List<string> CPFs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CPFs.Add(dr["MOTORISTA"].ToString());
+                    }
+
+                    return Ok(CPFs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+
+        // GET: api/Sinistro?tipo=VALOR&item=VALOR
+        [HttpGet]
+        public IHttpActionResult GetSeguros(string tipo, string item)
+        {
+            try
+            {
+                DataTable result;
+                if (tipo == "Veiculo")
+                {
+                    result = _sinistroService.PopularSeguroPlacas(item);
+
+                    DataRow[] dataRows = result.Select();
+                    List<string> Placas = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        Placas.Add(dr["APOLICE"].ToString());
+                    }
+
+                    return Ok(Placas);
+                }
+                else
+                {
+                    result = _sinistroService.PopularSeguroCPFs(item);
+
+                    DataRow[] dataRows = result.Select();
+                    List<string> CPFs = new List<string>();
+                    foreach (DataRow dr in dataRows)
+                    {
+                        CPFs.Add(dr["APOLICE"].ToString());
+                    }
+
+                    return Ok(CPFs);
+                }
+            }
+            catch (ConcorrenciaBancoException)
+            {
+                return BadRequest("Favor tentar novamente mais tarde.");
+            }
+        }
+
+
         //POST: api/Sinistro
         [HttpPost]
         [Route("add")]
@@ -207,6 +290,8 @@ namespace WebApi.Controllers
 
             try
             {
+                int id = PopularID(sinistro.ItemSegurado.ToString());
+                sinistro.Id = id++;
                 bool result = _sinistroService.Cadastrar(sinistro, sinistro.Id, sinistro.DataHora, sinistro.Item, sinistro.Seguro.NumeroApolice, sinistro.ItemSegurado.ToString());
                 if (result)
                 {

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Frotas-</title>
+
+ 
+  <link rel="stylesheet" href="style4.css">
+
+  <link rel="stylesheet" href="bootstrap.css">
+
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <script src="functions/verificacao.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+          <h3>GerecFrotas <img src="car-icon.png"></h3>
+          <strong><img class="carIcon" src="car-icon.png"></strong>
+        </div>
+  
+        <ul class="list-unstyled components">
+          <li class="">
+            <a href="../veiculo/Veiculo.html">
+              <i class="fa fa-car" aria-hidden="true"></i>
+              Veículos
+            </a>
+  
+          </li>
+  
+          <li class="">
+  
+            <a href="../motorista/motorista.html">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Motorista</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../viagens/viagens.html">
+              
+              <i class="fa fa-road" aria-hidden="true"></i>
+              Viagens</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../serviços externos/serviços externos.html">
+                
+                <i class="fa fa-columns" aria-hidden="true"></i>
+                </i>            Serviços Externos</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../entradasaida/entradasaida.html">
+                <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+                Entrada / Saída</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../manutencao/manutencao.html">
+              
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+              Manutenção</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../abastecimento/abastecimento.html">
+              
+              <i class="fas fa-gas-pump" aria-hidden="true"></i>
+              Abastecimento</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../seguros/seguros.html">
+              <i class="fa fa-id-card" aria-hidden="true"></i>
+              Seguros</a>
+          </li>
+  
+          <li class="">
+  
+            <a href="../multas/multas.html">
+              <i class="fa fa-sticky-note" aria-hidden="true"></i>
+              Multas</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../sinistros/sinistros.html">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                Sinistros</a>
+            </li>
+  
+          <li class="">
+  
+              <a href="../estoquepecas/estoquepecas.html">
+                <i class="fa fa-truck-loading" aria-hidden="true"></i>
+                Estoque de Peças</a>
+            </li>
+  
+  
+          <li class="">
+  
+            <a href="../funcionario/funcionario.html">
+              
+              <i class="fa fa-address-card" aria-hidden="true"></i>
+  
+              Funcionario</a>
+          </li>
+  
+          <li class="">
+  
+              <a href="../clientes/clientes.html">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Clientes</a>
+            </li>
+        </ul>
+  
+  
+     
+  
+      </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+          </button>
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" id="consultar-veiculos" href="#">Consulta</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" id="cadastro-veiculos" href="#">Cadastro</a>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="form-row consulta_veiculos">
+        <div class="form-group col-md-3">
+          <div name="tx_TipoConsulta">
+            <label for="inputTipoConsulta">Tipo</label>
+            <select name="tx_TipoConsulta" id="TipoConsulta" class="form-control" required>
+              <option name="tx_Cor" selected></option>
+              <option value="Veiculo">Veículo</option>
+              <option value="Motorista">Motorista</option>     
+            </select>
+          </div>
+        </div>  
+        <div class="form-group col-md-3">
+          <label for="inputDataConsulta">Data</label>
+          <input name="tx_DataConsulta" type="datetime-local" class="form-control" id="DataConsulta" placeholder="" required >
+      </div>
+
+        <div class="form-group">
+            <label for="inputIDConsulta">ID</label>
+            <input name="tx_IDConsulta" type="text" class="form-control" id="IDConsulta" placeholder="" required >
+        </div>
+    </div>
+      <div class="form-row consulta_veiculos">
+
+          <table id="tabela-sinistros" class="table">
+            <thead class="thead-dark">
+              <tr id="cabecalho">
+                <th scope="col">ID</th>
+                <th scope="col">Item Segurado</th>
+                <th scope="col">Seguro-Apólice</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Data/Hora</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+      </div>
+
+
+
+
+      <div class="cadastro_veiculos container " >
+        <form name="dados">
+          <div class="form-row ">
+            <div class="form-group col-md-3">
+              <div name="tx_Tipo">
+                <label for="inputTipo">Tipo</label>
+                <select name="tx_Tipo" id="Tipo" class="form-control" required>
+                  <option name="tx_Cor" selected></option>
+                  <option value="Veiculo">Veículo</option>
+                  <option value="Motorista">Motorista</option>     
+                </select>
+              </div>
+            </div> 
+            <div class="form-group col-md-4">
+              <label for="inputItemSegurado">Item Segurado</label>
+              <select name="tx_ItemSegurado" id="ItemSegurado" class="form-control" required>
+                  <option name="tx_ItemSegurado" selected></option>
+              </select>
+            </div>
+          </div>
+            
+          <div class="form-row ">
+            <div class="form-group col-md-4">
+              <label for="inputSeguro">Seguro</label>
+              <select name="tx_Seguro" id="Seguro" class="form-control" required>
+                  <option name="tx_Seguro" selected></option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputData">Data</label>
+              <input name="tx_Data" type="datetime-local" class="form-control" id="Data" placeholder="" required >
+          </div>
+          </div>
+          <div class="form-row ">
+            <div class="form-group col-md-8">
+              <label for="inputDescricao">Descrição</label>
+              <input name="tx_Descricao" type="text" class="form-control" id="Descricao" placeholder="Digite a descrição da multa" required >
+          </div>
+      </div>
+
+            
+          <div class="form-row">
+            <div class="form-group col-md-3">
+                <br>
+                <button class="btn btn-info" type="submit">Cadastrar</button>  
+            </div>
+      </div>
+          </div>
+          </div>         
+      </div>          
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <script src="functions/jquery.js"></script>
+      <script src="functions/masked-inputs.js"></script> <!--Biblioteca de Masked Inputs-->
+      <script src="functions/bootstrap.js"></script>    
+      <script src="functions/function.js"></script>
+      <script src="functions/function-api-GET.js"></script>
+      <script src="functions/function-api-POST.js"></script>
+      <script src="functions/json.js"></script>
+
+      <script type="text/javascript">
+
+        $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+          });
+        });
+      </script>
+</body>
+
+</html>
